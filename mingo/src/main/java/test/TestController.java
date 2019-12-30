@@ -36,7 +36,7 @@ public class TestController {
 		 */
 		System.out.println("requst:"+req.getParameter("email"));
 		System.out.println("RequestParam:"+email);
-		System.out.println("Command:"+vo.getIntroduce());
+		System.out.println("Command:"+vo.getIntroduce());  
 		// 정태기가 수정
 		
 		// 홍동우 수정
