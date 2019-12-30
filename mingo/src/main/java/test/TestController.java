@@ -38,6 +38,8 @@ public class TestController {
 		System.out.println("RequestParam:"+email);
 		System.out.println("Command:"+vo.getEmail());
 		
+		// 홍동우 수정
+		
 		List<TestVO> list = testDao.memberList(vo);
 		model.addAttribute("list", list); 
 		return "memberList";
