@@ -20,7 +20,7 @@ a{
     height: 400px;
     z-index: -1;
     opacity: 0.4;
-    background-image: url('/mingo/img/cafe.jpg');
+    background-image: url('../img/cafe.jpg');
 }
 .search-area{
     
@@ -120,7 +120,9 @@ a{
 }
 /* 최신 리뷰 영역 */
 .latest-review{
-    
+    border:1px solid black;
+    box-sizing: border-box;
+    background-color: #f1f1f1;
 }
 .review-header{
     
@@ -129,7 +131,32 @@ a{
     width:80px;
     height:80px;
 }
-.review-img{
+#review-header-name{
+    position: absolute;
+    top:5px;
+    left:0;
+    font-size:1.5em;
+}
+#review-header-date{
+    position: absolute;
+    top:40px;
+    left:10px;
+}
+#review-header-star{
+    position: absolute;
+    top:0;
+    font-size: 2.5em;
+    right:50px;
+}
+#review-header-score{
+    position: absolute;
+    top:3px;
+    font-size: 2.5em;
+    right:0;
+}
+#review-img{
+    
+    width:100%;
     
 }
 .review-content{
@@ -180,6 +207,7 @@ a{
 /* 스와이퍼 영역 */
 .swiper-container{
     height:500px;
+    
 }
 
 
@@ -195,3 +223,28 @@ a{
     color:crimson;
     text-decoration: none;
 }
+
+/* 스크롤 바 관련 (IE에선 작동안됨) */
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    
+   
+    background-color: #d1d1d1;
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    width:20px;
+    background: black; 
+    
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #a1a1a1; 
+  }

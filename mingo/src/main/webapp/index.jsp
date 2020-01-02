@@ -29,8 +29,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- 내가 만든 파일-->
-    <link rel="stylesheet" href="/mingo/css/styleByHong.css">
-    <script src="/mingo/js/scriptByHong.js"></script>
+    <link rel="stylesheet" href="./css/styleByHong.css">
+    <script src="./js/scriptByHong.js"></script>
 </head>
 
 <body>
@@ -185,29 +185,38 @@
 
                     </div>
                 </div>
-                <div class="col-lg-5 bg-success mb-5 mt-4 latest-review shadow-sm">
-                    <div class="row review-header p-3">
-                        <img src="./img/profile.png" class="rounded-circle">
-                        <div>홍길동님</div>
-                        <div>홍길동님</div>
-                        <div>홍길동님</div>
-                        <div>홍길동님</div>
-                        <div>홍길동님</div>
+                <div class="col-lg-5 mb-5 mt-4 latest-review shadow-sm">
+                    <div class="review-header p-3 clearfix">
 
+                        <img src="./img/profile.png" class="rounded-circle float-left">
+                        <div style="height:80px;margin-left:90px;position:relative">
+                            <div id="review-header-name">밍고님</div>
+
+                            <div id="review-header-score">3.9</div>
+                            <div id="review-header-star">☆</div>
+                            <div id="review-header-date">3일전</div>
+                        </div>
                     </div>
-                    <div class="row bg-warning review-img">
-                        <img src="http://placehold.it/200x200">
-                    </div>
-                    <div class="row bg-success review-content">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti magnam eum earum, doloribus,
-                        delectus odio sit ipsam maiores tenetur possimus iusto officia illo, tempora repudiandae qui
-                        quis dolorum deserunt. Nesciunt est dolorem magni ab dolorum exercitationem repudiandae commodi
-                        perspiciatis, atque similique. Sunt molestias repudiandae quisquam. Tempore dignissimos saepe
-                        voluptatibus explicabo culpa, unde odit perspiciatis porro praesentium enim doloremque quaerat
-                        ipsum obcaecati quisquam fugiat dolorum voluptatum non cupiditate! Minus tenetur est, harum
-                        delectus enim facere nihil nam voluptatem? Minus asperiores aliquam accusantium vero praesentium
-                        reprehenderit repellendus corrupti tempore quae voluptatum! Est, aperiam accusamus! Officia,
-                        fuga ex quis ipsa accusantium omnis quam.
+                    <div style="height:428px;overflow-y: scroll;overflow-x:hidden;">
+                        <div class="pr-1">
+                            <img id="review-img" src="./img/cafe.jpg">
+                        </div>
+                        <div class="review-content pt-3">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti magnam eum earum,
+                            doloribus,
+                            delectus odio sit ipsam maiores tenetur possimus iusto officia illo, tempora repudiandae qui
+                            quis dolorum deserunt. Nesciunt est dolorem magni ab dolorum exercitationem repudiandae
+                            commodi
+                            perspiciatis, atque similique. Sunt molestias repudiandae quisquam. Tempore dignissimos
+                            saepe
+                            voluptatibus explicabo culpa, unde odit perspiciatis porro praesentium enim doloremque
+                            quaerat
+                            ipsum obcaecati quisquam fugiat dolorum voluptatum non cupiditate! Minus tenetur est, harum
+                            delectus enim facere nihil nam voluptatem? Minus asperiores aliquam accusantium vero
+                            praesentium
+                            reprehenderit repellendus corrupti tempore quae voluptatum! Est, aperiam accusamus! Officia,
+                            fuga ex quis ipsa accusantium omnis quam.
+                        </div>
                     </div>
                 </div>
             </div>
@@ -253,9 +262,9 @@
                     <!-- Additional required wrapper -->
                     <div class="swiper-wrapper" style="margin-top:10px;">
                         <!-- Slides -->
-                        <div class="swiper-slide" style="background-image: url('/mingo/img/cafe.jpg');"></div>
-                        <div class="swiper-slide" style="background-image: url('/mingo/img/cafe2.jpg');"></div>
-                        <div class="swiper-slide" style="background-image: url('/mingo/img/cafe3.jpg');"></div>
+                        <div class="swiper-slide" style="background-image: url('./img/cafe.jpg');"></div>
+                        <div class="swiper-slide" style="background-image: url('./img/cafe2.jpg');"></div>
+                        <div class="swiper-slide" style="background-image: url('./img/cafe3.jpg');"></div>
 
                     </div>
                     <!-- If we need pagination -->
