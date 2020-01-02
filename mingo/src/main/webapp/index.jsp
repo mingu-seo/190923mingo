@@ -29,8 +29,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- 내가 만든 파일-->
-    <link rel="stylesheet" href="./css/MyStyle2.css">
-    <script src="./js/MyScript2.js"></script>
+    <link rel="stylesheet" href="/mingo/css/styleByHong.css">
+    <script src="/mingo/js/scriptByHong.js"></script>
 </head>
 
 <body>
@@ -253,9 +253,9 @@
                     <!-- Additional required wrapper -->
                     <div class="swiper-wrapper" style="margin-top:10px;">
                         <!-- Slides -->
-                        <div class="swiper-slide" style="background-image: url('./img/cafe.jpg');"></div>
-                        <div class="swiper-slide" style="background-image: url('./img/cafe2.jpg');"></div>
-                        <div class="swiper-slide" style="background-image: url('./img/cafe3.jpg');"></div>
+                        <div class="swiper-slide" style="background-image: url('/mingo/img/cafe.jpg');"></div>
+                        <div class="swiper-slide" style="background-image: url('/mingo/img/cafe2.jpg');"></div>
+                        <div class="swiper-slide" style="background-image: url('/mingo/img/cafe3.jpg');"></div>
 
                     </div>
                     <!-- If we need pagination -->
