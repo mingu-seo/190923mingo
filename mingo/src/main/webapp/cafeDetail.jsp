@@ -94,7 +94,7 @@
 				</div>
 				<div id="branch_name">
 					<h2>건대입구점</h2>
-				</div>  
+				</div>     
 			</div>
 			<div class="info">
 				<div class="rate_avg">
