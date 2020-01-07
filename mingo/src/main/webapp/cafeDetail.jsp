@@ -20,9 +20,23 @@
 	
 	<style>
 		/* header 부분 스타일 기본값 */
-		/* .memubar_space{
-			height:200px;
-		} */
+		.memubar_space{
+			height:600px;
+			width:100%;   
+			left:0px;
+			top:0px;    
+			position: absolute;
+			overflow: hidden;     
+		}
+		
+		.memubar_space img{
+			z-index:-1;
+			width:100%;
+			left:0px;
+			top:0px;
+			position: absolute;
+			
+		}
 		
 		.container{
 			width:900px;
@@ -40,11 +54,14 @@
 		}
 		.logo > img{
 			width:100%;
+			filter: drop-shadow(0px 0px 20px #FFFFFF);
 		}
 		
 		#cafe_name, #branch_name{
-			font-color:#2E2E2E;
-			font-size: 2.5em;        
+			font-color:#151515;
+			font-size: 2.5em;
+			font-weight:bold;
+			text-shadow: 0px 0px 15px #FFFFFF;        
 		}
 			
 		#cafe_name{
@@ -56,18 +73,22 @@
 		}  
 		
 		#star_shape1{
-			float:left;
+			float:left;  
 			width:3%;
+			filter: drop-shadow(0px 0px 20px #FFFFFF);
 		}
 		#rate_num{
-			color:#424242;
+			font-weight:bold;
+			color:#151515;
 			font-size: 1.2em;
-			float: left;   
+			float: left;
+			text-shadow: 0px 0px 15px #FFFFFF;   
 		}
 		.address{
-			
-			color:#424242;  
+			font-weight:bold;
+			color:#151515;  
 			font-size: 1.2em;
+			text-shadow: 0px 0px 15px #FFFFFF;
 		}
 		
 		.content_button, .cafe_infomation, .cafe_review, .'jumbotron jumbotron-fluid'{
@@ -83,6 +104,7 @@
 		
 		/* 콘텐츠 섹션 선택 버튼 */
 		.content_button{
+			padding-top:10px;
 			width:100%;
 		}
 		.info_button{
@@ -92,7 +114,7 @@
 			font-size: 1.2em;
 			float:left;
 			line-height: 50px;   		
-			background-color:#EFF5FB;
+			
 		}
 		.review_button{
 			width:50%;
@@ -100,7 +122,7 @@
 			text-align: center;
 			font-size: 1.2em;
 			float:left;
-			background-color:#CEE3F6;
+			border-bottom:2px solid #21610B;
 			line-height: 50px;  		
 		}
 		.cafe_infomation{
@@ -185,22 +207,30 @@
 		
 		}
 		
+		#cafe_photo_title{
+		 margin-bottom:30px;
+		}
+		
 		.visual{
-			width:100%;
+			width:90%;
 			height:500px;
+			margin:0 auto;
+			  
+			
 		}
 		
 		.visual .swiper{
         	height:500px
         	z-index: 10;
+        	
         }   
         
         .'swiper swiper-container', ,swiper-wrapper{
-        	height:100%;
+        	height:500px;
         }
         
         .visual .swiper-slide{
-        	height:100%;
+        	height:500px;
         	background-position:center center;
         	background-repeat:no-repeat;
         	background-size:cover;
@@ -329,15 +359,21 @@
 			padding:20px 0;
 		}
 		
-		.cafe_reviews, .cafe_review_each{
+		.cafe_reviews {
 			width:100%;   
-			height:1000px;   
+			/* height:2000px; */     
+		} 
+		.cafe_review_each{
+			width:90%;     
+			margin-bottom:40px;  
+			border-bottom:1px solid #D8D8D8;
+			
 		} 
 		
 		.user_info{
 			height:55px;
 			line-height: 55px;
-			margin-bottom:10px;
+			margin-bottom:30px;
 		}
 		.user_info img{
 			width:50px;
@@ -357,28 +393,113 @@
 			width:20px;
 			height:20px;   
 		}
-		
-		.rate_each2 div{
-			float:left; 
+		  
+		.rating{
+			height:300px;
+			width:100%;
 		}
+		
+		.rate_each2{
+			width:100%;
+			/* height:300px; */       
+		
+		}   
+		/* #rate_each2{   
+			width:100%;
+			
+		} */
+		
+		
 		
 		.cafe_review_bottom div{
 			margin-bottom:10px;
 		}
-		.comment{
-			width:800px;
+		
+		.cafe_review_top{
+			width:30%;
+			float:left;
+			
 		}
+		
+		.cafe_review_bottom{
+			width:70%;  
+			float:left;
+			padding-left:20px;
+			box-sizing: border-box;
+		}
+		
+		.cafe_review_bottom img{
+			width:100%;
+			height:100%;
+		}
+		.comment{
+			width:100%;
+			height:100%;
+			padding-bottom:20px;
+		}  
+		
+		.review_navi_nums{
+			width:100%;
+			padding-top:50px;  
+			
+		}
+		  
+		.review_navi_nums > div{
+			height:150px;
+			width:90%;
+			
+			/* margin:0 auto;
+			padding:0 auto; */  
+			/* line-height: 200px; */
+			text-align:center;  
+		}      
+		
+		.review_navi_nums a{
+			margin:0 20px;
+		
+		}
+		
 		
 	</style>
 	<script>
 		$(function(){
+			var review_each_height = $('.cafe_review_bottom img').height()+$('.comment').height()+20;
+			
+			$('.cafe_review_each').css({
+				'height':review_each_height+'px'
+			});
+			
+			  
+			
+			$('.cafe_reviews').css({
+				'height':review_each_height*5+200+'px'
+			});
+			   
+			var swiper = new Swiper('.visual .swiper-container', {
+                cssMode: true,
+                loop : true,
+                navigation: {
+                nextEl: '.visual .swiper-button-next',
+                prevEl: '.visual .swiper-button-prev',
+                },
+                pagination: {
+                el: '.visual .swiper-pagination'
+                },
+                mousewheel: true,
+                keyboard: true,
+            });   
+    		      
+			
+			
+			
+			
 			$('.info_button').click(function(){
 				console.log("click");
 				$('.info_button').css({
-					'background-color':'#CEE3F6' 
+					'border-bottom':'2px solid #21610B' 
 				});
 				$('.review_button').css({
-					'background-color':'#EFF5FB' 
+					'border-style':'none' 
 				});
 				$('.cafe_infomation').css({
 					'display':'block',
@@ -391,10 +512,10 @@
 			$('.review_button').click(function(){
 				console.log("click");
 				$('.review_button').css({
-					'background-color':'#CEE3F6' 
+					'border-bottom':'2px solid #21610B' 
 				});
 				$('.info_button').css({
-					'background-color':'#EFF5FB' 
+					'border-style':'none' 
 				});
 				$('.cafe_review').css({
 					'display':'block'  
@@ -449,7 +570,10 @@
 	</div>
 	
 	<!-- 빈공간. 코딩 편의를 위해 레이어 앞면에 고정된 메뉴바가 차지하는 만큼 빈공간 부여 -->
-	<div class="memubar_space"></div>
+	<div class="memubar_space">
+		<img src="img/cafe_4.png">
+	
+	</div>
 	
 	<!-- 카페 로고 및 기본 정보 표시란 -->
 	<div class="header">
@@ -748,78 +872,337 @@
 					<div class="cafe_review_each">
 						<div class="cafe_review_top">
 							<div class="user_info">   
-								<div> 
+								<div>
 									<img src="http://placehold.it/50x50"/>
 								</div>
 								<h2>최재명</h2>
 								<h2>1주일 전</h2>
 							</div>
 							<div class="rating">
-								<div class="rate_each2">
-									<div class="rate_visual" id="taste_visual">
+								<div class="rate_each2" id="rate_each2">
+									<span class="rate_visual" id="taste_visual">
 										<img src="img/wifi.png">
-									</div>
-									<div class="rate_name" id="taste_name">맛</div>
-									<div class="my_rate">3.1점</div>
+									</span>
+									<span class="rate_name" id="taste_name">맛</span>
+									<span class="my_rate">3.1점</span>
 								</div>
-								<div class="rate_each2">
-									<div class="rate_visual" id="price_visual">
+								<div class="rate_each2" id="rate_each2">
+									<span class="rate_visual" id="price_visual">
 										<img src="img/wifi.png">
-									</div>
-									<div class="rate_name" id="price_name">가격</div>
-									<div class="my_rate">5.2점</div>
+									</span>
+									<span class="rate_name" id="price_name">가격</span>
+									<span class="my_rate">5.2점</span>
 								</div>
-								<div class="rate_each2">
-									<div class="rate_visual" id="service_visual">
+								<div class="rate_each2" id="rate_each2">
+									<span class="rate_visual" id="service_visual">
 										<img src="img/wifi.png">
-									</div>
-									<div class="rate_name" id="service_name">서비스</div>
-									<div class="my_rate">1.2점</div>
+									</span>
+									<span class="rate_name" id="service_name">서비스</span>
+									<span class="my_rate">1.2점</span>
 								</div>
-								<div class="rate_each2">
-									<div class="rate_visual" id="facimood_visual">
+								<div class="rate_each2" id="rate_each2">
+									<span class="rate_visual" id="facimood_visual">
 										<img src="img/wifi.png">
-									</div>
-									<div class="rate_name" id="facimood_name">시설 및 분위기</div>
-									<div class="my_rate">3.3점</div>
+									</span>
+									<span class="rate_name" id="facimood_name">시설 및 분위기</span>
+									<span class="my_rate">3.3점</span>
 								</div>
-								<div class="rate_each2">
-									<div class="rate_visual" id="wifiplug_visual">
+								<div class="rate_each2" id="rate_each2">
+									<span class="rate_visual" id="wifiplug_visual">
 										<img src="img/wifi.png">
-									</div>
-									<div class="rate_name" id="wifiplug_name">와이파이&콘센트</div>
-									<div class="my_rate">1.1점</div>
+									</span>
+									<span class="rate_name" id="wifiplug_name">와이파이&콘센트</span>
+									<dspaniv class="my_rate">1.1점</span>
 								</div>  
-								<div class="rate_each2">
-									<div class="rate_visual" id="clean_visual">
+								<div class="rate_each2" id="rate_each2">
+									<span class="rate_visual" id="clean_visual">
 										<img src="img/wifi.png">
-									</div>
-									<div class="rate_name" id="clean_name">청결</div>
-									<div class="my_rate">6.2점</div>
+									</span>
+									<span class="rate_name" id="clean_name">청결</span>
+									<span class="my_rate">6.2점</span>
 								</div>
 								
 							</div>
 						</div>
 						<div class="cafe_review_bottom">  
 							<div>
-								<img src="http://placehold.it/800x500"/>
+								<img src="img/cafe_1.jpg"/>
 							</div>
 							<div class="comment">
 								<p>숙소가 매우 깨끗했고, 준비가 전체적으로 잘 되어있었어요. 도착시간 때문에 체크인 시간도 조정해주시고 너무 친절했어요 :)</p>
 							</div>
 						</div>
 					</div>
+					<div class="cafe_review_each">
+						<div class="cafe_review_top">
+							<div class="user_info">   
+								<div>
+									<img src="http://placehold.it/50x50"/>
+								</div>
+								<h2>최재명</h2>
+								<h2>1주일 전</h2>
+							</div>
+							<div class="rating">
+								<div class="rate_each2" id="rate_each2">
+									<span class="rate_visual" id="taste_visual">
+										<img src="img/wifi.png">
+									</span>
+									<span class="rate_name" id="taste_name">맛</span>
+									<span class="my_rate">3.1점</span>
+								</div>
+								<div class="rate_each2" id="rate_each2">
+									<span class="rate_visual" id="price_visual">
+										<img src="img/wifi.png">
+									</span>
+									<span class="rate_name" id="price_name">가격</span>
+									<span class="my_rate">5.2점</span>
+								</div>
+								<div class="rate_each2" id="rate_each2">
+									<span class="rate_visual" id="service_visual">
+										<img src="img/wifi.png">
+									</span>
+									<span class="rate_name" id="service_name">서비스</span>
+									<span class="my_rate">1.2점</span>
+								</div>
+								<div class="rate_each2" id="rate_each2">
+									<span class="rate_visual" id="facimood_visual">
+										<img src="img/wifi.png">
+									</span>
+									<span class="rate_name" id="facimood_name">시설 및 분위기</span>
+									<span class="my_rate">3.3점</span>
+								</div>
+								<div class="rate_each2" id="rate_each2">
+									<span class="rate_visual" id="wifiplug_visual">
+										<img src="img/wifi.png">
+									</span>
+									<span class="rate_name" id="wifiplug_name">와이파이&콘센트</span>
+									<dspaniv class="my_rate">1.1점</span>
+								</div>  
+								<div class="rate_each2" id="rate_each2">
+									<span class="rate_visual" id="clean_visual">
+										<img src="img/wifi.png">
+									</span>
+									<span class="rate_name" id="clean_name">청결</span>
+									<span class="my_rate">6.2점</span>
+								</div>
+								
+							</div>
+						</div>
+						<div class="cafe_review_bottom">  
+							<div>
+								<img src="img/cafe_1.jpg"/>
+							</div>
+							<div class="comment">
+								<p>숙소가 매우 깨끗했고, 준비가 전체적으로 잘 되어있었어요. 도착시간 때문에 체크인 시간도 조정해주시고 너무 친절했어요 :)</p>
+							</div>
+						</div>
+					</div>
+					<div class="cafe_review_each">
+						<div class="cafe_review_top">
+							<div class="user_info">   
+								<div>
+									<img src="http://placehold.it/50x50"/>
+								</div>
+								<h2>최재명</h2>
+								<h2>1주일 전</h2>
+							</div>
+							<div class="rating">
+								<div class="rate_each2" id="rate_each2">
+									<span class="rate_visual" id="taste_visual">
+										<img src="img/wifi.png">
+									</span>
+									<span class="rate_name" id="taste_name">맛</span>
+									<span class="my_rate">3.1점</span>
+								</div>
+								<div class="rate_each2" id="rate_each2">
+									<span class="rate_visual" id="price_visual">
+										<img src="img/wifi.png">
+									</span>
+									<span class="rate_name" id="price_name">가격</span>
+									<span class="my_rate">5.2점</span>
+								</div>
+								<div class="rate_each2" id="rate_each2">
+									<span class="rate_visual" id="service_visual">
+										<img src="img/wifi.png">
+									</span>
+									<span class="rate_name" id="service_name">서비스</span>
+									<span class="my_rate">1.2점</span>
+								</div>
+								<div class="rate_each2" id="rate_each2">
+									<span class="rate_visual" id="facimood_visual">
+										<img src="img/wifi.png">
+									</span>
+									<span class="rate_name" id="facimood_name">시설 및 분위기</span>
+									<span class="my_rate">3.3점</span>
+								</div>
+								<div class="rate_each2" id="rate_each2">
+									<span class="rate_visual" id="wifiplug_visual">
+										<img src="img/wifi.png">
+									</span>
+									<span class="rate_name" id="wifiplug_name">와이파이&콘센트</span>
+									<dspaniv class="my_rate">1.1점</span>
+								</div>  
+								<div class="rate_each2" id="rate_each2">
+									<span class="rate_visual" id="clean_visual">
+										<img src="img/wifi.png">
+									</span>
+									<span class="rate_name" id="clean_name">청결</span>
+									<span class="my_rate">6.2점</span>
+								</div>
+								
+							</div>
+						</div>
+						<div class="cafe_review_bottom">  
+							<div>
+								<img src="img/cafe_1.jpg"/>
+							</div>
+							<div class="comment">
+								<p>숙소가 매우 깨끗했고, 준비가 전체적으로 잘 되어있었어요. 도착시간 때문에 체크인 시간도 조정해주시고 너무 친절했어요 :)</p>
+							</div>
+						</div>
+					</div>
+					<div class="cafe_review_each">
+						<div class="cafe_review_top">
+							<div class="user_info">   
+								<div>
+									<img src="http://placehold.it/50x50"/>
+								</div>
+								<h2>최재명</h2>
+								<h2>1주일 전</h2>
+							</div>
+							<div class="rating">
+								<div class="rate_each2" id="rate_each2">
+									<span class="rate_visual" id="taste_visual">
+										<img src="img/wifi.png">
+									</span>
+									<span class="rate_name" id="taste_name">맛</span>
+									<span class="my_rate">3.1점</span>
+								</div>
+								<div class="rate_each2" id="rate_each2">
+									<span class="rate_visual" id="price_visual">
+										<img src="img/wifi.png">
+									</span>
+									<span class="rate_name" id="price_name">가격</span>
+									<span class="my_rate">5.2점</span>
+								</div>
+								<div class="rate_each2" id="rate_each2">
+									<span class="rate_visual" id="service_visual">
+										<img src="img/wifi.png">
+									</span>
+									<span class="rate_name" id="service_name">서비스</span>
+									<span class="my_rate">1.2점</span>
+								</div>
+								<div class="rate_each2" id="rate_each2">
+									<span class="rate_visual" id="facimood_visual">
+										<img src="img/wifi.png">
+									</span>
+									<span class="rate_name" id="facimood_name">시설 및 분위기</span>
+									<span class="my_rate">3.3점</span>
+								</div>
+								<div class="rate_each2" id="rate_each2">
+									<span class="rate_visual" id="wifiplug_visual">
+										<img src="img/wifi.png">
+									</span>
+									<span class="rate_name" id="wifiplug_name">와이파이&콘센트</span>
+									<dspaniv class="my_rate">1.1점</span>
+								</div>  
+								<div class="rate_each2" id="rate_each2">
+									<span class="rate_visual" id="clean_visual">
+										<img src="img/wifi.png">
+									</span>
+									<span class="rate_name" id="clean_name">청결</span>
+									<span class="my_rate">6.2점</span>
+								</div>
+								
+							</div>
+						</div>
+						<div class="cafe_review_bottom">  
+							<div>
+								<img src="img/cafe_1.jpg"/>
+							</div>
+							<div class="comment">
+								<p>숙소가 매우 깨끗했고, 준비가 전체적으로 잘 되어있었어요. 도착시간 때문에 체크인 시간도 조정해주시고 너무 친절했어요 :)</p>
+							</div>
+						</div>
+					</div>
+					<div class="cafe_review_each">
+						<div class="cafe_review_top">
+							<div class="user_info">   
+								<div>
+									<img src="http://placehold.it/50x50"/>
+								</div>
+								<h2>최재명</h2>
+								<h2>1주일 전</h2>
+							</div>
+							<div class="rating">
+								<div class="rate_each2" id="rate_each2">
+									<span class="rate_visual" id="taste_visual">
+										<img src="img/wifi.png">
+									</span>
+									<span class="rate_name" id="taste_name">맛</span>
+									<span class="my_rate">3.1점</span>
+								</div>
+								<div class="rate_each2" id="rate_each2">
+									<span class="rate_visual" id="price_visual">
+										<img src="img/wifi.png">
+									</span>
+									<span class="rate_name" id="price_name">가격</span>
+									<span class="my_rate">5.2점</span>
+								</div>
+								<div class="rate_each2" id="rate_each2">
+									<span class="rate_visual" id="service_visual">
+										<img src="img/wifi.png">
+									</span>
+									<span class="rate_name" id="service_name">서비스</span>
+									<span class="my_rate">1.2점</span>
+								</div>
+								<div class="rate_each2" id="rate_each2">
+									<span class="rate_visual" id="facimood_visual">
+										<img src="img/wifi.png">
+									</span>
+									<span class="rate_name" id="facimood_name">시설 및 분위기</span>
+									<span class="my_rate">3.3점</span>
+								</div>
+								<div class="rate_each2" id="rate_each2">
+									<span class="rate_visual" id="wifiplug_visual">
+										<img src="img/wifi.png">
+									</span>
+									<span class="rate_name" id="wifiplug_name">와이파이&콘센트</span>
+									<dspaniv class="my_rate">1.1점</span>
+								</div>  
+								<div class="rate_each2" id="rate_each2">
+									<span class="rate_visual" id="clean_visual">
+										<img src="img/wifi.png">
+									</span>
+									<span class="rate_name" id="clean_name">청결</span>
+									<span class="my_rate">6.2점</span>
+								</div>
+								
+							</div>
+						</div>
+						<div class="cafe_review_bottom">  
+							<div>
+								<img src="img/cafe_1.jpg"/>
+							</div>
+							<div class="comment">
+								<p>숙소가 매우 깨끗했고, 준비가 전체적으로 잘 되어있었어요. 도착시간 때문에 체크인 시간도 조정해주시고 너무 친절했어요 :)</p>
+							</div>
+						</div>
+					</div>
+					
 				</div>
 				<div class="review_navi_nums">
-					<span class="navi_first_btn"></span>
-					<span class="navi_prev10_btn"></span>
-					<a href="#"></a>
-					<a href="#"></a>
-					<a href="#"></a>
-					<a href="#"></a>
-					<a href="#"></a>					
-					<span class="navi_next10_btn"></span>
-					<span class="navi_last_btn"></span>
+					<div>
+						<span class="navi_first_btn"><a href="#">맨 처음</a></span>
+						<span class="navi_prev10_btn"><a href="#">이전</a></span>
+						<a href="#">1</a>
+						<a href="#">2</a>
+						<a href="#">3</a>
+						<a href="#">4</a>
+						<a href="#">5</a>					
+						<span class="navi_next10_btn"><a href="#">다음</a></span>
+						<span class="navi_last_btn"><a href="#">맨 끝</a></span>					
+					</div>
 				</div>
 			</div>
 			
