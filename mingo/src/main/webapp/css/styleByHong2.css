@@ -1,0 +1,286 @@
+/* 초기화 */
+
+
+
+/* 게시판 영역 */
+.board-wrapper{
+    margin:100px auto;
+    width : 1140px;
+    overflow: hidden;
+}
+.board-side-name{
+    
+    
+    border-bottom:none;
+}
+.board-side{
+    
+    padding: 32px 24px 8px;
+    width: 22%;
+    float:left;
+    border:1px solid #e1e1e1;
+    height:320px;
+}
+.board-side a{
+    color:black;
+}
+.board-side a:hover{
+    text-decoration: none;
+    
+    background-color: crimson;
+}
+.board-group{
+    border: 1px solid #e1e1e1;
+    box-sizing: border-box;
+    padding: 32px 40px 40px;
+    width: 75%;
+    float:left;
+}
+.board-main{
+    border: 2px solid black;
+    border-left:none;
+    border-right:none;
+    border-bottom:none;
+    
+}
+.board-main a{
+    padding:10px 15px 10px 15px;
+}
+.board-main a>div{
+    text-align: center;
+}
+#b-num{
+    width:60px;
+}
+#b-title{
+    padding-left:20px;
+    width:346px;
+    text-align:left;
+}
+#b-username{
+    width:108px;
+}
+#b-regdate{
+    width:108px;
+}
+#b-readcount{
+    width:60px;
+}
+#b-goodcount{
+    width:60px;
+    
+}
+
+.filter{
+    margin-right:10px;
+    width:130px;
+}
+.mypagi{
+    margin: 32px 0px 32px 0px;
+    position: relative;
+    
+}
+
+.btn-write{
+    position: absolute;
+    top:0;
+    right:0;
+}
+
+/* 게시판 디테일 영역 */
+.board-name{
+    font-size: 2em;
+    
+}
+.board-title{
+    font-size:1.5em;
+    border-top:2px solid black;
+    box-sizing: border-box;
+
+}
+.board-title-info{
+    border-bottom: 1px solid #e1e1e1;
+    box-sizing: border-box;
+}
+
+.mybtn-group{
+    overflow: hidden;
+    margin:32px 0px 32px 0px;
+}
+.mybtn-good{
+    border:1px solid #e1e1e1;
+    box-sizing: border-box;
+    border-radius: 20px;
+    margin:0 5px;
+}
+.mybtn-bad{
+    border:1px solid #e1e1e1;
+    box-sizing: border-box;
+    border-radius: 20px;
+    margin:0 5px;
+}
+.reply{
+    position: relative;
+    border-bottom:1px solid #a1a1a1;
+    box-sizing: border-box;
+    padding:16px;
+}
+
+.reply-form{
+    border:1px solid #a1a1a1;
+}
+.reply-form > div{
+    
+    overflow: hidden;
+}
+.reply-form  button{
+    float:right;
+}
+.clamp{
+    position: absolute;
+    left:10px;
+    top:20px;
+    width:15px;
+    height:15px;
+    border-left: 1px solid #a1a1a1;
+    border-bottom: 1px solid #a1a1a1;
+    box-sizing: border-box;
+}
+.reply-name{
+    font-weight: bold;
+    
+}
+.reply-content{
+    padding : 10px 0px;
+}
+.reply-date{
+    font-size:0.8em;
+}
+
+/* 게시판 글쓰기 영역 */
+.board-wrapper2{
+    margin: 50px auto;
+    width : 1140px;
+    overflow: hidden;
+}
+.mypage-header{
+    
+    height:auto;
+}
+.mypage-header-wrapper{
+    margin:0 auto;
+    width : 1140px;
+    height:auto;
+    padding-top:60px;
+    
+}
+.mypage-name{
+    position: relative;
+    padding: 10px;
+    overflow:hidden;
+}
+
+.mypage-img > img{
+    width:100px;
+    height:100px;
+    float:left;
+    border: 1px solid #a1a1a1;
+    box-sizing: border-box;
+
+}
+.mypage-userid {
+    position: absolute;
+    left: 130px;
+    top:50px;
+    font-size: 2em;
+    
+
+}
+.nav-wrapper{
+    
+    border-top: 1px solid #a1a1a1;
+    border-bottom: 1px solid #a1a1a1;
+    padding:5px 0 5px 0;
+    box-sizing: border-box;
+   
+}
+.mypage-nav{
+    margin:0 auto;
+    width:1140px;
+    
+}
+/* 검색결과 화면 */
+.result-nav{
+   
+    
+    
+    height:auto;
+    position: fixed;
+    z-index: 100;
+    top:0;
+    border-bottom: 1px solid #a1a1a1;
+    padding:5px 0 5px 0;
+    box-sizing: border-box;
+}
+.result-nav-wrapper{
+    overflow: hidden;
+    
+    margin-top:55px;
+}
+.nav-btn{
+    float:left;
+    margin: 2px 4px;
+}
+
+
+.result-content{
+    
+    margin:110px auto 20px;
+}
+
+.box{
+    margin:2px;
+    width:30%;
+    height:300px;
+    background-color: beige;
+    
+  }
+
+
+/* 푸터 영역 */
+.footer{
+    overflow: hidden;
+    height: 70px;
+}
+.footer a{
+    color:black;
+}
+.footer a:hover{
+    color:crimson;
+    text-decoration: none;
+}
+
+/* 스크롤 바 관련 (IE에선 작동안됨) */
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    
+   
+    background-color: #d1d1d1;
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    width:20px;
+    background: black; 
+    
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #a1a1a1; 
+  }
