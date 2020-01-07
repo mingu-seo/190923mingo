@@ -22,6 +22,8 @@
 
     <!-- 내가 만든 파일-->
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/styleByHong2.css">
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/css/choicss1.css">
+	
 </head>
 
 <body>
@@ -63,7 +65,7 @@
         <div class="mypage-header-wrapper">
             <div class="mypage-name">
                     <div class="mypage-img">
-                        <img class="rounded-circle" src="./img/profile.png">
+                        <img class="rounded-circle" src="../img/profile.png">
                     </div>
                     <div class="mypage-userid">밍고</div>
             </div>
@@ -71,7 +73,7 @@
         </div>
     </div>
     <div class="container-fluid nav-wrapper">
-    <ul class="nav nav-pills mypage-nav" style="width:1140px;">
+    <ul class="nav mypage-nav" style="width:1140px;">
         <li class="nav-item">
           <a class="nav-link active"  data-toggle="pill" href="#">계정</a>
         </li>
