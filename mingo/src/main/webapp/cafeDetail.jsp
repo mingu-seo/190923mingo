@@ -11,34 +11,403 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+	
+	<script src="http://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="css/swiper.css"/>
+    <link rel="stylesheet" href="css/reset.css"/>
+    <script src="js/swiper.min.js"></script>
+	
 	<style>
 		/* header 부분 스타일 기본값 */
-		.memubar_space{
-			height:100px;
+		/* .memubar_space{
+			height:200px;
+		} */
+		
+		.container{
+			width:900px;
 		}
+		
+		.header{
+			height:360px;
+			margin-top:200px;
+			margin-bottom:30px;   
+		}   
+		
 		.logo{
 			width:20%;
+			margin:20px 0;
 		}
 		.logo > img{
 			width:100%;
-		}	
+		}
+		
+		#cafe_name, #branch_name{
+			font-color:#2E2E2E;
+			font-size: 2.5em;        
+		}
+			
 		#cafe_name{
 			float:left;
-			margin-right
-		}
-		.rate_avg > img{
+			margin-right:20px;  
+		}  
+		.rate_avg{
+			width:100%;
+		}  
+		
+		#star_shape1{
 			float:left;
-			width:5%;
+			width:3%;
 		}
 		#rate_num{
-			font-size: 2.0em;  
+			color:#424242;
+			font-size: 1.2em;
+			float: left;   
+		}
+		.address{
+			
+			color:#424242;  
+			font-size: 1.2em;
+		}
+		
+		.content_button, .cafe_infomation, .cafe_review, .'jumbotron jumbotron-fluid'{
+			
+			float: left;   
+		}
+		.'jumbotron jumbotron-fluid'{
+			margin:0;
+		}
+		
+		
+		
+		
+		/* 콘텐츠 섹션 선택 버튼 */
+		.content_button{
+			width:100%;
+		}
+		.info_button{
+			width:50%;
+			height:50px;
+			text-align: center;
+			font-size: 1.2em;
+			float:left;
+			line-height: 50px;   		
+			background-color:#EFF5FB;
+		}
+		.review_button{
+			width:50%;
+			height:50px;
+			text-align: center;
+			font-size: 1.2em;
+			float:left;
+			background-color:#CEE3F6;
+			line-height: 50px;  		
+		}
+		.cafe_infomation{
+			
+			display:none;
+			 
+		}  
+		.content_button{
+		 	height:100px;
+		}
+		
+		.detail_info_button{
+			height:50px;  
+		}
+		
+		.button_each{
+			text-align:center;
+			float:right;
+			width:80px;
+			height:40px;
+			line-height: 40px;    
+		}
+		
+		.info_title{
+			height:40px;
+			border-bottom:1px solid #D8D8D8;
+			  
+			font-size: 1.5em;
+			color:#585858;
+			
+		}
+		
+		.basic_info{
+			height:200px;
+		}
+		#basic_info_title{
+			margin-bottom: 20px;  
+		}
+		.detail_info{
+			height:350px;  
+		}
+		
+		.menu{
+			height:300px;
+		}
+		.facility{
+			height:300px;
+			display: none;
+		}
+		.service{
+			height:300px;
+			display: none;
+		}
+		.product{  
+			height:300px;
+			display: none;
+		}
+		
+		.cafe_photo{  
+			height:600px;
+		}
+		.cafe_location{
+			height:600px;
+		}  
+		
+		
+		.info_each{
+			float:left;
+		
+		}
+		.info_each{
+			width:20%;
+			
+		}
+		.info_each > img{
+			width:99%;
+			
+		}
+		.info_each > h6{
+			font-size:0.8em;
+			text-align: center; 
+		
+		}
+		
+		.visual{
+			width:100%;
+			height:500px;
+		}
+		
+		.visual .swiper{
+        	height:500px
+        	z-index: 10;
+        }   
+        
+        .'swiper swiper-container', ,swiper-wrapper{
+        	height:100%;
+        }
+        
+        .visual .swiper-slide{
+        	height:100%;
+        	background-position:center center;
+        	background-repeat:no-repeat;
+        	background-size:cover;
+        	text-align: center; 
+        	float:left;
+        }    
+		
+		#cafe_location_title{
+			margin-bottom:20px;  
+		}
+		.cafe_location_map{
+			padding:10px;
+			
+		}
+		.cafe_location_map > img{
+			width:100%;
+			height:500px;   
+		}
+		
+		.cafe_rates{
+			height:500px;
+			width:100%;
+		}  
+		.cafe_reviews{
+			height:1000px;
+			width:100%;
 		} 
 		
+		 
+		
+		#star_shape2{
+			float:left;
+			height:45px;  
+		}     
+		.rate_info2 .rate_num{
+			float:left;
+			margin-right:20px;
+			font-size: 1.5em;
+		}
+		.rate_info2 .review_num{
+			float:left;
+			margin-right:20px;
+			font-size: 1.5em;
+		}
+		.rate_info2 .ranking{
+			float:left;
+			font-size: 1.5em;
+		}    
 		
 		
 		
+		
+		
+		.graph_area{
+            height:120px;  
+            width:400px;
+        }
+        .graph_stack{
+            width:300px;
+            height:40px;
+            background-color: #D8D8D8;
+            box-sizing: border-box;
+            border-radius: 35px;
+            line-height: 40px;
+            position: relative;
+            left:60px;  
+        }   
+
+        .graph_rate{
+            text-align: right;
+            height:100%;
+            background-color: #4B610B;
+            box-sizing: border-box;
+            border-radius: 35px;
+            line-height: 40px;
+            width:250px;
+        }  
+
+        .graph_text{
+            float: right;
+            position: relative;
+            z-index: 110;
+        }
+        .graph_logo{
+            height: 80px;
+            float: left;
+            position: relative;
+            z-index: 100;
+            bottom: 25px;
+        }
+        .bean_img{
+            height:60px;
+            float: right;
+            padding-left: 0px;
+            position: relative;
+            left:25px;
+            bottom:10px;
+            z-index: 90;
+        }
+        .graph_text{
+            float: right;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #FFFFFF;
+        }
+        
+        .rate_visual_total{
+        	height:800px;
+        	width:100%;
+        }     
+
+		.rate_info2{
+			height:120px;
+			padding:30px 0px;
+		}  
+		
+		info2{  
+			height:100px;
+		} 
+		.rate_each{
+			float: left;
+		}
+		
+		
+		.cafe_reviews{
+			padding:20px 0;
+		}
+		
+		.cafe_reviews, .cafe_review_each{
+			width:100%;   
+			height:1000px;   
+		} 
+		
+		.user_info{
+			height:55px;
+			line-height: 55px;
+			margin-bottom:10px;
+		}
+		.user_info img{
+			width:50px;
+			height:50px;
+			border-radius: 50px;
+			float: left;
+			margin-right:10px;
+		}
+		.user_info h2{
+			font-size: 20px;
+			line-height:20px;
+			margin:5px;
+			padding-left:10px;   
+		}
+		
+		.rate_visual > img{
+			width:20px;
+			height:20px;   
+		}
+		
+		.rate_each2 div{
+			float:left; 
+		}
+		
+		.cafe_review_bottom div{
+			margin-bottom:10px;
+		}
+		.comment{
+			width:800px;
+		}
 		
 	</style>
+	<script>
+		$(function(){
+			$('.info_button').click(function(){
+				console.log("click");
+				$('.info_button').css({
+					'background-color':'#CEE3F6' 
+				});
+				$('.review_button').css({
+					'background-color':'#EFF5FB' 
+				});
+				$('.cafe_infomation').css({
+					'display':'block',
+					
+				});
+				$('.cafe_review').css({
+					'display':'none'  
+				});
+			});	  
+			$('.review_button').click(function(){
+				console.log("click");
+				$('.review_button').css({
+					'background-color':'#CEE3F6' 
+				});
+				$('.info_button').css({
+					'background-color':'#EFF5FB' 
+				});
+				$('.cafe_review').css({
+					'display':'block'  
+				});
+				$('.cafe_infomation').css({
+					'display':'none'
+				});
+			});	
+		});  
+	  
+	
+	
+	</script>
 
 </head>
 <body>
@@ -90,18 +459,18 @@
 			</div>
 			<div class="title">
 				<div id="cafe_name">
-					<h2>스타벅스</h2>
+					스타벅스
 				</div>
 				<div id="branch_name">
-					<h2>건대입구점</h2>
+					건대입구점
 				</div>     
 			</div>
 			<div class="info">
 				<div class="rate_avg">
-					<img src="img/star_colored.png">
-					<div id="rate_num">3.5점</div>
+					<img src="img/star_colored.png" id="star_shape1">
+					<div id="rate_num">3.5점&nbsp;|&nbsp;</div>
 				</div>
-				<div class="address">서울특별시 광진구 자양4동 123-23번지</div>
+				<div class="address"> 서울특별시 광진구 자양4동 123-23번지</div>
 			</div>	
 		</div>
 	</div>
@@ -112,267 +481,332 @@
 			<div class="content_button">
 				<div class="info_button">소개</div>
 				<div class="review_button">후기</div>
-			</div>		
+			</div>			
 		</div>
 		<div class="container">
 			<div class="cafe_infomation">
 				<div class="basic_info">
-					<div class="title"></div>
-					<hr>
+					<div class="info_title" id="basic_info_title">운영정보</div>
+					
 					<div class="basic_info_content">
-						<div class="basic_info_each" id="info_address"></div>
-						<div class="basic_info_each" id="info_tel"></div>
-						<div class="basic_info_each" id="info_mg_time"></div>
+						<div class="basic_info_each" id="info_address">&nbsp;ㆍ서울특별시 광진구 자양4동 123-23번지</div>
+						<div class="basic_info_each" id="info_tel">&nbsp;ㆍ02-1234-5678</div>
+						<div class="basic_info_each" id="info_mg_time">&nbsp;ㆍ매주 08:00~23:00</div>
 					</div>
 				</div>
 				<div class="detail_info">
+					<div class="info_title" id="detail_info_title">상세정보</div>
 					<div class="detail_info_button">
-						<div class="button_each" id="menu_btn"></div>
-						<div class="button_each" id="facility_btn"></div>
-						<div class="button_each" id="service_btn"></div>
-						<div class="button_each" id="product_btn"></div>
+						<div class="button_each" id="menu_btn">메뉴</div>
+						<div class="button_each" id="facility_btn">시설</div>
+						<div class="button_each" id="service_btn">서비스</div>
+						<div class="button_each" id="product_btn">상품</div>
 					</div>
 					<div class="menu">
 						<div class="info_each">
-							<img src="http://placehold.it/100x100"/>
+							<img src="img/coffee.png"/>
 							<div>
-								<h4>무설탕 흑당라떼</h4>
-								<h4>17,000원</h4>
+								<h6>무설탕 흑당라떼</h6>
+								<h6>17,000원</h6>
 							</div>						
 						</div>
 						<div class="info_each">
-							<img src="http://placehold.it/100x100"/>
+							<img src="img/coffee.png"/>
 							<div>
-								<h4>무설탕 흑당라떼</h4>
-								<h4>17,000원</h4>
+								<h6>무설탕 흑당라떼</h6>
+								<h6>17,000원</h6>
 							</div>						
 						</div>
 						<div class="info_each">
-							<img src="http://placehold.it/100x100"/>
+							<img src="img/coffee.png"/>
 							<div>
-								<h4>무설탕 흑당라떼</h4>
-								<h4>17,000원</h4>
+								<h6>무설탕 흑당라떼</h6>
+								<h6>17,000원</h6>
 							</div>						
 						</div>
 						<div class="info_each">
-							<img src="http://placehold.it/100x100"/>
+							<img src="img/coffee.png"/>
 							<div>
-								<h4>무설탕 흑당라떼</h4>
-								<h4>17,000원</h4>
+								<h6>무설탕 흑당라떼</h6>
+								<h6>17,000원</h6>
 							</div>						
 						</div>
 						<div class="info_each">
-							<img src="http://placehold.it/100x100"/>
+							<img src="img/coffee.png"/>
 							<div>
-								<h4>무설탕 흑당라떼</h4>
-								<h4>17,000원</h4>
+								<h6>무설탕 흑당라떼</h6>
+								<h6>17,000원</h6>
 							</div>						
 						</div>
-						<div class="info_each">
-							<img src="http://placehold.it/100x100"/>
-							<div>
-								<h4>무설탕 흑당라떼</h4>
-								<h4>17,000원</h4>
-							</div>						
-						</div>
+						
 					</div>
 					<div class="facility">
 						<div class="info_each">
-							<img src="http://placehold.it/100x100"/>
+							<img src="img/coffee.png"/>
 							<div>
-								<h4>무설탕 흑당라떼</h4>
-								<h4>17,000원</h4>
+								<h6>무설탕 흑당라떼</h6>
+								<h6>17,000원</h6>
 							</div>
 						</div>
 						<div class="info_each">
-							<img src="http://placehold.it/100x100"/>
+							<img src="img/coffee.png"/>
 							<div>
-								<h4>무설탕 흑당라떼</h4>
-								<h4>17,000원</h4>
+								<h6>무설탕 흑당라떼</h6>
+								<h6>17,000원</h6>
 							</div>
 						</div>
 						<div class="info_each">
-							<img src="http://placehold.it/100x100"/>
+							<img src="img/coffee.png"/>
 							<div>
-								<h4>무설탕 흑당라떼</h4>
-								<h4>17,000원</h4>
+								<h6>무설탕 흑당라떼</h6>
+								<h6>17,000원</h6>
 							</div>
 						</div>
-						<div class="info_each">
-							<img src="http://placehold.it/100x100"/>
-							<div>
-								<h4>무설탕 흑당라떼</h4>
-								<h4>17,000원</h4>
-							</div>
-						</div>
-						<div class="info_each">
-							<img src="http://placehold.it/100x100"/>
-							<div>
-								<h4>무설탕 흑당라떼</h4>
-								<h4>17,000원</h4>
-							</div>
-						</div>
+						
 					</div>
 					<div class="service">
 						<div class="info_each">
-							<img src="http://placehold.it/100x100"/>
+							<img src="img/coffee.png"/>
 							<div>
-								<h4>무설탕 흑당라떼</h4>
-								<h4>17,000원</h4>
+								<h6>무설탕 흑당라떼</h6>
+								<h6>17,000원</h6>
 							</div>
 						</div>
 						<div class="info_each">
-							<img src="http://placehold.it/100x100"/>
+							<img src="img/coffee.png"/>
 							<div>
-								<h4>무설탕 흑당라떼</h4>
-								<h4>17,000원</h4>
+								<h6>무설탕 흑당라떼</h6>
+								<h6>17,000원</h6>
 							</div>
 						</div>
 						<div class="info_each">
-							<img src="http://placehold.it/100x100"/>
+							<img src="img/coffee.png"/>
 							<div>
-								<h4>무설탕 흑당라떼</h4>
-								<h4>17,000원</h4>
+								<h6>무설탕 흑당라떼</h6>
+								<h6>17,000원</h6>
 							</div>
 						</div>
-						<div class="info_each">
-							<img src="http://placehold.it/100x100"/>
-							<div>
-								<h4>무설탕 흑당라떼</h4>
-								<h4>17,000원</h4>
-							</div>
-						</div>
-						<div class="info_each">
-							<img src="http://placehold.it/100x100"/>
-							<div>
-								<h4>무설탕 흑당라떼</h4>
-								<h4>17,000원</h4>
-							</div>
-						</div>
+						
 					</div>
-					<div class="product">
+					<div class="product">		
 						<div class="info_each">
-							<img src="http://placehold.it/100x100"/>
-							<div>
-								<h4>무설탕 흑당라떼</h4>
-								<h4>17,000원</h4>
+							<img src="img/coffee.png"/>
+							<div>  
+								<h6>무설탕 흑당라떼</h6>
+								<h6>17,000원</h6>
 							</div>
 						</div>			
 						<div class="info_each">
-							<img src="http://placehold.it/100x100"/>
+							<img src="img/coffee.png"/>
 							<div>
-								<h4>무설탕 흑당라떼</h4>
-								<h4>17,000원</h4>
+								<h6>무설탕 흑당라떼</h6>
+								<h6>17,000원</h6>
 							</div>
 						</div>			
-						<div class="info_each">
-							<img src="http://placehold.it/100x100"/>
-							<div>
-								<h4>무설탕 흑당라떼</h4>
-								<h4>17,000원</h4>
-							</div>
-						</div>			
-						<div class="info_each">
-							<img src="http://placehold.it/100x100"/>
-							<div>
-								<h4>무설탕 흑당라떼</h4>
-								<h4>17,000원</h4>
-							</div>
-						</div>			
-						<div class="info_each">
-							<img src="http://placehold.it/100x100"/>
-							<div>
-								<h4>무설탕 흑당라떼</h4>
-								<h4>17,000원</h4>
-							</div>
-						</div>			
+									
 					</div>
 				</div>
-				<div class="cafe_photo"></div>
-				<div class="cafe_location"></div>
+				<div class="cafe_photo">
+					<div class="info_title" id="cafe_photo_title">사진</div>
+					<div class="visual">
+		            	<div class="swiper swiper-container">
+		            		<div class="swiper-wrapper">
+		            			<div class="swiper-slide" style="background-image:url('img/cafe_1.jpg')"></div>
+		            			<div class="swiper-slide" style="background-image:url('img/cafe_2.jpg')"></div>
+		            			<div class="swiper-slide" style="background-image:url('img/cafe_3.jpg')"></div>
+		            			<div class="swiper-slide" style="background-image:url('img/cafe_4.png')"></div>
+		            		</div>
+		            		<div class="swiper-pagination"></div>
+		            		<div class="swiper-button-prev"></div>
+		            		<div class="swiper-button-next"></div>
+		            	</div>	
+            		</div>
+				</div>
+				<div class="cafe_location">
+					<div class="info_title" id="cafe_location_title">위치</div>
+					<div class="cafe_location_map">
+						<img src="img/cafe_map.png">					
+					</div>  
+				</div>
 			</div>		
 		</div>
 		<div class="container">
 			<div class="cafe_review">
+				<div class="info_title" id="basic_info_title">종합평점</div>
 				<div class="cafe_rates">
-					<div class="rate_info">
-						<div class="info">
+					<div class="rate_info2">
+						<div class="info2">
 							<div class="rate_avg">
-								<img src="img/star_colored.png">
-								<div class="rate_num">3.5</div>
-								<div class="review_num">27개</div>
-								<div class="ranking">2/9</div>
+								<img src="img/star_colored.png" id="star_shape2">
+								<div class="rate_num">3.5점</div>
+								<div class="review_num">(리뷰 27개,</div>
+								<div class="ranking">자양4동 2위)</div>
 							</div>
 						</div>	
 					</div>
-					<div class="rate_visual">
+					<div class="rate_visual_total">
 						<div class="rate_each">
-							<div class="rate_visual" id="taste_visual_tatal"></div>
+							<div class="rate_visual" id="taste_visual_tatal">
+								<div class="graph_area">
+						            <div>
+						                <img src="img/wifi.png" class="graph_logo">
+						            </div>
+						            <div class="graph_stack">
+						                <div class="graph_rate">
+						                    <img src="img/bean.PNG" class="bean_img">
+						                    <div class="graph_text">10점</div>
+						                </div>
+						            </div>
+						        </div>
+							</div>
 							<div class="rate_name" id="taste_name_tatal"></div>
 						</div>
 						<div class="rate_each">
-							<div class="rate_visual" id="price_visual_tatal"></div>
+							<div class="rate_visual" id="price_visual_tatal">
+								<div class="graph_area">
+						            <div>
+						                <img src="img/wifi.png" class="graph_logo">
+						            </div>
+						            <div class="graph_stack">
+						                <div class="graph_rate">
+						                    <img src="img/bean.PNG" class="bean_img">
+						                    <div class="graph_text">10점</div>
+						                </div>
+						            </div>
+						        </div>
+							</div>
 							<div class="rate_name" id="price_name_tatal"></div>
 						</div>
 						<div class="rate_each">
-							<div class="rate_visual" id="service_visual_tatal"></div>
+							<div class="rate_visual" id="service_visual_tatal">
+								<div class="graph_area">
+						            <div>
+						                <img src="img/wifi.png" class="graph_logo">
+						            </div>
+						            <div class="graph_stack">
+						                <div class="graph_rate">
+						                    <img src="img/bean.PNG" class="bean_img">
+						                    <div class="graph_text">10점</div>
+						                </div>
+						            </div>
+						        </div>
+							</div>
 							<div class="rate_name" id="service_name_tatal"></div>
 						</div>
 						<div class="rate_each">
-							<div class="rate_visual" id="facimood_visual_tatal"></div>
+							<div class="rate_visual" id="facimood_visual_tatal">
+								<div class="graph_area">
+						            <div>
+						                <img src="img/wifi.png" class="graph_logo">
+						            </div>
+						            <div class="graph_stack">
+						                <div class="graph_rate">
+						                    <img src="img/bean.PNG" class="bean_img">
+						                    <div class="graph_text">10점</div>
+						                </div>
+						            </div>
+						        </div>
+							</div>
 							<div class="rate_name" id="facimood_name_tatal"></div>
 						</div>
 						<div class="rate_each">
-							<div class="rate_visual" id="wifiplug_visual_tatal"></div>
+							<div class="rate_visual" id="wifiplug_visual_tatal">
+								<div class="graph_area">
+						            <div>
+						                <img src="img/wifi.png" class="graph_logo">
+						            </div>
+						            <div class="graph_stack">
+						                <div class="graph_rate">
+						                    <img src="img/bean.PNG" class="bean_img">
+						                    <div class="graph_text">10점</div>
+						                </div>
+						            </div>
+						        </div>
+							</div>
 							<div class="rate_name" id="wifiplug_name_tatal"></div>
 						</div>
 						<div class="rate_each">
-							<div class="rate_visual" id="clean_visual_tatal"></div>
+							<div class="rate_visual" id="clean_visual_tatal">
+								<div class="graph_area">
+						            <div>
+						                <img src="img/wifi.png" class="graph_logo">
+						            </div>
+						            <div class="graph_stack">
+						                <div class="graph_rate">
+						                    <img src="img/bean.PNG" class="bean_img">
+						                    <div class="graph_text">10점</div>
+						                </div>
+						            </div>
+						        </div>
+							</div>
 							<div class="rate_name" id="clean_name_tatal"></div>
 						</div>
 					</div>
 				</div>
+				<div class="info_title" id="basic_info_title">리뷰</div>
 				<div class="cafe_reviews">
 					<div class="cafe_review_each">
-						<div class="cafe_review_left">
-							<div class="user_info">
-								<img src="http://placehold.it/100x100"/>
+						<div class="cafe_review_top">
+							<div class="user_info">   
+								<div> 
+									<img src="http://placehold.it/50x50"/>
+								</div>
 								<h2>최재명</h2>
 								<h2>1주일 전</h2>
 							</div>
 							<div class="rating">
-								<div class="rate_each">
-									<div class="rate_visual" id="taste_visual"></div>
-									<div class="rate_name" id="taste_name"></div>
+								<div class="rate_each2">
+									<div class="rate_visual" id="taste_visual">
+										<img src="img/wifi.png">
+									</div>
+									<div class="rate_name" id="taste_name">맛</div>
+									<div class="my_rate">3.1점</div>
 								</div>
-								<div class="rate_each">
-									<div class="rate_visual" id="price_visual"></div>
-									<div class="rate_name" id="price_name"></div>
+								<div class="rate_each2">
+									<div class="rate_visual" id="price_visual">
+										<img src="img/wifi.png">
+									</div>
+									<div class="rate_name" id="price_name">가격</div>
+									<div class="my_rate">5.2점</div>
 								</div>
-								<div class="rate_each">
-									<div class="rate_visual" id="service_visual"></div>
-									<div class="rate_name" id="service_name"></div>
+								<div class="rate_each2">
+									<div class="rate_visual" id="service_visual">
+										<img src="img/wifi.png">
+									</div>
+									<div class="rate_name" id="service_name">서비스</div>
+									<div class="my_rate">1.2점</div>
 								</div>
-								<div class="rate_each">
-									<div class="rate_visual" id="facimood_visual"></div>
-									<div class="rate_name" id="facimood_name"></div>
+								<div class="rate_each2">
+									<div class="rate_visual" id="facimood_visual">
+										<img src="img/wifi.png">
+									</div>
+									<div class="rate_name" id="facimood_name">시설 및 분위기</div>
+									<div class="my_rate">3.3점</div>
 								</div>
-								<div class="rate_each">
-									<div class="rate_visual" id="wifiplug_visual"></div>
-									<div class="rate_name" id="wifiplug_name"></div>
+								<div class="rate_each2">
+									<div class="rate_visual" id="wifiplug_visual">
+										<img src="img/wifi.png">
+									</div>
+									<div class="rate_name" id="wifiplug_name">와이파이&콘센트</div>
+									<div class="my_rate">1.1점</div>
 								</div>  
-								<div class="rate_each">
-									<div class="rate_visual" id="clean_visual"></div>
-									<div class="rate_name" id="clean_name"></div>
+								<div class="rate_each2">
+									<div class="rate_visual" id="clean_visual">
+										<img src="img/wifi.png">
+									</div>
+									<div class="rate_name" id="clean_name">청결</div>
+									<div class="my_rate">6.2점</div>
 								</div>
 								
 							</div>
 						</div>
-						<div class="cafe_review_right">
+						<div class="cafe_review_bottom">  
 							<div>
-								<img src="http://placehold.it/100x100"/>
+								<img src="http://placehold.it/800x500"/>
 							</div>
-							<div class="comment"></div>
+							<div class="comment">
+								<p>숙소가 매우 깨끗했고, 준비가 전체적으로 잘 되어있었어요. 도착시간 때문에 체크인 시간도 조정해주시고 너무 친절했어요 :)</p>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -393,15 +827,15 @@
 	</div>
 	
 	<!-- footer -->
-	<div class="jumbotron jumbotron-fluid">
+	<div class="jumbotron jumbotron-fluid" style="margin:0;">
 	    <div class="container">
 	        <div class="footer clearfix mb-2">
-	            <a href="#" class="fa fa-coffee" style="font-size:3em;float:left;font-weight: bold;">&nbsp;Mingo</a>
-	            <a href="#" class="fa fa-twitter" style="font-size:3em;float:right"></a>
-	            <a href="#" class="fa fa-facebook" style="font-size:3em;float:right;margin-right:20px;"></a>
-	            <a href="#" class="fa fa-youtube" style="font-size:3em;float:right;margin-right:20px;"></a>
+	            <a href="#" class="fa fa-coffee" style="font-size:1em;float:left;font-weight: bold;">&nbsp;Mingo</a>
+	            <a href="#" class="fa fa-twitter" style="font-size:1em;float:right"></a>
+	            <a href="#" class="fa fa-facebook" style="font-size:1em;float:right;margin-right:20px;"></a>
+	            <a href="#" class="fa fa-youtube" style="font-size:1em;float:right;margin-right:20px;"></a>
 	        </div>
-	        <p style="font-size:1.1em">
+	        <p style="font-size:0.8em">
 	        	서울특별시 금천구 대륭테크노타운 3차 8F | 대표이사:홍길동 | 사업자등록번호:123-45-12345<br>
 	           	통신판매업신고번호: 2019-서울금천-12345 | 대표메일: honggildong@naver.com<br>
 	            Copyright. All Rights Reserved.
