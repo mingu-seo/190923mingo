@@ -31,6 +31,7 @@
 		text-align : center;
 		border : none;
 		width: 500px;
+		height:300px;  
 
 	}
 	#selectButton{
@@ -38,7 +39,9 @@
 	}
 	table{
 		width : 380px;
-		margin : auto;
+		
+		margin : 0 auto;
+		margin-bottom:30px;
 	}
 	.td_left{
 		width : 180px;
@@ -49,33 +52,27 @@
 	.font_big{font-size: 1em;}
 	.font_bold{font-weight: bold;}
 	.font_center{text-align: center;}
-	
-
 		
 
 	}
-	.buttonarea{
-		width:200px;
-		height: 200px;
-		margin: auto; 
+	.buttonArea{
+		width:100%;
+		height:200px;  
+		
+		background-color:#BDBDBD;     
 	
 	}
 	.button{
-		border-buttom:1px solid #BDBDBD;
-		float:left;
+		
+		margin:0 auto;
 	    font-size: 16px;
 	    width: 140px; 
 	    line-height: 50px;
 	    background-color: rgb(63, 96, 204);
 	    color: #ffffff; 
-	    padding: 0px;
+	    
 	    border-radius: 26px;
-	    border-width: initial;
-	    border-style: none;
-	    border-color: initial;
-	    border-image: initial;
-	    transition: background-color 0.3s ease 0s;
-	    z-index: 1;
+	     
 	    
 	}
 	.button:hover{
@@ -131,7 +128,6 @@
 		<fieldset>
 		<br>
 		<br>
-		
 			<table>
 				<tr>
 					<td class = "td_left">
@@ -150,12 +146,11 @@
 					</td>
 				</tr>
 			</table>
-			<div class="buttonarea"> 
-			 
+			<div class="buttonArea"> 
 				<div class="button">
 					<a href="#" class="login_button" >로그인 </a>
 				</div>
-				
+
 			</div>
 		</fieldset>
 	</form>
