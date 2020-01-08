@@ -57,7 +57,7 @@
 	.buttonarea{
 		width:200px;
 		height: 200px;
-		margin: auto;
+		margin: auto; 
 	
 	}
 	.button{
