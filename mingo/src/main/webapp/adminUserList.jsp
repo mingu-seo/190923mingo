@@ -101,7 +101,7 @@
             <a href="#" class="list-group-item mt-2" style="border-top:none;">이용자</a>
             <a href="#" class="list-group-item">매니저</a>
             
-        </div>
+        </div>  
         
         <div class=" board-group shadow ml-4">
             <div class="pb-2 mb-4 board-name" style="border-bottom: 1px solid #6E6E6E;">
