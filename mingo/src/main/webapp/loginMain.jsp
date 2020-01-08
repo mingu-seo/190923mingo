@@ -57,16 +57,14 @@
 	.buttonarea{
 		width:200px;
 		height: 200px;
-		margin: 0 auto;
+		margin: auto;
 	
 	}
 	.button{
 		border-buttom:1px solid #BDBDBD;
 		float:left;
 	    font-size: 16px;
-	    width: 140px;
-	    min-width: 140px;
-	    height: 52px;
+	    width: 140px; 
 	    line-height: 50px;
 	    background-color: rgb(63, 96, 204);
 	    color: #ffffff; 
@@ -157,9 +155,7 @@
 				<div class="button">
 					<a href="#" class="login_button" >로그인 </a>
 				</div>
-				<div class="button">
-					<a href="#" class="reg_button">회원가입 </a>
-				</div>
+				
 			</div>
 		</fieldset>
 	</form>
