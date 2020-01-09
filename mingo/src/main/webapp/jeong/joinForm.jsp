@@ -172,9 +172,9 @@ font-size:20px;
        
     <ul class="join">
         <li class="person">
-            <a class="click" href="/d:/java/html/mingo/join_person_step1.html" >
+            <a class="click" href="#" >
             <div class="join-person">
-                <img src="person.png" width="80px" height="80px">
+                <img src="mingo/img/joinImg/person.png" width="80px" height="80px">
                 <div class="join-person-persontitle">
                     <h3 class="join-person-persontitle1">개인 회원가입</h3>
                 </div>
@@ -186,9 +186,9 @@ font-size:20px;
         </a>
         </li>
         <li class="cafeperson">
-            <a class="click" href="/d:/java/html/mingo/join_cafe_step1.html">
+            <a class="click" href="#">
                 <div class="join-person">
-                    <img src="person.png" width="80px" height="80px">
+                    <img src="mingo/img/joinImg/person.png" width="80px" height="80px">
                     <div class="join-person-persontitle">
                         <h3 class="join-person-persontitle1">사장님 회원가입</h3>
                     </div>
@@ -201,7 +201,7 @@ font-size:20px;
             </li>
     </ul>
     <div class="reload">
-        <p>이미 계정이 있으신가요?  <a href="/signup">로그인</a></p>
+        <p>이미 계정이 있으신가요?  <a href="#">로그인</a></p>
     </div>
     <div class="footer">
         <p>Copyright © CAFE MINGO All Rights Reserved.</p>

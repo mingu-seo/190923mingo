@@ -172,9 +172,9 @@
        
     <ul class="join">
         <li class="person">
-            <a class="click" href="/d:/java/html/mingo/join_person_email_step2.html" >
+            <a class="click" href="#" >
             <div class="join-person">
-                <img src="email.png" width="90px" height="90px">
+                <img src="mingo/img/joinImg/email.png" width="90px" height="90px">
                 <div class="join-person-persontitle">
                     <h3 class="join-person-persontitle1">이메일로 회원가입</h3>
                 </div>
@@ -184,9 +184,9 @@
         </a>
         </li>
         <li class="person1">
-            <a class="click" href="/d:/java/html/mingo/join_cafe_step1.html">
+            <a class="click" href="#">
                 <div class="join-person">
-                    <img src="naver.png" width="90px" height="90px">
+                    <img src="mingo/img/joinImg/naver.png" width="90px" height="90px">
                     <div class="join-person-persontitle">
                         <h3 class="join-person-persontitle1">네이버 간편회원가입</h3>
                     </div>
@@ -196,9 +196,9 @@
             </a>
             </li>
             <li class="person2">
-                <a class="click" href="/d:/java/html/mingo/join_cafe_step1.html">
+                <a class="click" href="#">
                     <div class="join-person">
-                        <img src="person.png" width="90px" height="90px">
+                        <img src="mingo/img/joinImg/person.png" width="90px" height="90px">
                         <div class="join-person-persontitle">
                             <h3 class="join-person-persontitle1">구글 회원가입</h3>
                         </div>
@@ -209,7 +209,7 @@
                 </li>
     </ul>
     <div class="reload">
-        <p>이미 계정이 있으신가요?  <a href="/signup">로그인</a></p>
+        <p>이미 계정이 있으신가요?  <a href="#">로그인</a></p>
     </div>
     <div class="footer">
         <p>Copyright © CAFE MINGO All Rights Reserved.</p>
