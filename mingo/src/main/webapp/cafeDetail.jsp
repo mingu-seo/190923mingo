@@ -440,22 +440,48 @@
 		
 		.review_navi_nums{
 			width:100%;
-			padding-top:50px;  
-			
+			height:150px;
+			 
 		}
 		  
 		.review_navi_nums > div{
-			height:150px;
-			width:90%;
+			line-height:60px;
+			height:60px;
+			width:540px;
+			margin:0 auto;
+			text-align:center;
 			
-			/* margin:0 auto;
-			padding:0 auto; */  
-			/* line-height: 200px; */
-			text-align:center;  
 		}      
 		
+		
+		.num{
+			
+			margin:0 10px;
+			width:40px;
+			height:40px;
+			float:left;
+		}
+		
+		.present{
+			width:40px;
+			height:40px;
+			border-radius: 40px;
+			float:left;
+			background-color: #86B404;
+			text-align: center;
+			line-height: 40px;
+			margin:10px;	
+		}
 		.review_navi_nums a{
-			margin:0 20px;
+			color:#2E2E2E;
+			font-size:1.3em;
+			line-height: 40px;
+		}
+		.present a{     
+			color:#ffffff;
+			font-size:1.3em;
+			line-height: 40px;
+		}
 		
 		}
 		
@@ -1192,18 +1218,26 @@
 					
 				</div>
 				<div class="review_navi_nums">
-					<div>
-						<span class="navi_first_btn"><a href="#">맨 처음</a></span>
-						<span class="navi_prev10_btn"><a href="#">이전</a></span>
-						<a href="#">1</a>
-						<a href="#">2</a>
-						<a href="#">3</a>
-						<a href="#">4</a>
-						<a href="#">5</a>					
-						<span class="navi_next10_btn"><a href="#">다음</a></span>
-						<span class="navi_last_btn"><a href="#">맨 끝</a></span>					
+				<div>
+					<div class="num">
+						<div class="navi_first_btn"><a href="#"><img src="img/arrow_first.png"></a></div>
+					</div>  
+					<div class="num">
+						<div class="navi_prev10_btn"><a href="#"><img src="img/arrow_prev.png"></a></div>
+					</div>
+					<div class="num"><a href="#">1</a></div>
+					<div class="present" ><a href="#">2</a></div> 
+					<div class="num"><a href="#">3</a></div>
+					<div class="num"><a href="#">4</a></div>
+					<div class="num"><a href="#">5</a></div>
+					<div class="num">
+						<div class="navi_next10_btn"><a href="#"><img src="img/arrow_next.png"></a></div>					
+					</div>
+					<div class="num">					
+						<div class="navi_last_btn"><a href="#"><img src="img/arrow_last.png"></a></div>					
 					</div>
 				</div>
+			</div>
 			</div>
 			
 		</div>
