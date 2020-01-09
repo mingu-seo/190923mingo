@@ -232,7 +232,6 @@
                     <input type="text" class="form-control mr-2" style="width:188px">
                     <button tpye="button" class="form-control" style="width:80px;">검색</button>
                 </div>
-                
             </div>
          
             

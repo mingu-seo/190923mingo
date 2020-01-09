@@ -221,14 +221,7 @@
 	    </ul>
 	</div>
     <div class="board-wrapper2">
-        <div class="list-group list-group-flush board-side shadow">
-            <div class="board-side-name">
-                <i class="fa fa-gear ml-2 " style="font-size:2em;">&nbsp;&nbsp;회원구분</i>
-            </div>
-            <a href="#" class="list-group-item mt-2" style="border-top:none;">이용자</a>
-            <a href="#" class="list-group-item">매니저</a>
-            
-        </div>  
+          
         
         <div class=" board-group shadow ml-4">
             <div class="pb-4 mb-1 board-name" style="border-bottom: 1px solid #6E6E6E;">
