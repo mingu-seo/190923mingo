@@ -15,7 +15,7 @@ public class TestVO {
 	private String from; // 시작일
 	private String to;   // 종료일
 	
-	public int getId() {
+	public int getId() {  
 		return id;
 	}
 	public void setId(int id) {
