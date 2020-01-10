@@ -25,7 +25,11 @@
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/choicss1.css">
 	
 	<style>
-		.userList_area{
+		.board-group{
+			width:95%;
+		}
+	
+		.cafeList_area{
 			width:100%;
 			height:600px;
 		}
@@ -52,20 +56,20 @@
 			font-size: 1.2em;
 		}
 		
-		.l_id{
-			width:15%;
+		.c_id{
+			width:10%;
 			height:100%;
 		}
-		.l_name{
-			width:20%;
+		.c_name{
+			width:30%;
 			height:100%;
 		}
-		.l_email{
+		.c_address{
 			width:40%;
 			height:100%;
 		}
-		.l_regdate{
-			width:25%;
+		.c_regdate{
+			width:20%;
 			height:100%;
 		}
 		
@@ -225,83 +229,76 @@
         
         <div class=" board-group shadow ml-4">
             <div class="pb-4 mb-1 board-name" style="border-bottom: 1px solid #6E6E6E;">
-               	회원목록     
+               	카페목록     
             </div>  
-            
-            <div class="userList_area">
+            <div class="cafeList_area">
             	<div class="list_header">
-            		<div class="l_id" style="float:left">아이디</div>
-            		<div class="l_name" style="float:left">이름</div>
-            		<div class="l_email" style="float:left">이메일</div>
-            		<div class="l_regdate" style="float:left">가입일</div>
+            		<div class="c_id" style="float:left">아이디</div>
+            		<div class="c_name" style="float:left">이름</div>
+            		<div class="c_address" style="float:left">주소</div>
+            		<div class="c_regdate" style="float:left">가입일</div>
             	</div>
             	<div class="list_content">
-            		<div class="l_id" style="float:left">1</div>
-            		<div class="l_name" style="float:left">최재명</div>
-            		<div class="l_email" style="float:left">0ptimist0@naver.com</div>
-            		<div class="l_regdate" style="float:left">2020-01-09 10:21</div>
+            		<div class="c_id" style="float:left">1</div>
+            		<div class="c_name" style="float:left">스타벅스 샤로수길점</div>
+            		<div class="c_address" style="float:left">서울 관악구 봉천동 869-1</div>
+            		<div class="c_regdate" style="float:left">2020-01-09 10:21</div>
             	</div>
             	<div class="list_content">
-            		<div class="l_id" style="float:left">1</div>
-            		<div class="l_name" style="float:left">최재명</div>
-            		<div class="l_email" style="float:left">0ptimist0@naver.com</div>
-            		<div class="l_regdate" style="float:left">2020-01-09 10:21</div>
+            		<div class="c_id" style="float:left">1</div>
+            		<div class="c_name" style="float:left">스타벅스 샤로수길점</div>
+            		<div class="c_address" style="float:left">서울 관악구 봉천동 869-1</div>
+            		<div class="c_regdate" style="float:left">2020-01-09 10:21</div>
             	</div>
             	<div class="list_content">
-            		<div class="l_id" style="float:left">1</div>
-            		<div class="l_name" style="float:left">최재명</div>
-            		<div class="l_email" style="float:left">0ptimist0@naver.com</div>
-            		<div class="l_regdate" style="float:left">2020-01-09 10:21</div>
+            		<div class="c_id" style="float:left">1</div>
+            		<div class="c_name" style="float:left">스타벅스 샤로수길점</div>
+            		<div class="c_address" style="float:left">서울 관악구 봉천동 869-1</div>
+            		<div class="c_regdate" style="float:left">2020-01-09 10:21</div>
             	</div>
             	<div class="list_content">
-            		<div class="l_id" style="float:left">1</div>
-            		<div class="l_name" style="float:left">최재명</div>
-            		<div class="l_email" style="float:left">0ptimist0@naver.com</div>
-            		<div class="l_regdate" style="float:left">2020-01-09 10:21</div>
+            		<div class="c_id" style="float:left">1</div>
+            		<div class="c_name" style="float:left">스타벅스 샤로수길점</div>
+            		<div class="c_address" style="float:left">서울 관악구 봉천동 869-1</div>
+            		<div class="c_regdate" style="float:left">2020-01-09 10:21</div>
             	</div>
             	<div class="list_content">
-            		<div class="l_id" style="float:left">1</div>
-            		<div class="l_name" style="float:left">최재명</div>
-            		<div class="l_email" style="float:left">0ptimist0@naver.com</div>
-            		<div class="l_regdate" style="float:left">2020-01-09 10:21</div>
+            		<div class="c_id" style="float:left">1</div>
+            		<div class="c_name" style="float:left">스타벅스 샤로수길점</div>
+            		<div class="c_address" style="float:left">서울 관악구 봉천동 869-1</div>
+            		<div class="c_regdate" style="float:left">2020-01-09 10:21</div>
             	</div>
             	<div class="list_content">
-            		<div class="l_id" style="float:left">1</div>
-            		<div class="l_name" style="float:left">최재명</div>
-            		<div class="l_email" style="float:left">0ptimist0@naver.com</div>
-            		<div class="l_regdate" style="float:left">2020-01-09 10:21</div>
+            		<div class="c_id" style="float:left">1</div>
+            		<div class="c_name" style="float:left">스타벅스 샤로수길점</div>
+            		<div class="c_address" style="float:left">서울 관악구 봉천동 869-1</div>
+            		<div class="c_regdate" style="float:left">2020-01-09 10:21</div>
             	</div>
             	<div class="list_content">
-            		<div class="l_id" style="float:left">1</div>
-            		<div class="l_name" style="float:left">최재명</div>
-            		<div class="l_email" style="float:left">0ptimist0@naver.com</div>
-            		<div class="l_regdate" style="float:left">2020-01-09 10:21</div>
+            		<div class="c_id" style="float:left">1</div>
+            		<div class="c_name" style="float:left">스타벅스 샤로수길점</div>
+            		<div class="c_address" style="float:left">서울 관악구 봉천동 869-1</div>
+            		<div class="c_regdate" style="float:left">2020-01-09 10:21</div>
             	</div>
             	<div class="list_content">
-            		<div class="l_id" style="float:left">1</div>
-            		<div class="l_name" style="float:left">최재명</div>
-            		<div class="l_email" style="float:left">0ptimist0@naver.com</div>
-            		<div class="l_regdate" style="float:left">2020-01-09 10:21</div>
+            		<div class="c_id" style="float:left">1</div>
+            		<div class="c_name" style="float:left">스타벅스 샤로수길점</div>
+            		<div class="c_address" style="float:left">서울 관악구 봉천동 869-1</div>
+            		<div class="c_regdate" style="float:left">2020-01-09 10:21</div>
             	</div>
             	<div class="list_content">
-            		<div class="l_id" style="float:left">1</div>
-            		<div class="l_name" style="float:left">최재명</div>
-            		<div class="l_email" style="float:left">0ptimist0@naver.com</div>
-            		<div class="l_regdate" style="float:left">2020-01-09 10:21</div>
+            		<div class="c_id" style="float:left">1</div>
+            		<div class="c_name" style="float:left">스타벅스 샤로수길점</div>
+            		<div class="c_address" style="float:left">서울 관악구 봉천동 869-1</div>
+            		<div class="c_regdate" style="float:left">2020-01-09 10:21</div>
             	</div>
             	<div class="list_content">
-            		<div class="l_id" style="float:left">1</div>
-            		<div class="l_name" style="float:left">최재명</div>
-            		<div class="l_email" style="float:left">0ptimist0@naver.com</div>
-            		<div class="l_regdate" style="float:left">2020-01-09 10:21</div>
+            		<div class="c_id" style="float:left">1</div>
+            		<div class="c_name" style="float:left">스타벅스 샤로수길점</div>
+            		<div class="c_address" style="float:left">서울 관악구 봉천동 869-1</div>
+            		<div class="c_regdate" style="float:left">2020-01-09 10:21</div>
             	</div>
-            
             </div>
-            
-            
-            
-            
-            
 			<div class="review_navi_nums">
 				<div>
 					<div class="num">
@@ -323,7 +320,6 @@
 					</div>
 				</div>
 			</div>
-			
 			<div class="search_area">
                 <div class="search_area_inner">
                     <select class="select_btn" >
@@ -338,19 +334,15 @@
                         <option>글쓴이</option>
                         <option>제목+내용</option>
                     </select>
-                    
                     <input type="text" class="search_field">
                     <button type="button" class="search_btn" >검색</button>
                 </div>
             </div>
-			
         </div>
     </div>
-
     <div class="jumbotron jumbotron-fluid m-0">
         <div class="container">
             <div class="footer clearfix mb-2">
-            	
                 <a href="#" class="fa fa-coffee" style="font-size:3em;float:left;font-weight: bold;">&nbsp;Mingo</a>
                 <a href="#" class="fa fa-twitter" style="font-size:3em;float:right"></a>
                 <a href="#" class="fa fa-facebook" style="font-size:3em;float:right;margin-right:20px;"></a>
@@ -362,7 +354,6 @@
                 Copyright. All Rights Reserved.
             </p>
         </div>
-
     </div>
 </body>
 

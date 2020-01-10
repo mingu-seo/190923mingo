@@ -489,17 +489,16 @@
 	</style>
 	<script>
 		$(function(){
-			var review_each_height = $('.cafe_review_bottom img').height()+$('.comment').height()+20;
-			
-			$('.cafe_review_each').css({
-				'height':review_each_height+'px'
+			$('document').ready(function() {
+				var review_each_height = $('.cafe_review_bottom img').height()+$('.comment').height()+20;
+				$('.cafe_review_each').css({
+					'height':review_each_height+'px'
+				});
+				$('.cafe_reviews').css({
+					'height':review_each_height*5+200+'px'
+				});
 			});
 			
-			  
-			
-			$('.cafe_reviews').css({
-				'height':review_each_height*5+200+'px'
-			});
 			   
 			var swiper = new Swiper('.visual .swiper-container', {
                 cssMode: true,
