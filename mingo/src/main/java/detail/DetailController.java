@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import vo.Cafe_basicVO;
+import vo.Cafe_imageVO;
 import vo.UserVO;
 
 @Controller
@@ -27,10 +28,34 @@ public class DetailController {
 	@RequestMapping("/detailView.mg")
 	public String detailView(Model model, HttpServletRequest request) {
 		int cafe_id = Integer.parseInt(request.getParameter("cafe_id"));
+		
+		
+		// 기본정보 조회
 		Cafe_basicVO cafe_basicVO = detailService.basicInfoView(cafe_id);
 		model.addAttribute("cafe_basicVO", cafe_basicVO);
+		
+		// 사진 조회
+//		List<Cafe_imageVO> list_cafe_imageVO = detailService.view
+		
 		return "detail/cafeDetail";
 	}
+	
+	// 여러 장의 사진 등록하는 작업 필요ㄴ
+	@RequestMapping("/cafeDetailRegistForm.mg")
+	public String cafeDetailRegistForm() {
+		return "detail/cafeDetailRegistForm";
+	}
+	
+	@RequestMapping("/cafeDetailRegist.mg")
+	public String cafeDetailRegist(Cafe_imageVO vo, @RequestParam("cafe_img_url") MultipartFile file, HttpServletRequest request) {
+		String cafe_id = request.getParameter("cafe_id");
+		int r = detailService.cafeInsert(vo, file, request);
+		return "detailView.mg?cafe_id="+cafe_id;
+	}
+	
+	
+	
+	
 	/*
 	 * @RequestMapping("/memberList.do") public String memberList(Model model,
 	 * HttpServletRequest req,

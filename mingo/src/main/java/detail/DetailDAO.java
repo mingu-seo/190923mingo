@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import vo.Cafe_basicVO;
+import vo.Cafe_imageVO;
 
 @Repository
 public class DetailDAO {
@@ -19,6 +20,10 @@ public class DetailDAO {
 	
 	public Cafe_basicVO basicInfoView(int cafe_id) {
 		return sqlSession.selectOne("mingo.selectCafe_BasicInfo", cafe_id);
+	}
+	
+	public int cafeRegist(Cafe_imageVO vo) {
+		return sqlSession.insert("mingo.insertCafe", vo);
 	}
 	
 	/*

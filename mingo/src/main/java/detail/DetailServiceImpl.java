@@ -7,10 +7,12 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import util.FileUtil;
 import vo.Cafe_basicVO;
+import vo.Cafe_imageVO;
 import vo.UserVO;  
 
 @Service
@@ -22,6 +24,14 @@ public class DetailServiceImpl implements DetailService {
 	public Cafe_basicVO basicInfoView(int cafe_id) {
 		Cafe_basicVO cafe_basicVO = detailDao.basicInfoView(cafe_id);
 		return cafe_basicVO;
+	}
+	
+	public int cafeInsert(Cafe_imageVO vo, MultipartFile file, HttpServletRequest request) {
+		FileUtil fu = new FileUtil();
+		fu.fileUpload(file, request.getRealPath("/upload/"));
+		vo.setCafe_img_url(fu.fileName);
+		int r = detailDao.cafeRegist(vo);
+		return r;
 	}
 	
 	
