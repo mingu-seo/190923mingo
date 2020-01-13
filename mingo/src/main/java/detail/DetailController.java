@@ -31,7 +31,7 @@ public class DetailController {
 		
 		
 		// 기본정보 조회
-		Cafe_basicVO cafe_basicVO = detailService.basicInfoView(cafe_id);
+		Cafe_basicVO cafe_basicVO = detailService.basicInfoView(cafe_id);   
 		model.addAttribute("cafe_basicVO", cafe_basicVO);
 		
 		// 사진 조회
@@ -55,7 +55,7 @@ public class DetailController {
 	
 	
 	
-	
+	  
 	/*
 	 * @RequestMapping("/memberList.do") public String memberList(Model model,
 	 * HttpServletRequest req,

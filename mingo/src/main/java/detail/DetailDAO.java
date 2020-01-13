@@ -14,7 +14,7 @@ import vo.Cafe_imageVO;
 
 @Repository
 public class DetailDAO {
-
+    
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	

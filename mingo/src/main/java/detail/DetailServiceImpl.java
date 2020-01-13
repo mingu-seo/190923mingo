@@ -34,7 +34,7 @@ public class DetailServiceImpl implements DetailService {
 		return r;
 	}
 	
-	
+	   
 	/*
 	 * public int memberInsert(TestVO vo, MultipartFile file, HttpServletRequest
 	 * request) { FileUtil fu = new FileUtil(); fu.fileUpload(file,

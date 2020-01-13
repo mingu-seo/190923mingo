@@ -753,7 +753,7 @@
 								<h6>17,000원</h6>
 							</div>
 						</div>			
-									
+								   	
 					</div>
 				</div>
 				<div class="cafe_photo">

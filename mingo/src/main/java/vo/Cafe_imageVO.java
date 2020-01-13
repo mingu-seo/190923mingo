@@ -1,7 +1,7 @@
 package vo;
 
 public class Cafe_imageVO {
-	
+	   
 	int cafe_id;
 	int img_id;
 	String cafe_img_url;

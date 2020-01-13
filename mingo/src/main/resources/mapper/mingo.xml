@@ -17,7 +17,7 @@
 		(select ifnull(max(cafe_img_num),0)+1 from cafe_image where cafe_id=#{cafe_id}), + 
 		#{cafe_id})	
 	</insert>
-	
+	   
 	
 	<!-- <insert id="insertMember" parameterType="test.TestVO">
 		INSERT INTO spring5fs.member

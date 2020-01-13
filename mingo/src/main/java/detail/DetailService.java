@@ -16,7 +16,7 @@ public interface DetailService {
 	public Cafe_basicVO basicInfoView(int cafe_id);
 	public int cafeInsert(Cafe_imageVO vo, MultipartFile file, HttpServletRequest request);
 
-	/*
+	/*  
 	 * public int memberInsert(TestVO vo, MultipartFile file, HttpServletRequest
 	 * request); public TestVO memberDetail(int id); public int memberUpdate(TestVO
 	 * vo, MultipartFile file, HttpServletRequest request); public int

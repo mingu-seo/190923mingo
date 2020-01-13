@@ -15,7 +15,7 @@
 	<label for = "image">카페 이미지 : </label>
 	<input type = "file" name="cafe_img_url" id="cafe_img_url"/>
 </form>
-
+   
 
 
 </body>
