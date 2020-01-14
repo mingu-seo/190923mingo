@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="utf-8">
 <head>
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,500,700,900&display=swap&subset=korean" rel="stylesheet">
     <meta charset="UTF-8">
@@ -70,6 +70,12 @@
 .person:hover{
     box-shadow: 0 1px 10px rgba(0,0,0,0.5);
 }
+    .person1:hover{
+    box-shadow: 0 1px 10px rgba(0,0,0,0.5);
+}
+    .person2:hover{
+    box-shadow: 0 1px 10px rgba(0,0,0,0.5);
+}
 .person{
     position:absolute; 
     right: 800px;
@@ -109,7 +115,7 @@
     align-items: center;
     width: 300px;
     height: 300px;
-    background-color: rgb(102, 104, 107);
+    background-color:#fee202;
     text-align: center;
     margin-right: 24px;
     transition: box-shadow 0.5s ease 0s;
@@ -152,6 +158,22 @@
     text-align: center;
     word-break: keep-all;
 }
+.join-person-persontitle2{  
+    position: relative;
+    top:50px;
+    font-family: 'Noto Sans KR', sans-serif;
+    color: black;
+    font-size:20px;
+}
+.persontitle-content1{
+    position: relative;
+    top:50px;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    color: black;
+    text-align: center;
+    word-break: keep-all;
+}
 .footer{
     font-family: 'Noto Sans KR', sans-serif;
     position: relative;
@@ -174,7 +196,7 @@
         <li class="person">
             <a class="click" href="#" >
             <div class="join-person">
-                <img src="mingo/img/joinImg/email.png" width="90px" height="90px">
+                <img src="<%=request.getContextPath() %>/img/joinImg/email.png" width="90px" height="90px">
                 <div class="join-person-persontitle">
                     <h3 class="join-person-persontitle1">이메일로 회원가입</h3>
                 </div>
@@ -186,7 +208,7 @@
         <li class="person1">
             <a class="click" href="#">
                 <div class="join-person">
-                    <img src="mingo/img/joinImg/naver.png" width="90px" height="90px">
+                    <img src="<%=request.getContextPath() %>/img/joinImg/naver.png" width="90px" height="90px">
                     <div class="join-person-persontitle">
                         <h3 class="join-person-persontitle1">네이버 간편회원가입</h3>
                     </div>
@@ -198,18 +220,18 @@
             <li class="person2">
                 <a class="click" href="#">
                     <div class="join-person">
-                        <img src="mingo/img/joinImg/person.png" width="90px" height="90px">
+                        <img src="<%=request.getContextPath() %>/img/joinImg/kakao.png" width="90px" height="90px">
                         <div class="join-person-persontitle">
-                            <h3 class="join-person-persontitle1">구글 회원가입</h3>
+                            <h3 class="join-person-persontitle2">카카오톡 회원가입</h3>
                         </div>
-                        <p class="persontitle-content">사용하는 구글 계정으로 가입하기</p>
+                        <p class="persontitle-content1">사용하는 카카오 계정으로 가입하기</p>
                     </div>
                     
                 </a>
                 </li>
     </ul>
     <div class="reload">
-        <p>이미 계정이 있으신가요?  <a href="#">로그인</a></p>
+        <p>이미 계정이 있으신가요?  <a href="/signup">로그인</a></p>
     </div>
     <div class="footer">
         <p>Copyright © CAFE MINGO All Rights Reserved.</p>

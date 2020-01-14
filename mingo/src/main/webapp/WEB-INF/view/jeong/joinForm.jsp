@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="utf-8">
 <head>
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,500,700,900&display=swap&subset=korean" rel="stylesheet">
     <meta charset="UTF-8">
@@ -54,62 +54,35 @@
     display: block;
 }
 
-
-.click{
-    position: relative;
-    top:10px;
+.person{
+    position:absolute; 
+    right: 600px;
     display: flex;
+    flex-direction: column;
     box-align: center;
     align-items: center;
-    flex-direction: column;
-    height: 300px;
     width: 282px;
-    padding: 24px;
-    text-decoration: none;
+    height: 350px;
+    background-color: rgb(255, 255, 255);
+    text-align: center;
+    margin-right: 24px;
+    transition: box-shadow 0.5s ease 0s;
+
 }
+
 .person:hover{
     box-shadow: 0 1px 10px rgba(0,0,0,0.5);
 }
-.person{
-    position:absolute; 
-    right: 800px;
+.cafeperson{
+    position:absolute;
+    right: 250px;
     display: flex;
     flex-direction: column;
     box-align: center;
     align-items: center;
-    width: 300px;
-    height: 300px;
-    background-color: #3f60cc;
-    text-align: center;
-    margin-right: 24px;
-    transition: box-shadow 0.5s ease 0s;
-
-}
-.person1{
-    position:absolute; 
-    right:450px;
-    display: flex;
-    flex-direction: column;
-    box-align: center;
-    align-items: center;
-    width: 300px;
-    height: 300px;
-    background-color:#3ec728;
-    text-align: center;
-    margin-right: 24px;
-    transition: box-shadow 0.5s ease 0s;
-
-}
-.person2{
-    position:absolute; 
-    right: 100px;
-    display: flex;
-    flex-direction: column;
-    box-align: center;
-    align-items: center;
-    width: 300px;
-    height: 300px;
-    background-color: rgb(102, 104, 107);
+    width: 282px;
+    height: 350px;
+    background-color: rgb(255, 255, 255);
     text-align: center;
     margin-right: 24px;
     transition: box-shadow 0.5s ease 0s;
@@ -119,8 +92,6 @@
     box-shadow: 0 1px 10px rgba(0,0,0,0.5);
 }
 .join-person{
-    position: relative;
-    top:5px;
     width: 282px;
     height: 200px;
     flex: 1 1 auto;
@@ -128,6 +99,39 @@
     top:3px;
     
 }
+.click{
+    display: flex;
+    box-align: center;
+    align-items: center;
+    flex-direction: column;
+    height: 300px;
+    width: 282px;
+    padding: 24px;
+    text-decoration: none;
+}
+
+.buttonchoose{
+    font-size: 16px;
+    width: 140px;
+    min-width: 140px;
+    height: 52px;
+    line-height: 50px;
+    background-color: rgb(63, 96, 204);
+    color: rgb(255, 255, 255);
+    padding: 0px;
+    border-radius: 26px;
+    border-width: initial;
+    border-style: none;
+    border-color: initial;
+    border-image: initial;
+    transition: background-color 0.3s ease 0s;
+    z-index: 1;
+}
+.buttonchoose:hover{
+    background-color:rgb(1, 70, 150);
+}
+
+
 .join-person-persontitle{
     font-family: 'Noto Sans KR', sans-serif;
     text-decoration: none;
@@ -136,19 +140,15 @@
     justify-content: center;
 
 }
-.join-person-persontitle1{  
-    position: relative;
-    top:50px;
-    font-family: 'Noto Sans KR', sans-serif;
-    color: white;
-    font-size:20px;
+.join-person-persontitle1{
+      font-family: 'Noto Sans KR', sans-serif;
+color: black;
+font-size:20px;
 }
 .persontitle-content{
-    position: relative;
-    top:50px;
     font-family: 'Noto Sans KR', sans-serif;
     font-size: 14px;
-    color: rgb(255, 255, 255);
+    color: rgb(102, 102, 102);
     text-align: center;
     word-break: keep-all;
 }
@@ -168,45 +168,37 @@
         <div class="title">
         <span class="t1">MINGO</span>    
         <span class="t2">회원가입</span>
-        <p class="t3">가입 방법을 선택해주세요.</p>    
+        <p class="t3">본인이 해당하시는 가입 유형을 아래에서 선택해 주세요.</p>    
        
     <ul class="join">
         <li class="person">
             <a class="click" href="#" >
             <div class="join-person">
-                <img src="mingo/img/joinImg/email.png" width="90px" height="90px">
+                <img src="<%=request.getContextPath() %>/img/joinImg/person.png" width="80px" height="80px">
                 <div class="join-person-persontitle">
-                    <h3 class="join-person-persontitle1">이메일로 회원가입</h3>
+                    <h3 class="join-person-persontitle1">개인 회원가입</h3>
                 </div>
-                <p class="persontitle-content">사용하는 이메일로 가입하기</p>
+                <p class="persontitle-content">카페 리뷰작성과 모든 카페 리뷰들을 확인하실 수 있습니다.</p>
             </div>
-            
+            <div class="button1-select">
+                <button type="button" class="buttonchoose">선택하기</button>
+            </div>
         </a>
         </li>
-        <li class="person1">
+        <li class="cafeperson">
             <a class="click" href="#">
                 <div class="join-person">
-                    <img src="mingo/img/joinImg/naver.png" width="90px" height="90px">
+                    <img src="<%=request.getContextPath() %>/img/joinImg/person.png" width="80px" height="80px">
                     <div class="join-person-persontitle">
-                        <h3 class="join-person-persontitle1">네이버 간편회원가입</h3>
+                        <h3 class="join-person-persontitle1">사장님 회원가입</h3>
                     </div>
-                    <p class="persontitle-content">사용하는 네이버 계정으로 가입하기</p>
+                    <p class="persontitle-content">사장님의 카페 등록 및 관리가 가능합니다.</p>
                 </div>
-                
+                <div class="button1-select">
+                    <button type="button" class="buttonchoose">선택하기</button>
+                </div>
             </a>
             </li>
-            <li class="person2">
-                <a class="click" href="#">
-                    <div class="join-person">
-                        <img src="mingo/img/joinImg/person.png" width="90px" height="90px">
-                        <div class="join-person-persontitle">
-                            <h3 class="join-person-persontitle1">구글 회원가입</h3>
-                        </div>
-                        <p class="persontitle-content">사용하는 구글 계정으로 가입하기</p>
-                    </div>
-                    
-                </a>
-                </li>
     </ul>
     <div class="reload">
         <p>이미 계정이 있으신가요?  <a href="#">로그인</a></p>

@@ -66,9 +66,10 @@ $(document).ready(function () {
         /* placehold 주소 */
         var src2 = 'http://placehold.it/500x280';
         var src3 = 'https://picsum.photos/'+width+'/'+height;
-
+        var src4 = '/img/cafe.jpg';
         var item = '<div class="grid-item"><div class="cafe cafe-img">';
-        item += '<img src="' + src3 + '"></div>';
+        
+        item += '<img src="' + src2 + '"></div>';
         item += '<div class="cafe cafe-name">스타벅스 자양2점</div>';
         item += '<div class="cafe cafe-address">서울시 광진구 자양 3동</div>';
         item += '<div class="cafe cafe-score">평점 3.9</div></div>';

@@ -86,63 +86,7 @@
         
         <div class="grid-item">
             <div class="cafe cafe-img">
-                <img src='https://picsum.photos/500/280' alt="">
-            </div>
-            <div class="cafe cafe-name">스타벅스 자양2점</div>
-            <div class="cafe cafe-address">서울시 광진구 자양 3동</div>
-            <div class="cafe cafe-score">평점 3.9</div>
-        </div>
-        <div class="grid-item">
-            <div class="cafe cafe-img">
-                <img src='https://picsum.photos/501/280' alt="">
-            </div>
-            <div class="cafe cafe-name">스타벅스 자양2점</div>
-            <div class="cafe cafe-address">서울시 광진구 자양 3동</div>
-            <div class="cafe cafe-score">평점 3.9</div>
-        </div>
-        <div class="grid-item">
-            <div class="cafe cafe-img">
-                <img src='https://picsum.photos/502/280' alt="">
-            </div>
-            <div class="cafe cafe-name">스타벅스 자양2점</div>
-            <div class="cafe cafe-address">서울시 광진구 자양 3동</div>
-            <div class="cafe cafe-score">평점 3.9</div>
-        </div>
-        <div class="grid-item">
-            <div class="cafe cafe-img">
-                <img src='https://picsum.photos/503/280' alt="">
-            </div>
-            <div class="cafe cafe-name">스타벅스 자양2점</div>
-            <div class="cafe cafe-address">서울시 광진구 자양 3동</div>
-            <div class="cafe cafe-score">평점 3.9</div>
-        </div>
-        <div class="grid-item">
-            <div class="cafe cafe-img">
-                <img src='https://picsum.photos/504/280' alt="">
-            </div>
-            <div class="cafe cafe-name">스타벅스 자양2점</div>
-            <div class="cafe cafe-address">서울시 광진구 자양 3동</div>
-            <div class="cafe cafe-score">평점 3.9</div>
-        </div>
-        <div class="grid-item">
-            <div class="cafe cafe-img">
-                <img src='https://picsum.photos/505/280' alt="">
-            </div>
-            <div class="cafe cafe-name">스타벅스 자양2점</div>
-            <div class="cafe cafe-address">서울시 광진구 자양 3동</div>
-            <div class="cafe cafe-score">평점 3.9</div>
-        </div>
-        <div class="grid-item">
-            <div class="cafe cafe-img">
-                <img src='https://picsum.photos/506/280' alt="">
-            </div>
-            <div class="cafe cafe-name">스타벅스 자양2점</div>
-            <div class="cafe cafe-address">서울시 광진구 자양 3동</div>
-            <div class="cafe cafe-score">평점 3.9</div>
-        </div>
-        <div class="grid-item">
-            <div class="cafe cafe-img">
-                <img src='https://picsum.photos/507/280' alt="">
+                <img src='<%=request.getContextPath() %>/img/cafe.jpg' alt="">
             </div>
             <div class="cafe cafe-name">스타벅스 자양2점</div>
             <div class="cafe cafe-address">서울시 광진구 자양 3동</div>
