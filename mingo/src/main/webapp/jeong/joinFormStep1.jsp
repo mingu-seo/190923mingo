@@ -194,9 +194,9 @@
        
     <ul class="join">
         <li class="person">
-            <a class="click" href="<%=request.getContextPath() %>/img/joinImg/email.png" >
+            <a class="click" href="#" >
             <div class="join-person">
-                <img src="email.png" width="90px" height="90px">
+                <img src="<%=request.getContextPath() %>/img/joinImg/email.png" width="90px" height="90px">
                 <div class="join-person-persontitle">
                     <h3 class="join-person-persontitle1">이메일로 회원가입</h3>
                 </div>
@@ -206,9 +206,9 @@
         </a>
         </li>
         <li class="person1">
-            <a class="click" href="<%=request.getContextPath() %>/img/joinImg/naver.png">
+            <a class="click" href="#">
                 <div class="join-person">
-                    <img src="naver.png" width="90px" height="90px">
+                    <img src="<%=request.getContextPath() %>/img/joinImg/naver.png" width="90px" height="90px">
                     <div class="join-person-persontitle">
                         <h3 class="join-person-persontitle1">네이버 간편회원가입</h3>
                     </div>
@@ -218,9 +218,9 @@
             </a>
             </li>
             <li class="person2">
-                <a class="click" href="<%=request.getContextPath() %>/img/joinImg/kakao.png">
+                <a class="click" href="#">
                     <div class="join-person">
-                        <img src="kakao.png" width="90px" height="90px">
+                        <img src="<%=request.getContextPath() %>/img/joinImg/kakao.png" width="90px" height="90px">
                         <div class="join-person-persontitle">
                             <h3 class="join-person-persontitle2">카카오톡 회원가입</h3>
                         </div>
