@@ -1,4 +1,4 @@
-package detail;
+package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import dao.DetailDAO;
+import service.DetailService;
 import vo.Cafe_basicVO;
 import vo.Cafe_imageVO;
 import vo.UserVO;

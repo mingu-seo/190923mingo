@@ -1,5 +1,5 @@
 
-package detail;
+package service;
 
 import java.util.HashMap;
 
@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import dao.DetailDAO;
 import util.FileUtil;
 import vo.Cafe_basicVO;
 import vo.Cafe_imageVO;
