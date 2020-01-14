@@ -2,6 +2,8 @@
 
 package detail;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,7 +16,7 @@ import vo.UserVO;
 public interface DetailService {
 	
 	public Cafe_basicVO basicInfoView(int cafe_id);
-	public int cafeInsert(Cafe_imageVO vo, MultipartFile file, HttpServletRequest request);
+	public int cafeInsert(Cafe_imageVO vo, List<MultipartFile> file, HttpServletRequest request);
 
 	/*  
 	 * public int memberInsert(TestVO vo, MultipartFile file, HttpServletRequest

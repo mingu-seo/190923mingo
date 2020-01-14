@@ -47,10 +47,13 @@ public class DetailController {
 	}
 	
 	@RequestMapping("/cafeDetailRegist.mg")
-	public String cafeDetailRegist(Cafe_imageVO vo, @RequestParam("cafe_img_url") MultipartFile file, HttpServletRequest request) {
+	public String cafeDetailRegist(Cafe_imageVO vo, @RequestParam("cafe_img_file") List<MultipartFile> file, HttpServletRequest request) {
+		
+		
+		
 		String cafe_id = request.getParameter("cafe_id");
 		int r = detailService.cafeInsert(vo, file, request);
-		return "detailView.mg?cafe_id="+cafe_id;
+		return "redirect:detailView.mg?cafe_id="+cafe_id;    
 	}
 	
 	
