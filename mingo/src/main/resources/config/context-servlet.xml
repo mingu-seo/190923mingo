@@ -9,8 +9,13 @@
 
 	<!-- component-scan : 자동으로 어노테이션 클래스 객체 생성 -->
 	<context:component-scan base-package="test"/>
-	<context:component-scan base-package="detail"/>
+	
+	<!--  프로젝트 컴포넌트 스캔 -->
+	
 	<context:component-scan base-package="vo"/>
+	<context:component-scan base-package="dao"/>
+	<context:component-scan base-package="service"/>
+	<context:component-scan base-package="controller"/>
 	
 	<!-- annotation 활성화 -->
 	<mvc:annotation-driven/>
@@ -31,9 +36,9 @@
 	<!-- mysql root 계정 password는 각자 비밀번호 입력 혹은 팀원 간 통일 요망 -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-		<property name="url" value="jdbc:mysql://localhost/mydb?characterEncoding=utf8&amp;serverTimezone=Asia/Seoul"/>
+		<property name="url" value="jdbc:mysql://localhost/spring5fs?characterEncoding=utf8&amp;serverTimezone=Asia/Seoul"/>
 		<property name="username" value="root"/>
-		<property name="password" value="mingoislove"/>
+		<property name="password" value="test1234"/>
 	</bean>
 	
 	
