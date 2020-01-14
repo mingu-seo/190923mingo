@@ -36,10 +36,11 @@
 	<!-- mysql root 계정 password는 각자 비밀번호 입력 혹은 팀원 간 통일 요망 -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-		<property name="url" value="jdbc:mysql://localhost/spring5fs?characterEncoding=utf8&amp;serverTimezone=Asia/Seoul"/>
+		<property name="url" value="jdbc:mysql://localhost/mingo?characterEncoding=utf8&amp;serverTimezone=Asia/Seoul"/>
 		<property name="username" value="root"/>
 		<property name="password" value="test1234"/>
 	</bean>
+
 	
 	<!-- MyBatis 설정 -->
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionFactoryBean">

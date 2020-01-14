@@ -1,20 +1,17 @@
 
 package service;
 
-import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import dao.DetailDAO;
-import util.FileUtil;
 import vo.Cafe_basicVO;
-import vo.Cafe_imageVO;
-import vo.UserVO;  
+import vo.Cafe_imageVO;  
 
 @Service
 public class DetailServiceImpl implements DetailService {
@@ -27,10 +24,14 @@ public class DetailServiceImpl implements DetailService {
 		return cafe_basicVO;
 	}
 	
-	public int cafeInsert(Cafe_imageVO vo, MultipartFile file, HttpServletRequest request) {
-		FileUtil fu = new FileUtil();
-		fu.fileUpload(file, request.getRealPath("/upload/"));
-		vo.setCafe_img_url(fu.fileName);
+	public int cafeInsert(Cafe_imageVO vo, List<MultipartFile> file, HttpServletRequest request) {
+//		FileUtil fu = new FileUtil();
+//		for(int i; i<file.size(); i++) {
+//			String img = fu.fileUpload(file.get(i), request.getRealPath("/upload/"));
+//			vo.setCafe_img_url(fu.fileName);
+//			
+//			  
+//		}
 		int r = detailDao.cafeRegist(vo);
 		return r;
 	}

@@ -11,11 +11,7 @@
 		</where>
 	</select>
 	<insert id="insertCafe" parameterType="vo.Cafe_imageVO">
-		insert into mydb.cafe_image (cafe_img_url, cafe_img_num, cafe_id)  + 
-		values + 
-		(#{cafe_img_url}, + 
-		(select ifnull(max(cafe_img_num),0)+1 from cafe_image where cafe_id=#{cafe_id}), + 
-		#{cafe_id})	
+		insert into mydb.cafe_image (cafe_img_url, cafe_img_num, cafe_id) values (#{cafe_img_url}, 1, #{cafe_id})	
 	</insert>
 	   
 	
