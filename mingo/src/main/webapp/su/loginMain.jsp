@@ -27,7 +27,7 @@
 	.wrap{
 	    width: 1200px;
 	    margin: 0 auto;
-	    padding:200px;
+	  
 	}
 	.header{
 	    background-color:white; height: 180px; width: 100%; 
@@ -174,6 +174,8 @@
                 </div>
             </label>
         </div>
+        <br>
+       
         <div class="main">
                 <label class="pass1">
                     <span class="pass2">
@@ -188,6 +190,9 @@
                 </label>   
 		</div>
 		</form>
+		<br>
+		<br>
+		
 			<div class="button1-select">
 	            <button type="button" class="loginbutton">로그인</button>
 	            <button type="button" class="joinbutton">회원가입</button>
