@@ -174,7 +174,7 @@
         <li class="person">
             <a class="click" href="#" >
             <div class="join-person">
-                <img src="mingo/img/joinImg/email.png" width="90px" height="90px">
+                <img src="<%=request.getContextPath() %>/img/joinImg/email.png" width="90px" height="90px">
                 <div class="join-person-persontitle">
                     <h3 class="join-person-persontitle1">이메일로 회원가입</h3>
                 </div>
@@ -186,7 +186,7 @@
         <li class="person1">
             <a class="click" href="#">
                 <div class="join-person">
-                    <img src="mingo/img/joinImg/naver.png" width="90px" height="90px">
+                    <img src="<%=request.getContextPath() %>/img/joinImg/naver.png" width="90px" height="90px">
                     <div class="join-person-persontitle">
                         <h3 class="join-person-persontitle1">네이버 간편회원가입</h3>
                     </div>
@@ -198,7 +198,7 @@
             <li class="person2">
                 <a class="click" href="#">
                     <div class="join-person">
-                        <img src="mingo/img/joinImg/person.png" width="90px" height="90px">
+                        <img src="<%=request.getContextPath() %>/img/joinImg/person.png" width="90px" height="90px">
                         <div class="join-person-persontitle">
                             <h3 class="join-person-persontitle1">구글 회원가입</h3>
                         </div>

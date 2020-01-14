@@ -174,7 +174,7 @@ font-size:20px;
         <li class="person">
             <a class="click" href="#" >
             <div class="join-person">
-                <img src="mingo/img/joinImg/person.png" width="80px" height="80px">
+                <img src="<%=request.getContextPath() %>/img/joinImg/person.png" width="80px" height="80px">
                 <div class="join-person-persontitle">
                     <h3 class="join-person-persontitle1">개인 회원가입</h3>
                 </div>
@@ -188,7 +188,7 @@ font-size:20px;
         <li class="cafeperson">
             <a class="click" href="#">
                 <div class="join-person">
-                    <img src="mingo/img/joinImg/person.png" width="80px" height="80px">
+                    <img src="<%=request.getContextPath() %>/img/joinImg/person.png" width="80px" height="80px">
                     <div class="join-person-persontitle">
                         <h3 class="join-person-persontitle1">사장님 회원가입</h3>
                     </div>
