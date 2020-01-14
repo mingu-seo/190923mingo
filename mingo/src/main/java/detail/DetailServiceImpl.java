@@ -2,6 +2,7 @@
 package detail;
 
 import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -26,10 +27,14 @@ public class DetailServiceImpl implements DetailService {
 		return cafe_basicVO;
 	}
 	
-	public int cafeInsert(Cafe_imageVO vo, MultipartFile file, HttpServletRequest request) {
-		FileUtil fu = new FileUtil();
-		fu.fileUpload(file, request.getRealPath("/upload/"));
-		vo.setCafe_img_url(fu.fileName);
+	public int cafeInsert(Cafe_imageVO vo, List<MultipartFile> file, HttpServletRequest request) {
+//		FileUtil fu = new FileUtil();
+//		for(int i; i<file.size(); i++) {
+//			String img = fu.fileUpload(file.get(i), request.getRealPath("/upload/"));
+//			vo.setCafe_img_url(fu.fileName);
+//			
+//			  
+//		}
 		int r = detailDao.cafeRegist(vo);
 		return r;
 	}
