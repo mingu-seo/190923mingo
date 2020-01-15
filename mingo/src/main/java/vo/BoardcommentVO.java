@@ -1,6 +1,6 @@
 package vo;
 
-public class Board_comment {
+public class BoardcommentVO {
 
 	private int board_comment_id;
 	private int user_id;
