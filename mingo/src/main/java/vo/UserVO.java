@@ -1,12 +1,12 @@
 package vo;
 
-<<<<<<< HEAD
+
 import java.util.Date;
 
-=======
->>>>>>> branch 'master' of https://github.com/mingu-seo/190923mingo.git
+
+
 public class UserVO {
-<<<<<<< HEAD
+
 
 	private int user_id;
 	private String email;
@@ -95,7 +95,6 @@ public class UserVO {
 	}
 	
 	
-=======
->>>>>>> branch 'master' of https://github.com/mingu-seo/190923mingo.git
+
 	
 }
