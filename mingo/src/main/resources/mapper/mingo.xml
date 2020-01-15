@@ -2,20 +2,30 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="mingo">
-<!--
-	<select id="selectCafe_BasicInfo" resultType="vo.Cafe_basicVO" parameterType="Integer">
-		SELECT * FROM mydb.cafe_basic
+
+	<select id="selectCafe_BasicInfo" resultType="vo.CafeVO" parameterType="Integer">
+		SELECT * FROM mingo.cafe
+
+
 		<where>
 			<if test="cafe_id != null">
-				cafe_id like '%${cafe_id}%'
+				cafe_id = #{cafe_id}
 			</if>
 		</where>
 	</select>
-	<insert id="insertCafe" parameterType="vo.Cafe_imageVO">
-		insert into mydb.cafe_image (cafe_img_url, cafe_img_num, cafe_id) values (#{cafe_img_url}, 1, #{cafe_id})	
+	<select id="selectViewCafeImage" resultType="vo.CafeImageVO" parameterType="Integer">
+		SELECT * FROM mingo.cafe_image
+		<where>
+			<if test="cafe_id != null">
+				cafe_id = #{cafe_id}
+			</if>
+		</where>
+	</select>
+	<insert id="insertCafeImage" parameterType="vo.CafeImageVO">  
+		insert into mingo.cafe_image (cafe_id, url) values (#{cafe_id}, #{url})	
 	</insert>
-	   
 	
+
 	 <insert id="insertMember" parameterType="test.TestVO">
 		INSERT INTO spring5fs.member
 		(email, password, name, regdate, profile, introduce)
@@ -42,6 +52,6 @@
 	
 	<select id="loginCheck" parameterType="java.util.HashMap" resultType="test.TestVO">
 		SELECT * FROM spring5fs.member WHERE email=#{mail} AND password=#{pwd}
-	</select> -->
+	</select> 
 	
 </mapper>

@@ -1,3 +1,4 @@
+<%@page import="util.Property"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -490,6 +491,9 @@
 	</style>
 	<script>
 		$(function(){
+			
+			
+			
 			$('document').ready(function() {
 				var review_each_height = $('.cafe_review_bottom img').height()+$('.comment').height()+20;
 				$('.cafe_review_each').css({
@@ -501,24 +505,6 @@
 			});
 			
 			   
-			var swiper = new Swiper('.visual .swiper-container', {
-                cssMode: true,
-                loop : true,
-                navigation: {
-                nextEl: '.visual .swiper-button-next',
-                prevEl: '.visual .swiper-button-prev',
-                },
-                pagination: {
-                el: '.visual .swiper-pagination'
-                },
-                mousewheel: true,
-                keyboard: true,
-            });   
-    		      
-			
-			
-			
-			
 			$('.info_button').click(function(){
 				console.log("click");
 				$('.info_button').css({
@@ -534,6 +520,19 @@
 				$('.cafe_review').css({
 					'display':'none'  
 				});
+				var swiper = new Swiper('.swiper', {
+	                cssMode: true,
+	                loop : true,
+	                navigation: {
+	                nextEl: '.visual .swiper-button-next',
+	                prevEl: '.visual .swiper-button-prev',
+	                },
+	                pagination: {
+	                el: '.visual .swiper-pagination'
+	                },
+	                mousewheel: true,
+	                keyboard: true,
+	            });   
 			});	  
 			$('.review_button').click(function(){
 				console.log("click");
@@ -609,18 +608,18 @@
 			</div>
 			<div class="title">
 				<div id="cafe_name">
-					${cafe_basicVO.cafe_name }  
+					${cafe.name }  
 				</div>
 				<div id="branch_name">
-					${cafe_basicVO.branch }
+					${cafe.branch }
 				</div>     
 			</div>
 			<div class="info">
 				<div class="rate_avg">
 					<img src="img/star_colored.png" id="star_shape1">
-					<div id="rate_num">${cafe_basicVO.rate_avg }점&nbsp;|&nbsp;</div>
+					<div id="rate_num">${cafe.rate_avg }점&nbsp;|&nbsp;</div>
 				</div>
-				<div class="address"> ${cafe_basicVO.cafe_address }</div>
+				<div class="address"> ${cafe.cafe_address }</div>
 			</div>	
 		</div>
 	</div>
@@ -639,8 +638,8 @@
 					<div class="info_title" id="basic_info_title">운영정보</div>
 					
 					<div class="basic_info_content">
-						<div class="basic_info_each" id="info_address">&nbsp;ㆍ${cafe_basicVO.cafe_address }</div>
-						<div class="basic_info_each" id="info_tel">&nbsp;ㆍ${cafe_basicVO.tel }</div>
+						<div class="basic_info_each" id="info_address">&nbsp;ㆍ${cafe.cafe_address }</div>
+						<div class="basic_info_each" id="info_tel">&nbsp;ㆍ${cafe.tel }</div>
 						<div class="basic_info_each" id="info_mg_time">&nbsp;ㆍ매주 08:00~23:00</div>
 					</div>
 				</div>
@@ -760,12 +759,15 @@
 					<div class="info_title" id="cafe_photo_title">사진</div>
 					<div class="visual">
 		            	<div class="swiper swiper-container">
-		            		<div class="swiper-wrapper">
-		            			<div class="swiper-slide" style="background-image:url('img/cafe_1.jpg')"></div>
+		            		<div class="swiper-wrapper">  
+		            			<c:forEach items="${imgList }" var="img">
+		            			<div class="swiper-slide" style="background-image:url('/upload/cafe/${img.url}')"></div>
+		            			</c:forEach>
+		            			<!-- <div class="swiper-slide" style="background-image:url('img/cafe_1.jpg')"></div>
 		            			<div class="swiper-slide" style="background-image:url('img/cafe_2.jpg')"></div>
 		            			<div class="swiper-slide" style="background-image:url('img/cafe_3.jpg')"></div>
-		            			<div class="swiper-slide" style="background-image:url('img/cafe_4.png')"></div>
-		            		</div>
+		            			<div class="swiper-slide" style="background-image:url('img/cafe_4.png')"></div> -->
+		            		</div>  
 		            		<div class="swiper-pagination"></div>
 		            		<div class="swiper-button-prev"></div>
 		            		<div class="swiper-button-next"></div>

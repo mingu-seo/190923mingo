@@ -1,0 +1,26 @@
+@charset "UTF-8";
+
+/* 스크롤 바 관련 (IE에선 작동안됨) */
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    
+   
+    background-color: #d1d1d1;
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    width:20px;
+    background: black; 
+    
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #a1a1a1; 
+  }
