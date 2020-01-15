@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="java.util.List"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="vo.BoardVO" %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="urf-8">
 
 <head>
     <meta charset="UTF-8">
@@ -74,6 +77,7 @@
                자유게시판
             </div>
             
+            
             <div class="list-group list-group-flush board-main">
                 <a href="#" class="list-group-item">
                     <div style="float:left;padding:0 14px;">번호</div>
@@ -83,30 +87,16 @@
                     <div style="float:left;padding:0 14px">조회</div>
                     <div style="float:left;padding:0 14px">추천</div>
                 </a>
+            <c:forEach items="${list}" var="boardVO">
                 <a href="#" class="list-group-item">
-                    <div id="b-num" style="float:left;">5555</div>
-                    <div id="b-title" style="float:left;">이런건 어떡하죠?</div>
-                    <div id="b-username" style="float:left;">홍길동</div>
-                    <div id="b-regdate" style="float:left;">20.01.02</div>
-                    <div id="b-readcount" style="float:left;">707</div>
-                    <div id="b-goodcount" style="float:left;">3</div>
+                    <div id="b-num" style="float:left;">${BoardVO.board_id}</div>
+                    <div id="b-title" style="float:left;">${BoardVO.board_title}</div>
+                    <div id="b-username" style="float:left;">${BoardVO.user_id}</div>
+                    <div id="b-regdate" style="float:left;">${BoardVO.regdate}</div>
+                    <div id="b-readcount" style="float:left;">${BoardVO.readcount}</div>
+                    <div id="b-goodcount" style="float:left;">${BoardVO.type}</div>
                 </a>
-                <a href="#" class="list-group-item">
-                    <div id="b-num" style="float:left;">5556</div>
-                    <div id="b-title" style="float:left;">안녕하세요?</div>
-                    <div id="b-username" style="float:left;">김길동</div>
-                    <div id="b-regdate" style="float:left;">20.03.02</div>
-                    <div id="b-readcount" style="float:left;">107</div>
-                    <div id="b-goodcount" style="float:left;">0</div>
-                </a>
-                <a href="#" class="list-group-item">
-                    <div id="b-num" style="float:left;">5555</div>
-                    <div id="b-title" style="float:left;">이런건 어떡하죠?</div>
-                    <div id="b-username" style="float:left;">홍길동</div>
-                    <div id="b-regdate" style="float:left;">20.01.02</div>
-                    <div id="b-readcount" style="float:left;">707</div>
-                    <div id="b-goodcount" style="float:left;">3</div>
-                </a>
+                </c:forEach>
                 <a href="#" class="list-group-item">
                     <div id="b-num" style="float:left;">5556</div>
                     <div id="b-title" style="float:left;">안녕하세요?</div>
@@ -115,54 +105,7 @@
                     <div id="b-readcount" style="float:left;">107</div>
                     <div id="b-goodcount" style="float:left;">0</div>
                 </a>
-                <a href="#" class="list-group-item">
-                    <div id="b-num" style="float:left;">5555</div>
-                    <div id="b-title" style="float:left;">이런건 어떡하죠?</div>
-                    <div id="b-username" style="float:left;">홍길동</div>
-                    <div id="b-regdate" style="float:left;">20.01.02</div>
-                    <div id="b-readcount" style="float:left;">707</div>
-                    <div id="b-goodcount" style="float:left;">3</div>
-                </a>
-                <a href="#" class="list-group-item">
-                    <div id="b-num" style="float:left;">5556</div>
-                    <div id="b-title" style="float:left;">안녕하세요?</div>
-                    <div id="b-username" style="float:left;">김길동</div>
-                    <div id="b-regdate" style="float:left;">20.03.02</div>
-                    <div id="b-readcount" style="float:left;">107</div>
-                    <div id="b-goodcount" style="float:left;">0</div>
-                </a>
-                <a href="#" class="list-group-item">
-                    <div id="b-num" style="float:left;">5555</div>
-                    <div id="b-title" style="float:left;">이런건 어떡하죠?</div>
-                    <div id="b-username" style="float:left;">홍길동</div>
-                    <div id="b-regdate" style="float:left;">20.01.02</div>
-                    <div id="b-readcount" style="float:left;">707</div>
-                    <div id="b-goodcount" style="float:left;">3</div>
-                </a>
-                <a href="#" class="list-group-item">
-                    <div id="b-num" style="float:left;">5556</div>
-                    <div id="b-title" style="float:left;">안녕하세요?</div>
-                    <div id="b-username" style="float:left;">김길동</div>
-                    <div id="b-regdate" style="float:left;">20.03.02</div>
-                    <div id="b-readcount" style="float:left;">107</div>
-                    <div id="b-goodcount" style="float:left;">0</div>
-                </a>
-                <a href="#" class="list-group-item">
-                    <div id="b-num" style="float:left;">5555</div>
-                    <div id="b-title" style="float:left;">이런건 어떡하죠?</div>
-                    <div id="b-username" style="float:left;">홍길동</div>
-                    <div id="b-regdate" style="float:left;">20.01.02</div>
-                    <div id="b-readcount" style="float:left;">707</div>
-                    <div id="b-goodcount" style="float:left;">3</div>
-                </a>
-                <a href="#" class="list-group-item">
-                    <div id="b-num" style="float:left;">5556</div>
-                    <div id="b-title" style="float:left;">안녕하세요?</div>
-                    <div id="b-username" style="float:left;">김길동</div>
-                    <div id="b-regdate" style="float:left;">20.03.02</div>
-                    <div id="b-readcount" style="float:left;">107</div>
-                    <div id="b-goodcount" style="float:left;">0</div>
-                </a>
+               
                 
             </div>
             <ul class="pagination mypagi justify-content-center">
