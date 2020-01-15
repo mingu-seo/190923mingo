@@ -1,4 +1,4 @@
-package vo;
+/*package tmp;
 
 import java.util.List;
 
@@ -38,3 +38,4 @@ public class Cafe_imageVO {
 	
 
 }
+*/

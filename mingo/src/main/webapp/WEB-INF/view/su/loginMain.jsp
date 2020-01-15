@@ -29,6 +29,7 @@
 	    margin: 0 auto;
 	  
 	}
+	
 	.header{
 	    background-color:white; height: 180px; width: 100%; 
 	    color: black; text-align: center; line-height: 100px;
@@ -168,10 +169,10 @@
 	    z-index: 1;
 	}
 	.loginbutton:hover{
-	    background-color:rgb(1, 70, 150);
+		box-shadow: 0 1px 10px rgba(0,0,0,0.5);
 	}
 	.joinbutton:hover{
-	    background-color:rgb(78, 79, 80);
+		box-shadow: 0 1px 10px rgba(0,0,0,0.5);
 	}
 	.footer{
 	    font-family: 'Noto Sans KR', sans-serif;
@@ -192,10 +193,11 @@
 	 	display:block;
 	 	border-radius: 50px 50px 50px 50px;
 	 }
-	 /* .find > a{ 
+	 
+	  .find > a{ 
 	 text-decoration:none;
 	 color:#6E6E6E; 
-	 } */
+	 } 
 </style>
 </head>
 <body>
@@ -258,13 +260,13 @@
 		<br>
 		
 			<div class="button1-select">
-	            <button type="button" class="loginbutton">로그인</button>
-	            <button type="button" class="joinbutton">회원가입</button>
+	            <button type="button" class="loginbutton" href="#">로그인</button>
+	            <button type="button" class="joinbutton" href="jeong/joinForm.mg">회원가입</button>
 	        </div>
 	        <br>
-	       <!--  <div class="find">
-          		<a href="#">아이디 찾기</a>&nbsp;|&nbsp;<a href="#">비밀번호 찾기</a>
-    		</div>   -->
+	      <div class="find">
+          		<a href="#">아이디 찾기</a>&nbsp;| &nbsp;<a href="#">비밀번호 찾기</a>
+    		</div>  
 			<div class="footer">
 		        <p>Copyright © CAFE MINGO All Rights Reserved.</p>
 		    </div>

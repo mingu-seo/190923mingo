@@ -1,21 +1,21 @@
 package vo;
 
-import java.sql.Timestamp;
+import java.util.Date;
 
 public class UserVO {
-	
-	int user_id;
-	String email;
-	String password;
-	String nickname;
-	String user_name;
-	Timestamp birthday;
-	int gender;
-	String phone_num;
-	int user_type;
-	String profile_photo;
-	String user_address;
-	int business_num;
+
+	private int user_id;
+	private String email;
+	private String password;
+	private String nickname;
+	private String name;
+	private Date birthday;
+	private int gender;
+	private int type;
+	private String phone_num;
+	private String profile_image;
+	private String address;
+	private int business_num;
 	
 	public int getUser_id() {
 		return user_id;
@@ -41,16 +41,16 @@ public class UserVO {
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
 	}
-	public String getUser_name() {
-		return user_name;
+	public String getName() {
+		return name;
 	}
-	public void setUser_name(String user_name) {
-		this.user_name = user_name;
+	public void setName(String name) {
+		this.name = name;
 	}
-	public Timestamp getBirthday() {
+	public Date getBirthday() {
 		return birthday;
 	}
-	public void setBirthday(Timestamp birthday) {
+	public void setBirthday(Date birthday) {
 		this.birthday = birthday;
 	}
 	public int getGender() {
@@ -59,29 +59,29 @@ public class UserVO {
 	public void setGender(int gender) {
 		this.gender = gender;
 	}
+	public int getType() {
+		return type;
+	}
+	public void setType(int type) {
+		this.type = type;
+	}
 	public String getPhone_num() {
 		return phone_num;
 	}
 	public void setPhone_num(String phone_num) {
 		this.phone_num = phone_num;
 	}
-	public int getUser_type() {
-		return user_type;
+	public String getProfile_image() {
+		return profile_image;
 	}
-	public void setUser_type(int user_type) {
-		this.user_type = user_type;
+	public void setProfile_image(String profile_image) {
+		this.profile_image = profile_image;
 	}
-	public String getProfile_photo() {
-		return profile_photo;
+	public String getAddress() {
+		return address;
 	}
-	public void setProfile_photo(String profile_photo) {
-		this.profile_photo = profile_photo;
-	}
-	public String getUser_address() {
-		return user_address;
-	}
-	public void setUser_address(String user_address) {
-		this.user_address = user_address;
+	public void setAddress(String address) {
+		this.address = address;
 	}
 	public int getBusiness_num() {
 		return business_num;
@@ -89,9 +89,6 @@ public class UserVO {
 	public void setBusiness_num(int business_num) {
 		this.business_num = business_num;
 	}
-	
-	
-	
 	
 	
 	

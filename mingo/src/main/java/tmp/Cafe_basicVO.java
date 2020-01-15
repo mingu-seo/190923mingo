@@ -1,4 +1,4 @@
-package vo;
+/*package tmp;
 
 import java.sql.Timestamp;
 
@@ -164,3 +164,4 @@ public class Cafe_basicVO {
 	
 	
 }
+*/
