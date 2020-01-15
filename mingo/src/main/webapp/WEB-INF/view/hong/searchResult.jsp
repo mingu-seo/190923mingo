@@ -8,29 +8,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <!--스와이퍼 관련 파일 -->
-    <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.css">
-    <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css">
-    <script src="https://unpkg.com/swiper/js/swiper.js"></script>
-    <script src="https://unpkg.com/swiper/js/swiper.min.js"></script>
-
-    <!--부트 스트랩 관련 파일-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-
+    
+		<!-- 헤더파일들 include -->
+		<%@ include file="/WEB-INF/view/include/headHTML.jsp"%>
+		
+		
     <!-- masonry -->
     <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
 
     <!-- imagesloaded-->
     <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.js"></script>
 
-    <!-- 아이콘 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+    
     <!-- 내가 만든 파일-->
-    <link rel="stylesheet" href="<%=request.getContextPath() %>/css/styleByHong2.css">
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/css/boardStyle.css">
     <script src="<%=request.getContextPath() %>/js/resultScript.js"></script>
     <script>
 
@@ -38,40 +29,9 @@
 </head>
 
 <body>
-    <div class="container-fluid fixed-top bg-dark">
-        <div class="container">
-            <nav class="navbar navbar-expand-md navbar-dark">
-                <a class="navbar-brand" href="#"><i class="fa fa-coffee"
-                        style="font-size:1.5em;font-weight:bold;">&nbsp;Mingo</i></a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="collapsibleNavbar">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">카페</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">게시판</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">랭킹/통계</a>
-                        </li>
-
-
-                    </ul>
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">회원가입</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">로그인</a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-        </div>
-    </div>
+    <!-- 내비게이션 include -->
+		<%@ include file="/WEB-INF/view/include/navigation.jsp"%>
+	
     <div class="container-fluid result-nav bg-white pb-0">
         <div class="container result-nav-wrapper">
             <div><button type="button" class="btn btn-secondary nav-btn">추가</button></div>
@@ -109,22 +69,8 @@
         <button class="btn btn-secondary" type="button" id="add" style="width:300px;">More...</button>
     </div>
     
-    <div class="jumbotron jumbotron-fluid m-0">
-        <div class="container">
-            <div class="footer clearfix mb-2">
-                <a href="#" class="fa fa-coffee" style="font-size:3em;float:left;font-weight: bold;">&nbsp;Mingo</a>
-                <a href="#" class="fa fa-twitter" style="font-size:3em;float:right"></a>
-                <a href="#" class="fa fa-facebook" style="font-size:3em;float:right;margin-right:20px;"></a>
-                <a href="#" class="fa fa-youtube" style="font-size:3em;float:right;margin-right:20px;"></a>
-            </div>
-            <p style="font-size:1.1em">
-                서울특별시 금천구 대륭테크노타운 3차 8F | 대표이사:홍길동 | 사업자등록번호:123-45-12345<br>
-                통신판매업신고번호: 2019-서울금천-12345 | 대표메일: honggildong@naver.com<br>
-                Copyright. All Rights Reserved.
-            </p>
-        </div>
-
-    </div>
+    <!-- 푸터 include -->
+		<%@ include file="/WEB-INF/view/include/footer.jsp"%>
 </body>
 
 </html>

@@ -1,6 +1,7 @@
 @charset "UTF-8";
 /* 초기화 */
 a{
+		color:black;
     text-decoration: none;
 }
 
@@ -211,40 +212,3 @@ a{
 }
 
 
-/* 푸터 영역 */
-.footer{
-    overflow: auto;
-    height: 70px;
-}
-.footer a{
-    color:black;
-}
-.footer a:hover{
-    color:crimson;
-    text-decoration: none;
-}
-
-/* 스크롤 바 관련 (IE에선 작동안됨) */
-/* width */
-::-webkit-scrollbar {
-    width: 10px;
-  }
-  
-  /* Track */
-  ::-webkit-scrollbar-track {
-    
-   
-    background-color: #d1d1d1;
-  }
-   
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    width:20px;
-    background: black; 
-    
-  }
-  
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    background: #a1a1a1; 
-  }

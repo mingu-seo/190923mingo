@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- 내가 만든 파일-->
-    <link rel="stylesheet" href="<%=request.getContextPath() %>/css/styleByHong2.css">
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/css/boardStyle.css">
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/choicss1.css">
 	
 	<style>
