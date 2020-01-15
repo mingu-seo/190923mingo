@@ -7,22 +7,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MainController {
 
 	//메인으로 이동
-	@RequestMapping("/goMain.mg")
+	@RequestMapping("/goMain.do")
 	public String goMain() {
 		
 		return "hong/main";
 	}
-	public static void main(String[] args) {
-		MainController a;
-		
-	}
+	
 	//로그인 페이지로 이동
-	@RequestMapping("/goLoginForm.mg")
+	@RequestMapping("/goLoginForm.do")
 	public String goLoginForm() {
 		
 		return "su/loginMain";
 	}
-	@RequestMapping("/joinMember")
+	@RequestMapping("/joinMember.do")
 	public String joinMember() {
 		return "jeong/joinForm";
 	}

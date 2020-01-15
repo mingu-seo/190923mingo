@@ -29,16 +29,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- 내가 만든 파일-->
-    <link rel="stylesheet" href="./css/styleByHong.css">
-    <script src="./js/scriptByHong.js"></script>
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/css/styleByHong.css">
+    <script src="<%=request.getContextPath() %>/js/scriptByHong.js"></script>
 </head>
 
 <body>
 
-    <div class="container-fluid fixed-top bg-dark" style="opacity: 0.9;">
+    <div class="container-fluid fixed-top bg-dark">
         <div class="container">
             <nav class="navbar navbar-expand-sm navbar-dark">
-                <a class="navbar-brand" href="#"><i class="fa fa-coffee"
+                <a class="navbar-brand" href="goMain.do"><i class="fa fa-coffee"
                         style="font-size:1.5em;font-weight:bold;">&nbsp;Mingo</i></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
                     <span class="navbar-toggler-icon"></span>
@@ -262,9 +262,9 @@
                     <!-- Additional required wrapper -->
                     <div class="swiper-wrapper" style="margin-top:10px;">
                         <!-- Slides -->
-                        <div class="swiper-slide" style="background-image: url('./img/cafe.jpg');"></div>
-                        <div class="swiper-slide" style="background-image: url('./img/cafe2.jpg');"></div>
-                        <div class="swiper-slide" style="background-image: url('./img/cafe3.jpg');"></div>
+                        <div class="swiper-slide" style="background-image: url('/img/cafe.jpg');"></div>
+                        <div class="swiper-slide" style="background-image: url('/img/cafe2.jpg');"></div>
+                        <div class="swiper-slide" style="background-image: url('/img/cafe3.jpg');"></div>
 
                     </div>
                     <!-- If we need pagination -->

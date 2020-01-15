@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="mingo">
+<!--
 	<select id="selectCafe_BasicInfo" resultType="vo.Cafe_basicVO" parameterType="Integer">
 		SELECT * FROM mydb.cafe_basic
 		<where>
@@ -15,7 +16,7 @@
 	</insert>
 	   
 	
-	<!-- <insert id="insertMember" parameterType="test.TestVO">
+	 <insert id="insertMember" parameterType="test.TestVO">
 		INSERT INTO spring5fs.member
 		(email, password, name, regdate, profile, introduce)
 		values
