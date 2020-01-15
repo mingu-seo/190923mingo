@@ -2,15 +2,19 @@
 
 package dao;
 
-import java.util.HashMap;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import vo.Cafe_basicVO;
-import vo.Cafe_imageVO;
+import util.FileUtil;
+import vo.CafeImageVO;
+import vo.CafeVO;
 
 @Repository
 public class DetailDAO {
@@ -18,12 +22,27 @@ public class DetailDAO {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
-	public Cafe_basicVO basicInfoView(int cafe_id) {
+	public CafeVO viewCafe(int cafe_id) {
 		return sqlSession.selectOne("mingo.selectCafe_BasicInfo", cafe_id);
 	}
 	
-	public int cafeRegist(Cafe_imageVO vo) {
-		return sqlSession.insert("mingo.insertCafe", vo);
+	public List<CafeImageVO> viewCafeImages(int cafe_id){
+		return sqlSession.selectList("mingo.selectViewCafeImage", cafe_id);		
+	}
+	
+	public int insertCafeImages(CafeImageVO vo, List<MultipartFile> fileList,MultipartHttpServletRequest request) {
+		String path1 = util.Property.cafe_img_path;
+		String path2 = request.getRealPath("/upload");
+		
+		for(int i=0; i<fileList.size(); i++) {  
+			FileUtil fu = new FileUtil(); 
+			fu.fileUpload(fileList.get(i), path2+"/cafe/");
+			vo.setUrl(fu.fileName);
+			int result = sqlSession.insert("mingo.insertCafeImage", vo);
+			
+		}
+		return 1;	
+		
 	}
 	
 	/*

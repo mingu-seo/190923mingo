@@ -57,13 +57,45 @@
 	    font-size: 18px;
 	    color: #666666;
 	    line-height: 54px
-	    }
+	}
 	.email1 > .email2{
 	    position: relative;
 	    float: left;
 	    font-size: 14px;
 	    font-weight: bold;
 	
+	}
+	.click{
+	    display: flex;
+	    border-radius: 50px 50px 50px 50px;
+	}
+	.click:hover{
+		box-shadow: 0 1px 10px rgba(0,0,0,0.5);
+	}
+	
+   
+	.social_login{
+	   
+	}
+	.naver_login{
+	    float:left;
+		padding:0 15px
+	}
+	.kakao_login{
+	    float:left;
+		padding:0 15px
+	}
+	.cafeperson:hover{
+	    box-shadow: 0 1px 10px rgba(0,0,0,0.5);
+	}
+	.join-person{
+	    position: relative;
+	    top:5px;
+	   
+	    flex: 1 1 auto;
+	    position: relative;
+	    top:3px;
+	    
 	}
 	.emailaddress{
 	    
@@ -150,6 +182,20 @@
 	    text-align: center;
 	    word-break: keep-all;
 	 }
+	 .login_area {
+	 	width:160px;
+	 	height:80px;
+	 	margin:0 auto;
+	 	text-align:center;
+	 }
+	 .join-person-persontitle > img{
+	 	display:block;
+	 	border-radius: 50px 50px 50px 50px;
+	 }
+	 /* .find > a{ 
+	 text-decoration:none;
+	 color:#6E6E6E; 
+	 } */
 </style>
 </head>
 <body>
@@ -160,7 +206,25 @@
 	<span class="t1">MINGO</span>  
 	<span class="t2">로그인</span>
 	<p class="t3">MINGO에 오신것을 진심을 환영합니다.</p>    
-       
+     <div class="social_login">
+     	<div class="login_area">
+	        <div class="naver_login">
+	            <a class="click" href="#">
+	            	<div class="join-person-persontitle">
+	                	<img src="<%=request.getContextPath() %>/img/joinImg/naver.png" width="50px" height="50px">
+	                </div>
+	            </a>
+	        </div>
+	        <div class="kakao_login">
+	            <a class="click" href="#">
+	              <div class="join-person-persontitle">
+	              	<img src="<%=request.getContextPath() %>/img/joinImg/kakao.png" width="50px" height="50px">
+	              </div>
+	          	</a>
+	       </div>
+	    </div>
+    </div>
+ 
 	<form class = "login" method="POST">
         <div class="main">
             <label class="email1">
@@ -197,6 +261,10 @@
 	            <button type="button" class="loginbutton">로그인</button>
 	            <button type="button" class="joinbutton">회원가입</button>
 	        </div>
+	        <br>
+	       <!--  <div class="find">
+          		<a href="#">아이디 찾기</a>&nbsp;|&nbsp;<a href="#">비밀번호 찾기</a>
+    		</div>   -->
 			<div class="footer">
 		        <p>Copyright © CAFE MINGO All Rights Reserved.</p>
 		    </div>

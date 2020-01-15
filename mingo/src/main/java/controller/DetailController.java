@@ -8,13 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import dao.DetailDAO;
 import service.DetailService;
-import vo.Cafe_basicVO;
-import vo.Cafe_imageVO;
+import vo.CafeImageVO;
+import vo.CafeVO;
 
 @Controller
 public class DetailController {
@@ -22,36 +22,44 @@ public class DetailController {
     @Autowired private DetailDAO detailDao;
     @Autowired private DetailService detailService;
 	 
-	@RequestMapping("/detailView.mg")
+	@RequestMapping("/detailView.do")
 	public String detailView(Model model, HttpServletRequest request) {
 		int cafe_id = Integer.parseInt(request.getParameter("cafe_id"));
 		
-		
 		// 기본정보 조회
-		Cafe_basicVO cafe_basicVO = detailService.basicInfoView(cafe_id);   
-		model.addAttribute("cafe_basicVO", cafe_basicVO);
+		CafeVO cafe = detailService.viewCafe(cafe_id);   
+		model.addAttribute("cafe", cafe);
 		
 		// 사진 조회
-//		List<Cafe_imageVO> list_cafe_imageVO = detailService.view
-		
+		List<CafeImageVO> imgList = detailService.viewCafeImages(cafe_id);
+		model.addAttribute("imgList", imgList);
 		return "detail/cafeDetail";
 	}
 	
-	// 여러 장의 사진 등록하는 작업 필요ㄴ
-	@RequestMapping("/cafeDetailRegistForm.mg")
+	/**
+	 * 사진 등록하는 폼으로가는 메소드
+	 */
+	@RequestMapping("/cafeDetailRegistForm.do")
 	public String cafeDetailRegistForm() {
 		return "detail/cafeDetailRegistForm";
 	}
 	
-	@RequestMapping("/cafeDetailRegist.mg")
-	public String cafeDetailRegist(Cafe_imageVO vo, @RequestParam("cafe_img_file") List<MultipartFile> file, HttpServletRequest request) {
+	
+	/**
+	 * 
+	 * 사진
+	 */
+	@RequestMapping("/cafeDetailRegist.do")
+	public String registCafeDetail(CafeImageVO vo, MultipartHttpServletRequest request) {  
 		
+		List<MultipartFile> fileList = request.getFiles("cafe_img_file");
 		
+		//String cafe_id = request.getParameter("cafe_id");
 		
-		String cafe_id = request.getParameter("cafe_id");
-		int r = detailService.cafeInsert(vo, file, request);
-		return "redirect:detailView.mg?cafe_id="+cafe_id;    
-	}
+		int result = detailService.insertCafeImages(vo, fileList,request);
+		return "redirect:/detailView.do?cafe_id="+vo.getCafe_id(); 
+	}  
+	 
 	
 	
 	

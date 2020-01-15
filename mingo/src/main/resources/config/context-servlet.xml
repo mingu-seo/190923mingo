@@ -30,7 +30,7 @@
 	</mvc:view-resolvers>
 	
 	<!-- 정적인페이지 세팅 -->
-	<mvc:view-controller path="/design.do"/>
+	<mvc:view-controller path="/su/loginMain.do"/>
 	
 	
 	
@@ -42,8 +42,7 @@
 		<property name="username" value="root"/>
 		<property name="password" value="test1234"/>
 	</bean>
-	
-	
+
 	
 	<!-- MyBatis 설정 -->
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionFactoryBean">

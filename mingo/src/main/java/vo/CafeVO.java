@@ -2,31 +2,29 @@ package vo;
 
 import java.sql.Timestamp;
 
-public class Cafe_basicVO {
-	
-	int cafe_id;
-	int manager_id;
-	String cafe_name;
-	String branch;
-	String tel;
-	int time_day;
-	int time_start;
-	int time_end;
-	long rate_avg;
-	int review_num;
-	String cafe_intro;
-	int cafe_like;
-	String cafe_address;
-	String sido_name;
-	int sido_code;
-	String sigungu_name;
-	int sigungu_code;
-	String dong_name;
-	int dong_code;
-	long latitude;
-	long longitude;
-	Timestamp cafe_regdate;
-	
+public class CafeVO {
+	private int cafe_id;
+	private int manager_id;
+	private String name;
+	private String branch;
+	private String tel;
+	private int time_day;
+	private int time_start;
+	private int time_end;
+	private double rate_avg;
+	private int review_num;
+	private String cafe_intro;
+	private int cafe_like;
+	private String cafe_address;
+	private String sido_name;
+	private int sido_code;
+	private String sigungu_name;
+	private int sigungu_code;
+	private String dong_name;
+	private String dong_code;
+	private double latitude;
+	private double longitude;
+	private Timestamp regdate;
 	public int getCafe_id() {
 		return cafe_id;
 	}
@@ -39,11 +37,11 @@ public class Cafe_basicVO {
 	public void setManager_id(int manager_id) {
 		this.manager_id = manager_id;
 	}
-	public String getCafe_name() {
-		return cafe_name;
+	public String getName() {
+		return name;
 	}
-	public void setCafe_name(String cafe_name) {
-		this.cafe_name = cafe_name;
+	public void setName(String name) {
+		this.name = name;
 	}
 	public String getBranch() {
 		return branch;
@@ -75,10 +73,10 @@ public class Cafe_basicVO {
 	public void setTime_end(int time_end) {
 		this.time_end = time_end;
 	}
-	public long getRate_avg() {
+	public double getRate_avg() {
 		return rate_avg;
 	}
-	public void setRate_avg(long rate_avg) {
+	public void setRate_avg(double rate_avg) {
 		this.rate_avg = rate_avg;
 	}
 	public int getReview_num() {
@@ -135,32 +133,30 @@ public class Cafe_basicVO {
 	public void setDong_name(String dong_name) {
 		this.dong_name = dong_name;
 	}
-	public int getDong_code() {
+	public String getDong_code() {
 		return dong_code;
 	}
-	public void setDong_code(int dong_code) {
+	public void setDong_code(String dong_code) {
 		this.dong_code = dong_code;
 	}
-	public long getLatitude() {
+	public double getLatitude() {
 		return latitude;
 	}
-	public void setLatitude(long latitude) {
+	public void setLatitude(double latitude) {
 		this.latitude = latitude;
 	}
-	public long getLongitude() {
+	public double getLongitude() {
 		return longitude;
 	}
-	public void setLongitude(long longitude) {
+	public void setLongitude(double longitude) {
 		this.longitude = longitude;
 	}
-	public Timestamp getCafe_regdate() {
-		return cafe_regdate;
+	public Timestamp getRegdate() {
+		return regdate;
 	}
-	public void setCafe_regdate(Timestamp cafe_regdate) {
-		this.cafe_regdate = cafe_regdate;
+	public void setRegdate(Timestamp regdate) {
+		this.regdate = regdate;
 	}
-	
-	
 	
 	
 }
