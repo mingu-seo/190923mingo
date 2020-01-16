@@ -7,28 +7,26 @@
 <head>
 <meta charset="UTF-8">
 <title>detail information page about each cafe</title>
-<<<<<<< HEAD
+
 <!--부트 스트랩 관련 파일-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-=======
+
 
 	<!-- 헤더파일들 include -->
 	<%@ include file="/WEB-INF/view/include/headHTML.jsp"%>
 	
 	<!-- 폰트 -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
->>>>>>> branch 'master' of https://github.com/mingu-seo/190923mingo.git
-	
-<<<<<<< HEAD
+
 	
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<script src="http://code.jquery.com/jquery-3.4.1.js"></script>
-=======
+
 	<!-- jquery ui -->
->>>>>>> branch 'master' of https://github.com/mingu-seo/190923mingo.git
+
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <!--  
     <link rel="stylesheet" href="css/reset.css"/>
