@@ -52,7 +52,7 @@ public class DetailController {
 	@RequestMapping("/cafeDetailRegist.do")
 	public String registCafeDetail(CafeImageVO vo, MultipartHttpServletRequest request) {  
 		
-		List<MultipartFile> fileList = request.getFiles("cafe_img_file");
+		List<MultipartFile> fileList = request.getFiles("cafeImage_file");
 		
 		//String cafe_id = request.getParameter("cafe_id");
 		

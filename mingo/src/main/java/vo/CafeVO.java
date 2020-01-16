@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 public class CafeVO {
 	private int cafe_id;
 	private int manager_id;
-	private String name;
+	private String name; 
 	private String branch;
 	private String tel;
 	private int time_day;
