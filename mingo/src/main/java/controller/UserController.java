@@ -1,0 +1,43 @@
+package controller;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import service.UserService;
+import vo.UserVO;
+
+@Controller
+public class UserController {
+	
+	
+	@RequestMapping("/loginMain.do")
+	public String loginMain() {
+		return "login/loginMain";
+	}
+	@RequestMapping("/joinForm.do")
+	public String joinForm() {
+		return "join/joinForm";
+	}
+	@RequestMapping("/join.do")
+	public String join(UserVO vo,  HttpServletRequest request) {
+		UserService.joinUser(vo,  request);
+		return "redirect:/main/main.do";
+	}
+	@RequestMapping("/findId_step1.do")
+	public String findId_step1() {
+		return "findUser/findId_step1";
+	}
+	@RequestMapping("/findId_step2.do")
+	public String findId_step2() {
+		return "findUser/findId_step2";
+	}
+	@RequestMapping("/findPwd_step1.do")
+	public String findPwd_step1() {
+		return "findUser/findPwd_step1";
+	}
+	@RequestMapping("/findPwd_step2.do")
+	public String findPwd_step2() {
+		return "findUser/findPwd_step2";
+	}
+}

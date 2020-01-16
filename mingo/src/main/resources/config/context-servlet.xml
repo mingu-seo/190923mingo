@@ -32,7 +32,6 @@
 	</mvc:view-resolvers>
 	
 	<!-- 정적인페이지 세팅 -->
-	<mvc:view-controller path="/su/loginMain.do"/>
 	
 	
 	

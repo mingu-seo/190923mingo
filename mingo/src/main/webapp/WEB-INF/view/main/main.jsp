@@ -12,6 +12,7 @@
 	<!-- 헤더파일들 include -->
 	<%@ include file="/WEB-INF/view/include/headHTML.jsp"%>
 	
+	
 	<!-- 내가 만든 파일-->
 	<link rel="stylesheet" href="<%=request.getContextPath() %>/css/mainStyle.css">
 	<script src="<%=request.getContextPath() %>/js/scriptForMain.js"></script>

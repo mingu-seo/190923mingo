@@ -37,6 +37,7 @@ public class DetailDAO {
 		for(int i=0; i<fileList.size(); i++) {  
 			FileUtil fu = new FileUtil(); 
 			fu.fileUpload(fileList.get(i), path2+"/cafe/");
+			System.out.println(path2+"/cafe/");
 			vo.setUrl(fu.fileName);
 			int result = sqlSession.insert("mingo.insertCafeImage", vo);
 			
