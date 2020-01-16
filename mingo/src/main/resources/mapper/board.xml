@@ -3,12 +3,15 @@
 
 <mapper namespace="board">
 	<select id="list" resultType="vo.BoardVO" parameterType="Integer">
-		SELECT * FROM board 
+		SELECT * FROM mingo.board 
 		ORDER BY board_id DESC
 		LIMIT #{startIndex},#{limit}
 	</select>
 	
-	   
+	   <select id="count" resultType="Integer">
+		SELECT COUNT(*) FROM mingo.board
+	
+	</select>
 	
 	<!-- <insert id="insertMember" parameterType="test.TestVO">
 		INSERT INTO spring5fs.member

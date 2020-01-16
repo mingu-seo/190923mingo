@@ -1,5 +1,7 @@
 package vo;
 
+import java.sql.Timestamp;
+
 public class BoardVO {
 
 	private int board_id;
@@ -7,7 +9,7 @@ public class BoardVO {
 	private int type;
 	private String title;
 	private String contents;
-	private String regdate;
+	private Timestamp regdate;
 	private int readcount;
 	
 	
@@ -53,12 +55,15 @@ public class BoardVO {
 	public void setContents(String contents) {
 		this.contents = contents;
 	}
-	public String getRegdate() {
+	
+	public Timestamp getRegdate() {
 		return regdate;
 	}
-	public void setRegdate(String regdate) {
+
+	public void setRegdate(Timestamp regdate) {
 		this.regdate = regdate;
 	}
+
 	public int getReadcount() {
 		return readcount;
 	}
