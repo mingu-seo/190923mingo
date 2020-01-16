@@ -10,37 +10,37 @@ public class MainController {
 	@RequestMapping("/goMain.do")
 	public String goMain() {
 		
-		return "hong/main";
+		return "main/main";
 	}
 	
 	//로그인 페이지로 이동
 	@RequestMapping("/goLoginForm.do")
 	public String goLoginForm() {
 		
-		return "su/loginMain";
+		return "login/loginMain";
 	}
 	
 	//회원 가입 페이지로 이동
-	@RequestMapping("/joinMember.do")
+	@RequestMapping("/joinForm.do")
 	public String joinMember() {
-		return "jeong/joinForm";
+		return "join/joinForm";
 	}
 	
 	//카페 검색결과 
 	@RequestMapping("/listCafe.do")
 	public String listCafe() {
-		return "hong/searchResult";
+		return "cafe/searchResult";
 	}
 	
 	//랭킹 통계 페이지로 이동
 	@RequestMapping("/rankCafe.do")
 	public String rankCafe() {
-		return "hong/rankMain";
+		return "rank/rankMain";
 	}
 	//게시판으로 이동
 	@RequestMapping("/listBoard.do")
 	public String listBoard() {
-		return "hong/boardMain";
+		return "board/boardMain";
 	}
 	
 	
