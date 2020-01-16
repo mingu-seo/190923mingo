@@ -14,6 +14,8 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import dao.DetailDAO;
 import service.DetailService;
 import vo.CafeImageVO;
+import vo.CafeMenuVO;
+import vo.CafeProductVO;
 import vo.CafeVO;
 
 @Controller
@@ -30,32 +32,29 @@ public class DetailController {
 		CafeVO cafe = detailService.viewCafe(cafe_id);   
 		model.addAttribute("cafe", cafe);
 		
+		//메뉴 조회
+		List<CafeMenuVO> menu = detailService.viewMenu(cafe_id);   
+		model.addAttribute("menuList", menu);
+		//메뉴 조회
+		List<CafeProductVO> product = detailService.viewProduct(cafe_id);   
+		model.addAttribute("productList", product);
+		
 		// 사진 조회
 		List<CafeImageVO> imgList = detailService.viewCafeImages(cafe_id);
 		model.addAttribute("imgList", imgList);
+		
 		return "cafe/cafeDetail";
 	}
 	
-	/**
-	 * 사진 등록하는 폼으로가는 메소드
-	 */
 	@RequestMapping("/cafeDetailRegistForm.do")
 	public String cafeDetailRegistForm() {
 		return "cafe/cafeDetailRegistForm";
-	}
+	}  
 	
-	
-	/**
-	 * 
-	 * 사진
-	 */
+
 	@RequestMapping("/cafeDetailRegist.do")
 	public String registCafeDetail(CafeImageVO vo, MultipartHttpServletRequest request) {  
-		
 		List<MultipartFile> fileList = request.getFiles("cafeImage_file");
-		
-		//String cafe_id = request.getParameter("cafe_id");
-		
 		int result = detailService.insertCafeImages(vo, fileList,request);
 		return "redirect:/detailView.do?cafe_id="+vo.getCafe_id(); 
 	}  

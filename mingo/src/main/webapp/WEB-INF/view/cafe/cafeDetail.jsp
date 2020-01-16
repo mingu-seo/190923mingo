@@ -9,11 +9,12 @@
 <title>detail information page about each cafe</title>
 <!--부트 스트랩 관련 파일-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 	
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<script src="http://code.jquery.com/jquery-3.4.1.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <link rel="stylesheet" href="css/swiper.css"/>
@@ -652,42 +653,26 @@
 						<div class="button_each" id="product_btn">상품</div>
 					</div>
 					<div class="menu">
-						<div class="info_each">
-							<img src="img/coffee.png"/>
-							<div>
-								<h6>무설탕 흑당라떼</h6>
-								<h6>17,000원</h6>
+						<c:forEach var="menu" items="${menuList }">
+							<div class="info_each">
+								<img src='/upload/menu/${menu.image }'/>
+								<div>
+									<h6>${menu.name }</h6>
+									<h6>${menu.price }원</h6>
+								</div>						
 							</div>						
-						</div>
-						<div class="info_each">
-							<img src="img/coffee.png"/>
-							<div>
-								<h6>무설탕 흑당라떼</h6>
-								<h6>17,000원</h6>
+						</c:forEach>
+					</div>
+					<div class="product">
+						<c:forEach var="product" items="${productList }">
+							<div class="info_each">
+								<img src='/upload/product/${product.image }'/>
+								<div>
+									<h6>${product.name }</h6>
+									<h6>${product.price }원</h6>
+								</div>						
 							</div>						
-						</div>
-						<div class="info_each">
-							<img src="img/coffee.png"/>
-							<div>
-								<h6>무설탕 흑당라떼</h6>
-								<h6>17,000원</h6>
-							</div>						
-						</div>
-						<div class="info_each">
-							<img src="img/coffee.png"/>
-							<div>
-								<h6>무설탕 흑당라떼</h6>
-								<h6>17,000원</h6>
-							</div>						
-						</div>
-						<div class="info_each">
-							<img src="img/coffee.png"/>
-							<div>
-								<h6>무설탕 흑당라떼</h6>
-								<h6>17,000원</h6>
-							</div>						
-						</div>
-						
+						</c:forEach>
 					</div>
 					<div class="facility">
 						<div class="info_each">
@@ -737,23 +722,7 @@
 						</div>
 						
 					</div>
-					<div class="product">		
-						<div class="info_each">
-							<img src="img/coffee.png"/>
-							<div>  
-								<h6>무설탕 흑당라떼</h6>
-								<h6>17,000원</h6>
-							</div>
-						</div>			
-						<div class="info_each">
-							<img src="img/coffee.png"/>
-							<div>
-								<h6>무설탕 흑당라떼</h6>
-								<h6>17,000원</h6>
-							</div>
-						</div>			
-								   	
-					</div>
+					
 				</div>
 				<div class="cafe_photo">
 					<div class="info_title" id="cafe_photo_title">사진</div>

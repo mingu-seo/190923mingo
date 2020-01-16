@@ -4,6 +4,7 @@ public class CafeImageVO {
 	private int cafe_image_id;
 	private int cafe_id;
 	private String url;
+	
 	public int getCafe_image_id() {
 		return cafe_image_id;
 	}

@@ -14,6 +14,8 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import dao.DetailDAO;
 import util.FileUtil;
 import vo.CafeImageVO;
+import vo.CafeMenuVO;
+import vo.CafeProductVO;
 import vo.CafeVO;  
 
 @Service
@@ -34,6 +36,16 @@ public class DetailServiceImpl implements DetailService {
 	
 	public int insertCafeImages(CafeImageVO vo, List<MultipartFile> fileList,MultipartHttpServletRequest request) {
 		return detailDao.insertCafeImages(vo,fileList, request);
+	}
+	
+	public List<CafeMenuVO> viewMenu(int cafe_id){
+		List<CafeMenuVO> menuList = detailDao.viewMenu(cafe_id);
+		return menuList;
+	}
+	
+	public List<CafeProductVO> viewProduct(int cafe_id){
+		List<CafeProductVO> productList = detailDao.viewProduct(cafe_id);
+		return productList;
 	}
 	
 	   

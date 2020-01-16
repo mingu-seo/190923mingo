@@ -5,8 +5,6 @@
 
 	<select id="selectCafe_BasicInfo" resultType="vo.CafeVO" parameterType="Integer">
 		SELECT * FROM mingo.cafe
-
-
 		<where>
 			<if test="cafe_id != null">
 				cafe_id = #{cafe_id}
@@ -15,6 +13,22 @@
 	</select>
 	<select id="selectViewCafeImage" resultType="vo.CafeImageVO" parameterType="Integer">
 		SELECT * FROM mingo.cafe_image
+		<where>
+			<if test="cafe_id != null">
+				cafe_id = #{cafe_id}
+			</if>
+		</where>
+	</select>
+	<select id="selectViewMenu" resultType="vo.CafeMenuVO" parameterType="Integer">
+		SELECT * FROM mingo.cafe_menu
+		<where>
+			<if test="cafe_id != null">
+				cafe_id = #{cafe_id}
+			</if>
+		</where>
+	</select>
+	<select id="selectViewProduct" resultType="vo.CafeProductVO" parameterType="Integer">
+		SELECT * FROM mingo.cafe_Product
 		<where>
 			<if test="cafe_id != null">
 				cafe_id = #{cafe_id}

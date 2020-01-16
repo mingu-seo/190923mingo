@@ -14,6 +14,8 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import util.FileUtil;
 import vo.CafeImageVO;
+import vo.CafeMenuVO;
+import vo.CafeProductVO;
 import vo.CafeVO;
 
 @Repository
@@ -28,6 +30,13 @@ public class DetailDAO {
 	
 	public List<CafeImageVO> viewCafeImages(int cafe_id){
 		return sqlSession.selectList("mingo.selectViewCafeImage", cafe_id);		
+	}
+	
+	public List<CafeMenuVO> viewMenu(int cafe_id){
+		return sqlSession.selectList("mingo.selectViewMenu", cafe_id);			
+	}
+	public List<CafeProductVO> viewProduct(int cafe_id){
+		return sqlSession.selectList("mingo.selectViewProduct", cafe_id);			
 	}
 	
 	public int insertCafeImages(CafeImageVO vo, List<MultipartFile> fileList,MultipartHttpServletRequest request) {
