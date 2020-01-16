@@ -1,30 +1,29 @@
 package vo;
 
-import java.sql.Timestamp;
-
 public class CafeVO {
-	private int cafe_id;
-	private int manager_id;
-	private String name; 
-	private String branch;
-	private String tel;
-	private int time_day;
-	private int time_start;
-	private int time_end;
-	private double rate_avg;
-	private int review_num;
-	private String cafe_intro;
-	private int cafe_like;
-	private String cafe_address;
-	private String sido_name;
-	private int sido_code;
-	private String sigungu_name;
-	private int sigungu_code;
-	private String dong_name;
-	private String dong_code;
-	private double latitude;
-	private double longitude;
-	private Timestamp regdate;
+	private int cafe_id; //카페 유일 식별 번호. 상가업소번호
+	private int manager_id; //카페 사장의 user_id
+	private String name;  //상호명
+	private String branch; //지점명
+	private String tel; //전화번호
+	private int time_day; //이용일
+	private int time_start; //시작시간
+	private int time_end;  //마감시간
+	private double rate_avg;  //평점
+	private int review_num; //리뷰개수
+	private String cafe_intro; //카페 소개
+	private int cafe_like; //좋아요 개수
+	private String cafe_address; //카페 지번주소
+	private String sido_name; //시도 이름
+	private int sido_code;  //시도 코드
+	private String sigungu_name; //시군구 이름
+	private int sigungu_code; //시군구 코드
+	private String dong_name; //행정동 이름
+	private String dong_code; //행정동 코드
+	private double longitude; //경도
+	private double latitude; //위도
+	
+	
 	public int getCafe_id() {
 		return cafe_id;
 	}
@@ -151,12 +150,7 @@ public class CafeVO {
 	public void setLongitude(double longitude) {
 		this.longitude = longitude;
 	}
-	public Timestamp getRegdate() {
-		return regdate;
-	}
-	public void setRegdate(Timestamp regdate) {
-		this.regdate = regdate;
-	}
+	
 	
 	
 }

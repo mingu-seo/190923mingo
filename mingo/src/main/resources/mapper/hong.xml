@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="hong">
+	<select id="getSigungu" resultType="String" parameterType="Integer">
+		select name from sigungu where code like '${sido_code}%';
+		
+	</select>
+	
+	<select id="getDong" resultType="String" parameterType="Integer">
+		select name from dong where code like '${sigungu_code}%';
+		
+	</select>
+	
+</mapper>

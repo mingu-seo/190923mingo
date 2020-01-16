@@ -1,14 +1,23 @@
 package controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import dao.MainDAO;
 
 @Controller
 public class MainController {
 
+	@Autowired
+	MainDAO dao;
 	//메인으로 이동
 	@RequestMapping("/goMain.do")
-	public String goMain() {
+	public String goMain(Model model) {
 		
 		return "main/main";
 	}
@@ -20,12 +29,13 @@ public class MainController {
 		return "login/loginMain";
 	}
 	
-	//회원 가입 페이지로 이동
-	
-	
 	//카페 검색결과 
 	@RequestMapping("/listCafe.do")
 	public String listCafe() {
+		
+		
+		
+		
 		return "cafe/searchResult";
 	}
 	
@@ -40,5 +50,18 @@ public class MainController {
 		return "board/boardMain";
 	}
 	
+	@RequestMapping("/getSigungu.do")
+	public String getSigungu(Model model, @RequestParam("sido_code") int sido_code) {
+		List<String> list = dao.getSigunguList(sido_code);
+		model.addAttribute("list", list);
+		return "ajax/sigungu";
+	}
+	
+	@RequestMapping("/getDong.do")
+	public String getDong(Model model, @RequestParam("sigungu_code") int sigungu_code) {
+		List<String> list = dao.getDongList(sigungu_code);
+		model.addAttribute("list", list);
+		return "ajax/sigungu";
+	}
 	
 }

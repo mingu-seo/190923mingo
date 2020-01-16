@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,35 +25,42 @@
 	
 	<header class="jumbotron jumbotron-fluid text-center bg-cover m-0">
 		<div class="container search-area">
-			<form class="form pl-4 pr-4">
+			<form class="form pl-4 pr-4" action="listCafe.do" method="post">
 				<div class="form-row">
 					<div class="col-sm-10">
 						<div class="form-row">
 							<div class="col-4 pb-1 pt-1">
-								<select class="form-control rounded-edge">
-									<option>서울시</option>
-									<option>경기도</option>
-									<option>경기도</option>
-									<option>경기도</option>
-									<option>경기도</option>
-									<option>경기도</option>
-									<option>경기도</option>
-									<option>경기도</option>
-									<option>경기도</option>
-									<option>경기도</option>
-									<option>인천</option>
+								<select class="form-control rounded-edge" id="sido-type">
+									<option value="-1" selected="selected">시/도</option>
+									
+										<option value="11">서울</option>
+										<option value="26">부산</option>
+										<option value="27">대구</option>
+										<option value="28">인천</option>
+										<option value="29">광주</option>
+										<option value="30">대전</option>
+										<option value="31">울산</option>
+										<option value="36">세종</option>
+										<option value="41">경기</option>
+										<option value="42">강원</option>
+										<option value="43">충북</option>
+										<option value="44">충남</option>
+										<option value="45">전북</option>
+										<option value="46">전남</option>
+										<option value="47">경북</option>
+										<option value="48">경남</option>
+										<option value="50">제주</option>
+									
 								</select>
 							</div>
 							<div class="col-4 pb-1 pt-1">
-								<select class="form-control rounded-edge">
-									<option>광진구</option>
-									<option>금천구</option>
+								<select class="form-control rounded-edge" id="sigungu-type">
+									<option>시/군/구</option>
 								</select>
 							</div>
 							<div class="col-4 pb-1 pt-1">
-								<select class="form-control rounded-edge">
-									<option>자양4동</option>
-									<option>노유동</option>
+								<select class="form-control rounded-edge" id="dong-type">
+									<option>행정동</option>
 								</select>
 							</div>
 
