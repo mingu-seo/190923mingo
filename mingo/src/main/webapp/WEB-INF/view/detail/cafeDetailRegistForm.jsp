@@ -8,12 +8,10 @@
 
 <script>
 	$(function(){
-		$('addImage').click({
-			
-			
+		$('#addImage').click({
+			$('.add-img-area').append("<input type='file' name='cafeImage_file'/><br>");    	 
 		});
 	});
-
 </script>
 
 </head>
@@ -23,11 +21,11 @@
 	<label for = "image">카페 아이디: </label>
 	<input type="text" name="cafe_id" id="cafe_id"/><br>
 	<label for = "image">카페 이미지 : </label>
-	<input type = "file" name="cafe_img_file" id="cafe_img_file"/><br>
-	<input type = "file" name="cafe_img_file" id="cafe_img_file2"/><br>
-	<input type = "file" name="cafe_img_file" id="cafe_img_file3"/><br>
-	
-	
+	<div class="add-img-area">
+		<input type = "file" name="cafe_img_file"/><br>
+		<input type = "file" name="cafe_img_file"/><br>
+		<input type = "file" name="cafe_img_file"/><br>	
+	</div>
 	<input type="submit" value="등록">
 </form>
 <button id="addImage">사진 추가</button>
