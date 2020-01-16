@@ -21,10 +21,7 @@ public class MainController {
 	}
 	
 	//회원 가입 페이지로 이동
-	@RequestMapping("/joinForm.do")
-	public String joinMember() {
-		return "join/joinForm";
-	}
+	
 	
 	//카페 검색결과 
 	@RequestMapping("/listCafe.do")

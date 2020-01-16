@@ -13,16 +13,16 @@ public class UserController {
 	
 	@RequestMapping("/loginMain.do")
 	public String loginMain() {
-		return "su/loginMain";
+		return "login/loginMain";
 	}
 	@RequestMapping("/joinForm.do")
 	public String joinForm() {
-		return "jeong/joinForm";
+		return "join/joinForm";
 	}
 	@RequestMapping("/join.do")
 	public String join(UserVO vo,  HttpServletRequest request) {
 		UserService.joinUser(vo,  request);
-		return "redirect:/hong/main.mg";
+		return "redirect:/main/main.do";
 	}
 	@RequestMapping("/findId_step1.do")
 	public String findId_step1() {
