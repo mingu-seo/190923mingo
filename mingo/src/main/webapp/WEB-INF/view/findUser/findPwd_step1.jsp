@@ -13,7 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     
-	<link rel="stylesheet" type="text/css" href="css/findUser/findId_step1.css">
+	<link rel="stylesheet" type="text/css" href="css/findUser/findPwd_step1.css">
 </head>
 
 <body>
@@ -22,26 +22,26 @@
     <div class="header"></div>
     <div class="title">
 		<span class="t1">MINGO</span>  
-		<span class="t2">아이디 찾기</span>
+		<span class="t2">비밀번호 찾기</span>
 		<p class="t3">회원정보로 인증하기</p>   
 	</div>
 	
-	<div class="findId_step1">
+	<div class="findPwd_step1">
 		<ol class="find_process ">
 			<li class="process_active">01.회원정보 입력</li>
-			<li class="process">02.아이디 확인</li>
+			<li class="process">02.비밀번호 재설정</li>
 			
 		</ol>
 		<form class="formarea">
-			<p class="formarea">아이디(이메일)을 찾기 위해 회원정보를 입력해 주세요.</p>
+			<p class="formarea">비밀번호를 찾기 위해 회원정보를 입력해 주세요.</p>
 			<div class="insertarea">
-				<label class="insert_name ">
-					<span class="insert_name">
-						이름
+				<label class="insert_email">
+					<span class="insert_email">
+						아이디(이메일)
 						&nbsp;
 					</span>
 					<div class="insert_content">
-						<input placeholder="이름을 입력해 주세요." class="name_content " value="">
+						<input placeholder="이메일을 입력해 주세요." class="email_content " value="">
 					</div>
 				</label>
 				

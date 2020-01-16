@@ -32,4 +32,12 @@ public class UserController {
 	public String findId_step2() {
 		return "findUser/findId_step2";
 	}
+	@RequestMapping("/findPwd_step1.do")
+	public String findPwd_step1() {
+		return "findUser/findPwd_step1";
+	}
+	@RequestMapping("/findPwd_step2.do")
+	public String findPwd_step2() {
+		return "findUser/findPwd_step2";
+	}
 }
