@@ -33,7 +33,7 @@ public class DetailController {
 		// 사진 조회
 		List<CafeImageVO> imgList = detailService.viewCafeImages(cafe_id);
 		model.addAttribute("imgList", imgList);
-		return "detail/cafeDetail";
+		return "cafe/cafeDetail";
 	}
 	
 	/**
@@ -41,7 +41,7 @@ public class DetailController {
 	 */
 	@RequestMapping("/cafeDetailRegistForm.do")
 	public String cafeDetailRegistForm() {
-		return "detail/cafeDetailRegistForm";
+		return "cafe/cafeDetailRegistForm";
 	}
 	
 	

@@ -7,19 +7,20 @@
 <head>
 <meta charset="UTF-8">
 <title>detail information page about each cafe</title>
-<!--부트 스트랩 관련 파일-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+	<!-- 헤더파일들 include -->
+	<%@ include file="/WEB-INF/view/include/headHTML.jsp"%>
+	
+	<!-- 폰트 -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 	
-	<script src="http://code.jquery.com/jquery-3.4.1.js"></script>
+	<!-- jquery ui -->
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <link rel="stylesheet" href="css/swiper.css"/>
+    <!--  
     <link rel="stylesheet" href="css/reset.css"/>
+    <link rel="stylesheet" href="css/swiper.css"/>
     <script src="js/swiper.min.js"></script>
-	
+	-->
 	<style>
 		/* header 부분 스타일 기본값 */
 		.memubar_space{
@@ -557,42 +558,9 @@
 
 </head>
 <body>
-	<!-- 로고, 메뉴 네비게이션 -->
-	<div class="container-fluid fixed-top bg-dark" style="opacity: 0.9;">
-	    <div class="container">
-	        <nav class="navbar navbar-expand-sm navbar-dark">
-	            <a class="navbar-brand" href="#"><i class="fa fa-coffee"
-	                    style="font-size:1.5em;font-weight:bold;">&nbsp;Mingo</i></a>
-	            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-	                <span class="navbar-toggler-icon"></span>
-	            </button>
-	            <div class="collapse navbar-collapse" id="collapsibleNavbar">
-	                <ul class="navbar-nav">
-	                    <li class="nav-item">
-	                        <a class="nav-link" href="#">카페</a>
-	                    </li>
-	                    <li class="nav-item">
-	                        <a class="nav-link" href="#">게시판</a>
-	                    </li>
-	                    <li class="nav-item">
-	                        <a class="nav-link" href="#">랭킹/통계</a>
-	                    </li>
-	                    <li class="nav-item">
-	                        <a class="nav-link" href="#">내정보</a>
-	                    </li>
-	                </ul>
-	                <ul class="navbar-nav ml-auto">
-	                    <li class="nav-item">
-	                        <a class="nav-link" href="#">회원가입</a>
-	                    </li>
-	                    <li class="nav-item">
-	                        <a class="nav-link" href="#">로그인</a>
-	                    </li>
-	                </ul>
-	            </div>
-	        </nav>
-	    </div>
-	</div>
+	
+	 <!-- 내비게이션 include -->
+		<%@ include file="/WEB-INF/view/include/navigation.jsp"%>
 	
 	<!-- 빈공간. 코딩 편의를 위해 레이어 앞면에 고정된 메뉴바가 차지하는 만큼 빈공간 부여 -->
 	<div class="memubar_space">
@@ -1245,21 +1213,7 @@
 		</div>
 	</div>
 	
-	<!-- footer -->
-	<div class="jumbotron jumbotron-fluid" style="margin:0;">
-	    <div class="container">
-	        <div class="footer clearfix mb-2">
-	            <a href="#" class="fa fa-coffee" style="font-size:1em;float:left;font-weight: bold;">&nbsp;Mingo</a>
-	            <a href="#" class="fa fa-twitter" style="font-size:1em;float:right"></a>
-	            <a href="#" class="fa fa-facebook" style="font-size:1em;float:right;margin-right:20px;"></a>
-	            <a href="#" class="fa fa-youtube" style="font-size:1em;float:right;margin-right:20px;"></a>
-	        </div>
-	        <p style="font-size:0.8em">
-	        	서울특별시 금천구 대륭테크노타운 3차 8F | 대표이사:홍길동 | 사업자등록번호:123-45-12345<br>
-	           	통신판매업신고번호: 2019-서울금천-12345 | 대표메일: honggildong@naver.com<br>
-	            Copyright. All Rights Reserved.
-	        </p>
-	    </div>
-	</div>
+	<!-- 푸터 include -->
+	<%@ include file="/WEB-INF/view/include/footer.jsp"%>
 </body>
 </html>
