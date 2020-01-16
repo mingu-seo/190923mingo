@@ -1,6 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@page import="util.Page" %>
+    <%@page import="vo.BoardVO" %>
+    <%@page import="vo.PageInfo" %>
+    <%@page import="java.util.List"%>
 <!DOCTYPE html>
+<%
+int listcount = (Integer)request.getAttribute("listcount"); // 전체 갯수 (model에 저장한 "listcount")
+List<BoardVO> list = (List<BoardVO>)request.getAttribute("list"); // 목록 (model에 저장한 "list")
+BoardVO vo = (BoardVO)request.getAttribute("vo");	// vo객체 (model 저장한 "vo")
+int totalpage = (Integer)request.getAttribute("totalpage"); // 전체페이지수 (model에 저장한 "totalpage")
+
+%>
 <html lang="en">
 
 <head>
@@ -45,30 +57,16 @@
                     <div style="float:left;padding:0 14px">조회</div>
                     <div style="float:left;padding:0 14px">추천</div>
                 </a>
+                <c:forEach items="${list}" var="BoardVO">
                 <a href="#" class="list-group-item">
-                    <div id="b-num" style="float:left;">5555</div>
-                    <div id="b-title" style="float:left;">이런건 어떡하죠?</div>
-                    <div id="b-username" style="float:left;">홍길동</div>
-                    <div id="b-regdate" style="float:left;">20.01.02</div>
-                    <div id="b-readcount" style="float:left;">707</div>
-                    <div id="b-goodcount" style="float:left;">3</div>
+                    <div id="b-num" style="float:left;">${BoardVO.board_id}</div>
+                    <div id="b-title" style="float:left;">${BoardVO.title}</div>
+                    <div id="b-username" style="float:left;">${BoardVO.user_id}</div>
+                    <div id="b-regdate" style="float:left;">${BoardVO.regdate}</div>
+                    <div id="b-readcount" style="float:left;">${BoardVO.readcount}</div>
+                    <div id="b-goodcount" style="float:left;">${BoardVO.type}</div>
                 </a>
-                <a href="#" class="list-group-item">
-                    <div id="b-num" style="float:left;">5556</div>
-                    <div id="b-title" style="float:left;">안녕하세요?</div>
-                    <div id="b-username" style="float:left;">김길동</div>
-                    <div id="b-regdate" style="float:left;">20.03.02</div>
-                    <div id="b-readcount" style="float:left;">107</div>
-                    <div id="b-goodcount" style="float:left;">0</div>
-                </a>
-                <a href="#" class="list-group-item">
-                    <div id="b-num" style="float:left;">5555</div>
-                    <div id="b-title" style="float:left;">이런건 어떡하죠?</div>
-                    <div id="b-username" style="float:left;">홍길동</div>
-                    <div id="b-regdate" style="float:left;">20.01.02</div>
-                    <div id="b-readcount" style="float:left;">707</div>
-                    <div id="b-goodcount" style="float:left;">3</div>
-                </a>
+                </c:forEach>
                 <a href="#" class="list-group-item">
                     <div id="b-num" style="float:left;">5556</div>
                     <div id="b-title" style="float:left;">안녕하세요?</div>
@@ -77,70 +75,27 @@
                     <div id="b-readcount" style="float:left;">107</div>
                     <div id="b-goodcount" style="float:left;">0</div>
                 </a>
-                <a href="#" class="list-group-item">
-                    <div id="b-num" style="float:left;">5555</div>
-                    <div id="b-title" style="float:left;">이런건 어떡하죠?</div>
-                    <div id="b-username" style="float:left;">홍길동</div>
-                    <div id="b-regdate" style="float:left;">20.01.02</div>
-                    <div id="b-readcount" style="float:left;">707</div>
-                    <div id="b-goodcount" style="float:left;">3</div>
-                </a>
-                <a href="#" class="list-group-item">
-                    <div id="b-num" style="float:left;">5556</div>
-                    <div id="b-title" style="float:left;">안녕하세요?</div>
-                    <div id="b-username" style="float:left;">김길동</div>
-                    <div id="b-regdate" style="float:left;">20.03.02</div>
-                    <div id="b-readcount" style="float:left;">107</div>
-                    <div id="b-goodcount" style="float:left;">0</div>
-                </a>
-                <a href="#" class="list-group-item">
-                    <div id="b-num" style="float:left;">5555</div>
-                    <div id="b-title" style="float:left;">이런건 어떡하죠?</div>
-                    <div id="b-username" style="float:left;">홍길동</div>
-                    <div id="b-regdate" style="float:left;">20.01.02</div>
-                    <div id="b-readcount" style="float:left;">707</div>
-                    <div id="b-goodcount" style="float:left;">3</div>
-                </a>
-                <a href="#" class="list-group-item">
-                    <div id="b-num" style="float:left;">5556</div>
-                    <div id="b-title" style="float:left;">안녕하세요?</div>
-                    <div id="b-username" style="float:left;">김길동</div>
-                    <div id="b-regdate" style="float:left;">20.03.02</div>
-                    <div id="b-readcount" style="float:left;">107</div>
-                    <div id="b-goodcount" style="float:left;">0</div>
-                </a>
-                <a href="#" class="list-group-item">
-                    <div id="b-num" style="float:left;">5555</div>
-                    <div id="b-title" style="float:left;">이런건 어떡하죠?</div>
-                    <div id="b-username" style="float:left;">홍길동</div>
-                    <div id="b-regdate" style="float:left;">20.01.02</div>
-                    <div id="b-readcount" style="float:left;">707</div>
-                    <div id="b-goodcount" style="float:left;">3</div>
-                </a>
-                <a href="#" class="list-group-item">
-                    <div id="b-num" style="float:left;">5556</div>
-                    <div id="b-title" style="float:left;">안녕하세요?</div>
-                    <div id="b-username" style="float:left;">김길동</div>
-                    <div id="b-regdate" style="float:left;">20.03.02</div>
-                    <div id="b-readcount" style="float:left;">107</div>
-                    <div id="b-goodcount" style="float:left;">0</div>
-                </a>
+               
                 
             </div>
             <ul class="pagination mypagi justify-content-center">
-                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item active"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item"><a class="page-link" href="#">4</a></li>
-                <li class="page-item"><a class="page-link" href="#">5</a></li>
-                <li class="page-item"><a class="page-link" href="#">6</a></li>
-                <li class="page-item"><a class="page-link" href="#">7</a></li>
-                <li class="page-item"><a class="page-link" href="#">8</a></li>
-                <li class="page-item"><a class="page-link" href="#">9</a></li>
-                <li class="page-item"><a class="page-link" href="#">10</a></li>
-                <li class="page-item"><a class="page-link" href="#">Next</a></li>
+               
+	<!--<li> ${ page }</li>
+	 <li> = //request.getAttribut('page') %></li> -->
+	<li class="page-item"><a class="page-link" href='#'>Privious</a></li>
+	<li class="page-item active"><a class="page-link" href='#'>1</a></li>
+	<li class="page-item"><a class="page-link" href='#'>2</a></li>
+	<li class="page-item"><a class="page-link" href='#'>3</a></li>
+	<li class="page-item"><a class="page-link" href='#'>4</a></li>
+	<li class="page-item"><a class="page-link" href='#'>5</a></li>
+	<li class="page-item"><a class="page-link" href='#'>6</a></li>
+	<li class="page-item"><a class="page-link" href='#'>7</a></li>
+	<li class="page-item"><a class="page-link" href='#'>8</a></li>
+	<li class="page-item"><a class="page-link" href='#'>9</a></li>
+	<li class="page-item"><a class="page-link" href='#'>10</a></li>
+	<li class="page-item"><a class="page-link" href='#'>Next</a></li>
+	
+	
                 <button type="button" class="btn btn-secondary btn-write">글쓰기</button>
             </ul>
             <div class="input-group justify-content-center">
@@ -159,7 +114,7 @@
                     </select>
                     
                     <input type="text" class="form-control mr-2" style="width:188px">
-                    <button tpye="button" class="form-control" style="width:80px;">검색</button>
+                    <button type="button" class="form-control" style="width:80px;">검색</button>
                 </div>
                 
             </div>
