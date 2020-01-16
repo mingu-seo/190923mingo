@@ -1,0 +1,11 @@
+@charset "UTF-8";
+
+.footer{
+	 overflow:auto; 
+	 height:70px;"
+}
+
+.footer a:hover{
+	color:crimson;
+	text-decoration: none;
+}
