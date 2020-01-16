@@ -33,7 +33,7 @@ public class DetailController {
 		// 사진 조회
 		List<CafeImageVO> imgList = detailService.viewCafeImages(cafe_id);
 		model.addAttribute("imgList", imgList);
-		return "detail/cafeDetail";
+		return "cafe/cafeDetail";
 	}
 	
 	/**
@@ -41,7 +41,7 @@ public class DetailController {
 	 */
 	@RequestMapping("/cafeDetailRegistForm.do")
 	public String cafeDetailRegistForm() {
-		return "detail/cafeDetailRegistForm";
+		return "cafe/cafeDetailRegistForm";
 	}
 	
 	
@@ -52,7 +52,7 @@ public class DetailController {
 	@RequestMapping("/cafeDetailRegist.do")
 	public String registCafeDetail(CafeImageVO vo, MultipartHttpServletRequest request) {  
 		
-		List<MultipartFile> fileList = request.getFiles("cafe_img_file");
+		List<MultipartFile> fileList = request.getFiles("cafeImage_file");
 		
 		//String cafe_id = request.getParameter("cafe_id");
 		
