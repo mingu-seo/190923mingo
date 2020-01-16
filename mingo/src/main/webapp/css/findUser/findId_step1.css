@@ -1,0 +1,198 @@
+
+
+	* {
+	    box-sizing: border-box;
+	    outline: none;
+	    font-family: 'Noto Sans KR', sans-serif;
+	    text-rendering: optimizeSpeed;
+	    -webkit-font-smoothing: antialiased;
+	}
+	.wrap{
+	    width: 1200px;
+	    margin: 0 auto;
+	  
+	}
+	.header{
+	    background-color:white; height: 180px; width: 100%; 
+	    color: black; text-align: center; line-height: 100px;
+	}
+	.title{
+	   width: 1200px;
+	   height: 130px;
+	    text-align: center;
+	}
+	.t1{
+	    font-family: 'Noto Sans KR', sans-serif;
+	    font-size: 40px;
+	    font-weight: 700;
+	    color:rgb(63, 96, 204);
+	    margin-right: 8px;
+	}
+	.t2{
+	    font-family: 'Noto Sans KR', sans-serif;
+	    font-size: 40px;
+	    font-weight: 700;
+	    color:black;
+	    margin-right: 8px;
+	}
+	.t3{
+	    font-family: 'Noto Sans KR', sans-serif;
+	    font-size: 18px;
+	    color: #666666;
+	    line-height: 54px
+	}
+	.findId_step1{
+		width: 500px;
+    	margin: 0px auto 0px;
+	}
+	ol {
+	    display: block;
+	    list-style-type: decimal;
+	    margin-block-start: 1em;
+	    margin-block-end: 1em;
+	    margin-inline-start: 0px;
+	    margin-inline-end: 0px;
+	    padding-inline-start: 40px;
+	}
+	ol.find_process {
+	    display: flex;
+	    -webkit-box-pack: end;
+	    justify-content: flex-end;
+	}
+	ol, ul {
+	    list-style: none;
+	}
+	li {
+	    display: list-item;
+	    text-align: -webkit-match-parent;
+	}
+	
+	li.process_active {
+		color: rgb(63, 96, 204);
+	    font-size: 14px;
+	    margin-right: 16px;
+	}
+	li.process{
+	    font-size: 14px;
+	    color: #c1c1c1;
+	    margin-right: 16px;
+	}
+	form.formarea {
+	    background-color: rgb(255, 255, 255);
+	    padding: 48px 40px 56px;
+	    margin: 8px 0px 32px;
+	    border-width: 1px;
+	    border-style: solid;
+	    border-color: rgb(236, 236, 236);
+	    border-image: initial;
+	}
+	form {
+    	display: block;
+	}
+	form.formarea > p.formarea {
+	    color: rgb(102, 102, 102);
+	    margin-bottom: 40px;
+	}
+	p {
+	    display: block;
+	    margin-block-start: 1em;
+	    margin-block-end: 1em;
+	    margin-inline-start: 0px;
+	    margin-inline-end: 0px;
+	}
+	.insertarea.insert_name:last-child {
+	    margin-bottom: 0px;
+	}
+	label {
+	    cursor: default;
+	}
+	label.insert_name>span.insert_name {
+	    font-size: 14px;
+	    font-weight: bold;
+	}
+	.insertarea.insert_bday:last-child {
+		    margin-bottom: 0px;
+	}
+	label.insert_bday>span.insert_bday {
+	    font-size: 14px;
+	    font-weight: bold;
+	}
+	.insertarea.insert_phone_num:last-child {
+		    margin-bottom: 0px;
+	}
+	label.insert_phone_num>span.insert_phone_num {
+	    font-size: 14px;
+	    font-weight: bold;
+	}
+	.insert_content {
+	    position: relative;
+	    width: 100%;
+	}
+	input.name_content {
+	    display: block;
+	    font-size: 16px;
+	    width: 100%;
+	    height: 52px;
+	    border-bottom: solid 1px #dfdfdf;
+	    color: #212121;
+	}
+	input.bday_content {
+	    display: block;
+	    font-size: 16px;
+	    width: 100%;
+	    height: 52px;
+	    border-bottom: solid 1px #dfdfdf;
+	    color: #212121;
+	}
+	input.phone_num_content {
+	    display: block;
+	    font-size: 16px;
+	    width: 100%;
+	    height: 52px;
+	    border-bottom: solid 1px #dfdfdf;
+	    color: #212121;
+	}
+	input, textarea {
+	    border: 0;
+	    border-radius: 0;
+	}
+	
+	button {
+	    background: none;
+	    border: 0;
+	    cursor: pointer;
+	}
+
+	.nextbutton{
+	    
+		font-size: 16px;
+	    padding: 0;
+	    width: 240px;
+	    min-width: 240px;
+	    height: 52px;
+	    line-height: 50px;
+	    border-radius: 26px;
+	    background-color: #3f60cc;
+	    color: #ffffff;
+	    border: none;
+	    -webkit-transition: background-color 0.3s;
+	    transition: background-color 0.3s;
+	}
+	.findId_step1 .button {
+		text-align:center;
+	}
+	.nextbutton:hover{
+		box-shadow: 0 1px 10px rgba(0,0,0,0.5);
+	}
+	div {
+	    display: block;
+	}
+	.footer{
+	    font-family: 'Noto Sans KR', sans-serif;
+	    position: relative;
+	    font-size: 14px;
+	    top:30px;
+	    color: rgb(168, 167, 168);
+	    text-align: center;
+	    word-break: keep-all;
+	 }
