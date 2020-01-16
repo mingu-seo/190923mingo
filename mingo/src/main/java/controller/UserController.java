@@ -13,7 +13,7 @@ public class UserController {
 	
 	@RequestMapping("/loginMain.do")
 	public String loginMain() {
-		return "su/loginMain";
+		return "login/loginMain";
 	}
 	@RequestMapping("/joinForm.do")
 	public String joinForm() {
