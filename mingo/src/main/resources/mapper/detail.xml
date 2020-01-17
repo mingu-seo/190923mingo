@@ -11,6 +11,14 @@
 			</if>
 		</where>
 	</select>
+	<select id="selectCafeRate" resultType="vo.CafeRateVO" parameterType="Integer">
+		SELECT * FROM mingo.cafe_rate
+		<where>
+			<if test="cafe_id != null">
+				cafe_id = #{cafe_id}
+			</if>
+		</where>
+	</select>
 	<select id="selectViewCafeImage" resultType="vo.CafeImageVO" parameterType="Integer">
 		SELECT * FROM mingo.cafe_image
 		<where>

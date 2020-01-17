@@ -17,6 +17,7 @@ import vo.CafeFacilitiesVO;
 import vo.CafeImageVO;
 import vo.CafeMenuVO;
 import vo.CafeProductVO;
+import vo.CafeRateVO;
 import vo.CafeServiceVO;
 import vo.CafeVO;
 import vo.ReviewVO;
@@ -67,6 +68,10 @@ public class DetailServiceImpl implements DetailService {
 	public CafeFacilitiesVO viewFacilities(int cafe_id) {
 		CafeFacilitiesVO facilities = detailDao.viewFacilities(cafe_id);
 		return facilities;
+	}
+	public CafeRateVO viewCafeRate(int cafe_id) {
+		CafeRateVO cafeRate = detailDao.viewCafeRate(cafe_id);
+		return cafeRate;
 	}
 	   
 	

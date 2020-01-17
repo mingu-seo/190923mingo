@@ -16,6 +16,7 @@ import vo.CafeFacilitiesVO;
 import vo.CafeImageVO;
 import vo.CafeMenuVO;
 import vo.CafeProductVO;
+import vo.CafeRateVO;
 import vo.CafeServiceVO;
 import vo.CafeVO;
 import vo.ReviewVO;
@@ -29,6 +30,9 @@ public class DetailDAO {
 	
 	public CafeVO viewCafe(int cafe_id) {
 		return sqlSession.selectOne("detail.selectCafe_BasicInfo", cafe_id);
+	}
+	public CafeRateVO viewCafeRate(int cafe_id) {
+		return sqlSession.selectOne("detail.selectCafeRate", cafe_id);
 	}
 	
 	public List<CafeImageVO> viewCafeImages(int cafe_id){

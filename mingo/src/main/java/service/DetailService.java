@@ -11,6 +11,7 @@ import vo.CafeFacilitiesVO;
 import vo.CafeImageVO;
 import vo.CafeMenuVO;
 import vo.CafeProductVO;
+import vo.CafeRateVO;
 import vo.CafeServiceVO;
 import vo.CafeVO;
 import vo.ReviewVO;
@@ -26,6 +27,7 @@ public interface DetailService {
 	public List<CafeProductVO> viewProduct(int cafe_id);
 	public CafeServiceVO viewService(int cafe_id);
 	public CafeFacilitiesVO viewFacilities(int cafe_id);
+	public CafeRateVO viewCafeRate(int cafe_id);
 	
 	
 	

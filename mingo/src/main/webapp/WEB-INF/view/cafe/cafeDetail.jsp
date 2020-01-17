@@ -870,8 +870,8 @@
 						<div class="info2">
 							<div class="rate_avg">
 								<img src="img/star_colored.png" id="star_shape2">
-								<div class="rate_num">3.5점</div>
-								<div class="review_num">(리뷰 27개,</div>
+								<div class="rate_num">${cafeRate.cafe_total_avg }점</div>
+								<div class="review_num">(리뷰 ${cafeRate.rate_num }개,</div>
 								<div class="ranking">자양4동 2위)</div>
 							</div>
 						</div>	
@@ -886,7 +886,7 @@
 						            <div class="graph_stack">
 						                <div class="graph_rate">
 						                    <img src="img/bean.PNG" class="bean_img">
-						                    <div class="graph_text">10점</div>
+						                    <div class="graph_text">${cafeRate.taste_avg }점</div>
 						                </div>
 						            </div>
 						        </div>
@@ -902,7 +902,7 @@
 						            <div class="graph_stack">
 						                <div class="graph_rate">
 						                    <img src="img/bean.PNG" class="bean_img">
-						                    <div class="graph_text">10점</div>
+						                    <div class="graph_text">${cafeRate.facimood_avg }점</div>
 						                </div>
 						            </div>
 						        </div>
@@ -918,7 +918,7 @@
 						            <div class="graph_stack">
 						                <div class="graph_rate">
 						                    <img src="img/bean.PNG" class="bean_img">
-						                    <div class="graph_text">10점</div>
+						                    <div class="graph_text">${cafeRate.service_avg }점</div>
 						                </div>
 						            </div>
 						        </div>
@@ -934,7 +934,7 @@
 						            <div class="graph_stack">
 						                <div class="graph_rate">
 						                    <img src="img/bean.PNG" class="bean_img">
-						                    <div class="graph_text">10점</div>
+						                    <div class="graph_text">${cafeRate.wifiplug_avg }점</div>
 						                </div>
 						            </div>
 						        </div>
@@ -950,7 +950,7 @@
 						            <div class="graph_stack">
 						                <div class="graph_rate">
 						                    <img src="img/bean.PNG" class="bean_img">
-						                    <div class="graph_text">10점</div>
+						                    <div class="graph_text">${cafeRate.clean_avg }점</div>
 						                </div>
 						            </div>
 						        </div>
@@ -966,11 +966,11 @@
 						            <div class="graph_stack">
 						                <div class="graph_rate">
 						                    <img src="img/bean.PNG" class="bean_img">
-						                    <div class="graph_text">10점</div>
+						                    <div class="graph_text">${cafeRate.price_avg }점</div>
 						                </div>
 						            </div>
 						        </div>
-							</div>
+							</div>  
 							<div class="rate_name" id="clean_name_tatal"></div>
 						</div>
 					</div>

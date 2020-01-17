@@ -17,6 +17,7 @@ import vo.CafeFacilitiesVO;
 import vo.CafeImageVO;
 import vo.CafeMenuVO;
 import vo.CafeProductVO;
+import vo.CafeRateVO;
 import vo.CafeServiceVO;
 import vo.CafeVO;
 import vo.ReviewVO;
@@ -65,9 +66,10 @@ public class DetailController {
 		List<UserVO> reviewUsers = detailService.viewUserList(userList);
 		model.addAttribute("reviewUsers", reviewUsers);
 		
-		for (int i=0; i<reviewUsers.size(); i++) {
-			System.out.println("아이디 : " + reviewUsers.get(i).getUser_id());	
-		}
+		//종합 평점 조회
+		CafeRateVO cafeRate = detailService.viewCafeRate(cafe_id);   
+		model.addAttribute("cafeRate", cafeRate);
+		
 		return "cafe/cafeDetail";
 	}
 	
