@@ -78,7 +78,7 @@
 			font-weight:bold;
 			text-shadow: 0px 0px 15px #FFFFFF;        
 		}
-			
+
 		#cafe_name{
 			float:left;
 			margin-right:20px;  
@@ -502,6 +502,17 @@
 		
 		
 	</style>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=197a1366c7c3fbd3d1f4e49445d212b0"></script>
+	<script>
+		var container = document.getElementById('map');
+		var options = {
+			center: new kakao.maps.LatLng(33.450701, 126.570667),
+			level: 3
+		};
+	
+		var map = new kakao.maps.Map(container, options);
+	</script>
+	
 	<script>
 		$(function(){
 			
@@ -517,7 +528,6 @@
 				});
 			});
 			
-			   
 			$('.info_button').click(function(){
 				console.log("click");
 				$('.info_button').css({
@@ -562,6 +572,69 @@
 					'display':'none'
 				});
 			});	
+			
+			
+			
+			$('#menu_btn').click(function(){
+				console.log("click");
+				$('#menu_btn').css({
+					'border-bottom':'2px solid #21610B' 
+				});
+				$('#facility_btn, #service_btn, #product_btn').css({
+					'border-style':'none' 
+				});
+				$('.menu').css({
+					'display':'block'  
+				});
+				$('.facility, .service, .product').css({
+					'display':'none'
+				});
+			});	
+			$('#facility_btn').click(function(){
+				console.log("click");
+				$('#facility_btn').css({
+					'border-bottom':'2px solid #21610B' 
+				});
+				$('#menu_btn, #service_btn, #product_btn').css({
+					'border-style':'none' 
+				});
+				$('.facility').css({
+					'display':'block'  
+				});
+				$('.menu, .service, .product').css({
+					'display':'none'
+				});
+			});	
+			$('#service_btn').click(function(){
+				console.log("click");
+				$('#service_btn').css({
+					'border-bottom':'2px solid #21610B' 
+				});
+				$('#menu_btn, #facility_btn, #product_btn').css({
+					'border-style':'none' 
+				});
+				$('.service').css({
+					'display':'block'  
+				});
+				$('.menu, .facility, .product').css({
+					'display':'none'
+				});
+			});	
+			$('#product_btn').click(function(){
+				console.log("click");
+				$('#product_btn').css({
+					'border-bottom':'2px solid #21610B' 
+				});
+				$('#menu_btn, #facility_btn, #service_btn').css({
+					'border-style':'none' 
+				});
+				$('.product').css({
+					'display':'block'  
+				});
+				$('.menu, .facility, .service').css({
+					'display':'none'
+				});
+			});	
 		});  
 	  
 	
@@ -570,14 +643,12 @@
 
 </head>
 <body>
-	
-	 <!-- 내비게이션 include -->
-		<%@ include file="/WEB-INF/view/include/navigation.jsp"%>
+	<!-- 내비게이션 include -->
+	<%@ include file="/WEB-INF/view/include/navigation.jsp"%>
 	
 	<!-- 빈공간. 코딩 편의를 위해 레이어 앞면에 고정된 메뉴바가 차지하는 만큼 빈공간 부여 -->
 	<div class="memubar_space">
 		<img src="img/cafe_4.png">
-	
 	</div>
 	
 	<!-- 카페 로고 및 기본 정보 표시란 -->
@@ -608,8 +679,8 @@
 	<div class="content">
 		<div class="container">
 			<div class="content_button">
-				<div class="info_button">소개</div>
 				<div class="review_button">후기</div>
+				<div class="info_button">소개</div>
 			</div>			
 		</div>
 		<div class="container">
@@ -657,51 +728,111 @@
 						<div class="info_each">
 							<img src="img/coffee.png"/>
 							<div>
-								<h6>무설탕 흑당라떼</h6>
-								<h6>17,000원</h6>
+								<h6>와이파이</h6>
+								<h6>{facilities.wifi}</h6>
 							</div>
 						</div>
 						<div class="info_each">
 							<img src="img/coffee.png"/>
 							<div>
-								<h6>무설탕 흑당라떼</h6>
-								<h6>17,000원</h6>
+								<h6>매장 규모</h6>
+								<h6>{facilities.table }</h6>
 							</div>
 						</div>
 						<div class="info_each">
 							<img src="img/coffee.png"/>
 							<div>
-								<h6>무설탕 흑당라떼</h6>
-								<h6>17,000원</h6>
+								<h6>인테리어 분위기</h6>
+								<h6>{facilities.interior }</h6>
 							</div>
 						</div>
-						
+						<div class="info_each">
+							<img src="img/coffee.png"/>
+							<div>
+								<h6>음악</h6>
+								<h6>{facilities.music}</h6>
+							</div>
+						</div>
+						<div class="info_each">
+							<img src="img/coffee.png"/>
+							<div>
+								<h6>플러그 수</h6>
+								<h6>{facilities.plug}</h6>
+							</div>
+						</div>
+						<div class="info_each">
+							<img src="img/coffee.png"/>
+							<div>
+								<h6>화장실</h6>
+								<h6>{facilities.restroom}</h6>
+							</div>
+						</div>
+						<div class="info_each">
+							<img src="img/coffee.png"/>
+							<div>
+								<h6>테라스</h6>
+								<h6>{facilities.terrace}</h6>
+							</div>
+						</div>
+						<div class="info_each">
+							<img src="img/coffee.png"/>
+							<div>
+								<h6>스터디룸</h6>
+								<h6>{facilities.studyroom}</h6>
+							</div>
+						</div>
+						<div class="info_each">
+							<img src="img/coffee.png"/>
+							<div>
+								<h6>흡연석</h6>
+								<h6>{facilities.smoking}</h6>
+							</div>
+						</div>
+						<div class="info_each">
+							<img src="img/coffee.png"/>
+							<div>
+								<h6>주차공간</h6>
+								<h6>{facilities.parking}</h6>
+							</div>
+						</div>
 					</div>
 					<div class="service">
 						<div class="info_each">
 							<img src="img/coffee.png"/>
 							<div>
-								<h6>무설탕 흑당라떼</h6>
-								<h6>17,000원</h6>
+								<h6>이벤트</h6>
+								<h6>{service.event }</h6>
 							</div>
 						</div>
 						<div class="info_each">
 							<img src="img/coffee.png"/>
 							<div>
-								<h6>무설탕 흑당라떼</h6>
-								<h6>17,000원</h6>
+								<h6>쿠폰</h6>
+								<h6>{service.coupon }</h6>
 							</div>
 						</div>
 						<div class="info_each">
 							<img src="img/coffee.png"/>
 							<div>
-								<h6>무설탕 흑당라떼</h6>
-								<h6>17,000원</h6>
+								<h6>마일리지</h6>
+								<h6>{service.mileage }</h6>
 							</div>
 						</div>
-						
+						<div class="info_each">
+							<img src="img/coffee.png"/>
+							<div>
+								<h6>담요</h6>
+								<h6>{service.blanket }</h6>
+							</div>
+						</div>
+						<div class="info_each">
+							<img src="img/coffee.png"/>
+							<div>
+								<h6>음료 리필</h6>
+								<h6>{service.drinkrefill }</h6>
+							</div>
+						</div>
 					</div>
-					
 				</div>
 				<div class="cafe_photo">
 					<div class="info_title" id="cafe_photo_title">사진</div>
@@ -722,11 +853,12 @@
 		            	</div>	
             		</div>
 				</div>
+				
 				<div class="cafe_location">
 					<div class="info_title" id="cafe_location_title">위치</div>
 					<div class="cafe_location_map">
-						<img src="img/cafe_map.png">					
-					</div>  
+						<div id="map" style="width:650px;height:350px;"></div>					
+					</div> 
 				</div>
 			</div>		
 		</div>

@@ -13,9 +13,11 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import dao.DetailDAO;
 import util.FileUtil;
+import vo.CafeFacilitiesVO;
 import vo.CafeImageVO;
 import vo.CafeMenuVO;
 import vo.CafeProductVO;
+import vo.CafeServiceVO;
 import vo.CafeVO;  
 
 @Service
@@ -48,6 +50,14 @@ public class DetailServiceImpl implements DetailService {
 		return productList;
 	}
 	
+	public CafeServiceVO viewService(int cafe_id) {
+		CafeServiceVO service = detailDao.viewService(cafe_id);
+		return service;
+	}
+	public CafeFacilitiesVO viewFacilities(int cafe_id) {
+		CafeFacilitiesVO facilities = detailDao.viewFacilities(cafe_id);
+		return facilities;
+	}
 	   
 	
 }

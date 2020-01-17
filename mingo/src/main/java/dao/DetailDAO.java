@@ -13,9 +13,11 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import util.FileUtil;
+import vo.CafeFacilitiesVO;
 import vo.CafeImageVO;
 import vo.CafeMenuVO;
 import vo.CafeProductVO;
+import vo.CafeServiceVO;
 import vo.CafeVO;
 
 @Repository
@@ -25,18 +27,24 @@ public class DetailDAO {
 	private SqlSessionTemplate sqlSession;
 	
 	public CafeVO viewCafe(int cafe_id) {
-		return sqlSession.selectOne("mingo.selectCafe_BasicInfo", cafe_id);
+		return sqlSession.selectOne("detail.selectCafe_BasicInfo", cafe_id);
 	}
 	
 	public List<CafeImageVO> viewCafeImages(int cafe_id){
-		return sqlSession.selectList("mingo.selectViewCafeImage", cafe_id);		
+		return sqlSession.selectList("detail.selectViewCafeImage", cafe_id);		
 	}
 	
 	public List<CafeMenuVO> viewMenu(int cafe_id){
-		return sqlSession.selectList("mingo.selectViewMenu", cafe_id);			
+		return sqlSession.selectList("detail.selectViewMenu", cafe_id);			
 	}
 	public List<CafeProductVO> viewProduct(int cafe_id){
-		return sqlSession.selectList("mingo.selectViewProduct", cafe_id);			
+		return sqlSession.selectList("detail.selectViewProduct", cafe_id);			
+	}
+	public CafeServiceVO viewService(int cafe_id) {
+		return sqlSession.selectOne("detail.selectViewService", cafe_id);
+	}
+	public CafeFacilitiesVO viewFacilities(int cafe_id) {
+		return sqlSession.selectOne("detail.selectViewFacilities", cafe_id);
 	}
 	
 	public int insertCafeImages(CafeImageVO vo, List<MultipartFile> fileList,MultipartHttpServletRequest request) {

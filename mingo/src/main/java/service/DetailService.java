@@ -7,9 +7,11 @@ import java.util.List;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import vo.CafeFacilitiesVO;
 import vo.CafeImageVO;
 import vo.CafeMenuVO;
 import vo.CafeProductVO;
+import vo.CafeServiceVO;
 import vo.CafeVO;
 
 public interface DetailService {
@@ -19,5 +21,7 @@ public interface DetailService {
 	public List<CafeImageVO> viewCafeImages(int cafe_id);
 	public List<CafeMenuVO> viewMenu(int cafe_id);
 	public List<CafeProductVO> viewProduct(int cafe_id);
+	public CafeServiceVO viewService(int cafe_id);
+	public CafeFacilitiesVO viewFacilities(int cafe_id);
 	
 }

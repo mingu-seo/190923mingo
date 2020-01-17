@@ -13,9 +13,11 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import dao.DetailDAO;
 import service.DetailService;
+import vo.CafeFacilitiesVO;
 import vo.CafeImageVO;
 import vo.CafeMenuVO;
 import vo.CafeProductVO;
+import vo.CafeServiceVO;
 import vo.CafeVO;
 
 @Controller
@@ -35,9 +37,17 @@ public class DetailController {
 		//메뉴 조회
 		List<CafeMenuVO> menu = detailService.viewMenu(cafe_id);   
 		model.addAttribute("menuList", menu);
-		//메뉴 조회
+		//상품 조회
 		List<CafeProductVO> product = detailService.viewProduct(cafe_id);   
 		model.addAttribute("productList", product);
+		
+		//서비스 조회
+		CafeServiceVO service = detailService.viewService(cafe_id);
+		model.addAttribute("service", service);
+		
+		//시설 및 분위기
+		CafeFacilitiesVO facilities = detailService.viewFacilities(cafe_id);
+		model.addAttribute("facilities", facilities);
 		
 		// 사진 조회
 		List<CafeImageVO> imgList = detailService.viewCafeImages(cafe_id);
@@ -49,7 +59,13 @@ public class DetailController {
 	@RequestMapping("/cafeDetailRegistForm.do")
 	public String cafeDetailRegistForm() {
 		return "cafe/cafeDetailRegistForm";
+	}
+	@RequestMapping("/reviewRegistForm.do")
+	public String reviewRegistForm() {
+		return "cafe/reviewRegistForm";
 	}  
+	
+	
 	
 
 	@RequestMapping("/cafeDetailRegist.do")
