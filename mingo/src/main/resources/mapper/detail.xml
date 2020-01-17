@@ -19,6 +19,22 @@
 			</if>
 		</where>
 	</select>
+	<select id="selectViewCafeReview" resultType="vo.ReviewVO" parameterType="Integer">
+		SELECT * FROM mingo.review
+		<where>
+			<if test="cafe_id != null">
+				cafe_id = #{cafe_id}
+			</if>
+		</where>
+	</select>
+	<select id="selectViewUserList" resultType="vo.UserVO" parameterType="Integer">
+		SELECT * FROM mingo.user
+		<where>
+			<if test="cafe_id != null">
+				user_id = #{user_id}
+			</if>
+		</where>
+	</select>
 	<select id="selectViewMenu" resultType="vo.CafeMenuVO" parameterType="Integer">
 		SELECT * FROM mingo.cafe_menu
 		<where>

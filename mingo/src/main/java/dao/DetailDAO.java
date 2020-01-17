@@ -2,9 +2,8 @@
 
 package dao;
 
+import java.util.ArrayList;
 import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +18,8 @@ import vo.CafeMenuVO;
 import vo.CafeProductVO;
 import vo.CafeServiceVO;
 import vo.CafeVO;
+import vo.ReviewVO;
+import vo.UserVO;
 
 @Repository
 public class DetailDAO {
@@ -32,6 +33,16 @@ public class DetailDAO {
 	
 	public List<CafeImageVO> viewCafeImages(int cafe_id){
 		return sqlSession.selectList("detail.selectViewCafeImage", cafe_id);		
+	}
+	public List<ReviewVO> viewCafeReview(int cafe_id){
+		return sqlSession.selectList("detail.selectViewCafeReview", cafe_id);		
+	}
+	public List<UserVO> viewUserList(int[] userList){
+		List<UserVO> userVOList = new ArrayList<UserVO>();
+		for (int i = 0; i < userList.length; i++) {
+			userVOList.add(sqlSession.selectOne("detail.selectViewUserList", userList[i]));		
+		} 
+		return userVOList;
 	}
 	
 	public List<CafeMenuVO> viewMenu(int cafe_id){

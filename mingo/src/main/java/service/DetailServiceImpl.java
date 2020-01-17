@@ -18,7 +18,9 @@ import vo.CafeImageVO;
 import vo.CafeMenuVO;
 import vo.CafeProductVO;
 import vo.CafeServiceVO;
-import vo.CafeVO;  
+import vo.CafeVO;
+import vo.ReviewVO;
+import vo.UserVO;  
 
 @Service
 public class DetailServiceImpl implements DetailService {
@@ -34,6 +36,14 @@ public class DetailServiceImpl implements DetailService {
 	public List<CafeImageVO> viewCafeImages(int cafe_id){
 		List<CafeImageVO> imgList = detailDao.viewCafeImages(cafe_id);
 		return imgList;
+	}
+	public List<ReviewVO> viewCafeReview(int cafe_id){
+		List<ReviewVO> reviewList = detailDao.viewCafeReview(cafe_id);
+		return reviewList;
+	}
+	public List<UserVO> viewUserList(int[] userList){
+		List<UserVO> reviewUsers = detailDao.viewUserList(userList);
+		return reviewUsers;		
 	}
 	
 	public int insertCafeImages(CafeImageVO vo, List<MultipartFile> fileList,MultipartHttpServletRequest request) {

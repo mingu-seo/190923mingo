@@ -8,6 +8,8 @@
 </head>
 <body>
 <form action="reviewRegist.do" method="post" enctype="multipart/form-data">
+	<label for = "user_id">이용자 아이디: </label>
+	<input type="text" name="user_id" id="user_id"/><br><br>
 	<label for = "cafe_id">카페 아이디: </label>
 	<input type="text" name="cafe_id" id="cafe_id"/><br><br>
 	
@@ -29,13 +31,10 @@
 	<label for = "contents">리뷰 내용 : </label>
 	<textarea rows="10" cols="10" name="contents" id="contents"></textarea><br>
 	<label for = "image">사진: </label>
-	<input type="file" name="image" id="image"/><br>
+	<input type="file" name="image" id="image"/><br><br>
 	
 	<input type="submit" value="등록">
 </form>
-<button id="addImage">사진 추가</button>
-
-
 
 
 
