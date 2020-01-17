@@ -15,7 +15,7 @@ public class BoardService {
 	@Autowired
 	BoardDAO boardDAO;
 
-	public List<BoardVO> boardIndex(BoardVO vo) {
+	public List<BoardVO> list(BoardVO vo) {
 
 		List<BoardVO> list = boardDAO.list(vo);
 		return list;

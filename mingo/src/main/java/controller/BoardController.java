@@ -17,10 +17,10 @@ public class BoardController {
 	BoardService boardService;
 	
 	@RequestMapping("/list.do")
-	public String boardIndex(Model model, BoardVO vo) { // model(값을 담아둘 공간), 커맨드객체
+	public String list(Model model, BoardVO vo) { // model(값을 담아둘 공간), 커맨드객체
 		// 서비스 호출
 		int[] listcount = boardService.boardCount();	// 전체 갯수와 총페이지수
-		List<BoardVO> list = boardService.boardIndex(vo);
+		List<BoardVO> list = boardService.list(vo);
 		
 		// 모델에 저장
 		model.addAttribute("listcount", listcount[0]);
@@ -28,6 +28,6 @@ public class BoardController {
 		model.addAttribute("list", list);
 		model.addAttribute("vo", vo);
 		
-		return "hong/boardMain";
+		return "board/boardMain";
 	}
 }
