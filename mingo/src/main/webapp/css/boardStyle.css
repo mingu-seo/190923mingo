@@ -247,7 +247,7 @@ a{
 
 
 .grid {
-    margin: 110px auto 10px;
+    margin: 120px auto 10px;
     
     
     
@@ -278,6 +278,24 @@ a{
     width:100%;
 }
 
+.star-rating {
+	width: 83px;
+	background: url('../img/star_rating.png');
+	background-repeat: no-repeat;
+}
+
+.star-rating > div {
+	width: 70%;
+	background: url('../img/star_rating.png');
+	background-repeat: no-repeat;
+	background-position: bottom left;
+}
+
+.star-rating, .star-rating > div {
+	height: 13px;
+	
+	overflow: hidden;
+}
 
 .is-loading{
     height:400px;

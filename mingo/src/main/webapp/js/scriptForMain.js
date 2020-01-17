@@ -6,12 +6,11 @@
 $(document).ready(function(){
     
 	/* 시도 타입 클릭시 시군구 리스트 동적으로 변경 ajax이용 */
-	$('#sido-type').change(function(){
+	$('#sido_code').change(function(){
+		var value = $('#sido_code option:selected').val();
 		
-		var value = $('#sido-type option:selected').val();
-		
-		$('#sigungu-type').empty();
-		$('#sigungu-type').append('<option>시/군/구</option>');
+		$('#sigungu_code').empty();
+		$('#sigungu_code').append('<option value="-1">시/군/구</option>');
 		
 		$.ajax({
 			url: 'getSigungu.do',
@@ -19,25 +18,25 @@ $(document).ready(function(){
 			data: { sido_code : value },
 			dataType : 'HTML',
 		}).done(function(data){
-			$('#sigungu-type').append(data);
+			$('#sigungu_code').append(data);
 		});
 		
 	});
-	/* 시군구 타입 클릭시 시군구 리스트 동적으로 변경 ajax이용 */
-	$('#sigungu-type').change(function(){
+	/* 시군구 타입 클릭시 행정동 리스트 동적으로 변경 ajax이용 */
+	$('#sigungu_code').change(function(){
 		
-		var value = $('#sigungu-type option:selected').val();
+		var value = $('#sigungu_code option:selected').val();
 		
-		$('#dong-type').empty();
-		$('#dong-type').append('<option>행정동</option>');
+		$('#dong_code').empty();
+		$('#dong_code').append('<option value="-1">행정동</option>');
 		
 		$.ajax({
 			url: 'getDong.do',
 			//async: false,
-			data: { dong_code : value },
+			data: { sigungu_code : value },
 			dataType : 'HTML',
 		}).done(function(data){
-			$('#dong-type').append(data);
+			$('#dong_code').append(data);
 		});
 		
 	});

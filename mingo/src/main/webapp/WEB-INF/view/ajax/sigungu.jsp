@@ -3,6 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <c:forEach var="item" items="${list }">
-	<option>${ item }</option>
+	<option value="${item.code }">${ item.name }</option>
 	
 </c:forEach>

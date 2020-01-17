@@ -25,42 +25,40 @@
 	
 	<header class="jumbotron jumbotron-fluid text-center bg-cover m-0">
 		<div class="container search-area">
-			<form class="form pl-4 pr-4" action="listCafe.do" method="post">
+			<form class="form pl-4 pr-4" action="searchCafe.do" method="post">
 				<div class="form-row">
 					<div class="col-sm-10">
 						<div class="form-row">
 							<div class="col-4 pb-1 pt-1">
-								<select class="form-control rounded-edge" id="sido-type">
+								<select class="form-control rounded-edge" name="sido_code" id="sido_code">
 									<option value="-1" selected="selected">시/도</option>
-									
-										<option value="11">서울</option>
-										<option value="26">부산</option>
-										<option value="27">대구</option>
-										<option value="28">인천</option>
-										<option value="29">광주</option>
-										<option value="30">대전</option>
-										<option value="31">울산</option>
-										<option value="36">세종</option>
-										<option value="41">경기</option>
-										<option value="42">강원</option>
-										<option value="43">충북</option>
-										<option value="44">충남</option>
-										<option value="45">전북</option>
-										<option value="46">전남</option>
-										<option value="47">경북</option>
-										<option value="48">경남</option>
-										<option value="50">제주</option>
-									
+									<option value="11">서울</option>
+									<option value="26">부산</option>
+									<option value="27">대구</option>
+									<option value="28">인천</option>
+									<option value="29">광주</option>
+									<option value="30">대전</option>
+									<option value="31">울산</option>
+									<option value="36">세종</option>
+									<option value="41">경기</option>
+									<option value="42">강원</option>
+									<option value="43">충북</option>
+									<option value="44">충남</option>
+									<option value="45">전북</option>
+									<option value="46">전남</option>
+									<option value="47">경북</option>
+									<option value="48">경남</option>
+									<option value="50">제주</option>
 								</select>
 							</div>
 							<div class="col-4 pb-1 pt-1">
-								<select class="form-control rounded-edge" id="sigungu-type">
-									<option>시/군/구</option>
+								<select class="form-control rounded-edge" name="sigungu_code" id="sigungu_code">
+									<option value="-1" selected="selected">시/군/구</option>
 								</select>
 							</div>
 							<div class="col-4 pb-1 pt-1">
-								<select class="form-control rounded-edge" id="dong-type">
-									<option>행정동</option>
+								<select class="form-control rounded-edge" name="dong_code" id="dong_code">
+									<option value="-1" selected="selected">행정동</option>
 								</select>
 							</div>
 
@@ -68,7 +66,7 @@
 						</div>
 						<div class="form-row">
 							<div class="col-12 pb-1 pt-1">
-								<input type="text" class="form-control rounded-edge">
+								<input type="text" name="name" class="form-control rounded-edge">
 							</div>
 						</div>
 					</div>
@@ -87,7 +85,9 @@
 			<div class="row">
 				<div class="col-lg-7 mb-5 bg-light mt-4 ">
 					<div class="container rank-header shadow-sm">
-						<h1 class="mt-2">종합순위</h1>
+						<h1 class="mt-2">종합순위 <a href="#"
+								class="fa fa-plus-square-o detail-icon"
+								style="font-size: 1.3em; float: right;"></a></h1>
 
 					</div>
 					<div class="container rank-filter pt-1 pb-1 shadow-sm">
