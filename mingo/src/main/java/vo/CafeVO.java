@@ -22,8 +22,15 @@ public class CafeVO {
 	private String dong_code; //행정동 코드
 	private double longitude; //경도
 	private double latitude; //위도
+	private String logo;
 	
 	
+	public String getLogo() {
+		return logo;
+	}
+	public void setLogo(String logo) {
+		this.logo = logo;
+	}
 	public int getCafe_id() {
 		return cafe_id;
 	}

@@ -17,6 +17,14 @@
 		</where>
 		ORDER BY regdate DESC
 	</select>
+	<select id="selectUser" resultType="vo.UserVO" parameterType="Integer">
+		SELECT * FROM mingo.user
+		<where>
+			<if test="user_id != null">
+				user_id = #{user_id}
+			</if>
+		</where>
+	</select>
 	
 	
 	<insert id="insertMember" parameterType="test.TestVO">

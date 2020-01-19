@@ -64,11 +64,12 @@
 		}   
 		
 		.logo{
-			width:20%;
+			width:100%;
 			margin:20px 0;
 		}
 		.logo > img{
-			width:100%;
+			border-radius:50%;
+			width:20%;
 			filter: drop-shadow(0px 0px 20px #FFFFFF);
 		}
 		
@@ -76,8 +77,53 @@
 			font-color:#151515;
 			font-size: 2.5em;
 			font-weight:bold;
-			text-shadow: 0px 0px 15px #FFFFFF;        
+			text-shadow: 0px 0px 15px #FFFFFF;
+			float:left;
+			margin-right:20px;         
 		}
+		
+		#like-cafe-btn, #collect-cafe-btn{
+			float:left;
+			margin-right:20px;
+			width:40px;
+			height:80px;
+			line-height: 80px;
+			position: relative;
+			z-index:100;   
+		}
+		
+		@font-face {
+		  font-family: neon;
+		  src: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/707108/neon.ttf);
+		}  
+		  
+		#regist-review{
+			position: relative;
+			z-index:100;   
+			float:left;
+			width:100px;
+			height:80px;
+			line-height: 80px;   
+		}
+		#regist-review > a{
+			font-weight: bold;
+			font-family: neon;
+		    color: #FFBF00;
+		    font-size: 2vw;
+		    text-shadow: 0 0 3vw #F40A35;		
+		}
+		
+		#like-cafe-btn >img, #collect-cafe-btn >img{
+			height:40%;
+			line-height:40%; 
+		}
+		
+		
+		
+		.title{
+			width:100%;
+			height:100px;
+		}  
 
 		#cafe_name{
 			float:left;
@@ -498,8 +544,10 @@
 			line-height: 40px;
 		}
 		
+		::selection {
+			background-color: #ECF8E0;
+			
 		}
-		
 		
 	</style>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=197a1366c7c3fbd3d1f4e49445d212b0"></script>
@@ -652,10 +700,10 @@
 	</div>
 	
 	<!-- 카페 로고 및 기본 정보 표시란 -->
-	<div class="header">
+	<div class="header">  
 		<div class="container">
 			<div class="logo">
-				<img src="img/starbucks.png">
+				<img src="upload/cafe/${cafe.logo }">
 			</div>
 			<div class="title">
 				<div id="cafe_name">
@@ -663,6 +711,15 @@
 				</div>
 				<div id="branch_name">
 					${cafe.branch }
+				</div>     
+				<div id="like-cafe-btn">   
+					<img src="img/like.png" id="like-img">
+				</div>     
+				<div id="collect-cafe-btn">
+					<img src="img/collect.png" id="collect-img">
+				</div>     
+				<div id="regist-review">
+					<a href="reviewRegistForm.do?cafe_id=${cafe_id }&user_id=${user_id }">review</a>
 				</div>     
 			</div>
 			<div class="info">
