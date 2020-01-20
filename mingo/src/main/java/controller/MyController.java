@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import dao.MyDAO;
 import service.MyService;
+import vo.BoardVO;
 import vo.CafeFacilitiesVO;
 import vo.CafeImageVO;
 import vo.CafeMenuVO;
@@ -22,6 +23,8 @@ import vo.CafeProductVO;
 import vo.CafeRateVO;
 import vo.CafeServiceVO;
 import vo.CafeVO;
+import vo.CollectCafeVO;
+import vo.LikeBoardVO;
 import vo.ReviewVO;
 import vo.UserVO;
 
@@ -73,8 +76,32 @@ public class MyController {
 		return "mypage/myMyReview";
 	}
 	@RequestMapping("/myPost.do")
-	public String myPost() {
+	public String myPost(Model model, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		UserVO vo = (UserVO) session.getAttribute("userVO");
+		int user_id = vo.getUser_id();
+		List<BoardVO> boardList = myService.viewBoard(user_id);
+		model.addAttribute("boardList", boardList);
 		return "mypage/myMyPost";
 	}
+	@RequestMapping("/myCollect.do")
+	public String myCollect(Model model, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		UserVO vo = (UserVO) session.getAttribute("userVO");
+		int user_id = vo.getUser_id();
+		List<CollectCafeVO> collectList = myService.viewCollect(user_id);
+		model.addAttribute("collectList", collectList);
+		System.out.println("유저 아이디: " + user_id);
+		List<CafeVO> cafeList = myService.viewCafeList2(collectList);
+		
+		System.out.println("카페 이름: " + cafeList.get(0).getName());
+		model.addAttribute("cafeList", cafeList);
+		List<CafeRateVO> cafeRateList = myService.viewCafeRate2(collectList);
+		System.out.println("카페 와이파이: " + cafeRateList.get(0).getWifi_avg());
+		model.addAttribute("cafeRateList", cafeRateList);
+		return "mypage/myCollectCafe";
+	}
+	
+	
 	
 }

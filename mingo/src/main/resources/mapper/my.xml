@@ -42,6 +42,23 @@
 			</if>
 		</where>
 	</select>
+	<select id="selectBoardList" resultType="vo.BoardVO" parameterType="Integer">
+		SELECT * FROM mingo.board
+		<where>
+			<if test="user_id != null">
+				user_id = #{user_id}
+			</if>
+		</where>
+	</select>
+	<select id="selectCollect" resultType="vo.CollectCafeVO" parameterType="Integer">
+		SELECT * FROM mingo.collect_cafe
+		<where>
+			<if test="user_id != null">
+				user_id = #{user_id}
+			</if>
+		</where>
+	</select>
+	
 	
 	
 </mapper>

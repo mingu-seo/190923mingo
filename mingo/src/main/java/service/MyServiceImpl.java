@@ -11,8 +11,11 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import dao.MyDAO;
+import vo.BoardVO;
 import vo.CafeRateVO;
 import vo.CafeVO;
+import vo.CollectCafeVO;
+import vo.LikeBoardVO;
 import vo.ReviewVO;
 import vo.UserVO;
 
@@ -45,5 +48,28 @@ public class MyServiceImpl implements MyService{
 		List<CafeVO> cafeList = myDao.viewCafe(reviews);		
 		return cafeList;
 	}
+	public List<BoardVO> viewBoard(int user_id){		
+		List<BoardVO> boardList = myDao.viewBoard(user_id);
+		return boardList;
+	}
+	public List<CollectCafeVO> viewCollect(int user_id){
+		List<CollectCafeVO> collectList = myDao.viewCollect(user_id);
+		return collectList;
+	}
+	public List<CafeVO> viewCafeList2(List<CollectCafeVO> collectList){
+		List<CafeVO> cafeList = myDao.viewCafeList2(collectList);
+		return cafeList;
+		
+		
+	} 
+	public List<CafeRateVO> viewCafeRate2(List<CollectCafeVO> collectList){
+		List<CafeRateVO> cafeRateList = myDao.viewCafeRate2(collectList);
+		return cafeRateList;
+		
+	}
+	
+		
+	
+	
 
 }

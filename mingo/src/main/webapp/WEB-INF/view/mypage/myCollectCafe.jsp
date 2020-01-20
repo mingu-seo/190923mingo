@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,12 +11,7 @@
     <title>Document</title>
 
     <!--부트 스트랩 관련 파일-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-
-
+    <%@ include file="/WEB-INF/view/include/headHTML.jsp"%>
 
     <!-- 아이콘 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -178,55 +174,27 @@
 </head>
 
 <body>
-    <div class="container-fluid fixed-top bg-dark" style="opacity: 1;">
-        <div class="container">
-            <nav class="navbar navbar-expand-sm navbar-dark">
-                <a class="navbar-brand" href="#"><i class="fa fa-coffee"
-                        style="font-size:1.5em;font-weight:bold;">&nbsp;Mingo</i></a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="collapsibleNavbar">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">카페</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">게시판</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">랭킹/통계</a>
-                        </li>
-                    </ul>
-                    <ul class="navbar-nav ml-auto">    
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">회원가입</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">로그인</a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-        </div>
-    </div>
+    <%@ include file="/WEB-INF/view/include/navigation.jsp"%>
     <div class="container-fluid mypage-header">
         <div class="mypage-header-wrapper">
             <div class="mypage-name">
 	            <div class="mypage-img">
-	                <img class="rounded-circle" src="img/profile.png">
+	                <img class="rounded-circle" src="upload/user/${userVO.profile_image }">
 	            </div>
-	            <div class="mypage-userid">밍고</div>
+	            <div class="mypage-userid">${userVO.nickname }</div>
             </div>
         </div>
     </div>
 	<div class="container-fluid nav-wrapper">
 	    <ul class="nav mypage-nav" style="width:1140px;">
 	        <li class="nav-item">
-	          <a class="nav-link active"  data-toggle="pill" href="#">계정</a>
+	          <a class="nav-link active" href="myMain.do?user_id=${userVO.user_id }">회원정보</a>
 	        </li>
 	        <li class="nav-item">
-	          <a class="nav-link" data-toggle="pill" href="#">활동내역</a>
+	          <a class="nav-link" href="myCafe.do?user_id=${userVO.user_id }">내 카페</a>
+	        </li>
+	        <li class="nav-item">
+	          <a class="nav-link" href="myReview.do?user_id=${userVO.user_id }">활동내역</a>
 	        </li>
 	    </ul>
 	</div>
@@ -239,528 +207,123 @@
             <a href="#" class="list-group-item">내가 쓴 게시글</a>
             <a href="#" class="list-group-item">내가 찜한 카페</a>
         </div>
-        
         <div class=" board-group shadow ml-4">
             <div class="pb-2 mb-4 board-name" style="border-bottom: 1px solid #6E6E6E;">
                	찜한 카페
             </div>
             
             <div class="collect_cafes">
-            	<div class="collect_cafe_each">
-            		<div class="collect_cafe_logo">
-            			<img src="img/starbucks.png">
-            		</div>
-            		<div class="collect_cafe_info">
-            			<div class="collect_cafe_info_header">
-            				<div class="collect_cafe_title">스타벅스 샤로수길점 &nbsp</div>
-            				<div class="collect_cafe_star">
-            					<img src="img/star_colored.png">
-            				</div>
-            				<div class="collect_cafe_avgRate">3.6</div>
-            			</div>
-            			<div class="collect_cafe_info_content">
-            				<div class="collect_cafe_address">서울특별시 광진구 자양4동 123-23번지</div>
-            				<div class="collect_cafe_eachRate">
-            					<div class="each_rate" id="collect_menu">
-            						<div class="collect_img">
-            							<img src="img/wifi.png">
-            						</div>
-            						<div class="collect_graphic">
-            							<div class="bar_total">
-            								<div class="bar_rate"></div>
-            								<div class="bean_img">
-            									<img src="">
-            								</div>
-            							</div>
-            						</div>
-            						<div class="rate">4.1</div>
-            					</div>
-            					<div class="each_rate" id="collect_price">
-            						<div class="collect_img">
-            							<img src="img/wifi.png">
-            						</div>
-            						<div class="collect_graphic">
-            							<div class="bar_total">
-            								<div class="bar_rate"></div>
-            								<div class="bean_img">
-            									<img src="">
-            								</div>
-            							</div>
-            						</div>
-            						<div class="rate">4.1</div>
-            					</div>
-            					<div class="each_rate" id="collect_wifiplug">
-            						<div class="collect_img">
-            							<img src="img/wifi.png">
-            						</div>
-            						<div class="collect_graphic">
-            							<div class="bar_total">
-            								<div class="bar_rate"></div>
-            								<div class="bean_img">
-            									<img src="">
-            								</div>
-            							</div>
-            						</div>
-            						<div class="rate">4.1</div>
-            					</div>
-            					<div class="each_rate" id="collect_service">
-            						<div class="collect_img">
-            							<img src="img/wifi.png">
-            						</div>
-            						<div class="collect_graphic">
-            							<div class="bar_total">
-            								<div class="bar_rate"></div>
-            								<div class="bean_img">
-            									<img src="">
-            								</div>
-            							</div>
-            						</div>
-            						<div class="rate">4.1</div>
-            					</div>
-            					<div class="each_rate" id="collect_facility">
-            						<div class="collect_img">
-            							<img src="img/wifi.png">
-            						</div>
-            						<div class="collect_graphic">
-            							<div class="bar_total">
-            								<div class="bar_rate"></div>
-            								<div class="bean_img">
-            									<img src="">
-            								</div>
-            							</div>
-            						</div>
-            						<div class="rate">4.1</div>
-            					</div>
-            					<div class="each_rate" id="collect_product">
-            						<div class="collect_img">
-            							<img src="img/wifi.png">
-            						</div>
-            						<div class="collect_graphic">
-            							<div class="bar_total">
-            								<div class="bar_rate"></div>
-            								<div class="bean_img">
-            									<img src="">
-            								</div>
-            							</div>
-            						</div>
-            						<div class="rate">4.1</div>
-            					</div>
-            				</div>
-            			</div>
-            		</div>
-            	</div>
-            	<div class="collect_cafe_each">
-            		<div class="collect_cafe_logo">
-            			<img src="img/starbucks.png">
-            		</div>
-            		<div class="collect_cafe_info">
-            			<div class="collect_cafe_info_header">
-            				<div class="collect_cafe_title">스타벅스 샤로수길점 &nbsp</div>
-            				<div class="collect_cafe_star">
-            					<img src="img/star_colored.png">
-            				</div>
-            				<div class="collect_cafe_avgRate">3.6</div>
-            			</div>
-            			<div class="collect_cafe_info_content">
-            				<div class="collect_cafe_address">서울특별시 광진구 자양4동 123-23번지</div>
-            				<div class="collect_cafe_eachRate">
-            					<div class="each_rate" id="collect_menu">
-            						<div class="collect_img">
-            							<img src="img/wifi.png">
-            						</div>
-            						<div class="collect_graphic">
-            							<div class="bar_total">
-            								<div class="bar_rate"></div>
-            								<div class="bean_img">
-            									<img src="">
-            								</div>
-            							</div>
-            						</div>
-            						<div class="rate">4.1</div>
-            					</div>
-            					<div class="each_rate" id="collect_price">
-            						<div class="collect_img">
-            							<img src="img/wifi.png">
-            						</div>
-            						<div class="collect_graphic">
-            							<div class="bar_total">
-            								<div class="bar_rate"></div>
-            								<div class="bean_img">
-            									<img src="">
-            								</div>
-            							</div>
-            						</div>
-            						<div class="rate">4.1</div>
-            					</div>
-            					<div class="each_rate" id="collect_wifiplug">
-            						<div class="collect_img">
-            							<img src="img/wifi.png">
-            						</div>
-            						<div class="collect_graphic">
-            							<div class="bar_total">
-            								<div class="bar_rate"></div>
-            								<div class="bean_img">
-            									<img src="">
-            								</div>
-            							</div>
-            						</div>
-            						<div class="rate">4.1</div>
-            					</div>
-            					<div class="each_rate" id="collect_service">
-            						<div class="collect_img">
-            							<img src="img/wifi.png">
-            						</div>
-            						<div class="collect_graphic">
-            							<div class="bar_total">
-            								<div class="bar_rate"></div>
-            								<div class="bean_img">
-            									<img src="">
-            								</div>
-            							</div>
-            						</div>
-            						<div class="rate">4.1</div>
-            					</div>
-            					<div class="each_rate" id="collect_facility">
-            						<div class="collect_img">
-            							<img src="img/wifi.png">
-            						</div>
-            						<div class="collect_graphic">
-            							<div class="bar_total">
-            								<div class="bar_rate"></div>
-            								<div class="bean_img">
-            									<img src="">
-            								</div>
-            							</div>
-            						</div>
-            						<div class="rate">4.1</div>
-            					</div>
-            					<div class="each_rate" id="collect_product">
-            						<div class="collect_img">
-            							<img src="img/wifi.png">
-            						</div>
-            						<div class="collect_graphic">
-            							<div class="bar_total">
-            								<div class="bar_rate"></div>
-            								<div class="bean_img">
-            									<img src="">
-            								</div>
-            							</div>
-            						</div>
-            						<div class="rate">4.1</div>
-            					</div>
-            				</div>
-            			</div>
-            		</div>
-            	</div>
-            	<div class="collect_cafe_each">
-            		<div class="collect_cafe_logo">
-            			<img src="img/starbucks.png">
-            		</div>
-            		<div class="collect_cafe_info">
-            			<div class="collect_cafe_info_header">
-            				<div class="collect_cafe_title">스타벅스 샤로수길점 &nbsp</div>
-            				<div class="collect_cafe_star">
-            					<img src="img/star_colored.png">
-            				</div>
-            				<div class="collect_cafe_avgRate">3.6</div>
-            			</div>
-            			<div class="collect_cafe_info_content">
-            				<div class="collect_cafe_address">서울특별시 광진구 자양4동 123-23번지</div>
-            				<div class="collect_cafe_eachRate">
-            					<div class="each_rate" id="collect_menu">
-            						<div class="collect_img">
-            							<img src="img/wifi.png">
-            						</div>
-            						<div class="collect_graphic">
-            							<div class="bar_total">
-            								<div class="bar_rate"></div>
-            								<div class="bean_img">
-            									<img src="">
-            								</div>
-            							</div>
-            						</div>
-            						<div class="rate">4.1</div>
-            					</div>
-            					<div class="each_rate" id="collect_price">
-            						<div class="collect_img">
-            							<img src="img/wifi.png">
-            						</div>
-            						<div class="collect_graphic">
-            							<div class="bar_total">
-            								<div class="bar_rate"></div>
-            								<div class="bean_img">
-            									<img src="">
-            								</div>
-            							</div>
-            						</div>
-            						<div class="rate">4.1</div>
-            					</div>
-            					<div class="each_rate" id="collect_wifiplug">
-            						<div class="collect_img">
-            							<img src="img/wifi.png">
-            						</div>
-            						<div class="collect_graphic">
-            							<div class="bar_total">
-            								<div class="bar_rate"></div>
-            								<div class="bean_img">
-            									<img src="">
-            								</div>
-            							</div>
-            						</div>
-            						<div class="rate">4.1</div>
-            					</div>
-            					<div class="each_rate" id="collect_service">
-            						<div class="collect_img">
-            							<img src="img/wifi.png">
-            						</div>
-            						<div class="collect_graphic">
-            							<div class="bar_total">
-            								<div class="bar_rate"></div>
-            								<div class="bean_img">
-            									<img src="">
-            								</div>
-            							</div>
-            						</div>
-            						<div class="rate">4.1</div>
-            					</div>
-            					<div class="each_rate" id="collect_facility">
-            						<div class="collect_img">
-            							<img src="img/wifi.png">
-            						</div>
-            						<div class="collect_graphic">
-            							<div class="bar_total">
-            								<div class="bar_rate"></div>
-            								<div class="bean_img">
-            									<img src="">
-            								</div>
-            							</div>
-            						</div>
-            						<div class="rate">4.1</div>
-            					</div>
-            					<div class="each_rate" id="collect_product">
-            						<div class="collect_img">
-            							<img src="img/wifi.png">
-            						</div>
-            						<div class="collect_graphic">
-            							<div class="bar_total">
-            								<div class="bar_rate"></div>
-            								<div class="bean_img">
-            									<img src="">
-            								</div>
-            							</div>
-            						</div>
-            						<div class="rate">4.1</div>
-            					</div>
-            				</div>
-            			</div>
-            		</div>
-            	</div>
-            	<div class="collect_cafe_each">
-            		<div class="collect_cafe_logo">
-            			<img src="img/starbucks.png">
-            		</div>
-            		<div class="collect_cafe_info">
-            			<div class="collect_cafe_info_header">
-            				<div class="collect_cafe_title">스타벅스 샤로수길점 &nbsp</div>
-            				<div class="collect_cafe_star">
-            					<img src="img/star_colored.png">
-            				</div>
-            				<div class="collect_cafe_avgRate">3.6</div>
-            			</div>
-            			<div class="collect_cafe_info_content">
-            				<div class="collect_cafe_address">서울특별시 광진구 자양4동 123-23번지</div>
-            				<div class="collect_cafe_eachRate">
-            					<div class="each_rate" id="collect_menu">
-            						<div class="collect_img">
-            							<img src="img/wifi.png">
-            						</div>
-            						<div class="collect_graphic">
-            							<div class="bar_total">
-            								<div class="bar_rate"></div>
-            								<div class="bean_img">
-            									<img src="">
-            								</div>
-            							</div>
-            						</div>
-            						<div class="rate">4.1</div>
-            					</div>
-            					<div class="each_rate" id="collect_price">
-            						<div class="collect_img">
-            							<img src="img/wifi.png">
-            						</div>
-            						<div class="collect_graphic">
-            							<div class="bar_total">
-            								<div class="bar_rate"></div>
-            								<div class="bean_img">
-            									<img src="">
-            								</div>
-            							</div>
-            						</div>
-            						<div class="rate">4.1</div>
-            					</div>
-            					<div class="each_rate" id="collect_wifiplug">
-            						<div class="collect_img">
-            							<img src="img/wifi.png">
-            						</div>
-            						<div class="collect_graphic">
-            							<div class="bar_total">
-            								<div class="bar_rate"></div>
-            								<div class="bean_img">
-            									<img src="">
-            								</div>
-            							</div>
-            						</div>
-            						<div class="rate">4.1</div>
-            					</div>
-            					<div class="each_rate" id="collect_service">
-            						<div class="collect_img">
-            							<img src="img/wifi.png">
-            						</div>
-            						<div class="collect_graphic">
-            							<div class="bar_total">
-            								<div class="bar_rate"></div>
-            								<div class="bean_img">
-            									<img src="">
-            								</div>
-            							</div>
-            						</div>
-            						<div class="rate">4.1</div>
-            					</div>
-            					<div class="each_rate" id="collect_facility">
-            						<div class="collect_img">
-            							<img src="img/wifi.png">
-            						</div>
-            						<div class="collect_graphic">
-            							<div class="bar_total">
-            								<div class="bar_rate"></div>
-            								<div class="bean_img">
-            									<img src="">
-            								</div>
-            							</div>
-            						</div>
-            						<div class="rate">4.1</div>
-            					</div>
-            					<div class="each_rate" id="collect_product">
-            						<div class="collect_img">
-            							<img src="img/wifi.png">
-            						</div>
-            						<div class="collect_graphic">
-            							<div class="bar_total">
-            								<div class="bar_rate"></div>
-            								<div class="bean_img">
-            									<img src="">
-            								</div>
-            							</div>
-            						</div>
-            						<div class="rate">4.1</div>
-            					</div>
-            				</div>
-            			</div>
-            		</div>
-            	</div>
-            	<div class="collect_cafe_each">
-            		<div class="collect_cafe_logo">
-            			<img src="img/starbucks.png">
-            		</div>
-            		<div class="collect_cafe_info">
-            			<div class="collect_cafe_info_header">
-            				<div class="collect_cafe_title">스타벅스 샤로수길점 &nbsp</div>
-            				<div class="collect_cafe_star">
-            					<img src="img/star_colored.png">
-            				</div>
-            				<div class="collect_cafe_avgRate">3.6</div>
-            			</div>
-            			<div class="collect_cafe_info_content">
-            				<div class="collect_cafe_address">서울특별시 광진구 자양4동 123-23번지</div>
-            				<div class="collect_cafe_eachRate">
-            					<div class="each_rate" id="collect_menu">
-            						<div class="collect_img">
-            							<img src="img/wifi.png">
-            						</div>
-            						<div class="collect_graphic">
-            							<div class="bar_total">
-            								<div class="bar_rate"></div>
-            								<div class="bean_img">
-            									<img src="">
-            								</div>
-            							</div>
-            						</div>
-            						<div class="rate">4.1</div>
-            					</div>
-            					<div class="each_rate" id="collect_price">
-            						<div class="collect_img">
-            							<img src="img/wifi.png">
-            						</div>
-            						<div class="collect_graphic">
-            							<div class="bar_total">
-            								<div class="bar_rate"></div>
-            								<div class="bean_img">
-            									<img src="">
-            								</div>
-            							</div>
-            						</div>
-            						<div class="rate">4.1</div>
-            					</div>
-            					<div class="each_rate" id="collect_wifiplug">
-            						<div class="collect_img">
-            							<img src="img/wifi.png">
-            						</div>
-            						<div class="collect_graphic">
-            							<div class="bar_total">
-            								<div class="bar_rate"></div>
-            								<div class="bean_img">
-            									<img src="">
-            								</div>
-            							</div>
-            						</div>
-            						<div class="rate">4.1</div>
-            					</div>
-            					<div class="each_rate" id="collect_service">
-            						<div class="collect_img">
-            							<img src="img/wifi.png">
-            						</div>
-            						<div class="collect_graphic">
-            							<div class="bar_total">
-            								<div class="bar_rate"></div>
-            								<div class="bean_img">
-            									<img src="">
-            								</div>
-            							</div>
-            						</div>
-            						<div class="rate">4.1</div>
-            					</div>
-            					<div class="each_rate" id="collect_facility">
-            						<div class="collect_img">
-            							<img src="img/wifi.png">
-            						</div>
-            						<div class="collect_graphic">
-            							<div class="bar_total">
-            								<div class="bar_rate"></div>
-            								<div class="bean_img">
-            									<img src="">
-            								</div>
-            							</div>
-            						</div>
-            						<div class="rate">4.1</div>
-            					</div>
-            					<div class="each_rate" id="collect_product">
-            						<div class="collect_img">
-            							<img src="img/wifi.png">
-            						</div>
-            						<div class="collect_graphic">
-            							<div class="bar_total">
-            								<div class="bar_rate"></div>
-            								<div class="bean_img">
-            									<img src="">
-            								</div>
-            							</div>
-            						</div>
-            						<div class="rate">4.1</div>
-            					</div>
-            				</div>
-            			</div>
-            		</div>
-            	</div>
+            	<c:forEach items="${cafeRateList }" var="cafeRate" varStatus="status">
+					<c:forEach items="${cafeList}" var="cafe_vo" varStatus="status">
+						<c:if test="${cafeRate.cafe_id == cafe_vo.cafe_id}">
+							<c:set var="cafe" value="${cafe_vo }"/>
+						</c:if>
+					</c:forEach>
+            
+	            	<div class="collect_cafe_each">
+	            		<div class="collect_cafe_logo">
+	            			<img src="upload/cafe/${cafe.logo }">
+	            		</div>
+	            		<div class="collect_cafe_info">
+	            			<div class="collect_cafe_info_header">
+	            				<div class="collect_cafe_title">${cafe.name }&nbsp${cafe.branch }&nbsp</div>
+	            				<div class="collect_cafe_star">
+	            					<img src="img/star_colored.png">
+	            				</div>
+	            				<div class="collect_cafe_avgRate">${cafe.rate_avg }</div>
+	            			</div>
+	            			<div class="collect_cafe_info_content">
+	            				<div class="collect_cafe_address">${cafe.cafe_address }</div>
+	            				<div class="collect_cafe_eachRate">
+	            					<div class="each_rate" id="collect_menu">
+	            						<div class="collect_img">
+	            							<img src="img/wifi.png">
+	            						</div>
+	            						<div class="collect_graphic">
+	            							<div class="bar_total">
+	            								<div class="bar_rate"></div>
+	            								<div class="bean_img">
+	            									<img src="">
+	            								</div>
+	            							</div>
+	            						</div>
+	            						<div class="rate">${cafeRate.wifi_avg }</div>
+	            					</div>
+	            					<div class="each_rate" id="collect_price">
+	            						<div class="collect_img">
+	            							<img src="img/wifi.png">
+	            						</div>
+	            						<div class="collect_graphic">
+	            							<div class="bar_total">
+	            								<div class="bar_rate"></div>
+	            								<div class="bean_img">
+	            									<img src="">
+	            								</div>
+	            							</div>
+	            						</div>
+	            						<div class="rate">${cafeRate.clean_avg }</div>
+	            					</div>
+	            					<div class="each_rate" id="collect_wifiplug">
+	            						<div class="collect_img">
+	            							<img src="img/wifi.png">
+	            						</div>
+	            						<div class="collect_graphic">
+	            							<div class="bar_total">
+	            								<div class="bar_rate"></div>
+	            								<div class="bean_img">
+	            									<img src="">
+	            								</div>
+	            							</div>
+	            						</div>
+	            						<div class="rate">${cafeRate.price_avg }</div>
+	            					</div>
+	            					<div class="each_rate" id="collect_service">
+	            						<div class="collect_img">
+	            							<img src="img/wifi.png">
+	            						</div>
+	            						<div class="collect_graphic">
+	            							<div class="bar_total">
+	            								<div class="bar_rate"></div>
+	            								<div class="bean_img">
+	            									<img src="">
+	            								</div>
+	            							</div>
+	            						</div>
+	            						<div class="rate">${cafeRate.taste_avg }</div>
+	            					</div>
+	            					<div class="each_rate" id="collect_facility">
+	            						<div class="collect_img">
+	            							<img src="img/wifi.png">
+	            						</div>
+	            						<div class="collect_graphic">
+	            							<div class="bar_total">
+	            								<div class="bar_rate"></div>
+	            								<div class="bean_img">
+	            									<img src="">
+	            								</div>
+	            							</div>
+	            						</div>
+	            						<div class="rate">${cafeRate.mood_avg }</div>
+	            					</div>
+	            					<div class="each_rate" id="collect_product">
+	            						<div class="collect_img">
+	            							<img src="img/wifi.png">
+	            						</div>
+	            						<div class="collect_graphic">
+	            							<div class="bar_total">
+	            								<div class="bar_rate"></div>
+	            								<div class="bean_img">
+	            									<img src="">
+	            								</div>
+	            							</div>
+	            						</div>
+	            						<div class="rate">${cafeRate.service_avg }</div>
+	            					</div>
+	            				</div>
+	            			</div>
+	            		</div>
+	            	</div>
+            	</c:forEach>
             </div>            
          	<div class="review_navi_nums">
 				<div>
@@ -778,23 +341,7 @@
             
         </div>
     </div>
-
-    <div class="jumbotron jumbotron-fluid m-0">
-        <div class="container">
-            <div class="footer clearfix mb-2">
-                <a href="#" class="fa fa-coffee" style="font-size:3em;float:left;font-weight: bold;">&nbsp;Mingo</a>
-                <a href="#" class="fa fa-twitter" style="font-size:3em;float:right"></a>
-                <a href="#" class="fa fa-facebook" style="font-size:3em;float:right;margin-right:20px;"></a>
-                <a href="#" class="fa fa-youtube" style="font-size:3em;float:right;margin-right:20px;"></a>
-            </div>
-            <p style="font-size:1.1em">
-		                서울특별시 금천구 대륭테크노타운 3차 8F | 대표이사:홍길동 | 사업자등록번호:123-45-12345<br>
-		                통신판매업신고번호: 2019-서울금천-12345 | 대표메일: honggildong@naver.com<br>
-                Copyright. All Rights Reserved.
-            </p>
-        </div>
-
-    </div>
+	<%@ include file="/WEB-INF/view/include/footer.jsp"%>	
 </body>
 
 </html>

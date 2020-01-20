@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -214,13 +216,13 @@
 	<div class="container-fluid nav-wrapper">
 	    <ul class="nav mypage-nav" style="width:1140px;">
 	        <li class="nav-item">
-	          <a class="nav-link active"  data-toggle="pill" href="myMain.do?user_id=${user_id }">회원정보</a>
+	          <a class="nav-link active" href="myMain.do?user_id=${userVO.user_id }">회원정보</a>
 	        </li>
 	        <li class="nav-item">
-	          <a class="nav-link" data-toggle="pill" href="myCafe.do?user_id=${user_id }">내 카페</a>
+	          <a class="nav-link" href="myCafe.do?user_id=${userVO.user_id }">내 카페</a>
 	        </li>
 	        <li class="nav-item">
-	          <a class="nav-link" data-toggle="pill" href="myReview.do?user_id=${user_id }">활동내역</a>
+	          <a class="nav-link" href="myReview.do?user_id=${userVO.user_id }">활동내역</a>
 	        </li>
 	    </ul>
 	</div>
@@ -256,7 +258,7 @@
 							</div>
 							<div class="my_rating">
 								<div id="my_rate_header">
-									<img src="upload/cafe/${cafe.image }">
+									<img src="img/star_colored.png">
 									<span>내 점수</span>  
 									  
 								</div>
@@ -286,14 +288,14 @@
 										<img src="img/wifi.png">
 									</span>
 									<span class="my_rate_name" id="my_facimood_name">시설 및 분위기</span>
-									<span class="my_my_rate">${review.facimood_score }점</span>
+									<span class="my_my_rate">${review.mood_score }점</span>
 								</div>
 								<div class="my_rate_each2" id="my_rate_each2">
 									<span class="my_rate_visual" id="my_wifiplug_visual">
 										<img src="img/wifi.png">
 									</span>
 									<span class="my_rate_name" id="my_wifiplug_name">와이파이&콘센트</span>
-									<dspaniv class="my_my_rate">${review.wifiplug_score }점</span>
+									<dspaniv class="my_my_rate">${review.wifi_score }점</span>
 								</div>  
 								<div class="my_rate_each2" id="my_rate_each2">
 									<span class="my_rate_visual" id="my_clean_visual">
@@ -309,7 +311,7 @@
 						</div>
 						<div class="my_review_bottom">  
 							<div>
-								<img src="img/cafe_1.jpg"/>
+								<img src="upload/cafe/${review.image }"/>
 							</div>
 							<div class="my_comment">
 								<p>${review.contents}</p>
