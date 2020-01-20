@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,25 +25,25 @@
     <!-- 내가 만든 파일-->
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/boardStyle.css">
     <script src="<%=request.getContextPath() %>/js/resultScript.js"></script>
-    <script>
-			$(document).ready(function(){
-				
-				function hi(){
-					alert('hi');
-				}
-			});
-    </script>
+    
 </head>
 
 <body>
-    <!-- 내비게이션 include -->
-		<%@ include file="/WEB-INF/view/include/navigation.jsp"%>
-
+	<script>
+		var sido_code = ${sido_code};
+		var sigungu_code = ${sigungu_code};
+		var dong_code = ${dong_code};
+		var name = ${name};
+		alert(sido_code);
+	</script>
+  <!-- 내비게이션 include -->
+	<%@ include file="/WEB-INF/view/include/navigation.jsp"%>
+	
 	<div class="container-fluid result-nav bg-white pb-0">
 		<div class="container result-nav-wrapper p-1">
 			<ul class="nav nav-pills">
 				<li class="nav-item"><a class="nav-link active"
-					data-toggle="pill" href="javascript:void(0);" onclick="alert('55')">평점 순</a></li>
+					data-toggle="pill" href="javascript:void(0);" onclick="listByScore();">평점 순</a></li>
 				<li class="nav-item"><a class="nav-link" data-toggle="pill"
 					href="cafeOrderByReview.do">리뷰 순</a></li>
 				<li class="nav-item"><a class="nav-link" data-toggle="pill"
@@ -81,6 +82,7 @@
     
     <!-- 푸터 include -->
 		<%@ include file="/WEB-INF/view/include/footer.jsp"%>
+
 </body>
 
 </html>

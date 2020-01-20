@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <div class="container-fluid fixed-top bg-dark" style="opacity: 1;">
         <div class="container">
-            <nav class="navbar navbar-expand-sm navbar-dark">
+            <nav class="navbar navbar-expand-md navbar-dark">
                 <a class="navbar-brand" href="goMain.do"><i class="fa fa-coffee"
                         style="font-size:1.5em;font-weight:bold;">&nbsp;Mingo</i></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -11,7 +11,7 @@
                 <div class="collapse navbar-collapse" id="collapsibleNavbar">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="listCafe.do">카페</a>
+                            <a class="nav-link" href="searchCafe.do">카페</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="listBoard.do">게시판</a>

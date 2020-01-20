@@ -6,9 +6,11 @@
 		</encoder>
 	</appender>
 	
-	<logger name="test">
+	<logger name="root">
 		<level value="DEBUG"/>
 		<appender-ref ref="stdout"/>
 	</logger>
+	
+	
 	
 </configuration>

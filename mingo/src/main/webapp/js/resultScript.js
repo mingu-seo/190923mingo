@@ -99,8 +99,29 @@ $(document).ready(function () {
             prevEl: '.swiper-button-prev',
         }
     });
-
+    
+    
+   
 
 
 
 });
+/* 평점순으로 카페검색 정렬 */
+
+function listByScore(sido_code, sigungu_code, dong_code, name){
+
+	$('.grid').empty();
+	$.ajax({  
+		url: 'listByScore.do',
+		//async: false,
+		data: { sido_code : sido_code,
+				sigungu_code : sigungu_code,  
+				dong_code : dong_code,
+				name : name},  
+		dataType : 'HTML',
+	}).done(function(data){
+		data = data.trim();
+		$('.grid').append(data);  
+	});
+	
+}
