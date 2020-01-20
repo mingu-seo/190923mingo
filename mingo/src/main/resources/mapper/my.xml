@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="my">
+	<select id="selectUserInfo" resultType="vo.UserVO" parameterType="Integer">
+		SELECT * FROM mingo.user
+		<where>
+			<if test="user_id != null">
+				user_id = #{user_id}
+			</if>
+		</where>
+	</select>
+	<select id="selectCafe" resultType="vo.CafeVO" parameterType="Integer">
+		SELECT * FROM mingo.cafe
+		<where>
+			<if test="user_id != null">
+				manager_id = #{user_id}
+			</if>
+		</where>
+	</select>
+	<select id="selectCafeInfo" resultType="vo.CafeVO" parameterType="Integer">
+		SELECT * FROM mingo.cafe
+		<where>
+			<if test="user_id != null">
+				cafe_id = #{cafe_id}
+			</if>
+		</where>
+	</select>
+	<select id="selectCafeRate" resultType="vo.CafeRateVO" parameterType="Integer">
+		SELECT * FROM mingo.cafe_rate
+		<where>
+			<if test="cafe_id != null">
+				cafe_id = #{cafe_id}
+			</if>
+		</where>
+	</select>
+	<select id="selectReviewList" resultType="vo.ReviewVO" parameterType="Integer">
+		SELECT * FROM mingo.review
+		<where>
+			<if test="user_id != null">
+				user_id = #{user_id}
+			</if>
+		</where>
+	</select>
+	<select id="selectBoardList" resultType="vo.BoardVO" parameterType="Integer">
+		SELECT * FROM mingo.board
+		<where>
+			<if test="user_id != null">
+				user_id = #{user_id}
+			</if>
+		</where>
+	</select>
+	<select id="selectCollect" resultType="vo.CollectCafeVO" parameterType="Integer">
+		SELECT * FROM mingo.collect_cafe
+		<where>
+			<if test="user_id != null">
+				user_id = #{user_id}
+			</if>
+		</where>
+	</select>
+	
+	
+	
+</mapper>

@@ -11,19 +11,27 @@ public class BoardVO {
 	private String contents;
 	private Timestamp regdate;
 	private int readcount;
+	private int like_num;
 	
 	
+	public int getLike_num() {
+		return like_num;
+	}
+
+	public void setLike_num(int like_num) {
+		this.like_num = like_num;
+	}
 	// 추가 필드
-		private int page;	// 사용자가 요청한 페이지번호
-		private int limit;	// 페이지당 로우 수
-		private int startIndex;	// limit 시작 인덱스
-		private int maxPage;	// 총페이지수
-		
-		// 초기화(생성자)
-		public BoardVO() {
-			this.page = 1;	// 사용자가 요청한 페이지번호가 없으면 초기값 1
-			this.limit = 10; // 페이지당 로우수가 지정이 안되면 초기값 10
-		}
+	private int page;	// 사용자가 요청한 페이지번호
+	private int limit;	// 페이지당 로우 수
+	private int startIndex;	// limit 시작 인덱스
+	private int maxPage;	// 총페이지수
+	
+	// 초기화(생성자)
+	public BoardVO() {
+		this.page = 1;	// 사용자가 요청한 페이지번호가 없으면 초기값 1
+		this.limit = 10; // 페이지당 로우수가 지정이 안되면 초기값 10
+	}
 		
 	public int getBoard_id() {
 		return board_id;

@@ -10,7 +10,7 @@
     <title>Document</title>
 
     <!-- 헤더파일들 include -->
-		<%@ include file="/WEB-INF/view/include/headHTML.jsp"%>
+	<%@ include file="/WEB-INF/view/include/headHTML.jsp"%>
 		
     <!-- 내가 만든 파일-->
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/boardStyle.css">
@@ -18,7 +18,7 @@
 
 <body>
     <!-- 내비게이션 include -->
-		<%@ include file="/WEB-INF/view/include/navigation.jsp"%>
+	<%@ include file="/WEB-INF/view/include/navigation.jsp"%>
 		
     <div class="container-fluid mypage-header">
         <div class="mypage-header-wrapper">
@@ -92,7 +92,7 @@
     </div>
 
     <!-- 푸터 include -->
-		<%@ include file="/WEB-INF/view/include/footer.jsp"%>
+	<%@ include file="/WEB-INF/view/include/footer.jsp"%>
 </body>
 
 </html>
