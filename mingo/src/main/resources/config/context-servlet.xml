@@ -12,8 +12,8 @@
 	
 	<!--  프로젝트 컴포넌트 스캔 -->
 	
+	<context:component-scan base-package="testSession"/>
 	<context:component-scan base-package="vo"/>
-
 	<context:component-scan base-package="dao"/>
 	<context:component-scan base-package="service"/>
 	<context:component-scan base-package="controller"/>

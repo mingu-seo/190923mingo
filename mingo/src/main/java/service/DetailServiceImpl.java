@@ -13,10 +13,15 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import dao.DetailDAO;
 import util.FileUtil;
+import vo.CafeFacilitiesVO;
 import vo.CafeImageVO;
 import vo.CafeMenuVO;
 import vo.CafeProductVO;
-import vo.CafeVO;  
+import vo.CafeRateVO;
+import vo.CafeServiceVO;
+import vo.CafeVO;
+import vo.ReviewVO;
+import vo.UserVO;  
 
 @Service
 public class DetailServiceImpl implements DetailService {
@@ -33,6 +38,14 @@ public class DetailServiceImpl implements DetailService {
 		List<CafeImageVO> imgList = detailDao.viewCafeImages(cafe_id);
 		return imgList;
 	}
+	public List<ReviewVO> viewCafeReview(int cafe_id){
+		List<ReviewVO> reviewList = detailDao.viewCafeReview(cafe_id);
+		return reviewList;
+	}
+	public List<UserVO> viewUserList(int[] userList){
+		List<UserVO> reviewUsers = detailDao.viewUserList(userList);
+		return reviewUsers;		
+	}
 	
 	public int insertCafeImages(CafeImageVO vo, List<MultipartFile> fileList,MultipartHttpServletRequest request) {
 		return detailDao.insertCafeImages(vo,fileList, request);
@@ -48,6 +61,18 @@ public class DetailServiceImpl implements DetailService {
 		return productList;
 	}
 	
+	public CafeServiceVO viewService(int cafe_id) {
+		CafeServiceVO service = detailDao.viewService(cafe_id);
+		return service;
+	}
+	public CafeFacilitiesVO viewFacilities(int cafe_id) {
+		CafeFacilitiesVO facilities = detailDao.viewFacilities(cafe_id);
+		return facilities;
+	}
+	public CafeRateVO viewCafeRate(int cafe_id) {
+		CafeRateVO cafeRate = detailDao.viewCafeRate(cafe_id);
+		return cafeRate;
+	}
 	   
 	
 }

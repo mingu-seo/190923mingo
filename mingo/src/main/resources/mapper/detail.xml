@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>  
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="mingo">
+<mapper namespace="detail">
 
 	<select id="selectCafe_BasicInfo" resultType="vo.CafeVO" parameterType="Integer">
 		SELECT * FROM mingo.cafe
+		<where>
+			<if test="cafe_id != null">
+				cafe_id = #{cafe_id}
+			</if>
+		</where>
+	</select>
+	<select id="selectCafeRate" resultType="vo.CafeRateVO" parameterType="Integer">
+		SELECT * FROM mingo.cafe_rate
 		<where>
 			<if test="cafe_id != null">
 				cafe_id = #{cafe_id}
@@ -19,6 +27,22 @@
 			</if>
 		</where>
 	</select>
+	<select id="selectViewCafeReview" resultType="vo.ReviewVO" parameterType="Integer">
+		SELECT * FROM mingo.review
+		<where>
+			<if test="cafe_id != null">
+				cafe_id = #{cafe_id}
+			</if>
+		</where>
+	</select>
+	<select id="selectViewUserList" resultType="vo.UserVO" parameterType="Integer">
+		SELECT * FROM mingo.user
+		<where>
+			<if test="cafe_id != null">
+				user_id = #{user_id}
+			</if>
+		</where>
+	</select>
 	<select id="selectViewMenu" resultType="vo.CafeMenuVO" parameterType="Integer">
 		SELECT * FROM mingo.cafe_menu
 		<where>
@@ -29,6 +53,22 @@
 	</select>
 	<select id="selectViewProduct" resultType="vo.CafeProductVO" parameterType="Integer">
 		SELECT * FROM mingo.cafe_Product
+		<where>
+			<if test="cafe_id != null">
+				cafe_id = #{cafe_id}
+			</if>
+		</where>
+	</select>
+	<select id="selectViewService" resultType="vo.CafeServiceVO" parameterType="Integer">
+		SELECT * FROM mingo.cafe_service
+		<where>
+			<if test="cafe_id != null">
+				cafe_id = #{cafe_id}
+			</if>
+		</where>
+	</select>
+	<select id="selectViewFacilities" resultType="vo.CafeFacilitiesVO" parameterType="Integer">
+		SELECT * FROM mingo.cafe_facilities
 		<where>
 			<if test="cafe_id != null">
 				cafe_id = #{cafe_id}

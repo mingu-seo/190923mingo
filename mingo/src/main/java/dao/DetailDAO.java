@@ -2,9 +2,8 @@
 
 package dao;
 
+import java.util.ArrayList;
 import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +12,15 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import util.FileUtil;
+import vo.CafeFacilitiesVO;
 import vo.CafeImageVO;
 import vo.CafeMenuVO;
 import vo.CafeProductVO;
+import vo.CafeRateVO;
+import vo.CafeServiceVO;
 import vo.CafeVO;
+import vo.ReviewVO;
+import vo.UserVO;
 
 @Repository
 public class DetailDAO {
@@ -25,18 +29,37 @@ public class DetailDAO {
 	private SqlSessionTemplate sqlSession;
 	
 	public CafeVO viewCafe(int cafe_id) {
-		return sqlSession.selectOne("mingo.selectCafe_BasicInfo", cafe_id);
+		return sqlSession.selectOne("detail.selectCafe_BasicInfo", cafe_id);
+	}
+	public CafeRateVO viewCafeRate(int cafe_id) {
+		return sqlSession.selectOne("detail.selectCafeRate", cafe_id);
 	}
 	
 	public List<CafeImageVO> viewCafeImages(int cafe_id){
-		return sqlSession.selectList("mingo.selectViewCafeImage", cafe_id);		
+		return sqlSession.selectList("detail.selectViewCafeImage", cafe_id);		
+	}
+	public List<ReviewVO> viewCafeReview(int cafe_id){
+		return sqlSession.selectList("detail.selectViewCafeReview", cafe_id);		
+	}
+	public List<UserVO> viewUserList(int[] userList){
+		List<UserVO> userVOList = new ArrayList<UserVO>();
+		for (int i = 0; i < userList.length; i++) {
+			userVOList.add(sqlSession.selectOne("detail.selectViewUserList", userList[i]));		
+		} 
+		return userVOList;
 	}
 	
 	public List<CafeMenuVO> viewMenu(int cafe_id){
-		return sqlSession.selectList("mingo.selectViewMenu", cafe_id);			
+		return sqlSession.selectList("detail.selectViewMenu", cafe_id);			
 	}
 	public List<CafeProductVO> viewProduct(int cafe_id){
-		return sqlSession.selectList("mingo.selectViewProduct", cafe_id);			
+		return sqlSession.selectList("detail.selectViewProduct", cafe_id);			
+	}
+	public CafeServiceVO viewService(int cafe_id) {
+		return sqlSession.selectOne("detail.selectViewService", cafe_id);
+	}
+	public CafeFacilitiesVO viewFacilities(int cafe_id) {
+		return sqlSession.selectOne("detail.selectViewFacilities", cafe_id);
 	}
 	
 	public int insertCafeImages(CafeImageVO vo, List<MultipartFile> fileList,MultipartHttpServletRequest request) {

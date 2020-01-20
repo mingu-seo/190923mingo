@@ -2,13 +2,33 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="hong">
-	<select id="getSigungu" resultType="String" parameterType="Integer">
-		select name from sigungu where code like '${sido_code}%';
+	<select id="getSigungu" resultType="java.util.Map" parameterType="Integer">
+		select code,name from sigungu where code like '${sido_code}%';
 		
 	</select>
 	
-	<select id="getDong" resultType="String" parameterType="Integer">
-		select name from dong where code like '${sigungu_code}%';
+	<select id="getDong" resultType="java.util.Map" parameterType="Integer">
+		select code,name from dong where code like '${sigungu_code}%';
+		
+	</select>
+	
+	<select id="getCafeList" resultType="vo.CafeVO" parameterType="vo.CafeVO">
+		select * from cafe
+		<where>
+			<if test="sido_code != null and sido_code > 0">
+			and sido_code = #{sido_code}
+			</if>
+			<if test="sigungu_code != null and sido_code > 0">
+			and sigungu_code = #{sigungu_code}
+			</if>
+			<if test="dong_code != null and dong_code > 0">
+			and dong_code = #{dong_code}
+			</if>
+			<if test=" name != null and name!='' ">
+			and name like '%${name}%'
+			</if>
+		</where>
+		limit 0,8;
 		
 	</select>
 	

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,42 +25,51 @@
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/boardStyle.css">
     <script src="<%=request.getContextPath() %>/js/resultScript.js"></script>
     <script>
-
+			$(document).ready(function(){
+				
+				function hi(){
+					alert('hi');
+				}
+			});
     </script>
 </head>
 
 <body>
     <!-- 내비게이션 include -->
 		<%@ include file="/WEB-INF/view/include/navigation.jsp"%>
-	
-    <div class="container-fluid result-nav bg-white pb-0">
-        <div class="container result-nav-wrapper">
-            <div><button type="button" class="btn btn-secondary nav-btn">추가</button></div>
-            <div><button type="button" class="btn btn-secondary nav-btn">필터2</button></div>
-            <div><button type="button" class="btn btn-secondary nav-btn">필터3</button></div>
-        </div>
-    </div>
-    <!-- 본문 영역-->
+
+	<div class="container-fluid result-nav bg-white pb-0">
+		<div class="container result-nav-wrapper p-1">
+			<ul class="nav nav-pills">
+				<li class="nav-item"><a class="nav-link active"
+					data-toggle="pill" href="javascript:void(0);" onclick="alert('55')">평점 순</a></li>
+				<li class="nav-item"><a class="nav-link" data-toggle="pill"
+					href="cafeOrderByReview.do">리뷰 순</a></li>
+				<li class="nav-item"><a class="nav-link" data-toggle="pill"
+					href="cafeOrderByLike.do">좋아요 순</a></li>
+			</ul>
+		</div>
+	</div>
+	<!-- 본문 영역-->
     <div class="container grid clearfix p-0">
-        
-        
-        
-        <div class="grid-item">
+        <c:forEach var="cafe" items="${cafeList }">
+        	<div class="grid-item">
             <div class="cafe cafe-img">
-                <img src='<%=request.getContextPath() %>/img/cafe.jpg' alt="">
+                <a href="#"><img src='<%=request.getContextPath() %>/img/cafe.jpg' alt=""></a>
             </div>
-            <div class="cafe cafe-name">스타벅스 자양2점</div>
-            <div class="cafe cafe-address">서울시 광진구 자양 3동</div>
-            <div class="cafe cafe-score">평점 3.9</div>
-        </div>
-        
-        
-        
-        
-        
-        
-        
-        
+            <div class="cafe cafe-name ml-1 mt-2 mb-2" style="font-size:0.9em;"><a href="#">${cafe.name } ${cafe.branch }</a></div>
+            <div class="cafe cafe-address mb-1">${cafe.cafe_address }</div>
+            <div class="cafe cafe-score float-left">평점 3.9
+            </div>
+            <div class="cafe star-rating float-left mt-1 ml-2">
+            		<div></div>
+            	</div>
+            <div class="cafe cafe-like float-right" style="font-size:1em"><i
+								class="fa fa-heart text-danger"
+								style="font-size: 1em;"></i>&nbsp;133개
+						</div>
+        	</div>
+        </c:forEach>
     </div>
     <div class="d-flex justify-content-center align-items-center">
         <div id="test" ></div>

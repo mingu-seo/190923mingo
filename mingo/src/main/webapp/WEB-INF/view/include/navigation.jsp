@@ -17,6 +17,9 @@
                             <a class="nav-link" href="listBoard.do">게시판</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="myMain.do">MY</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="rankCafe.do">랭킹/통계</a>  
                         </li>
 
