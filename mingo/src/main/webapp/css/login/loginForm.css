@@ -1,0 +1,178 @@
+
+	*{
+    	margin: 0; padding: 0;
+	}
+	.wrap{
+	    width: 1200px;
+	    margin: 0 auto;
+	  
+	}
+	
+	.header{
+	    background-color:white; height: 180px; width: 100%; 
+	    color: black; text-align: center; line-height: 100px;
+	}
+	.title{
+	   width: 1200px;
+	   height: 150px;
+	    text-align: center;
+	}
+	.t1{
+	    font-family: 'Noto Sans KR', sans-serif;
+	    font-size: 40px;
+	    font-weight: 700;
+	    color:rgb(63, 96, 204);
+	    margin-right: 8px;
+	}
+	.t2{
+	    font-family: 'Noto Sans KR', sans-serif;
+	    font-size: 40px;
+	    font-weight: 700;
+	    color:black;
+	    margin-right: 8px;
+	}
+	.t3{
+	    font-family: 'Noto Sans KR', sans-serif;
+	    font-size: 18px;
+	    color: #666666;
+	    line-height: 54px
+	}
+	.email1 > .email2{
+	    position: relative;
+	    float: left;
+	    font-size: 14px;
+	    font-weight: bold;
+	
+	}
+	.click{
+	    display: flex;
+	    border-radius: 50px 50px 50px 50px;
+	}
+	.click:hover{
+		box-shadow: 0 1px 10px rgba(0,0,0,0.5);
+	}
+	
+   
+	.social_login{
+	   
+	}
+	.naver_login{
+	    float:left;
+		padding:0 15px
+	}
+	.kakao_login{
+	    float:left;
+		padding:0 15px
+	}
+	.cafeperson:hover{
+	    box-shadow: 0 1px 10px rgba(0,0,0,0.5);
+	}
+	.join-person{
+	    position: relative;
+	    top:5px;
+	   
+	    flex: 1 1 auto;
+	    position: relative;
+	    top:3px;
+	    
+	}
+	.emailaddress{
+	    
+	    font-size: 16px;
+	    width: 380px;
+	    height: 52px;
+	    color: rgb(33, 33, 33);
+	    background-color: transparent;
+	    border-top:0 solid black;
+	    border-left:0 solid black;
+	    border-right:0 solid black;
+	    text-align: left;
+	    outline:none;
+		
+	}
+	.pass1 > .pass2{
+	    position: relative;
+	    float: left;
+	    font-size: 14px;
+	    font-weight: bold;
+
+	}
+	
+	.input-pass{
+	    font-size: 16px;
+	    width: 380px;
+	    height: 60px; 
+	    color: rgb(33, 33, 33);
+	    background-color: transparent;
+	    border-top:0 solid black;
+	    border-left:0 solid black;
+	    border-right:0 solid black;
+	    text-align: left;
+	    outline:none;
+	    padding: 8px 0px;
+	}
+	 
+	.loginbutton{
+	    font-size: 16px;
+	    width: 140px;
+	    min-width: 140px;
+	    height: 52px;
+	    line-height: 50px;
+	    background-color: rgb(63, 96, 204);
+	    color: rgb(255, 255, 255);
+	    padding: 0px;
+	    border-radius: 26px;
+	    border-width: initial;
+	    border-style: none;
+	    border-color: initial;
+	    border-image: initial;
+	    transition: background-color 0.3s ease 0s;
+	    z-index: 1;
+	}
+	.joinbutton{
+	    font-size: 16px;
+	    width: 140px;
+	    min-width: 140px;
+	    height: 52px;
+	    line-height: 50px;
+	    background-color: rgb(127, 128, 129);
+	    color: rgb(255, 255, 255);
+	    padding: 0px;
+	    border-radius: 26px;
+	    border-width: initial;
+	    border-style: none;
+	    border-color: initial;
+	    border-image: initial;
+	    transition: background-color 0.3s ease 0s;
+	    z-index: 1;
+	}
+	.loginbutton:hover{
+		box-shadow: 0 1px 10px rgba(0,0,0,0.5);
+	}
+	.joinbutton:hover{
+		box-shadow: 0 1px 10px rgba(0,0,0,0.5);
+	}
+	.footer{
+	    font-family: 'Noto Sans KR', sans-serif;
+	    position: relative;
+	    font-size: 14px;
+	    top:80px;
+	    color: rgb(168, 167, 168);
+	    text-align: center;
+	    word-break: keep-all;
+	 }
+	 .login_area {
+	 	width:160px;
+	 	height:80px;
+	 	margin:0 auto;
+	 	text-align:center;
+	 }
+	 .join-person-persontitle > img{
+	 	display:block;
+	 	border-radius: 50px 50px 50px 50px;
+	 }
+	 
+	  .find > a{ 
+	 text-decoration:none;
+	 color:#6E6E6E; 
+	 } 

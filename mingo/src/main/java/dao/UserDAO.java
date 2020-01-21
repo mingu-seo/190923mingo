@@ -13,7 +13,16 @@ public class UserDAO {
 	@Autowired
 	SqlSessionTemplate sqlSession;
 	
-	public int joinUser(UserVO vo) {
-		return sqlSession.insert("mingo.loginMain", vo);
+	public UserVO loginProcess(UserVO vo) {
+		return sqlSession.selectOne("userMapper.loginProcess", vo);
+	}
+	public int joinProcess(UserVO vo) {
+		return sqlSession.insert("userMapper.joinProcess", vo);
+	}
+	public UserVO id_step1_process(UserVO vo) {
+		return sqlSession.selectOne("userMapper.id_step1_process", vo);
+	}
+	public UserVO pwd_step1_process(UserVO vo) {
+		return sqlSession.selectOne("userMapper.pwd_step1_process", vo);
 	}
 }

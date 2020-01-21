@@ -188,11 +188,9 @@
 	    display: block;
 	}
 	.footer{
-	    font-family: 'Noto Sans KR', sans-serif;
-	    position: relative;
-	    font-size: 14px;
-	    top:30px;
-	    color: rgb(168, 167, 168);
+	   font-size: 14px;
 	    text-align: center;
-	    word-break: keep-all;
+	    color: #c1c1c1;
+	    font-style: normal;
+	    padding: 56px 0
 	 }
