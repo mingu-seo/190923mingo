@@ -18,7 +18,7 @@
 			<if test="sido_code != null and sido_code > 0">
 			and sido_code = #{sido_code}
 			</if>
-			<if test="sigungu_code != null and sido_code > 0">
+			<if test="sigungu_code != null and sigungu_code > 0">
 			and sigungu_code = #{sigungu_code}
 			</if>
 			<if test="dong_code != null and dong_code > 0">
@@ -31,5 +31,24 @@
 		limit 0,8;
 		
 	</select>
-	
+	<select id="getCafeListByScore" resultType="vo.CafeVO" parameterType="vo.CafeVO">
+		select * from cafe
+		<where>
+			<if test="sido_code != null and sido_code > 0">
+			and sido_code = #{sido_code}
+			</if>
+			<if test="sigungu_code != null and sigungu_code > 0">
+			and sigungu_code = #{sigungu_code}
+			</if>
+			<if test="dong_code != null and dong_code > 0">
+			and dong_code = #{dong_code}
+			</if>
+			<if test=" name != null and name!='' ">
+			and name like '%${name}%'
+			</if>
+		</where>
+		order by rate_avg;
+		limit 0,8;
+		
+	</select>
 </mapper>

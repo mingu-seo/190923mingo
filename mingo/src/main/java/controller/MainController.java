@@ -66,10 +66,32 @@ public class MainController {
 		
 		//cafe 객체에 들어온 코드 3개와 이름  총 4개로 sql 검색하여 8개씩 리스트로 받아옴
 		List<CafeVO> cafeList = dao.getCafeList(cafeTmp);
+		   
 		
 		//모델 객체에 넣고 리턴
+		model.addAttribute("sido_code", cafeTmp.getSido_code());
+		model.addAttribute("sigungu_code", cafeTmp.getSigungu_code());
+		model.addAttribute("dong_code", cafeTmp.getDong_code());
+		model.addAttribute("name", cafeTmp.getName());
 		model.addAttribute("cafeList", cafeList);  
 		return "cafe/searchResult";
 	}
+	
+	/* 평점순 버튼 클릭시 발동 */
+	@RequestMapping("/listByScore.do")
+	public String listByScore(Model model, CafeVO cafeTmp) {
+		List<CafeVO> cafeList = dao.getCafeListByScore(cafeTmp);
+		
+//		//모델 객체에 넣고 리턴
+//		model.addAttribute("sido_code", cafeTmp.getSido_code());
+//		model.addAttribute("sigungu_code", cafeTmp.getSigungu_code());
+//		model.addAttribute("dong_code", cafeTmp.getDong_code());
+//		model.addAttribute("name", cafeTmp.getName());
+		model.addAttribute("cafeList", cafeList); 
+		
+		return "ajax/listByScore";
+	}
+	
+	
 	
 }

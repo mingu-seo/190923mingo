@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -271,7 +274,7 @@
             								</div>
             							</div>
             						</div>
-            						<div class="rate">${cafeRate.facimood_avg }</div>
+            						<div class="rate">${cafeRate.mood_avg }</div>
             					</div>
             					<div class="each_rate" id="collect_service">
             						<div class="collect_img">
@@ -299,7 +302,7 @@
             								</div>
             							</div>
             						</div>
-            						<div class="rate">${cafeRate.wifiplug_avg }</div>
+            						<div class="rate">${cafeRate.wifi_avg }</div>
             					</div>
             					<div class="each_rate" id="collect_product">
             						<div class="collect_img">

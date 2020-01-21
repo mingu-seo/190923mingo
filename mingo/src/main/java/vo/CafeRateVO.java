@@ -4,15 +4,15 @@ public class CafeRateVO {
 	private int cafe_id;
 	private int rate_num;
 	private int taste_sum;
-	private int facimood_sum;
+	private int mood_sum;
 	private int service_sum;
-	private int wifiplug_sum;
+	private int wifi_sum;
 	private int clean_sum;
 	private int price_sum;
 	private double taste_avg;
-	private double facimood_avg;
+	private double mood_avg;
 	private double service_avg;
-	private double wifiplug_avg;
+	private double wifi_avg;
 	private double clean_avg;
 	private double price_avg;
 	private double cafe_total_avg;
@@ -35,11 +35,11 @@ public class CafeRateVO {
 	public void setTaste_sum(int taste_sum) {
 		this.taste_sum = taste_sum;
 	}
-	public int getFacimood_sum() {
-		return facimood_sum;
+	public int getMood_sum() {
+		return mood_sum;
 	}
-	public void setFacimood_sum(int facimood_sum) {
-		this.facimood_sum = facimood_sum;
+	public void setMood_sum(int mood_sum) {
+		this.mood_sum = mood_sum;
 	}
 	public int getService_sum() {
 		return service_sum;
@@ -47,11 +47,11 @@ public class CafeRateVO {
 	public void setService_sum(int service_sum) {
 		this.service_sum = service_sum;
 	}
-	public int getWifiplug_sum() {
-		return wifiplug_sum;
+	public int getWifi_sum() {
+		return wifi_sum;
 	}
-	public void setWifiplug_sum(int wifiplug_sum) {
-		this.wifiplug_sum = wifiplug_sum;
+	public void setWifi_sum(int wifi_sum) {
+		this.wifi_sum = wifi_sum;
 	}
 	public int getClean_sum() {
 		return clean_sum;
@@ -71,11 +71,11 @@ public class CafeRateVO {
 	public void setTaste_avg(double taste_avg) {
 		this.taste_avg = taste_avg;
 	}
-	public double getFacimood_avg() {
-		return facimood_avg;
+	public double getMood_avg() {
+		return mood_avg;
 	}
-	public void setFacimood_avg(double facimood_avg) {
-		this.facimood_avg = facimood_avg;
+	public void setFacimood_avg(double mood_avg) {
+		this.mood_avg = mood_avg;
 	}
 	public double getService_avg() {
 		return service_avg;
@@ -83,11 +83,11 @@ public class CafeRateVO {
 	public void setService_avg(double service_avg) {
 		this.service_avg = service_avg;
 	}
-	public double getWifiplug_avg() {
-		return wifiplug_avg;
+	public double getWifi_avg() {
+		return wifi_avg;
 	}
-	public void setWifiplug_avg(double wifiplug_avg) {
-		this.wifiplug_avg = wifiplug_avg;
+	public void setWifiplug_avg(double wifi_avg) {
+		this.wifi_avg = wifi_avg;
 	}
 	public double getClean_avg() {
 		return clean_avg;

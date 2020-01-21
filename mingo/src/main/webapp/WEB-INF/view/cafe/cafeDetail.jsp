@@ -959,7 +959,7 @@
 						            <div class="graph_stack">
 						                <div class="graph_rate">
 						                    <img src="img/bean.PNG" class="bean_img">
-						                    <div class="graph_text">${cafeRate.facimood_avg }점</div>
+						                    <div class="graph_text">${cafeRate.mood_avg }점</div>
 						                </div>
 						            </div>
 						        </div>
@@ -991,7 +991,7 @@
 						            <div class="graph_stack">
 						                <div class="graph_rate">
 						                    <img src="img/bean.PNG" class="bean_img">
-						                    <div class="graph_text">${cafeRate.wifiplug_avg }점</div>
+						                    <div class="graph_text">${cafeRate.wifi_avg }점</div>
 						                </div>
 						            </div>
 						        </div>

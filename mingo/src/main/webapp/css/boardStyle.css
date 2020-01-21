@@ -270,6 +270,9 @@ a{
 .cafe{
     font-size:0.8em;
 }
+.cafe-name{
+	height:42px;
+}
 .cafe-img .c-wrap{
     width:100%;
     

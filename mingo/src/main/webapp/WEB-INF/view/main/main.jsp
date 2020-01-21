@@ -25,13 +25,13 @@
 	
 	<header class="jumbotron jumbotron-fluid text-center bg-cover m-0">
 		<div class="container search-area">
-			<form class="form pl-4 pr-4" action="searchCafe.do" method="post">
+			<form class="form pl-4 pr-4" action="searchCafe.do" method="post" onsubmit="return pushLast();">
 				<div class="form-row">
 					<div class="col-sm-10">
 						<div class="form-row">
 							<div class="col-4 pb-1 pt-1">
 								<select class="form-control rounded-edge" name="sido_code" id="sido_code">
-									<option value="-1" selected="selected">시/도</option>
+									<option value="-1">시/도</option>
 									<option value="11">서울</option>
 									<option value="26">부산</option>
 									<option value="27">대구</option>
@@ -51,14 +51,14 @@
 									<option value="50">제주</option>
 								</select>
 							</div>
-							<div class="col-4 pb-1 pt-1">
+							<div class="col-4 pb-1 pt-1" id="">
 								<select class="form-control rounded-edge" name="sigungu_code" id="sigungu_code">
-									<option value="-1" selected="selected">시/군/구</option>
+									<option value="-1" class="start1" >시/군/구</option>
 								</select>
 							</div>
 							<div class="col-4 pb-1 pt-1">
 								<select class="form-control rounded-edge" name="dong_code" id="dong_code">
-									<option value="-1" selected="selected">행정동</option>
+									<option value="-1" class="start2" >행정동</option>
 								</select>
 							</div>
 

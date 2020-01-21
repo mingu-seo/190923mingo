@@ -29,6 +29,11 @@ public class MainDAO {
 		return sqlSession.selectList("hong.getCafeList", cafeTmp);
 	}
 
+	public List<CafeVO> getCafeListByScore(CafeVO cafeTmp) {
+		
+		return sqlSession.selectList("hong.getCafeListByScore", cafeTmp);
+	}
+
 	
 	
 }

@@ -11,7 +11,6 @@ public class ReviewVO {
 	private String contents;
 	private int taste_score;
 	private int price_score;
-	private int facility_score;
 	private int wifi_score;
 	private int mood_score;
 	private int clean_score;
@@ -66,12 +65,7 @@ public class ReviewVO {
 	public void setPrice_score(int price_score) {
 		this.price_score = price_score;
 	}
-	public int getFacility_score() {
-		return facility_score;
-	}
-	public void setFacility_score(int facility_score) {
-		this.facility_score = facility_score;
-	}
+	
 	public int getWifi_score() {
 		return wifi_score;
 	}
