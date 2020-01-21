@@ -14,6 +14,12 @@
 		(#{email}, #{password},#{name}, #{nickname}, #{birthday}, #{gender})
 	</insert>
 	
+	<!--아이디 중복체크  -->
+	<select id="emailCheck" resultType="integer">
+	 SELECT COUNT(*) FROM mingo.user
+	 WHERE email=#{email}
+	</select>
+	
 	<select id="id_step1_process" parameterType="vo.UserVO">
 		SELECT email FROM mingo.user WHERE name=#{name} and birthday=#{birthday} and phone_num =#{phone_num}
 	</select>
@@ -21,5 +27,6 @@
 	<select id="pwd_step1_process" parameterType="vo.UserVO">
 		SELECT password FROM mingo.user WHERE email=#{email} and birthday=#{birthday} and phone_num =#{phone_num}
 	</select>
+	
 	
 </mapper>

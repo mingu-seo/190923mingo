@@ -53,6 +53,13 @@ public class UserController {
 		 userService.joinProcess(vo);
 		return "redirect:/login/loginForm.do";
 	}
+	
+	@RequestMapping("/emailCheck.do")
+	public int emailCheck(UserVO vo) {
+		int result = userService.emailCheck(vo);
+		return result;
+		
+	}
 	//	로그아웃 
 	@RequestMapping("/logout.do")
 	public String logout() {
