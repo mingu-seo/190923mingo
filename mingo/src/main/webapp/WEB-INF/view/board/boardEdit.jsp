@@ -41,7 +41,7 @@
             <a href="#" class="list-group-item">취업게시판</a>
 
         </div>
-        <form action="edit.do" method="post" id="upt">
+        <form action="update.do" method="post" name="modifyform">
         <input type="hidden" name="board_id" value="<%=vo.getBoard_id()%>" /> 
 		<input type="hidden" name="page" value="<%=request.getParameter("page")%>" />
         <div class=" board-group shadow ml-4">
@@ -54,7 +54,7 @@
             <textarea class="mt-2 p-2" rows="20" name="content" style="font-size:1em;width:100%;border:1px solid #e1e1e1;" ><%=vo.getContents()%></textarea>
             <div style="text-align: center;">
                 <button type="button" class="btn btn-secondary"onclick="location.href='list.do' ">취소</button>
-                <button type="button" class="btn btn-secondary"onclick="document.getElementById('upt').submit();">수정완료</button>
+                <button type="button" class="btn btn-secondary"onclick="javascript:modifyboard()">수정완료</button>
             </div>
         </div>
         </form>

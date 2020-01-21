@@ -22,7 +22,14 @@ BoardVO vo = (BoardVO) request.getAttribute("vo");
     <!-- 내가 만든 파일-->
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/boardStyle.css">
 </head>
-
+<script type="text/javascript">
+	function deleteboard(board_id) {
+		var chk =  confirm("삭제하시겠습니까?");
+		if (chk){
+					location.href='delete.do?board_id='+board_id;
+		}else{event.preventDefault();}
+	}
+</script>
 <body>
     <!-- 내비게이션 include -->
 		<%@ include file="/WEB-INF/view/include/navigation.jsp"%>
@@ -37,7 +44,7 @@ BoardVO vo = (BoardVO) request.getAttribute("vo");
             <a href="#" class="list-group-item">취업게시판</a>
 
         </div>
-        <form action="view.do">
+        <form action="view.do" method="post" name="deleteform">
         <div class=" board-group shadow ml-4">
             <div class="mb-4 board-name">
                자유게시판
@@ -49,12 +56,12 @@ BoardVO vo = (BoardVO) request.getAttribute("vo");
                 <div class="float-left" ><%=vo.getUser_id()%></div>
                 <div class="float-right">조회 <%=vo.getReadcount()%> | 추천 | 날짜<%=vo.getRegdate()%> | 
                 <a href="edit.do?board_id=<%=vo.getBoard_id()%>&page=<%=nowPage%>">수정</a> | 
-                	삭제</div>
+                	<a href="list.do?page=<%=nowPage%>"  onclick="javascript: deleteboard(<%=vo.getBoard_id()%>)">삭제</a></div>
             </div>
             <div class="p-3"> <%=vo.getContents()%></div>
             
             <div class="mybtn-group">
-                <button type="button" class="btn btn-secondary float-left"onclick="location.href='list.do' ">목록보기</button>
+                <button type="button" class="btn btn-secondary float-left"onclick="location.href='list.do?page=<%=nowPage%>' ">목록보기</button>
                 <button type="button" class="btn float-right mybtn-good"><i class="fa fa-thumbs-o-down" style="font-size:1.5em;">1</i></button>
                 <button type="button" class="btn float-right mybtn-bad"><i class="fa fa-thumbs-o-up" style="font-size:1.5em;">0</i></button>
                 

@@ -59,31 +59,20 @@ public class BoardController {
 		String msg = "";
 		String url = "";
 		if( r > 0) {
-			msg = "정상적으로 수정되었습니다.";
+			msg = "수정되었습니다.";
 			url = "list.do?page="+vo.getPage();
 		}else {
 			msg = "수정 중 에러가 발생했습니다. 관리자에게 문의하세요.";
-			url = "update.do?board_num="+vo.getBoard_id();
+			url = "update.do?board_id="+vo.getBoard_id();
 		}
 		model.addAttribute("msg",msg);
 		model.addAttribute("url",url);
 		return "include/alert";
 	}
-	@RequestMapping("board/delete.do")
-	public String delete(Model model,BoardVO vo) {
-		int r = boardService.delete(vo.getBoard_id());
-		String msg = ""; 
-		String url = "";
-		if( r < 0) {
-			msg = "정상적으로 삭제되었습니다.";
-			url = "list.do?page="+vo.getPage();
-		}else {
-			msg = "삭제 중 에러가 발생했습니다. 관리자에게 문의하세요.";
-			url = "write.do?board_id="+vo.getBoard_id();
-		}
-		model.addAttribute("msg",msg);
-		model.addAttribute("url",url);
-		return "include/alert";
+	@RequestMapping("delete.do")
+	public String delete(BoardVO vo) {
+		boardService.delete(vo.getBoard_id());
+		return "redirect:list.do";
 		
 	}
 }
