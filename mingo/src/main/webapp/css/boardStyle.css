@@ -288,7 +288,7 @@ a{
 }
 
 .star-rating > div {
-	width: 70%;
+	width: 0%;
 	background: url('../img/star_rating.png');
 	background-repeat: no-repeat;
 	background-position: bottom left;

@@ -19,7 +19,7 @@ public class CafeVO {
 	private String sigungu_name; //시군구 이름
 	private int sigungu_code; //시군구 코드
 	private String dong_name; //행정동 이름
-	private String dong_code; //행정동 코드
+	private long dong_code; //행정동 코드
 	private double longitude; //경도
 	private double latitude; //위도
 	private String logo;
@@ -139,10 +139,11 @@ public class CafeVO {
 	public void setDong_name(String dong_name) {
 		this.dong_name = dong_name;
 	}
-	public String getDong_code() {
+	
+	public long getDong_code() {
 		return dong_code;
 	}
-	public void setDong_code(String dong_code) {
+	public void setDong_code(long dong_code) {
 		this.dong_code = dong_code;
 	}
 	public double getLatitude() {

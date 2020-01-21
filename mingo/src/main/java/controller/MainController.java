@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import dao.MainDAO;
+import vo.CafeCommand;
 import vo.CafeVO;
 
 @Controller
@@ -60,37 +61,26 @@ public class MainController {
 		return "ajax/sigungu";
 	}
 	
-	//메인페이지에서 카페 검색했을때
+	//카페 검색했을때 메서드
 	@RequestMapping("/searchCafe.do")
-	public String searchCafe(Model model, CafeVO cafeTmp) {
+	public String searchCafe(Model model, CafeCommand cafeTmp) {
 		
-		//cafe 객체에 들어온 코드 3개와 이름  총 4개로 sql 검색하여 8개씩 리스트로 받아옴
+		//검색옵션4개로 sql 검색하여 8개씩 리스트로 받아옴
 		List<CafeVO> cafeList = dao.getCafeList(cafeTmp);
-		   
-		
-		//모델 객체에 넣고 리턴
-		model.addAttribute("sido_code", cafeTmp.getSido_code());
-		model.addAttribute("sigungu_code", cafeTmp.getSigungu_code());
-		model.addAttribute("dong_code", cafeTmp.getDong_code());
-		model.addAttribute("name", cafeTmp.getName());
 		model.addAttribute("cafeList", cafeList);  
 		return "cafe/searchResult";
 	}
 	
-	/* 평점순 버튼 클릭시 발동 */
-	@RequestMapping("/listByScore.do")
-	public String listByScore(Model model, CafeVO cafeTmp) {
-		List<CafeVO> cafeList = dao.getCafeListByScore(cafeTmp);
+	//카페 검색 by Ajax
+	@RequestMapping("/searchCafeAjax.do")
+	public String searchCafeAjax(Model model, CafeCommand cafeCommand) {
 		
-//		//모델 객체에 넣고 리턴
-//		model.addAttribute("sido_code", cafeTmp.getSido_code());
-//		model.addAttribute("sigungu_code", cafeTmp.getSigungu_code());
-//		model.addAttribute("dong_code", cafeTmp.getDong_code());
-//		model.addAttribute("name", cafeTmp.getName());
-		model.addAttribute("cafeList", cafeList); 
-		
-		return "ajax/listByScore";
+		//검색옵션4개로 sql 검색하여 8개씩 리스트로 받아옴
+		List<CafeVO> cafeList = dao.getCafeList(cafeCommand);
+		model.addAttribute("cafeList", cafeList);  
+		return "ajax/cafeList";
 	}
+	
 	
 	
 	
