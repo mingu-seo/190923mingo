@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@page import="vo.BoardVO"%>
+<%
+	BoardVO vo = (BoardVO) request.getAttribute("vo");
+%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,7 +19,14 @@
     <!-- 내가 만든 파일-->
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/boardStyle.css">
 </head>
-
+<script type="text/javascript">
+	function modifyboard() {
+		if (confirm("수정하시겠습니까?")){
+			modifyform.submit();	
+		}
+		
+	}
+</script>
 <body>
     <!-- 내비게이션 include -->
 		<%@ include file="/WEB-INF/view/include/navigation.jsp"%>
@@ -30,18 +41,20 @@
             <a href="#" class="list-group-item">취업게시판</a>
 
         </div>
-        <form action="writeForm.do" id="frm">
+        <form action="edit.do" method="post" id="upt">
+        <input type="hidden" name="board_id" value="<%=vo.getBoard_id()%>" /> 
+		<input type="hidden" name="page" value="<%=request.getParameter("page")%>" />
         <div class=" board-group shadow ml-4">
             <div class="mb-4 board-name">
                자유게시판
-               <span style="font-size: 0.5em;">글쓰기</span>
+               <span style="font-size: 0.5em;">수정하기</span>
             </div>
             
-            <input type="text" class="form-control" name="title" placeholder="제목을 입력해 주세요.">
-            <textarea class="mt-2 p-2" rows="20" name="contents" style="font-size:1em;width:100%;border:1px solid #e1e1e1;" placeholder="주제와 무관한 댓글, 악플은 삭제 될 수 있습니다."></textarea>
+            <input type="text" class="form-control" name="title" value="<%=vo.getTitle()%>">
+            <textarea class="mt-2 p-2" rows="20" name="content" style="font-size:1em;width:100%;border:1px solid #e1e1e1;" ><%=vo.getContents()%></textarea>
             <div style="text-align: center;">
                 <button type="button" class="btn btn-secondary"onclick="location.href='list.do' ">취소</button>
-                <button type="button" class="btn btn-secondary"onclick="document.getElementById('frm').submit();">작성완료</button>
+                <button type="button" class="btn btn-secondary"onclick="document.getElementById('upt').submit();">수정완료</button>
             </div>
         </div>
         </form>

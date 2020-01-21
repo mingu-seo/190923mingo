@@ -1,10 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <%@page import="vo.BoardVO" %>
+    <%@page import="util.Page"%>
+<%@page import="java.util.List"%>
 <!DOCTYPE html>
 <html lang="en">
+<%
+int listcount = (Integer)request.getAttribute("listcount"); // 전체 갯수 (model에 저장한 "listcount")
+List<BoardVO> list = (List<BoardVO>)request.getAttribute("list"); // 목록 (model에 저장한 "list")
+BoardVO vo = (BoardVO)request.getAttribute("vo");	// vo객체 (model 저장한 "vo")
+int totalpage = (Integer)request.getAttribute("totalpage"); // 전체페이지수 (model에 저장한 "totalpage")
 
+%>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -48,7 +56,7 @@
                     <div style="float:left;padding:0 14px">추천</div>
                 </a>
                 <c:forEach  items="${list}" var="BoardVO">
-                <a href="#" class="list-group-item">
+                <a href="view.do?board_id=${BoardVO.board_id}&page=<%=vo.getPage()%>" class="list-group-item">
                     <div id="b-num" style="float:left;">${BoardVO.board_id}</div>
                     <div id="b-title" style="float:left;">${BoardVO.title}</div>
                     <div id="b-username" style="float:left;">${BoardVO.user_id}</div>
@@ -61,7 +69,9 @@
             </div>
             
             <ul class="pagination mypagi justify-content-center">
-                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+            <%=Page.getPageList(vo.getPage(), totalpage, "list.do") %>
+            
+            <!--     <li class="page-item"><a class="page-link" href="#">Previous</a></li>
                 <li class="page-item active"><a class="page-link" href="#">1</a></li>
                 <li class="page-item "><a class="page-link" href="#">2</a></li>
                 <li class="page-item"><a class="page-link" href="#">3</a></li>
@@ -72,8 +82,8 @@
                 <li class="page-item"><a class="page-link" href="#">8</a></li>
                 <li class="page-item"><a class="page-link" href="#">9</a></li>
                 <li class="page-item"><a class="page-link" href="#">10</a></li>
-                <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                <button type="button" class="btn btn-secondary btn-write">글쓰기</button>
+                <li class="page-item"><a class="page-link" href="#">Next</a></li> -->
+                <button type="button" class="btn btn-secondary btn-write" onclick="location.href='write.do' ">글쓰기</button>
             </ul>
             <div class="input-group justify-content-center">
                 <div class="input-group-prepend">

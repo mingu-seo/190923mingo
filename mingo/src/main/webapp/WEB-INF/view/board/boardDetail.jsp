@@ -1,6 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+pageEncoding="UTF-8"%>
+    <%@ page import="vo.BoardVO" %>
+     <%@ page import="vo.UserVO" %>
+     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
+<%
+BoardVO vo = (BoardVO) request.getAttribute("vo");
+	int nowPage = (Integer) request.getAttribute("page");
+%>
 <html lang="en">
 
 <head>
@@ -30,24 +37,29 @@
             <a href="#" class="list-group-item">취업게시판</a>
 
         </div>
+        <form action="view.do">
         <div class=" board-group shadow ml-4">
             <div class="mb-4 board-name">
                자유게시판
             </div>
-            <div class="board-title p-2">
-                안녕하세요?
-            </div>
+            <div class="board-title p-2" ><%=vo.getTitle()%></div>
+            
             <div class="board-title-info  p-2" style="overflow:hidden;">
-                <div class="float-left">홍길동</div>
-                <div class="float-right">조회 17 | 추천 | 2020.01.03 13:12</div>
+                
+                <div class="float-left" ><%=vo.getUser_id()%></div>
+                <div class="float-right">조회 <%=vo.getReadcount()%> | 추천 | 날짜<%=vo.getRegdate()%> | 
+                <a href="edit.do?board_id=<%=vo.getBoard_id()%>&page=<%=nowPage%>">수정</a> | 
+                	삭제</div>
             </div>
-            <div class="p-3"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis quidem numquam aut, ea debitis aperiam neque. Praesentium nulla a, quia autem blanditiis, ducimus, harum fugiat quis voluptatibus qui et porro dolore itaque numquam iure quibusdam esse! Quae possimus maiores esse nostrum. Aliquid molestiae maiores unde voluptates dolor. Optio corrupti quis aut est maxime totam cum necessitatibus delectus, corporis facere non iusto facilis consectetur, minus inventore officiis exercitationem quas ducimus, libero cumque perferendis voluptatem. Culpa vel dolorem, reiciendis alias velit commodi dolore aperiam eius doloribus? Et, natus dolores, iste sapiente vel distinctio facilis earum illum minus, quos eos error minima illo?</div>
+            <div class="p-3"> <%=vo.getContents()%></div>
+            
             <div class="mybtn-group">
-                <button type="button" class="btn btn-secondary float-left">목록보기</button>
+                <button type="button" class="btn btn-secondary float-left"onclick="location.href='list.do' ">목록보기</button>
                 <button type="button" class="btn float-right mybtn-good"><i class="fa fa-thumbs-o-down" style="font-size:1.5em;">1</i></button>
                 <button type="button" class="btn float-right mybtn-bad"><i class="fa fa-thumbs-o-up" style="font-size:1.5em;">0</i></button>
                 
             </div>
+            </form>
             <div class="pb-3" style="border-bottom: 1px solid #a1a1a1;">
                 <i class="fa fa-comment-o mr-2" style="font-size:1.5em;"></i>댓글 3개
             </div>
@@ -77,7 +89,7 @@
                 <div><button type="button" class="btn btn-secondary">등록</button></div>
             </div>
         </div>
-    </div>
+ </div>
 
     <!-- 헤더파일들 include -->
 		<%@ include file="/WEB-INF/view/include/footer.jsp"%>

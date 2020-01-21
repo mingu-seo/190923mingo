@@ -13,17 +13,29 @@
 	
 	</select>
 	
-	<!-- <insert id="insertMember" parameterType="test.TestVO">
-		INSERT INTO spring5fs.member
-		(email, password, name, regdate, profile, introduce)
+	<insert id="insert" parameterType="vo.BoardVO" useGeneratedKeys="true">
+		INSERT INTO mingo.board
+		(board_id, user_id, type, title, contents, regdate, readcount)
 		values
-		(#{email}, #{password}, #{name}, now(), #{profile}, #{introduce})
+		(#{board_id}, 1, #{type}, #{title}, #{contents}, NOW(),#{readcount})
+		<selectKey keyProperty="board_id" resultType="Integer" order="AFTER">
+			SELECT last_insert_id()
+		</selectKey>
 	</insert>
 	
-	<select id="memberDetail" parameterType="Integer" resultType="test.TestVO">
-		SELECT * FROM spring5fs.member WHERE id=#{id}
+	
+	<select id="view" parameterType="Integer" resultType="vo.BoardVO">
+		SELECT * FROM mingo.board WHERE board_id=#{board_id}
 	</select>
 	
+	<update id="update" parameterType="vo.BoardVO" >
+		UPDATE mingo.board SET title = #{title}, contents = #{contents} WHERE board_id = #{board_id}
+	</update>
+	
+	<delete id="delete" parameterType="Integer">
+		DELETE FROM mingo.board WHERE board_id=#{board_id}
+	</delete>
+	<!-- 
 	<update id="updateMember" parameterType="test.TestVO">
 		UPDATE spring5fs.member SET
 		email=#{email}, password=#{password}, name=#{name}, introduce=#{introduce}

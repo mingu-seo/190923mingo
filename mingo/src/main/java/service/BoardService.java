@@ -33,4 +33,19 @@ public class BoardService {
 
 		return pagecount;
 	}
+	public int insert(BoardVO vo) {
+		int r = boardDAO.insert(vo);
+		return r;
+	}
+	public BoardVO view(int board_id) {
+		BoardVO vo = boardDAO.view(board_id);
+		return vo;
+	}
+	public int update(BoardVO vo) {
+		return boardDAO.update(vo);
+	}
+	public int delete(int board_id) {
+		return boardDAO.delete(board_id); 
+		 
+	}
 }

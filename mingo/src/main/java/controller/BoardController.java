@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import service.BoardService;
 import vo.BoardVO;
@@ -29,5 +30,60 @@ public class BoardController {
 		model.addAttribute("vo", vo);
 		
 		return "board/boardMain";
+	}
+	@RequestMapping("/write.do")
+	public String write() {
+		return "board/boardWrite";
+	}
+	@RequestMapping("/writeForm.do")
+	public String writeForm(BoardVO vo) {
+		 boardService.insert(vo);
+		return "redirect:list.do";
+	}
+	@RequestMapping("/view.do")
+	public String view(Model model, @RequestParam("board_id") int board_id, @RequestParam("page")int page) {
+		BoardVO vo = boardService.view(board_id);
+		model.addAttribute("vo",vo);
+		model.addAttribute("page",page);
+		return "board/boardDetail";
+	}
+	@RequestMapping("/edit.do")
+	public String edit(Model model, @RequestParam("board_id") int board_id) {
+		 BoardVO vo = boardService.view(board_id);
+		 model.addAttribute("vo",vo);
+		 return "board/boardEdit";
+	}
+	@RequestMapping("/update.do")
+	public String update(Model model, BoardVO vo) {
+		int r = boardService.update(vo);
+		String msg = "";
+		String url = "";
+		if( r > 0) {
+			msg = "정상적으로 수정되었습니다.";
+			url = "list.do?page="+vo.getPage();
+		}else {
+			msg = "수정 중 에러가 발생했습니다. 관리자에게 문의하세요.";
+			url = "update.do?board_num="+vo.getBoard_id();
+		}
+		model.addAttribute("msg",msg);
+		model.addAttribute("url",url);
+		return "include/alert";
+	}
+	@RequestMapping("board/delete.do")
+	public String delete(Model model,BoardVO vo) {
+		int r = boardService.delete(vo.getBoard_id());
+		String msg = ""; 
+		String url = "";
+		if( r < 0) {
+			msg = "정상적으로 삭제되었습니다.";
+			url = "list.do?page="+vo.getPage();
+		}else {
+			msg = "삭제 중 에러가 발생했습니다. 관리자에게 문의하세요.";
+			url = "write.do?board_id="+vo.getBoard_id();
+		}
+		model.addAttribute("msg",msg);
+		model.addAttribute("url",url);
+		return "include/alert";
+		
 	}
 }
