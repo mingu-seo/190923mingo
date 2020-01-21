@@ -1,8 +1,11 @@
 package controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -73,10 +76,52 @@ public class DetailController {
 		return "cafe/cafeDetail";
 	}
 	
-	@RequestMapping("/cafeDetailRegistForm.do")
-	public String cafeDetailRegistForm() {
-		return "cafe/cafeDetailRegistForm";
+	@RequestMapping("/cafeRegistForm.do")
+	public String cafeDetailRegistForm(Model model, HttpServletRequest request) {
+		int cafe_id = Integer.parseInt(request.getParameter("cafe_id"));
+		model.addAttribute("cafe_id", cafe_id);
+		return "mypage/cafeRegistForm";
 	}
+	
+	@RequestMapping("/registCafe.do")
+	public String registCafe(Model model, CafeVO cafeVO, CafeFacilitiesVO cafeFacilitiesVO, CafeServiceVO cafeServiceVO, CafeImageVO cafeImageVO, MultipartHttpServletRequest request, HttpServletResponse response) {
+		System.out.println("끝나는 시간 : " + cafeVO.getTime_end());
+		List<CafeMenuVO> cafeMenuVO = new ArrayList<CafeMenuVO>();
+		CafeMenuVO vo2 = new CafeMenuVO();
+		cafeMenuVO.add(vo2);
+		List<CafeProductVO> cafeProductVO = new ArrayList<CafeProductVO>();
+		CafeProductVO vo3 = new CafeProductVO();
+		cafeProductVO.add(vo3);
+		
+		//로고 사진 및 카페기본정보 등록
+		List<MultipartFile> logoFile = request.getFiles("logo_file");
+		int result1 = detailService.registCafe(cafeVO, logoFile, request);
+		
+		//시설 정보 등록
+		int result2 = detailService.registFacility(cafeFacilitiesVO);	
+		
+		//서비스 정보 등록
+		int result3 = detailService.registService(cafeServiceVO);
+
+		//카페 사진 등록
+		List<MultipartFile> fileList = request.getFiles("cafeImage_file");
+		int result6 = detailService.insertCafeImages(cafeImageVO, fileList, request);
+		
+		//메뉴 사진 및 정보 등록
+		List<MultipartFile> menuFileList = request.getFiles("menu_image_file");
+		System.out.println("메뉴사ㅣㅈㄴ은 몇 장?"+menuFileList.size());
+		int result4 = detailService.registMenu(cafeMenuVO, menuFileList, request);
+		
+		//상품 사진 및 정보 등록
+		List<MultipartFile> productFileList = request.getFiles("product_image_file");
+		int result5 = detailService.registProduct(cafeProductVO, productFileList, request);
+	
+		model.addAttribute("cafe_id", cafeVO.getCafe_id());
+		//request.setAttribute("cafe_id", cafeVO.getCafe_id());
+		System.out.println("카페 정보 등록 완료");
+		return "redirect:detailView.do";
+	}
+	
 	@RequestMapping("/reviewRegistForm.do")
 	public String reviewRegistForm() {
 		return "cafe/reviewRegistForm";
@@ -84,13 +129,13 @@ public class DetailController {
 	
 	
 	
-
+	/*
 	@RequestMapping("/cafeDetailRegist.do")
 	public String registCafeDetail(CafeImageVO vo, MultipartHttpServletRequest request) {  
 		List<MultipartFile> fileList = request.getFiles("cafeImage_file");
-		int result = detailService.insertCafeImages(vo, fileList,request);
+		int result = detailService.insertCafeImages(vo, fileList, request);
 		return "redirect:/detailView.do?cafe_id="+vo.getCafe_id(); 
-	}  
+	}*/ 
 	 
 	
 	

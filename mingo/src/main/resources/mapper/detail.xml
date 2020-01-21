@@ -75,9 +75,87 @@
 			</if>
 		</where>
 	</select>
-	<insert id="insertCafeImage" parameterType="vo.CafeImageVO">  
-		insert into mingo.cafe_image (cafe_id, url) values (#{cafe_id}, #{url})	
-	</insert>
+	
+	
+	<update id="updateCafeImage" parameterType="vo.CafeImageVO">  
+		update mingo.cafe_image set
+		url=#{url}
+		<where>
+			<if test="cafe_id != null">
+				cafe_id=#{cafe_id}			
+			</if>
+		</where>
+	</update>
+	<update id="updateCafe" parameterType="vo.CafeVO">  
+		update mingo.cafe set
+		logo=#{logo}, time_day=#{time_day}, time_start=#{time_start}, time_end=#{time_end} 
+		<where>
+			<if test="cafe_id != null">
+				cafe_id=#{cafe_id}			
+			</if>
+		</where>
+	</update>
+	<update id="updateFacility" parameterType="vo.CafeFacilitiesVO">  
+		update mingo.cafe_facilities set
+		wifi=#{wifi}, tables=#{tables}, interior=#{interior}, 
+		music=#{music}, plug=#{plug}, restroom=#{restroom}, 
+		studyroom=#{studyroom}, terrace=#{terrace}, 
+		smoking=#{smoking}, parking=#{parking}, 
+		wifi_text=#{wifi_text}, table_text=#{table_text}, 
+		interior_text=#{interior_text}, music_text=#{music_text}, 
+		plug_text=#{plug_text}, restroom_text=#{restroom_text}, 
+		studyroom_text=#{studyroom_text}, terrace_text=#{terrace_text}, 
+		smoking_text=#{smoking_text}, parking_text=#{parking_text} 
+		<where>  
+			<if test="cafe_id != null">
+				cafe_id=#{cafe_id}			
+			</if>
+		</where>
+	</update>
+	<update id="updateService" parameterType="vo.CafeServiceVO">  
+		update mingo.cafe_service set
+		event=#{event}, coupon=#{coupon}, mileage=#{mileage}, 
+		blanket=#{blanket}, drinkrefill=#{drinkrefill}
+		<where>
+			<if test="cafe_id != null">
+				cafe_id=#{cafe_id}			
+			</if>
+		</where>
+	</update>
+	<update id="updateMenu" parameterType="vo.CafeMenuVO">  
+		update mingo.cafe_menu set
+		name=#{name}, price=#{price}, image=#{image}, type=#{type}
+		<where>
+			<if test="cafe_id != null">
+				cafe_id=#{cafe_id}			
+			</if>
+		</where>
+	</update>
+	<update id="updateProduct" parameterType="vo.CafeProductVO">  
+		update mingo.cafe_product set
+		name=#{name}, price=#{price}, image=#{image}, type=#{type}
+		<where>
+			<if test="cafe_id != null">
+				cafe_id=#{cafe_id}			
+			</if>
+		</where>
+	</update>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 
 	 <insert id="insertMember" parameterType="test.TestVO">

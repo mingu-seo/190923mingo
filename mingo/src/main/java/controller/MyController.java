@@ -43,8 +43,10 @@ public class MyController {
 	}
 	
 	@RequestMapping("/myCafe.do")
-	public String myCafe(Model model, UserVO vo) {
-		int user_id = vo.getUser_id();
+	public String myCafe(Model model, UserVO vo, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		UserVO vo1 = (UserVO) session.getAttribute("userVO");
+		int user_id = vo1.getUser_id();
 		UserVO userVO = myService.viewUserInfo(user_id);
 		model.addAttribute("userVO", userVO);
 		
@@ -84,6 +86,7 @@ public class MyController {
 		model.addAttribute("boardList", boardList);
 		return "mypage/myMyPost";
 	}
+	
 	@RequestMapping("/myCollect.do")
 	public String myCollect(Model model, HttpServletRequest request) {
 		HttpSession session = request.getSession();
