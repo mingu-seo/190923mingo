@@ -161,12 +161,10 @@
 		text-align:center;
 	}
 	.footer{
-	    font-family: 'Noto Sans KR', sans-serif;
-	    position: relative;
-	    font-size: 14px;
-	    top:80px;
-	    color: rgb(168, 167, 168);
-	    text-align: center;
-	    word-break: keep-all;
-	 }
+	   font-size: 14px;
+	   text-align: center;
+	   color: #c1c1c1;
+	   font-style: normal;
+	   padding: 56px 0
+	}
 						

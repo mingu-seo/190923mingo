@@ -44,8 +44,8 @@
 		</form>
 		
 		<div class="buttonarea">
-            <button type="button" class="findpw_button" href="#">비밀번호찾기</button>
-            <button type="button" class="login_button" href="">로그인</button>
+            <button type="button" class="findpw_button"  onclick = "location.href = '/findPwd_step1.do' ">비밀번호찾기</button>
+            <button type="button" class="login_button"  onclick = "location.href = '/loginForm.do' ">로그인</button>
         </div>
 	</div>
 	<div class="footer">

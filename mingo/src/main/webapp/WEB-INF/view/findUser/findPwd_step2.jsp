@@ -32,7 +32,7 @@
 			<li class="process_active">02.비밀번호 재설정</li>
 			
 		</ol>
-		<form class="formarea">
+		<form action="/loginForm.do" class="formarea">
 			<p class="formarea">
 			본인을 확인하였습니다.
 			<br>새로운 비밀번호를 등록해 주세요
@@ -60,7 +60,7 @@
 		</form>
 		
 		<div class="buttonarea">
-            <button type="button" class="finish_button" href="">비밀번호 재설정 완료</button>
+            <button type="button" class="finish_button" onclick = "location.href = '/loginForm.do' ">비밀번호 재설정 완료</button>
         </div>
 	</div>
 	<div class="footer">

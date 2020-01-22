@@ -4,6 +4,8 @@ package service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -29,7 +31,11 @@ public interface DetailService {
 	public CafeFacilitiesVO viewFacilities(int cafe_id);
 	public CafeRateVO viewCafeRate(int cafe_id);
 	
-	
+	public int registCafe(CafeVO cafeVO, List<MultipartFile> logoFile, HttpServletRequest request);
+	public int registFacility(CafeFacilitiesVO cafeFacilitiesVO);
+	public int registService(CafeServiceVO cafeServiceVO);
+	public int registMenu(List<CafeMenuVO> cafeMenuVO, List<MultipartFile> menuFileList, MultipartHttpServletRequest request);
+	public int registProduct(List<CafeProductVO> cafeProductVO, List<MultipartFile> productFileList, MultipartHttpServletRequest request);
 	
 	public int insertCafeImages(CafeImageVO cafeVO, List<MultipartFile> fileList,MultipartHttpServletRequest request);
 }

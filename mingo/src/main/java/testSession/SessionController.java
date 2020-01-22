@@ -31,10 +31,8 @@ public class SessionController {
 		UserVO vo =  sessionService.viewUser(user_id);
 		model.addAttribute("userVO", vo);
 		
-		/*
 		HttpSession session = request.getSession();
 		session.setAttribute("userVO", vo);
-		*/
 		
 		return "test/userSession";
 	}

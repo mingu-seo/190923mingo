@@ -12,7 +12,7 @@
 		
 	</select>
 	
-	<select id="getCafeList" resultType="vo.CafeVO" parameterType="vo.CafeVO">
+	<select id="getCafeList" resultType="vo.CafeVO" parameterType="vo.CafeCommand">
 		select * from cafe
 		<where>
 			<if test="sido_code != null and sido_code > 0">
@@ -28,27 +28,23 @@
 			and name like '%${name}%'
 			</if>
 		</where>
+		
+		<!-- 필터가 있을 경우 검사 1.점수순 2. 리뷰순 3. 좋아요 순 -->
+		<if test=" filter_type !=null">
+			<choose >
+				<when test="filter_type == 1">
+					order by rate_avg desc
+				</when>
+				<when test="filter_type == 2">
+					order by review_num desc
+				</when>
+				<when test="filter_type == 3">
+					order by cafe_like desc
+				</when>
+			</choose>
+		</if>
 		limit 0,8;
 		
 	</select>
-	<select id="getCafeListByScore" resultType="vo.CafeVO" parameterType="vo.CafeVO">
-		select * from cafe
-		<where>
-			<if test="sido_code != null and sido_code > 0">
-			and sido_code = #{sido_code}
-			</if>
-			<if test="sigungu_code != null and sigungu_code > 0">
-			and sigungu_code = #{sigungu_code}
-			</if>
-			<if test="dong_code != null and dong_code > 0">
-			and dong_code = #{dong_code}
-			</if>
-			<if test=" name != null and name!='' ">
-			and name like '%${name}%'
-			</if>
-		</where>
-		order by rate_avg;
-		limit 0,8;
-		
-	</select>
+	
 </mapper>

@@ -25,29 +25,44 @@
     <!-- 내가 만든 파일-->
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/boardStyle.css">
     <script src="<%=request.getContextPath() %>/js/resultScript.js"></script>
-    
+    <style>
+     
+    	.nav-pills .my-link.active, .nav-pills .show>.my-link {
+	    	color: #fff;
+		    background-color: #6c757d;
+		    border-radius:20px;
+			}
+			.my-link:focus, .my-link:hover {
+    		text-decoration: none;
+    		color:black;
+    		background-color:#f1f1f1;
+    		border-radius:20px;
+			}
+    </style>
+    <script>
+    	var sido_code = ${cafeCommand.sido_code};
+    	var sigungu_code = ${cafeCommand.sigungu_code};
+    	var dong_code = ${cafeCommand.dong_code};
+    	var name = '${cafeCommand.name}';
+    	//var filter_type;
+	    
+    </script>
 </head>
 
 <body>
-	<script>
-		var sido_code = ${sido_code};
-		var sigungu_code = ${sigungu_code};
-		var dong_code = ${dong_code};
-		var name = ${name};
-		alert(sido_code);
-	</script>
+
   <!-- 내비게이션 include -->
 	<%@ include file="/WEB-INF/view/include/navigation.jsp"%>
 	
 	<div class="container-fluid result-nav bg-white pb-0">
 		<div class="container result-nav-wrapper p-1">
 			<ul class="nav nav-pills">
-				<li class="nav-item"><a class="nav-link active"
-					data-toggle="pill" href="javascript:void(0);" onclick="listByScore();">평점 순</a></li>
-				<li class="nav-item"><a class="nav-link" data-toggle="pill"
-					href="cafeOrderByReview.do">리뷰 순</a></li>
-				<li class="nav-item"><a class="nav-link" data-toggle="pill"
-					href="cafeOrderByLike.do">좋아요 순</a></li>
+				<li class="nav-item"><a class="nav-link my-link"
+					data-toggle="pill" href="javascript:void(0);" onclick="listByFilter(1,this);">평점 순</a></li>
+				<li class="nav-item"><a class="nav-link my-link" data-toggle="pill"
+					href="javascript:void(0);" onclick="listByFilter(2,this);">리뷰 순</a></li>
+				<li class="nav-item"><a class="nav-link my-link" data-toggle="pill"
+					href="javascript:void(0);" onclick="listByFilter(3,this);">좋아요 순</a></li>
 			</ul>
 		</div>
 	</div>
@@ -60,14 +75,17 @@
             </div>
             <div class="cafe cafe-name ml-1 mt-2 mb-2" style="font-size:0.9em;"><a href="#">${cafe.name } ${cafe.branch }</a></div>
             <div class="cafe cafe-address mb-1">${cafe.cafe_address }</div>
-            <div class="cafe cafe-score float-left">평점 3.9
+            <div class="cafe cafe-score float-left" >평점 ${cafe.rate_avg }
             </div>
-            <div class="cafe star-rating float-left mt-1 ml-2">
-            		<div></div>
+            <div class="cafe star-rating float-left mt-1 ml-2" >
+            		<div style="width:${cafe.rate_avg * 20}%"></div>
             	</div>
-            <div class="cafe cafe-like float-right" style="font-size:1em"><i
-								class="fa fa-heart text-danger"
-								style="font-size: 1em;"></i>&nbsp;133개
+            <div style="overflow:hidden;clear:both;">
+	            <div class="cafe" style="float:left;clear:left;">리뷰 (${cafe.review_num } 개)</div>
+	            <div class="cafe cafe-like float-right"><i
+									class="fa fa-heart text-danger"
+									style="font-size: 1em;"></i>&nbsp;${cafe.cafe_like}개
+							</div>
 						</div>
         	</div>
         </c:forEach>

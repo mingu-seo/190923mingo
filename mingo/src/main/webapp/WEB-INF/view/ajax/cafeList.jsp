@@ -11,12 +11,17 @@
 			<a href="#">${cafe.name } ${cafe.branch }</a>
 		</div>
 		<div class="cafe cafe-address mb-1">${cafe.cafe_address }</div>
-		<div class="cafe cafe-score float-left">평점 3.9</div>
+		<div class="cafe cafe-score float-left">평점 ${cafe.rate_avg }</div>
 		<div class="cafe star-rating float-left mt-1 ml-2">
-			<div></div>
+			<div style="width:${cafe.rate_avg * 20}%"></div>
 		</div>
-		<div class="cafe cafe-like float-right" style="font-size: 1em">
-			<i class="fa fa-heart text-danger" style="font-size: 1em;"></i>&nbsp;133개
+		<div style="overflow: hidden; clear: both;">
+			<div class="cafe" style="float: left; clear: left;">리뷰
+				(${cafe.review_num } 개)</div>
+			<div class="cafe cafe-like float-right">
+				<i class="fa fa-heart text-danger" style="font-size: 1em;"></i>&nbsp;${cafe.cafe_like}개
+			</div>
 		</div>
 	</div>
 </c:forEach>
+</div>

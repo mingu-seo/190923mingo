@@ -73,6 +73,28 @@ public class DetailServiceImpl implements DetailService {
 		CafeRateVO cafeRate = detailDao.viewCafeRate(cafe_id);
 		return cafeRate;
 	}
+	
+	public int registCafe(CafeVO cafeVO, List<MultipartFile> logoFile, HttpServletRequest request) {
+		int r = detailDao.registCafe(cafeVO, logoFile, request);
+		return r;
+	}
+	public int registFacility(CafeFacilitiesVO cafeFacilitiesVO) {
+		int r = detailDao.registFacility(cafeFacilitiesVO);
+		return r;
+	}
+	public int registService(CafeServiceVO cafeServiceVO) {
+		int r = detailDao.registService(cafeServiceVO);
+		return r;
+	}
+	public int registMenu(List<CafeMenuVO> cafeMenuVO, List<MultipartFile> menuFileList, MultipartHttpServletRequest request) {
+		int r = detailDao.registMenu(cafeMenuVO, menuFileList, request);
+		return r;
+	}
+	public int registProduct(List<CafeProductVO> cafeProductVO, List<MultipartFile> productFileList,MultipartHttpServletRequest request) {
+		int r = detailDao.registProduct(cafeProductVO, productFileList, request);
+		return r;
+	}
+	
 	   
 	
 }

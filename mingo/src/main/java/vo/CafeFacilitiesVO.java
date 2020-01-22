@@ -6,7 +6,7 @@ public class CafeFacilitiesVO {
 	private int cafe_id;
 	private int wifi;
 	private String wifi_text;
-	private int table;  
+	private int tables;  
 	private String table_text;
 	private int interior;
 	private String interior_text;
@@ -24,7 +24,21 @@ public class CafeFacilitiesVO {
 	private String studyroom_text;
 	private int parking;
 	private String parking_text;
+	private int smoking;
+	private String smoking_text;
 	
+	public int getSmoking() {
+		return smoking;
+	}
+	public void setSmoking(int smoking) {
+		this.smoking = smoking;
+	}
+	public String getSmoking_text() {
+		return smoking_text;
+	}
+	public void setSmoking_text(String smoking_text) {
+		this.smoking_text = smoking_text;
+	}
 	public int getCafe_facilities_id() {
 		return cafe_facilities_id;
 	}
@@ -49,11 +63,11 @@ public class CafeFacilitiesVO {
 	public void setWifi_text(String wifi_text) {
 		this.wifi_text = wifi_text;
 	}
-	public int getTable() {
-		return table;
+	public int getTables() {
+		return tables;
 	}
-	public void setTable(int table) {
-		this.table = table;
+	public void setTables(int tables) {
+		this.tables = tables;
 	}
 	public String getTable_text() {
 		return table_text;

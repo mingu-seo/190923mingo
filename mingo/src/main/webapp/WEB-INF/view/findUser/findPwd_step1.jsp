@@ -32,7 +32,7 @@
 			<li class="process">02.비밀번호 재설정</li>
 			
 		</ol>
-		<form class="formarea">
+		<form action="/findPwd_step2.do" class="formarea">
 			<p class="formarea">비밀번호를 찾기 위해 회원정보를 입력해 주세요.</p>
 			<div class="insertarea">
 				<label class="insert_email">
@@ -51,7 +51,7 @@
 						&nbsp;
 					</span>
 					<div class="insert_content">
-						<input placeholder="7자리 숫자로 입력해 주세요." class="bday_content " value="">
+						<input placeholder="8자리 숫자로 입력해 주세요." class="bday_content " value="">
 					</div>
 				</label>
 				<label class="insert_phone_num ">
@@ -60,13 +60,13 @@
 						&nbsp;
 					</span>
 					<div class="insert_content">
-						<input placeholder="11자리 숫자로 입력해 주세요." class="phone_num_content " value="">
+						<input placeholder="'-'없이 11자리 숫자로 입력해 주세요." class="phone_num_content " value="">
 					</div>
 				</label>
 			</div>
 		</form>
 		<div class="button">
-            <button type="button" class="nextbutton" href="#">다음</button>
+            <button type="button" class="nextbutton" onclick = "location.href = '/findPwd_step2.do' ">다음</button>
 	    </div>
 	</div>
 	<div class="footer">

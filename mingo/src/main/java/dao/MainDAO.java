@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import vo.CafeCommand;
 import vo.CafeVO;
 
 @Repository
@@ -25,15 +26,11 @@ public class MainDAO {
 		
 	}
 
-	public List<CafeVO> getCafeList(CafeVO cafeTmp) {
+	public List<CafeVO> getCafeList(CafeCommand cafeTmp) {
 		return sqlSession.selectList("hong.getCafeList", cafeTmp);
 	}
 
-	public List<CafeVO> getCafeListByScore(CafeVO cafeTmp) {
-		
-		return sqlSession.selectList("hong.getCafeListByScore", cafeTmp);
-	}
-
+	
 	
 	
 }
