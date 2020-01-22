@@ -6,7 +6,7 @@
     <head>
         <title>HTML5 Basic</title>
         <meta name="viewport" content="user-scalable=no, initial-scale=1">
-        
+           
         
         <script src="js/swiper.min.js"></script>
         <script src="http://code.jquery.com/jquery-3.4.1.js"></script>
