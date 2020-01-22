@@ -31,11 +31,11 @@
             .graph_rate{
                 text-align: right;
                 height:100%;
+                background-color: #4B610B;
                 box-sizing: border-box;
-                
+                border-radius: 40px;
                 line-height: 50px;
-                width:10%;
-                float: left;
+                width:320px;
             }
 
             .graph_text{
@@ -43,13 +43,13 @@
                 position: relative;
                 z-index: 110;
             }
-            /* .graph_logo{
+            .graph_logo{
                 height: 100px;
                 float: left;
                 position: relative;
                 z-index: 100;
                 bottom: 30px;
-            } */
+            }
             .bean_img{
                 height:70px;
                 float: right;
@@ -63,31 +63,18 @@
                 float: right;
                 font-size: 1.5em;
                 font-weight: bold;
-                color: #2E2E2E;
-            }  
+                color: #FFFFFF;
+            }
 
 
         </style>
     	<script type="text/javascript">
-    	  	
-    		$(function(){
-	    		$('.graph_rate').mouseover(function(){
-	    			$(this).prevAll().css({
-		                'background-color': '#4B610B'
-	    			});
-	    			$(this).css({
-		                'background-color': '#4B610B'
-	    			});
-	    		}).mouseleave(function(){
-	    			$('.graph_rate').css({
-	    				'background-color': 'transparent'
-	    			});
-	    		});
-    			  
-    			
-    		});  
-    		
-	    	
+    	  
+    	
+    	
+	    	$(function(){
+			    $('.bean_img').draggable();
+			}); 
     	
     	
     	
@@ -95,23 +82,17 @@
     </head>
     <body>  
         <h1>리뷰 등록 폼</h1><br>
+        
         <div class="graph_area">
             <div>
                 <img src="img/wifi.png" class="graph_logo">
             </div>
             <div class="graph_stack">
-                <div class="graph_rate"></div>   
-                <div class="graph_rate"></div>   
-                <div class="graph_rate"></div>   
-                <div class="graph_rate"></div>   
-                <div class="graph_rate"></div>   
-                <div class="graph_rate"></div>   
-                <div class="graph_rate"></div>   
-                <div class="graph_rate"></div>   
-                <div class="graph_rate"></div>   
-                <div class="graph_rate"></div>   
+                <div class="graph_rate">
+                    <img src="img/bean.PNG" class="bean_img">
+                    <div class="graph_text">10점</div>
+                </div>
             </div>
-            <div class="graph_text">10점</div>
         </div>
         
         

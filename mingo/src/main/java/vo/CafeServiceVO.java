@@ -1,6 +1,7 @@
 package vo;
 
 public class CafeServiceVO {
+	private int cafe_service_id;
 	private int cafe_id;
 	private int event;
 	private int coupon;
@@ -8,6 +9,12 @@ public class CafeServiceVO {
 	private int blanket;
 	private int drinkrefill;
 	
+	public int getCafe_ervice_id() {
+		return cafe_service_id;
+	}
+	public void setCafe_ervice_id(int cafe_service_id) {
+		this.cafe_service_id = cafe_service_id;
+	}
 	public int getCafe_id() {
 		return cafe_id;
 	}

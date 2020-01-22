@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -60,10 +63,9 @@
 
 
         </style>
-    
     </head>
     <body>
-        <h1>Hello World!!</h1><br>
+        <h1>리뷰 수정 폼</h1><br>
         <div class="graph_area">
             <div>
                 <img src="./wifi.png" class="graph_logo">
@@ -71,7 +73,7 @@
             <div class="graph_stack">
                 <div class="graph_rate">
                     <img src="./bean.PNG" class="bean_img">
-                    <div class="graph_text">10점</div>
+                    <div class="graph_text">10�젏</div>
                 </div>
             </div>
         </div>
@@ -82,7 +84,7 @@
             <div class="graph_stack">
                 <div class="graph_rate">
                     <img src="./bean.PNG" class="bean_img">
-                    <div class="graph_text">9�젏</div>
+                    <div class="graph_text">9占쎌젎</div>
                 </div>
             </div>
         </div>
@@ -93,7 +95,7 @@
             <div class="graph_stack">
                 <div class="graph_rate">
                     <img src="./bean.PNG" class="bean_img">
-                    <div class="graph_text">8�젏</div>
+                    <div class="graph_text">8占쎌젎</div>
                 </div>
             </div>
         </div>
@@ -104,7 +106,7 @@
             <div class="graph_stack">
                 <div class="graph_rate">
                     <img src="./bean.PNG" class="bean_img">
-                    <div class="graph_text">7�젏</div>
+                    <div class="graph_text">7占쎌젎</div>
                 </div>
             </div>
         </div>
@@ -115,7 +117,7 @@
             <div class="graph_stack">
                 <div class="graph_rate">
                     <img src="./bean.PNG" class="bean_img">
-                    <div class="graph_text">6�젏</div>
+                    <div class="graph_text">6占쎌젎</div>
                 </div>
             </div>
         </div>
@@ -126,7 +128,7 @@
             <div class="graph_stack">
                 <div class="graph_rate">
                     <img src="./bean.PNG" class="bean_img">
-                    <div class="graph_text">5�젏</div>
+                    <div class="graph_text">5占쎌젎</div>
                 </div>
             </div>
         </div>
@@ -137,54 +139,11 @@
             <div class="graph_stack">
                 <div class="graph_rate">
                     <img src="./bean.PNG" class="bean_img">
-                    <div class="graph_text">4�젏</div>
+                    <div class="graph_text">4占쎌젎</div>
                 </div>
             </div>
         </div>
-        <div class="graph_area">
-            <div>
-                <img src="./wifi.png" class="graph_logo">
-            </div>
-            <div class="graph_stack">
-                <div class="graph_rate">
-                    <img src="./bean.PNG" class="bean_img">
-                    <div class="graph_text">3�젏</div>
-                </div>
-            </div>
-        </div>
-        <div class="graph_area">
-            <div>
-                <img src="./wifi.png" class="graph_logo">
-            </div>
-            <div class="graph_stack">
-                <div class="graph_rate">
-                    <img src="./bean.PNG" class="bean_img">
-                    <div class="graph_text">2�젏</div>
-                </div>
-            </div>
-        </div>
-        <div class="graph_area">
-            <div>
-                <img src="./wifi.png" class="graph_logo">
-            </div>
-            <div class="graph_stack">
-                <div class="graph_rate">
-                    <img src="./bean.PNG" class="bean_img">
-                    <div class="graph_text">1�젏</div>
-                </div>
-            </div>
-        </div>
-        <div class="graph_area">
-            <div>
-                <img src="./wifi.png" class="graph_logo">
-            </div>
-            <div class="graph_stack">
-                <div class="graph_rate">
-                    <img src="./bean.PNG" class="bean_img">
-                    <div class="graph_text">0�젏</div>
-                </div>
-            </div>
-        </div>
+        
 
 
     </body>
