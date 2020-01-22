@@ -10,8 +10,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import dao.MainDAO;
+import vo.BoardVO;
 import vo.CafeCommand;
 import vo.CafeVO;
+import vo.ReviewVO;
+import vo.UserVO;
 
 @Controller
 public class MainController {
@@ -21,7 +24,13 @@ public class MainController {
 	//메인으로 이동
 	@RequestMapping("/goMain.do")
 	public String goMain(Model model) {
+		List<BoardVO> boardList = dao.getBoardList(1);
+		List<BoardVO> boardList2 = dao.getBoardList(2);
+		List<Map> reviewList = dao.getReviewList();
 		
+		model.addAttribute("reviewList", reviewList);
+		model.addAttribute("boardList",boardList);
+		model.addAttribute("boardList2",boardList2);
 		return "main/main";
 	}
 	
@@ -79,6 +88,16 @@ public class MainController {
 		List<CafeVO> cafeList = dao.getCafeList(cafeCommand);
 		model.addAttribute("cafeList", cafeList);  
 		return "ajax/cafeList";
+	}
+	
+	//메인화면에서 종합순위 부분 Ajax
+	@RequestMapping("/rankCafeAjax.do")
+	public String rankCafeAjax(Model model,CafeCommand cafeCommand) {
+		
+		//필터로 sql 검색하여 5개씩 리스트로 받아옴
+		List<CafeVO> rankList = dao.getCafeList2(cafeCommand);
+		model.addAttribute("rankList", rankList);  
+		return "ajax/rankList";
 	}
 	
 	

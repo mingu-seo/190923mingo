@@ -47,4 +47,37 @@
 		
 	</select>
 	
+	<select id="getCafeList2" resultType="vo.CafeVO" parameterType="vo.CafeCommand">
+		select * from cafe
+		<!-- 필터가 있을 경우 검사 1.점수순 2. 리뷰순 3. 좋아요 순 -->
+		<if test=" filter_type !=null">
+			<choose >
+				<when test="filter_type == 1">
+					order by rate_avg desc
+				</when>
+				<when test="filter_type == 2">
+					order by review_num desc
+				</when>
+				<when test="filter_type == 3">
+					order by cafe_like desc
+				</when>
+			</choose>
+		</if>
+		limit 0,5;
+		
+	</select>
+	<select id="getReviewList" resultType="Map">
+		SELECT r.*, u.nickname 
+		FROM review as r join user as u 
+		on r.user_id = u.user_id
+		limit 15,5;
+		  
+	</select>
+	<select id="getBoardList" resultType="vo.BoardVO" parameterType="Integer">
+		select title from board
+		where type=#{boardType}
+		limit 0,11;
+		
+	</select>
+	
 </mapper>
