@@ -21,9 +21,14 @@ public class UserDAO {
 	}
 	
 	/* 아이디 중복체크 */
-	public int emailCheck(UserVO vo){
-		return sqlSession.selectOne("userMapper.emailCheck",vo);
+	public int emailCheck(String email){
+		return sqlSession.selectOne("userMapper.emailCheck",email);
 	}
+	/* 닉네임 중복체크 */
+	public int nicknameCheck(String nickname){
+		return sqlSession.selectOne("userMapper.nicknameCheck", nickname);
+	}
+	
 	public UserVO id_step1_process(UserVO vo) {
 		return sqlSession.selectOne("userMapper.id_step1_process", vo);
 	}

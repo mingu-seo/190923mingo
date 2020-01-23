@@ -8,9 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     
-    <link rel="stylesheet" type="text/css" href="css/join/joinForm.css">
+    <link rel="stylesheet" type="text/css" href="css/join/joinForm_host.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script type="text/javascript" src="js/join/joinFormScript.js"></script>
+    <script type="text/javascript" src="js/join/joinFormScript_host.js"></script>
 </head>
 
 <body>
@@ -19,10 +19,10 @@
         <div class="title">
 	        <span class="t1">MINGO</span>    
 	        <span class="t2">회원가입</span>
-	        <p class="t3">MINGO 에서 활동하실 아이디와 비밀번호, 닉네임 등의 기본정보를 생성합니다.</p>    
+	        <p class="t3">사장님 회원님의 회원가입 페이지입니다.</p>    
       	</div>
     
-    <form id="joinForm" action="joinProcess.do" method="post">
+    <form id="joinForm_host" action="joinProcess.do" method="post">
        
         
          <div class="main">
@@ -83,7 +83,7 @@
 	            </span>
 	            <div class="nickname1">
 	               <div class="nickname2">
-						<input id="nickname" name="nickname" minlength="2" maxlength="10" required placeholder="사용하실 닉네임을 입력해주세요(2~10자,변경불가)" > 
+						<input id="nickname" name="nickname"required placeholder="사용하실 닉네임을 입력해주세요(2~10자,변경불가)" > 
 	        			<button class="nick-btn-check" type="button" style="margin-left: 16px;">중복확인</button>
 	        		</div>
 	        	</div>
@@ -103,6 +103,21 @@
 	        	</div>
 	        </label>
         </div>
+            
+         <div class="main">
+	        <label for="business_num">
+	            <span class="insert_business_num">
+	              	  사업자 등록번호 
+	              	 &nbsp;
+	            </span>
+	            <div class="business_num1">
+	               <div class="business_num2">
+						<input id="business_num" name="business_num" required placeholder="사업자 등록번호를 입력해주세요"> 
+	        		</div>
+	        	</div>
+	        </label>
+        </div>
+        
 		<div class="main">
             <div class="gender_select">  
                 <ul class="gender_button">
@@ -110,9 +125,10 @@
                 	<li role="radio" aria-checked="false" value="2" id="male" class="gender_button gbtn">남성</li> <!-- 2 -->
                 </ul>
             </div>
-       </div>
+            </div>
+       
        		<input type="hidden" id="gender" name="gender" value="2"/>
-       		<input type="hidden" id="type_general"  name ="type" value="1"/>
+       		<input type="hidden" id="type_host"  name ="type" value="2"/>
            </form>
         </div>
     

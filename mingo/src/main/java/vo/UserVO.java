@@ -13,7 +13,7 @@ public class UserVO {
 	private String password;
 	private String nickname;
 	private String name;
-	private Date birthday;
+	private String birthday;
 	private int gender;
 	private int type;
 	private String phone_num;
@@ -51,10 +51,10 @@ public class UserVO {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Date getBirthday() {
+	public String getBirthday() {
 		return birthday;
 	}
-	public void setBirthday(Date birthday) {
+	public void setBirthday(String birthday) {
 		this.birthday = birthday;
 	}
 	public int getGender() {

@@ -14,28 +14,18 @@
 			$("#gender").val($(this).index('.gbtn')+1);
 		});
 	});
-
+	
+	
+	
 	
 	function joinForm(){
-		/*var emailChk = RegExp(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/);
-*/
-		
-		//이메일 공백 
 		if($('#email').val().trim() == ""){
 			alert('이메일을 입력해주세요.');
 			$('#email').focus();
 			return false;
 		}
-//		//이메일 유효성 검사 
-//		if(!emailChk.test($("#email").val())){ 
-//			alert("이메일을 형식에 맞게 입력해주세요") 
-//			$("#email").val(""); 
-//			$("#email").focus(); 
-//			return false; }
-
-		
 		var con = true;
-		var data = $("#joinForm").serialize();
+		var data = $("#joinForm_host").serialize();
 			console.log(data);
 		$.ajax({
 			url : "/emailCheck.do",
@@ -88,24 +78,21 @@
 			$("#birthday").focus();
 			return false;
 		}
+		if($("#business_num").val().trim() == ""){
+			alert("사업자 등록 번호를 입력해 주세요.");
+			$("#business_num").focus();
+			return false;
+		}
 		
-		$("#joinForm").submit();
+		
+		$("#joinForm_host").submit();
 	}
 	
 	//이메일 중복체크
 	$(function(){
-		var emailChk = RegExp(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/);
-
 		$('.email-btn-check').click(function(){
 			if($('#email').val().trim() == ""){
 				alert('이메일을 입력해 주세요.');
-			
-			}if(!emailChk.test($("#email").val())){ 
-					alert("이메일을 형식에 맞게 입력해주세요") 
-					$("#email").val(""); 
-					$("#email").focus(); 
-					return false;
-
 			}else{
 				$.ajax({
 					url:"/emailCheck.do",
@@ -149,7 +136,7 @@
 	//다시 작성 리셋
 	$(function(){
 	    $( "#returnbutton").click(function () {
-	        $( "#joinForm" ).each(function () {
+	        $( "#joinForm_host" ).each(function () {
 	            this.reset();
 	        });
 	    });
