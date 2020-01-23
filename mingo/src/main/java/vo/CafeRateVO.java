@@ -74,7 +74,7 @@ public class CafeRateVO {
 	public double getMood_avg() {
 		return mood_avg;
 	}
-	public void setFacimood_avg(double mood_avg) {
+	public void setMood_avg(double mood_avg) {
 		this.mood_avg = mood_avg;
 	}
 	public double getService_avg() {
@@ -86,7 +86,7 @@ public class CafeRateVO {
 	public double getWifi_avg() {
 		return wifi_avg;
 	}
-	public void setWifiplug_avg(double wifi_avg) {
+	public void setWifi_avg(double wifi_avg) {
 		this.wifi_avg = wifi_avg;
 	}
 	public double getClean_avg() {

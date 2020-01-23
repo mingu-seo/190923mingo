@@ -1,36 +1,59 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Document</title>
-	
-	<!-- 헤더파일들 include -->
-	<%@ include file="/WEB-INF/view/include/headHTML.jsp"%>
-	
-	
-	<!-- 내가 만든 파일-->
-	<link rel="stylesheet" href="<%=request.getContextPath() %>/css/mainStyle.css">
-	<script src="<%=request.getContextPath() %>/js/scriptForMain.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+
+<!-- 헤더파일들 include -->
+<%@ include file="/WEB-INF/view/include/headHTML.jsp"%>
+
+<!-- masonry -->
+<script
+	src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+
+<!-- imagesloaded-->
+<script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.js"></script>
+
+<!-- 내가 만든 파일-->
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/css/mainStyle.css">
+<script src="<%=request.getContextPath()%>/js/scriptForMain.js"></script>
+<style>
+.nav-pills .my-link.active, .nav-pills .show>.my-link {
+	color: #fff;
+	background-color: #6c757d;
+	border-radius: 20px;
+}
+
+.my-link:focus, .my-link:hover {
+	text-decoration: none;
+	color: black;
+	background-color: #f1f1f1;
+	border-radius: 20px;
+}
+</style>
 </head>
 
 <body>
 	<!-- 내비게이션 include -->
 	<%@ include file="/WEB-INF/view/include/navigation.jsp"%>
-	
+
 	<header class="jumbotron jumbotron-fluid text-center bg-cover m-0">
 		<div class="container search-area">
-			<form class="form pl-4 pr-4" action="searchCafe.do" method="post" onsubmit="return pushLast();">
+			<form class="form pl-4 pr-4" action="searchCafe.do" method="post"
+				onsubmit="return pushLast();">
 				<div class="form-row">
 					<div class="col-sm-10">
 						<div class="form-row">
 							<div class="col-4 pb-1 pt-1">
-								<select class="form-control rounded-edge" name="sido_code" id="sido_code">
+								<select class="form-control rounded-edge" name="sido_code"
+									id="sido_code">
 									<option value="-1">시/도</option>
 									<option value="11">서울</option>
 									<option value="26">부산</option>
@@ -52,13 +75,15 @@
 								</select>
 							</div>
 							<div class="col-4 pb-1 pt-1" id="">
-								<select class="form-control rounded-edge" name="sigungu_code" id="sigungu_code">
-									<option value="-1" class="start1" >시/군/구</option>
+								<select class="form-control rounded-edge" name="sigungu_code"
+									id="sigungu_code">
+									<option value="-1" class="start1">시/군/구</option>
 								</select>
 							</div>
 							<div class="col-4 pb-1 pt-1">
-								<select class="form-control rounded-edge" name="dong_code" id="dong_code">
-									<option value="-1" class="start2" >행정동</option>
+								<select class="form-control rounded-edge" name="dong_code"
+									id="dong_code">
+									<option value="-1" class="start2">행정동</option>
 								</select>
 							</div>
 
@@ -83,163 +108,94 @@
 	<div class="container-fluid bg-light">
 		<div class="container bg-light">
 			<div class="row">
-				<div class="col-lg-7 mb-5 bg-light mt-4 ">
+				<div class="col-lg-7 mb-1 bg-light mt-4">
 					<div class="container rank-header shadow-sm">
-						<h1 class="mt-2">종합순위 <a href="#"
-								class="fa fa-plus-square-o detail-icon"
-								style="font-size: 1.3em; float: right;"></a></h1>
+						<h1 class="mt-2">
+							종합순위 <a href="#"  data-toggle="tooltip" title="더보기" data-placement="left" class="fa fa-plus-square-o detail-icon"
+								style="font-size: 1.3em; float: right;"></a>
+						</h1>
 
 					</div>
 					<div class="container rank-filter pt-1 pb-1 shadow-sm">
-						<button type="button" class="btn btn-secondary">별점순</button>
-						<button type="button" class="btn btn-secondary">리뷰순</button>
-						<button type="button" class="btn btn-secondary">브랜드순</button>
+						<ul class="nav nav-pills">
+							<li class="nav-item"><a class="nav-link my-link active"
+								data-toggle="pill" href="javascript:void(0);"
+								onclick="listByFilter2(1,this);">평점 순</a></li>
+							<li class="nav-item"><a class="nav-link my-link"
+								data-toggle="pill" href="javascript:void(0);"
+								onclick="listByFilter2(2,this);">리뷰 순</a></li>
+							<li class="nav-item"><a class="nav-link my-link"
+								data-toggle="pill" href="javascript:void(0);"
+								onclick="listByFilter2(3,this);">좋아요 순</a></li>
+						</ul>
 					</div>
-					<div class="list-group list-group-flush rank-contents shadow-sm">
-
-						<a href="#" class="list-group-item p-1">
-							<div class="rank-num rounded-lg">1</div>
-							<div class="rank-img rounded-circle">
-								<img src="http://placehold.it/80x80">
-							</div>
-							<div class="rank-info">
-								<div class="rank-name">밍고카페</div>
-								<div class="float-right ml-3"
-									style="font-size: 0.8em; margin-top: 3px;">(133개)</div>
-								<div class="rank-score">8.3</div>
-								<br>
-								<div class="rank-address">서울시 광진구 자양3동</div>
-								<div class="rank-star">★★★★☆</div>
-							</div>
-						</a> <a href="#" class="list-group-item p-1">
-							<div class="rank-num rounded-lg">2</div>
-							<div class="rank-img rounded-circle">
-								<img src="http://placehold.it/80x80">
-							</div>
-							<div class="rank-info">
-								<div class="rank-name">밍고카페</div>
-								<div class="float-right ml-3"
-									style="font-size: 0.8em; margin-top: 3px;">(133개)</div>
-								<div class="rank-score">8.3</div>
-								<br>
-								<div class="rank-address">서울시 광진구 자양3동</div>
-								<div class="rank-star">★★★★☆</div>
-							</div>
-						</a> <a href="#" class="list-group-item p-1">
-							<div class="rank-num rounded-lg">3</div>
-							<div class="rank-img rounded-circle">
-								<img src="http://placehold.it/80x80">
-							</div>
-							<div class="rank-info">
-								<div class="rank-name">밍고카페</div>
-								<div class="float-right ml-3"
-									style="font-size: 0.8em; margin-top: 3px;">(133개)</div>
-								<div class="rank-score">8.3</div>
-								<br>
-								<div class="rank-address">서울시 광진구 자양3동</div>
-								<div class="rank-star">★★★★☆</div>
-							</div>
-						</a> <a href="#" class="list-group-item p-1">
-							<div class="rank-num rounded-lg">4</div>
-							<div class="rank-img rounded-circle">
-								<img src="http://placehold.it/80x80">
-							</div>
-							<div class="rank-info">
-								<div class="rank-name">밍고카페</div>
-								<div class="float-right ml-3"
-									style="font-size: 0.8em; margin-top: 3px;">(133개)</div>
-								<div class="rank-score">8.3</div>
-								<br>
-								<div class="rank-address">서울시 광진구 자양3동</div>
-								<div class="rank-star">★★★★☆</div>
-							</div>
-						</a> <a href="#" class="list-group-item p-1">
-							<div class="rank-num rounded-lg">5</div>
-							<div class="rank-img rounded-circle">
-								<img src="http://placehold.it/80x80">
-							</div>
-							<div class="rank-info">
-								<div class="rank-name">밍고카페</div>
-								<div class="float-right ml-3"
-									style="font-size: 0.8em; margin-top: 3px;">(133개)</div>
-								<div class="rank-score">8.3</div>
-								<br>
-								<div class="rank-address">서울시 광진구 자양3동</div>
-								<div class="rank-star">★★★★☆</div>
-							</div>
-						</a>
-
-					</div>
-				</div>
-				<div class="col-lg-5 mb-5 mt-4 latest-review shadow-sm">
-					<div class="review-header p-3 clearfix">
-
-						<img src="./img/profile.png" class="rounded-circle float-left">
-						<div style="height: 80px; margin-left: 90px; position: relative">
-							<div id="review-header-name">밍고님</div>
-
-							<div id="review-header-score">3.9</div>
-							<div id="review-header-star">☆</div>
-							<div id="review-header-date">3일전</div>
+					<div
+						class="list-group list-group-flush rank-contents shadow-sm grid">
+						<!--  여기에 랭크 카페 Ajax로 리스트가 들어감 -->
+						<!-- 기본 스피너 출력 -->
+						<div class="list-group-item p-1 grid-item w-100 d-flex justify-content-center align-items-center" style="height:444px;background-color:#f8f9fa;">
+							<div class="spinner-border text-primary"></div>
 						</div>
+						
+
 					</div>
-					<div style="height: 428px; overflow-y: scroll; overflow-x: hidden;">
-						<div class="pr-1">
-							<img id="review-img" src="./img/cafe.jpg">
-						</div>
-						<div class="review-content pt-3">Lorem ipsum dolor sit amet
-							consectetur adipisicing elit. Deleniti magnam eum earum,
-							doloribus, delectus odio sit ipsam maiores tenetur possimus iusto
-							officia illo, tempora repudiandae qui quis dolorum deserunt.
-							Nesciunt est dolorem magni ab dolorum exercitationem repudiandae
-							commodi perspiciatis, atque similique. Sunt molestias repudiandae
-							quisquam. Tempore dignissimos saepe voluptatibus explicabo culpa,
-							unde odit perspiciatis porro praesentium enim doloremque quaerat
-							ipsum obcaecati quisquam fugiat dolorum voluptatum non
-							cupiditate! Minus tenetur est, harum delectus enim facere nihil
-							nam voluptatem? Minus asperiores aliquam accusantium vero
-							praesentium reprehenderit repellendus corrupti tempore quae
-							voluptatum! Est, aperiam accusamus! Officia, fuga ex quis ipsa
-							accusantium omnis quam.</div>
-					</div>
+
 				</div>
+				<div class="col-lg-5 mb-1 mt-4 latest-review shadow-sm slideshow-container">
+					<c:forEach var="review" items="${reviewList }">
+						<div class="mySlides myFade">
+							<div class="review-header pl-3 pr-3 pb-3 pt-0 clearfix">
+								
+									
+	  						
+								<img src="./img/profile.png" class="rounded-circle float-left mt-3">
+								<div style="height: 80px; margin-left: 90px; position: relative">
+									<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+	  							<a class="next" onclick="plusSlides(1)">&#10095;</a>
+									<div id="review-header-name">${ review.nickname }님</div> 
+		
+									<div id="review-header-score">${review.score_avg }</div>
+									<div id="review-header-star"><i
+								class="fa fa fa-star" style="color:#ffd700"
+								></i></div>
+									<div id="review-header-date">${review.regdate }</div>
+								</div>
+							</div>
+							<div style="height: 410px; overflow-y: scroll; overflow-x: hidden;">
+								<div class="pr-1">
+									<img id="review-img" src="./img/cafe.jpg">
+								</div>
+								<div class="review-content pt-3">${review.contents}</div>
+							</div>
+						</div>
+						</c:forEach>
+					</div>
+				
 			</div>
 			<div class="row">
 				<div class="col-lg-7 mb-5 board-area">
 					<div class="container bg-light board p-2 shadow-sm">
 						<div class="container">
 							<span style="font-size: 1.8em;">자유게시판</span> <a href="#"
-								class="fa fa-plus-square-o detail-icon"
+								class="fa fa-plus-square-o detail-icon" data-toggle="tooltip" title="더보기" data-placement="left"
 								style="font-size: 3em; float: right;"></a>
 						</div>
 						<ul class="list-group list-group-flush board-ul w-100">
-							<li class="list-group-item p-0"><a href="#">자유1</a></li>
-							<li class="list-group-item p-0"><a href="#">자유2</a></li>
-							<li class="list-group-item p-0"><a href="#">자유3</a></li>
-							<li class="list-group-item p-0"><a href="#">자유4</a></li>
-							<li class="list-group-item p-0"><a href="#">자유5</a></li>
-							<li class="list-group-item p-0"><a href="#">자유6</a></li>
-							<li class="list-group-item p-0"><a href="#">자유7</a></li>
-							<li class="list-group-item p-0"><a href="#">자유8</a></li>
-
+							<c:forEach var="board" items="${boardList }">
+								<li class="list-group-item p-0"><a href="viewBoard.do?board_id=${board.board_id }">${board.title }</a></li>
+							</c:forEach>
 						</ul>
 					</div>
 					<div class="container bg-light board p-2 shadow-sm">
 						<div class="container">
 							<span style="font-size: 1.8em;">정보게시판</span> <a href="#"
-								class="fa fa-plus-square-o detail-icon"
+								class="fa fa-plus-square-o detail-icon" data-toggle="tooltip" title="더보기" data-placement="left"
 								style="font-size: 3em; float: right;"></a>
 						</div>
 						<ul class="list-group list-group-flush board-ul w-100">
-							<li class="list-group-item p-0"><a href="#">정보1</a></li>
-							<li class="list-group-item p-0"><a href="#">정보2</a></li>
-							<li class="list-group-item p-0"><a href="#">정보3</a></li>
-							<li class="list-group-item p-0"><a href="#">정보4</a></li>
-							<li class="list-group-item p-0"><a href="#">정보5</a></li>
-							<li class="list-group-item p-0"><a href="#">정보6</a></li>
-							<li class="list-group-item p-0"><a href="#">정보7</a></li>
-							<li class="list-group-item p-0"><a href="#">정보8</a></li>
-
+							<c:forEach var="board" items="${boardList2 }">
+								<li class="list-group-item p-0"><a href="viewBoard.do?board_id=${board.board_id }">${board.title }</a></li>
+							</c:forEach>
 						</ul>
 					</div>
 				</div>
@@ -269,13 +225,13 @@
 			</div>
 		</div>
 	</div>
-	
-	
+
+
 	<!-- 푸터 include -->
 	<%@ include file="/WEB-INF/view/include/footer.jsp"%>
-	
 
-	
+
+
 </body>
 
 </html>

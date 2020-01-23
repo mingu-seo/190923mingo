@@ -15,7 +15,16 @@ public class ReviewVO {
 	private int mood_score;
 	private int clean_score;
 	private int service_score;
+	private double score_avg; //각각의 리뷰에서의 평점계산
 	private String image;
+	
+	public double getScore_avg() {
+		return score_avg;
+	}
+	public void setScore_avg(double score_avg) {
+		this.score_avg = score_avg;
+	}
+	
 	
 	public int getService_score() {
 		return service_score;

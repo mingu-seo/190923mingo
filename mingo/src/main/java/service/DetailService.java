@@ -36,6 +36,20 @@ public interface DetailService {
 	public int registService(CafeServiceVO cafeServiceVO);
 	public int registMenu(List<CafeMenuVO> cafeMenuVO, List<MultipartFile> menuFileList, MultipartHttpServletRequest request);
 	public int registProduct(List<CafeProductVO> cafeProductVO, List<MultipartFile> productFileList, MultipartHttpServletRequest request);
-	
 	public int insertCafeImages(CafeImageVO cafeVO, List<MultipartFile> fileList,MultipartHttpServletRequest request);
+
+
+	public int modifyCafe(CafeVO cafeVO, List<MultipartFile> logoFile, HttpServletRequest request);
+	public int modifyFacility(CafeFacilitiesVO cafeFacilitiesVO);
+	public int modifyService(CafeServiceVO cafeServiceVO);
+	public int modifyMenu(List<CafeMenuVO> cafeMenuVO, List<MultipartFile> menuFileList, MultipartHttpServletRequest request);
+	public int modifyProduct(List<CafeProductVO> cafeProductVO, List<MultipartFile> productFileList, MultipartHttpServletRequest request);
+	public int modifyCafeImages(CafeImageVO cafeVO, List<MultipartFile> fileList,MultipartHttpServletRequest request);
+	
+	
+	public int deleteCafeInfo(int cafe_id);
+	
+	public int registReview(ReviewVO vo,MultipartFile file, HttpServletRequest request, CafeRateVO cafeRate);
+	
+	
 }
