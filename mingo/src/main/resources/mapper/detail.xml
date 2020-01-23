@@ -77,6 +77,52 @@
 	</select>
 	
 	
+	<!-- 등록 -->
+	
+	<update id="insertCafe" parameterType="vo.CafeVO">  
+		update mingo.cafe set
+		logo =#{logo}, time_day=#{time_day}, time_start=#{time_start} , time_end=#{time_end}
+		<where>
+			<if test="cafe_id != null">
+				cafe_id=#{cafe_id}			
+			</if>
+		</where>
+	</update>
+	<insert id="insertCafeImage" parameterType="vo.CafeImageVO">  
+		insert into mingo.cafe_image
+		(cafe_id, url)
+		values
+		(#{cafe_id}, #{url})
+	</insert>
+	<insert id="insertFacility" parameterType="vo.CafeFacilitiesVO">  
+		insert into mingo.cafe_facilities
+		(cafe_id, wifi, tables, interior, music, plug, restroom, studyroom, terrace, smoking, parking, wifi_text, table_text, interior_text, music_text, plug_text, restroom_text, studyroom_text, terrace_text, smoking_text, parking_text)
+		values
+		(#{cafe_id}, #{wifi}, #{tables}, #{interior}, #{music}, #{plug}, #{restroom}, #{studyroom}, #{terrace}, #{smoking}, #{parking}, #{wifi_text}, #{table_text}, #{interior_text}, #{music_text}, #{plug_text}, #{restroom_text}, #{studyroom_text}, #{terrace_text}, #{smoking_text}, #{parking_text})
+	</insert>
+	<insert id="insertService" parameterType="vo.CafeServiceVO">  
+		insert into mingo.cafe_service
+		(cafe_id, event, coupon, mileage, blanket, drinkrefill)
+		values
+		(#{cafe_id}, #{event}, #{coupon}, #{mileage}, #{blanket}, #{drinkrefill})
+	</insert>
+	<insert id="insertMenu" parameterType="vo.CafeMenuVO">  
+		insert into mingo.cafe_menu
+		(cafe_id, name, price, image, type)
+		values
+		(#{cafe_id}, #{name}, #{price},	#{image}, #{type})
+	</insert>
+	<insert id="insertProduct" parameterType="vo.CafeProductVO">  
+		insert into mingo.cafe_product
+		(cafe_id, name, price, image, type)
+		values
+		(#{cafe_id}, #{name}, #{price}, #{image}, #{type})
+	</insert>
+	
+	
+	
+	<!-- 수정 -->
+	
 	<update id="updateCafeImage" parameterType="vo.CafeImageVO">  
 		update mingo.cafe_image set
 		url=#{url}
@@ -142,22 +188,58 @@
 	</update>
 	
 	
+	<!-- 삭제(정보 초기화)  -->  
+	<update id="deleteCafe" parameterType="vo.CafeVO">  
+		update mingo.cafe set
+		logo=NULL, time_day=NULL, time_start=NULL, time_end=NULL 
+		<where>
+			<if test="cafe_id != null">
+				cafe_id=#{cafe_id}			
+			</if>
+		</where>
+	</update>
 	
+	<delete id="deleteCafeImage" parameterType="Integer">
+		DELETE FROM mingo.cafe_image WHERE cafe_id=#{cafe_id}
+	</delete>
 	
+	<delete id="deleteFacility" parameterType="Integer"> 
+		DELETE FROM mingo.cafe_facilities WHERE cafe_id=#{cafe_id}
+	</delete>
 	
+	<delete id="deleteService" parameterType="Integer">
+		DELETE FROM mingo.cafe_service WHERE cafe_id=#{cafe_id}
+	</delete>
 	
+	<delete id="deleteProduct" parameterType="Integer">
+		DELETE FROM mingo.cafe_product WHERE cafe_id=#{cafe_id}
+	</delete>
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	<delete id="deleteMenu" parameterType="Integer">
+		DELETE FROM mingo.cafe_menu WHERE cafe_id=#{cafe_id}
+	</delete>  
 
+	
+	<insert id="registReview" parameterType="vo.ReviewVO">
+		insert into mingo.review
+		(user_id, cafe_id, regdate, contents, taste_score, price_score, service_score, wifi_score, mood_score, clean_score, image)
+		values
+		(#{user_id}, #{cafe_id}, now(), #{contents}, #{taste_score}, #{price_score}, #{service_score}, #{wifi_score}, #{mood_score}, #{clean_score}, #{image})
+	</insert>
+	<insert id="registRate" parameterType="vo.CafeRateVO">
+		insert into mingo.cafe_rate
+		(rate_num, 
+		taste_sum, price_sum, service_sum, wifi_sum, mood_sum, clean_sum, 
+		taste_avg, price_avg, service_avg, wifi_avg, mood_avg, clean_avg)
+		values
+		(#{rate_num}, 
+		#{taste_sum}, #{price_sum}, #{service_sum}, #{wifi_sum}, #{mood_sum}, #{clean_sum}, 
+		#{taste_avg}, #{price_avg}, #{service_avg}, #{wifi_avg}, #{mood_avg}, #{clean_avg})
+	</insert>
+	
+	
+	
+<!-- 
 	 <insert id="insertMember" parameterType="test.TestVO">
 		INSERT INTO spring5fs.member
 		(email, password, name, regdate, profile, introduce)
@@ -184,6 +266,6 @@
 	
 	<select id="loginCheck" parameterType="java.util.HashMap" resultType="test.TestVO">
 		SELECT * FROM spring5fs.member WHERE email=#{mail} AND password=#{pwd}
-	</select> 
+	</select>  -->
 	
 </mapper>
