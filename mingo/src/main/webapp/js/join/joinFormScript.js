@@ -1,5 +1,5 @@
 /*작성자:최수진 */
-
+	
 	// 성별체크
 	$(function() {
 		$("li.gender_button").click(function() {
@@ -7,7 +7,7 @@
 			$(this).attr("aria-checked", "true");
 		});
 	});
-
+	
 	//성별체크시 여='1' 남='2'
 	$(function(){
 		$('.gbtn').click(function(){

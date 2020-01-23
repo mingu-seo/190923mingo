@@ -77,6 +77,36 @@ public class MyController {
 		model.addAttribute("cafeList", cafeList);
 		return "mypage/myMyReview";
 	}
+	
+	
+	@RequestMapping("/updateUserForm.do")
+	public String updateUserForm(Model model, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		UserVO vo = (UserVO) session.getAttribute("userVO");
+		int user_id = vo.getUser_id();
+		UserVO userVO = myService.viewUserInfo(user_id);
+		return "mypage/myModifyUserForm";
+	}
+	@RequestMapping("/updateUser.do")
+	public String updateUser(Model model, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		UserVO vo = (UserVO) session.getAttribute("userVO");
+		int user_id = vo.getUser_id();
+		UserVO userVO = myService.viewUserInfo(user_id);
+		return "mypage/";
+	}
+	
+	
+	
+	@RequestMapping("/deleteUser.do")
+	public String deleteUser() {
+		return "";
+	}
+	
+	
+	
+	
+	
 	@RequestMapping("/myPost.do")
 	public String myPost(Model model, HttpServletRequest request) {
 		HttpSession session = request.getSession();

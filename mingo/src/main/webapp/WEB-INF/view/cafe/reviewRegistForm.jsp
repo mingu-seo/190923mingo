@@ -17,6 +17,10 @@
                 height:150px;
                 width:600px;
             }
+            .graph_area > div{
+                float:left;
+            }
+            
             .graph_stack{
                 width:400px;
                 height:50px;
@@ -24,8 +28,7 @@
                 box-sizing: border-box;
                 border-radius: 40px;
                 line-height: 50px;
-                position: relative;
-                left:65px;
+                
             }
 
             .graph_rate{
@@ -34,22 +37,22 @@
                 box-sizing: border-box;
                 
                 line-height: 50px;
-                width:10%;
+                width:20%;
                 float: left;
             }
 
             .graph_text{
-                float: right;
-                position: relative;
-                z-index: 110;
+                
             }
-            /* .graph_logo{
-                height: 100px;
+            .graph_logo{
+                height: 40px;
                 float: left;
                 position: relative;
                 z-index: 100;
-                bottom: 30px;
-            } */
+                left:40px;
+                top:5px;   
+
+            }
             .bean_img{
                 height:70px;
                 float: right;
@@ -64,26 +67,55 @@
                 font-size: 1.5em;
                 font-weight: bold;
                 color: #2E2E2E;
-            }  
+            }
+            .graph_rate:nth-child(1){
+   				border-radius: 50px 0 0 50px;
+            }
+	    		
 
 
         </style>
     	<script type="text/javascript">
     	  	
     		$(function(){
-	    		$('.graph_rate').mouseover(function(){
-	    			$(this).prevAll().css({
-		                'background-color': '#4B610B'
-	    			});
-	    			$(this).css({
-		                'background-color': '#4B610B'
-	    			});
-	    		}).mouseleave(function(){
-	    			$('.graph_rate').css({
-	    				'background-color': 'transparent'
-	    			});
-	    		});
-    			  
+    			$('.graph_rate').click(function(){
+    				var location = $(this).children('label').attr('value')*80;
+    				console.log(location);
+    				$('.graph_logo').css({
+    					'left':location
+    				});
+    				
+    			});
+    			
+    			
+    			
+    			
+    			/* $('.graph_stack').hover(function(){
+		    		$('.graph_rate').mouseover(function(){
+		    			$(this).prevAll().css({
+			                'background-color': '#FACC2E'
+		    			});
+		    			$(this).find(':nth-child(1)').css({
+		    				'border-radius': '50px 0 0 50px'
+		    			});  
+		    			$(this).css({
+		    				'border-top-right-radius': '50px',  
+		    				'border-bottom-right-radius': '50px',  
+			                'background-color': '#FACC2E'
+		    			});
+		    		}).mouseleave(function(){
+		    			$('.graph_rate').css({
+		    				'border-top-right-radius': '0',  
+		    				'border-bottom-right-radius': '0', 
+		    				'background-color': 'transparent'	
+		    			});	
+		    		}).click(function(){
+		    			$('.graph_rate').off(); 
+		    		});  
+    			}, function(){
+    				$('.graph_rate').off();
+    			}); */
+    			    
     			
     		});  
     		
@@ -100,16 +132,12 @@
                 <img src="img/wifi.png" class="graph_logo">
             </div>
             <div class="graph_stack">
-                <div class="graph_rate"></div>   
-                <div class="graph_rate"></div>   
-                <div class="graph_rate"></div>   
-                <div class="graph_rate"></div>   
-                <div class="graph_rate"></div>   
-                <div class="graph_rate"></div>   
-                <div class="graph_rate"></div>   
-                <div class="graph_rate"></div>   
-                <div class="graph_rate"></div>   
-                <div class="graph_rate"></div>   
+                <div class="graph_rate"><label value="1"></label></div>   
+                <div class="graph_rate"><label value="2"></label></div>   
+                <div class="graph_rate"><label value="3"></label></div>   
+                <div class="graph_rate"><label value="4"></label></div>   
+                <div class="graph_rate"><label value="5"></label></div>   
+         
             </div>
             <div class="graph_text">10점</div>
         </div>
