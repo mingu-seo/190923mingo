@@ -48,11 +48,6 @@ public class MainController {
 	public String rankCafe() {
 		return "rank/rankMain";
 	}
-	//게시판으로 이동
-	@RequestMapping("/listBoard.do")
-	public String listBoard() {
-		return "board/boardMain";
-	}
 	
 	//시도 셀렉트 했을때 시군구 동적으로 변경
 	@RequestMapping("/getSigungu.do")

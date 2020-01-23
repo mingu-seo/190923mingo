@@ -74,7 +74,7 @@
 		  
 	</select>
 	<select id="getBoardList" resultType="vo.BoardVO" parameterType="Integer">
-		select title from board
+		select board_id,title from board
 		where type=#{boardType}
 		limit 0,11;
 		
