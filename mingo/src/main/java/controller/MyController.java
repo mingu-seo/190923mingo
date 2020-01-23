@@ -79,7 +79,7 @@ public class MyController {
 	}
 	
 	
-	@RequestMapping("/updateUserForm.do")
+	@RequestMapping("/modifyUserForm.do")
 	public String updateUserForm(Model model, HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		UserVO vo = (UserVO) session.getAttribute("userVO");
@@ -87,20 +87,28 @@ public class MyController {
 		UserVO userVO = myService.viewUserInfo(user_id);
 		return "mypage/myModifyUserForm";
 	}
-	@RequestMapping("/updateUser.do")
-	public String updateUser(Model model, HttpServletRequest request) {
+	@RequestMapping("/modifyUser.do")
+	public String updateUser(Model model, HttpServletRequest request, UserVO vo) {
 		HttpSession session = request.getSession();
-		UserVO vo = (UserVO) session.getAttribute("userVO");
-		int user_id = vo.getUser_id();
-		UserVO userVO = myService.viewUserInfo(user_id);
-		return "mypage/";
+		UserVO vo_s = (UserVO)session.getAttribute("userVO");
+		vo.setUser_id(vo_s.getUser_id());
+		
+		System.out.println(vo.getUser_id());
+		System.out.println(vo.getGender());
+		System.out.println(vo.getName());
+		int r = myService.modifyUser(vo);
+		return "redirect:/myMain.do";
 	}
 	
 	
 	
 	@RequestMapping("/deleteUser.do")
-	public String deleteUser() {
-		return "";
+	public String deleteUser(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		UserVO vo = (UserVO) session.getAttribute("userVO");
+		int user_id = vo.getUser_id();
+		myDao.deleteUser(user_id);
+		return "redirect:/goMain.do";
 	}
 	
 	

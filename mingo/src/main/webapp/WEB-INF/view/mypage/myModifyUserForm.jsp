@@ -412,7 +412,7 @@
 	        <span class="t2">회원가입</span>
 	        <p class="t3">MINGO 에서 활동하실 아이디와 비밀번호, 닉네임 등의 기본정보를 생성합니다.</p>    
       	</div>
-	    <form id="joinForm" action="joinProcess.do" method="post">
+	    <form id="joinForm" action="modifyUser.do" method="post">
 	    <div class="main">
 	        <label for="email">
 	            <span class="insert_email">이메일&nbsp;</span>
@@ -478,14 +478,14 @@
 	                	<li role="radio" aria-checked="false" value="2" id="male" class="gender_button gbtn">남성</li> <!-- 2 -->
 	                </ul>
 	            </div>
-	        </div>
-       		<input type="hidden" id="gender" name="gender" value="2"/>
-       		<input type="hidden" id="type_general"  name ="type" value="1"/>
-	    </form>
-    </div>
-    <div class="buttonarea">
-        <button type="button" id="returnbutton"class="returnbutton" >다시작성</button>
-        <button type="button" class="successbutton" onclick = "javascript:joinForm();">가입완료</button>
+	        </div>   
+       		<input type="hidden" id="gender" name="gender" value="${userVO.gender }"/>
+       		<input type="hidden" id="type_general"  name ="type" value="${userVO.type }"/>
+		    <div class="buttonarea">
+		        <input type="reset" id="returnbutton"class="returnbutton" ></input>
+		        <input type="submit" class="successbutton"></input>
+		    </div>
+		</form>
     </div>
 </body>
-</html>
+</html>   
