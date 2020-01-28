@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -145,45 +146,48 @@
         
         
         
-        <!-- <form action="registReview.do" method="post">
+        <form action="registReview.do" method="post" enctype="multipart/form-data">
         	<div>
-				<label for = "cafe_id">카페 아이디: </label>
-				<input type="text" name="cafe_id" id="cafe_id"/>	
+				<label for = "contents">내용: </label>   
+				<input type="text" name="contents" />	
 			</div>
         	<div>
-				<label for = "cafe_id">카페 아이디: </label>
-				<input type="text" name="cafe_id" id="cafe_id"/>	
+				<label for = "taste_score">맛: </label>
+				<input type="text" name="taste_score" />	
+			</div>  
+        	<div>
+				<label for = "price_score">가격: </label>
+				<input type="text" name="price_score" />	
 			</div>
         	<div>
-				<label for = "cafe_id">카페 아이디: </label>
-				<input type="text" name="cafe_id" id="cafe_id"/>	
+				<label for = "service_score">서비스: </label>
+				<input type="text" name="service_score"/>	
 			</div>
         	<div>
-				<label for = "cafe_id">카페 아이디: </label>
-				<input type="text" name="cafe_id" id="cafe_id"/>	
+				<label for = "wifi_score">와이파이 및 플러그: </label>
+				<input type="text" name="wifi_score" />	
 			</div>
         	<div>
-				<label for = "cafe_id">카페 아이디: </label>
-				<input type="text" name="cafe_id" id="cafe_id"/>	
+				<label for = "mood_score">시설 및 분위기: </label>
+				<input type="text" name="mood_score"/>	
 			</div>
         	<div>
-				<label for = "cafe_id">카페 아이디: </label>
-				<input type="text" name="cafe_id" id="cafe_id"/>	
+				<label for = "clean_score">청결도: </label>
+				<input type="text" name="clean_score" />	
 			</div>
         	<div>
-				<label for = "cafe_id">카페 아이디: </label>
-				<input type="text" name="cafe_id" id="cafe_id"/>	
+				<label for = "image_file">카페 아이디: </label>
+				<input type="file" name="image_file" />	
 			</div>
         	<div>
-				<label for = "cafe_id">카페 아이디: </label>
-				<input type="text" name="cafe_id" id="cafe_id"/>	
+				<input type="submit" value="제출"/>	
 			</div>
         	<div>
-				<label for = "cafe_id">카페 아이디: </label>
-				<input type="text" name="cafe_id" id="cafe_id"/>	
-			</div>
-        
-        </form><br><br><br><br><br> -->
+				<input type="text" name="user_id" value="${userVO.user_id }"/>	
+				<input type="text" name="cafe_id" value="${cafe_id}"/>	
+			</div>  
+        	
+        </form><br><br><br><br><br>
         
         
         

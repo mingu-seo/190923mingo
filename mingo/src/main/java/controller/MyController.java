@@ -132,16 +132,15 @@ public class MyController {
 		int user_id = vo.getUser_id();
 		List<CollectCafeVO> collectList = myService.viewCollect(user_id);
 		model.addAttribute("collectList", collectList);
-		System.out.println("유저 아이디: " + user_id);
-		List<CafeVO> cafeList = myService.viewCafeList2(collectList);
 		
-		System.out.println("카페 이름: " + cafeList.get(0).getName());
+		List<CafeVO> cafeList = myService.viewCafeList2(collectList);
 		model.addAttribute("cafeList", cafeList);
 		List<CafeRateVO> cafeRateList = myService.viewCafeRate2(collectList);
-		System.out.println("카페 와이파이: " + cafeRateList.get(0).getWifi_avg());
 		model.addAttribute("cafeRateList", cafeRateList);
 		return "mypage/myCollectCafe";
 	}
+	
+	
 	
 	
 	

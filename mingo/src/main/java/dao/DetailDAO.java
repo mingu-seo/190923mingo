@@ -22,6 +22,8 @@ import vo.CafeProductVO;
 import vo.CafeRateVO;
 import vo.CafeServiceVO;
 import vo.CafeVO;
+import vo.CollectCafeVO;
+import vo.LikeCafeVO;
 import vo.ReviewVO;
 import vo.UserVO;
 
@@ -248,37 +250,42 @@ public class DetailDAO {
 	
 	public int registReview(ReviewVO reviewVO, CafeRateVO cafeRateVO) {
 		sqlSession.insert("detail.insertReview", reviewVO);
-		sqlSession.insert("detail.insertRate", cafeRateVO);
+		sqlSession.update("detail.updateRate", cafeRateVO);
 		return 1;
 	}
 	
+	public ReviewVO viewReview(ReviewVO vo) {
+		return sqlSession.selectOne("detail.viewReview", vo);
+	}
 	
-	/*
-	 * public List<TestVO> memberList(TestVO vo) { return
-	 * sqlSession.selectList("test.selectMember", vo); }
-	 * 
-	 * public int memberInsert(TestVO vo) { return
-	 * sqlSession.insert("test.insertMember", vo); }
-	 * 
-	 * public TestVO memberDetail(int id) { return
-	 * sqlSession.selectOne("test.memberDetail", id); }
-	 * 
-	 * public int memberUpdate(TestVO vo) { return
-	 * sqlSession.update("test.updateMember", vo); }
-	 * 
-	 * public int memberDelete(int id) { return
-	 * sqlSession.delete("test.deleteMember", id); }
-	 * 
-	 * public TestVO loginCheck(HashMap hm) { return
-	 * sqlSession.selectOne("test.loginCheck", hm); }
-	 */
+	public int modifyReview(ReviewVO reviewVO, CafeRateVO cafeRateVO) {
+		sqlSession.update("detail.updateReview", reviewVO);
+		sqlSession.update("detail.updateRate", cafeRateVO);
+		return 1;
+	}
 	
-	
-	
-	
-	
-	
-	
+	public int deleteReview(CafeRateVO cafeRateVO, ReviewVO reviewVO) {
+		sqlSession.update("detail.updateRate", cafeRateVO);
+		sqlSession.delete("detail.deleteReview", reviewVO);
+		
+		return 1;
+	}
+	public int registLike(LikeCafeVO vo) {
+		int r = sqlSession.insert("detail.registLike", vo);
+		return r;
+	}
+	public int deleteLike(LikeCafeVO vo) {
+		sqlSession.delete("detail.deleteLike", vo);
+		return 1;
+	}
+	public int registCollect(CollectCafeVO vo) {
+		int r = sqlSession.insert("detail.registCollect", vo);
+		return r;
+	}
+	public int deleteCollect(CollectCafeVO vo) {
+		sqlSession.delete("detail.deleteCollect", vo);
+		return 1;
+	}
 	
 	
 }
