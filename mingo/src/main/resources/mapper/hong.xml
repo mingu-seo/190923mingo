@@ -67,10 +67,11 @@
 		
 	</select>
 	<select id="getReviewList" resultType="Map">
-		SELECT r.*, u.nickname 
-		FROM review as r join user as u 
-		on r.user_id = u.user_id
-		limit 15,5;
+		SELECT r.*, u.nickname, u.profile_image, c.name, c.branch
+		FROM review as r join user as u join cafe as c 
+		on r.user_id = u.user_id and r.cafe_id = c.cafe_id
+        order by review_id desc
+        limit 0,5;
 		  
 	</select>
 	<select id="getBoardList" resultType="vo.BoardVO" parameterType="Integer">

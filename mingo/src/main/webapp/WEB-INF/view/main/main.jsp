@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%> 
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -141,29 +144,38 @@
 					</div>
 
 				</div>
+				
 				<div class="col-lg-5 mb-1 mt-4 latest-review shadow-sm slideshow-container">
 					<c:forEach var="review" items="${reviewList }">
 						<div class="mySlides myFade">
 							<div class="review-header pl-3 pr-3 pb-3 pt-0 clearfix">
-								
-									
-	  						
-								<img src="./img/profile.png" class="rounded-circle float-left mt-3">
+							 <c:if test="${ empty review.profile_image }">
+							 	<img src="http://placehold.it/80x80" class="rounded-circle float-left mt-3">
+							 </c:if>
+							 <c:if test="${not empty review.profile_image }" >
+								<img src="./upload/user/${review.profile_image }" class="rounded-circle float-left mt-3">
+								</c:if>
 								<div style="height: 80px; margin-left: 90px; position: relative">
 									<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
 	  							<a class="next" onclick="plusSlides(1)">&#10095;</a>
-									<div id="review-header-name">${ review.nickname }님</div> 
+									<div id="review-header-name">${ review.nickname }&nbsp;님</div> 
 		
 									<div id="review-header-score">${review.score_avg }</div>
 									<div id="review-header-star"><i
 								class="fa fa fa-star" style="color:#ffd700"
 								></i></div>
-									<div id="review-header-date">${review.regdate }</div>
+								<c:set value="${review.regdate }" var="dateString"/>
+								<fmt:parseDate value="${dateString }" var="dateObject" pattern="yyyy-MM-dd HH:mm:ss" />
+									<div id="review-header-cname">${review.name  }&nbsp;${review.branch }</div>
+									<div id="review-header-date"><fmt:formatDate value="${dateObject }" pattern="yyyy/MM/dd" /></div>
+									
 								</div>
 							</div>
-							<div style="height: 410px; overflow-y: scroll; overflow-x: hidden;">
+							<div style="height: 410px; overflow-y:auto; overflow-x: hidden;">
 								<div class="pr-1">
-									<img id="review-img" src="./img/cafe.jpg">
+									<c:if test="${ not empty review.image }">
+										<img id="review-img" src="./upload/review/${review.image }">
+									</c:if>
 								</div>
 								<div class="review-content pt-3">${review.contents}</div>
 							</div>

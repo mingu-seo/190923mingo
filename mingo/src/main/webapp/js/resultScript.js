@@ -6,6 +6,8 @@ $(document).ready(function () {
 	var $button = $('#add');
 	if( page >= maxPage){
 		$button.hide();
+	}else{
+		$button.show();
 	}
 	$grid = $('.grid').masonry({
 	        itemSelector: '.grid-item'
@@ -99,7 +101,6 @@ function getItem() {
     return item;
 }
 function getCafeItems(){
-	//테스트용 로그 찍기
 	
 	if( ++page <= maxPage){
 		var items = '';
@@ -121,7 +122,6 @@ function getCafeItems(){
 			$grid.masonryImagesReveal($(items));
 		});
 		
-		 //페이지수 하나 증가
 	}
 }
 function listByFilter(type,obj){
@@ -133,6 +133,12 @@ function listByFilter(type,obj){
 	}else if( listCount <= 1){
 		return false;
 	}else{
+		
+		
+		
+		
+		
+		
 		var type = type;
 		var items='';
 		
@@ -155,5 +161,16 @@ function listByFilter(type,obj){
 			
 			//$('.grid').append(data);
 		});
+		
+		
+		page = 1; //필터 버튼 누를시 첫 페이지 부터 시작
+		
+		//페이지 초기화후 more button 다시 보이게하기
+		var $button = $('#add');
+		if( page >= maxPage){
+			$button.hide();
+		}else{
+			$button.show();
+		}
 	}
 }
