@@ -49,10 +49,13 @@ public class BoardController {
 			,BoardCommentVO cvo) {
 		BoardVO data = boardService.detail(board_id);
 		List<BoardCommentVO> clist = boardService.clist(cvo);
+		int listCount = boardService.listCount(board_id);
+		
 		model.addAttribute("data",data);
 		model.addAttribute("page",page);
 		model.addAttribute("clist",clist);
 		model.addAttribute("cvo",cvo);
+		model.addAttribute("listCount", listCount);
 		
 		return "board/boardDetail";
 	}

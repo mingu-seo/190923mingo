@@ -9,10 +9,10 @@
 <!-- 페이지 로딩시 초기화 --> 
 <script> 
 
-
+//전역변수선언
+var editor_object = [];
 $(function(){
-    //전역변수선언
-    var editor_object = [];
+    
      
     nhn.husky.EZCreator.createInIFrame({
         oAppRef: editor_object,
@@ -30,17 +30,18 @@ $(function(){
         }
     });
      
-    //전송버튼 클릭이벤트
-    $("#savebutton").click(function(){
-        //id가 smarteditor인 textarea에 에디터에서 대입
-        editor_object.getById["smarteditor"].exec("UPDATE_CONTENTS_FIELD", []);
-         
-        // 이부분에 에디터 validation 검증
-         
-        //폼 submit
-        $("#frm").submit();
-    })
+    
 })
+function completeWriting(){
+	
+	//id가 smarteditor인 textarea에 에디터에서 대입
+    editor_object.getById["smarteditor"].exec("UPDATE_CONTENTS_FIELD", []);
+     
+    // 이부분에 에디터 validation 검증
+     
+    //폼 submit
+    $("#frm").submit();
+}
 
 </script>
 
@@ -83,7 +84,7 @@ $(function(){
             
             <div style="text-align: center;">
                 <button type="button" class="btn btn-secondary"onclick="location.href='listBoard.do' ">취소</button>
-                <button type="button" id="savebutton" class="btn btn-secondary"onclick="document.getElementById('frm').submit();">작성완료</button>
+                <button type="button" id="savebutton" class="btn btn-secondary" onclick="completeWriting();">작성완료</button>
             </div>
         </div>
         </form>

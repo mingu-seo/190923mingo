@@ -58,12 +58,12 @@ int totalpage = (Integer)request.getAttribute("totalpage"); // 전체페이지�
                 </a>
                 <c:forEach  items="${list}" var="BoardVO">
                 <a href="viewBoard.do?board_id=${BoardVO.board_id}&page=<%=vo.getPage()%>" class="list-group-item">
-                    <div id="b-num" style="float:left;">${BoardVO.board_id}</div>
-                    <div id="b-title" style="float:left;">${BoardVO.title}</div>
-                    <div id="b-username" style="float:left;">${BoardVO.nickname}</div>
-                    <div id="b-regdate" style="float:left;"><fmt:formatDate value="${BoardVO.regdate}" pattern="yyyy.MM.dd"/></div>
-                    <div id="b-readcount" style="float:left;">${BoardVO.readcount}</div>
-                    <div id="b-goodcount" style="float:left;">${BoardVO.type}</div>
+                    <div id="b-num" style="float:left;width:60px;height:24px;">${BoardVO.board_id}</div>
+                    <div id="b-title" style="float:left;width:346px;height:24px;">${BoardVO.title}</div>
+                    <div id="b-username" style="float:left;width:108px;height:24px;">${BoardVO.nickname}</div>
+                    <div id="b-regdate" style="float:left;width:108px;height:24px;"><fmt:formatDate value="${BoardVO.regdate}" pattern="yyyy.MM.dd"/></div>
+                    <div id="b-readcount" style="float:left;width:60px;height:24px;">${BoardVO.readcount}</div>
+                    <div id="b-goodcount" style="float:left;width:60px;height:24px;">${BoardVO.type}</div> 
                 </a>
                 </c:forEach>
                 

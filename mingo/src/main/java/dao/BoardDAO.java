@@ -53,4 +53,8 @@ public class BoardDAO {
 		public int replyDelete(int board_comment_id) {
 			return sqlSession.delete("board.replyDelete",board_comment_id);
 		}
+
+		public int listCount(int board_id) {
+			return sqlSession.selectOne("board.countCommentList",board_id);
+		}
 }

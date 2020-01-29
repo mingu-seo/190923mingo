@@ -91,5 +91,7 @@
 	<select id="loginCheck" parameterType="java.util.HashMap" resultType="test.TestVO">
 		SELECT * FROM spring5fs.member WHERE email=#{mail} AND password=#{pwd}
 	</select> -->
-	
+	<select id="countCommentList" parameterType="Integer" resultType="Integer">
+		select count(*) from board_comment where board_id = #{board_id}
+	</select>
 </mapper>

@@ -77,4 +77,9 @@ public class BoardService {
 	public int replyDelete(int board_comment_id) {
 		return boardDAO.replyDelete(board_comment_id); 
 	}
+
+	public int listCount(int board_id) {
+		
+		return boardDAO.listCount(board_id);
+	}
 }
