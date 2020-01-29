@@ -67,7 +67,7 @@
 		
 	</select>
 	<select id="getReviewList" resultType="Map">
-		SELECT r.*, u.nickname, u.profile_image, c.name, c.branch
+		SELECT r.*, u.nickname, u.profile_image,c.cafe_id, c.name, c.branch,c.sido_name,c.sigungu_name,c.dong_name
 		FROM review as r join user as u join cafe as c 
 		on r.user_id = u.user_id and r.cafe_id = c.cafe_id
         order by review_id desc

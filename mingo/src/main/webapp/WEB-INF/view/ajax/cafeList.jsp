@@ -4,11 +4,11 @@
 <c:forEach var="cafe" items="${cafeList }">
 	<div class="grid-item">
 		<div class="cafe cafe-img">
-			<a href="#"><img
+			<a href="detailView.do?cafe_id=${cafe.cafe_id }"><img
 				src='<%=request.getContextPath() %>/img/cafe.jpg' alt=""></a>
 		</div>
 		<div class="cafe cafe-name ml-1 mt-2 mb-2" style="font-size: 0.9em;">
-			<a href="#">${cafe.name } ${cafe.branch }</a>
+			<a href="detailView.do?cafe_id=${cafe.cafe_id }">${cafe.name } ${cafe.branch }</a>
 		</div>
 		<div class="cafe cafe-address mb-1">${cafe.cafe_address }</div>
 		<div class="cafe cafe-score float-left">평점 ${cafe.rate_avg }</div>
@@ -24,4 +24,3 @@
 		</div>
 	</div>
 </c:forEach>
-</div>
