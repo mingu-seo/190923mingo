@@ -3,6 +3,7 @@
 package service;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -25,7 +26,7 @@ public interface DetailService {
 	
 	public CafeVO viewCafe(int cafe_id);
 	public List<CafeImageVO> viewCafeImages(int cafe_id);
-	public List<ReviewVO> viewCafeReview(int cafe_id);
+	public List<ReviewVO> viewCafeReview(Map<String, Integer> reviewMap);
 	public List<UserVO> viewUserList(int[] userList);
 	public List<CafeMenuVO> viewMenu(int cafe_id);
 	public List<CafeProductVO> viewProduct(int cafe_id);

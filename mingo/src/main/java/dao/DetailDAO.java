@@ -43,8 +43,8 @@ public class DetailDAO {
 	public List<CafeImageVO> viewCafeImages(int cafe_id){
 		return sqlSession.selectList("detail.selectViewCafeImage", cafe_id);		
 	}
-	public List<ReviewVO> viewCafeReview(int cafe_id){
-		return sqlSession.selectList("detail.selectViewCafeReview", cafe_id);		
+	public List<ReviewVO> viewCafeReview(Map<String, Integer> reviewMap){
+		return sqlSession.selectList("detail.selectViewCafeReview", reviewMap);		
 	}
 	public List<UserVO> viewUserList(int[] userList){
 		List<UserVO> userVOList = new ArrayList<UserVO>();

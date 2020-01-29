@@ -27,13 +27,14 @@
 			</if>
 		</where>
 	</select>
-	<select id="selectViewCafeReview" resultType="vo.ReviewVO" parameterType="Integer">
-		SELECT * FROM mingo.review
-		<where>
+	<select id="selectViewCafeReview" resultType="vo.ReviewVO" parameterType="hashmap">
+		SELECT * FROM mingo.review 
+		<where>   
 			<if test="cafe_id != null">
 				cafe_id = #{cafe_id}
 			</if>
 		</where>
+		order by regdate desc limit #{beginIndex}, 5 
 	</select>
 	<select id="selectViewUserList" resultType="vo.UserVO" parameterType="Integer">
 		SELECT * FROM mingo.user

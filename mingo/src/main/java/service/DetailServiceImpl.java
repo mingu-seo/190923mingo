@@ -43,8 +43,8 @@ public class DetailServiceImpl implements DetailService {
 		List<CafeImageVO> imgList = detailDao.viewCafeImages(cafe_id);
 		return imgList;
 	}
-	public List<ReviewVO> viewCafeReview(int cafe_id){
-		List<ReviewVO> reviewList = detailDao.viewCafeReview(cafe_id);
+	public List<ReviewVO> viewCafeReview(Map<String, Integer> reviewMap){
+		List<ReviewVO> reviewList = detailDao.viewCafeReview(reviewMap);
 		return reviewList;
 	}
 	public List<UserVO> viewUserList(int[] userList){

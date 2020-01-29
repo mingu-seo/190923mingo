@@ -551,19 +551,19 @@
 		
 	</style>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=197a1366c7c3fbd3d1f4e49445d212b0"></script>
-	<script>
-		/* var container = document.getElementById('map');
-		var options = {
-			center: new kakao.maps.LatLng(33.450701, 126.570667),
-			level: 3
-		};
 	
-		var map = new kakao.maps.Map(container, options); */
-	</script>
 	
 	<script>
 		$(function(){
 			
+			var container = document.getElementById('map');
+			var options = {
+				center: new kakao.maps.LatLng(33.450701, 126.570667),
+				level: 3
+			};
+		
+			var map = new kakao.maps.Map(container, options);
+		
 			
 			
 			$('document').ready(function() {
@@ -574,7 +574,9 @@
 				$('.cafe_reviews').css({
 					'height':review_each_height*5+200+'px'
 				});
+				
 			});
+			
 			
 			$('.info_button').click(function(){
 				console.log("click");
@@ -747,8 +749,46 @@
 				}
 				var likeValue = $('#collectCafe').val();
 			});
+			
+			/* 페이징 처리 */
+			 
+			var currentPage = 1;
+			var rate_num = ${cafeRate.rate_num};
+			$.ajax({
+				url:'reviewViewForm.do',
+				type:'GET',
+				dataType:'text',
+				data:{'cafe_id':cafe_id,
+					'currentPage':currentPage,
+					'rate_num':rate_num},
+				success:function(data){
+					$('.review-view').html(data);
+					console.log(currentPage);
+				}
+			});   
+			/* var currentPage = $(this).text();
+			var rate_num = ${cafeRate.rate_num};
+			$('.num-btn').click(function(){
+				currentPage += 1; 
+				$.ajax({
+					url:'reviewViewForm.do',
+					type:'GET',
+					dataType:'text',
+					data:{'cafe_id':cafe_id,
+						'currentPage':currentPage,
+						'rate_num':rate_num},
+					success:function(data){
+						$('.review-view').html(data);
+						
+					}
+				});
+				console.log("클릭");
+				var currentPage = $(this).text();
+				var rate_num = ${cafeRate.rate_num};
+			});  */ 
+			
 		});      
-	  
+	 
 	
 	
 	</script>
@@ -756,7 +796,7 @@
 </head>
 <body>
 	<!-- 내비게이션 include -->
-	<%@ include file="/WEB-INF/view/include/navigation.jsp"%>
+	<%@ include file="/WEB-INF/view/include/navigation.jsp" %>  
 	
 	<!-- 빈공간. 코딩 편의를 위해 레이어 앞면에 고정된 메뉴바가 차지하는 만큼 빈공간 부여 -->
 	<div class="memubar_space">
@@ -868,7 +908,7 @@
 								<h6>인테리어 분위기</h6>
 								<h6>{facilities.interior }</h6>
 							</div>
-						</div>
+						</div>  
 						<div class="info_each">
 							<img src="img/coffee.png"/>
 							<div>
@@ -1099,101 +1139,10 @@
 					</div>
 				</div>
 				<div class="info_title" id="basic_info_title">리뷰</div>
-				<div class="cafe_reviews">
-					<c:forEach items="${reviewList}" var="review" varStatus="status">
-						<c:forEach items="${reviewUsers}" var="user_vo" varStatus="status">
-							<c:if test="${review.user_id == user_vo.user_id}">
-								<c:set var="user" value="${user_vo }"/>
-							</c:if>
-						</c:forEach>
-						<div class="cafe_review_each">
-							<div class="cafe_review_top">
-								<div class="user_info">   
-									<div>
-										<img src="upload/user/${user.profile_image}"/>
-									</div>
-									<h2>${user.nickname }</h2>
-									<h2>${review.regdate }</h2>    
-								</div>
-								<div class="rating">
-									<div class="rate_each2" id="rate_each2">
-										<span class="rate_visual" id="taste_visual">
-											<img src="img/wifi.png">
-										</span>
-										<span class="rate_name" id="taste_name">맛</span>
-										<span class="my_rate">${review.taste_score }점</span>  
-									</div>  
-									<div class="rate_each2" id="rate_each2">
-										<span class="rate_visual" id="price_visual">
-											<img src="img/wifi.png">
-										</span>
-										<span class="rate_name" id="price_name">가격</span>
-										<span class="my_rate">${review.price_score }점</span>
-									</div>
-									<div class="rate_each2" id="rate_each2">
-										<span class="rate_visual" id="service_visual">
-											<img src="img/wifi.png">
-										</span>
-										<span class="rate_name" id="service_name">서비스</span>
-										<span class="my_rate">${review.service_score }점</span>
-									</div>
-									<div class="rate_each2" id="rate_each2">
-										<span class="rate_visual" id="facimood_visual">
-											<img src="img/wifi.png">
-										</span>
-										<span class="rate_name" id="facimood_name">시설 및 분위기</span>
-										<span class="my_rate">${review.mood_score }점</span>
-									</div>
-									<div class="rate_each2" id="rate_each2">
-										<span class="rate_visual" id="wifiplug_visual">
-											<img src="img/wifi.png">
-										</span>
-										<span class="rate_name" id="wifiplug_name">와이파이&콘센트</span>
-										<dspaniv class="my_rate">${review.wifi_score }점</span>
-									</div>  
-									<div class="rate_each2" id="rate_each2">
-										<span class="rate_visual" id="clean_visual">
-											<img src="img/wifi.png">
-										</span>
-										<span class="rate_name" id="clean_name">청결</span>
-										<span class="my_rate">${review.clean_score }점</span>
-									</div>
-								</div>
-							</div>
-							<div class="cafe_review_bottom">  
-								<div>
-									<img src="upload/review/${review.image }"/>
-								</div>
-								<div class="comment"> 
-									<p>${review.contents }</p>
-								</div>
-							</div>
-						</div>
-					</c:forEach>
-				</div>
-				<div class="review_navi_nums">
-				<div>
-					<div class="num">
-						<div class="navi_first_btn"><a href="#"><img src="img/arrow_first.png"></a></div>
-					</div>  
-					<div class="num">
-						<div class="navi_prev10_btn"><a href="#"><img src="img/arrow_prev.png"></a></div>
-					</div>
-					<div class="num"><a href="#">1</a></div>
-					<div class="present" ><a href="#">2</a></div> 
-					<div class="num"><a href="#">3</a></div>
-					<div class="num"><a href="#">4</a></div>
-					<div class="num"><a href="#">5</a></div>
-					<div class="num">
-						<div class="navi_next10_btn"><a href="#"><img src="img/arrow_next.png"></a></div>					
-					</div>
-					<div class="num">					
-						<div class="navi_last_btn"><a href="#"><img src="img/arrow_last.png"></a></div>					
-					</div>
+				<div class="review-view">
+				
 				</div>
 			</div>
-			</div>
-			
 		</div>
 	</div>   
 	

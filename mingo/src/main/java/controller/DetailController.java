@@ -1,7 +1,9 @@
 package controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -38,6 +40,7 @@ public class DetailController {
     // 카페 정보 조회
 	@RequestMapping("/detailView.do")
 	public String detailView(Model model, HttpServletRequest request) {
+		System.out.println("카페 아이디 :" + request.getParameter("cafe_id"));
 		int cafe_id = Integer.parseInt(request.getParameter("cafe_id"));
 		
 		// 기본정보 조회
@@ -64,8 +67,15 @@ public class DetailController {
 		List<CafeImageVO> imgList = detailService.viewCafeImages(cafe_id);
 		model.addAttribute("imgList", imgList);
 		
+		/*
 		//리뷰 조회
-		List<ReviewVO> reviewList = detailService.viewCafeReview(cafe_id);
+		int currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		Map<String, Integer> reviewMap = new HashMap<String, Integer>();
+		reviewMap.put("currentPage", currentPage);
+		reviewMap.put("cafe_id", cafe_id);
+		
+		
+		List<ReviewVO> reviewList = detailService.viewCafeReview(reviewMap);
 		model.addAttribute("reviewList", reviewList);
 		int[] userList = new int[reviewList.size()];  
 		for (int i=0; i<reviewList.size(); i++) {
@@ -73,6 +83,7 @@ public class DetailController {
 		}
 		List<UserVO> reviewUsers = detailService.viewUserList(userList);
 		model.addAttribute("reviewUsers", reviewUsers);
+		*/
 		
 		//종합 평점 조회
 		CafeRateVO cafeRate = detailService.viewCafeRate(cafe_id);   
@@ -80,11 +91,54 @@ public class DetailController {
 		
 		//좋아요 상태 조회
 		
-		
+		//카페 찜 상태 조회
 		
 		return "cafe/cafeDetail";
 	}
 	
+	// 리뷰 조회
+	@RequestMapping("/reviewViewForm.do")
+	public String reviewViewForm(Model model, HttpServletRequest request) {
+		int cafe_id = Integer.parseInt(request.getParameter("cafe_id"));
+		int currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		
+		CafeRateVO cafeRate = detailService.viewCafeRate(cafe_id);   
+		model.addAttribute("cafeRate", cafeRate);
+		
+		int maxPage = (cafeRate.getRate_num()-1)/5+1;
+		int beginIndex = (currentPage-1)*5;
+		int beginPage = ((currentPage-1)/5)*5+1;
+		int endPage;
+		if(maxPage-currentPage<4) {  
+			endPage = maxPage;/*((currentPage-1)/5)+maxPage-beginPage+1*/	
+		} else {
+			endPage = ((currentPage-1)/5)+5;
+		}
+		
+		System.out.println("최대: " +maxPage+ ".../...현재 :" +currentPage+ ".../...시작 : " + beginPage + ".../...마지막 : " +endPage );
+		
+		Map<String, Integer> reviewMap = new HashMap<String, Integer>();
+		reviewMap.put("currentPage", currentPage);
+		reviewMap.put("cafe_id", cafe_id);
+		reviewMap.put("beginIndex", beginIndex);
+	
+		List<ReviewVO> reviewList = detailService.viewCafeReview(reviewMap);
+		model.addAttribute("reviewList", reviewList);
+		
+		int[] userList = new int[reviewList.size()];  
+		for (int i=0; i<reviewList.size(); i++) {
+			userList[i] = reviewList.get(i).getUser_id();
+		}
+		List<UserVO> reviewUsers = detailService.viewUserList(userList);
+		model.addAttribute("reviewUsers", reviewUsers);
+		
+		model.addAttribute("maxPage", maxPage);
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("beginPage", beginPage);
+		model.addAttribute("endPage", endPage);	
+	   
+		return "cafe/reviewViewForm";
+	}
 	
 	// 수정 양식으로 이동
 	@RequestMapping("/cafeModifyForm.do")
@@ -317,10 +371,8 @@ public class DetailController {
 		UserVO vo1 = (UserVO) session.getAttribute("userVO");
 		vo.setUser_id(vo1.getUser_id());
 		
-		
 		int cafe_id = Integer.parseInt(request.getParameter("cafe_id"));
 		vo.setCafe_id(cafe_id);
-		
 		
 		detailService.registCollect(vo);
 		
