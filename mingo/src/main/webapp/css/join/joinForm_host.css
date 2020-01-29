@@ -39,7 +39,7 @@
 	    line-height: 54px
 	}
 	
-	#joinForm{
+	#joinForm_host{
 	    width: 600px;
 	    background-color: rgb(255, 255, 255);
 	    margin: 40px auto 40px ;
@@ -275,7 +275,39 @@
 	    text-align: left;
 	    outline:none;
 	}
+	/* 사업자 등록 번호 */
+	.insert_business_num{
+		position: relative;
+	    float: left;
+	    font-size: 14px;
+	    font-weight: bold;
+	   
+	}
+	.business_num1 > .business_num2{
+	   font-size: 14px;
+	    width: 300px;
+	    height: 52px;
+	    color: rgb(33, 33, 33);
+	    background-color: transparent;
+	    border-top:0 solid black;
+	    border-left:0 solid black;
+	    border-right:0 solid black;
+	    text-align: left;
+	    outline:none;
 	
+	}
+	#business_num{
+	    font-size: 14px;
+	    width: 300px;
+	    height: 52px;
+	    color: rgb(33, 33, 33);
+	    background-color: transparent;
+	    border-top:0 solid black;
+	    border-left:0 solid black;
+	    border-right:0 solid black;
+	    text-align: left;
+	    outline:none;
+	}
 	
 	
 	.gender_select > ul {

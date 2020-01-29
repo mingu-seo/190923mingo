@@ -3,21 +3,27 @@
 
 <mapper namespace="userMapper">
 	
-	<select id="loginProcess" parameterType="vo.UserVO">
+	<select id="loginProcess" parameterType="vo.UserVO" resultType="vo.UserVO">
 		SELECT * FROM mingo.user WHERE email=#{email} and password=#{password}
 	</select>
 	
 	<insert id="joinProcess" parameterType="vo.UserVO">
 		INSERT INTO mingo.user
-		(email, password, name,nickname, birthday, gender)
+		(email, password, name,nickname, birthday, gender, type)
 		values
-		(#{email}, #{password},#{name}, #{nickname}, #{birthday}, #{gender})
+		(#{email}, #{password},#{name}, #{nickname}, #{birthday}, #{gender}, #{type})
 	</insert>
 	
 	<!--아이디 중복체크  -->
-	<select id="emailCheck" resultType="integer">
+	<select id="emailCheck" parameterType="String" resultType="integer">
 	 SELECT COUNT(*) FROM mingo.user
 	 WHERE email=#{email}
+	</select>
+	
+	<!--닉네임 중복체크  -->
+	<select id="nicknameCheck" parameterType="String" resultType="integer">
+	 SELECT COUNT(*) FROM mingo.user
+	 WHERE nickname=#{nickname}
 	</select>
 	
 	<select id="id_step1_process" parameterType="vo.UserVO">

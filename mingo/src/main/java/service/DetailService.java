@@ -16,6 +16,8 @@ import vo.CafeProductVO;
 import vo.CafeRateVO;
 import vo.CafeServiceVO;
 import vo.CafeVO;
+import vo.CollectCafeVO;
+import vo.LikeCafeVO;
 import vo.ReviewVO;
 import vo.UserVO;
 
@@ -50,6 +52,11 @@ public interface DetailService {
 	public int deleteCafeInfo(int cafe_id);
 	
 	public int registReview(ReviewVO vo,MultipartFile file, HttpServletRequest request, CafeRateVO cafeRate);
-	
-	
+	public ReviewVO viewReview(ReviewVO vo);
+	public int modifyReview(ReviewVO vo_old, ReviewVO vo_new, MultipartFile file, HttpServletRequest request, CafeRateVO cafeRate);
+	public int deleteReview(CafeRateVO cafeRateVO, ReviewVO reviewVO);
+	public int registLike(LikeCafeVO vo);
+	public int deleteLike(LikeCafeVO vo);
+	public int registCollect(CollectCafeVO vo);
+	public int deleteCollect(CollectCafeVO vo);
 }

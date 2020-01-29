@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     
     <link rel="stylesheet" type="text/css" href="css/login/loginForm.css">
-    
+    <script type="text/javascript" src="js/login/loginFormScript.js"></script>
 </head>
 <body>
 
@@ -49,14 +49,14 @@
 	    </div>
     </div>
  
-	<form action = "/loginProcess.do" method="post">
+	<form id="login" action = "/loginProcess.do" method="post">
         <div class="main">
             <label class="email1">
                 <span class="email2">
                     아이디&nbsp;
                 </span>
                     <div class="emailaddress">
-                <input required autocomplete="new-password" 
+                <input name="email" id="email" required autocomplete="new-password" 
                 placeholder="이메일을 입력해주세요." class="emailaddress">    
                 
                 </div>
@@ -71,8 +71,8 @@
                     </span>
                     <div class="first-pass">
                        <div class="input-pass">
-                       <input type="password" minlength="10" maxlength="20" 
-                       required placeholder="비밀번호를 입력해주세요 " class="input-pass">
+                       <input name="password" id="password" type="password" minlength="10" maxlength="20" 
+                       required placeholder="비밀번호를 입력해주세요 " class="password">
                     </div>
                 </div>
                 </label>   
@@ -82,8 +82,8 @@
 		<br>
 		
 			<div class="button1-select">
-	            <button type="button" class="loginbutton" >로그인</button>
-	            <button type="button" class="joinbutton"onclick = "location.href = '/join_step1.do' ">회원가입</button>
+	            <button type="button" class="loginbutton" onclick = "javascript:loginForm();">로그인</button>
+	            <button type="button" class="joinbutton" onclick = "location.href='/join_step1.do'">회원가입</button>
 	        </div>
 	        <br>
 	      <div class="find">

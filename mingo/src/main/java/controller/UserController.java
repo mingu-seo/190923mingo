@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import service.UserService;
 import vo.UserVO;
@@ -17,7 +18,7 @@ import vo.UserVO;
 public class UserController {
 	
 	@Autowired
-	UserService userService;
+	private UserService userService;
 	
 	//로그인 폼
 	@RequestMapping("/loginForm.do")
@@ -37,29 +38,57 @@ public class UserController {
 		} else {
 			HttpSession session = request.getSession();
 			session.setAttribute("userVO", vo);
-			return "redirect:/main/goMain.do";
+			return "redirect:/goMain.do";
 		}
 	}
 	
-	//회원가입 폼
+	//회원가입 폼 -일반회원
 	@RequestMapping("/joinForm.do")
 	public String joinForm() {
 		return "join/joinForm";
 	}
 	
-	//회원가입 처리
-	@RequestMapping("/joinProcess.do")
-	public String joinProcess(Model model,UserVO vo,HttpServletRequest request) {
-		 userService.joinProcess(vo);
-		return "redirect:/login/loginForm.do";
+	//회원가입 폼 - 사장님회원
+	@RequestMapping("/joinForm_host.do")
+	public String joinForm_host() {
+		return "join/joinForm_host";
 	}
 	
+	//회원가입 처리
+	@RequestMapping("/joinProcess.do")
+	public String joinProcess(Model model,UserVO vo) {
+		 int r =userService.joinProcess(vo);
+		 String msg ="";
+		 String url ="";
+		 if (r > 0) {
+			 msg = "가입되셨습니다.";
+			 url = "/loginForm.do";
+		 } else {
+			 msg = "회원가입 실패";
+			 url = "/join_step1.do";
+		 }
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		return "include/alert";
+	}
+	
+	//이메일 중복체크
 	@RequestMapping("/emailCheck.do")
-	public int emailCheck(UserVO vo) {
-		int result = userService.emailCheck(vo);
-		return result;
+	public String emailCheck(Model model, @RequestParam("email") String email) {
+		int result = userService.emailCheck(email);
+		model.addAttribute("value", result);
+		return "include/return";
 		
 	}
+	//닉네임 중복체크
+	@RequestMapping("/nicknameCheck.do")
+	public String nicknameCheck(Model model, @RequestParam("nickname") String nickname) {
+		int result = userService.nicknameCheck(nickname);
+		model.addAttribute("value", result);
+		return "include/return";
+		
+	}
+	
 	//	로그아웃 
 	@RequestMapping("/logout.do")
 	public String logout() {

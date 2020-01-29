@@ -68,6 +68,13 @@ public class MyServiceImpl implements MyService{
 		
 	}
 	
+	public int modifyUser(UserVO vo) {
+		int r = myDao.modifyUser(vo);
+		return r;
+	}
+	public void deleteUser(int user_id) {
+		myDao.deleteUser(user_id);
+	};
 		
 	
 	

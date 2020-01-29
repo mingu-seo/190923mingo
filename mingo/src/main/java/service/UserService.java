@@ -13,7 +13,7 @@ import vo.UserVO;
 public class UserService {
 
 	@Autowired
-	UserDAO userDao;
+	private UserDAO userDao;
 
 	public UserVO loginProcess(UserVO vo) {
 		return userDao.loginProcess(vo);
@@ -22,8 +22,13 @@ public class UserService {
 		return userDao.joinProcess(vo);
 	}
 	
-	public int emailCheck(UserVO vo) {
-		return userDao.emailCheck(vo);
+	//아이디 중복체크
+	public int emailCheck(String email) {
+		return userDao.emailCheck(email);
+	}
+	//닉네임 중복체크
+	public int nicknameCheck(String nickname) {
+		return userDao.nicknameCheck(nickname);
 	}
 
 	public UserVO id_step1_process(UserVO vo) {

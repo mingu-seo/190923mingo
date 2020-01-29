@@ -30,5 +30,6 @@ public interface MyService {
 	public List<CollectCafeVO> viewCollect(int user_id);
 	public List<CafeVO> viewCafeList2(List<CollectCafeVO> collectList); 
 	public List<CafeRateVO> viewCafeRate2(List<CollectCafeVO> collectList);
-	
+	public int modifyUser(UserVO vo);
+	public void deleteUser(int user_id);
 }

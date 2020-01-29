@@ -46,7 +46,7 @@
 							<p class="persontitle-content">사장님의 카페 등록 및 관리가 가능합니다.</p>
 						</div>
 						<div class="button1-select">
-							<button type="button" class="buttonchoose"  onclick = "location.href = '/joinForm.do' ">선택하기</button>
+							<button type="button" class="buttonchoose"  onclick = "location.href = '/joinForm_host.do' ">선택하기</button>
 						</div>
 				</a></li>
 			</ul>

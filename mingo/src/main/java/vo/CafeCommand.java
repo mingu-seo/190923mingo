@@ -14,7 +14,33 @@ public class CafeCommand {
 	private String name;  //상호명
 	private int filter_type; //0.디폴트 1.평점순 2.리뷰순 3.좋아요 순
 	
+	private int page;
+	private int limit;
+	private int startrow;
 	
+	
+	
+	
+	
+	
+	public int getStartrow() {
+		return startrow;
+	}
+	public void setStartrow(int startrow) {
+		this.startrow = startrow;
+	}
+	public int getPage() {
+		return page;
+	}
+	public void setPage(int page) {
+		this.page = page;
+	}
+	public int getLimit() {
+		return limit;
+	}
+	public void setLimit(int limit) {
+		this.limit = limit;
+	}
 	public int getSido_code() {
 		return sido_code;
 	}

@@ -31,11 +31,13 @@ public class MainDAO {
 
 	/* 4가지 옵션을 이용하여 찾는 함수 */
 	public List<CafeVO> getCafeList(CafeCommand cafeTmp) {
+		
 		return sqlSession.selectList("hong.getCafeList", cafeTmp);
 	}
 	
 	/* 필터만 이용하여 찾는 함수 */
 	public List<CafeVO> getCafeList2(CafeCommand cafeTmp) {
+		
 		return sqlSession.selectList("hong.getCafeList2", cafeTmp);
 	}
 
@@ -46,6 +48,12 @@ public class MainDAO {
 	public List<Map> getReviewList() {
 		return sqlSession.selectList("hong.getReviewList");
 	}
+
+	public int getCafeListCount(CafeCommand cafeCommand) {
+		return sqlSession.selectOne("hong.getCafeListCount",cafeCommand);
+	}
+	
+	
 
 	
 	

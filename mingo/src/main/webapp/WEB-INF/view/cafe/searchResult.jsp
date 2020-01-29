@@ -44,7 +44,10 @@
     	var sigungu_code = ${cafeCommand.sigungu_code};
     	var dong_code = ${cafeCommand.dong_code};
     	var name = '${cafeCommand.name}';
-    	//var filter_type;
+    	
+    	var page = ${cPageInfo.page};
+    	var listCount = ${cPageInfo.listCount}
+    	var maxPage = ${cPageInfo.maxPage};
 	    
     </script>
 </head>
@@ -66,8 +69,10 @@
 			</ul>
 		</div>
 	</div>
+	<h5 style="margin-top:120px;" class='container'>검색결과 ${cPageInfo.listCount }건</h5>
 	<!-- 본문 영역-->
     <div class="container grid clearfix p-0">
+    	
         <c:forEach var="cafe" items="${cafeList }">
         	<div class="grid-item">
             <div class="cafe cafe-img">

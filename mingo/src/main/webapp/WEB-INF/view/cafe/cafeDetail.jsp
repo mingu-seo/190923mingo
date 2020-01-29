@@ -552,13 +552,13 @@
 	</style>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=197a1366c7c3fbd3d1f4e49445d212b0"></script>
 	<script>
-		var container = document.getElementById('map');
+		/* var container = document.getElementById('map');
 		var options = {
 			center: new kakao.maps.LatLng(33.450701, 126.570667),
 			level: 3
 		};
 	
-		var map = new kakao.maps.Map(container, options);
+		var map = new kakao.maps.Map(container, options); */
 	</script>
 	
 	<script>
@@ -683,7 +683,71 @@
 					'display':'none'
 				});
 			});	
-		});  
+			
+			// 좋아요 클릭 기능 
+			var likeValue = $('#likeCafe').val();
+			var cafe_id = <%=request.getParameter("cafe_id") %>;
+			
+			$('#like-cafe-btn').click(function(){
+				if ($('#likeCafe').val()==0){
+					console.log(likeValue);
+					$('#like-img').attr("src", 'img/like.png');
+					$.ajax({
+						url:'registLike.do',
+						type:'POST',
+						data:{'cafe_id':cafe_id},
+						success:function(data){
+							$('#likeCafe').val('1');
+						}
+					});
+					console.log("등록 성공");
+					
+				} else {
+					$('#like-img').attr("src", 'img/likeNone.png');
+					$.ajax({
+						url:'deleteLike.do',
+						type:'POST',
+						data:{'cafe_id':cafe_id},
+						success:function(data){
+							$('#likeCafe').val('0');
+						}
+					});
+					console.log("삭제 성공");
+				}
+				var likeValue = $('#likeCafe').val();
+			});
+			
+			/* 찜하기 등록 삭제*/
+			var collectValue = $('#collectCafe').val();
+			$('#collect-cafe-btn').click(function(){
+				if ($('#collectCafe').val()==0){
+					console.log(collectValue);
+					$('#collect-img').attr("src", 'img/collect.png');
+					$.ajax({
+						url:'registCollect.do',
+						type:'POST',
+						data:{'cafe_id':cafe_id},
+						success:function(data){
+							$('#collectCafe').val('1');
+						}
+					});
+					console.log("등록 성공");
+					
+				} else {
+					$('#collect-img').attr("src", 'img/collectNone.png');
+					$.ajax({
+						url:'deleteCollect.do',
+						type:'POST',
+						data:{'cafe_id':cafe_id},
+						success:function(data){
+							$('#collectCafe').val('0');
+						}
+					});
+					console.log("삭제 성공");
+				}
+				var likeValue = $('#collectCafe').val();
+			});
+		});      
 	  
 	
 	
@@ -713,10 +777,12 @@
 					${cafe.branch }
 				</div>     
 				<div id="like-cafe-btn">   
-					<img src="img/like.png" id="like-img">
+					<img src="img/likeNone.png" id="like-img">
+					<input type="hidden" id="likeCafe" value="0">
 				</div>     
 				<div id="collect-cafe-btn">
-					<img src="img/collect.png" id="collect-img">
+					<img src="img/collectNone.png" id="collect-img">
+					<input type="hidden" id="collectCafe" value="0">
 				</div>     
 				<div id="regist-review">
 					<a href="reviewRegistForm.do?cafe_id=${cafe_id }&user_id=${user_id }">review</a>
@@ -1044,7 +1110,7 @@
 							<div class="cafe_review_top">
 								<div class="user_info">   
 									<div>
-										<img src="upload/${user.profile_image}"/>
+										<img src="upload/user/${user.profile_image}"/>
 									</div>
 									<h2>${user.nickname }</h2>
 									<h2>${review.regdate }</h2>    
@@ -1096,7 +1162,7 @@
 							</div>
 							<div class="cafe_review_bottom">  
 								<div>
-									<img src="img/${review.image }"/>
+									<img src="upload/review/${review.image }"/>
 								</div>
 								<div class="comment"> 
 									<p>${review.contents }</p>
@@ -1129,7 +1195,7 @@
 			</div>
 			
 		</div>
-	</div>
+	</div>   
 	
 	<!-- 푸터 include -->
 	<%@ include file="/WEB-INF/view/include/footer.jsp"%>

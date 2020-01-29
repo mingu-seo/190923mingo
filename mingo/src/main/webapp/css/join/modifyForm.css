@@ -39,7 +39,7 @@
 	    line-height: 54px
 	}
 	
-	#joinForm{
+	.content{
 	    width: 600px;
 	    background-color: rgb(255, 255, 255);
 	    margin: 40px auto 40px ;
@@ -72,7 +72,7 @@
 	    outline:none;
 	
 	}
-	#email{
+	.email-input{
 	    font-size: 14px;
 	    width: 300px;
 	    height: 52px;
@@ -105,32 +105,18 @@
 	.email-btn-check:hover{
 	   box-shadow: 0 1px 10px rgba(0,0,0,0.5);
 	}
-	
-	/* 비밀번호 */
-	.insert_password{
-		position: relative;
+	.pass1 > .pass2{
+	    position: relative;
 	    float: left;
 	    font-size: 14px;
 	    font-weight: bold;
-	   
+	
 	}
-	.pass1 > .pass2{
-	   font-size: 14px;
-	    width: 300px;
-	    height: 52px;
-	    color: rgb(33, 33, 33);
-	    background-color: transparent;
-	    border-top:0 solid black;
-	    border-left:0 solid black;
-	    border-right:0 solid black;
-	    text-align: left;
-	    outline:none;
-		
-	}
-	#password{
+	
+	.input-pass{
 	    font-size: 14px;
 	    width: 300px;
-	    height: 52px;
+	    height: 60px;
 	    color: rgb(33, 33, 33);
 	    background-color: transparent;
 	    border-top:0 solid black;
@@ -138,22 +124,8 @@
 	    border-right:0 solid black;
 	    text-align: left;
 	    outline:none;
-	    padding: 1px0px;
+	    padding: 8px 0px;
 	}
-	#password_confirm{
-	    font-size: 14px;
-	    width: 300px;
-	    height: 52px;
-	    color: rgb(33, 33, 33);
-	    background-color: transparent;
-	    border-top:0 solid black;
-	    border-left:0 solid black;
-	    border-right:0 solid black;
-	    text-align: left;
-	    outline:none;
-	    padding: 1px 0px;
-	}
-	/* 이름 */
 	.insert_name{
 		position: relative;
 	    float: left;
@@ -174,7 +146,7 @@
 	    outline:none;
 	
 	}
-	#name{
+	.name-input{
 	    font-size: 14px;
 	    width: 300px;
 	    height: 52px;
@@ -186,8 +158,6 @@
 	    text-align: left;
 	    outline:none;
 	}
-	
-	/* 닉네임 */
 	.insert_nickname{
 		position: relative;
 	    float: left;
@@ -208,7 +178,7 @@
 	    outline:none;
 	
 	}
-	#nickname{
+	.nickname-input{
 	    font-size: 14px;
 	    width: 300px;
 	    height: 52px;
@@ -242,7 +212,7 @@
 	   box-shadow: 0 1px 10px rgba(0,0,0,0.5);
 	}
 	
-	/* 생년월일 */
+	
 	.insert_bday{
 		position: relative;
 	    float: left;
@@ -263,7 +233,7 @@
 	    outline:none;
 	
 	}
-	#birthday{
+	.bday-input{
 	    font-size: 14px;
 	    width: 300px;
 	    height: 52px;
@@ -275,8 +245,31 @@
 	    text-align: left;
 	    outline:none;
 	}
+/* 	.box-radio-input input[type="radio"]{
+	    display:none;
+	}
 	
+	.box-radio-input input[type="radio"] + span{
+	    position: relative;
+	   left: 225px;
+	   top:-47px;
+	    z-index: 8; 
+	    display:inline-block;
+	    background:none;
+	    border:1px solid #dfdfdf;    
+	    padding:8px 13px 8px 13px;
+	    text-align:center;
+	    height:32px;
+	    line-height:36px;
+	    font-weight:500;
+	    cursor:pointer;
+	}
 	
+	.box-radio-input input[type="radio"]:checked + span{
+	    border:1px solid #23a3a7;
+	    background:#23a3a7;
+	    color:#fff;
+	} */
 	
 	.gender_select > ul {
 	    padding: 0px;
