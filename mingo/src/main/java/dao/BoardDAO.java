@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import vo.BoardVO;
+import vo.BoardCommentVO;
 @Repository
 public class BoardDAO {
 	
@@ -24,6 +25,10 @@ public class BoardDAO {
 		public int insert(BoardVO vo) {
 			return sqlSession.insert("board.insert",vo);
 		}
+		//조회수 증가
+		public void readcount(int board_id) {
+			sqlSession.update("board.readcount",board_id);
+		}
 		public BoardVO view(int board_id) {
 			return sqlSession.selectOne("board.view",board_id);
 		}
@@ -32,5 +37,20 @@ public class BoardDAO {
 		}
 		public int delete(int board_id) {
 			return sqlSession.delete("board.delete",board_id);
+		}
+		public List<BoardCommentVO> clist(BoardCommentVO cvo){
+			return sqlSession.selectList("board.clist",cvo);
+		}
+		public int replySeq(BoardCommentVO cvo) {
+			return sqlSession.update("board.replySeq",cvo);
+		}
+		public int replyInsert(BoardCommentVO cvo) {
+			return sqlSession.insert("board.replyInsert",cvo);
+		}
+		public int writeComment(BoardCommentVO cvo) {
+			return sqlSession.insert("board.writeComment",cvo);
+		}
+		public int replyDelete(int board_comment_id) {
+			return sqlSession.delete("board.replyDelete",board_comment_id);
 		}
 }
