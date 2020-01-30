@@ -46,7 +46,10 @@ public class MainController {
 	
 	//랭킹 통계 페이지로 이동
 	@RequestMapping("/rankCafe.do")
-	public String rankCafe() {
+	public String rankCafe(Model model) {
+		
+		List<String> sidoList = dao.getSidoList();
+		model.addAttribute("sidoList", sidoList);
 		return "rank/rankMain";
 	}
 	

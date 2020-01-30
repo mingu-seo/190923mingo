@@ -52,6 +52,10 @@ public class MainDAO {
 	public int getCafeListCount(CafeCommand cafeCommand) {
 		return sqlSession.selectOne("hong.getCafeListCount",cafeCommand);
 	}
+
+	public List<String> getSidoList() {
+		return sqlSession.selectList("hong.getSido");
+	}
 	
 	
 
