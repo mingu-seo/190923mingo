@@ -116,7 +116,7 @@
 				<div class="col-lg-7 mb-1 bg-light mt-4">
 					<div class="container rank-header shadow-sm">
 						<h1 class="mt-2">
-							종합순위 <a href="#"  data-toggle="tooltip" title="더보기" data-placement="left" class="fa fa-plus-square-o detail-icon"
+							종합순위 <a href="rankCafe.do"  data-toggle="tooltip" title="더보기" data-placement="left" class="fa fa-plus-square-o detail-icon"
 								style="font-size: 1.3em; float: right;"></a>
 						</h1>
 
@@ -221,7 +221,7 @@
 				<div class="col-lg-7 mb-5 board-area">
 					<div class="container bg-light board p-2 shadow-sm">
 						<div class="container">
-							<span style="font-size: 1.8em;">자유게시판</span> <a href="#"
+							<span style="font-size: 1.8em;">자유게시판</span> <a href="listBoard.do"
 								class="fa fa-plus-square-o detail-icon" data-toggle="tooltip" title="더보기" data-placement="left"
 								style="font-size: 3em; float: right;"></a>
 						</div>
@@ -233,7 +233,7 @@
 					</div>
 					<div class="container bg-light board p-2 shadow-sm">
 						<div class="container">
-							<span style="font-size: 1.8em;">정보게시판</span> <a href="#"
+							<span style="font-size: 1.8em;">정보게시판</span> <a href="listBoard.do"
 								class="fa fa-plus-square-o detail-icon" data-toggle="tooltip" title="더보기" data-placement="left"
 								style="font-size: 3em; float: right;"></a>
 						</div>

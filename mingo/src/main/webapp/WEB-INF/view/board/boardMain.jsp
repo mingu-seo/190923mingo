@@ -48,23 +48,23 @@ int totalpage = (Integer)request.getAttribute("totalpage"); // 전체페이지�
             </div>
             
             <div class="list-group list-group-flush board-main">
-                <a href="#" class="list-group-item">
+                <li class="list-group-item">
                     <div style="float:left;padding:0 14px;">번호</div>
                     <div style="float:left;padding:0 157px;">제목</div>
                     <div style="float:left;padding:0 30px">작성자</div>
                     <div style="float:left;padding:0 30px">등록일</div>
                     <div style="float:left;padding:0 14px">조회</div>
                     <div style="float:left;padding:0 14px">추천</div>
-                </a>
+                </li>
                 <c:forEach  items="${list}" var="BoardVO">
-                <a href="viewBoard.do?board_id=${BoardVO.board_id}&page=<%=vo.getPage()%>" class="list-group-item">
+                <li class="list-group-item">
                     <div id="b-num" style="float:left;width:60px;height:24px;">${BoardVO.board_id}</div>
-                    <div id="b-title" style="float:left;width:346px;height:24px;">${BoardVO.title}</div>
+                    <a href="viewBoard.do?board_id=${BoardVO.board_id}&page=<%=vo.getPage()%>"id="b-title" style="float:left;width:346px;height:24px;display:block">${BoardVO.title}</a>
                     <div id="b-username" style="float:left;width:108px;height:24px;">${BoardVO.nickname}</div>
                     <div id="b-regdate" style="float:left;width:108px;height:24px;"><fmt:formatDate value="${BoardVO.regdate}" pattern="yyyy.MM.dd"/></div>
                     <div id="b-readcount" style="float:left;width:60px;height:24px;">${BoardVO.readcount}</div>
                     <div id="b-goodcount" style="float:left;width:60px;height:24px;">${BoardVO.type}</div> 
-                </a>
+                </li>
                 </c:forEach>
                 
             </div>

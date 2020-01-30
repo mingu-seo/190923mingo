@@ -45,10 +45,10 @@ a{
     border-bottom:none;
     
 }
-.board-main a{
+.board-main li{
     padding:10px 15px 10px 15px;
 }
-.board-main a>div{
+.board-main > li>div{
     text-align: center;
 }
 #b-num{
