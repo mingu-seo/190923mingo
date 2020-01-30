@@ -299,17 +299,19 @@
         	float:left;
         }    
 		
-		#cafe_location_title{
+		/* #cafe_location_title{
 			margin-bottom:20px;  
 		}
 		.cafe_location_map{
+			width:700px;
+			height:500px;
 			padding:10px;
 			
 		}
 		.cafe_location_map > img{
 			width:100%;
 			height:500px;   
-		}
+		} */
 		
 		.cafe_rates{
 			height:500px;
@@ -556,26 +558,76 @@
 	<script>
 		$(function(){
 			
-			var container = document.getElementById('map');
+			var latitude = ${cafe.latitude};
+			var longitude = ${cafe.longitude};
+			console.log(latitude);
+			console.log(longitude);
+			
+			/* var container = document.getElementById('cafe-map');
 			var options = {
-				center: new kakao.maps.LatLng(33.450701, 126.570667),
+				center: new kakao.maps.LatLng(latitude, longitude),
 				level: 3
 			};
-		
-			var map = new kakao.maps.Map(container, options);
-		
+			var map = new kakao.maps.Map(container, options); */
+			
+			var mapContainer = document.getElementById('cafe-map'), // 지도를 표시할 div  
+		    	mapOption = { 
+		        center: new kakao.maps.LatLng(latitude, longitude), // 지도의 중심좌표
+		        level: 3 // 지도의 확대 레벨
+		    	};
+
+			var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+			 
+			// 마커를 표시할 위치와 title 객체 배열입니다 
+			var positions = [
+			    {
+			        title: '카카오', 
+			        latlng: new kakao.maps.LatLng(latitude, longitude)
+			    },
+			    {
+			        title: '생태연못', 
+			        latlng: new kakao.maps.LatLng(33.450936, 126.569477)
+			    },
+			    {
+			        title: '텃밭', 
+			        latlng: new kakao.maps.LatLng(33.450879, 126.569940)
+			    },
+			    {
+			        title: '근린공원',
+			        latlng: new kakao.maps.LatLng(33.451393, 126.570738)
+			    }
+			];
+	
+			// 마커 이미지의 이미지 주소입니다
+			var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
+			    
+			for (var i = 0; i < positions.length; i ++) {
+			    
+			    // 마커 이미지의 이미지 크기 입니다
+			    var imageSize = new kakao.maps.Size(24, 35); 
+			    
+			    // 마커 이미지를 생성합니다    
+			    var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
+			    
+			    // 마커를 생성합니다
+			    var marker = new kakao.maps.Marker({
+			        map: map, // 마커를 표시할 지도
+			        position: positions[i].latlng, // 마커를 표시할 위치
+			        title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+			        image : markerImage // 마커 이미지 
+			    });
+			}
 			
 			
-			$('document').ready(function() {
-				var review_each_height = $('.cafe_review_bottom img').height()+$('.comment').height()+20;
-				$('.cafe_review_each').css({
-					'height':review_each_height+'px'
-				});
-				$('.cafe_reviews').css({
-					'height':review_each_height*5+200+'px'
-				});
-				
+			var review_each_height = $('.cafe_review_bottom img').height()+$('.comment').height()+20;
+			$('.cafe_review_each').css({
+				'height':review_each_height+'px'
 			});
+			$('.cafe_reviews').css({
+				'height':review_each_height*5+200+'px'
+			});
+				
+			
 			
 			
 			$('.info_button').click(function(){
@@ -606,6 +658,20 @@
 	                mousewheel: true,
 	                keyboard: true,
 	            });   
+				
+				var latitude = ${cafe.latitude};
+				var longitude = ${cafe.longitude};
+				console.log(latitude);
+				console.log(longitude);
+				
+				var container = document.getElementById('cafe-map');
+				var options = {
+					center: new kakao.maps.LatLng(latitude, longitude),
+					level: 3
+				};
+				var map = new kakao.maps.Map(container, options);
+				
+				
 			});	  
 			$('.review_button').click(function(){
 				console.log("click");
@@ -621,6 +687,33 @@
 				$('.cafe_infomation').css({
 					'display':'none'
 				});
+				
+				var swiper = new Swiper('.swiper', {
+	                cssMode: true,
+	                loop : true,
+	                navigation: {
+	                nextEl: '.visual .swiper-button-next',
+	                prevEl: '.visual .swiper-button-prev',
+	                },
+	                pagination: {
+	                el: '.visual .swiper-pagination'
+	                },
+	                mousewheel: true,
+	                keyboard: true,
+	            });  
+				
+				var latitude = ${cafe.latitude};
+				var longitude = ${cafe.longitude};
+				console.log(latitude);
+				console.log(longitude);
+				
+				var container = document.getElementById('cafe-map');
+				var options = {
+					center: new kakao.maps.LatLng(latitude, longitude),
+					level: 3
+				};
+				var map = new kakao.maps.Map(container, options);
+				
 			});	
 			
 			
@@ -816,16 +909,28 @@
 				<div id="branch_name">
 					${cafe.branch }
 				</div>     
-				<div id="like-cafe-btn">   
-					<img src="img/likeNone.png" id="like-img">
-					<input type="hidden" id="likeCafe" value="0">
+				<div id="like-cafe-btn">
+					<c:if test="${likeCafe == 0}">
+						<img src="img/likeNone.png" id="like-img">
+						<input type="hidden" id="likeCafe" value="0">					
+					</c:if>
+					<c:if test="${likeCafe == 1}">
+						<img src="img/like.png" id="like-img">
+						<input type="hidden" id="likeCafe" value="1">					
+					</c:if>
 				</div>     
 				<div id="collect-cafe-btn">
-					<img src="img/collectNone.png" id="collect-img">
-					<input type="hidden" id="collectCafe" value="0">
+					<c:if test="${collectCafe == 0}">
+						<img src="img/collectNone.png" id="collect-img">
+						<input type="hidden" id="collectCafe" value="0">
+					</c:if>
+					<c:if test="${collectCafe == 1}">
+						<img src="img/collect.png" id="collect-img">
+						<input type="hidden" id="collectCafe" value="1">
+					</c:if>
 				</div>     
 				<div id="regist-review">
-					<a href="reviewRegistForm.do?cafe_id=${cafe_id }&user_id=${user_id }">review</a>
+					<a href="reviewRegistForm.do?cafe_id=${cafe_id }&user_id=${user_id }">re</a>
 				</div>     
 			</div>
 			<div class="info">
@@ -892,70 +997,70 @@
 							<img src="img/coffee.png"/>
 							<div>
 								<h6>와이파이</h6>
-								<h6>{facilities.wifi}</h6>
+								<h6>${facilities.wifi}</h6>
 							</div>
 						</div>
 						<div class="info_each">
 							<img src="img/coffee.png"/>
 							<div>
 								<h6>매장 규모</h6>
-								<h6>{facilities.table }</h6>
+								<h6>${facilities.table }</h6>
 							</div>
 						</div>
 						<div class="info_each">
 							<img src="img/coffee.png"/>
 							<div>
 								<h6>인테리어 분위기</h6>
-								<h6>{facilities.interior }</h6>
+								<h6>${facilities.interior }</h6>
 							</div>
 						</div>  
 						<div class="info_each">
 							<img src="img/coffee.png"/>
 							<div>
 								<h6>음악</h6>
-								<h6>{facilities.music}</h6>
+								<h6>${facilities.music}</h6>
 							</div>
 						</div>
 						<div class="info_each">
 							<img src="img/coffee.png"/>
 							<div>
 								<h6>플러그 수</h6>
-								<h6>{facilities.plug}</h6>
+								<h6>${facilities.plug}</h6>
 							</div>
 						</div>
 						<div class="info_each">
 							<img src="img/coffee.png"/>
 							<div>
 								<h6>화장실</h6>
-								<h6>{facilities.restroom}</h6>
+								<h6>${facilities.restroom}</h6>
 							</div>
 						</div>
 						<div class="info_each">
 							<img src="img/coffee.png"/>
 							<div>
 								<h6>테라스</h6>
-								<h6>{facilities.terrace}</h6>
+								<h6>${facilities.terrace}</h6>
 							</div>
 						</div>
 						<div class="info_each">
 							<img src="img/coffee.png"/>
 							<div>
 								<h6>스터디룸</h6>
-								<h6>{facilities.studyroom}</h6>
+								<h6>${facilities.studyroom}</h6>
 							</div>
 						</div>
 						<div class="info_each">
 							<img src="img/coffee.png"/>
 							<div>
 								<h6>흡연석</h6>
-								<h6>{facilities.smoking}</h6>
+								<h6>${facilities.smoking}</h6>
 							</div>
 						</div>
 						<div class="info_each">
 							<img src="img/coffee.png"/>
-							<div>
+							<div> 
 								<h6>주차공간</h6>
-								<h6>{facilities.parking}</h6>
+								<h6>${facilities.parking}</h6>
 							</div>
 						</div>
 					</div>
@@ -964,35 +1069,35 @@
 							<img src="img/coffee.png"/>
 							<div>
 								<h6>이벤트</h6>
-								<h6>{service.event }</h6>
+								<h6>${service.event }</h6>
 							</div>
 						</div>
 						<div class="info_each">
 							<img src="img/coffee.png"/>
 							<div>
 								<h6>쿠폰</h6>
-								<h6>{service.coupon }</h6>
+								<h6>${service.coupon }</h6>
 							</div>
 						</div>
 						<div class="info_each">
 							<img src="img/coffee.png"/>
 							<div>
 								<h6>마일리지</h6>
-								<h6>{service.mileage }</h6>
+								<h6>${service.mileage }</h6>
 							</div>
 						</div>
 						<div class="info_each">
 							<img src="img/coffee.png"/>
 							<div>
 								<h6>담요</h6>
-								<h6>{service.blanket }</h6>
+								<h6>${service.blanket }</h6>
 							</div>
 						</div>
 						<div class="info_each">
 							<img src="img/coffee.png"/>
 							<div>
 								<h6>음료 리필</h6>
-								<h6>{service.drinkrefill }</h6>
+								<h6>${service.drinkrefill }</h6>
 							</div>
 						</div>
 					</div>
@@ -1003,12 +1108,8 @@
 		            	<div class="swiper swiper-container">
 		            		<div class="swiper-wrapper">  
 		            			<c:forEach items="${imgList }" var="img">
-		            			<div class="swiper-slide" style="background-image:url('/upload/cafe/${img.url}')"></div>
+		            				<div class="swiper-slide" style="background-image:url('/upload/cafe/${img.url}')"></div>
 		            			</c:forEach>
-		            			<!-- <div class="swiper-slide" style="background-image:url('img/cafe_1.jpg')"></div>
-		            			<div class="swiper-slide" style="background-image:url('img/cafe_2.jpg')"></div>
-		            			<div class="swiper-slide" style="background-image:url('img/cafe_3.jpg')"></div>
-		            			<div class="swiper-slide" style="background-image:url('img/cafe_4.png')"></div> -->
 		            		</div>  
 		            		<div class="swiper-pagination"></div>
 		            		<div class="swiper-button-prev"></div>
@@ -1020,7 +1121,7 @@
 				<div class="cafe_location">
 					<div class="info_title" id="cafe_location_title">위치</div>
 					<div class="cafe_location_map">
-						<div id="map" style="width:650px;height:350px;"></div>					
+						<div id="cafe-map" style="width:500px;height:400px;"></div>	
 					</div> 
 				</div>
 			</div>		

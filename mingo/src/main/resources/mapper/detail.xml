@@ -76,6 +76,22 @@
 			</if>
 		</where>
 	</select>
+	<select id="viewLikeCafe" resultType="vo.LikeCafeVO" parameterType="Map">
+		SELECT * FROM mingo.like_cafe
+		<where>
+			<if test="cafe_id != null and user_id != null">
+				cafe_id = #{cafe_id} and user_id = #{user_id} 
+			</if>
+		</where>
+	</select>
+	<select id="viewCollectCafe" resultType="vo.CollectCafeVO" parameterType="Map">
+		SELECT * FROM mingo.collect_cafe
+		<where>
+			<if test="cafe_id != null and user_id != null">
+				cafe_id = #{cafe_id} and user_id = #{user_id} 
+			</if>
+		</where>
+	</select>   
 	
 	
 	<!-- 등록 -->

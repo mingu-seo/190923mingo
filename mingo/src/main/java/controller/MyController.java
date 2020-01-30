@@ -33,7 +33,26 @@ public class MyController {
 	
 	@Autowired private MyDAO myDao;  
 	@Autowired private MyService myService;
-	 
+	
+	
+	
+	@RequestMapping("/checkPassword.do")
+	public String myUserInfo(Model model, UserVO vo, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		UserVO vo1 = (UserVO) session.getAttribute("userVO");
+		int user_id = vo1.getUser_id();
+		UserVO userVO = myService.viewUserInfo(user_id);
+		String password = request.getParameter("password");
+		String dbPwd = userVO.getPassword();
+		int result;
+		if(password == dbPwd) {
+			result=1;
+		} else{
+			result=0;
+		}
+		model.addAttribute("pwdResult", result);
+		return "mypage/myUserWithdraw";
+	}
 	@RequestMapping("/myMain.do")
 	public String myMain(Model model, UserVO vo) {
 		int user_id = vo.getUser_id();
@@ -102,6 +121,10 @@ public class MyController {
 	
 	
 	
+	@RequestMapping("/deleteUserForm.do")
+	public String deleteUserForm() {
+		return "mypage/myUserWithdraw";
+	}  
 	@RequestMapping("/deleteUser.do")
 	public String deleteUser(HttpServletRequest request) {
 		HttpSession session = request.getSession();

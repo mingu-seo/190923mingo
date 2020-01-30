@@ -57,12 +57,10 @@ public class TestController {
 		return "memberList2";
 	}
 	
-
-	@RequestMapping("/test.do")
-	public String test(Model model) {
-		
-		model.addAttribute("name", "홍길동");
-		return "test";
+    
+	@RequestMapping("/testMap.do")
+	public String testMap() {  
+		return "test/testMap";   
 	}
 	
 	@RequestMapping("/member.do")

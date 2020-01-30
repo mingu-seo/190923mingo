@@ -3,6 +3,7 @@
 package dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -65,6 +66,12 @@ public class DetailDAO {
 	}
 	public CafeFacilitiesVO viewFacilities(int cafe_id) {
 		return sqlSession.selectOne("detail.selectViewFacilities", cafe_id);
+	}
+	public LikeCafeVO viewLikeCafe(Map<String, Integer> map) {
+		return sqlSession.selectOne("detail.viewLikeCafe", map);
+	}
+	public CollectCafeVO viewCollectCafe(Map<String, Integer> map) {
+		return sqlSession.selectOne("detail.viewCollectCafe", map);
 	}
 	
 	

@@ -2,6 +2,7 @@
 
 package service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -33,6 +34,8 @@ public interface DetailService {
 	public CafeServiceVO viewService(int cafe_id);
 	public CafeFacilitiesVO viewFacilities(int cafe_id);
 	public CafeRateVO viewCafeRate(int cafe_id);
+	public int viewLikeCafe(Map<String, Integer> map1);
+	public int viewCollectCafe(Map<String, Integer> map2);
 	
 	public int registCafe(CafeVO cafeVO, List<MultipartFile> logoFile, HttpServletRequest request);
 	public int registFacility(CafeFacilitiesVO cafeFacilitiesVO);

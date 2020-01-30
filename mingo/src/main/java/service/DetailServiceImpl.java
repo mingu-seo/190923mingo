@@ -74,6 +74,22 @@ public class DetailServiceImpl implements DetailService {
 		CafeRateVO cafeRate = detailDao.viewCafeRate(cafe_id);
 		return cafeRate;
 	}
+	public int viewLikeCafe(Map<String, Integer> map) {
+		LikeCafeVO likeCafe = detailDao.viewLikeCafe(map);
+		int result = 0;
+		if (likeCafe != null) {
+			result = 1;
+		} 
+		return result;
+	}
+	public int viewCollectCafe(Map<String, Integer> map) {
+		CollectCafeVO collectCafe = detailDao.viewCollectCafe(map);
+		int result = 0;
+		if (collectCafe != null) {
+			result = 1;
+		} 
+		return result;
+	}
 	
 	
 	//등록
