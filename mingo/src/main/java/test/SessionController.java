@@ -1,5 +1,5 @@
-package testSession;
-
+package test;
+   
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 

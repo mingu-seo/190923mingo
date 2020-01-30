@@ -46,13 +46,13 @@
 	<div class="container-fluid nav-wrapper">
 	    <ul class="nav mypage-nav" style="width:1140px;">
 	        <li class="nav-item">
-	          <a class="nav-link active"  data-toggle="pill" href="myMain.do?user_id=${user_id }">회원정보</a>
+	          <a class="nav-link active" href="myMain.do?user_id=${userVO.user_id }">회원정보</a>
 	        </li>
 	        <li class="nav-item">
-	          <a class="nav-link" data-toggle="pill" href="myCafe.do?user_id=${user_id }">내 카페</a>
+	          <a class="nav-link" href="myCafe.do?user_id=${userVO.user_id }">내 카페</a>
 	        </li>
 	        <li class="nav-item">
-	          <a class="nav-link" data-toggle="pill" href="myReview.do?user_id=${user_id }">활동내역</a>
+	          <a class="nav-link" href="myReview.do?user_id=${userVO.user_id }">활동내역</a>
 	        </li>
 	    </ul>
 	</div>

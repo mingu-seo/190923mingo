@@ -28,6 +28,22 @@
 			height:450px;
 			padding:40px 0;  
 		}
+		.form-group{
+			width:100%;
+			height:300px;
+		}
+		.form-group > label{
+			line-height:300px;
+			font-size:1.3em;
+			float:left;   
+		}   
+		.form-group > input{
+			line-height:300px;
+			float:left;  
+			margin:auto 0;     
+		}   
+		
+		
 		.profile_area{
 			padding-top:30px;
 			width:40%;
@@ -94,12 +110,40 @@
 			font-weight: bold;
 		}
 		
+		}
 		
 		
 	</style>
 	
 	<script>
-	
+		$(function(){
+			
+			/* var dbPwd = ${userVO.password};
+			$('#withdrawBtn').click(function(){
+				console.log("탈퇴 버튼 클릭");
+				$.ajax({
+					url:'checkPassword.do',
+					dataType:'text',
+					success:function(data){
+						$('.message').text("올바른 비밀번호를 입력해주세요");
+					}
+				}); 
+				
+				
+				console.log(dbPwd);
+				var password = $('#pwd').val();
+				if(password==dbPwd){
+					location.href="deleteUser.do";					
+				} else{
+					  
+					
+				}
+			}); */
+			
+			
+		});
+			
+		
 	
 	</script>
 	
@@ -145,46 +189,19 @@
         
         <div class=" board-group shadow ml-4">
             <div class="pb-4 mb-1 board-name" style="border-bottom: 1px solid #6E6E6E;">
-               	내 정보 관리
+               	회원탈퇴
             </div>  
             <div class="user_info_area">
-            	<div class="profile_area">
-            		<img src="upload/user/${userVO.profile_image }" id="profile_img">
-            		<h2>${userVO.nickname }</h2>
+            	<div>
+		            <div class="form-group">
+		                <label for="pwd" style="width:25%;">비밀번호:</label>
+		                <input type="password" class="form-control" id="pwd" style="width:25%;">
+		            </div>
+		            <div>
+		                <button type="button" id="withdrawBtn" class="btn btn-secondary" style="width:30%;">회원탈퇴</button>
+		            </div>
             	</div>
-            	
-            	<div class="info_area">
-            		<br>	
-            		<div class="info_each">
-	            		<div class="info_title">이용자 유형</div>
-	            		<div class="info_content">${userVO.type }</div>            			
-            		</div>
-            		<div class="info_each">
-	            		<div class="info_title">이메일</div>
-	            		<div class="info_content">${userVO.email }</div>            			
-            		</div>
-            		<div class="info_each">
-	            		<div class="info_title">이름</div>
-	            		<div class="info_content">${userVO.name }</div>            			
-            		</div>
-            		<div class="info_each">
-	            		<div class="info_title">생년월일</div>
-	            		<div class="info_content">${userVO.birthday }</div>            			
-            		</div>
-            		<div class="info_each">
-	            		<div class="info_title">성별</div>
-	            		<div class="info_content">${userVO.gender }</div>            			
-            		</div>
-            		<div class="info_each">
-	            		<div class="info_title">휴대전화 번호</div>
-	            		<div class="info_content">${userVO.phone_num }</div>            			
-            		</div>
-            		<div class="info_each" id="addr">
-	            		<div class="info_title">주소</div>
-	            		<div class="info_content">${userVO.address } <br></div>            			
-            		</div>
-            	</div>
-	            <button type="button" onclick="location.href='#'" id="withdraw_user">수정</button>
+            	<div class="message"></div>
             </div>
 			
         </div>

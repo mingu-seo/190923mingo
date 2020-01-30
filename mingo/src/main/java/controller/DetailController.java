@@ -40,7 +40,10 @@ public class DetailController {
     // 카페 정보 조회
 	@RequestMapping("/detailView.do")
 	public String detailView(Model model, HttpServletRequest request) {
-		System.out.println("카페 아이디 :" + request.getParameter("cafe_id"));
+		
+		HttpSession session = request.getSession();
+		UserVO vo1 = (UserVO) session.getAttribute("userVO");
+		int user_id = vo1.getUser_id();
 		int cafe_id = Integer.parseInt(request.getParameter("cafe_id"));
 		
 		// 기본정보 조회
@@ -67,31 +70,23 @@ public class DetailController {
 		List<CafeImageVO> imgList = detailService.viewCafeImages(cafe_id);
 		model.addAttribute("imgList", imgList);
 		
-		/*
-		//리뷰 조회
-		int currentPage = Integer.parseInt(request.getParameter("currentPage"));
-		Map<String, Integer> reviewMap = new HashMap<String, Integer>();
-		reviewMap.put("currentPage", currentPage);
-		reviewMap.put("cafe_id", cafe_id);
-		
-		
-		List<ReviewVO> reviewList = detailService.viewCafeReview(reviewMap);
-		model.addAttribute("reviewList", reviewList);
-		int[] userList = new int[reviewList.size()];  
-		for (int i=0; i<reviewList.size(); i++) {
-			userList[i] = reviewList.get(i).getUser_id();
-		}
-		List<UserVO> reviewUsers = detailService.viewUserList(userList);
-		model.addAttribute("reviewUsers", reviewUsers);
-		*/
-		
 		//종합 평점 조회
 		CafeRateVO cafeRate = detailService.viewCafeRate(cafe_id);   
 		model.addAttribute("cafeRate", cafeRate);
 		
 		//좋아요 상태 조회
+		Map<String, Integer> map1 = new HashMap<String, Integer>();  
+		map1.put("user_id", user_id);
+		map1.put("cafe_id", cafe_id);
+		int likeCafe = detailService.viewLikeCafe(map1);
+		model.addAttribute("likeCafe", likeCafe);
 		
 		//카페 찜 상태 조회
+		Map<String, Integer> map2 = new HashMap<String, Integer>();  
+		map2.put("user_id", user_id);
+		map2.put("cafe_id", cafe_id);
+		int collectCafe = detailService.viewCollectCafe(map2);
+		model.addAttribute("collectCafe", collectCafe);
 		
 		return "cafe/cafeDetail";
 	}
