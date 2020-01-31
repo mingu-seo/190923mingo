@@ -8,8 +8,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+
 import service.BoardService;
 import vo.BoardVO;
+import vo.BoardCommentVO;
 
 @Controller
 public class BoardController {
@@ -17,8 +19,8 @@ public class BoardController {
 	@Autowired
 	BoardService boardService;
 	
-	@RequestMapping("/list.do")
-	public String list(Model model, BoardVO vo) { // model(값을 담아둘 공간), 커맨드객체
+	@RequestMapping("/listBoard.do")
+	public String listBoard(Model model, BoardVO vo) { // model(값을 담아둘 공간), 커맨드객체
 		// 서비스 호출
 		int[] listcount = boardService.boardCount();	// 전체 갯수와 총페이지수
 		List<BoardVO> list = boardService.list(vo);
@@ -31,48 +33,70 @@ public class BoardController {
 		
 		return "board/boardMain";
 	}
-	@RequestMapping("/write.do")
-	public String write() {
+	@RequestMapping("/writeBoard.do")
+	public String writeBoard() {
+		
 		return "board/boardWrite";
 	}
-	@RequestMapping("/writeForm.do")
-	public String writeForm(BoardVO vo) {
+	@RequestMapping("/writeFormBoard.do")
+	public String writeFormBoard(BoardVO vo) {
 		 boardService.insert(vo);
-		return "redirect:list.do";
+		
+		 return "redirect:listBoard.do";
 	}
-	@RequestMapping("/view.do")
-	public String view(Model model, @RequestParam("board_id") int board_id, @RequestParam("page")int page) {
-		BoardVO vo = boardService.view(board_id);
-		model.addAttribute("vo",vo);
+	@RequestMapping("/viewBoard.do")
+	public String viewBoard(Model model, @RequestParam("board_id") int board_id, @RequestParam("page")int page
+			,BoardCommentVO cvo) {
+		BoardVO data = boardService.detail(board_id);
+		List<BoardCommentVO> clist = boardService.clist(cvo);
+		int listCount = boardService.listCount(board_id);
+		
+		model.addAttribute("data",data);
 		model.addAttribute("page",page);
+		model.addAttribute("clist",clist);
+		model.addAttribute("cvo",cvo);
+		model.addAttribute("listCount", listCount);
+		
 		return "board/boardDetail";
 	}
-	@RequestMapping("/edit.do")
-	public String edit(Model model, @RequestParam("board_id") int board_id) {
-		 BoardVO vo = boardService.view(board_id);
-		 model.addAttribute("vo",vo);
-		 return "board/boardEdit";
+	@RequestMapping("/writeComment.do")
+	public String writeComment(Model model, BoardCommentVO cvo,BoardVO vo) {
+		 boardService.writeComment(cvo);
+		 model.addAttribute("vo", vo);
+		model.addAttribute(cvo);
+		 return "redirect:viewBoard.do?board_id="+vo.getBoard_id()+"&page="+vo.getPage();
 	}
-	@RequestMapping("/update.do")
-	public String update(Model model, BoardVO vo) {
-		int r = boardService.update(vo);
-		String msg = "";
-		String url = "";
-		if( r > 0) {
-			msg = "수정되었습니다.";
-			url = "list.do?page="+vo.getPage();
-		}else {
-			msg = "수정 중 에러가 발생했습니다. 관리자에게 문의하세요.";
-			url = "update.do?board_id="+vo.getBoard_id();
-		}
-		model.addAttribute("msg",msg);
-		model.addAttribute("url",url);
-		return "include/alert";
-	}
-	@RequestMapping("delete.do")
-	public String delete(BoardVO vo) {
-		boardService.delete(vo.getBoard_id());
-		return "redirect:list.do";
+	@RequestMapping("/replyProcess.do")
+	public String replyProcess(Model model, BoardCommentVO cvo, BoardVO vo) {
+		 boardService.replyProcess(cvo);
+		model.addAttribute("cvo",cvo);
+		return "redirect:viewBoard.do?board_id="+vo.getBoard_id()+"&page="+vo.getPage();
 		
 	}
+	@RequestMapping("/editBoard.do")
+	public String editBoard(Model model, @RequestParam("board_id") int board_id) {
+		 BoardVO vo = boardService.view(board_id);
+		 model.addAttribute("vo",vo);
+		 
+		 return "board/boardEdit";
+	}
+	@RequestMapping("/updateBoard.do")
+	public String updateBoard(Model model, BoardVO vo) {
+		 boardService.update(vo);
+		model.addAttribute("vo",vo);
+		return "redirect:listBoard.do";
+	}
+	@RequestMapping("deleteBoard.do")
+	public String deleteBoard(BoardVO vo) {
+		boardService.delete(vo.getBoard_id());
+		
+		return "redirect:listBoard.do";
+	}
+	@RequestMapping("replyDeleteBoard.do")
+	public String replyDeleteBoard(BoardVO vo, BoardCommentVO cvo) {
+		boardService.replyDelete(cvo.getBoard_comment_id());
+		//보드아이디 vo에서 가져와야함 널임.
+		return "redirect:viewBoard.do?board_id="+vo.getBoard_id()+"&page="+vo.getPage();
+	}
+	
 }

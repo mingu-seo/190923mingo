@@ -12,8 +12,17 @@ public class BoardVO {
 	private Timestamp regdate;
 	private int readcount;
 	private int like_num;
+	private String nickname;
 	
 	
+	public String getNickname() {
+		return nickname;
+	}
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+
 	public int getLike_num() {
 		return like_num;
 	}

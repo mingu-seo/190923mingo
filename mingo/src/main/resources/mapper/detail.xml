@@ -27,13 +27,14 @@
 			</if>
 		</where>
 	</select>
-	<select id="selectViewCafeReview" resultType="vo.ReviewVO" parameterType="Integer">
-		SELECT * FROM mingo.review
-		<where>
+	<select id="selectViewCafeReview" resultType="vo.ReviewVO" parameterType="hashmap">
+		SELECT * FROM mingo.review 
+		<where>   
 			<if test="cafe_id != null">
 				cafe_id = #{cafe_id}
 			</if>
 		</where>
+		order by regdate desc limit #{beginIndex}, 5 
 	</select>
 	<select id="selectViewUserList" resultType="vo.UserVO" parameterType="Integer">
 		SELECT * FROM mingo.user
@@ -75,6 +76,22 @@
 			</if>
 		</where>
 	</select>
+	<select id="viewLikeCafe" resultType="vo.LikeCafeVO" parameterType="Map">
+		SELECT * FROM mingo.like_cafe
+		<where>
+			<if test="cafe_id != null and user_id != null">
+				cafe_id = #{cafe_id} and user_id = #{user_id} 
+			</if>
+		</where>
+	</select>
+	<select id="viewCollectCafe" resultType="vo.CollectCafeVO" parameterType="Map">
+		SELECT * FROM mingo.collect_cafe
+		<where>
+			<if test="cafe_id != null and user_id != null">
+				cafe_id = #{cafe_id} and user_id = #{user_id} 
+			</if>
+		</where>
+	</select>   
 	
 	
 	<!-- 등록 -->
@@ -218,25 +235,72 @@
 	<delete id="deleteMenu" parameterType="Integer">
 		DELETE FROM mingo.cafe_menu WHERE cafe_id=#{cafe_id}
 	</delete>  
-
 	
-	<insert id="registReview" parameterType="vo.ReviewVO">
+	<insert id="insertReview" parameterType="vo.ReviewVO">  
 		insert into mingo.review
 		(user_id, cafe_id, regdate, contents, taste_score, price_score, service_score, wifi_score, mood_score, clean_score, image)
 		values
 		(#{user_id}, #{cafe_id}, now(), #{contents}, #{taste_score}, #{price_score}, #{service_score}, #{wifi_score}, #{mood_score}, #{clean_score}, #{image})
 	</insert>
-	<insert id="registRate" parameterType="vo.CafeRateVO">
-		insert into mingo.cafe_rate
-		(rate_num, 
-		taste_sum, price_sum, service_sum, wifi_sum, mood_sum, clean_sum, 
-		taste_avg, price_avg, service_avg, wifi_avg, mood_avg, clean_avg)
+	<update id="updateReview" parameterType="vo.ReviewVO">  
+		update mingo.review set
+		regdate=now(), contents=#{contents}, 
+		taste_score=#{taste_score}, price_score=#{price_score}, service_score=#{service_score}, 
+		wifi_score=#{wifi_score}, mood_score=#{mood_score}, clean_score=#{clean_score}
+		<where>
+			<if test="review_id != null" >
+				review_id = #{review_id}
+			</if>
+		</where>
+	</update>   
+	<update id="updateRate" parameterType="vo.CafeRateVO">
+		update mingo.cafe_rate set
+		rate_num=#{rate_num},   
+		taste_sum=#{taste_sum}, price_sum=#{price_sum}, service_sum=#{service_sum}, wifi_sum=#{wifi_sum}, mood_sum=#{mood_sum}, clean_sum=#{clean_sum}, 
+		taste_avg=#{taste_avg}, price_avg=#{price_avg}, service_avg=#{service_avg}, wifi_avg=#{wifi_avg}, mood_avg=#{mood_avg}, clean_avg=#{clean_avg}
+		<where>
+			<if test="cafe_id != null" >
+				cafe_id = #{cafe_id}
+			</if>
+		</where>
+	</update>
+	<delete id="deleteReview" parameterType="vo.ReviewVO">
+		DELETE FROM mingo.review WHERE cafe_id=#{cafe_id} and user_id=#{user_id}
+	</delete>  
+	<select id="viewReview" resultType="vo.ReviewVO" parameterType="vo.ReviewVO">
+		SELECT * FROM mingo.review
+		<where>
+			<if test="user_id != null and cafe_id != null" >
+				cafe_id = #{cafe_id} and user_id = #{user_id}
+			</if>
+		</where>
+	</select>
+	
+	<!-- 좋아요 등록 -->
+	<insert id="registLike" parameterType="vo.LikeCafeVO">  
+		insert into mingo.like_cafe
+		(user_id, cafe_id)
 		values
-		(#{rate_num}, 
-		#{taste_sum}, #{price_sum}, #{service_sum}, #{wifi_sum}, #{mood_sum}, #{clean_sum}, 
-		#{taste_avg}, #{price_avg}, #{service_avg}, #{wifi_avg}, #{mood_avg}, #{clean_avg})
+		(#{user_id}, #{cafe_id})
+	</insert>   
+	
+	<!-- 좋아요 삭제 -->
+	<delete id="deleteLike" parameterType="vo.LikeCafeVO">  
+		DELETE FROM mingo.like_cafe WHERE cafe_id=#{cafe_id} and user_id=#{user_id}
+	</delete>
+	
+	<!-- 찜 등록 -->
+	<insert id="registCollect" parameterType="vo.CollectCafeVO">  
+		insert into mingo.collect_cafe
+		(user_id, cafe_id)
+		values
+		(#{user_id}, #{cafe_id})
 	</insert>
 	
+	<!-- 찜 삭제 -->
+	<delete id="deleteCollect" parameterType="vo.CollectCafeVO">  
+		DELETE FROM mingo.collect_cafe WHERE cafe_id=#{cafe_id} and user_id=#{user_id}
+	</delete>
 	
 	
 <!-- 

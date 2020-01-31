@@ -1,6 +1,10 @@
+<%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%> 
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -107,11 +111,12 @@
 
 	<div class="container-fluid bg-light">
 		<div class="container bg-light">
+		
 			<div class="row">
 				<div class="col-lg-7 mb-1 bg-light mt-4">
 					<div class="container rank-header shadow-sm">
 						<h1 class="mt-2">
-							종합순위 <a href="#"  data-toggle="tooltip" title="더보기" data-placement="left" class="fa fa-plus-square-o detail-icon"
+							종합순위 <a href="rankCafe.do"  data-toggle="tooltip" title="더보기" data-placement="left" class="fa fa-plus-square-o detail-icon"
 								style="font-size: 1.3em; float: right;"></a>
 						</h1>
 
@@ -141,42 +146,82 @@
 					</div>
 
 				</div>
+				
 				<div class="col-lg-5 mb-1 mt-4 latest-review shadow-sm slideshow-container">
 					<c:forEach var="review" items="${reviewList }">
 						<div class="mySlides myFade">
 							<div class="review-header pl-3 pr-3 pb-3 pt-0 clearfix">
-								
+							 <c:if test="${ empty review.profile_image }">
+							 	<img src="./img/default/profile.png" class="rounded-circle float-left mt-3">
+							 </c:if>
+							 <c:if test="${not empty review.profile_image }" >
+								<img src="./upload/user/${review.profile_image }" class="rounded-circle float-left mt-3">
+								</c:if>
+								<div style="height: 80px;" class="ml-3 mt-3 float-left">
 									
-	  						
-								<img src="./img/profile.png" class="rounded-circle float-left mt-3">
-								<div style="height: 80px; margin-left: 90px; position: relative">
-									<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-	  							<a class="next" onclick="plusSlides(1)">&#10095;</a>
-									<div id="review-header-name">${ review.nickname }님</div> 
-		
-									<div id="review-header-score">${review.score_avg }</div>
-									<div id="review-header-star"><i
-								class="fa fa fa-star" style="color:#ffd700"
-								></i></div>
-									<div id="review-header-date">${review.regdate }</div>
+									<!-- 날짜 계산 시작-->
+									<c:set value="${review.regdate }" var="dateString"/>
+									<fmt:parseDate value="${dateString }" var="dateObject" pattern="yyyy-MM-dd HH:mm:ss" />
+									<fmt:parseNumber value="${dateObject.time / (1000*60*60*24) }" integerOnly="true" var="past_D"/>
+									<fmt:parseNumber value="${dateObject.time / (1000*60*60) }"  var="past_H"/>
+									<fmt:parseNumber value="${dateObject.time / (1000*60) }"   var="past_M"/>
+									
+									<c:set value="<%= new Date() %>" var="nowDate"/>
+									<fmt:parseNumber value="${nowDate.time / (1000*60*60*24)}" integerOnly="true" var="now_D" />
+									<fmt:parseNumber value="${nowDate.time / (1000*60*60)}"  var="now_H" />
+									<fmt:parseNumber value="${nowDate.time / (1000*60)}"   var="now_M" />
+									
+									<fmt:parseNumber value="${now_D - past_D }" var="sub_D" integerOnly="true"/>  
+									<fmt:parseNumber value="${now_H - past_H }" var="sub_H" integerOnly="true"/>  
+									<fmt:parseNumber value="${now_M - past_M }" var="sub_M" integerOnly="true"/>  
+									<!--  날짜 계산 끝 -->
+									<a href="detailView.do?cafe_id=${review.cafe_id }" style="display:block;">
+										<div id="review-header-cname">${review.name  }&nbsp;${review.branch }</div>
+										<div id="review-header-addr">${review.sido_name }&nbsp;${review.sigungu_name }&nbsp;${review.dong_name }</div>
+									</a>
+									<c:if test="${ sub_D >= 1  }">
+										<div id="review-header-name">${ review.nickname }&nbsp;님&nbsp;&nbsp;&nbsp;&nbsp;${ sub_D }일 전</div>
+									</c:if>
+									<c:if test="${ sub_D < 1  }">
+										<c:if test="${ sub_H >= 1 }">
+											<div id="review-header-name">${ review.nickname }&nbsp;님&nbsp;&nbsp;&nbsp;&nbsp;${ sub_H }시간 전</div>
+										</c:if>
+										<c:if test="${ sub_H < 1 }">
+											<div id="review-header-name">${ review.nickname }&nbsp;님&nbsp;&nbsp;&nbsp;&nbsp;${ sub_M }분 전</div>
+										</c:if>
+									</c:if>
+									
 								</div>
 							</div>
-							<div style="height: 410px; overflow-y: scroll; overflow-x: hidden;">
+							
+							<div class="pt-3 pb-3" style="height: 380px; overflow-y:auto; overflow-x: hidden; border-bottom:1px solid #e1e1e1">
 								<div class="pr-1">
-									<img id="review-img" src="./img/cafe.jpg">
+									<c:if test="${ not empty review.image }">
+										<img id="review-img" src="./upload/review/${review.image }" class="mb-3">
+									</c:if>
 								</div>
-								<div class="review-content pt-3">${review.contents}</div>
+								<div class="review-content">${review.contents}</div>
+							</div>
+							<div class="review-footer clearfix">
+								<div id="review-header-star"><i
+								class="fa fa fa-star" style="color:#ffd700"
+								></i></div>
+								<div id="review-header-score" class="ml-2">${review.score_avg }</div>
+									<div id="button-wrapper" class="float-right pt-2 pb-2">
+										<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+	  								<a class="next" onclick="plusSlides(1)">&#10095;</a>	
+	  							</div>
 							</div>
 						</div>
 						</c:forEach>
 					</div>
-				
+					
 			</div>
 			<div class="row">
 				<div class="col-lg-7 mb-5 board-area">
 					<div class="container bg-light board p-2 shadow-sm">
 						<div class="container">
-							<span style="font-size: 1.8em;">자유게시판</span> <a href="#"
+							<span style="font-size: 1.8em;">자유게시판</span> <a href="listBoard.do"
 								class="fa fa-plus-square-o detail-icon" data-toggle="tooltip" title="더보기" data-placement="left"
 								style="font-size: 3em; float: right;"></a>
 						</div>
@@ -188,7 +233,7 @@
 					</div>
 					<div class="container bg-light board p-2 shadow-sm">
 						<div class="container">
-							<span style="font-size: 1.8em;">정보게시판</span> <a href="#"
+							<span style="font-size: 1.8em;">정보게시판</span> <a href="listBoard.do"
 								class="fa fa-plus-square-o detail-icon" data-toggle="tooltip" title="더보기" data-placement="left"
 								style="font-size: 3em; float: right;"></a>
 						</div>

@@ -4,13 +4,23 @@ public class BoardCommentVO {
 
 	private int board_comment_id;
 	private int user_id;
+	private int board_id;
 	private String regdate;
-	private int group;
+	private int ref;
 	private int seq;
-	private int level;
+	private int lev;
+	private String contents;
 	
 	
 	
+	
+	
+	public int getBoard_id() {
+		return board_id;
+	}
+	public void setBoard_id(int board_id) {
+		this.board_id = board_id;
+	}
 	public int getBoard_comment_id() {
 		return board_comment_id;
 	}
@@ -29,11 +39,11 @@ public class BoardCommentVO {
 	public void setRegdate(String regdate) {
 		this.regdate = regdate;
 	}
-	public int getGroup() {
-		return group;
+	public int getRef() {
+		return ref;
 	}
-	public void setGroup(int group) {
-		this.group = group;
+	public void setRef(int ref) {
+		this.ref = ref;
 	}
 	public int getSeq() {
 		return seq;
@@ -41,12 +51,22 @@ public class BoardCommentVO {
 	public void setSeq(int seq) {
 		this.seq = seq;
 	}
-	public int getLevel() {
-		return level;
+	public int getLev() {
+		return lev;
 	}
-	public void setLevel(int level) {
-		this.level = level;
+	public void setLev(int lev) {
+		this.lev = lev;
 	}
+	public String getContents() {
+		return contents;
+	}
+	public void setContents(String contents) {
+		this.contents = contents;
+	}
+	
+	
+	
+	
 	
 	
 }

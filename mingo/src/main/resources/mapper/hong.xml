@@ -2,6 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="hong">
+	<select id="getSido" resultType="java.util.Map" >
+		select code,name from sido;
+		
+	</select>
 	<select id="getSigungu" resultType="java.util.Map" parameterType="Integer">
 		select code,name from sigungu where code like '${sido_code}%';
 		
@@ -42,8 +46,8 @@
 					order by cafe_like desc
 				</when>
 			</choose>
-		</if>
-		limit 0,8;
+		</if> 
+		limit #{startrow},8;
 		
 	</select>
 	
@@ -67,10 +71,11 @@
 		
 	</select>
 	<select id="getReviewList" resultType="Map">
-		SELECT r.*, u.nickname 
-		FROM review as r join user as u 
-		on r.user_id = u.user_id
-		limit 15,5;
+		SELECT r.*, u.nickname, u.profile_image,c.cafe_id, c.name, c.branch,c.sido_name,c.sigungu_name,c.dong_name
+		FROM review as r join user as u join cafe as c 
+		on r.user_id = u.user_id and r.cafe_id = c.cafe_id
+        order by review_id desc
+        limit 0,5;
 		  
 	</select>
 	<select id="getBoardList" resultType="vo.BoardVO" parameterType="Integer">
@@ -78,6 +83,23 @@
 		where type=#{boardType}
 		limit 0,11;
 		
+	</select>
+	<select id="getCafeListCount" resultType="Integer" parameterType="vo.CafeCommand">
+		select count(*) from cafe
+		<where>
+			<if test="sido_code != null and sido_code > 0">
+			and sido_code = #{sido_code}
+			</if>
+			<if test="sigungu_code != null and sigungu_code > 0">
+			and sigungu_code = #{sigungu_code}
+			</if>
+			<if test="dong_code != null and dong_code > 0">
+			and dong_code = #{dong_code}
+			</if>
+			<if test=" name != null and name!='' ">
+			and name like '%${name}%'
+			</if>
+		</where>
 	</select>
 	
 </mapper>

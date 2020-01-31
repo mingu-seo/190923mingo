@@ -4,6 +4,11 @@ var $grid;
 $(document).ready(function () {
 	
 	var $button = $('#add');
+	if( page >= maxPage){
+		$button.hide();
+	}else{
+		$button.show();
+	}
 	$grid = $('.grid').masonry({
 	        itemSelector: '.grid-item'
 
@@ -11,13 +16,13 @@ $(document).ready(function () {
 	
 	
     $button.click(function () {
-        var $items = getItems();
-        $grid.masonryImagesReveal($items);
+    	getCafeItems();
+        
     });
     
     $(window).scroll(function () {
 
-        if ($(window).scrollTop() + 1 >= $(document).height() - $(window).height()) {
+        if ($(window).scrollTop() >= $(document).height() - $(window).height()) {
             $button.trigger('click');
         }
     });
@@ -95,12 +100,45 @@ function getItem() {
 
     return item;
 }
+function getCafeItems(){
+	
+	if( ++page <= maxPage){
+		var items = '';
+		$.ajax({
+			url: 'searchCafeAjax.do?',
+			data: { sido_code : sido_code,
+							sigungu_code : sigungu_code,
+							dong_code : dong_code,
+							name : name,
+							page : page},
+							//filter_type : type},
+			dataType : 'HTML',
+		}).done(function(data){
+			if( page == maxPage){
+				$('#add').hide();
+			}
+			data = data.trim();
+			items += data;
+			$grid.masonryImagesReveal($(items));
+		});
+		
+	}
+}
 function listByFilter(type,obj){
 	
 	//버튼 활성화 되어있을시 호출 안함
 	if( $(obj).hasClass('active')){
 		return false;
+	//검색결과가 1건 이하면 정렬 안함
+	}else if( listCount <= 1){
+		return false;
 	}else{
+		
+		
+		
+		
+		
+		
 		var type = type;
 		var items='';
 		
@@ -111,6 +149,7 @@ function listByFilter(type,obj){
 							sigungu_code : sigungu_code,
 							dong_code : dong_code,
 							name : name,
+							page : 1,
 							filter_type : type},
 			dataType : 'HTML',
 		}).done(function(data){
@@ -122,5 +161,16 @@ function listByFilter(type,obj){
 			
 			//$('.grid').append(data);
 		});
+		
+		
+		page = 1; //필터 버튼 누를시 첫 페이지 부터 시작
+		
+		//페이지 초기화후 more button 다시 보이게하기
+		var $button = $('#add');
+		if( page >= maxPage){
+			$button.hide();
+		}else{
+			$button.show();
+		}
 	}
 }

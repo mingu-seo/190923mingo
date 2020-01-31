@@ -1,7 +1,9 @@
 package controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -23,6 +26,8 @@ import vo.CafeProductVO;
 import vo.CafeRateVO;
 import vo.CafeServiceVO;
 import vo.CafeVO;
+import vo.CollectCafeVO;
+import vo.LikeCafeVO;
 import vo.ReviewVO;
 import vo.UserVO;
 
@@ -32,8 +37,13 @@ public class DetailController {
     @Autowired private DetailDAO detailDao;
     @Autowired private DetailService detailService;
 	
+    // 카페 정보 조회
 	@RequestMapping("/detailView.do")
 	public String detailView(Model model, HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();
+		UserVO vo1 = (UserVO) session.getAttribute("userVO");
+		int user_id = vo1.getUser_id();
 		int cafe_id = Integer.parseInt(request.getParameter("cafe_id"));
 		
 		// 기본정보 조회
@@ -60,9 +70,56 @@ public class DetailController {
 		List<CafeImageVO> imgList = detailService.viewCafeImages(cafe_id);
 		model.addAttribute("imgList", imgList);
 		
-		//리뷰 조회
-		List<ReviewVO> reviewList = detailService.viewCafeReview(cafe_id);
+		//종합 평점 조회
+		CafeRateVO cafeRate = detailService.viewCafeRate(cafe_id);   
+		model.addAttribute("cafeRate", cafeRate);
+		
+		//좋아요 상태 조회
+		Map<String, Integer> map1 = new HashMap<String, Integer>();  
+		map1.put("user_id", user_id);
+		map1.put("cafe_id", cafe_id);
+		int likeCafe = detailService.viewLikeCafe(map1);
+		model.addAttribute("likeCafe", likeCafe);
+		
+		//카페 찜 상태 조회
+		Map<String, Integer> map2 = new HashMap<String, Integer>();  
+		map2.put("user_id", user_id);
+		map2.put("cafe_id", cafe_id);
+		int collectCafe = detailService.viewCollectCafe(map2);
+		model.addAttribute("collectCafe", collectCafe);
+		
+		return "cafe/cafeDetail";
+	}
+	
+	// 리뷰 조회
+	@RequestMapping("/reviewViewForm.do")
+	public String reviewViewForm(Model model, HttpServletRequest request) {
+		int cafe_id = Integer.parseInt(request.getParameter("cafe_id"));
+		int currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		
+		CafeRateVO cafeRate = detailService.viewCafeRate(cafe_id);   
+		model.addAttribute("cafeRate", cafeRate);
+		
+		int maxPage = (cafeRate.getRate_num()-1)/5+1;
+		int beginIndex = (currentPage-1)*5;
+		int beginPage = ((currentPage-1)/5)*5+1;
+		int endPage;
+		if(maxPage-currentPage<4) {  
+			endPage = maxPage;/*((currentPage-1)/5)+maxPage-beginPage+1*/	
+		} else {
+			endPage = ((currentPage-1)/5)+5;
+		}
+		
+		System.out.println("최대: " +maxPage+ ".../...현재 :" +currentPage+ ".../...시작 : " + beginPage + ".../...마지막 : " +endPage );
+		
+		Map<String, Integer> reviewMap = new HashMap<String, Integer>();
+		reviewMap.put("currentPage", currentPage);
+		reviewMap.put("cafe_id", cafe_id);
+		reviewMap.put("beginIndex", beginIndex);
+	
+		List<ReviewVO> reviewList = detailService.viewCafeReview(reviewMap);
 		model.addAttribute("reviewList", reviewList);
+		
 		int[] userList = new int[reviewList.size()];  
 		for (int i=0; i<reviewList.size(); i++) {
 			userList[i] = reviewList.get(i).getUser_id();
@@ -70,28 +127,13 @@ public class DetailController {
 		List<UserVO> reviewUsers = detailService.viewUserList(userList);
 		model.addAttribute("reviewUsers", reviewUsers);
 		
-		//종합 평점 조회
-		CafeRateVO cafeRate = detailService.viewCafeRate(cafe_id);   
-		model.addAttribute("cafeRate", cafeRate);
-		
-		return "cafe/cafeDetail";
+		model.addAttribute("maxPage", maxPage);
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("beginPage", beginPage);
+		model.addAttribute("endPage", endPage);	
+	   
+		return "cafe/reviewViewForm";
 	}
-	
-	// 리뷰 등록 폼으로 이동
-	@RequestMapping("/registReviewForm.do")
-	public String registReviewForm(Model model, HttpServletRequest request) {
-		int cafe_id = Integer.parseInt(request.getParameter("cafe_id"));
-		//return "cafe/index";
-		return "cafe/reviewRegistForm";
-	} 
-	    
-	@RequestMapping("/registReview.do")
-	public String registReview(Model model, ReviewVO vo, MultipartFile file,HttpServletRequest request) {
-		CafeRateVO cafeRate = detailService.viewCafeRate(vo.getCafe_id());  
-		
-		detailService.registReview(vo, file, request, cafeRate);
-		return "redirect:detailView.do?cafe_id="+vo.getCafe_id();
-	} 
 	
 	// 수정 양식으로 이동
 	@RequestMapping("/cafeModifyForm.do")
@@ -126,6 +168,7 @@ public class DetailController {
 		return "mypage/cafeModifyForm";
 	}
 	
+	//카페 정보 수정
 	@RequestMapping("/modifyCafe.do")
 	public String modifyCafe(Model model, CafeVO cafeVO, CafeFacilitiesVO cafeFacilitiesVO, CafeServiceVO cafeServiceVO, CafeImageVO cafeImageVO, MultipartHttpServletRequest request, HttpServletResponse response) {
 
@@ -139,18 +182,18 @@ public class DetailController {
 		//서비스 정보 수정
 		int result3 = detailService.modifyService(cafeServiceVO);
 
-		//카페 사진 수정
+		//카페 사진 수정     <---- String to file 추가 요망
 		List<MultipartFile> fileList = request.getFiles("cafeImage_file");
 		int result6 = detailService.modifyCafeImages(cafeImageVO, fileList, request);
 		
-		//메뉴 사진 및 정보 수정
+		//메뉴 사진 및 정보 수정   <---- String to file 추가 요망
 		List<CafeMenuVO> cafeMenuVO = new ArrayList<CafeMenuVO>();
 		CafeMenuVO vo2 = new CafeMenuVO();
 		cafeMenuVO.add(vo2);
 		List<MultipartFile> menuFileList = request.getFiles("menu_image_file");
 		int result4 = detailService.modifyMenu(cafeMenuVO, menuFileList, request);
 		
-		//상품 사진 및 정보 수정
+		//상품 사진 및 정보 수정  <---- String to file 추가 요망
 		List<CafeProductVO> cafeProductVO = new ArrayList<CafeProductVO>();
 		CafeProductVO vo3 = new CafeProductVO();
 		cafeProductVO.add(vo3);
@@ -172,6 +215,7 @@ public class DetailController {
 		return "mypage/cafeRegistForm";
 	}
 	
+	// 카페 정보 등록
 	@RequestMapping("/registCafe.do")
 	public String registCafe(Model model, CafeVO cafeVO, CafeFacilitiesVO cafeFacilitiesVO, CafeServiceVO cafeServiceVO, CafeImageVO cafeImageVO, MultipartHttpServletRequest request, HttpServletResponse response) {
 
@@ -215,6 +259,7 @@ public class DetailController {
 		return "cafe/reviewRegistForm";
 	} */ 
 	
+	//카페 정보 삭제
 	@RequestMapping("/deleteCafeInfo.do")
 	public String deleteCafeInfo(Model model, HttpServletRequest request) {
 		int cafe_id = Integer.parseInt(request.getParameter("cafe_id"));
@@ -223,6 +268,127 @@ public class DetailController {
 		return "redirect:detailView.do";
 	}
 	
+	
+	// 리뷰 등록 폼으로 이동
+	@RequestMapping("/registReviewForm.do")
+	public String registReviewForm(Model model, HttpServletRequest request) {
+		int cafe_id = Integer.parseInt(request.getParameter("cafe_id"));
+		model.addAttribute("cafe_id", cafe_id);
+		//return "cafe/index";
+		return "cafe/reviewRegistForm";
+	}     
+	
+	//리뷰 등록
+	@RequestMapping("/registReview.do")   
+	public String registReview(Model model, ReviewVO vo, @RequestParam("image_file") MultipartFile file, HttpServletRequest request) {
+		CafeRateVO cafeRate = detailService.viewCafeRate(vo.getCafe_id());  
+		
+		detailService.registReview(vo, file, request, cafeRate);
+		return "redirect:detailView.do?cafe_id="+vo.getCafe_id();
+	} 
+	
+	//리뷰 수정     <---- String to file 추가 요망
+	@RequestMapping("/modifyReviewForm.do")   
+	public String modifyReviewForm(Model model, ReviewVO vo, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		UserVO vo1 = (UserVO) session.getAttribute("userVO");
+		vo.setUser_id(vo1.getUser_id());
+		
+		int cafe_id = Integer.parseInt(request.getParameter("cafe_id"));
+		vo.setCafe_id(cafe_id);
+		
+		ReviewVO reviewVO = detailService.viewReview(vo);
+		model.addAttribute("reviewVO", reviewVO);
+		return "cafe/reviewModifyForm";
+	} 
+	
+	@RequestMapping("/modifyReview.do")   
+	public String modifyReview(Model model, ReviewVO vo_new, @RequestParam("image_file") MultipartFile file, HttpServletRequest request) {
+		CafeRateVO cafeRate = detailService.viewCafeRate(vo_new.getCafe_id());  
+		ReviewVO vo_empty = new ReviewVO();
+		vo_empty.setCafe_id(vo_new.getCafe_id());
+		vo_empty.setUser_id(vo_new.getUser_id());
+		ReviewVO vo_old = detailService.viewReview(vo_empty);  
+		detailService.modifyReview(vo_old, vo_new, file, request, cafeRate);
+		return "redirect:detailView.do?cafe_id="+vo_new.getCafe_id();
+	} 
+	
+	// 리뷰 삭제
+	@RequestMapping("/deleteReview.do")   
+	public String deleteReview(CafeRateVO cafeRateVO, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		UserVO vo1 = (UserVO) session.getAttribute("userVO");
+		int user_id = vo1.getUser_id();
+		int cafe_id = Integer.parseInt(request.getParameter("cafe_id"));
+		
+		CafeRateVO cafeRate = detailService.viewCafeRate(cafe_id);  
+		ReviewVO vo_empty = new ReviewVO();
+		vo_empty.setCafe_id(cafe_id);
+		vo_empty.setUser_id(user_id);
+		ReviewVO reviewVO = detailService.viewReview(vo_empty);  
+		
+		detailService.deleteReview(cafeRateVO, reviewVO);
+		
+		return "redirect:detailView.do?cafe_id="+cafe_id;
+	}
+	// 카페 좋아요 등록
+	@RequestMapping("/registLike.do")   
+	public String registLike(LikeCafeVO vo, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		UserVO vo1 = (UserVO) session.getAttribute("userVO");
+		vo.setUser_id(vo1.getUser_id());
+		int cafe_id = Integer.parseInt(request.getParameter("cafe_id"));
+		vo.setCafe_id(cafe_id);
+		detailService.registLike(vo);
+		return "redirect:detailView.do?cafe_id="+cafe_id;
+	} 
+	
+	//카페 좋아요 삭제
+	@RequestMapping("/deleteLike.do")   
+	public String deleteLike(LikeCafeVO vo, HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();
+		UserVO vo1 = (UserVO) session.getAttribute("userVO");
+		vo.setUser_id(vo1.getUser_id());
+		
+		int cafe_id = Integer.parseInt(request.getParameter("cafe_id"));
+		vo.setCafe_id(cafe_id);
+		
+		detailService.deleteLike(vo);
+		
+		return "redirect:detailView.do?cafe_id="+cafe_id;
+	} 
+	// 카페 찜 등록
+	@RequestMapping("/registCollect.do")   
+	public String registCollect(CollectCafeVO vo, HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();
+		UserVO vo1 = (UserVO) session.getAttribute("userVO");
+		vo.setUser_id(vo1.getUser_id());
+		
+		int cafe_id = Integer.parseInt(request.getParameter("cafe_id"));
+		vo.setCafe_id(cafe_id);
+		
+		detailService.registCollect(vo);
+		
+		return "redirect:detailView.do?cafe_id="+cafe_id;
+	} 
+	
+	//카페 찜 삭제
+	@RequestMapping("/deleteCollect.do")   
+	public String deleteCollect(CollectCafeVO vo, HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();
+		UserVO vo1 = (UserVO) session.getAttribute("userVO");
+		vo.setUser_id(vo1.getUser_id());
+		
+		int cafe_id = Integer.parseInt(request.getParameter("cafe_id"));
+		vo.setCafe_id(cafe_id);
+		
+		detailService.deleteCollect(vo);
+		
+		return "redirect:detailView.do?cafe_id="+cafe_id;
+	} 
 	
 	
 	/*

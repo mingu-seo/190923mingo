@@ -36,12 +36,14 @@
             <div class="board-side-name">
                 <i class="fa fa-file-text-o ml-2 " style="font-size:2em;">&nbsp;&nbsp;게시판</i>
             </div>
-            <a href="#" class="list-group-item mt-2" style="border-top:none;">자유게시판</a>
+            <c:if test="${board.type == 1 }">
+            	<a href="listBoard.do" class="list-group-item mt-2" style="border-top:none;">자유게시판</a>
+            </c:if>
             <a href="#" class="list-group-item">정보게시판</a>
             <a href="#" class="list-group-item">취업게시판</a>
 
         </div>
-        <form action="update.do" method="post" name="modifyform">
+        <form action="updateBoard.do" method="post" name="modifyform">
         <input type="hidden" name="board_id" value="<%=vo.getBoard_id()%>" /> 
 		<input type="hidden" name="page" value="<%=request.getParameter("page")%>" />
         <div class=" board-group shadow ml-4">
@@ -51,9 +53,9 @@
             </div>
             
             <input type="text" class="form-control" name="title" value="<%=vo.getTitle()%>">
-            <textarea class="mt-2 p-2" rows="20" name="content" style="font-size:1em;width:100%;border:1px solid #e1e1e1;" ><%=vo.getContents()%></textarea>
+            <textarea class="mt-2 p-2" rows="20" name="contents" style="font-size:1em;width:100%;border:1px solid #e1e1e1;" ><%=vo.getContents()%></textarea>
             <div style="text-align: center;">
-                <button type="button" class="btn btn-secondary"onclick="location.href='list.do' ">취소</button>
+                <button type="button" class="btn btn-secondary"onclick="location.href='listBoard.do' ">취소</button>
                 <button type="button" class="btn btn-secondary"onclick="javascript:modifyboard()">수정완료</button>
             </div>
         </div>

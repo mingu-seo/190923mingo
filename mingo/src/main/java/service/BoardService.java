@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import dao.BoardDAO;
+import vo.BoardCommentVO;
 import vo.BoardVO;
 
 
@@ -37,6 +38,11 @@ public class BoardService {
 		int r = boardDAO.insert(vo);
 		return r;
 	}
+	public BoardVO detail(int board_id) {
+		// 조회수 증가
+		boardDAO.readcount(board_id);
+		return boardDAO.view(board_id);
+	}
 	public BoardVO view(int board_id) {
 		BoardVO vo = boardDAO.view(board_id);
 		return vo;
@@ -46,6 +52,34 @@ public class BoardService {
 	}
 	public int delete(int board_id) {
 		return boardDAO.delete(board_id); 
-		 
+	}
+	public List<BoardCommentVO> clist(BoardCommentVO cvo) {
+
+		List<BoardCommentVO> clist = boardDAO.clist(cvo);
+		return clist;
+	}
+	public int writeComment(BoardCommentVO cvo) {
+		int r = boardDAO.writeComment(cvo);
+		return r;
+	}
+	public int replyProcess(BoardCommentVO cvo) {
+		//원글의 seq보다 크고 ref가 같은 모든 글을 seq+1을 해줘야 함.
+		//vo에다가 ref=원글의 ref를, lev=원글의 lev+1, seq=원글의 seq+1을 
+		//insert해주면 됨.
+		 boardDAO.replySeq(cvo);
+		// lev , seq 1증가     ref는 jsp 있기에 자동으로 들어옴 
+		cvo.setLev(cvo.getLev()+1);
+		cvo.setSeq(cvo.getSeq()+1);
+		
+		return boardDAO.replyInsert(cvo);
+		
+	}
+	public int replyDelete(int board_comment_id) {
+		return boardDAO.replyDelete(board_comment_id); 
+	}
+
+	public int listCount(int board_id) {
+		
+		return boardDAO.listCount(board_id);
 	}
 }

@@ -299,17 +299,19 @@
         	float:left;
         }    
 		
-		#cafe_location_title{
+		/* #cafe_location_title{
 			margin-bottom:20px;  
 		}
 		.cafe_location_map{
+			width:700px;
+			height:500px;
 			padding:10px;
 			
 		}
 		.cafe_location_map > img{
 			width:100%;
 			height:500px;   
-		}
+		} */
 		
 		.cafe_rates{
 			height:500px;
@@ -551,30 +553,82 @@
 		
 	</style>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=197a1366c7c3fbd3d1f4e49445d212b0"></script>
-	<script>
-		var container = document.getElementById('map');
-		var options = {
-			center: new kakao.maps.LatLng(33.450701, 126.570667),
-			level: 3
-		};
 	
-		var map = new kakao.maps.Map(container, options);
-	</script>
 	
 	<script>
 		$(function(){
 			
+			var latitude = ${cafe.latitude};
+			var longitude = ${cafe.longitude};
+			console.log(latitude);
+			console.log(longitude);
+			
+			/* var container = document.getElementById('cafe-map');
+			var options = {
+				center: new kakao.maps.LatLng(latitude, longitude),
+				level: 3
+			};
+			var map = new kakao.maps.Map(container, options); */
+			
+			var mapContainer = document.getElementById('cafe-map'), // 지도를 표시할 div  
+		    	mapOption = { 
+		        center: new kakao.maps.LatLng(latitude, longitude), // 지도의 중심좌표
+		        level: 3 // 지도의 확대 레벨
+		    	};
+
+			var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+			 
+			// 마커를 표시할 위치와 title 객체 배열입니다 
+			var positions = [
+			    {
+			        title: '카카오', 
+			        latlng: new kakao.maps.LatLng(latitude, longitude)
+			    },
+			    {
+			        title: '생태연못', 
+			        latlng: new kakao.maps.LatLng(33.450936, 126.569477)
+			    },
+			    {
+			        title: '텃밭', 
+			        latlng: new kakao.maps.LatLng(33.450879, 126.569940)
+			    },
+			    {
+			        title: '근린공원',
+			        latlng: new kakao.maps.LatLng(33.451393, 126.570738)
+			    }
+			];
+	
+			// 마커 이미지의 이미지 주소입니다
+			var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
+			    
+			for (var i = 0; i < positions.length; i ++) {
+			    
+			    // 마커 이미지의 이미지 크기 입니다
+			    var imageSize = new kakao.maps.Size(24, 35); 
+			    
+			    // 마커 이미지를 생성합니다    
+			    var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
+			    
+			    // 마커를 생성합니다
+			    var marker = new kakao.maps.Marker({
+			        map: map, // 마커를 표시할 지도
+			        position: positions[i].latlng, // 마커를 표시할 위치
+			        title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+			        image : markerImage // 마커 이미지 
+			    });
+			}
 			
 			
-			$('document').ready(function() {
-				var review_each_height = $('.cafe_review_bottom img').height()+$('.comment').height()+20;
-				$('.cafe_review_each').css({
-					'height':review_each_height+'px'
-				});
-				$('.cafe_reviews').css({
-					'height':review_each_height*5+200+'px'
-				});
+			var review_each_height = $('.cafe_review_bottom img').height()+$('.comment').height()+20;
+			$('.cafe_review_each').css({
+				'height':review_each_height+'px'
 			});
+			$('.cafe_reviews').css({
+				'height':review_each_height*5+200+'px'
+			});
+				
+			
+			
 			
 			$('.info_button').click(function(){
 				console.log("click");
@@ -604,6 +658,20 @@
 	                mousewheel: true,
 	                keyboard: true,
 	            });   
+				
+				var latitude = ${cafe.latitude};
+				var longitude = ${cafe.longitude};
+				console.log(latitude);
+				console.log(longitude);
+				
+				var container = document.getElementById('cafe-map');
+				var options = {
+					center: new kakao.maps.LatLng(latitude, longitude),
+					level: 3
+				};
+				var map = new kakao.maps.Map(container, options);
+				
+				
 			});	  
 			$('.review_button').click(function(){
 				console.log("click");
@@ -619,6 +687,33 @@
 				$('.cafe_infomation').css({
 					'display':'none'
 				});
+				
+				var swiper = new Swiper('.swiper', {
+	                cssMode: true,
+	                loop : true,
+	                navigation: {
+	                nextEl: '.visual .swiper-button-next',
+	                prevEl: '.visual .swiper-button-prev',
+	                },
+	                pagination: {
+	                el: '.visual .swiper-pagination'
+	                },
+	                mousewheel: true,
+	                keyboard: true,
+	            });  
+				
+				var latitude = ${cafe.latitude};
+				var longitude = ${cafe.longitude};
+				console.log(latitude);
+				console.log(longitude);
+				
+				var container = document.getElementById('cafe-map');
+				var options = {
+					center: new kakao.maps.LatLng(latitude, longitude),
+					level: 3
+				};
+				var map = new kakao.maps.Map(container, options);
+				
 			});	
 			
 			
@@ -683,8 +778,110 @@
 					'display':'none'
 				});
 			});	
-		});  
-	  
+			
+			// 좋아요 클릭 기능 
+			var likeValue = $('#likeCafe').val();
+			var cafe_id = <%=request.getParameter("cafe_id") %>;
+			
+			$('#like-cafe-btn').click(function(){
+				if ($('#likeCafe').val()==0){
+					console.log(likeValue);
+					$('#like-img').attr("src", 'img/like.png');
+					$.ajax({
+						url:'registLike.do',
+						type:'POST',
+						data:{'cafe_id':cafe_id},
+						success:function(data){
+							$('#likeCafe').val('1');
+						}
+					});
+					console.log("등록 성공");
+					
+				} else {
+					$('#like-img').attr("src", 'img/likeNone.png');
+					$.ajax({
+						url:'deleteLike.do',
+						type:'POST',
+						data:{'cafe_id':cafe_id},
+						success:function(data){
+							$('#likeCafe').val('0');
+						}
+					});
+					console.log("삭제 성공");
+				}
+				var likeValue = $('#likeCafe').val();
+			});
+			
+			/* 찜하기 등록 삭제*/
+			var collectValue = $('#collectCafe').val();
+			$('#collect-cafe-btn').click(function(){
+				if ($('#collectCafe').val()==0){
+					console.log(collectValue);
+					$('#collect-img').attr("src", 'img/collect.png');
+					$.ajax({
+						url:'registCollect.do',
+						type:'POST',
+						data:{'cafe_id':cafe_id},
+						success:function(data){
+							$('#collectCafe').val('1');
+						}
+					});
+					console.log("등록 성공");
+					
+				} else {
+					$('#collect-img').attr("src", 'img/collectNone.png');
+					$.ajax({
+						url:'deleteCollect.do',
+						type:'POST',
+						data:{'cafe_id':cafe_id},
+						success:function(data){
+							$('#collectCafe').val('0');
+						}
+					});
+					console.log("삭제 성공");
+				}
+				var likeValue = $('#collectCafe').val();
+			});
+			
+			/* 페이징 처리 */
+			 
+			var currentPage = 1;
+			var rate_num = ${cafeRate.rate_num};
+			$.ajax({
+				url:'reviewViewForm.do',
+				type:'GET',
+				dataType:'text',
+				data:{'cafe_id':cafe_id,
+					'currentPage':currentPage,
+					'rate_num':rate_num},
+				success:function(data){
+					$('.review-view').html(data);
+					console.log(currentPage);
+				}
+			});   
+			/* var currentPage = $(this).text();
+			var rate_num = ${cafeRate.rate_num};
+			$('.num-btn').click(function(){
+				currentPage += 1; 
+				$.ajax({
+					url:'reviewViewForm.do',
+					type:'GET',
+					dataType:'text',
+					data:{'cafe_id':cafe_id,
+						'currentPage':currentPage,
+						'rate_num':rate_num},
+					success:function(data){
+						$('.review-view').html(data);
+						
+					}
+				});
+				console.log("클릭");
+				var currentPage = $(this).text();
+				var rate_num = ${cafeRate.rate_num};
+			});  */ 
+			
+		});      
+	 
 	
 	
 	</script>
@@ -692,7 +889,7 @@
 </head>
 <body>
 	<!-- 내비게이션 include -->
-	<%@ include file="/WEB-INF/view/include/navigation.jsp"%>
+	<%@ include file="/WEB-INF/view/include/navigation.jsp" %>  
 	
 	<!-- 빈공간. 코딩 편의를 위해 레이어 앞면에 고정된 메뉴바가 차지하는 만큼 빈공간 부여 -->
 	<div class="memubar_space">
@@ -712,14 +909,28 @@
 				<div id="branch_name">
 					${cafe.branch }
 				</div>     
-				<div id="like-cafe-btn">   
-					<img src="img/like.png" id="like-img">
+				<div id="like-cafe-btn">
+					<c:if test="${likeCafe == 0}">
+						<img src="img/likeNone.png" id="like-img">
+						<input type="hidden" id="likeCafe" value="0">					
+					</c:if>
+					<c:if test="${likeCafe == 1}">
+						<img src="img/like.png" id="like-img">
+						<input type="hidden" id="likeCafe" value="1">					
+					</c:if>
 				</div>     
 				<div id="collect-cafe-btn">
-					<img src="img/collect.png" id="collect-img">
+					<c:if test="${collectCafe == 0}">
+						<img src="img/collectNone.png" id="collect-img">
+						<input type="hidden" id="collectCafe" value="0">
+					</c:if>
+					<c:if test="${collectCafe == 1}">
+						<img src="img/collect.png" id="collect-img">
+						<input type="hidden" id="collectCafe" value="1">
+					</c:if>
 				</div>     
 				<div id="regist-review">
-					<a href="reviewRegistForm.do?cafe_id=${cafe_id }&user_id=${user_id }">review</a>
+					<a href="reviewRegistForm.do?cafe_id=${cafe_id }&user_id=${user_id }">re</a>
 				</div>     
 			</div>
 			<div class="info">
@@ -786,70 +997,70 @@
 							<img src="img/coffee.png"/>
 							<div>
 								<h6>와이파이</h6>
-								<h6>{facilities.wifi}</h6>
+								<h6>${facilities.wifi}</h6>
 							</div>
 						</div>
 						<div class="info_each">
 							<img src="img/coffee.png"/>
 							<div>
 								<h6>매장 규모</h6>
-								<h6>{facilities.table }</h6>
+								<h6>${facilities.table }</h6>
 							</div>
 						</div>
 						<div class="info_each">
 							<img src="img/coffee.png"/>
 							<div>
 								<h6>인테리어 분위기</h6>
-								<h6>{facilities.interior }</h6>
+								<h6>${facilities.interior }</h6>
 							</div>
-						</div>
+						</div>  
 						<div class="info_each">
 							<img src="img/coffee.png"/>
 							<div>
 								<h6>음악</h6>
-								<h6>{facilities.music}</h6>
+								<h6>${facilities.music}</h6>
 							</div>
 						</div>
 						<div class="info_each">
 							<img src="img/coffee.png"/>
 							<div>
 								<h6>플러그 수</h6>
-								<h6>{facilities.plug}</h6>
+								<h6>${facilities.plug}</h6>
 							</div>
 						</div>
 						<div class="info_each">
 							<img src="img/coffee.png"/>
 							<div>
 								<h6>화장실</h6>
-								<h6>{facilities.restroom}</h6>
+								<h6>${facilities.restroom}</h6>
 							</div>
 						</div>
 						<div class="info_each">
 							<img src="img/coffee.png"/>
 							<div>
 								<h6>테라스</h6>
-								<h6>{facilities.terrace}</h6>
+								<h6>${facilities.terrace}</h6>
 							</div>
 						</div>
 						<div class="info_each">
 							<img src="img/coffee.png"/>
 							<div>
 								<h6>스터디룸</h6>
-								<h6>{facilities.studyroom}</h6>
+								<h6>${facilities.studyroom}</h6>
 							</div>
 						</div>
 						<div class="info_each">
 							<img src="img/coffee.png"/>
 							<div>
 								<h6>흡연석</h6>
-								<h6>{facilities.smoking}</h6>
+								<h6>${facilities.smoking}</h6>
 							</div>
 						</div>
 						<div class="info_each">
 							<img src="img/coffee.png"/>
-							<div>
+							<div> 
 								<h6>주차공간</h6>
-								<h6>{facilities.parking}</h6>
+								<h6>${facilities.parking}</h6>
 							</div>
 						</div>
 					</div>
@@ -858,35 +1069,35 @@
 							<img src="img/coffee.png"/>
 							<div>
 								<h6>이벤트</h6>
-								<h6>{service.event }</h6>
+								<h6>${service.event }</h6>
 							</div>
 						</div>
 						<div class="info_each">
 							<img src="img/coffee.png"/>
 							<div>
 								<h6>쿠폰</h6>
-								<h6>{service.coupon }</h6>
+								<h6>${service.coupon }</h6>
 							</div>
 						</div>
 						<div class="info_each">
 							<img src="img/coffee.png"/>
 							<div>
 								<h6>마일리지</h6>
-								<h6>{service.mileage }</h6>
+								<h6>${service.mileage }</h6>
 							</div>
 						</div>
 						<div class="info_each">
 							<img src="img/coffee.png"/>
 							<div>
 								<h6>담요</h6>
-								<h6>{service.blanket }</h6>
+								<h6>${service.blanket }</h6>
 							</div>
 						</div>
 						<div class="info_each">
 							<img src="img/coffee.png"/>
 							<div>
 								<h6>음료 리필</h6>
-								<h6>{service.drinkrefill }</h6>
+								<h6>${service.drinkrefill }</h6>
 							</div>
 						</div>
 					</div>
@@ -897,12 +1108,8 @@
 		            	<div class="swiper swiper-container">
 		            		<div class="swiper-wrapper">  
 		            			<c:forEach items="${imgList }" var="img">
-		            			<div class="swiper-slide" style="background-image:url('/upload/cafe/${img.url}')"></div>
+		            				<div class="swiper-slide" style="background-image:url('/upload/cafe/${img.url}')"></div>
 		            			</c:forEach>
-		            			<!-- <div class="swiper-slide" style="background-image:url('img/cafe_1.jpg')"></div>
-		            			<div class="swiper-slide" style="background-image:url('img/cafe_2.jpg')"></div>
-		            			<div class="swiper-slide" style="background-image:url('img/cafe_3.jpg')"></div>
-		            			<div class="swiper-slide" style="background-image:url('img/cafe_4.png')"></div> -->
 		            		</div>  
 		            		<div class="swiper-pagination"></div>
 		            		<div class="swiper-button-prev"></div>
@@ -914,7 +1121,7 @@
 				<div class="cafe_location">
 					<div class="info_title" id="cafe_location_title">위치</div>
 					<div class="cafe_location_map">
-						<div id="map" style="width:650px;height:350px;"></div>					
+						<div id="cafe-map" style="width:500px;height:400px;"></div>	
 					</div> 
 				</div>
 			</div>		
@@ -1033,103 +1240,12 @@
 					</div>
 				</div>
 				<div class="info_title" id="basic_info_title">리뷰</div>
-				<div class="cafe_reviews">
-					<c:forEach items="${reviewList}" var="review" varStatus="status">
-						<c:forEach items="${reviewUsers}" var="user_vo" varStatus="status">
-							<c:if test="${review.user_id == user_vo.user_id}">
-								<c:set var="user" value="${user_vo }"/>
-							</c:if>
-						</c:forEach>
-						<div class="cafe_review_each">
-							<div class="cafe_review_top">
-								<div class="user_info">   
-									<div>
-										<img src="upload/${user.profile_image}"/>
-									</div>
-									<h2>${user.nickname }</h2>
-									<h2>${review.regdate }</h2>    
-								</div>
-								<div class="rating">
-									<div class="rate_each2" id="rate_each2">
-										<span class="rate_visual" id="taste_visual">
-											<img src="img/wifi.png">
-										</span>
-										<span class="rate_name" id="taste_name">맛</span>
-										<span class="my_rate">${review.taste_score }점</span>  
-									</div>  
-									<div class="rate_each2" id="rate_each2">
-										<span class="rate_visual" id="price_visual">
-											<img src="img/wifi.png">
-										</span>
-										<span class="rate_name" id="price_name">가격</span>
-										<span class="my_rate">${review.price_score }점</span>
-									</div>
-									<div class="rate_each2" id="rate_each2">
-										<span class="rate_visual" id="service_visual">
-											<img src="img/wifi.png">
-										</span>
-										<span class="rate_name" id="service_name">서비스</span>
-										<span class="my_rate">${review.service_score }점</span>
-									</div>
-									<div class="rate_each2" id="rate_each2">
-										<span class="rate_visual" id="facimood_visual">
-											<img src="img/wifi.png">
-										</span>
-										<span class="rate_name" id="facimood_name">시설 및 분위기</span>
-										<span class="my_rate">${review.mood_score }점</span>
-									</div>
-									<div class="rate_each2" id="rate_each2">
-										<span class="rate_visual" id="wifiplug_visual">
-											<img src="img/wifi.png">
-										</span>
-										<span class="rate_name" id="wifiplug_name">와이파이&콘센트</span>
-										<dspaniv class="my_rate">${review.wifi_score }점</span>
-									</div>  
-									<div class="rate_each2" id="rate_each2">
-										<span class="rate_visual" id="clean_visual">
-											<img src="img/wifi.png">
-										</span>
-										<span class="rate_name" id="clean_name">청결</span>
-										<span class="my_rate">${review.clean_score }점</span>
-									</div>
-								</div>
-							</div>
-							<div class="cafe_review_bottom">  
-								<div>
-									<img src="img/${review.image }"/>
-								</div>
-								<div class="comment"> 
-									<p>${review.contents }</p>
-								</div>
-							</div>
-						</div>
-					</c:forEach>
-				</div>
-				<div class="review_navi_nums">
-				<div>
-					<div class="num">
-						<div class="navi_first_btn"><a href="#"><img src="img/arrow_first.png"></a></div>
-					</div>  
-					<div class="num">
-						<div class="navi_prev10_btn"><a href="#"><img src="img/arrow_prev.png"></a></div>
-					</div>
-					<div class="num"><a href="#">1</a></div>
-					<div class="present" ><a href="#">2</a></div> 
-					<div class="num"><a href="#">3</a></div>
-					<div class="num"><a href="#">4</a></div>
-					<div class="num"><a href="#">5</a></div>
-					<div class="num">
-						<div class="navi_next10_btn"><a href="#"><img src="img/arrow_next.png"></a></div>					
-					</div>
-					<div class="num">					
-						<div class="navi_last_btn"><a href="#"><img src="img/arrow_last.png"></a></div>					
-					</div>
+				<div class="review-view">
+				
 				</div>
 			</div>
-			</div>
-			
 		</div>
-	</div>
+	</div>   
 	
 	<!-- 푸터 include -->
 	<%@ include file="/WEB-INF/view/include/footer.jsp"%>

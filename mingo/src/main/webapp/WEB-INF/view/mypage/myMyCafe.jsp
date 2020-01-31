@@ -196,13 +196,13 @@
 	<div class="container-fluid nav-wrapper">
 	    <ul class="nav mypage-nav" style="width:1140px;">
 	        <li class="nav-item">
-	          <a class="nav-link active"  href="myMain.do?user_id=${user_id }">회원정보</a>
+	          <a class="nav-link active" href="myMain.do?user_id=${userVO.user_id }">회원정보</a>
 	        </li>
 	        <li class="nav-item">
-	          <a class="nav-link" href="myCafe.do?user_id=${user_id }">내 카페</a>
+	          <a class="nav-link" href="myCafe.do?user_id=${userVO.user_id }">내 카페</a>
 	        </li>
 	        <li class="nav-item">
-	          <a class="nav-link" href="myReview.do?user_id=${user_id }">활동내역</a>
+	          <a class="nav-link" href="myReview.do?user_id=${userVO.user_id }">활동내역</a>
 	        </li>
 	    </ul>
 	</div>
@@ -216,7 +216,7 @@
         
         <div class=" board-group shadow ml-4">
             <div class="pb-2 mb-4 board-name" style="border-bottom: 1px solid #6E6E6E;">
-               	내 카페
+               	<a href="myCafe.do?user_id=${userVO.user_id }">내 카페</a>
             </div>
             <div class="collect_cafes">
             	<div class="collect_cafe_each" OnClick="location.href='detailView.do?cafe_id=${cafe.cafe_id}&user_id=${userVO.user_id}'">

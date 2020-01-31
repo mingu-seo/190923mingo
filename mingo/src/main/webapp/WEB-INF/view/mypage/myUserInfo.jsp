@@ -122,13 +122,13 @@
 	<div class="container-fluid nav-wrapper">
 	    <ul class="nav mypage-nav" style="width:1140px;">
 	        <li class="nav-item">
-	          <a class="nav-link active"  data-toggle="pill" href="myMain.do?user_id=${user_id }">회원정보</a>
+	          <a class="nav-link active" href="myMain.do?user_id=${userVO.user_id }">회원정보</a>
 	        </li>
 	        <li class="nav-item">
-	          <a class="nav-link" data-toggle="pill" href="myCafe.do?user_id=${user_id }">내 카페</a>
+	          <a class="nav-link" href="myCafe.do?user_id=${userVO.user_id }">내 카페</a>
 	        </li>
 	        <li class="nav-item">
-	          <a class="nav-link" data-toggle="pill" href="myReview.do?user_id=${user_id }">활동내역</a>
+	          <a class="nav-link" href="myReview.do?user_id=${userVO.user_id }">내가 쓴 리뷰</a>
 	        </li>
 	    </ul>
 	</div>
@@ -137,9 +137,9 @@
             <div class="board-side-name">
                 <i class="fa fa-gear ml-2 " style="font-size:2em;">&nbsp;회원정보</i>
             </div>
-            <a href="#" class="list-group-item mt-2" style="border-top:none;">내 정보 관리</a>
+            <a href="myMain.do" class="list-group-item mt-2" style="border-top:none;">내 정보 관리</a>
             <a href="#" class="list-group-item">비밀번호 변경</a>
-            <a href="#" class="list-group-item">회원 탈퇴</a>
+            <a href="deleteUserForm.do" class="list-group-item">회원 탈퇴</a>
             
         </div>  
         

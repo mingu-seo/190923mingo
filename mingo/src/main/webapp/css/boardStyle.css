@@ -45,10 +45,10 @@ a{
     border-bottom:none;
     
 }
-.board-main a{
+.board-main li{
     padding:10px 15px 10px 15px;
 }
-.board-main a>div{
+.board-main > li>div{
     text-align: center;
 }
 #b-num{
@@ -139,6 +139,8 @@ a{
 
 .reply-form{
     border:1px solid #a1a1a1;
+    
+    
 }
 .reply-form > div{
     
@@ -147,6 +149,7 @@ a{
 .reply-form  button{
     float:right;
 }
+
 .clamp{
     position: absolute;
     left:10px;
@@ -247,7 +250,7 @@ a{
 
 
 .grid {
-    margin: 120px auto 10px;
+    margin: 10px auto 40px;
     
     
     

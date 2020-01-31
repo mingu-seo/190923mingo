@@ -12,14 +12,14 @@ a{
     border:1px solid #dee2e6;
     box-sizing: content-box;
     width:1140px;
-    margin: 65px auto 10px;
+    margin:75px auto 10px;
 
 }
 .r-filter-option{
     border-top:1px solid #dee2e6;
     border-bottom:1px solid #dee2e6;
     width:1140px;
-    margin:65px auto 20px;
+    margin:75px auto 20px;
     overflow: hidden;
 }
 .r-filter-option ul {
@@ -30,6 +30,11 @@ a{
 .r-filter-option ul:last-child{
     border-right:none;
 }
+
+
+.list-group-flush:last-child .list-group-item:last-child {
+    border-bottom-width: 1px;
+}
 .r-filter-header-name{
     float:left;
     width:20%;
@@ -38,18 +43,40 @@ a{
 
 .r-filter-a{
    
-    overflow-y: scroll;
+    
+}
+.r-filter-c{
+   
+   
     
 }
 .list-group{
     width:20%;
     float:left;
+    overflow-y: auto;
 }
 
 .r-content{
     margin-top:20px;
     width:1140px;
     margin: 0 auto;
+}
+/* star rating */
+.star-rating {
+	width: 83px;
+	background: url('../img/star_rating.png');
+	background-repeat: no-repeat;
+}
+
+.star-rating>div {
+	width: 0%;
+	background: url('../img/star_rating.png');
+	background-repeat: no-repeat;
+	background-position: bottom left;
+}
+.star-rating, .star-rating>div {
+	height: 13px;
+	overflow: hidden;
 }
 
 /* 푸터 영역 */

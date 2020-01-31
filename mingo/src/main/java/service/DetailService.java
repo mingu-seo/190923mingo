@@ -2,7 +2,9 @@
 
 package service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -16,6 +18,8 @@ import vo.CafeProductVO;
 import vo.CafeRateVO;
 import vo.CafeServiceVO;
 import vo.CafeVO;
+import vo.CollectCafeVO;
+import vo.LikeCafeVO;
 import vo.ReviewVO;
 import vo.UserVO;
 
@@ -23,13 +27,15 @@ public interface DetailService {
 	
 	public CafeVO viewCafe(int cafe_id);
 	public List<CafeImageVO> viewCafeImages(int cafe_id);
-	public List<ReviewVO> viewCafeReview(int cafe_id);
+	public List<ReviewVO> viewCafeReview(Map<String, Integer> reviewMap);
 	public List<UserVO> viewUserList(int[] userList);
 	public List<CafeMenuVO> viewMenu(int cafe_id);
 	public List<CafeProductVO> viewProduct(int cafe_id);
 	public CafeServiceVO viewService(int cafe_id);
 	public CafeFacilitiesVO viewFacilities(int cafe_id);
 	public CafeRateVO viewCafeRate(int cafe_id);
+	public int viewLikeCafe(Map<String, Integer> map1);
+	public int viewCollectCafe(Map<String, Integer> map2);
 	
 	public int registCafe(CafeVO cafeVO, List<MultipartFile> logoFile, HttpServletRequest request);
 	public int registFacility(CafeFacilitiesVO cafeFacilitiesVO);
@@ -50,6 +56,11 @@ public interface DetailService {
 	public int deleteCafeInfo(int cafe_id);
 	
 	public int registReview(ReviewVO vo,MultipartFile file, HttpServletRequest request, CafeRateVO cafeRate);
-	
-	
+	public ReviewVO viewReview(ReviewVO vo);
+	public int modifyReview(ReviewVO vo_old, ReviewVO vo_new, MultipartFile file, HttpServletRequest request, CafeRateVO cafeRate);
+	public int deleteReview(CafeRateVO cafeRateVO, ReviewVO reviewVO);
+	public int registLike(LikeCafeVO vo);
+	public int deleteLike(LikeCafeVO vo);
+	public int registCollect(CollectCafeVO vo);
+	public int deleteCollect(CollectCafeVO vo);
 }

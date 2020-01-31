@@ -49,7 +49,7 @@
 				user_id = #{user_id}
 			</if>
 		</where>
-	</select>
+	</select>    
 	<select id="selectCollect" resultType="vo.CollectCafeVO" parameterType="Integer">
 		SELECT * FROM mingo.collect_cafe
 		<where>
@@ -59,6 +59,22 @@
 		</where>
 	</select>
 	
-	
+	<update id="updateUser" parameterType="vo.UserVO">
+		update mingo.user set
+		email=#{email}, password=#{password}, nickname=#{nickname}, name=#{name}, birthday=#{birthday}, gender=#{gender}, type=#{type}  
+		<where>
+			<if test="user_id != null">
+				user_id=#{user_id}			
+			</if>
+		</where>
+	</update>
+	<delete id="deleteUser" parameterType="Integer">
+		delete from mingo.user
+		<where>
+			<if test="user_id != null">
+				user_id=#{user_id}			
+			</if>
+		</where>
+	</delete>
 	
 </mapper>

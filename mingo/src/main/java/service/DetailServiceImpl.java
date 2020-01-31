@@ -21,6 +21,8 @@ import vo.CafeProductVO;
 import vo.CafeRateVO;
 import vo.CafeServiceVO;
 import vo.CafeVO;
+import vo.CollectCafeVO;
+import vo.LikeCafeVO;
 import vo.ReviewVO;
 import vo.UserVO;  
 
@@ -41,8 +43,8 @@ public class DetailServiceImpl implements DetailService {
 		List<CafeImageVO> imgList = detailDao.viewCafeImages(cafe_id);
 		return imgList;
 	}
-	public List<ReviewVO> viewCafeReview(int cafe_id){
-		List<ReviewVO> reviewList = detailDao.viewCafeReview(cafe_id);
+	public List<ReviewVO> viewCafeReview(Map<String, Integer> reviewMap){
+		List<ReviewVO> reviewList = detailDao.viewCafeReview(reviewMap);
 		return reviewList;
 	}
 	public List<UserVO> viewUserList(int[] userList){
@@ -71,6 +73,22 @@ public class DetailServiceImpl implements DetailService {
 	public CafeRateVO viewCafeRate(int cafe_id) {
 		CafeRateVO cafeRate = detailDao.viewCafeRate(cafe_id);
 		return cafeRate;
+	}
+	public int viewLikeCafe(Map<String, Integer> map) {
+		LikeCafeVO likeCafe = detailDao.viewLikeCafe(map);
+		int result = 0;
+		if (likeCafe != null) {
+			result = 1;
+		} 
+		return result;
+	}
+	public int viewCollectCafe(Map<String, Integer> map) {
+		CollectCafeVO collectCafe = detailDao.viewCollectCafe(map);
+		int result = 0;
+		if (collectCafe != null) {
+			result = 1;
+		} 
+		return result;
 	}
 	
 	
@@ -140,7 +158,7 @@ public class DetailServiceImpl implements DetailService {
 		vo.setImage(fu.fileName);
 		
 		int rate_num = cafeRate.getRate_num()+1;
-		cafeRate.setRate_num(cafeRate.getClean_sum()+1);
+		cafeRate.setRate_num(rate_num);
 		
 		cafeRate.setWifi_sum(cafeRate.getWifi_sum() + vo.getWifi_score());
 		cafeRate.setPrice_sum(cafeRate.getPrice_sum() + vo.getPrice_score());
@@ -162,5 +180,76 @@ public class DetailServiceImpl implements DetailService {
 		return r;
 	}
 	
+	public ReviewVO viewReview(ReviewVO vo) {
+		ReviewVO reviewVO = detailDao.viewReview(vo);
+		return reviewVO;
+	}
+	
+	public int modifyReview(ReviewVO vo_old, ReviewVO vo_new, MultipartFile file, HttpServletRequest request, CafeRateVO cafeRate) {
+		String path = request.getRealPath("/upload");
+		FileUtil fu = new FileUtil();
+		fu.fileUpload(file, path+"/cafe/");
+		vo_new.setImage(fu.fileName);
+		
+		int rate_num = cafeRate.getRate_num();
+		
+		cafeRate.setWifi_sum(cafeRate.getWifi_sum() - vo_old.getWifi_score() + vo_new.getWifi_score());
+		cafeRate.setPrice_sum(cafeRate.getPrice_sum() - vo_old.getPrice_score() + vo_new.getPrice_score());
+		cafeRate.setTaste_sum(cafeRate.getTaste_sum() - vo_old.getTaste_score() + vo_new.getTaste_score());
+		cafeRate.setService_sum(cafeRate.getService_sum() - vo_old.getService_score() + vo_new.getService_score());
+		cafeRate.setMood_sum(cafeRate.getMood_sum() - vo_old.getMood_score() + vo_new.getMood_score());
+		cafeRate.setClean_sum(cafeRate.getClean_sum() - vo_old.getClean_score() + vo_new.getClean_score());
+		
+		cafeRate.setWifi_avg(((cafeRate.getWifi_sum()/(double)rate_num)*100)/100);
+		cafeRate.setPrice_avg(((cafeRate.getPrice_sum()/(double)rate_num)*100)/100);
+		cafeRate.setTaste_avg(((cafeRate.getTaste_sum()/(double)rate_num)*100)/100);
+		cafeRate.setService_avg(((cafeRate.getService_sum()/(double)rate_num)*100)/100);
+		cafeRate.setMood_avg(((cafeRate.getMood_sum()/(double)rate_num)*100)/100);
+		cafeRate.setClean_avg(((cafeRate.getClean_sum()/(double)rate_num)*100)/100);
+		
+		
+		
+		int r = detailDao.modifyReview(vo_new, cafeRate);
+		return r;
+	}
+	
+	public int deleteReview(CafeRateVO cafeRate, ReviewVO reviewVO) {
+		
+		int rate_num = cafeRate.getRate_num()-1;
+		
+		cafeRate.setWifi_sum(cafeRate.getWifi_sum() - reviewVO.getWifi_score());
+		cafeRate.setPrice_sum(cafeRate.getPrice_sum() - reviewVO.getPrice_score());
+		cafeRate.setTaste_sum(cafeRate.getTaste_sum() - reviewVO.getTaste_score());
+		cafeRate.setService_sum(cafeRate.getService_sum() - reviewVO.getService_score());
+		cafeRate.setMood_sum(cafeRate.getMood_sum() - reviewVO.getMood_score());
+		cafeRate.setClean_sum(cafeRate.getClean_sum() - reviewVO.getClean_score());
+		
+		cafeRate.setWifi_avg(((cafeRate.getWifi_sum()/(double)rate_num)*100)/100);
+		cafeRate.setPrice_avg(((cafeRate.getPrice_sum()/(double)rate_num)*100)/100);
+		cafeRate.setTaste_avg(((cafeRate.getTaste_sum()/(double)rate_num)*100)/100);
+		cafeRate.setService_avg(((cafeRate.getService_sum()/(double)rate_num)*100)/100);
+		cafeRate.setMood_avg(((cafeRate.getMood_sum()/(double)rate_num)*100)/100);
+		cafeRate.setClean_avg(((cafeRate.getClean_sum()/(double)rate_num)*100)/100);
+		
+		int r = detailDao.deleteReview(cafeRate, reviewVO);
+		return r;
+	}
+	
+	public int registLike(LikeCafeVO vo) {
+		int r = detailDao.registLike(vo);
+		return r;
+	}
+	public int deleteLike(LikeCafeVO vo) {
+		int r = detailDao.deleteLike(vo);
+		return r;
+	}
+	public int registCollect(CollectCafeVO vo) {
+		int r = detailDao.registCollect(vo);
+		return r;
+	}
+	public int deleteCollect(CollectCafeVO vo) {
+		int r = detailDao.deleteCollect(vo);
+		return r;
+	}
 	
 }

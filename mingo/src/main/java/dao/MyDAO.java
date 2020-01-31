@@ -66,5 +66,11 @@ public class MyDAO {
 		return cafeRateList;
 	}
 	
+	public int modifyUser(UserVO vo) {
+		return sqlSession.update("my.updateUser", vo);
+	}
+	public void deleteUser(int user_id) {
+		sqlSession.delete("my.deleteUser", user_id);
+	}
 
 }

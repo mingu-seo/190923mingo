@@ -33,7 +33,26 @@ public class MyController {
 	
 	@Autowired private MyDAO myDao;  
 	@Autowired private MyService myService;
-	 
+	
+	
+	
+	@RequestMapping("/checkPassword.do")
+	public String myUserInfo(Model model, UserVO vo, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		UserVO vo1 = (UserVO) session.getAttribute("userVO");
+		int user_id = vo1.getUser_id();
+		UserVO userVO = myService.viewUserInfo(user_id);
+		String password = request.getParameter("password");
+		String dbPwd = userVO.getPassword();
+		int result;
+		if(password == dbPwd) {
+			result=1;
+		} else{
+			result=0;
+		}
+		model.addAttribute("pwdResult", result);
+		return "mypage/myUserWithdraw";
+	}
 	@RequestMapping("/myMain.do")
 	public String myMain(Model model, UserVO vo) {
 		int user_id = vo.getUser_id();
@@ -77,6 +96,48 @@ public class MyController {
 		model.addAttribute("cafeList", cafeList);
 		return "mypage/myMyReview";
 	}
+	
+	
+	@RequestMapping("/modifyUserForm.do")
+	public String updateUserForm(Model model, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		UserVO vo = (UserVO) session.getAttribute("userVO");
+		int user_id = vo.getUser_id();
+		UserVO userVO = myService.viewUserInfo(user_id);
+		return "mypage/myModifyUserForm";
+	}
+	@RequestMapping("/modifyUser.do")
+	public String updateUser(Model model, HttpServletRequest request, UserVO vo) {
+		HttpSession session = request.getSession();
+		UserVO vo_s = (UserVO)session.getAttribute("userVO");
+		vo.setUser_id(vo_s.getUser_id());
+		
+		System.out.println(vo.getUser_id());
+		System.out.println(vo.getGender());
+		System.out.println(vo.getName());
+		int r = myService.modifyUser(vo);
+		return "redirect:/myMain.do";
+	}
+	
+	
+	
+	@RequestMapping("/deleteUserForm.do")
+	public String deleteUserForm() {
+		return "mypage/myUserWithdraw";
+	}  
+	@RequestMapping("/deleteUser.do")
+	public String deleteUser(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		UserVO vo = (UserVO) session.getAttribute("userVO");
+		int user_id = vo.getUser_id();
+		myDao.deleteUser(user_id);
+		return "redirect:/goMain.do";
+	}
+	
+	
+	
+	
+	
 	@RequestMapping("/myPost.do")
 	public String myPost(Model model, HttpServletRequest request) {
 		HttpSession session = request.getSession();
@@ -94,16 +155,15 @@ public class MyController {
 		int user_id = vo.getUser_id();
 		List<CollectCafeVO> collectList = myService.viewCollect(user_id);
 		model.addAttribute("collectList", collectList);
-		System.out.println("유저 아이디: " + user_id);
-		List<CafeVO> cafeList = myService.viewCafeList2(collectList);
 		
-		System.out.println("카페 이름: " + cafeList.get(0).getName());
+		List<CafeVO> cafeList = myService.viewCafeList2(collectList);
 		model.addAttribute("cafeList", cafeList);
 		List<CafeRateVO> cafeRateList = myService.viewCafeRate2(collectList);
-		System.out.println("카페 와이파이: " + cafeRateList.get(0).getWifi_avg());
 		model.addAttribute("cafeRateList", cafeRateList);
 		return "mypage/myCollectCafe";
 	}
+	
+	
 	
 	
 	

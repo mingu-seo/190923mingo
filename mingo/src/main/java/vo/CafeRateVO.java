@@ -3,12 +3,12 @@ package vo;
 public class CafeRateVO {
 	private int cafe_id;
 	private int rate_num;
-	private int taste_sum;
-	private int mood_sum;
-	private int service_sum;
-	private int wifi_sum;
-	private int clean_sum;
-	private int price_sum;
+	private int taste_sum;  //맛
+	private int mood_sum;  //시설 및 분위기
+	private int service_sum;//서비스
+	private int wifi_sum; //와이파이
+	private int clean_sum;//청결
+	private int price_sum;//가격
 	private double taste_avg;
 	private double mood_avg;
 	private double service_avg;
