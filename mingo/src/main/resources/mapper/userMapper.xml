@@ -26,13 +26,22 @@
 	 WHERE nickname=#{nickname}
 	</select>
 	
-	<select id="id_step1_process" parameterType="vo.UserVO">
-		SELECT email FROM mingo.user WHERE name=#{name} and birthday=#{birthday} and phone_num =#{phone_num}
+	<!-- 아이디찾기 step2  -->
+	<select id="findId_step2" parameterType="vo.UserVO" resultType="String">
+		SELECT email FROM mingo.user 
+		WHERE name=#{name} and birthday=#{birthday} and phone_num=#{phone_num}
 	</select>
 	
-	<select id="pwd_step1_process" parameterType="vo.UserVO">
-		SELECT password FROM mingo.user WHERE email=#{email} and birthday=#{birthday} and phone_num =#{phone_num}
+	<!-- 비밀번호 찾기 step1 -->
+	<select id="findPwd_step2" parameterType="vo.UserVO" resultType="vo.UserVO">
+		SELECT * FROM mingo.user 
+		WHERE email=#{email} and birthday=#{birthday} <!-- and phone_num =#{phone_num} -->
 	</select>
-	
+	<!-- 비밀번호 변경 -->
+	<update id="step2_updatepw" parameterType="vo.UserVO" >
+		UPDATE mingo.user 
+		SET password=#{password}
+		WHERE user_id =#{user_id}
+	</update>
 	
 </mapper>

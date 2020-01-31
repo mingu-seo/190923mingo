@@ -46,7 +46,7 @@
                     </span>
                     <div class="pass1">
                        <div class="pass2">
-                       <input type="password" name ="password" id="password" minlength="10" maxlength="20" required placeholder="비밀번호를 입력해주세요 (10~20자리)" >
+                       <input type="password" name ="password" id="password" minlength="10" maxlength="20" required placeholder="영문,숫자 혼합하여 6~20자리 이내" >
                     </div>
                 </div>
                 </label>
@@ -69,7 +69,7 @@
 	            </span>
 	            <div class="name1">
 	               <div class="name2">
-						<input id="name" name="name"required placeholder="이름을 입력해주세요."> 
+						<input id="name" name="name"required placeholder="한글로만 2~6자이내로 입력하세요."> 
 	        		</div>
 	        	</div>
 	        </label>
@@ -83,7 +83,7 @@
 	            </span>
 	            <div class="nickname1">
 	               <div class="nickname2">
-						<input id="nickname" name="nickname"required placeholder="사용하실 닉네임을 입력해주세요(2~10자,변경불가)" > 
+						<input id="nickname" name="nickname"required placeholder="한글,영어,숫자만 2~10자 이내 (변경불가)" > 
 	        			<button class="nick-btn-check" type="button" style="margin-left: 16px;">중복확인</button>
 	        		</div>
 	        	</div>
@@ -98,7 +98,7 @@
 	            </span>
 	            <div class="bday1">
 	               <div class="bday2">
-						<input id="birthday" name ="birthday" required placeholder="생년월일('-'없이 8자리로 입력해주세요)" minlength="8" maxlength="8"> 
+						<input id="birthday" name ="birthday" required placeholder="'-'없이 8자리 숫자로 입력하세요." minlength="8" maxlength="8"> 
 	        		</div>
 	        	</div>
 	        </label>
@@ -112,7 +112,7 @@
 	            </span>
 	            <div class="business_num1">
 	               <div class="business_num2">
-						<input id="business_num" name="business_num" required placeholder="사업자 등록번호를 입력해주세요"> 
+						<input id="business_num" name="business_num"  required placeholder="사업자 등록번호를 입력해주세요"> 
 	        		</div>
 	        	</div>
 	        </label>

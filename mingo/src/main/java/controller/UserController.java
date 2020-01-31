@@ -100,36 +100,56 @@ public class UserController {
 	public String findId_step1() {
 		return"findUser/findId_step1";
 	}
-	
-	//step1 처리
-	@RequestMapping("/id_step1_process.do")
-	public String id_step1_process(Model model,UserVO vo,HttpServletRequest request) {
-		userService.id_step1_process(vo);
-		return"redirect:/findId_step2.do";
-	}
-	
+
 	//아이디 찾기 step2
 	@RequestMapping("/findId_step2.do")
-	public String findId_step2() {
-		return "findUser/findId_step2";
+	public String findId_step2(Model model,UserVO vo) {
+		String rs = userService.findId_step2(vo);
+		if (rs == null) {
+			String msg = "일치하는 회원이 없습니다.";
+			String url = "/loginForm.do";
+			model.addAttribute("msg", msg);
+			model.addAttribute("url", url);
+			return "include/alert";
+		} else {
+			model.addAttribute("email", rs);
+			return "findUser/findId_step2";
+		}
 	}
 	//비밀번호 찾기 step1
 	@RequestMapping("/findPwd_step1.do")
 	public String findPwd_step1() {
 		return "findUser/findPwd_step1";
 	}
-	//step1 처리
-	@RequestMapping("/pwd_step1_process.do")
-	public String pwd_step1_process(Model model,UserVO vo,HttpServletRequest request) {
-		userService.pwd_step1_process(vo);
-		return"redirect:/findPwd_step2";
-	}
+	/*
+	 * //비밀번호 찾기step1 처리
+	 * 
+	 * @RequestMapping("/pwd_step1_process.do") public String
+	 * pwd_step1_process(Model model,UserVO vo,HttpServletRequest request) {
+	 * userService.pwd_step1_process(vo); return"redirect:/findPwd_step2"; }
+	 */
 	
 	//비밀번호 찾기 step2
 	@RequestMapping("/findPwd_step2.do")
-	public String findPwd_step2() {
-		return "findUser/findPwd_step2";
+	public String findPwd_step2(Model model, UserVO vo) {
+		UserVO rs = userService.findPwd_step2(vo);
+		if (rs == null) {
+			String msg = "일치하는 회원이 없습니다.";
+			String url = "/loginForm.do";
+			model.addAttribute("msg", msg);
+			model.addAttribute("url", url);
+			return "include/alert";
+		} else {
+			model.addAttribute("UserVO", vo);
+			return "findUser/findPwd_step2";
+		}
 	}
+	@RequestMapping("/step2_updatepw.do")
+	public int step2_updatepw (Model model, @RequestParam(user_id) int user_id) {
+		userService.step2_updatepw(user_id);
+	}
+	
+	
 	
 	//회원 유형 선택 
 	@RequestMapping("/join_step1.do")

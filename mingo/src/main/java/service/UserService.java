@@ -31,11 +31,18 @@ public class UserService {
 		return userDao.nicknameCheck(nickname);
 	}
 
-	public UserVO id_step1_process(UserVO vo) {
-		return userDao.id_step1_process(vo);
+	//아이디찾기
+	public String findId_step2(UserVO vo) {
+		return userDao.findId_step2(vo);
 	}
-	public UserVO pwd_step1_process(UserVO vo) {
-		return userDao.pwd_step1_process(vo);
+	
+	//비밀번호찾기
+	public UserVO findPwd_step2(UserVO vo) {
+		return userDao.findPwd_step2(vo);
+	}
+	//비밀번호 변경
+	public int step2_updatepw(int user_id) {
+		return userDao.step2_updatepw(user_id);
 	}
 	
 }

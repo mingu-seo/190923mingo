@@ -29,10 +29,18 @@ public class UserDAO {
 		return sqlSession.selectOne("userMapper.nicknameCheck", nickname);
 	}
 	
-	public UserVO id_step1_process(UserVO vo) {
-		return sqlSession.selectOne("userMapper.id_step1_process", vo);
+	/* 아이디찾기 결과 */
+	public String findId_step2(UserVO vo) {
+		return sqlSession.selectOne("userMapper.findId_step2", vo);
 	}
-	public UserVO pwd_step1_process(UserVO vo) {
-		return sqlSession.selectOne("userMapper.pwd_step1_process", vo);
+
+	/* 비밀번호찾기 step1 */
+	public UserVO findPwd_step2(UserVO vo) {
+		return sqlSession.selectOne("userMapper.findPwd_step2", vo);
+	}
+
+	/* 비밀번호 변경 */
+	public int step2_updatepw(int user_id) {
+		return sqlSession.update("userMapper.step2_updatepw", user_id);
 	}
 }

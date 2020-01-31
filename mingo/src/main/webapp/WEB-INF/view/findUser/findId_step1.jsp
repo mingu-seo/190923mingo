@@ -14,6 +14,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     
 	<link rel="stylesheet" type="text/css" href="css/findUser/findId_step1.css">
+	<script type="text/javascript" src="js/findUser/findId_step1.js"></script>
 </head>
 
 <body>
@@ -32,7 +33,7 @@
 			<li class="process">02.아이디 확인</li>
 			
 		</ol>
-		<form class="formarea" action="/findId_step2.do">
+		<form id="findId_step1" class="formarea" action="/findId_step2.do">
 			<p class="formarea">아이디(이메일)을 찾기 위해 회원정보를 입력해 주세요.</p>
 			<div class="insertarea">
 				<label class="insert_name ">
@@ -41,7 +42,7 @@
 						&nbsp;
 					</span>
 					<div class="insert_content">
-						<input placeholder="이름을 입력해 주세요." class="name_content " value="">
+						<input placeholder="이름을 입력해 주세요." id ="name" name="name" class="name_content " value="">
 					</div>
 				</label>
 				
@@ -51,7 +52,7 @@
 						&nbsp;
 					</span>
 					<div class="insert_content">
-						<input placeholder="8자리 숫자로 입력해 주세요." class="bday_content " value="">
+						<input placeholder="8자리 숫자로 입력해 주세요." id ="birthday" name="birthday"class="bday_content " maxlength="8" value="">
 					</div>
 				</label>
 				<label class="insert_phone_num ">
@@ -60,13 +61,13 @@
 						&nbsp;
 					</span>
 					<div class="insert_content">
-						<input placeholder="'-'없이 11자리 숫자로 입력해 주세요." class="phone_num_content " value="">
+						<input placeholder="'-'없이 11자리 숫자로 입력해 주세요." id ="phone_num" name="phone_num"class="phone_num_content " maxlength="11"value="">
 					</div>
 				</label>
 			</div>
 		</form>
 		<div class="button">
-            <button type="button" class="nextbutton" onclick = "location.href = '/findId_step2.do' ">다음</button>
+            <button type="button" class="nextbutton" onclick = "javascript:findId_step1();">다음</button>
 	    </div>
 	</div>
 	<div class="footer">

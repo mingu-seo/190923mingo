@@ -37,7 +37,7 @@
 			</p>
 			<div class="resultarea">
 				<div class="findId_result ">
-					<input readonly class="findId_result_show" value="" style="font-weight:bold">
+					<input readonly class="findId_result_show" value="${email} " style="font-weight:bold">
 						
 				</div>
 			</div>

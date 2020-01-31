@@ -22,7 +22,8 @@
 			<p class="t3">본인이 해당하시는 가입 유형을 아래에서 선택해 주세요.</p>
 
 			<ul class="join">
-				<li class="person"><a class="click" href="#">
+				<li class="person">
+					<a class="click" href="/join_step2.do">
 						<div class="join-person">
 							<img src="<%=request.getContextPath()%>/img/joinImg/person.png"
 								width="80px" height="80px">
@@ -36,7 +37,8 @@
 							<button type="button" class="buttonchoose"  onclick = "location.href = '/join_step2.do' ">선택하기</button>
 						</div>
 				</a></li>
-				<li class="cafeperson"><a class="click" href="#">
+				<li class="cafeperson" >
+				<a class="click" href="/joinForm_host.do">
 						<div class="join-person">
 							<img src="<%=request.getContextPath()%>/img/joinImg/person.png"
 								width="80px" height="80px">
