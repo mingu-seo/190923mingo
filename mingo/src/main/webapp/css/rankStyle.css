@@ -78,6 +78,27 @@ a{
 	height: 13px;
 	overflow: hidden;
 }
+/* 라디오 버튼 */
+li.list-group-item .custom-control-label{
+	cursor:pointer;
+}
+
+/* td 평가 영역 */
+.d-flex > .flex-fill > span{
+	float:left;
+	font-size:10px;
+	display:inline-block;
+	width:40px;
+}
+.d-flex > .flex-fill > div{
+	margin-top:2px;
+	float:left;
+	width:150px;
+	height:10px;
+}
+.d-flex > .flex-fill > div > div{
+	height:10px;
+}
 
 /* 푸터 영역 */
 .footer{

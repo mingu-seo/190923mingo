@@ -21,12 +21,18 @@ public class RankController {
 	@Autowired
 	RankDAO Rankdao;
 	
-	// 시도 라이도 버튼으로 시군구 리스트 받아오기
+	// 시도 라디오 버튼으로 시군구 리스트 받아오기
 	@RequestMapping("/getSigunguRadioList.do")
 	public String getSigunguRadioList(Model model, @RequestParam("sido_code") int sido_code) {
 		List<Map> sigunguList = mainDao.getSigunguList(sido_code);
 		model.addAttribute("sigunguList", sigunguList);
 		return "ajax/sigunguRadioList";
+	}
+	
+	@RequestMapping("/getCafeRankList.do")
+	public String getCafeRankList() {
+		
+		return "ajax/cafeRankList";
 	}
 	
 }

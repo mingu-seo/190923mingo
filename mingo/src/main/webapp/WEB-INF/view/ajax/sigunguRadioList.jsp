@@ -5,7 +5,7 @@
 <li class="list-group-item">
 						<div class="custom-control custom-radio">
 							<input checked="checked" type="radio" class="custom-control-input" id="sigungu0"
-								name="sigungu_code" value="${sigungu.code }"> <label
+								name="sigungu_code" value="-1"> <label
 								class="custom-control-label" for="sigungu0">전체</label>
 						</div>
 
