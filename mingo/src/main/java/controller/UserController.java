@@ -144,10 +144,11 @@ public class UserController {
 			return "findUser/findPwd_step2";
 		}
 	}
+	/*
 	@RequestMapping("/step2_updatepw.do")
 	public int step2_updatepw (Model model, @RequestParam(user_id) int user_id) {
 		userService.step2_updatepw(user_id);
-	}
+	}*/
 	
 	
 	

@@ -72,5 +72,9 @@ public class MyDAO {
 	public void deleteUser(int user_id) {
 		sqlSession.delete("my.deleteUser", user_id);
 	}
+	public int myUserModifyPassword(UserVO vo) {
+		return sqlSession.update("my.updateUser", vo);
+	}
+	
 
 }

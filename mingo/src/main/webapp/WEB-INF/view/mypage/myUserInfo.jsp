@@ -138,7 +138,7 @@
                 <i class="fa fa-gear ml-2 " style="font-size:2em;">&nbsp;회원정보</i>
             </div>
             <a href="myMain.do" class="list-group-item mt-2" style="border-top:none;">내 정보 관리</a>
-            <a href="#" class="list-group-item">비밀번호 변경</a>
+            <a href="myUserModifyForm1.do" class="list-group-item">비밀번호 변경</a>
             <a href="deleteUserForm.do" class="list-group-item">회원 탈퇴</a>
             
         </div>  

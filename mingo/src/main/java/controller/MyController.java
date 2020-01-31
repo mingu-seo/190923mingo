@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -45,13 +46,31 @@ public class MyController {
 		String password = request.getParameter("password");
 		String dbPwd = userVO.getPassword();
 		int result;
-		if(password == dbPwd) {
+		if(password.equals(dbPwd)) {
 			result=1;
 		} else{
-			result=0;
+			result=0; 
 		}
+		model.addAttribute("userVO", userVO);
 		model.addAttribute("pwdResult", result);
-		return "mypage/myUserWithdraw";
+		return "mypage/myAjax"; 
+	}
+	@RequestMapping("/myUserModifyPassword.do")
+	public String myUserModifyPassword( HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		UserVO vo = (UserVO) session.getAttribute("userVO");
+		vo.setPassword(request.getParameter("password"));
+		System.out.println("비밀번호 : "+request.getParameter("password"));
+		myService.myUserModifyPassword(vo);
+		return "mypage/myUserModifyForm2"; 
+	}  
+	@RequestMapping("/myUserModifyForm1.do")
+	public String myUserModifyForm1() {
+		return "mypage/myUserModifyForm1";
+	}
+	@RequestMapping("/myUserModifyForm2.do")
+	public String myUserModifyForm2() {
+		return "mypage/myUserModifyForm2";
 	}
 	@RequestMapping("/myMain.do")
 	public String myMain(Model model, UserVO vo) {
@@ -131,6 +150,7 @@ public class MyController {
 		UserVO vo = (UserVO) session.getAttribute("userVO");
 		int user_id = vo.getUser_id();
 		myDao.deleteUser(user_id);
+		session.invalidate();
 		return "redirect:/goMain.do";
 	}
 	
