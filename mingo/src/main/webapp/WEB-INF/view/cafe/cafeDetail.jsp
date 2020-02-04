@@ -69,7 +69,7 @@
 		}
 		.logo > img{
 			border-radius:50%;
-			width:20%;
+			width:15%;
 			filter: drop-shadow(0px 0px 20px #FFFFFF);
 		}
 		
@@ -859,26 +859,14 @@
 					console.log(currentPage);
 				}
 			});   
-			/* var currentPage = $(this).text();
-			var rate_num = ${cafeRate.rate_num};
-			$('.num-btn').click(function(){
-				currentPage += 1; 
-				$.ajax({
-					url:'reviewViewForm.do',
-					type:'GET',
-					dataType:'text',
-					data:{'cafe_id':cafe_id,
-						'currentPage':currentPage,
-						'rate_num':rate_num},
-					success:function(data){
-						$('.review-view').html(data);
-						
-					}
-				});
-				console.log("클릭");
-				var currentPage = $(this).text();
-				var rate_num = ${cafeRate.rate_num};
-			});  */ 
+			
+			// 종합평점 그래프 점수 동적화
+			var wifi_width = (${cafeRate.mood_avg }/5)*300;
+			$('#wifi-width').css({
+				'width':wifi_width
+			});
+			
+			
 			
 		});      
 	 
@@ -929,9 +917,9 @@
 						<input type="hidden" id="collectCafe" value="1">
 					</c:if>
 				</div>     
-				<div id="regist-review">
+				<%-- <div id="regist-review">
 					<a href="reviewRegistForm.do?cafe_id=${cafe_id }&user_id=${user_id }">re</a>
-				</div>     
+				</div>  --%>    
 			</div>
 			<div class="info">
 				<div class="rate_avg">
@@ -1196,7 +1184,7 @@
 						                <img src="img/wifi.png" class="graph_logo">
 						            </div>
 						            <div class="graph_stack">
-						                <div class="graph_rate">
+						                <div class="graph_rate" id="wifi-width">
 						                    <img src="img/bean.PNG" class="bean_img">
 						                    <div class="graph_text">${cafeRate.wifi_avg }점</div>
 						                </div>
