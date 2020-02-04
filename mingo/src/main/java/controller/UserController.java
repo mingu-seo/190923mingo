@@ -138,9 +138,6 @@ public class UserController {
 			return "findUser/findPwd_step2";
 		}
 	}
-<<<<<<< HEAD
-
-	
 	 //비밀번호 updateForm
 	@RequestMapping("/updatePwdForm.do") public String updatePwdForm(Model model, @RequestParam("user_id") int user_id, HttpServletRequest request) {
 	  userService.updatePwdForm(user_id); 
