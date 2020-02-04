@@ -1,7 +1,9 @@
 package controller;
 
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -10,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -33,9 +36,7 @@ public class MyController {
 	
 	@Autowired private MyDAO myDao;  
 	@Autowired private MyService myService;
-	
-	
-	
+
 	@RequestMapping("/checkPassword.do")
 	public String myUserInfo(Model model, UserVO vo, HttpServletRequest request) {
 		HttpSession session = request.getSession();
@@ -45,13 +46,31 @@ public class MyController {
 		String password = request.getParameter("password");
 		String dbPwd = userVO.getPassword();
 		int result;
-		if(password == dbPwd) {
+		if(password.equals(dbPwd)) {
 			result=1;
 		} else{
-			result=0;
+			result=0; 
 		}
+		model.addAttribute("userVO", userVO);
 		model.addAttribute("pwdResult", result);
-		return "mypage/myUserWithdraw";
+		return "mypage/myAjax"; 
+	}
+	@RequestMapping("/myUserModifyPassword.do")
+	public String myUserModifyPassword( HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		UserVO vo = (UserVO) session.getAttribute("userVO");
+		vo.setPassword(request.getParameter("password"));
+		System.out.println("비밀번호 : "+request.getParameter("password"));
+		myService.myUserModifyPassword(vo);
+		return "mypage/myUserModifyForm2"; 
+	}  
+	@RequestMapping("/myUserModifyForm1.do")
+	public String myUserModifyForm1() {
+		return "mypage/myUserModifyForm1";
+	}
+	@RequestMapping("/myUserModifyForm2.do")
+	public String myUserModifyForm2() {
+		return "mypage/myUserModifyForm2";
 	}
 	@RequestMapping("/myMain.do")
 	public String myMain(Model model, UserVO vo) {
@@ -87,7 +106,9 @@ public class MyController {
 		UserVO vo = (UserVO) session.getAttribute("userVO");
 		int user_id = vo.getUser_id();
 		System.out.println("유저 아이디 : " + user_id);
+		
 		UserVO userVO = myService.viewUserInfo(user_id);
+		
 		List<ReviewVO> reviews = myService.viewReview(user_id);
 		model.addAttribute("reviews", reviews);
 		
@@ -96,7 +117,49 @@ public class MyController {
 		model.addAttribute("cafeList", cafeList);
 		return "mypage/myMyReview";
 	}
+	/*
+	public String reviewViewForm(Model model, HttpServletRequest request) {
+		int cafe_id = Integer.parseInt(request.getParameter("cafe_id"));
+		int currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		
+		CafeRateVO cafeRate = detailService.viewCafeRate(cafe_id);   
+		model.addAttribute("cafeRate", cafeRate);
+		
+		int maxPage = (cafeRate.getRate_num()-1)/5+1;
+		int beginIndex = (currentPage-1)*5;
+		int beginPage = ((currentPage-1)/5)*5+1;
+		int endPage;
+		if(maxPage-currentPage<4) {  
+			endPage = maxPage;/	
+		} else {
+			endPage = ((currentPage-1)/5)+5;
+		}
+		
+		System.out.println("최대: " +maxPage+ ".../...현재 :" +currentPage+ ".../...시작 : " + beginPage + ".../...마지막 : " +endPage );
+		
+		Map<String, Integer> reviewMap = new HashMap<String, Integer>();
+		reviewMap.put("currentPage", currentPage);
+		reviewMap.put("cafe_id", cafe_id);
+		reviewMap.put("beginIndex", beginIndex);
 	
+		List<ReviewVO> reviewList = detailService.viewCafeReview(reviewMap);
+		model.addAttribute("reviewList", reviewList);
+		
+		int[] userList = new int[reviewList.size()];  
+		for (int i=0; i<reviewList.size(); i++) {
+			userList[i] = reviewList.get(i).getUser_id();
+		}
+		List<UserVO> reviewUsers = detailService.viewUserList(userList);
+		model.addAttribute("reviewUsers", reviewUsers);
+		
+		model.addAttribute("maxPage", maxPage);
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("beginPage", beginPage);
+		model.addAttribute("endPage", endPage);	
+	   
+		return "cafe/reviewViewForm";
+	}
+	*/
 	
 	@RequestMapping("/modifyUserForm.do")
 	public String updateUserForm(Model model, HttpServletRequest request) {
@@ -131,6 +194,7 @@ public class MyController {
 		UserVO vo = (UserVO) session.getAttribute("userVO");
 		int user_id = vo.getUser_id();
 		myDao.deleteUser(user_id);
+		session.invalidate();
 		return "redirect:/goMain.do";
 	}
 	

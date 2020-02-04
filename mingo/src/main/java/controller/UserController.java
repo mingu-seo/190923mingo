@@ -138,6 +138,7 @@ public class UserController {
 			return "findUser/findPwd_step2";
 		}
 	}
+<<<<<<< HEAD
 
 	
 	 //비밀번호 updateForm
@@ -167,6 +168,7 @@ public class UserController {
 	}
 
 	// 회원 유형 선택
+
 	@RequestMapping("/join_step1.do")
 	public String joinFormStep1() {
 		return "/join/join_step1";

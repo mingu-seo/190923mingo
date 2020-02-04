@@ -32,4 +32,5 @@ public interface MyService {
 	public List<CafeRateVO> viewCafeRate2(List<CollectCafeVO> collectList);
 	public int modifyUser(UserVO vo);
 	public void deleteUser(int user_id);
+	public int myUserModifyPassword(UserVO vo);
 }

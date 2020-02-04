@@ -61,9 +61,9 @@
             <div class="board-side-name">
                 <i class="fa fa-gear ml-2 " style="font-size:2em;">&nbsp;&nbsp;활동내역</i>
             </div>
-            <a href="#" class="list-group-item mt-2" style="border-top:none;">내가 쓴 리뷰</a>
-            <a href="#" class="list-group-item">내가 쓴 게시글</a>
-            <a href="#" class="list-group-item">내가 찜한 카페</a>
+            <a href="myReview.do" class="list-group-item mt-2" style="border-top:none;">내가 쓴 리뷰</a>
+            <a href="myPost.do" class="list-group-item">내가 쓴 게시글</a>
+            <a href="myCollect.do" class="list-group-item">내가 찜한 카페</a>
         </div>
         
         <div class=" board-group shadow ml-4">

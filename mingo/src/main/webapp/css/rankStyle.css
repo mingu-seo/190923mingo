@@ -38,7 +38,10 @@ a{
 .r-filter-header-name{
     float:left;
     width:20%;
+    font-size:1.1em;
+    font-weight:bold;
     text-align: center;
+    background-color:#dee2e6;
 }
 
 .r-filter-a{
@@ -77,6 +80,38 @@ a{
 .star-rating, .star-rating>div {
 	height: 13px;
 	overflow: hidden;
+}
+/* 라디오 버튼 */
+li.list-group-item .custom-control-label{
+	cursor:pointer;
+}
+
+/* td 평가 영역 */
+.d-flex > .flex-fill > span{
+	float:left;
+	font-size:10px;
+	display:inline-block;
+	width:40px;
+}
+.d-flex > .flex-fill > div{
+	margin-top:2px;
+	float:left;
+	width:150px;
+	height:10px;
+}
+.d-flex > .flex-fill > div > div{
+	height:10px;
+}
+
+.is-loading{
+	height:400px;
+	border:1px solid #e1e1e1;
+	box-sizing:border-box;
+}
+.spin-wrapper{
+	width:1140px;
+	
+	margin:0 auto 30px;
 }
 
 /* 푸터 영역 */

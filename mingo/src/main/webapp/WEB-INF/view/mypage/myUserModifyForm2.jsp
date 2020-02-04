@@ -121,34 +121,31 @@
 			
 			//var dbPwd = ${userVO.password};
 			$('#withdrawBtn').click(function(){
-				var password = $('#pwd').val();
-				console.log(password);
-				console.log("탈퇴 버튼 클릭");
-				$.ajax({
-					url:'checkPassword.do',
-					type:'POST',
-					dataType : "json",
-					data:{ password : password},
-					success:function(data){
-						 console.log("작동3" + data.pwdResult);
-						
-						if(data.pwdResult==1){
-							location.href="deleteUser.do";
-							console.log("작동3");
-						} else {
-							$('.message').text("올바른 비밀번호를 입력해주세요");
-							console.log("작동4");
-						} 
-					},
-					error : function(data) {
-	        			console.log(data);
-	        		}
-				}); 
+				var password1 = $('#pwd1').val();
+				var password2 = $('#pwd2').val();
+				console.log("비밀번호 변경 버튼 클릭");
+				if (password1==password2){
+					$.ajax({
+						url:'myUserModifyPassword.do',
+						type:'POST',
+						dataType : "text",
+						data:{ password : password1},
+						success:function(data){
+							alert('비밀번호가 변경됐습니다.');
+							location.href="myMain.do";
+							console.log("작동3");	
+						},
+						error : function(data) {
+		        			console.log(data);
+		        		}
+					}); 
+					
+				} else {
+					$('.message').text("비밀번호를 확인해주세요");
+				}
 			});
 		});
-			
 		
-	
 	</script>
 	
 	
@@ -198,12 +195,16 @@
             <div class="user_info_area">
             	<div>
 		            <div class="form-group">
-		                <label for="pwd" style="width:25%;">비밀번호:</label>
-		                <input type="password" class="form-control" id="pwd" style="width:25%;">
+		                <label for="pwd1" style="width:25%;">비밀번호:</label>
+		                <input type="password" class="form-control" id="pwd1" style="width:25%;">
+		            </div>
+		            <div class="form-group">
+		                <label for="pwd2" style="width:25%;">비밀번호 확인:</label>
+		                <input type="password" class="form-control" id="pwd2" style="width:25%;">
 		            </div>
 		            <div>
 		            	<div class="message"></div>
-		                <button type="button" id="withdrawBtn" class="btn btn-secondary" style="width:30%;">회원탈퇴</button>
+		                <button type="button" id="withdrawBtn" class="btn btn-secondary" style="width:30%;">비밀번호 변경</button>
 		            </div>
             	</div>
             </div>

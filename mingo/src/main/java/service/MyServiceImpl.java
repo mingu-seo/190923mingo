@@ -74,7 +74,10 @@ public class MyServiceImpl implements MyService{
 	}
 	public void deleteUser(int user_id) {
 		myDao.deleteUser(user_id);
-	};
+	}
+	public int myUserModifyPassword(UserVO vo) {
+		return myDao.myUserModifyPassword(vo);
+	}
 		
 	
 	

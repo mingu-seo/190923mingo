@@ -133,7 +133,7 @@
 						 console.log("작동3" + data.pwdResult);
 						
 						if(data.pwdResult==1){
-							location.href="deleteUser.do";
+							location.href="myUserModifyForm2.do";
 							console.log("작동3");
 						} else {
 							$('.message').text("올바른 비밀번호를 입력해주세요");
@@ -193,7 +193,7 @@
         
         <div class=" board-group shadow ml-4">
             <div class="pb-4 mb-1 board-name" style="border-bottom: 1px solid #6E6E6E;">
-               	회원탈퇴
+               	비밀번호 변경
             </div>  
             <div class="user_info_area">
             	<div>
