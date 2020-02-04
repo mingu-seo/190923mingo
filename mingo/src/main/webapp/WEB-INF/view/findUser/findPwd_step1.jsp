@@ -56,7 +56,7 @@
 						<input placeholder="8자리 숫자로 입력해 주세요." id="birthday" name="birthday"class="bday_content " value="">
 					</div>
 				</label>
-				<!-- <label class="insert_phone_num ">
+				 <label class="insert_phone_num ">
 					<span class="insert_phone_num">
 						핸드폰 번호
 						&nbsp;
@@ -64,7 +64,7 @@
 					<div class="insert_content">
 						<input placeholder="'-'없이 11자리 숫자로 입력해 주세요." id="phone_num" name="phone_num"class="phone_num_content " value="">
 					</div>
-				</label> -->
+				</label> 
 			</div>
 		</form>
 		<div class="button">

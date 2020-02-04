@@ -33,7 +33,7 @@
 			<li class="process_active">02.비밀번호 재설정</li>
 			
 		</ol>
-		<form action="/updatePwd.do" id="findPwd_step2" method="post">
+		<form action="/updatePwd.do" id="findPwd_step2" class= "formarea" method="post">
 			<p class="formarea">
 			본인을 확인하였습니다.
 			<br>새로운 비밀번호를 등록해 주세요

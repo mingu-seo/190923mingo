@@ -116,17 +116,17 @@ public class UserController {
 			return "findUser/findId_step2";
 		}
 	}
-
-	// 비밀번호 찾기 step1
+    
+	// 비밀번호 찾기 step1 form
 	@RequestMapping("/findPwd_step1.do")
 	public String findPwd_step1() {
 		return "findUser/findPwd_step1";
 	}
 
-	// 비밀번호 찾기 step2
-	@RequestMapping("/findPwd_step2.do")
-	public String findPwd_step2(Model model, UserVO vo) {
-		UserVO rs = userService.findPwd_step2(vo);
+	// 비밀번호 찾기 step1 process 
+	@RequestMapping("/step1_process.do")
+	public String step1_process(Model model, UserVO vo) {
+		UserVO rs = userService.step1_process(vo);
 		if (rs == null) {
 			String msg = "일치하는 회원이 없습니다.";
 			String url = "/findPwd_step1.do";
@@ -140,18 +140,19 @@ public class UserController {
 	}
 
 	
-	 //비밀번호 updateForm
-	@RequestMapping("/updatePwdForm.do") public String updatePwdForm(Model model, @RequestParam("user_id") int user_id, HttpServletRequest request) {
-	  userService.updatePwdForm(user_id); 
-	  model.addAttribute(user_id); 
+	 //비밀번호 step2 form
+	@RequestMapping("/findPwd_step2.do") 
+	public String findPwd_step2(Model model,UserVO vo, HttpServletRequest request) {
+	  userService.findPwd_step2(vo); 
+	  model.addAttribute(vo); 
 	  return "findUser/findPwd_step2"; 
 	  }
 	 
 
-	// 비밀번호 update
-	@RequestMapping("/updatePwd.do")
-	public String updatePwd(Model model, UserVO vo, @RequestParam("user_id") int user_id) {
-		int r = userService.updatePwd(vo);
+	// 비밀번호 step2 process
+	@RequestMapping("/step2_process.do")
+	public String step2_process(Model model, UserVO vo, @RequestParam("user_id") int user_id) {
+		int r = userService.step2_process(vo);
 		String msg = "";
 		String url = "";
 		if (r > 0) {
@@ -165,6 +166,8 @@ public class UserController {
 		model.addAttribute("url", url);
 		return "include/alert";
 	}
+	
+	
 
 	// 회원 유형 선택
 
