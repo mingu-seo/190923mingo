@@ -37,9 +37,15 @@ int totalpage = (Integer)request.getAttribute("totalpage"); // 전체페이지�
             <div class="board-side-name">
                 <i class="fa fa-file-text-o ml-2 " style="font-size:2em;">&nbsp;&nbsp;게시판</i>
             </div>
+            
             <a href="listBoard.do" class="list-group-item mt-2" style="border-top:none;">자유게시판</a>
+           
+          
             <a href="#" class="list-group-item">정보게시판</a>
+           
+            
             <a href="#" class="list-group-item">취업게시판</a>
+          
 
         </div>
         <div class=" board-group shadow ml-4">
@@ -59,7 +65,7 @@ int totalpage = (Integer)request.getAttribute("totalpage"); // 전체페이지�
                 <c:forEach  items="${list}" var="BoardVO">
                 <li class="list-group-item">
                     <div id="b-num" style="float:left;width:60px;height:24px;">${BoardVO.board_id}</div>
-                    <a href="viewBoard.do?board_id=${BoardVO.board_id}&page=<%=vo.getPage()%>"id="b-title" style="float:left;width:346px;height:24px;display:block">${BoardVO.title}</a>
+                    <a href="viewBoard.do?board_id=${BoardVO.board_id}&page=<%=vo.getPage()%>"id="b-title" style="float:left;width:346px;height:24px;display:block">${BoardVO.title} ${listCount }</a>
                     <div id="b-username" style="float:left;width:108px;height:24px;">${BoardVO.nickname}</div>
                     <div id="b-regdate" style="float:left;width:108px;height:24px;"><fmt:formatDate value="${BoardVO.regdate}" pattern="yyyy.MM.dd"/></div>
                     <div id="b-readcount" style="float:left;width:60px;height:24px;">${BoardVO.readcount}</div>

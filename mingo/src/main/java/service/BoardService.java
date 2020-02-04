@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import dao.BoardDAO;
 import vo.BoardCommentVO;
 import vo.BoardVO;
+import vo.LikeBoardVO;
+
 
 
 @Service
@@ -36,6 +38,7 @@ public class BoardService {
 	}
 	public int insert(BoardVO vo) {
 		int r = boardDAO.insert(vo);
+		
 		return r;
 	}
 	public BoardVO detail(int board_id) {
@@ -60,6 +63,7 @@ public class BoardService {
 	}
 	public int writeComment(BoardCommentVO cvo) {
 		int r = boardDAO.writeComment(cvo);
+		boardDAO.refUpdate(r);
 		return r;
 	}
 	public int replyProcess(BoardCommentVO cvo) {
@@ -72,14 +76,18 @@ public class BoardService {
 		cvo.setSeq(cvo.getSeq()+1);
 		
 		return boardDAO.replyInsert(cvo);
-		
 	}
 	public int replyDelete(int board_comment_id) {
 		return boardDAO.replyDelete(board_comment_id); 
 	}
-
 	public int listCount(int board_id) {
-		
 		return boardDAO.listCount(board_id);
+	}
+	public int registLike(LikeBoardVO vo) {
+		return boardDAO.registLike(vo);
+	}
+	public int deleteLike(LikeBoardVO vo) {
+		int r = boardDAO.deleteLike(vo);
+		return r;
 	}
 }

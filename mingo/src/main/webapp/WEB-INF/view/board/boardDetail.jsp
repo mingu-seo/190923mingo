@@ -8,6 +8,7 @@ pageEncoding="UTF-8"%>
      <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <%
+int listcount = (Integer)request.getAttribute("listcount");
 List<BoardCommentVO> clist = (List<BoardCommentVO>)request.getAttribute("clist");
 	BoardCommentVO cvo = (BoardCommentVO) request.getAttribute("cvo");
 	BoardVO vo = (BoardVO) request.getAttribute("data");
@@ -35,10 +36,10 @@ List<BoardCommentVO> clist = (List<BoardCommentVO>)request.getAttribute("clist")
 					location.href='deleteBoard.do?board_id='+board_id+'&page=<%=nowPage%>';
 		}else{event.preventDefault();}
 	}
-	function reply(user_id) {
+	function reply(formId) {
 		var chk =  confirm("등록하시겠습니까?");
 		if (chk){
-					replyProcess.submit();
+					$("#"+formId).submit();
 		}else{event.preventDefault();}
 	}
 	function writeComment123(user_id) {
@@ -54,16 +55,58 @@ List<BoardCommentVO> clist = (List<BoardCommentVO>)request.getAttribute("clist")
 			location.href='replyDeleteBoard.do?board_id=<%=vo.getBoard_id()%>&page=<%=nowPage%>&board_comment_id='+board_comment_id;
 		}else{event.preventDefault();}
 	}
-	function replyShow(){
-		if ($('#replyCmt').is(":visible")) { 
-	        $('#replyCmt').hide(); // id값을 받아서 숨기기 
+	function replyShow(id){
+		if ($('#replyCmt_'+id).is(":visible")) { 
+	        $('#replyCmt_'+id).hide(); // id값을 받아서 숨기기 
 	        
 	    } else { 
-	        $('#replyCmt').show(); // id값을 받아서 보이기 
-	         
+	        $('#replyCmt_'+id).show(); // id값을 받아서 보이기 
 	    } 
-	} 
+	}
+	
+	
 
+	// 좋아요 버튼 처리
+	// 버튼 클릭 > ajax통신 (like url로 전달) > views의 like 메소드에서 리턴하는 값 전달받기 > 성공시 콜백 호출
+	$('.likeGood').click(function(){
+	  var pk = $(this).attr('likeGood') // 클릭한 요소의 attribute 중 name의 값을 가져온다.
+	  $.ajax({
+		  url:'registLike.do',
+			type:'POST',
+			data:{'board_id':board_id},
+			
+	      success: function(response){
+	        // 요청이 성공했을 경우 좋아요/싫어요 개수 레이블 업데이트
+	        $('#like_count'+ pk).html("count : "+ response.like_count);
+	        $('#dislike_count'+ pk).html("count : "+ response.dislike_count);
+	      },
+	      error:function(error){
+	        // 요청이 실패했을 경우
+	        alert(error)
+	      }
+	  });
+	})
+	
+	// 싫어요 버튼 처리
+// 버튼 클릭 > ajax통신 (dislike url로 전달) > views의 dislike 메소드에서 리턴하는 값 전달받기 > 성공시 콜백 호출
+$('.dislike').click(function(){
+  var pk = $(this).attr('name') // 클릭한 요소의 attribute 중 name의 값을 가져온다.
+  $.ajax({
+	  url:'deleteLike.do',
+		type:'POST',
+		data:{'board_id':board_id},
+
+      success: function(response){
+        // 요청이 성공했을 경우 좋아요/싫어요 개수 레이블 업데이트
+        $('#like_count'+ pk).html("count : "+ response.like_count);
+        $('#dislike_count'+ pk).html("count : "+ response.dislike_count);
+      },
+      error:function(error){
+        // 요청이 실패했을 경우
+        alert(error)
+      }
+  });
+})
 </script>
 <body>
     <!-- 내비게이션 include -->
@@ -101,25 +144,41 @@ List<BoardCommentVO> clist = (List<BoardCommentVO>)request.getAttribute("clist")
             
             <div class="mybtn-group">
                 <button type="button" class="btn btn-secondary float-left"onclick="location.href='listBoard.do?page=<%=nowPage%>' ">목록보기</button>
-                <button type="button" class="btn float-right mybtn-good"><i class="fa fa-thumbs-o-down" style="font-size:1.5em;">1</i></button>
-                <button type="button" class="btn float-right mybtn-bad"><i class="fa fa-thumbs-o-up" style="font-size:1.5em;">0</i></button>
-                
+                <button type="button" class="btn float-right mybtn-good" name="likeGood" id="likeGood"><i class="fa fa-thumbs-o-down" style="font-size:1.5em;">2</i></button>
+                <input type="hidden" id="likeBoard" value="0">
+                <button type="button" class="btn float-right mybtn-bad" name="likeBad" id="likeBad"><i class="fa fa-thumbs-o-up" style="font-size:1.5em;">0</i></button>
+               
             </div>
            
             </form>
 	 	<div class="pb-3" style="border-bottom: 1px solid #a1a1a1;">
                 <i class="fa fa-comment-o mr-2" style="font-size:1.5em;"></i>댓글 ${listCount }개
             </div>
-            <form action="replyProcess.do" method="post" name="replyProcess">
             <c:forEach  items="${clist}" var="BoardCommentVO">
-	<input type="hidden" name="page" value="<%=vo.getPage() %>"/>
-	<input type="hidden" name="board_id" value="<%=vo.getBoard_id() %>">
-	<input type="hidden" name="board_re_ref" value="${BoardCommentVO.ref}">
-	<input type="hidden" name="board_re_lev" value="${BoardCommentVO.lev}">
-	<input type="hidden" name="board_re_seq" value="${BoardCommentVO.seq}">
+           <div class="reply pl-5" >
             
-            
-           <div class="reply">
+<%
+//if(cvo.getLev() != 0){       
+//	for (int i=0; i<clist.size(); i++) {
+		
+	//		for (int j=0; j<clist.get(i).getLev(); j++) { 
+//	}
+%>
+	
+<%// }%><% //}%>
+								<c:if test="${BoardCommentVO.ref > 0 }">
+											<span class="clamp">
+										</span>  
+								</c:if>
+								
+				<form id="form_${BoardCommentVO.board_comment_id }" action="replyProcess.do" method="post" name="replyProcess">
+				<input type="hidden" name="page" value="<%=vo.getPage() %>"/>
+				<input type="hidden" name="board_id" value="${BoardCommentVO.board_id}">
+				<input type="hidden" name="board_comment_id" value="${BoardCommentVO.board_comment_id}">
+				<input type="hidden" name="ref" value="${BoardCommentVO.ref}">
+				<input type="hidden" name="lev" value="${BoardCommentVO.lev}">
+				<input type="hidden" name="seq" value="${BoardCommentVO.seq}">
+				
                 <div class="reply-name"><%=vo.getNickname() %></div>
                 <div class="reply-content">${BoardCommentVO.contents}</div>
                 <!-- 날짜 계산 -->
@@ -128,14 +187,15 @@ List<BoardCommentVO> clist = (List<BoardCommentVO>)request.getAttribute("clist")
                 <!-- 날짜 계산 끝-->
                 <div class="reply-date">${commentRegdate }</div>  
                 
-                <button id="replyBtn" type="button" class="btn btn-secondary" onclick="replyShow()">답글</button>
+                <button  type="button" class="btn btn-secondary" onclick="replyShow('${BoardCommentVO.board_comment_id }')">댓글</button>
                 <button type="button" class="btn btn-secondary" onclick="replyDelete(${BoardCommentVO.board_comment_id})">삭제</button>
-                <div id="replyCmt" style="display:none"><textarea  class="mt-2" rows="4"  style="font-size:0.9em;width:100%;border:1px solid #e1e1e1;" name="contents" placeholder="주제와 무관한 댓글, 악플은 삭제 될 수 있습니다."></textarea>
-                <button type="button" class="btn btn-secondary" onclick="javascript:reply(<%=vo.getUser_id()%>)">등록</button></div>
+                <div id="replyCmt_${BoardCommentVO.board_comment_id }" style="display:none"><textarea  class="mt-2" rows="4"  style="font-size:0.9em;width:100%;border:1px solid #e1e1e1;" name="contents" placeholder="주제와 무관한 댓글, 악플은 삭제 될 수 있습니다."></textarea>
+                <button type="button" class="btn btn-secondary" onclick="javascript:reply('form_${BoardCommentVO.board_comment_id }')">등록</button></div>
+            	</form>
             </div>
-            </c:forEach>
-            </form>
-             
+           
+            
+           </c:forEach>  
             
            <!--  <div class="reply pl-5">
                 <span class="clamp"></span>
@@ -155,11 +215,14 @@ List<BoardCommentVO> clist = (List<BoardCommentVO>)request.getAttribute("clist")
              
             <form action="writeComment.do" method="post" name="writeComment">
             <div class="reply-form p-3" >
+           
     <input type="hidden" name="page" value="<%=vo.getPage() %>"/>
 	<input type="hidden" name="board_id" value="<%=vo.getBoard_id() %>">
-	<input type="hidden" name="board_re_ref" value="<%=cvo.getRef() %>">
-	<input type="hidden" name="board_re_lev" value="<%=cvo.getLev() %>">
-	<input type="hidden" name="board_re_seq" value="<%=cvo.getSeq() %>">
+	<input type="hidden" name="ref" value="<%=cvo.getRef() %>">
+	<input type="hidden" name="lev" value="<%=cvo.getLev() %>">
+	<input type="hidden" name="seq" value="<%=cvo.getSeq() %>">
+    <input type="hidden" name="board_comment_id" value="<%=cvo.getBoard_comment_id() %>">        
+           
             
                 <div class="reply-name"><%=vo.getNickname()%></div>
                 <textarea class="mt-2" rows="4"  style="font-size:0.9em;width:100%;border:1px solid #e1e1e1;" name="contents" placeholder="주제와 무관한 댓글, 악플은 삭제 될 수 있습니다."></textarea>
