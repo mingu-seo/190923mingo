@@ -10,10 +10,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import dao.BoardDAO;
 import dao.MainDAO;
 import vo.BoardVO;
 import vo.CafeCommand;
-import vo.CafeImageVO;
 import vo.CafeVO;
 import vo.PageInfo;
 
@@ -22,11 +22,16 @@ public class MainController {
 
 	@Autowired
 	MainDAO dao;
+	
+	@Autowired
+	BoardDAO bDao;
 	//메인으로 이동
 	@RequestMapping("/goMain.do")
 	public String goMain(Model model) {
 		List<BoardVO> boardList = dao.getBoardList(1);
 		List<BoardVO> boardList2 = dao.getBoardList(2);
+		
+		
 		List<Map> reviewList = dao.getReviewList();
 		
 		model.addAttribute("reviewList", reviewList);

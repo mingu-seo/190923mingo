@@ -161,11 +161,75 @@
 			margin:0 20px;
 		
 		}
+		
+		
+		.review_navi_nums{
+			width:100%;
+			height:150px;
+			 
+		}
+		  
+		.review_navi_nums > div{
+			line-height:60px;
+			height:60px;
+			width:540px;
+			margin:0 auto;
+			text-align:center;
+			
+		}      
+		
+		
+		.num{
+			
+			margin:0 10px;
+			width:40px;
+			height:40px;
+			float:left;
+		}
+		
+		.present{
+			width:40px;
+			height:40px;
+			border-radius: 40px;
+			float:left;
+			background-color: #86B404;
+			text-align: center;
+			line-height: 40px;
+			margin:10px;	
+		}
+		.review_navi_nums a{
+			color:#2E2E2E;
+			font-size:1.3em;
+			line-height: 40px;
+		}
+		.present a{     
+			color:#ffffff;
+			font-size:1.3em;
+			line-height: 40px;
+		}
 	
 	</style>
 	
 	<script>
-	
+		$(function(){
+			console.log("작동1");
+			var currentPage = 1; 
+			console.log(currentPage);
+			
+			$.ajax({
+				url:'myCollectAjax.do',
+				type:'GET',
+				dataType:'html',
+				data:{'currentPage':currentPage},
+				success:function(data){
+					$('.collect-area').html(data);
+					console.log("작동2");
+					
+				}
+			}); 
+			
+			
+		}); 
 	
 	</script>
 	
@@ -211,133 +275,9 @@
             <div class="pb-2 mb-4 board-name" style="border-bottom: 1px solid #6E6E6E;">
                	찜한 카페
             </div>
+            <div class="collect-area">
             
-            <div class="collect_cafes">
-            	<c:forEach items="${cafeRateList }" var="cafeRate" varStatus="status">
-					<c:forEach items="${cafeList}" var="cafe_vo" varStatus="status">
-						<c:if test="${cafeRate.cafe_id == cafe_vo.cafe_id}">
-							<c:set var="cafe" value="${cafe_vo }"/>
-						</c:if>
-					</c:forEach>
-            
-	            	<div class="collect_cafe_each">
-	            		<div class="collect_cafe_logo">
-	            			<img src="upload/cafe/${cafe.logo }">
-	            		</div>
-	            		<div class="collect_cafe_info">
-	            			<div class="collect_cafe_info_header">
-	            				<div class="collect_cafe_title">${cafe.name }&nbsp${cafe.branch }&nbsp</div>
-	            				<div class="collect_cafe_star">
-	            					<img src="img/star_colored.png">
-	            				</div>
-	            				<div class="collect_cafe_avgRate">${cafe.rate_avg }</div>
-	            			</div>
-	            			<div class="collect_cafe_info_content">
-	            				<div class="collect_cafe_address">${cafe.cafe_address }</div>
-	            				<div class="collect_cafe_eachRate">
-	            					<div class="each_rate" id="collect_menu">
-	            						<div class="collect_img">
-	            							<img src="img/wifi.png">
-	            						</div>
-	            						<div class="collect_graphic">
-	            							<div class="bar_total">
-	            								<div class="bar_rate"></div>
-	            								<div class="bean_img">
-	            									<img src="">
-	            								</div>
-	            							</div>
-	            						</div>
-	            						<div class="rate">${cafeRate.wifi_avg }</div>
-	            					</div>
-	            					<div class="each_rate" id="collect_price">
-	            						<div class="collect_img">
-	            							<img src="img/wifi.png">
-	            						</div>
-	            						<div class="collect_graphic">
-	            							<div class="bar_total">
-	            								<div class="bar_rate"></div>
-	            								<div class="bean_img">
-	            									<img src="">
-	            								</div>
-	            							</div>
-	            						</div>
-	            						<div class="rate">${cafeRate.clean_avg }</div>
-	            					</div>
-	            					<div class="each_rate" id="collect_wifiplug">
-	            						<div class="collect_img">
-	            							<img src="img/wifi.png">
-	            						</div>
-	            						<div class="collect_graphic">
-	            							<div class="bar_total">
-	            								<div class="bar_rate"></div>
-	            								<div class="bean_img">
-	            									<img src="">
-	            								</div>
-	            							</div>
-	            						</div>
-	            						<div class="rate">${cafeRate.price_avg }</div>
-	            					</div>
-	            					<div class="each_rate" id="collect_service">
-	            						<div class="collect_img">
-	            							<img src="img/wifi.png">
-	            						</div>
-	            						<div class="collect_graphic">
-	            							<div class="bar_total">
-	            								<div class="bar_rate"></div>
-	            								<div class="bean_img">
-	            									<img src="">
-	            								</div>
-	            							</div>
-	            						</div>
-	            						<div class="rate">${cafeRate.taste_avg }</div>
-	            					</div>
-	            					<div class="each_rate" id="collect_facility">
-	            						<div class="collect_img">
-	            							<img src="img/wifi.png">
-	            						</div>
-	            						<div class="collect_graphic">
-	            							<div class="bar_total">
-	            								<div class="bar_rate"></div>
-	            								<div class="bean_img">
-	            									<img src="">
-	            								</div>
-	            							</div>
-	            						</div>
-	            						<div class="rate">${cafeRate.mood_avg }</div>
-	            					</div>
-	            					<div class="each_rate" id="collect_product">
-	            						<div class="collect_img">
-	            							<img src="img/wifi.png">
-	            						</div>
-	            						<div class="collect_graphic">
-	            							<div class="bar_total">
-	            								<div class="bar_rate"></div>
-	            								<div class="bean_img">
-	            									<img src="">
-	            								</div>
-	            							</div>
-	            						</div>
-	            						<div class="rate">${cafeRate.service_avg }</div>
-	            					</div>
-	            				</div>
-	            			</div>
-	            		</div>
-	            	</div>
-            	</c:forEach>
-            </div>            
-         	<div class="review_navi_nums">
-				<div>
-					<span class="navi_first_btn"><a href="#">맨 처음</a></span>
-					<span class="navi_prev10_btn"><a href="#">이전</a></span>
-					<a href="#">1</a>
-					<a href="#">2</a>
-					<a href="#">3</a>
-					<a href="#">4</a>
-					<a href="#">5</a>					
-					<span class="navi_next10_btn"><a href="#">다음</a></span>
-					<span class="navi_last_btn"><a href="#">맨 끝</a></span>					
-				</div>
-			</div>
+            </div>
             
         </div>
     </div>

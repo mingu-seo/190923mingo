@@ -102,64 +102,49 @@ public class MyController {
 	
 	@RequestMapping("/myReview.do")
 	public String myReview(Model model, HttpServletRequest request) {
+		return "mypage/myMyReview";
+	}  
+	@RequestMapping("/myReviewAjax.do")
+	public String myReviewAjax(Model model, HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		UserVO vo = (UserVO) session.getAttribute("userVO");
 		int user_id = vo.getUser_id();
-		System.out.println("유저 아이디 : " + user_id);
-		
-		UserVO userVO = myService.viewUserInfo(user_id);
-		
-		List<ReviewVO> reviews = myService.viewReview(user_id);
-		model.addAttribute("reviews", reviews);
-		
-		System.out.println("리뷰 리스트 조회 성공!!");
-		List<CafeVO> cafeList = myService.viewCafe(reviews);
-		model.addAttribute("cafeList", cafeList);
-		return "mypage/myMyReview";
-	}
-	/*
-	public String reviewViewForm(Model model, HttpServletRequest request) {
-		int cafe_id = Integer.parseInt(request.getParameter("cafe_id"));
+		System.out.println("전송된 현재 페이지 : " + request.getParameter("currentPage"));
 		int currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		
-		CafeRateVO cafeRate = detailService.viewCafeRate(cafe_id);   
-		model.addAttribute("cafeRate", cafeRate);
+		int myReview_num = myService.countMyReview(user_id);
+		model.addAttribute("myReview_num", myReview_num);
 		
-		int maxPage = (cafeRate.getRate_num()-1)/5+1;
+		int maxPage = (myReview_num-1)/5+1;
 		int beginIndex = (currentPage-1)*5;
 		int beginPage = ((currentPage-1)/5)*5+1;
 		int endPage;
 		if(maxPage-currentPage<4) {  
-			endPage = maxPage;/	
+			endPage = maxPage;
 		} else {
 			endPage = ((currentPage-1)/5)+5;
 		}
+		model.addAttribute("maxPage", maxPage);
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("beginPage", beginPage);
+		model.addAttribute("endPage", endPage);	
 		
 		System.out.println("최대: " +maxPage+ ".../...현재 :" +currentPage+ ".../...시작 : " + beginPage + ".../...마지막 : " +endPage );
 		
 		Map<String, Integer> reviewMap = new HashMap<String, Integer>();
 		reviewMap.put("currentPage", currentPage);
-		reviewMap.put("cafe_id", cafe_id);
+		reviewMap.put("user_id", user_id);
 		reviewMap.put("beginIndex", beginIndex);
+		
+		List<ReviewVO> reviews = myService.viewMyReview(reviewMap);
+		model.addAttribute("reviews", reviews);
+		
+		List<CafeVO> cafeList = myService.viewCafe(reviews);
+		model.addAttribute("cafeList", cafeList);
+		
+		return "mypage/myReviewAjax";
+	}  
 	
-		List<ReviewVO> reviewList = detailService.viewCafeReview(reviewMap);
-		model.addAttribute("reviewList", reviewList);
-		
-		int[] userList = new int[reviewList.size()];  
-		for (int i=0; i<reviewList.size(); i++) {
-			userList[i] = reviewList.get(i).getUser_id();
-		}
-		List<UserVO> reviewUsers = detailService.viewUserList(userList);
-		model.addAttribute("reviewUsers", reviewUsers);
-		
-		model.addAttribute("maxPage", maxPage);
-		model.addAttribute("currentPage", currentPage);
-		model.addAttribute("beginPage", beginPage);
-		model.addAttribute("endPage", endPage);	
-	   
-		return "cafe/reviewViewForm";
-	}
-	*/
 	
 	@RequestMapping("/modifyUserForm.do")
 	public String updateUserForm(Model model, HttpServletRequest request) {
@@ -204,27 +189,90 @@ public class MyController {
 	
 	@RequestMapping("/myPost.do")
 	public String myPost(Model model, HttpServletRequest request) {
+		return "mypage/myMyPost";
+	}
+	@RequestMapping("/myPostAjax.do")
+	public String myPostAjax(Model model, HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		UserVO vo = (UserVO) session.getAttribute("userVO");
 		int user_id = vo.getUser_id();
-		List<BoardVO> boardList = myService.viewBoard(user_id);
+		
+		int myPost_num = myService.countMyPost(user_id);
+		model.addAttribute("myPost_num", myPost_num);
+		
+		int currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		int maxPage = (myPost_num-1)/5+1;
+		int beginIndex = (currentPage-1)*5;
+		int beginPage = ((currentPage-1)/5)*5+1;
+		int endPage;
+		if(maxPage-currentPage<4) {  
+			endPage = maxPage;
+		} else {
+			endPage = ((currentPage-1)/5)+5;
+		}
+		model.addAttribute("maxPage", maxPage);
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("beginPage", beginPage);
+		model.addAttribute("endPage", endPage);	
+		
+		System.out.println("최대: " +maxPage+ ".../...현재 :" +currentPage+ ".../...시작 : " + beginPage + ".../...마지막 : " +endPage );
+		
+		Map<String, Integer> boardMap = new HashMap<String, Integer>();
+		boardMap.put("currentPage", currentPage);
+		boardMap.put("user_id", user_id);
+		boardMap.put("beginIndex", beginIndex);
+		
+		List<BoardVO> boardList  = myService.viewMyPost(boardMap);
 		model.addAttribute("boardList", boardList);
-		return "mypage/myMyPost";
+		
+		
+		return "mypage/myMyPostAjax";
 	}
 	
 	@RequestMapping("/myCollect.do")
 	public String myCollect(Model model, HttpServletRequest request) {
+		return "mypage/myCollectCafe";
+	}
+	@RequestMapping("/myCollectAjax.do")
+	public String myCollectAjax(Model model, HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		UserVO vo = (UserVO) session.getAttribute("userVO");
 		int user_id = vo.getUser_id();
-		List<CollectCafeVO> collectList = myService.viewCollect(user_id);
-		model.addAttribute("collectList", collectList);
+
+		int myCollect_num = myService.countMyCollect(user_id);
+		model.addAttribute("myCollect_num", myCollect_num);
+		
+		int currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		int maxPage = (myCollect_num-1)/5+1;
+		int beginIndex = (currentPage-1)*5;
+		int beginPage = ((currentPage-1)/5)*5+1;
+		int endPage;
+		if(maxPage-currentPage<4) {  
+			endPage = maxPage;
+		} else {
+			endPage = ((currentPage-1)/5)+5;
+		}
+		model.addAttribute("maxPage", maxPage);
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("beginPage", beginPage);
+		model.addAttribute("endPage", endPage);	
+		
+		System.out.println("최대: " +maxPage+ ".../...현재 :" +currentPage+ ".../...시작 : " + beginPage + ".../...마지막 : " +endPage );
+		
+		Map<String, Integer> collectMap = new HashMap<String, Integer>();
+		collectMap.put("currentPage", currentPage);
+		collectMap.put("user_id", user_id);
+		collectMap.put("beginIndex", beginIndex);
+		
+		List<CollectCafeVO> collectList = myService.viewMyCollect(collectMap);
+		model.addAttribute("collects", collectList);
 		
 		List<CafeVO> cafeList = myService.viewCafeList2(collectList);
 		model.addAttribute("cafeList", cafeList);
+		
 		List<CafeRateVO> cafeRateList = myService.viewCafeRate2(collectList);
 		model.addAttribute("cafeRateList", cafeRateList);
-		return "mypage/myCollectCafe";
+		return "mypage/myCollectAjax";
 	}
 	
 	

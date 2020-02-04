@@ -56,7 +56,7 @@
 						<td>${ i.count + startrow } </td>
 						<td><img  class="rounded-circle bg-white" src="./img/brandLogo/${item.logo }" style="width: 80px;height:80px"></td>
 						<td>
-							<div>${item.name } ${item.branch }</div>
+							<div><a href="" style="color:black;">${item.name } ${item.branch }</a></div>
 						</td>
 						<td>${ item.cafe_address}</td>
 						<td>

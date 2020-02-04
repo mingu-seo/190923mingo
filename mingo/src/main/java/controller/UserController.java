@@ -141,6 +141,7 @@ public class UserController {
 		model.addAttribute("user_id", user_id);
 		return "findUser/findPwd_step2";
 	}
+<<<<<<< HEAD
 
 	
 	 //비밀번호 step2 form
@@ -148,6 +149,13 @@ public class UserController {
 	public String findPwd_step2(Model model,UserVO vo, HttpServletRequest request) {
 	  userService.findPwd_step2(vo); 
 	  model.addAttribute(vo); 
+=======
+
+	 //비밀번호 updateForm
+	@RequestMapping("/updatePwdForm.do") public String updatePwdForm(Model model, @RequestParam("user_id") int user_id, HttpServletRequest request) {
+	  userService.updatePwdForm(user_id); 
+	  model.addAttribute(user_id); 
+>>>>>>> branch 'master' of https://github.com/mingu-seo/190923mingo.git
 	  return "findUser/findPwd_step2"; 
 	  }
 	 
