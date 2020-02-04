@@ -138,7 +138,6 @@ public class UserController {
 			return "findUser/findPwd_step2";
 		}
 	}
-<<<<<<< HEAD
 
 	
 	 //비밀번호 updateForm
