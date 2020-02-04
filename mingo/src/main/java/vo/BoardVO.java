@@ -36,12 +36,32 @@ public class BoardVO {
 	private int startIndex;	// limit 시작 인덱스
 	private int maxPage;	// 총페이지수
 	
+	private String search_option;
+	private String keyword;
+	
 	// 초기화(생성자)
 	public BoardVO() {
 		this.page = 1;	// 사용자가 요청한 페이지번호가 없으면 초기값 1
 		this.limit = 10; // 페이지당 로우수가 지정이 안되면 초기값 10
 	}
 		
+	
+	public String getSearch_option() {
+		return search_option;
+	}
+
+	public void setSearch_option(String search_option) {
+		this.search_option = search_option;
+	}
+
+	public String getKeyword() {
+		return keyword;
+	}
+
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
+
 	public int getBoard_id() {
 		return board_id;
 	}

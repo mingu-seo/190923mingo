@@ -37,11 +37,16 @@ function completeWriting(){
 	//id가 smarteditor인 textarea에 에디터에서 대입
     editor_object.getById["smarteditor"].exec("UPDATE_CONTENTS_FIELD", []);
      
-    // 이부분에 에디터 validation 검증
-     
+    // 제목 공백시 경고창
+    if($('#title').val().trim() == ""){
+		alert('제목을 입력해주세요.');
+		$('#title').focus();
+		return false;
+	}
     //폼 submit
     $("#frm").submit();
 }
+
 
 </script>
 
@@ -67,20 +72,22 @@ function completeWriting(){
             <div class="board-side-name">
                 <i class="fa fa-file-text-o ml-2 " style="font-size:2em;">&nbsp;&nbsp;게시판</i>
             </div>
-            <a href="listBoard.do" class="list-group-item mt-2" style="border-top:none;">자유게시판</a>
-            <a href="#" class="list-group-item">정보게시판</a>
-            <a href="#" class="list-group-item">취업게시판</a>
+            <c:if test="${BoardVO.type == 1 }">
+            	<a href="listBoard.do" class="list-group-item mt-2" style="border-top:none;">자유게시판</a>
+            	</c:if>
+            	<a href="#" class="list-group-item">정보게시판</a>
+           		<a href="#" class="list-group-item">취업게시판</a>
 
         </div>
-        <form action="writeFormBoard.do" id="frm">
+    <form action="writeFormBoard.do" id="frm" >
         <div class=" board-group shadow ml-4">
             <div class="mb-4 board-name">
-               자유게시판
+              	 자유게시판
                <span style="font-size: 0.5em;">글쓰기</span>
             </div>
             
-            <input type="text" class="form-control" name="title" placeholder="제목을 입력해 주세요.">
-            <textarea id="smarteditor" class="mt-2 p-2" rows="20" name="contents" style="font-size:1em;width:100%;border:1px solid #e1e1e1;" placeholder="주제와 무관한 댓글, 악플은 삭제 될 수 있습니다."></textarea>
+            	<input type="text" class="form-control" name="title" id="title" placeholder="제목을 입력해 주세요.">
+            		<textarea id="smarteditor"  class="mt-2 p-2" rows="20" name="contents" style="font-size:1em;width:100%;border:1px solid #e1e1e1;" placeholder="주제와 무관한 댓글, 악플은 삭제 될 수 있습니다."></textarea>
             
             <div style="text-align: center;">
                 <button type="button" class="btn btn-secondary"onclick="location.href='listBoard.do' ">취소</button>

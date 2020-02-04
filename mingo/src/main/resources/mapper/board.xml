@@ -5,9 +5,13 @@
 	<select id="list" resultType="vo.BoardVO" parameterType="Integer">
 		SELECT *, (SELECT nickname FROM mingo.user WHERE user_id=mingo.board.user_id)
 		 AS nickname FROM mingo.board
+		
 		ORDER BY board_id DESC
 		LIMIT #{startIndex},#{limit}
+	
 	</select>
+	
+	
 	
 	   <select id="count" resultType="Integer">
 		SELECT COUNT(*) FROM mingo.board
@@ -44,7 +48,7 @@
 	
 	<select id="clist" resultType="vo.BoardCommentVO" parameterType="Integer">
 		SELECT * FROM mingo.board_comment WHERE board_id=#{board_id}
-		
+		ORDER BY ref DESC, seq ASC
 		
 	</select>
 	
@@ -53,13 +57,16 @@
 		 ref=#{ref} AND seq > #{seq}
 	</update>
 	
-	<insert id="writeComment" parameterType="vo.BoardCommentVO">
+	<insert id="writeComment" parameterType="vo.BoardCommentVO" useGeneratedKeys="true">
 		INSERT INTO mingo.board_comment
-		(user_id, board_id, regdate,
+		(board_comment_id,user_id, board_id, regdate,
 		ref, lev, seq, contents)
 		values
-		(15, #{board_id},NOW(), 
-		#{ref}, #{lev} , #{seq} ,#{contents})
+		(#{board_comment_id}, 15, #{board_id},NOW(), 
+		#{board_id}, #{lev} , #{seq} ,#{contents})
+		<selectKey keyProperty="board_comment_id" resultType="Integer" order="AFTER">
+			SELECT last_insert_id()
+		</selectKey>
 	</insert>
 	
 	<insert id="replyInsert" parameterType="vo.BoardCommentVO">
@@ -74,24 +81,21 @@
 	<delete id="replyDelete" parameterType="Integer">
 		DELETE FROM mingo.board_comment WHERE board_comment_id=#{board_comment_id}
 	</delete>
-	<!-- 
-	<update id="updateMember" parameterType="test.TestVO">
-		UPDATE spring5fs.member SET
-		email=#{email}, password=#{password}, name=#{name}, introduce=#{introduce}
-		<if test="profile != null">
-			, profile=#{profile}
-		</if>
-		WHERE id= #{id}
-	</update>
 	
-	<delete id="deleteMember" parameterType="Integer">
-		DELETE FROM spring5fs.member WHERE id=#{id}
-	</delete>
-	
-	<select id="loginCheck" parameterType="java.util.HashMap" resultType="test.TestVO">
-		SELECT * FROM spring5fs.member WHERE email=#{mail} AND password=#{pwd}
-	</select> -->
 	<select id="countCommentList" parameterType="Integer" resultType="Integer">
 		select count(*) from board_comment where board_id = #{board_id}
 	</select>
+	
+	<insert id="registLike" parameterType="vo.LikeBoardVO">  
+		insert into mingo.like_board
+		(user_id, board_id)
+		values
+		(#{user_id}, #{board_id})
+	</insert> 
+	<delete id="deleteLike" parameterType="vo.LikeBoardVO">  
+		DELETE FROM mingo.like_board WHERE board_id=#{board_id} and user_id=#{user_id}
+	</delete>
+	<update id="refUpdate" parameterType="Integer">
+		UPDATE mingo.board_comment SET ref=#{board_comment_id} WHERE board_comment_id=#{board_comment_id}
+	</update>
 </mapper>
