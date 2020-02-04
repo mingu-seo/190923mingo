@@ -1,5 +1,8 @@
 package dao;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -36,8 +39,12 @@ public class UserDAO {
 	}
 
 	/* 비밀번호찾기 step1 처리 */
-	public UserVO step1_process(UserVO vo) {
-		return sqlSession.selectOne("userMapper.step1_process", vo);
+	public int step1_process(String email) {
+		int user_id = sqlSession.selectOne("userMapper.step1_process", email);
+		
+		return user_id;
+		
+		
 	}
 
 	
@@ -50,5 +57,12 @@ public class UserDAO {
 	/* 비밀번호 update */
 	public int step2_process(UserVO vo) {
 		return sqlSession.update("userMapper.step2_process", vo);
+	}
+
+	public int updatePwd(int user_id, String password) {
+		Map param = new HashMap<String, Object>();
+		param.put("user_id", user_id);
+		param.put("password", password);
+		return sqlSession.update("userMapper.updatePwd", param);
 	}
 }

@@ -30,8 +30,8 @@
 							<div class="join-person-persontitle">
 								<h3 class="join-person-persontitle1">개인 회원가입</h3>
 							</div>
-							<p class="persontitle-content">카페 리뷰작성과 모든 카페 리뷰들을 확인하실 수
-								있습니다.</p>
+							<p class="persontitle-content">카페 리뷰작성과 모든 카페 리뷰들을 <br>
+							확인하실 수 있습니다.</p>
 						</div>
 						<div class="button1-select">
 							<button type="button" class="buttonchoose"  onclick = "location.href = '/join_step2.do' ">선택하기</button>

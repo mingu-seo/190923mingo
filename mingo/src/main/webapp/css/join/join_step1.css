@@ -115,10 +115,14 @@
     transition: background-color 0.3s ease 0s;
     z-index: 1;
 }
+
 .buttonchoose:hover{
     background-color:rgb(1, 70, 150);
 }
-
+.join-person > img{
+	
+	border-radius: 50px 50px 50px 50px;
+}
 
 .join-person-persontitle{
     font-family: 'Noto Sans KR', sans-serif;

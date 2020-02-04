@@ -125,18 +125,21 @@ public class UserController {
 
 	// 비밀번호 찾기 step1 process 
 	@RequestMapping("/step1_process.do")
-	public String step1_process(Model model, UserVO vo) {
-		UserVO rs = userService.step1_process(vo);
-		if (rs == null) {
-			String msg = "일치하는 회원이 없습니다.";
-			String url = "/findPwd_step1.do";
-			model.addAttribute("msg", msg);
-			model.addAttribute("url", url);
-			return "include/alert";
-		} else {
-			model.addAttribute("vo", vo);
-			return "findUser/findPwd_step2";
-		}
+	public String step1_process(Model model, @RequestParam("email") String email) {
+		int user_id = userService.step1_process(email);
+//		if (  false ) {
+//			String msg = "일치하는 회원이 없습니다.";
+//			String url = "/findPwd_step1.do";
+//			model.addAttribute("msg", msg);
+//			model.addAttribute("url", url);
+//			return "include/alert";
+//		} else {
+//			
+//			
+//			return "findUser/findPwd_step2";
+//		}
+		model.addAttribute("user_id", user_id);
+		return "findUser/findPwd_step2";
 	}
 
 	
@@ -151,8 +154,9 @@ public class UserController {
 
 	// 비밀번호 step2 process
 	@RequestMapping("/step2_process.do")
-	public String step2_process(Model model, UserVO vo, @RequestParam("user_id") int user_id) {
-		int r = userService.step2_process(vo);
+	public String step2_process(Model model, @RequestParam("user_id") int user_id, @RequestParam("password") String password
+			) {
+		int r = userService.updatePwd(user_id,password);
 		String msg = "";
 		String url = "";
 		if (r > 0) {

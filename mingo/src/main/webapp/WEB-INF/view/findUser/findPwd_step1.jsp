@@ -33,7 +33,7 @@
 			<li class="process">02.비밀번호 재설정</li>
 			
 		</ol>
-		<form action="/findPwd_step2.do" class="formarea" id="findPwdForm">
+		<form action="/step1_process.do" class="formarea" id="findPwdForm">
 		
 			<p class="formarea">비밀번호를 찾기 위해 회원정보를 입력해 주세요.</p>
 			<div class="insertarea">

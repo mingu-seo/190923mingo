@@ -39,8 +39,8 @@ public class UserService {
 	}
 	
 	//비밀번호찾기 step1 
-	public UserVO step1_process(UserVO vo) {
-		return userDao.step1_process(vo);
+	public int step1_process(String email) {
+		return userDao.step1_process(email);
 	}
 
 	
@@ -52,6 +52,9 @@ public class UserService {
 	//비밀번호 update
 	public int step2_process(UserVO vo) {
 		return userDao.step2_process(vo);
+	}
+	public int updatePwd(int user_id, String password) {
+		return userDao.updatePwd(user_id,password);
 	}
 	
 }
