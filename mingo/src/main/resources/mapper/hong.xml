@@ -102,4 +102,56 @@
 		</where>
 	</select>
 	
+	<!-- 랭크 관련 -->
+	<select id="getCafeRankList" resultType='Map' parameterType="vo.RankCommand">
+		select c.*, cr.*
+		from cafe as c left outer join cafe_rate as cr
+		on c.cafe_id = cr.cafe_id
+		<where>
+			<if test="sido_code != null and sido_code > 0">
+			and sido_code = #{sido_code}
+			</if>
+			<if test="sigungu_code != null and sigungu_code > 0">
+			and sigungu_code = #{sigungu_code}
+			</if>
+			<if test="brand_code != null and brand_code > 0">
+				<if test="brand_code == 10">
+					and brand_code is null
+				</if>
+				<if test="brand_code != 10">
+					and brand_code = #{brand_code}
+				</if>
+			</if>
+		</where>
+		<if test="sort_code == 1">
+			order by rate_avg desc
+		</if>
+		<if test="sort_code == 2">
+			order by rate_avg
+		</if>
+		
+		
+		limit #{startrow},#{limit};
+		 
+	</select>
+	<select id="getCafeRankCount" resultType="Integer" parameterType="vo.RankCommand">
+		select count(*) from cafe
+		<where>
+			<if test="sido_code != null and sido_code > 0">
+			and sido_code = #{sido_code}
+			</if>
+			<if test="sigungu_code != null and sigungu_code > 0">
+			and sigungu_code = #{sigungu_code}
+			</if>
+			<if test="brand_code != null and brand_code > 0">
+				<if test="brand_code == 10">
+					and brand_code is null
+				</if>
+				<if test="brand_code != 10">
+					and brand_code = #{brand_code}
+				</if>
+			</if>
+		</where>
+	</select>
+	
 </mapper>

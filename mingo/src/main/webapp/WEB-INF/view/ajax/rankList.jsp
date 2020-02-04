@@ -5,9 +5,9 @@
 <% String src2="https://placehold.it/80x80"; %>
 <c:forEach var="rank" items="${rankList }" varStatus="i">
 	<a href="detailView.do?cafe_id=${rank.cafe_id }" class="list-group-item p-1 grid-item w-100" >
-		<div class="rank-num rounded-lg">${i.count }</div>
+		<div class="rank-num rounded-lg">${i.count }</div>  
 		<div class="rank-img rounded-circle">
-			<img src="https://placehold.it/80x80">
+			<img src="./img/brandLogo/${rank.logo }" style="width: 80px;height:80px">
 		</div>
 		<div class="rank-info">
 			<div class="rank-name">${rank.name } ${rank.branch }</div>

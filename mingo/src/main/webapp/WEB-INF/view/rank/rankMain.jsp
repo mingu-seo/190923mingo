@@ -22,10 +22,15 @@
 	<script src="<%=request.getContextPath()%>/js/rankScript.js"></script>
 </head>
 <script>
-	var sido_code=0;
-	var sigungu_code=0;
-	var brand_code=0;
-	var sort_code=0;
+	var sido_code=-1;
+	var sigungu_code=-1;
+	var brand_code=-1;
+	var sort_code=1;
+	
+	var page;
+	var startPage;
+	var endPage;
+	var maxPage;
 </script>
 <body>
 	<!-- 내비게이션 include -->
@@ -120,28 +125,13 @@
 		</div>
 	</div>
 	<div class="r-content">
-		<table class="table table-bordered table-hover table-strip">
-			<thead>
-				<tr>
-					<th style="width:40px;">#</th>
-					<th style="width:90px;">로고</th>
-					<th style="width:150px;">이름</th>
-					<th style="width:200px;">주소</th>
-					<th>평가</th>
-					<th style="width:100px;">좋아요</th>
-					<th style="width:100px;">리뷰수</th>
-					<th style="width:100px;">평점</th>
-				</tr>
-			</thead>
-			<tbody>
+		
+				
 			
-			</tbody>
-		</table>
 	</div>
-
-
-
-
+	<div class="d-flex justify-content-center align-items-center spin-wrapper" >
+		<div  class="spinner-border text-primary" id="test"></div>
+	</div>
 
 	<!-- 푸터 include -->
 	<%@ include file="/WEB-INF/view/include/footer.jsp"%>
