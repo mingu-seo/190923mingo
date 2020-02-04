@@ -34,6 +34,7 @@
 			
 		</ol>
 		<form action="/findPwd_step2.do" class="formarea" id="findPwdForm">
+		
 			<p class="formarea">비밀번호를 찾기 위해 회원정보를 입력해 주세요.</p>
 			<div class="insertarea">
 				<label class="insert_email">
@@ -67,7 +68,7 @@
 			</div>
 		</form>
 		<div class="button">
-            <button type="button" class="nextbutton" onclick = "findPwd_step1();">다음</button>
+            <button type="button" class="nextbutton" onclick = "javascript:findPwd_step1();">다음</button>
 	    </div>
 	</div>
 	<div class="footer">

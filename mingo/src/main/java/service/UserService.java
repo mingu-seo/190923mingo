@@ -3,6 +3,8 @@ package service;
 
 
 
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,13 +38,20 @@ public class UserService {
 		return userDao.findId_step2(vo);
 	}
 	
-	//비밀번호찾기
+	//비밀번호찾기 step1 
 	public UserVO findPwd_step2(UserVO vo) {
 		return userDao.findPwd_step2(vo);
 	}
-	//비밀번호 변경
-	public int step2_updatepw(int user_id) {
-		return userDao.step2_updatepw(user_id);
+
+	
+	//비밀번호 updateForm 
+	public UserVO updatePwdForm(int user_id) { 
+		return userDao.updatePwdForm(user_id); 
+	}
+	
+	//비밀번호 update
+	public int updatePwd(UserVO vo) {
+		return userDao.updatePwd(vo);
 	}
 	
 }

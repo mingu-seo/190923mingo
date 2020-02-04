@@ -1,7 +1,5 @@
 package controller;
 
-
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -16,16 +14,17 @@ import vo.UserVO;
 
 @Controller
 public class UserController {
-	
+
 	@Autowired
 	private UserService userService;
-	
-	//로그인 폼
+
+	// 로그인 폼
 	@RequestMapping("/loginForm.do")
-	public String loginForm()  {
+	public String loginForm() {
 		return "login/loginForm";
 	}
-	//로그인 처리
+
+	// 로그인 처리
 	@RequestMapping("/loginProcess.do")
 	public String loginProcess(Model model, UserVO vo, HttpServletRequest request) {
 		UserVO uv = userService.loginProcess(vo);
@@ -41,69 +40,70 @@ public class UserController {
 			return "redirect:/goMain.do";
 		}
 	}
-	
-	//회원가입 폼 -일반회원
+
+	// 회원가입 폼 -일반회원
 	@RequestMapping("/joinForm.do")
 	public String joinForm() {
 		return "join/joinForm";
 	}
-	
-	//회원가입 폼 - 사장님회원
+
+	// 회원가입 폼 - 사장님회원
 	@RequestMapping("/joinForm_host.do")
 	public String joinForm_host() {
 		return "join/joinForm_host";
 	}
-	
-	//회원가입 처리
+
+	// 회원가입 처리
 	@RequestMapping("/joinProcess.do")
-	public String joinProcess(Model model,UserVO vo) {
-		 int r =userService.joinProcess(vo);
-		 String msg ="";
-		 String url ="";
-		 if (r > 0) {
-			 msg = "가입되셨습니다.";
-			 url = "/loginForm.do";
-		 } else {
-			 msg = "회원가입 실패";
-			 url = "/join_step1.do";
-		 }
+	public String joinProcess(Model model, UserVO vo) {
+		int r = userService.joinProcess(vo);
+		String msg = "";
+		String url = "";
+		if (r > 0) {
+			msg = "가입되셨습니다.";
+			url = "/loginForm.do";
+		} else {
+			msg = "회원가입 실패";
+			url = "/join_step1.do";
+		}
 		model.addAttribute("msg", msg);
 		model.addAttribute("url", url);
 		return "include/alert";
 	}
-	
-	//이메일 중복체크
+
+	// 이메일 중복체크
 	@RequestMapping("/emailCheck.do")
 	public String emailCheck(Model model, @RequestParam("email") String email) {
 		int result = userService.emailCheck(email);
 		model.addAttribute("value", result);
 		return "include/return";
-		
+
 	}
-	//닉네임 중복체크
+
+	// 닉네임 중복체크
 	@RequestMapping("/nicknameCheck.do")
 	public String nicknameCheck(Model model, @RequestParam("nickname") String nickname) {
 		int result = userService.nicknameCheck(nickname);
 		model.addAttribute("value", result);
 		return "include/return";
-		
+
 	}
-	
-	//	로그아웃 
+
+	// 로그아웃
 	@RequestMapping("/logout.do")
 	public String logout() {
 		return "redirect:/main/goMain.do";
 	}
-	
-	//아이디 찾기 step1
+
+	// 아이디 찾기 step1
 	@RequestMapping("/findId_step1.do")
 	public String findId_step1() {
-		return"findUser/findId_step1";
+		return "findUser/findId_step1";
 	}
 
-	//아이디 찾기 step2
+	// 아이디 찾기 step2
 	@RequestMapping("/findId_step2.do")
-	public String findId_step2(Model model,UserVO vo) {
+	public String findId_step2(Model model, UserVO vo) {
 		String rs = userService.findId_step2(vo);
 		if (rs == null) {
 			String msg = "일치하는 회원이 없습니다.";
@@ -116,48 +116,63 @@ public class UserController {
 			return "findUser/findId_step2";
 		}
 	}
-	//비밀번호 찾기 step1
+
+	// 비밀번호 찾기 step1
 	@RequestMapping("/findPwd_step1.do")
 	public String findPwd_step1() {
 		return "findUser/findPwd_step1";
 	}
-	/*
-	 * //비밀번호 찾기step1 처리
-	 * 
-	 * @RequestMapping("/pwd_step1_process.do") public String
-	 * pwd_step1_process(Model model,UserVO vo,HttpServletRequest request) {
-	 * userService.pwd_step1_process(vo); return"redirect:/findPwd_step2"; }
-	 */
-	
-	//비밀번호 찾기 step2
+
+	// 비밀번호 찾기 step2
 	@RequestMapping("/findPwd_step2.do")
 	public String findPwd_step2(Model model, UserVO vo) {
 		UserVO rs = userService.findPwd_step2(vo);
 		if (rs == null) {
 			String msg = "일치하는 회원이 없습니다.";
-			String url = "/loginForm.do";
+			String url = "/findPwd_step1.do";
 			model.addAttribute("msg", msg);
 			model.addAttribute("url", url);
 			return "include/alert";
 		} else {
-			model.addAttribute("UserVO", vo);
+			model.addAttribute("vo", vo);
 			return "findUser/findPwd_step2";
 		}
 	}
-	@RequestMapping("/step2_updatepw.do")
-	public int step2_updatepw (Model model, @RequestParam(user_id) int user_id) {
-		userService.step2_updatepw(user_id);
+
+	
+	 //비밀번호 updateForm
+	@RequestMapping("/updatePwdForm.do") public String updatePwdForm(Model model, @RequestParam("user_id") int user_id, HttpServletRequest request) {
+	  userService.updatePwdForm(user_id); 
+	  model.addAttribute(user_id); 
+	  return "findUser/findPwd_step2"; 
+	  }
+	 
+
+	// 비밀번호 update
+	@RequestMapping("/updatePwd.do")
+	public String updatePwd(Model model, UserVO vo, @RequestParam("user_id") int user_id) {
+		int r = userService.updatePwd(vo);
+		String msg = "";
+		String url = "";
+		if (r > 0) {
+			msg = "변경 되었습니다.";
+			url = "/loginForm.do";
+		} else {
+			msg = "변경 실패";
+			url = "/findPwd_step1.do";
+		}
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		return "include/alert";
 	}
-	
-	
-	
-	//회원 유형 선택 
+
+	// 회원 유형 선택
 	@RequestMapping("/join_step1.do")
 	public String joinFormStep1() {
 		return "/join/join_step1";
 	}
-	
-	//회원가입 유형 선택 
+
+	// 회원가입 유형 선택
 	@RequestMapping("/join_step2.do")
 	public String joinFormEmailStep2() {
 		return "/join/join_step2";

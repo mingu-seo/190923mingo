@@ -39,7 +39,7 @@ public class MainController {
 	@RequestMapping("/goLoginForm.do")
 	public String goLoginForm() {
 		
-		return "login/loginMain";
+		return "login/loginForm";
 	}
 	
 	

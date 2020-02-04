@@ -37,8 +37,15 @@
 		SELECT * FROM mingo.user 
 		WHERE email=#{email} and birthday=#{birthday} <!-- and phone_num =#{phone_num} -->
 	</select>
-	<!-- 비밀번호 변경 -->
-	<update id="step2_updatepw" parameterType="vo.UserVO" >
+	
+	
+	 <!-- 비밀번호 updateForm--> 
+	<select id="updatePwdForm" parameterType="Integer" resultType="vo.UserVO">
+		SELECT * FROM mingo.user WHERE user_id=#{user_id}
+	</select>
+	 
+	<!-- 비밀번호 update -->
+	<update id="updatePwd" parameterType="vo.UserVO" >
 		UPDATE mingo.user 
 		SET password=#{password}
 		WHERE user_id =#{user_id}
