@@ -141,6 +141,7 @@ public class UserController {
 		model.addAttribute("user_id", user_id);
 		return "findUser/findPwd_step2";
 	}
+	/*
 <<<<<<< HEAD
 
 	
@@ -158,7 +159,7 @@ public class UserController {
 >>>>>>> branch 'master' of https://github.com/mingu-seo/190923mingo.git
 	  return "findUser/findPwd_step2"; 
 	  }
-	 
+	 */
 
 	// 비밀번호 step2 process
 	@RequestMapping("/step2_process.do")
