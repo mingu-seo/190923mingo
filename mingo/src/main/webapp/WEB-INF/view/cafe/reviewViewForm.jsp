@@ -40,7 +40,7 @@
 			var rate_num = ${cafeRate.rate_num};
 			
 			/* 페이징 처리 함수 */
-			var pasing = function(currentPage, rate_num, rate_num){
+			var pasing = function(currentPage, cafe_id, rate_num){
 				$.ajax({
 					url:'reviewViewForm.do',
 					type:'GET',
@@ -58,39 +58,39 @@
 			/* 번호 클릭 */
 			$('.num-btn').click(function(){
 				var currentPage = $(this).text();
-				pasing(currentPage, rate_num, rate_num);
+				pasing(currentPage, cafe_id, rate_num);
 			});
 			
-			/* 맨 처음으로 */
+			/* 맨 처음으로 */  
 			$('.navi_first_btn').click(function(){
 				var currentPage = 1;
-				pasing(currentPage, rate_num, rate_num);
+				pasing(currentPage, cafe_id, rate_num);
 			});
 			
 			/* 이전 5개 */
 			$('.navi_prev10_btn').click(function(){
-				if (${beginPage}==1){
+				if (${beginPage}==1){ 
 					var currentPage = 1;
 				} else{
 					var currentPage = ${beginPage}-5;
 				}
-				pasing(currentPage, rate_num, rate_num);
+				pasing(currentPage, cafe_id, rate_num);
 			});
 			
-			/* 다음 5개 */
+			/* 다음 5개 */  
 			$('.navi_next10_btn').click(function(){
 				if (${endPage}==${maxPage}){
 					var currentPage = Math.floor((${maxPage}-1)/5)*5+1;
 				} else{
 					var currentPage = ${beginPage}+5;
 				}
-				pasing(currentPage, rate_num, rate_num);
+				pasing(currentPage, cafe_id, rate_num);
 			});
 			
-			/* 맨 끝으로 */
+			/* 맨 끝으로 */  
 			$('.navi_last_btn').click(function(){
 				var currentPage = $('.max-btn').val();
-				pasing(currentPage, rate_num, rate_num);
+				pasing(currentPage, cafe_id, rate_num);
 			});
 			
 		});
@@ -175,7 +175,6 @@
 		</c:forEach>
 	</div>
 	<div class="review_navi_nums">
-		
 		<div>
 			<div class="num">
 				<div class="navi_first_btn"><div><img src="img/arrow_first.png"></div></div>

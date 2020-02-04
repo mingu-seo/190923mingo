@@ -128,7 +128,7 @@
 	          <a class="nav-link" href="myCafe.do?user_id=${userVO.user_id }">내 카페</a>
 	        </li>
 	        <li class="nav-item">
-	          <a class="nav-link" href="myReview.do?user_id=${userVO.user_id }">내가 쓴 리뷰</a>
+	          <a class="nav-link" href="myReview.do?user_id=${userVO.user_id }">활동내역</a>
 	        </li>
 	    </ul>
 	</div>
