@@ -14,12 +14,13 @@
    height: 150px;
     text-align: center;
 }
-.t1{
+.t1 > a{
     font-family: 'Noto Sans KR', sans-serif;
     font-size: 40px;
     font-weight: 700;
-    color:rgb(63, 96, 204);
+    color:#6d512f;
     margin-right: 8px;
+    text-decoration: none;
 }
 .t2{
     font-family: 'Noto Sans KR', sans-serif;
@@ -104,7 +105,7 @@
     min-width: 140px;
     height: 52px;
     line-height: 50px;
-    background-color: rgb(63, 96, 204);
+    background-color: #ba915e;
     color: rgb(255, 255, 255);
     padding: 0px;
     border-radius: 26px;
@@ -116,7 +117,7 @@
     z-index: 1;
 }
 .buttonchoose:hover{
-    background-color:rgb(1, 70, 150);
+    background-color:rgb(109,81,47);
 }
 
 
@@ -149,3 +150,4 @@ font-size:20px;
     text-align: center;
     word-break: keep-all;
 }
+
