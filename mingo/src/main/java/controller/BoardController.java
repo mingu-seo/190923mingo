@@ -46,7 +46,7 @@ public class BoardController {
 	@RequestMapping("/deleteBoard.do")
 	public String deleteBoard( BoardVO vo, @RequestParam("type")int type) {
 		boardService.delete(vo.getBoard_id());
-		return "redirect:listBoard.do?type=12345";
+		return "redirect:listBoard.do?type="+type;
 	}
 	//게시판 글쓰기 등록
 	@RequestMapping("/writeFormBoard.do")
@@ -81,23 +81,26 @@ public class BoardController {
 	//댓글 등록
 	@RequestMapping("/writeComment.do")
 	public String writeComment(Model model, BoardCommentVO cvo,BoardVO vo) {
+		 System.out.println(vo);
+		 System.out.println(cvo);
 		 boardService.writeComment(cvo);
 		 model.addAttribute("vo", vo);
-		model.addAttribute("cvo",cvo);
-		 return "redirect:viewBoard.do?board_id="+vo.getBoard_id()+"&page="+vo.getPage();
+		 model.addAttribute("cvo",cvo);
+		 return "redirect:viewBoard.do?board_id="+vo.getBoard_id()+"&page="+vo.getPage()+"&type="+vo.getType();
 	}
 	//댓글 조회
 	@RequestMapping("/replyProcess.do")
 	public String replyProcess(Model model, BoardCommentVO cvo, BoardVO vo) {
-		 boardService.replyProcess(cvo);
+		boardService.replyProcess(cvo);
 		model.addAttribute("cvo",cvo);
-		return "redirect:viewBoard.do?board_id="+vo.getBoard_id()+"&page="+vo.getPage();
+		return "redirect:viewBoard.do?board_id="+vo.getBoard_id()+"&page="+vo.getPage()+"&type="+vo.getType();
 		
 	}
 	//게시판 수정폼 이동
 	@RequestMapping("/editBoard.do")
-	public String editBoard(Model model, @RequestParam("board_id") int board_id) {
+	public String editBoard(Model model, @RequestParam("board_id") int board_id, @RequestParam("type")int type) {
 		 BoardVO vo = boardService.view(board_id);
+		 model.addAttribute("type",type);
 		 model.addAttribute("vo",vo);
 		 
 		 return "board/boardEdit";
@@ -105,9 +108,10 @@ public class BoardController {
 	//게시판 수정
 	@RequestMapping("/updateBoard.do")
 	public String updateBoard(Model model, BoardVO vo) {
-		 boardService.update(vo);
-		model.addAttribute("vo",vo);
-		return "redirect:listBoard.do";
+		boardService.update(vo);
+		int type = vo.getType();
+		//model.addAttribute("vo",vo);
+		return "redirect:listBoard.do?type="+type;
 	}
 	
 	//댓글 삭제

@@ -21,7 +21,7 @@
 		INSERT INTO mingo.board
 		(board_id, user_id, type, title, contents, regdate, readcount)
 		values
-		(#{board_id}, 15, #{type}, #{title}, #{contents}, NOW(),#{readcount})
+		(#{board_id}, 1, #{type}, #{title}, #{contents}, NOW(),#{readcount})
 		<selectKey keyProperty="board_id" resultType="Integer" order="AFTER">
 			SELECT last_insert_id()
 		</selectKey>
@@ -61,7 +61,7 @@
 		(board_comment_id,user_id, board_id, regdate,
 		ref, lev, seq, contents)
 		values
-		(#{board_comment_id}, 15, #{board_id},NOW(), 
+		(#{board_comment_id}, 1, #{board_id},NOW(), 
 		#{board_id}, #{lev} , #{seq} ,#{contents})
 		<selectKey keyProperty="board_comment_id" resultType="Integer" order="AFTER">
 			SELECT last_insert_id()
@@ -73,7 +73,7 @@
 		(user_id, board_id, regdate,
 		ref, lev, seq, contents)
 		values
-		(15, #{board_id},NOW(), 
+		(1, #{board_id},NOW(), 
 		#{ref}, #{lev} , #{seq} ,#{contents})
 	</insert>
 	

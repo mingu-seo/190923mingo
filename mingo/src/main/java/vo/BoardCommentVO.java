@@ -63,6 +63,12 @@ public class BoardCommentVO {
 	public void setContents(String contents) {
 		this.contents = contents;
 	}
+	@Override
+	public String toString() {
+		return "BoardCommentVO [board_comment_id=" + board_comment_id + ", user_id=" + user_id + ", board_id="
+				+ board_id + ", regdate=" + regdate + ", ref=" + ref + ", seq=" + seq + ", lev=" + lev + ", contents="
+				+ contents + "]";
+	}
 	
 	
 	
