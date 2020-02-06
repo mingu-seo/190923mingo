@@ -1,6 +1,7 @@
 package service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -33,4 +34,13 @@ public interface MyService {
 	public int modifyUser(UserVO vo);
 	public void deleteUser(int user_id);
 	public int myUserModifyPassword(UserVO vo);
+	public int countMyReview(int user_id);
+	public List<ReviewVO> viewMyReview(Map<String, Integer> reviewMap);
+	public int countMyCollect(int user_id);
+	public List<CollectCafeVO> viewMyCollect(Map<String, Integer> collectMap);
+	public int countMyPost(int user_id);
+	public List<BoardVO> viewMyPost(Map<String, Integer> boardMap);
+	
+	
+	
 }

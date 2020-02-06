@@ -118,12 +118,12 @@ public class DetailController {
 		reviewMap.put("beginIndex", beginIndex);
 	
 		List<ReviewVO> reviewList = detailService.viewCafeReview(reviewMap);
-		model.addAttribute("reviewList", reviewList);
-		
 		int[] userList = new int[reviewList.size()];  
 		for (int i=0; i<reviewList.size(); i++) {
 			userList[i] = reviewList.get(i).getUser_id();
 		}
+		model.addAttribute("reviewList", reviewList);
+		
 		List<UserVO> reviewUsers = detailService.viewUserList(userList);
 		model.addAttribute("reviewUsers", reviewUsers);
 		

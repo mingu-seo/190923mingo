@@ -3,8 +3,8 @@
 	function findPwd_step1(){
 		var emailChk = RegExp(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/);
 		var birthdayChk = RegExp(/^(19|20)[0-9]{2}(0[1-9]|1[1-2])(0[1-9]|[1-2][0-9]|3[0-1])$/);
-		/*var phonenumChk = RegExp(/^[0-9]{11,11}$/); //숫자만11자리
-*/		
+		var phonenumChk = RegExp(/^[0-9]{11,11}$/); //숫자만11자리
+		
 		//이메일 공백 
 		if($('#email').val().trim() == ""){
 			alert('이메일을 입력해주세요.');
@@ -31,7 +31,7 @@
 			$("#birthday").focus(); 
 			return false;
 		}
-		/*//핸드폰번호 공백 
+		//핸드폰번호 공백 
 		if($("#phone_num").val().trim() == ""){
 			alert("생년월일을 입력해 주세요.");
 			$("#phone_num").focus();
@@ -43,6 +43,6 @@
 			$("#phone_num").val(""); 
 			$("#phone_num").focus(); 
 			return false;
-		}*/
+		}
 		$("#findPwdForm").submit();
 	}

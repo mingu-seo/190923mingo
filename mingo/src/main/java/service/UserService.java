@@ -39,19 +39,22 @@ public class UserService {
 	}
 	
 	//비밀번호찾기 step1 
-	public UserVO findPwd_step2(UserVO vo) {
-		return userDao.findPwd_step2(vo);
+	public int step1_process(String email) {
+		return userDao.step1_process(email);
 	}
 
 	
 	//비밀번호 updateForm 
-	public UserVO updatePwdForm(int user_id) { 
-		return userDao.updatePwdForm(user_id); 
+	public UserVO findPwd_step2(UserVO vo) { 
+		return userDao.findPwd_step2(vo); 
 	}
 	
 	//비밀번호 update
-	public int updatePwd(UserVO vo) {
-		return userDao.updatePwd(vo);
+	public int step2_process(UserVO vo) {
+		return userDao.step2_process(vo);
+	}
+	public int updatePwd(int user_id, String password) {
+		return userDao.updatePwd(user_id,password);
 	}
 	
 }

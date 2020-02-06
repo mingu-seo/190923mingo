@@ -177,23 +177,77 @@
 			color:#FFFFFF;
 			font-weight: bold;    
 		}
+		.myReview-area{
+			height:3000px;
+		}
+		
+		
+		.review_navi_nums{
+			width:100%;
+			height:150px;
+			 
+		}
+		  
+		.review_navi_nums > div{
+			line-height:60px;
+			height:60px;
+			width:540px;
+			margin:0 auto;
+			text-align:center;
+			
+		}      
+		
+		
+		.num{
+			
+			margin:0 10px;
+			width:40px;
+			height:40px;
+			float:left;
+		}
+		
+		.present{
+			width:40px;
+			height:40px;
+			border-radius: 40px;
+			float:left;
+			background-color: #86B404;
+			text-align: center;
+			line-height: 40px;
+			margin:10px;	
+		}
+		.review_navi_nums a{
+			color:#2E2E2E;
+			font-size:1.3em;
+			line-height: 40px;
+		}
+		.present a{     
+			color:#ffffff;
+			font-size:1.3em;
+			line-height: 40px;
+		}
 	
 	</style>
 	
 	<script>
-	$(function(){
-		   
-		
-		var review_each_height = $('.my_review_bottom img').height()+$('.my_comment').height()+20;
-		
-		$('.my_review_each').css({
-			'height':review_each_height+'px'
-		});
-		
-		$('.cafe_reviews').css({
-			'height':review_each_height*5+200+'px'
-		});    
-	}); 
+		$(function(){
+			console.log("작동1");
+			var currentPage = 1; 
+			var user_id = ${userVO.user_id};
+			console.log(currentPage);
+			  
+			$.ajax({
+				url:'myReviewAjax.do',
+				type:'GET',
+				dataType:'html',
+				data:{'currentPage':currentPage},
+				success:function(data){
+					$('.myReview-area').html(data);
+					console.log("작동2");
+				}
+			}); 
+			
+		}); 
 	
 	</script>
 	
@@ -201,8 +255,9 @@
 	
 </head>
 
-<body>
-    <%@ include file="/WEB-INF/view/include/navigation.jsp"%>
+<body>   
+    
+    <%@ include file="/WEB-INF/view/include/navigation.jsp"%>  
     <div class="container-fluid mypage-header">
         <div class="mypage-header-wrapper">
             <div class="mypage-name">
@@ -239,109 +294,10 @@
         <div class=" board-group shadow ml-4">
             <div class="pb-2 mb-4 board-name" style="border-bottom: 1px solid #6E6E6E;">
                	내가 쓴 리뷰     
-            </div>  
-            <div class="cafe_reviews">
-            	<c:forEach items="${reviews }" var="review" varStatus="status">
-					<c:forEach items="${cafeList}" var="cafe_vo" varStatus="status">
-						<c:if test="${review.cafe_id == cafe_vo.cafe_id}">
-							<c:set var="cafe" value="${cafe_vo }"/>
-						</c:if>
-					</c:forEach>
-					<div class="my_review_each">
-						<div class="my_review_top">
-							<div class="rated_cafe_info">   
-								<div>
-									<img src="upload/cafe/${cafe.logo }"/>
-								</div>
-								<h2>${cafe.name }</h2>
-								<h2>${cafe.branch }</h2>
-							</div>
-							<div class="my_rating">
-								<div id="my_rate_header">
-									<img src="img/star_colored.png">
-									<span>내 점수</span>  
-									  
-								</div>
-								<div class="my_rate_each2" id="my_rate_each2">
-									<span class="my_rate_visual" id="my_taste_visual">
-										<img src="img/wifi.png">
-									</span>
-									<span class="my_rate_name" id="my_taste_name">맛</span>
-									<span class="my_my_rate">${review.taste_score }점</span>
-								</div>
-								<div class="my_rate_each2" id="my_rate_each2">
-									<span class="my_rate_visual" id="my_price_visual">
-										<img src="img/wifi.png">
-									</span>
-									<span class="my_rate_name" id="my_price_name">가격</span>
-									<span class="my_my_rate">${review.price_score }점</span>
-								</div>
-								<div class="my_rate_each2" id="my_rate_each2">
-									<span class="my_rate_visual" id="my_service_visual">
-										<img src="img/wifi.png">
-									</span>
-									<span class="my_rate_name" id="my_service_name">서비스</span>
-									<span class="my_my_rate">${review.service_score }점</span>
-								</div>
-								<div class="my_rate_each2" id="my_rate_each2">
-									<span class="my_rate_visual" id="my_facimood_visual">
-										<img src="img/wifi.png">
-									</span>
-									<span class="my_rate_name" id="my_facimood_name">시설 및 분위기</span>
-									<span class="my_my_rate">${review.mood_score }점</span>
-								</div>
-								<div class="my_rate_each2" id="my_rate_each2">
-									<span class="my_rate_visual" id="my_wifiplug_visual">
-										<img src="img/wifi.png">
-									</span>
-									<span class="my_rate_name" id="my_wifiplug_name">와이파이&콘센트</span>
-									<dspaniv class="my_my_rate">${review.wifi_score }점</span>
-								</div>  
-								<div class="my_rate_each2" id="my_rate_each2">
-									<span class="my_rate_visual" id="my_clean_visual">
-										<img src="img/wifi.png">
-									</span>
-									<span class="my_rate_name" id="my_clean_name">청결</span>
-									<span class="my_my_rate">${review.clean_score }점</span>
-								</div>
-							</div>	
-							<div class="review_ragdate">
-								<p>작성일: ${review.regdate }</p>
-							</div>
-						</div>
-						<div class="my_review_bottom">  
-							<div>
-								<img src="upload/cafe/${review.image }"/>
-							</div>
-							<div class="my_comment">
-								<p>${review.contents}</p>
-							</div>
-						</div>
-						<div class="my_review_btn">
-							<div class="my_review_modify_btn">
-								수정
-							</div>
-							<div class="my_review_delete_btn">
-								삭제
-							</div>
-						</div>
-					</div>
-				</c:forEach>  
-			
-			</div>
-			<div class="review_navi_nums">
-				<div>
-					<span class="navi_first_btn"><a href="#">맨 처음</a></span>
-					<span class="navi_prev10_btn"><a href="#">이전</a></span>
-					<a href="#">1</a>
-					<a href="#">2</a>
-					<a href="#">3</a>
-					<a href="#">4</a>
-					<a href="#">5</a>					
-					<span class="navi_next10_btn"><a href="#">다음</a></span>
-					<span class="navi_last_btn"><a href="#">맨 끝</a></span>					
-				</div>
-			</div>
+            </div>
+            <div class="myReview-area">
+            	
+            </div>
         </div>
     </div>
     <%@ include file="/WEB-INF/view/include/footer.jsp"%>
