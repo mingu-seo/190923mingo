@@ -82,11 +82,11 @@ function modifyboard() {
             </div>
            
             
-            	<a href="listBoard.do" class="list-group-item mt-2" style="border-top:none;">자유게시판</a>
+            	<a href="listBoard.do?type=1" class="list-group-item mt-2" style="border-top:none;">자유게시판</a>
            
             
-            <a href="#" class="list-group-item">정보게시판</a>
-            <a href="#" class="list-group-item">취업게시판</a>
+            <a href="listBoard.do?type=2" class="list-group-item">정보게시판</a>
+            <a href="listBoard.do?type=3" class="list-group-item">취업게시판</a>
 
         </div>
         

@@ -12,22 +12,22 @@ public class Page {
 		String result = "";
 		
 		// 이전 링크
-		if (page <= 1) result += "<li class=\"page-item\"><a class=\"page-link\">Privious</a></li>";
-		else result += "<li class=\"page-item\"><a class=\"page-link\" href='"+url+"?page="+(page-1)+"'>Privious</a></li>";
+		if (page <= 1) result += "<li class=\"page-item disabled\"><a class=\"page-link\">Privious</a></li>";
+		else result += "<li class=\"page-item\"><a class=\"page-link\" href='"+url+"&page="+(page-1)+"'>Privious</a></li>";
 		
 		// 반복
 		for (int i=startPage; i<=endPage; i++) {
 			if (i == page) {
-				result +="<li class=\"page-item active\"><a class=\"page-link\" href='" + url + "?page=" + i + "'>" + i
+				result +="<li class=\"page-item active\"><a class=\"page-link\" href='" + url + "&page=" + i + "'>" + i
 						+ "</a></li>";
 			} else {
-				result += "<li class=\"page-item\"><a class=\"page-link\" href='"+url+"?page="+i+"'>"+i+"</a></li>";
+				result += "<li class=\"page-item\"><a class=\"page-link\" href='"+url+"&page="+i+"'>"+i+"</a></li>";
 			}
 		}
 		
 		// 다음 링크
-		if (page >= totalpage) result += "<li class=\"page-item\"><a class=\"page-link\">Next</a></li>";
-		else result += "<li class=\"page-item\"><a class=\"page-link\" href='"+url+"?page="+(page+1)+"'>Next</a></li>";
+		if (page >= totalpage) result += "<li class=\"page-item disabled\"><a class=\"page-link\">Next</a></li>";
+		else result += "<li class=\"page-item\"><a class=\"page-link\" href='"+url+"&page="+(page+1)+"'>Next</a></li>";
 		
 		result += "";
 		return result;

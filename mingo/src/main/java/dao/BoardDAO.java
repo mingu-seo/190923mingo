@@ -19,12 +19,13 @@ public class BoardDAO {
 		SqlSessionTemplate sqlSession;
 		
 		public List<BoardVO> list(BoardVO vo) {
-			return sqlSession.selectList("board.list", vo); // mapper 이름 namespace.id
+			return sqlSession.selectList("board.list", vo); 
 		}
 		
-		public int count() {
-			return sqlSession.selectOne("board.count");
+		public int count(int type) {
+			return sqlSession.selectOne("board.count",type);
 		}
+		
 		public int insert(BoardVO vo) {
 			return sqlSession.insert("board.insert",vo);
 		}

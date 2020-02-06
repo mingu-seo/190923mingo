@@ -133,5 +133,13 @@ public class BoardVO {
 	public void setMaxPage(int maxPage) {
 		this.maxPage = maxPage;
 	}
+
+	@Override
+	public String toString() {
+		return "BoardVO [board_id=" + board_id + ", user_id=" + user_id + ", type=" + type + ", title=" + title
+				+ ", contents=" + contents + ", regdate=" + regdate + ", readcount=" + readcount + "]";
+	}
+	
+	
 	
 }

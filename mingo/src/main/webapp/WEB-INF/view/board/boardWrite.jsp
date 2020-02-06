@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    <%@page import="vo.BoardVO" %>
 <!DOCTYPE html>
 <html lang="en">
 <script src="http://code.jquery.com/jquery-latest.js"></script>
@@ -8,7 +9,6 @@
  <script type="text/javascript" src="/smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script>
 <!-- 페이지 로딩시 초기화 --> 
 <script> 
-
 //전역변수선언
 var editor_object = [];
 $(function(){
@@ -72,14 +72,13 @@ function completeWriting(){
             <div class="board-side-name">
                 <i class="fa fa-file-text-o ml-2 " style="font-size:2em;">&nbsp;&nbsp;게시판</i>
             </div>
-            <c:if test="${BoardVO.type == 1 }">
-            	<a href="listBoard.do" class="list-group-item mt-2" style="border-top:none;">자유게시판</a>
-            	</c:if>
-            	<a href="#" class="list-group-item">정보게시판</a>
-           		<a href="#" class="list-group-item">취업게시판</a>
+            	<a href="listBoard.do?type=1" class="list-group-item mt-2" style="border-top:none;">자유게시판</a>
+            	<a href="listBoard.do?type=2" class="list-group-item">정보게시판</a>
+           		<a href="listBoard.do?type=3" class="list-group-item">취업게시판</a>
 
         </div>
-    <form action="writeFormBoard.do" id="frm" >
+    <form action="writeFormBoard.do?" id="frm" >
+    	<input type="hidden" name="type" value="${type }">
         <div class=" board-group shadow ml-4">
             <div class="mb-4 board-name">
               	 자유게시판

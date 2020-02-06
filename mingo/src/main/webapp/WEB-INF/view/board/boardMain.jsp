@@ -26,6 +26,7 @@ int totalpage = (Integer)request.getAttribute("totalpage"); // 전체페이지�
 		
     <!-- 내가 만든 파일-->
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/boardStyle.css">
+    
 </head>
 
 <body>
@@ -38,13 +39,13 @@ int totalpage = (Integer)request.getAttribute("totalpage"); // 전체페이지�
                 <i class="fa fa-file-text-o ml-2 " style="font-size:2em;">&nbsp;&nbsp;게시판</i>
             </div>
             
-            <a href="listBoard.do" class="list-group-item mt-2" style="border-top:none;">자유게시판</a>
-           
+            <a href="listBoard.do?type=1" class="list-group-item mt-2" style="border-top:none;">자유게시판</a>
           
-            <a href="#" class="list-group-item">정보게시판</a>
+          
+            <a href="listBoard.do?type=2" class="list-group-item">정보게시판</a>
            
             
-            <a href="#" class="list-group-item">취업게시판</a>
+            <a href="listBoard.do?type=3" class="list-group-item">취업게시판</a>
           
 
         </div>
@@ -65,18 +66,18 @@ int totalpage = (Integer)request.getAttribute("totalpage"); // 전체페이지�
                 <c:forEach  items="${list}" var="BoardVO">
                 <li class="list-group-item">
                     <div id="b-num" style="float:left;width:60px;height:24px;">${BoardVO.board_id}</div>
-                    <a href="viewBoard.do?board_id=${BoardVO.board_id}&page=<%=vo.getPage()%>"id="b-title" style="float:left;width:346px;height:24px;display:block">${BoardVO.title} ${listCount }</a>
+                    <a href="viewBoard.do?board_id=${BoardVO.board_id}&page=<%=vo.getPage()%>&type=<%=vo.getType()%>" id="b-title" style="float:left;width:346px;height:24px;display:block">${BoardVO.title} ${listCount }</a>
                     <div id="b-username" style="float:left;width:108px;height:24px;">${BoardVO.nickname}</div>
                     <div id="b-regdate" style="float:left;width:108px;height:24px;"><fmt:formatDate value="${BoardVO.regdate}" pattern="yyyy.MM.dd"/></div>
                     <div id="b-readcount" style="float:left;width:60px;height:24px;">${BoardVO.readcount}</div>
-                    <div id="b-goodcount" style="float:left;width:60px;height:24px;">${BoardVO.type}</div> 
+                    <div id="b-goodcount" style="float:left;width:60px;height:24px;">0</div> 
                 </li>
                 </c:forEach>
-                
             </div>
             
             <ul class="pagination mypagi justify-content-center">
-            <%=Page.getPageList(vo.getPage(), totalpage, "listBoard.do") %>
+            <% int type = vo.getType(); %>
+            <%=Page.getPageList(vo.getPage(), totalpage, "listBoard.do?type="+type) %>
             
             <!--     <li class="page-item"><a class="page-link" href="#">Previous</a></li>
                 <li class="page-item active"><a class="page-link" href="#">1</a></li>
@@ -90,7 +91,7 @@ int totalpage = (Integer)request.getAttribute("totalpage"); // 전체페이지�
                 <li class="page-item"><a class="page-link" href="#">9</a></li>
                 <li class="page-item"><a class="page-link" href="#">10</a></li>
                 <li class="page-item"><a class="page-link" href="#">Next</a></li> -->
-                <button type="button" class="btn btn-secondary btn-write" onclick="location.href='writeBoard.do?page=<%=vo.getPage()%>' ">글쓰기</button>
+                <button type="button" class="btn btn-secondary btn-write" onclick="location.href='writeBoard.do?type=<%=vo.getType()%>&page=<%=vo.getPage()%>' ">글쓰기</button>
             </ul>
             <div class="input-group justify-content-center">
                 <div class="input-group-prepend">

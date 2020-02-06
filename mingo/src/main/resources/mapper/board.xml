@@ -4,7 +4,7 @@
 <mapper namespace="board">
 	<select id="list" resultType="vo.BoardVO" parameterType="Integer">
 		SELECT *, (SELECT nickname FROM mingo.user WHERE user_id=mingo.board.user_id)
-		 AS nickname FROM mingo.board
+		 AS nickname FROM mingo.board WHERE type = #{type}
 		
 		ORDER BY board_id DESC
 		LIMIT #{startIndex},#{limit}
@@ -12,9 +12,8 @@
 	</select>
 	
 	
-	
-	   <select id="count" resultType="Integer">
-		SELECT COUNT(*) FROM mingo.board
+   <select id="count" resultType="Integer" parameterType="Integer">
+	SELECT COUNT(*) FROM mingo.board where type =#{type}
 	
 	</select>
 	

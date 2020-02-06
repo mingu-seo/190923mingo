@@ -13,6 +13,7 @@ List<BoardCommentVO> clist = (List<BoardCommentVO>)request.getAttribute("clist")
 	BoardCommentVO cvo = (BoardCommentVO) request.getAttribute("cvo");
 	BoardVO vo = (BoardVO) request.getAttribute("data");
 	int nowPage = (Integer) request.getAttribute("page");
+	int type = (Integer) request.getAttribute("type");
 	
 %>
 <html lang="en">
@@ -33,7 +34,8 @@ List<BoardCommentVO> clist = (List<BoardCommentVO>)request.getAttribute("clist")
 	function deleteboard(board_id) {
 		var chk =  confirm("삭제하시겠습니까?");
 		if (chk){
-					location.href='deleteBoard.do?board_id='+board_id+'&page=<%=nowPage%>';
+				
+					location.href='deleteBoard.do?board_id='+board_id+'&page=<%=nowPage%>&type=<%=type%>';
 		}else{event.preventDefault();}
 	}
 	function reply(formId) {
@@ -117,9 +119,9 @@ $('.dislike').click(function(){
             <div class="board-side-name">
                 <i class="fa fa-file-text-o ml-2 " style="font-size:2em;">&nbsp;&nbsp;게시판</i>
             </div>
-            <a href="listBoard.do" class="list-group-item mt-2" style="border-top:none;">자유게시판</a>
-            <a href="#" class="list-group-item">정보게시판</a>
-            <a href="#" class="list-group-item">취업게시판</a>
+            <a href="listBoard.do?type=1" class="list-group-item mt-2" style="border-top:none;">자유게시판</a>
+            <a href="listBoard.do?type=2" class="list-group-item">정보게시판</a>
+            <a href="listBoard.do?type=3" class="list-group-item">취업게시판</a>
         </div>
 			
 		<div class=" board-group shadow ml-4" >
@@ -143,7 +145,7 @@ $('.dislike').click(function(){
             <div class="p-3"> <%=vo.getContents()%></div>
             
             <div class="mybtn-group">
-                <button type="button" class="btn btn-secondary float-left"onclick="location.href='listBoard.do?page=<%=nowPage%>' ">목록보기</button>
+                <button type="button" class="btn btn-secondary float-left"onclick="location.href='listBoard.do?type=<%=type %>&page=<%=nowPage%>' ">목록보기</button>
                 <button type="button" class="btn float-right mybtn-good" name="likeGood" id="likeGood"><i class="fa fa-thumbs-o-down" style="font-size:1.5em;">2</i></button>
                 <input type="hidden" id="likeBoard" value="0">
                 <button type="button" class="btn float-right mybtn-bad" name="likeBad" id="likeBad"><i class="fa fa-thumbs-o-up" style="font-size:1.5em;">0</i></button>
@@ -154,21 +156,15 @@ $('.dislike').click(function(){
 	 	<div class="pb-3" style="border-bottom: 1px solid #a1a1a1;">
                 <i class="fa fa-comment-o mr-2" style="font-size:1.5em;"></i>댓글 ${listCount }개
             </div>
+          
+           <!-- 댓글목록 -->
             <c:forEach  items="${clist}" var="BoardCommentVO">
+           
+           
            <div class="reply pl-5" >
             
-<%
-//if(cvo.getLev() != 0){       
-//	for (int i=0; i<clist.size(); i++) {
-		
-	//		for (int j=0; j<clist.get(i).getLev(); j++) { 
-//	}
-%>
-	
-<%// }%><% //}%>
-								<c:if test="${BoardCommentVO.ref > 0 }">
-											<span class="clamp">
-										</span>  
+								<c:if test="${BoardCommentVO.lev > 0 }">
+										<span class="clamp"></span> 
 								</c:if>
 								
 				<form id="form_${BoardCommentVO.board_comment_id }" action="replyProcess.do" method="post" name="replyProcess">
@@ -186,7 +182,7 @@ $('.dislike').click(function(){
                 <fmt:formatDate value="${tmp}" pattern="yyyy.MM.dd HH:mm" var="commentRegdate" />
                 <!-- 날짜 계산 끝-->
                 <div class="reply-date">${commentRegdate }</div>  
-                
+                 <!-- 대댓글쓰기 -->
                 <button  type="button" class="btn btn-secondary" onclick="replyShow('${BoardCommentVO.board_comment_id }')">댓글</button>
                 <button type="button" class="btn btn-secondary" onclick="replyDelete(${BoardCommentVO.board_comment_id})">삭제</button>
                 <div id="replyCmt_${BoardCommentVO.board_comment_id }" style="display:none"><textarea  class="mt-2" rows="4"  style="font-size:0.9em;width:100%;border:1px solid #e1e1e1;" name="contents" placeholder="주제와 무관한 댓글, 악플은 삭제 될 수 있습니다."></textarea>
@@ -194,7 +190,7 @@ $('.dislike').click(function(){
             	</form>
             </div>
            
-            
+           
            </c:forEach>  
             
            <!--  <div class="reply pl-5">
@@ -212,7 +208,7 @@ $('.dislike').click(function(){
                 <button type="button" class="btn btn-secondary ">답글</button>
             </div>
              -->
-             
+             <!-- 댓글쓰기 -->
             <form action="writeComment.do" method="post" name="writeComment">
             <div class="reply-form p-3" >
            

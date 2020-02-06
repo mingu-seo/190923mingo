@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import service.BoardService;
 import vo.BoardCommentVO;
@@ -25,9 +26,9 @@ public class BoardController {
 	
 	//게시판 조회
 	@RequestMapping("/listBoard.do")
-	public String listBoard(Model model, BoardVO vo) {
-			
-		int[] listcount = boardService.boardCount();	// 전체 갯수와 총페이지수
+	public String listBoard(Model model, BoardVO vo,@RequestParam("type")int type) {
+		vo.setType(type);
+		int[] listcount = boardService.boardCount(vo.getType());	// 전체 갯수와 총페이지수
 		List<BoardVO> list = boardService.list(vo);
 		
 		//int commentCount = boardService.listCount(board_id);
@@ -41,27 +42,34 @@ public class BoardController {
 		
 		return "board/boardMain";
 	}
-	//게시판 글쓰기 폼 이동
-	@RequestMapping("/writeBoard.do")
-	public String writeBoard() {
-		
-		return "board/boardWrite";
+	//게시판 삭제
+	@RequestMapping("/deleteBoard.do")
+	public String deleteBoard( BoardVO vo, @RequestParam("type")int type) {
+		boardService.delete(vo.getBoard_id());
+		return "redirect:listBoard.do?type=12345";
 	}
 	//게시판 글쓰기 등록
 	@RequestMapping("/writeFormBoard.do")
-	public String writeFormBoard(BoardVO vo) {
-		 boardService.insert(vo);
-		
-		 return "redirect:listBoard.do";
+	public String writeFormBoard(BoardVO vo,@RequestParam("type") int type) {
+		boardService.insert(vo);
+		return "redirect:listBoard.do?type="+type;
 	}
+	//게시판 글쓰기 폼 이동
+	@RequestMapping("/writeBoard.do")
+	public String writeBoard(Model model,@RequestParam("type") int type) {
+		model.addAttribute("type",type);
+		return "board/boardWrite";
+	}
+	
 	//게시판 상세보기 
 	@RequestMapping("/viewBoard.do")
 	public String viewBoard(Model model, @RequestParam("board_id") int board_id, @RequestParam("page")int page
-			,BoardCommentVO cvo) {
+			,@RequestParam("type")int type,BoardCommentVO cvo) {
 		BoardVO data = boardService.detail(board_id);
 		List<BoardCommentVO> clist = boardService.clist(cvo);
 		int listCount = boardService.listCount(board_id);
 		
+		model.addAttribute("type",type);
 		model.addAttribute("data",data);
 		model.addAttribute("page",page);
 		model.addAttribute("clist",clist);
@@ -101,13 +109,7 @@ public class BoardController {
 		model.addAttribute("vo",vo);
 		return "redirect:listBoard.do";
 	}
-	//게시판 삭제
-	@RequestMapping("deleteBoard.do")
-	public String deleteBoard(BoardVO vo) {
-		boardService.delete(vo.getBoard_id());
-		
-		return "redirect:listBoard.do";
-	}
+	
 	//댓글 삭제
 	@RequestMapping("replyDeleteBoard.do")
 	public String replyDeleteBoard(BoardVO vo, BoardCommentVO cvo) {
