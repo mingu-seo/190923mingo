@@ -178,14 +178,18 @@ public class UserController {
 	
 	//네이버 로그인
 	@RequestMapping("/naverLogin.do")
-	public String loginGET() {
+	public String naverLogin() {
 		
 		return "login/naverLogin";
 	}
 	
 	@RequestMapping("/callback.do")
-	public String loginPOSTNaver(HttpSession session) {
+	public String callback(HttpSession session) {
 		
 		return "login/callback";
 	}
+	
+
+	
+	
 }

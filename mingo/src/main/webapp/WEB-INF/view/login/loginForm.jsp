@@ -1,5 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.security.SecureRandom"  %>
+<%@ page import="java.math.BigInteger"  %>
+<%@ page import="java.net.URLEncoder"  %>
+<%
+String client_id = "QI9nhKdLYdgGZ21jz2ay";
+String redirectURI = URLEncoder.encode("http://localhost:8080/naverCallback.jsp");
+SecureRandom random = new SecureRandom();
+String state = new BigInteger(130, random).toString(32);
+session.setAttribute("state", state);
+
+String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id="+client_id+"&redirect_uri="+redirectURI+"&state="+state;
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,8 +32,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     
     <link rel="stylesheet" type="text/css" href="css/login/loginForm.css">
+    <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
     <script type="text/javascript" src="js/login/loginFormScript.js"></script>
-    
+    <script>
+    function loginWithNaver(){
+    	window.open('<%=apiURL%>', '_blank', 'width=400, height=400,scrollbar=no,status=no');
+	}
+    </script>
 </head>
 <body>
 
@@ -36,19 +53,19 @@
      <div class="social_login">
      	<div class="login_area">
 	        <div class="naver_login">
-	            <a class="click" href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=QI9nhKdLYdgGZ21jz2ay&redirect_uri=http%3A%2F%2Flocalhost%3A8080%2FgoMain.do&state=272398599811248173130281399471286788127">
+	            <a class="click" href="javascript:loginWithNaver()">
 	            	<div class="join-person-persontitle" >
 	                	<img src="/img/joinImg/naver.png"  id= naver_id_login width="50px" height="50px">
 	                </div>
 	            </a>
 	        </div>
-	        <div class="kakao_login">
-	            <a class="click" href="#">
+	       <div class="kakao_login">
+	            <a class="click" href="javascript:loginWithKakao()">
 	              <div class="join-person-persontitle">
-	              	<img src="<%=request.getContextPath() %>/img/joinImg/kakao.png" width="50px" height="50px">
+	              	<img src="/img/joinImg/kakao.png" id= kakao_id_login width="50px" height="50px">
 	              </div>
 	          	</a>
-	       </div>
+	       </div> 
 	    </div>
     </div>
  

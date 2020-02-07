@@ -237,7 +237,7 @@
 	
 
 	
-	//다시 작성 리셋
+	//다시 작성 
 	$(function(){
 	    $( "#returnbutton").click(function () {
 	        $( "#joinForm" ).each(function () {
