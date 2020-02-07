@@ -14,6 +14,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     
 	<link rel="stylesheet" type="text/css" href="css/findUser/findPwd_step2.css">
+	<script type="text/javascript" src="js/findUser/findPwd_step2.js"></script>
 </head>
 
 <body>
@@ -32,8 +33,7 @@
 			<li class="process_active">02.비밀번호 재설정</li>
 			
 		</ol>
-		<form action="/loginForm.do" class="formarea">
-		<input type="hidden" value="user_id">
+		<form action="/step2_process.do" id="findPwd_step2" class= "formarea" method="post">
 			<p class="formarea">
 			본인을 확인하였습니다.
 			<br>새로운 비밀번호를 등록해 주세요
@@ -46,23 +46,24 @@
 					</span>
 					<div class="insertbox">
 						<div class="first_pw">
-							<input type="password" name="password" class="insert_first_pw" minlength="10" maxlength="20" 
-							required placeholder="새 비밀번호 (10~20자)" value="">
+							<input type="password" id="password" name="password" class="insert_first_pw" minlength="6" maxlength="20" 
+							required placeholder="영문,숫자 혼합하여 6~20자 이내" value="">
 						</div>
 					</div>
 				</label>
 				<div class="insertbox">
 					<div class="confirm_pw">
-						<input type="password" name="password_confirm" class="insert_confirm_pw " minlength="10" maxlength="20" 
+						<input type="password" id="password_confirm" name="password_confirm" class="insert_confirm_pw " minlength="6" maxlength="20" 
 						required placeholder="새 비밀번호를 다시 한번 확인 입력해 주세요" value="">
 					</div>
 				</div>		
 			</div>
+		 <input type="hidden" id ="user_id" name="user_id" value="${user_id}" />
 		</form>
 		
-		<div class="buttonarea">
-            <button type="button" class="finish_button" onclick = "location.href = '/loginForm.do' ">비밀번호 재설정 완료</button>
-        </div>
+	<div class="buttonarea">
+           <button type="button" class="finish_button" onclick = "javascript:findPwd_step2(); ">비밀번호 재설정 완료</button>
+    </div>
 	</div>
 	<div class="footer">
 		        <p>Copyright © CAFE MINGO All Rights Reserved.</p>

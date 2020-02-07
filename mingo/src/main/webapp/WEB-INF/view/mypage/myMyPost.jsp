@@ -21,12 +21,96 @@
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/choicss1.css">
 	
 	<style>
+		.review_navi_nums{
+			width:100%;
+			height:100px;
+			padding-top:40px;
+		}
+		  
+		.review_navi_nums > div{
+			line-height:60px;
+			height:60px;
+			width:100%;
+			
+			/* margin:0 auto;
+			padding:0 auto; */  
+			/* line-height: 200px; */
+			text-align:center;  
+		}      
 		
+		.review_navi_nums a{
+			margin:0 20px;
+		
+		}
+		
+		
+		.review_navi_nums{
+			width:100%;
+			height:150px;
+			 
+		}
+		  
+		.review_navi_nums > div{
+			line-height:60px;
+			height:60px;
+			width:540px;
+			margin:0 auto;
+			text-align:center;
+			
+		}      
+		
+		
+		.num{
+			
+			margin:0 10px;
+			width:40px;
+			height:40px;
+			float:left;
+		}
+		
+		.present{
+			width:40px;
+			height:40px;
+			border-radius: 40px;
+			float:left;
+			background-color: #86B404;
+			text-align: center;
+			line-height: 40px;
+			margin:10px;	
+		}
+		.review_navi_nums a{
+			color:#2E2E2E;
+			font-size:1.3em;
+			line-height: 40px;
+		}
+		.present a{     
+			color:#ffffff;
+			font-size:1.3em;
+			line-height: 40px;
+		}
 	
 	</style>
 	
 	<script>
-	
+		$(function(){
+			console.log("작동1");
+			var currentPage = 1; 
+			console.log(currentPage);
+			
+			$.ajax({
+				url:'myPostAjax.do',
+				type:'GET',
+				dataType:'html',
+				data:{'currentPage':currentPage},
+				success:function(data){
+					$('.myPost-area').html(data);
+					console.log("작동2");
+					
+				}
+			}); 
+			
+			
+		}); 
 	
 	</script>
 	
@@ -71,43 +155,10 @@
             <div class="pb-2 mb-4 board-name" >
                	내가 쓴 게시글
             </div>
+            <div class="myPost-area">
             
-            <div class="list-group list-group-flush board-main">
-                <a href="#" class="list-group-item">
-                    <div style="float:left;padding:0 14px;">번호</div>
-                    <div style="float:left;padding:0 157px;">제목</div>
-                    <div style="float:left;padding:0 30px">게시판</div>
-                    <div style="float:left;padding:0 30px">등록일</div>
-                    <div style="float:left;padding:0 14px">조회</div>
-                    <div style="float:left;padding:0 14px">추천</div>
-                </a>
-                <c:forEach items="${boardList}" var="post" varStatus="status">
-	                <a href="#" class="list-group-item">
-	                    <div id="b-num" style="float:left;">${post.board_id }</div>
-	                    <div id="b-title" style="float:left;">${post.title }</div>
-	                    <div id="b-username" style="float:left;">${userVO.nickname }</div>
-	                    <div id="b-regdate" style="float:left;">${post.regdate }</div>
-	                    <div id="b-readcount" style="float:left;">${post.readcount }</div>
-	                    <div id="b-goodcount" style="float:left;">${post.like_num }</div>
-	                </a>
-                </c:forEach>
             </div>
-            <ul class="pagination mypagi justify-content-center">
-                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item active"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item"><a class="page-link" href="#">4</a></li>
-                <li class="page-item"><a class="page-link" href="#">5</a></li>
-                <li class="page-item"><a class="page-link" href="#">6</a></li>
-                <li class="page-item"><a class="page-link" href="#">7</a></li>
-                <li class="page-item"><a class="page-link" href="#">8</a></li>
-                <li class="page-item"><a class="page-link" href="#">9</a></li>
-                <li class="page-item"><a class="page-link" href="#">10</a></li>
-                <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                
-            </ul>
+            
             <div class="input-group justify-content-center">
                 <div class="input-group-prepend">
                     <select class="form-control filter" >

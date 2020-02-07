@@ -2,6 +2,7 @@ package service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -77,6 +78,29 @@ public class MyServiceImpl implements MyService{
 	}
 	public int myUserModifyPassword(UserVO vo) {
 		return myDao.myUserModifyPassword(vo);
+	}
+	public int countMyReview(int user_id) {
+		int myReview_num = myDao.countMyReview(user_id);
+		return myReview_num;
+	}
+	public List<ReviewVO> viewMyReview(Map<String, Integer> reviewMap){
+		return myDao.viewMyReview(reviewMap);
+	}
+	public int countMyCollect(int user_id) {
+		int myCollect_num = myDao.countMyCollect(user_id);
+		return myCollect_num;
+	}
+	public List<CollectCafeVO> viewMyCollect(Map<String, Integer> collectMap){
+		List<CollectCafeVO> collectList = myDao.viewMyCollect(collectMap);
+		return collectList;
+	}
+	public int countMyPost(int user_id) {
+		int myPost_num = myDao.countMyPost(user_id);
+		return myPost_num;
+	}
+	public List<BoardVO> viewMyPost(Map<String, Integer> boardMap){
+		List<BoardVO> boardList = myDao.viewMyPost(boardMap);
+		return boardList;
 	}
 		
 	

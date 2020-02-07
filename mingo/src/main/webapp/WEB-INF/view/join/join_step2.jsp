@@ -16,7 +16,7 @@
     <div class="wrap">
         <div class="header"></div>
         <div class="title">
-        <span class="t1">MINGO</span>    
+        <span class="t1"><a href="goMain.do">MINGO</a></span>    
         <span class="t2">회원가입</span>
         <p class="t3">가입 방법을 선택해주세요.</p>    
        
@@ -24,7 +24,7 @@
         <li class="person">
             <a class="click" href="/joinForm.do" >
             <div class="join-person">
-                <img src="<%=request.getContextPath() %>/img/joinImg/email.png" width="90px" height="90px">
+                <img src="<%=request.getContextPath() %>/img/joinImg/email.png" width="90px" height="90px" style="border-radius:45px;">
                 <div class="join-person-persontitle">
                     <h3 class="join-person-persontitle1">이메일로 회원가입</h3>
                 </div>

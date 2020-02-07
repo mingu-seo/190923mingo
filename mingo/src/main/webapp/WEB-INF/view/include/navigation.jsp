@@ -14,7 +14,7 @@
                             <a class="nav-link" href="searchCafe.do">카페</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="listBoard.do">게시판</a>
+                            <a class="nav-link" href="listBoard.do?type=1">게시판</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="myMain.do">MY</a>
@@ -27,10 +27,10 @@
                     </ul>
                     <ul class="navbar-nav ml-auto">    
                         <li class="nav-item">
-                            <a class="nav-link" href="joinForm.do">회원가입</a>
+                            <a class="nav-link" href="join_step1.do">회원가입</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="goLoginForm.do">로그인</a>
+                            <a class="nav-link" href="loginForm.do">로그인</a>
                         </li>
                     </ul>
                 </div>

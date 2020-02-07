@@ -1,6 +1,7 @@
 package dao;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -74,6 +75,24 @@ public class MyDAO {
 	}
 	public int myUserModifyPassword(UserVO vo) {
 		return sqlSession.update("my.updateUser", vo);
+	}
+	public int countMyReview(int user_id) {
+		return sqlSession.selectOne("my.countMyReview", user_id);
+	}
+	public List<ReviewVO> viewMyReview(Map<String, Integer> reviewMap){
+		return sqlSession.selectList("my.viewMyReview", reviewMap);
+	}
+	public int countMyCollect(int user_id) {
+		return sqlSession.selectOne("my.countMyCollect", user_id);
+	}
+	public List<CollectCafeVO> viewMyCollect(Map<String, Integer> collectMap){
+		return sqlSession.selectList("my.viewMyCollect", collectMap);
+	}
+	public int countMyPost(int user_id) {
+		return sqlSession.selectOne("my.countMyPost", user_id);
+	}
+	public List<BoardVO> viewMyPost(Map<String, Integer> boardMap){
+		return sqlSession.selectList("my.viewMyPost", boardMap);
 	}
 	
 

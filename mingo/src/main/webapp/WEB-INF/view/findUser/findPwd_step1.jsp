@@ -33,7 +33,8 @@
 			<li class="process">02.비밀번호 재설정</li>
 			
 		</ol>
-		<form action="/findPwd_step2.do" class="formarea" id="findPwdForm">
+		<form action="/step1_process.do" class="formarea" id="findPwdForm">
+		
 			<p class="formarea">비밀번호를 찾기 위해 회원정보를 입력해 주세요.</p>
 			<div class="insertarea">
 				<label class="insert_email">
@@ -55,7 +56,7 @@
 						<input placeholder="8자리 숫자로 입력해 주세요." id="birthday" name="birthday"class="bday_content " value="">
 					</div>
 				</label>
-				<!-- <label class="insert_phone_num ">
+				 <label class="insert_phone_num ">
 					<span class="insert_phone_num">
 						핸드폰 번호
 						&nbsp;
@@ -63,11 +64,11 @@
 					<div class="insert_content">
 						<input placeholder="'-'없이 11자리 숫자로 입력해 주세요." id="phone_num" name="phone_num"class="phone_num_content " value="">
 					</div>
-				</label> -->
+				</label> 
 			</div>
 		</form>
 		<div class="button">
-            <button type="button" class="nextbutton" onclick = "findPwd_step1();">다음</button>
+            <button type="button" class="nextbutton" onclick = "javascript:findPwd_step1();">다음</button>
 	    </div>
 	</div>
 	<div class="footer">

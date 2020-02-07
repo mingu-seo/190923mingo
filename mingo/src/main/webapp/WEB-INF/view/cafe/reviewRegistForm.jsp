@@ -176,7 +176,7 @@
 				<input type="text" name="clean_score" />	
 			</div>
         	<div>
-				<label for = "image_file">카페 아이디: </label>
+				<label for = "image_file">리뷰 사진: </label>
 				<input type="file" name="image_file" />	
 			</div>
         	<div>

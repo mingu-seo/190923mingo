@@ -1,13 +1,16 @@
 package dao;
 
+
 import java.util.List;
+
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import vo.BoardVO;
 import vo.BoardCommentVO;
+import vo.BoardVO;
+import vo.LikeBoardVO;
 @Repository
 public class BoardDAO {
 	
@@ -24,6 +27,9 @@ public class BoardDAO {
 		}
 		public int insert(BoardVO vo) {
 			return sqlSession.insert("board.insert",vo);
+		}
+		public void refUpdate(int board_comment_id) { 
+			sqlSession.update("board.refUpdate",board_comment_id);
 		}
 		//조회수 증가
 		public void readcount(int board_id) {
@@ -44,17 +50,66 @@ public class BoardDAO {
 		public int replySeq(BoardCommentVO cvo) {
 			return sqlSession.update("board.replySeq",cvo);
 		}
+		public int replySeqDown(BoardCommentVO cvo) {
+			return sqlSession.update("board.replySeqDown",cvo);
+		}
 		public int replyInsert(BoardCommentVO cvo) {
+			sqlSession.update("board.increaseReplyNum",cvo);
 			return sqlSession.insert("board.replyInsert",cvo);
 		}
 		public int writeComment(BoardCommentVO cvo) {
-			return sqlSession.insert("board.writeComment",cvo);
+			sqlSession.insert("board.writeComment",cvo);
+			sqlSession.update("board.increaseReplyNum",cvo);
+			return cvo.getBoard_comment_id();
 		}
-		public int replyDelete(int board_comment_id) {
-			return sqlSession.delete("board.replyDelete",board_comment_id);
+		public int replyDelete(BoardCommentVO cvo) {
+			return sqlSession.delete("board.replyDelete",cvo);
 		}
-
 		public int listCount(int board_id) {
 			return sqlSession.selectOne("board.countCommentList",board_id);
 		}
+		public int registLike(LikeBoardVO vo) {
+			int r = sqlSession.insert("board.registLike", vo);
+			return r;
+		}
+		public int deleteLike(LikeBoardVO vo) {
+			sqlSession.delete("board.deleteLike", vo);
+			return 1;
+		}
+
+		public BoardCommentVO getReply(int board_comment_id) {
+			return sqlSession.selectOne("board.getReply",board_comment_id);
+		}
+
+		public void downReplyNum(int board_id) {
+			sqlSession.update("board.decreaseReplyNum",board_id);
+		}
+
+		//대댓글이 존재하는지 검사하는 함수
+		public int isRereExist(BoardCommentVO comment) {
+			return sqlSession.selectOne("board.isRereExist", comment);
+		}
+
+		public int updateRemoved(int board_comment_id) {
+			return sqlSession.update("board.updateRemoved", board_comment_id);  
+		}
+
+		public void replyLevDown(BoardCommentVO comment) {
+			sqlSession.update("board.replyLevDown",  comment );
+			
+		}
+
+		public List<BoardCommentVO> getBoardCommentList(int board_id) {
+			return sqlSession.selectList("board.getBoardCommentList", board_id);
+		}
+
+		
+
+	
+
+		
+
+		
+
+
 }
