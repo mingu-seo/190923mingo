@@ -10,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import service.BoardService;
 import vo.BoardCommentVO;
@@ -27,21 +26,23 @@ public class BoardController {
 	//게시판 조회
 	@RequestMapping("/listBoard.do")
 	public String listBoard(Model model, BoardVO vo,@RequestParam("type")int type) {
-		vo.setType(type);
-		int[] listcount = boardService.boardCount(vo.getType());	// 전체 갯수와 총페이지수
+		
+		int[] listcount = boardService.boardCount(vo);	// 전체 갯수와 총페이지수  
 		List<BoardVO> list = boardService.list(vo);
 		
 		//int commentCount = boardService.listCount(board_id);
-		
 		model.addAttribute("listcount", listcount[0]);
 		model.addAttribute("totalpage", listcount[1]);
 		model.addAttribute("list", list);
 		model.addAttribute("vo", vo);
+		model.addAttribute("type",type);
 		
 		//model.addAttribute("commentCount", commentCount);
 		
 		return "board/boardMain";
 	}
+	
+	
 	//게시판 삭제
 	@RequestMapping("/deleteBoard.do")
 	public String deleteBoard( BoardVO vo, @RequestParam("type")int type) {

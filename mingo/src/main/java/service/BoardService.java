@@ -24,8 +24,8 @@ public class BoardService {
 		return list;
 	}
 
-	public int[] boardCount(int type) {
-		int listcount = boardDAO.count(); // 전체 갯수
+	public int[] boardCount(BoardVO vo) {
+		int listcount = boardDAO.count(vo); // 전체 갯수
 		int totalpage = listcount / 10; // 총페이지수
 		if (listcount % 10 > 0)
 			totalpage++;
@@ -36,6 +36,7 @@ public class BoardService {
 
 		return pagecount;
 	}
+	
 	public int insert(BoardVO vo) {
 		int r = boardDAO.insert(vo);
 		
@@ -91,19 +92,20 @@ public class BoardService {
 		//자기자신을 삭제할때 화면에는 댓글이 표시되도록 하되, 삭제된 게시물이라고 알려준다.
 		if( isRereExist > 0) {
 			//board의 리플 갯수를 하나 내린다.
-			//boardDAO.downReplyNum(comment.getBoard_id());
-			
+			//is_deleted 컬럼에 1 설정한다.
 			boardDAO.downReplyNum(comment.getBoard_id());
 			result = boardDAO.updateRemoved(comment.getBoard_comment_id());
 		}else { //그냥 지운다.
-			//원글이랑 ref가 같고 seq가 큰 모든 글을 seq-1 해준다.
-			boardDAO.replySeqDown(comment);
+			
 			
 			//board의 리플 갯수를 하나 내린다.
 			boardDAO.downReplyNum(comment.getBoard_id());
 			
 			//해당 id의 reply 로우를 삭제한다.
 			result = boardDAO.replyDelete(comment); 
+			
+			//원글이랑 ref가 같고 seq가 큰 모든 글을 seq-1 해준다.
+			boardDAO.replySeqDown(comment);
 		}
 		
 		return result;
@@ -127,14 +129,20 @@ public class BoardService {
 		// 대댓글이 달려있는지 검사하고(ref가 같으면서 seq+1, lev+1이 없는경우)
 		for( BoardCommentVO i : board_comment_list) {
 			//대댓글이 존재하면
+			System.out.println(i.getBoard_comment_id());
 			if(boardDAO.isRereExist(i) > 0) {
 				continue;
 			}else { //존재하지 않으면 seq넘버 정리하고, 해당 댓글을 삭제한다.
 				boardDAO.replyDelete(i);
+				
+				//원글이랑 ref가 같고 seq가 큰 모든 글을 seq-1 해준다.
+				boardDAO.replySeqDown(i);
 			}
 		}
 		
 	}
+
+	
 
 	
 

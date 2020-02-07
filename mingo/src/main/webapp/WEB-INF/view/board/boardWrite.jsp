@@ -73,13 +73,13 @@ function completeWriting(){
     	<input type="hidden" name="type" value="${type }">
         <div class=" board-group shadow ml-4">
             <div class="mb-4 board-name">
-		            <c:if test="${vo.type == 1 }">
+		            <c:if test="${type == 1 }">
 		            	자유게시판
 		            </c:if>
-		            <c:if test="${vo.type == 2 }">
+		            <c:if test="${type == 2 }">
 		            	정보게시판
 		            </c:if>
-		            <c:if test="${vo.type == 3 }">
+		            <c:if test="${type == 3 }">
 		            	취업게시판
 		            </c:if>
                <span style="font-size: 0.5em;">글쓰기</span>
