@@ -27,6 +27,7 @@ int totalpage = (Integer)request.getAttribute("totalpage"); // 전체페이지�
 		
     <!-- 내가 만든 파일-->
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/boardStyle.css">
+    <script type="text/javascript" src="<%=request.getContextPath() %>/js/boardScript.js"></script>
     
 </head>
 
@@ -116,26 +117,32 @@ int totalpage = (Integer)request.getAttribute("totalpage"); // 전체페이지�
                 <li class="page-item"><a class="page-link" href="#">Next</a></li> -->
                 <button type="button" class="btn btn-secondary btn-write" onclick="location.href='writeBoard.do?type=<%=vo.getType()%>&page=<%=vo.getPage()%>' ">글쓰기</button>
             </ul>
-            <div class="input-group justify-content-center">
-                <div class="input-group-prepend">
-                    <select class="form-control filter" >
-                        <option>전체기간</option>
-                        <option>1주</option>
-                        <option>1개월</option>
-                        <option>1년</option>
-                    </select>
-                    <select class="form-control filter" >
-                        <option>제목</option>
-                        <option>내용</option>
-                        <option>글쓴이</option>
-                        <option>제목+내용</option>
-                    </select>
-                    
-                    <input type="text" class="form-control mr-2" style="width:188px">
-                    <button type="button" class="form-control" style="width:80px;">검색</button>
-                </div>
-                
-            </div>
+            <form action="listBoard.do?" id="filter-form">
+            	<input type="hidden" name="page"  value="<%=vo.getPage()%>"/>
+            	<input type="hidden" name="totalpage"  value="${totalpage }"/>
+            	<input type="hidden" name="type"  value="${type}"/>  
+            	
+	            <div class="input-group justify-content-center">
+	                <div class="input-group-prepend">
+	                    <select class="form-control filter" name="search_option1" id="search_option1">
+	                        <option value="1">전체기간</option>
+	                        <option value="2">1주</option>
+	                        <option value="3">1개월</option>
+	                        <option value="4">1년</option>
+	                    </select>
+	                    <select class="form-control filter" name="search_option2" id="search_option2">
+	                        <option value="1">제목</option>   
+	                        <option value="2">내용</option>
+	                        <option value="3">글쓴이</option>
+	                        <option value="4">제목+내용</option>
+	                    </select>
+	                    
+	                    <input type="text" class="form-control mr-2" style="width:188px" name="keyword" id="keyword">
+	                    <button type="button" class="form-control" style="width:80px;" onclick="filterSearch();">검색</button>
+	                </div>
+	                
+	            </div>
+            </form>
         </div>
     </div>
 

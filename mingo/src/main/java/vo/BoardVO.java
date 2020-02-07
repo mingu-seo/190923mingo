@@ -45,7 +45,8 @@ public class BoardVO {
 	private int startIndex;	// limit 시작 인덱스
 	private int maxPage;	// 총페이지수
 	
-	private String search_option;
+	private int search_option1;
+	private int search_option2;
 	private String keyword;
 	
 	// 초기화(생성자)
@@ -55,12 +56,21 @@ public class BoardVO {
 	}
 		
 	
-	public String getSearch_option() {
-		return search_option;
+	
+	public int getSearch_option1() {
+		return search_option1;
 	}
 
-	public void setSearch_option(String search_option) {
-		this.search_option = search_option;
+	public void setSearch_option1(int search_option1) {
+		this.search_option1 = search_option1;
+	}
+
+	public int getSearch_option2() {
+		return search_option2;
+	}
+
+	public void setSearch_option2(int search_option2) {
+		this.search_option2 = search_option2;
 	}
 
 	public String getKeyword() {
@@ -147,11 +157,12 @@ public class BoardVO {
 	public String toString() {
 		return "BoardVO [board_id=" + board_id + ", user_id=" + user_id + ", type=" + type + ", title=" + title
 				+ ", contents=" + contents + ", regdate=" + regdate + ", readcount=" + readcount + ", like_num="
-				+ like_num + ", nickname=" + nickname + ", page=" + page + ", limit=" + limit + ", startIndex="
-				+ startIndex + ", maxPage=" + maxPage + ", search_option=" + search_option + ", keyword=" + keyword
-				+ "]";
+				+ like_num + ", nickname=" + nickname + ", reply_num=" + reply_num + ", page=" + page + ", limit="
+				+ limit + ", startIndex=" + startIndex + ", maxPage=" + maxPage + ", search_option1=" + search_option1
+				+ ", search_option2=" + search_option2 + ", keyword=" + keyword + "]";
 	}
 
+	
 	
 	
 	

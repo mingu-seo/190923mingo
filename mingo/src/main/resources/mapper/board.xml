@@ -6,18 +6,45 @@
 		SELECT *, (SELECT nickname FROM mingo.user WHERE user_id=mingo.board.user_id)
 		 AS nickname 
 		FROM mingo.board 
-		WHERE type = #{type}
+		<where>
+			 	<if test="type != null and type > 0">
+					and type = #{type}
+				</if>
+				<if test="search_option1 != null and search_option1 > 0">
+				
+				</if>
+				<if test="search_option2 != null and search_option2 > 0">
+				
+				</if>
+				<if test=" keyword != null and keyword !='' ">
+					and title like '%${keyword}%'
+				</if>
+		</where>
 		
 		ORDER BY board_id DESC
 		LIMIT #{startIndex},#{limit}
 	
 	</select>
-	
-	
-   <select id="count" resultType="Integer" parameterType="Integer">
-	SELECT COUNT(*) FROM mingo.board where type =#{type}
+  <select id="count" resultType="Integer" parameterType="vo.BoardVO">
+		SELECT COUNT(*) FROM mingo.board
+		 <where>
+			 	<if test="type != null and type > 0">
+					and type = #{type}
+				</if>
+				<if test="search_option1 != null and search_option1 > 0">
+				
+				</if>
+				<if test="search_option2 != null and search_option2 > 0">
+				
+				</if>
+				<if test=" keyword != null and keyword !='' ">
+					and title like '%${keyword}%'
+				</if>
+		 </where>
 	
 	</select>
+	
+	
 	
 	<insert id="insert" parameterType="vo.BoardVO" useGeneratedKeys="true">
 		INSERT INTO mingo.board
@@ -91,6 +118,7 @@
 		from board as b join board_comment as c
 		on b.board_id = c.board_id
 		where b.board_id = #{board_id} and is_deleted = 1
+		order by seq desc;
 	
 	</select>
 	
@@ -136,7 +164,7 @@
 	
 	
 	<select id="countCommentList" parameterType="Integer" resultType="Integer">
-		select count(*) from board_comment where board_id = #{board_id}
+		select count(*) from board_comment where board_id = #{board_id} and is_deleted=0;
 	</select>
 	
 	<insert id="registLike" parameterType="vo.LikeBoardVO">  

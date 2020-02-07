@@ -22,9 +22,10 @@ public class BoardDAO {
 			return sqlSession.selectList("board.list", vo); // mapper 이름 namespace.id
 		}
 		
-		public int count() {
-			return sqlSession.selectOne("board.count");
+		public int count(BoardVO vo) {
+			return sqlSession.selectOne("board.count",vo);
 		}
+		
 		public int insert(BoardVO vo) {
 			return sqlSession.insert("board.insert",vo);
 		}
@@ -102,6 +103,8 @@ public class BoardDAO {
 		public List<BoardCommentVO> getBoardCommentList(int board_id) {
 			return sqlSession.selectList("board.getBoardCommentList", board_id);
 		}
+
+		
 
 		
 
