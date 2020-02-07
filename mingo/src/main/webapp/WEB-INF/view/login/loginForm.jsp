@@ -28,7 +28,9 @@
     <div class="wrap">
     <div class="header"></div>
     <div class="title">
-	<span class="t1">MINGO</span>  
+	<span class="t1">
+	<a href="/goMain.do" class="join-title">MINGO</a>
+	</span>  
 	<span class="t2">로그인</span>
 	<p class="t3">MINGO에 오신것을 진심을 환영합니다.</p>    
      <div class="social_login">
