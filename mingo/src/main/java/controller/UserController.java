@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import service.UserService;
@@ -36,7 +37,7 @@ public class UserController {
 			return "include/alert";
 		} else {
 			HttpSession session = request.getSession();
-			session.setAttribute("userVO", vo);
+			session.setAttribute("userVO", uv);
 			return "redirect:/goMain.do";
 		}
 	}
@@ -127,21 +128,10 @@ public class UserController {
 	@RequestMapping("/step1_process.do")
 	public String step1_process(Model model, @RequestParam("email") String email) {
 		int user_id = userService.step1_process(email);
-//		if (  false ) {
-//			String msg = "일치하는 회원이 없습니다.";
-//			String url = "/findPwd_step1.do";
-//			model.addAttribute("msg", msg);
-//			model.addAttribute("url", url);
-//			return "include/alert";
-//		} else {
-//			
-//			
-//			return "findUser/findPwd_step2";
-//		}
 		model.addAttribute("user_id", user_id);
 		return "findUser/findPwd_step2";
 	}
-<<<<<<< HEAD
+
 
 	
 	 //비밀번호 step2 form
@@ -149,13 +139,6 @@ public class UserController {
 	public String findPwd_step2(Model model,UserVO vo, HttpServletRequest request) {
 	  userService.findPwd_step2(vo); 
 	  model.addAttribute(vo); 
-=======
-
-	 //비밀번호 updateForm
-	@RequestMapping("/updatePwdForm.do") public String updatePwdForm(Model model, @RequestParam("user_id") int user_id, HttpServletRequest request) {
-	  userService.updatePwdForm(user_id); 
-	  model.addAttribute(user_id); 
->>>>>>> branch 'master' of https://github.com/mingu-seo/190923mingo.git
 	  return "findUser/findPwd_step2"; 
 	  }
 	 
@@ -192,5 +175,18 @@ public class UserController {
 	@RequestMapping("/join_step2.do")
 	public String joinFormEmailStep2() {
 		return "/join/join_step2";
+	}
+	
+	//네이버 로그인
+	@RequestMapping("/naverLogin.do")
+	public String loginGET() {
+		
+		return "login/naverLogin";
+	}
+	
+	@RequestMapping("/callback.do")
+	public String loginPOSTNaver(HttpSession session) {
+		
+		return "login/callback";
 	}
 }
