@@ -163,8 +163,7 @@ public class UserController {
 
 	// 비밀번호 step2 process
 	@RequestMapping("/step2_process.do")
-	public String step2_process(Model model, @RequestParam("user_id") int user_id, @RequestParam("password") String password
-			) {
+	public String step2_process(Model model, @RequestParam("user_id") int user_id, @RequestParam("password") String password) {
 		int r = userService.updatePwd(user_id,password);
 		String msg = "";
 		String url = "";
