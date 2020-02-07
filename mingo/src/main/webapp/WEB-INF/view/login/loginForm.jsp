@@ -21,6 +21,7 @@
     
     <link rel="stylesheet" type="text/css" href="css/login/loginForm.css">
     <script type="text/javascript" src="js/login/loginFormScript.js"></script>
+    
 </head>
 <body>
 
@@ -33,9 +34,9 @@
      <div class="social_login">
      	<div class="login_area">
 	        <div class="naver_login">
-	            <a class="click" href="#">
-	            	<div class="join-person-persontitle">
-	                	<img src="<%=request.getContextPath() %>/img/joinImg/naver.png" width="50px" height="50px">
+	            <a class="click" href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=QI9nhKdLYdgGZ21jz2ay&redirect_uri=http%3A%2F%2Flocalhost%3A8080%2FgoMain.do&state=272398599811248173130281399471286788127">
+	            	<div class="join-person-persontitle" >
+	                	<img src="/img/joinImg/naver.png"  id= naver_id_login width="50px" height="50px">
 	                </div>
 	            </a>
 	        </div>
