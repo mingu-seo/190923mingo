@@ -63,7 +63,13 @@ int totalpage = (Integer)request.getAttribute("totalpage"); // 전체페이지�
                 <c:forEach  items="${list}" var="BoardVO">
                 <li class="list-group-item">
                     <div id="b-num" style="float:left;width:60px;height:24px;">${BoardVO.board_id}</div>
-                    <a href="viewBoard.do?board_id=${BoardVO.board_id}&page=<%=vo.getPage()%>&type=<%=vo.getType()%>" id="b-title" style="float:left;width:346px;height:24px;display:block">${BoardVO.title} ${listCount }</a>
+                    <a href="viewBoard.do?board_id=${BoardVO.board_id}&page=<%=vo.getPage()%>&type=<%=vo.getType()%>" id="b-title" style="float:left;width:346px;height:24px;display:block">${BoardVO.title}
+                    		<!--  리플 없으면 아무것도 안띄우고 1개라도 있으면 빨간색으로 [3]이런식으로 표시 -->
+                    		<c:if test="${BoardVO.reply_num > 0 }">
+                    			<span style="color:red;text-align:center;" >&nbsp;[${BoardVO.reply_num }]</span>
+                    		</c:if>
+                    		
+                    </a>
                     <div id="b-username" style="float:left;width:108px;height:24px;">${BoardVO.nickname}</div>
                     <div id="b-regdate" style="float:left;width:108px;height:24px;">
                     	<!-- 날짜 계산 시작-->

@@ -41,7 +41,15 @@
 	function reply(formId) {
 		var chk =  confirm("등록하시겠습니까?");
 		if (chk){
+					//컨텐츠 공백 체크
+				
+					if($("#"+formId).parent().find('textarea').val().trim() == ""){
+						alert("내용을 입력해주세요.");
+						$("#"+formId).parent().find('textarea').focus();
+						return false;
+					}
 					$("#"+formId).submit();
+					
 		}else{event.preventDefault();}
 	}
 	
@@ -50,6 +58,12 @@
 		
 		var chk =  confirm("등록하시겠습니까?");
 		if (chk){
+			//컨텐츠 공백 체크
+			if($('#contents').val().trim() == ""){
+				alert("내용을 입력해주세요.");
+				$('#contents').focus();
+				return false;
+			}
 			writeComment.submit();
 		}else{event.preventDefault();}
 	}
@@ -58,7 +72,7 @@
 	function replyDelete(board_comment_id) {
 		var chk =  confirm("삭제하시겠습니까?");
 		if (chk){
-			location.href='replyDeleteBoard.do?board_id=<%=vo.getBoard_id()%>&page=<%=nowPage%>&board_comment_id='+board_comment_id;
+			location.href='replyDeleteBoard.do?board_id=<%=vo.getBoard_id()%>&type=<%=type%>&page=<%=nowPage%>&board_comment_id='+board_comment_id;
 		}else{event.preventDefault();}
 	}
 	function replyShow(id){
@@ -201,38 +215,50 @@ $(document).ready(function(){
 					
 					<form id="form_${BoardCommentVO.board_comment_id }"
 						action="replyProcess.do" method="post" name="replyProcess">
-						<input type="hidden" name="page" value="<%=vo.getPage() %>" /> <input
-							type="hidden" name="board_id" value="${BoardCommentVO.board_id}">
-						<input type="hidden" name="board_comment_id"
-							value="${BoardCommentVO.board_comment_id}"> <input
-							type="hidden" name="ref" value="${BoardCommentVO.ref}"> <input
-							type="hidden" name="lev" value="${BoardCommentVO.lev}"> <input
-							type="hidden" name="seq" value="${BoardCommentVO.seq}">
-						
-							<div class="reply-name"><%=vo.getNickname() %></div>
-							<div class="reply-content">${BoardCommentVO.contents}</div>
+						<input type="hidden" name="page" value="<%=vo.getPage() %>" /> 
+						<input type="hidden" name="board_id" value="${BoardCommentVO.board_id}">
+						<input type="hidden" name="board_comment_id" value="${BoardCommentVO.board_comment_id}"> 
+						<input type="hidden" name="ref" value="${BoardCommentVO.ref}"> 
+						<input type="hidden" name="lev" value="${BoardCommentVO.lev}"> 
+						<input type="hidden" name="seq" value="${BoardCommentVO.seq}">
+						<input type="hidden" name="type" value="${data.type }">
+							
+							<!-- 삭제 된 게시물이면 -->
+							<c:if test="${BoardCommentVO.is_deleted == 1 }">
+								<div class="reply-name">(삭제된 게시물)</div>
+								<div class="reply-content">삭제된 게시물 입니다.</div>
+		
+								
+							</c:if>
+							<!-- 삭제 된 게시물이 아니면 -->
+							<c:if test="${BoardCommentVO.is_deleted == 0 }">
+								<div class="reply-name"><%=vo.getNickname() %></div>
+								<div class="reply-content">${BoardCommentVO.contents}</div>
+		
+								<!-- 날짜 출력 -->
+								<fmt:parseDate value="${BoardCommentVO.regdate }" var="tmp"
+									pattern="yyyy-MM-dd HH:mm:ss" />
+								<fmt:formatDate value="${tmp}" pattern="yyyy.MM.dd HH:mm"
+									var="commentRegdate" />
+								<div class="reply-date">${commentRegdate }</div>
+								<!-- 날짜 출력 끝-->
+							</c:if>
 	
-							<!-- 날짜 출력 -->
-							<fmt:parseDate value="${BoardCommentVO.regdate }" var="tmp"
-								pattern="yyyy-MM-dd HH:mm:ss" />
-							<fmt:formatDate value="${tmp}" pattern="yyyy.MM.dd HH:mm"
-								var="commentRegdate" />
-							<div class="reply-date">${commentRegdate }</div>
-							<!-- 날짜 출력 끝-->
-	
-							<!-- 대댓글쓰기 -->
-							<button type="button" class="btn btn-secondary"
-								onclick="replyShow('${BoardCommentVO.board_comment_id }')">댓글</button>
-							<button type="button" class="btn btn-secondary"
-								onclick="replyDelete(${BoardCommentVO.board_comment_id})">삭제</button>
-							<div id="replyCmt_${BoardCommentVO.board_comment_id }"
-								style="display: none">
-								<textarea class="mt-2" rows="4"
-									style="font-size: 0.9em; width: 100%; border: 1px solid #e1e1e1;"
-									name="contents" placeholder="주제와 무관한 댓글, 악플은 삭제 될 수 있습니다."></textarea>
+							<!-- 대댓글쓰기(삭제된 게시물이 아닐 경우에만 댓글 삭제 버튼이 있음) -->
+							<c:if test="${BoardCommentVO.is_deleted == 0 }">
 								<button type="button" class="btn btn-secondary"
-									onclick="javascript:reply('form_${BoardCommentVO.board_comment_id }')">등록</button>
-							</div>
+									onclick="replyShow('${BoardCommentVO.board_comment_id }')">댓글</button>
+								<button type="button" class="btn btn-secondary"
+									onclick="replyDelete(${BoardCommentVO.board_comment_id})">삭제</button>
+								<div id="replyCmt_${BoardCommentVO.board_comment_id }"
+									style="display: none">
+									<textarea class="mt-2" rows="4"
+										style="font-size: 0.9em; width: 100%; border: 1px solid #e1e1e1;"
+										name="contents" placeholder="주제와 무관한 댓글, 악플은 삭제 될 수 있습니다."></textarea>
+									<button type="button" class="btn btn-secondary"
+										onclick="javascript:reply('form_${BoardCommentVO.board_comment_id }')">등록</button>
+								</div>
+							</c:if>
 					</form>
 				</div>
 			</div>
@@ -269,10 +295,10 @@ $(document).ready(function(){
 						value="<%=cvo.getBoard_comment_id() %>">
 
 
-					<div class="reply-name">밍고님</div>
+					<div class="reply-name"><%=vo.getNickname() %></div>
 					<textarea class="mt-2" rows="4"
 						style="font-size: 0.9em; width: 100%; border: 1px solid #e1e1e1;"
-						name="contents" placeholder="주제와 무관한 댓글, 악플은 삭제 될 수 있습니다."></textarea>
+						name="contents" id="contents" placeholder="주제와 무관한 댓글, 악플은 삭제 될 수 있습니다."></textarea>
 					<div>
 						<button type="button" class="btn btn-secondary"
 							onclick="writeComment123()">등록</button>

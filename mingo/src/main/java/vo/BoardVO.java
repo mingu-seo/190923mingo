@@ -13,8 +13,17 @@ public class BoardVO {
 	private int readcount;
 	private int like_num;
 	private String nickname;
+	private int reply_num;
 	
 	
+	public int getReply_num() {
+		return reply_num;
+	}
+
+	public void setReply_num(int reply_num) {
+		this.reply_num = reply_num;
+	}
+
 	public String getNickname() {
 		return nickname;
 	}
@@ -137,8 +146,12 @@ public class BoardVO {
 	@Override
 	public String toString() {
 		return "BoardVO [board_id=" + board_id + ", user_id=" + user_id + ", type=" + type + ", title=" + title
-				+ ", contents=" + contents + ", regdate=" + regdate + ", readcount=" + readcount + "]";
+				+ ", contents=" + contents + ", regdate=" + regdate + ", readcount=" + readcount + ", like_num="
+				+ like_num + ", nickname=" + nickname + ", page=" + page + ", limit=" + limit + ", startIndex="
+				+ startIndex + ", maxPage=" + maxPage + ", search_option=" + search_option + ", keyword=" + keyword
+				+ "]";
 	}
+
 	
 	
 	

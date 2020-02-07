@@ -19,13 +19,12 @@ public class BoardDAO {
 		SqlSessionTemplate sqlSession;
 		
 		public List<BoardVO> list(BoardVO vo) {
-			return sqlSession.selectList("board.list", vo); 
+			return sqlSession.selectList("board.list", vo); // mapper 이름 namespace.id
 		}
 		
-		public int count(int type) {
-			return sqlSession.selectOne("board.count",type);
+		public int count() {
+			return sqlSession.selectOne("board.count");
 		}
-		
 		public int insert(BoardVO vo) {
 			return sqlSession.insert("board.insert",vo);
 		}
@@ -51,15 +50,20 @@ public class BoardDAO {
 		public int replySeq(BoardCommentVO cvo) {
 			return sqlSession.update("board.replySeq",cvo);
 		}
+		public int replySeqDown(BoardCommentVO cvo) {
+			return sqlSession.update("board.replySeqDown",cvo);
+		}
 		public int replyInsert(BoardCommentVO cvo) {
+			sqlSession.update("board.increaseReplyNum",cvo);
 			return sqlSession.insert("board.replyInsert",cvo);
 		}
 		public int writeComment(BoardCommentVO cvo) {
 			sqlSession.insert("board.writeComment",cvo);
+			sqlSession.update("board.increaseReplyNum",cvo);
 			return cvo.getBoard_comment_id();
 		}
-		public int replyDelete(int board_comment_id) {
-			return sqlSession.delete("board.replyDelete",board_comment_id);
+		public int replyDelete(BoardCommentVO cvo) {
+			return sqlSession.delete("board.replyDelete",cvo);
 		}
 		public int listCount(int board_id) {
 			return sqlSession.selectOne("board.countCommentList",board_id);
@@ -72,6 +76,40 @@ public class BoardDAO {
 			sqlSession.delete("board.deleteLike", vo);
 			return 1;
 		}
+
+		public BoardCommentVO getReply(int board_comment_id) {
+			return sqlSession.selectOne("board.getReply",board_comment_id);
+		}
+
+		public void downReplyNum(int board_id) {
+			sqlSession.update("board.decreaseReplyNum",board_id);
+		}
+
+		//대댓글이 존재하는지 검사하는 함수
+		public int isRereExist(BoardCommentVO comment) {
+			return sqlSession.selectOne("board.isRereExist", comment);
+		}
+
+		public int updateRemoved(int board_comment_id) {
+			return sqlSession.update("board.updateRemoved", board_comment_id);  
+		}
+
+		public void replyLevDown(BoardCommentVO comment) {
+			sqlSession.update("board.replyLevDown",  comment );
+			
+		}
+
+		public List<BoardCommentVO> getBoardCommentList(int board_id) {
+			return sqlSession.selectList("board.getBoardCommentList", board_id);
+		}
+
 		
+
+	
+
+		
+
+		
+
 
 }
