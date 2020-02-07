@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import service.UserService;
@@ -132,6 +131,7 @@ public class UserController {
 		return "findUser/findPwd_step2";
 	}
 
+	
 
 	
 	 //비밀번호 step2 form
@@ -145,8 +145,7 @@ public class UserController {
 
 	// 비밀번호 step2 process
 	@RequestMapping("/step2_process.do")
-	public String step2_process(Model model, @RequestParam("user_id") int user_id, @RequestParam("password") String password
-			) {
+	public String step2_process(Model model, @RequestParam("user_id") int user_id, @RequestParam("password") String password) {
 		int r = userService.updatePwd(user_id,password);
 		String msg = "";
 		String url = "";

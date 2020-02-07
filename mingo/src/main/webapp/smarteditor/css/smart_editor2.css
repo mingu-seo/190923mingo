@@ -28,6 +28,7 @@ body, #smart_editor2, #smart_editor2 p, #smart_editor2 h1, #smart_editor2 h2, #s
 #smart_editor2 a:hover { color: #666; text-decoration: underline; }
 
 /* LAYOUT */
+
 #smart_editor2 .se2_header { margin: 10px 0 29px 0; }
 
 #smart_editor2 .se2_bi { float: left; width: 93px; height: 20px; margin: 0; padding: 0; background: url("../img/ko_KR/btn_set.png?130306") -343px -358px no-repeat; font-size: 0; line-height: 0; text-indent: -10000px; vertical-align: middle; }

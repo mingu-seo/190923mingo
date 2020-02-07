@@ -18,7 +18,7 @@
 	<div class="wrap">
 		<div class="header"></div>
 		<div class="title">
-			<span class="t1">MINGO</span> <span class="t2">회원가입</span>
+			<span class="t1"><a href="goMain.do" class="join-title">MINGO</a></span> <span class="t2">회원가입</span>
 			<p class="t3">본인이 해당하시는 가입 유형을 아래에서 선택해 주세요.</p>
 
 			<ul class="join">
@@ -26,7 +26,7 @@
 					<a class="click" href="/join_step2.do">
 						<div class="join-person">
 							<img src="<%=request.getContextPath()%>/img/joinImg/person.png"
-								width="80px" height="80px">
+								width="80px" height="80px" style="border-radius:40px;">
 							<div class="join-person-persontitle">
 								<h3 class="join-person-persontitle1">개인 회원가입</h3>
 							</div>
@@ -41,7 +41,7 @@
 				<a class="click" href="/joinForm_host.do">
 						<div class="join-person">
 							<img src="<%=request.getContextPath()%>/img/joinImg/person.png"
-								width="80px" height="80px">
+								width="80px" height="80px" style="border-radius:40px;">
 							<div class="join-person-persontitle">
 								<h3 class="join-person-persontitle1">사장님 회원가입</h3>
 							</div>

@@ -24,8 +24,8 @@ public class BoardService {
 		return list;
 	}
 
-	public int[] boardCount() {
-		int listcount = boardDAO.count(); // 전체 갯수
+	public int[] boardCount(int type) {
+		int listcount = boardDAO.count(type); // 전체 갯수
 		int totalpage = listcount / 10; // 총페이지수
 		if (listcount % 10 > 0)
 			totalpage++;
@@ -36,6 +36,7 @@ public class BoardService {
 
 		return pagecount;
 	}
+	
 	public int insert(BoardVO vo) {
 		int r = boardDAO.insert(vo);
 		

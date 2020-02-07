@@ -343,7 +343,10 @@
 			font-size: 1.5em;
 		}    
 		
-		
+		.graph_name{
+			width:100px;
+			float:left;
+		}
 		
 		
 		
@@ -352,20 +355,21 @@
             width:400px;
         }
         .graph_stack{
+        	float:left;
             width:300px;
             height:40px;
             background-color: #D8D8D8;
             box-sizing: border-box;
             border-radius: 35px;
             line-height: 40px;
-            position: relative;
-            left:60px;  
+            /* position: relative;
+            left:60px;   */
         }   
 
         .graph_rate{
             text-align: right;
             height:100%;
-            background-color: #4B610B;
+            background-color: #6d512f;
             box-sizing: border-box;
             border-radius: 35px;
             line-height: 40px;
@@ -385,7 +389,7 @@
             bottom: 25px;
         }
         .bean_img{
-            height:60px;
+            height:30px;
             float: right;
             padding-left: 0px;
             position: relative;
@@ -415,6 +419,7 @@
 		} 
 		.rate_each{
 			float: left;
+			width:500px;
 		}
 		
 		
@@ -633,7 +638,7 @@
 			$('.info_button').click(function(){
 				console.log("click");
 				$('.info_button').css({
-					'border-bottom':'2px solid #21610B' 
+					'border-bottom':'2px solid #d4b270' 
 				});
 				$('.review_button').css({
 					'border-style':'none' 
@@ -676,7 +681,7 @@
 			$('.review_button').click(function(){
 				console.log("click");
 				$('.review_button').css({
-					'border-bottom':'2px solid #21610B' 
+					'border-bottom':'2px solid #d4b270' 
 				});
 				$('.info_button').css({
 					'border-style':'none' 
@@ -861,14 +866,14 @@
 			});   
 			
 			// 종합평점 그래프 점수 동적화
-			var wifi_width = (${cafeRate.mood_avg }/5)*300;
+			var wifi_width = (${cafeRate.wifi_avg }/5)*300;
 			$('#wifi-width').css({
 				'width':wifi_width
-			});
+			}); 
 			
 			
 			
-		});      
+		});        
 	 
 	
 	
@@ -1133,7 +1138,7 @@
 							<div class="rate_visual" id="taste_visual_tatal">
 								<div class="graph_area">
 						            <div>
-						                <img src="img/wifi.png" class="graph_logo">
+						                <img src="img/taste.png" class="graph_logo">
 						            </div>
 						            <div class="graph_stack">
 						                <div class="graph_rate">
@@ -1149,7 +1154,7 @@
 							<div class="rate_visual" id="price_visual_tatal">
 								<div class="graph_area">
 						            <div>
-						                <img src="img/wifi.png" class="graph_logo">
+						                <img src="img/mood.png" class="graph_logo">
 						            </div>
 						            <div class="graph_stack">
 						                <div class="graph_rate">
@@ -1165,7 +1170,7 @@
 							<div class="rate_visual" id="service_visual_tatal">
 								<div class="graph_area">
 						            <div>
-						                <img src="img/wifi.png" class="graph_logo">
+						                <img src="img/service.png" class="graph_logo">
 						            </div>
 						            <div class="graph_stack">
 						                <div class="graph_rate">
@@ -1181,7 +1186,7 @@
 							<div class="rate_visual" id="facimood_visual_tatal">
 								<div class="graph_area">
 						            <div>
-						                <img src="img/wifi.png" class="graph_logo">
+						                <img src="img/wifi2.png" class="graph_logo">
 						            </div>
 						            <div class="graph_stack">
 						                <div class="graph_rate" id="wifi-width">
@@ -1197,7 +1202,7 @@
 							<div class="rate_visual" id="wifiplug_visual_tatal">
 								<div class="graph_area">
 						            <div>
-						                <img src="img/wifi.png" class="graph_logo">
+						                <img src="img/clean.png" class="graph_logo">
 						            </div>
 						            <div class="graph_stack">
 						                <div class="graph_rate">
@@ -1213,7 +1218,7 @@
 							<div class="rate_visual" id="clean_visual_tatal">
 								<div class="graph_area">
 						            <div>
-						                <img src="img/wifi.png" class="graph_logo">
+						                <img src="img/price.png" class="graph_logo">
 						            </div>
 						            <div class="graph_stack">
 						                <div class="graph_rate">
@@ -1221,7 +1226,7 @@
 						                    <div class="graph_text">${cafeRate.price_avg }점</div>
 						                </div>
 						            </div>
-						        </div>
+						        </div>  
 							</div>  
 							<div class="rate_name" id="clean_name_tatal"></div>
 						</div>
