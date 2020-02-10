@@ -64,12 +64,12 @@ public class BoardDAO {
 		public int listCount(int board_id) {
 			return sqlSession.selectOne("board.countCommentList",board_id);
 		}
-		public int registLike(LikeBoardVO vo) {
-			int r = sqlSession.insert("board.registLike", vo);
+		public int likeBoard(LikeBoardVO lvo) {
+			int r = sqlSession.insert("board.likeBoard", lvo);
 			return r;
 		}
-		public int deleteLike(LikeBoardVO vo) {
-			sqlSession.delete("board.deleteLike", vo);
+		public int likeBoardCancel(LikeBoardVO lvo) {
+			sqlSession.delete("board.likeBoardCancel", lvo);
 			return 1;
 		}
 		

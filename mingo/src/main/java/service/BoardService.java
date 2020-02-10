@@ -84,11 +84,11 @@ public class BoardService {
 	public int listCount(int board_id) {
 		return boardDAO.listCount(board_id);
 	}
-	public int registLike(LikeBoardVO vo) {
-		return boardDAO.registLike(vo);
+	public int likeBoard(LikeBoardVO lvo) {
+		return boardDAO.likeBoard(lvo);
 	}
-	public int deleteLike(LikeBoardVO vo) {
-		int r = boardDAO.deleteLike(vo);
+	public int likeBoardCancel(LikeBoardVO lvo) {
+		int r = boardDAO.likeBoardCancel(lvo);
 		return r;
 	}
 }

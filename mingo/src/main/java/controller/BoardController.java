@@ -119,27 +119,27 @@ public class BoardController {
 	}
 	//좋아요 
 	@RequestMapping("registLikeBoard.do")
-		public String registLikeBoard(LikeBoardVO vo, HttpServletRequest request) {
+		public String likeBoard(LikeBoardVO lvo, HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		UserVO vo1 = (UserVO) session.getAttribute("userVO");
-		vo.setUser_id(vo1.getUser_id());
+		lvo.setUser_id(vo1.getUser_id());
 		int board_id = Integer.parseInt(request.getParameter("board_id"));
-		vo.setBoard_id(board_id);
-		boardService.registLike(vo);
+		lvo.setBoard_id(board_id);
+		boardService.likeBoard(lvo);
 		return "redirect:ViewBoard.do?board_id="+board_id;
 	} 
 	//카페 좋아요 삭제
 		@RequestMapping("/deleteLikeBoard.do")   
-		public String deleteLikeBoard(LikeBoardVO vo, HttpServletRequest request) {
+		public String likeBoardCancel(LikeBoardVO lvo, HttpServletRequest request) {
 			
 			HttpSession session = request.getSession();
 			UserVO vo1 = (UserVO) session.getAttribute("userVO");
-			vo.setUser_id(vo1.getUser_id());
+			lvo.setUser_id(vo1.getUser_id());
 			
 			int board_id = Integer.parseInt(request.getParameter("board_id"));
-			vo.setBoard_id(board_id);
+			lvo.setBoard_id(board_id);
 			
-			boardService.deleteLike(vo);
+			boardService.likeBoardCancel(lvo);
 			
 			return "redirect:ViewBoard.do?board_id="+board_id;
 		} 

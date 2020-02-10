@@ -85,14 +85,15 @@
 		select count(*) from board_comment where board_id = #{board_id}
 	</select>
 	
-	<insert id="registLike" parameterType="vo.LikeBoardVO">  
-		insert into mingo.like_board
-		(user_id, board_id)
-		values
-		(#{user_id}, #{board_id})
+	<insert id="likeBoard" parameterType="vo.LikeBoardVO">  
+		UPDATE mingo.like_board 
+		SET like_type=like_type+1
+		WHERE user_id=#{user_id} AND board_id=#{board_id}
 	</insert> 
-	<delete id="deleteLike" parameterType="vo.LikeBoardVO">  
-		DELETE FROM mingo.like_board WHERE board_id=#{board_id} and user_id=#{user_id}
+	<delete id="likeBoardCancel" parameterType="vo.LikeBoardVO">  
+		UPDATE mingo.like_board
+		SET like_type=0
+		WHERE user_id=#{user_id} AND board_id=#{board_id}
 	</delete>
 	<update id="refUpdate" parameterType="Integer">
 		UPDATE mingo.board_comment SET ref=#{board_comment_id} WHERE board_comment_id=#{board_comment_id}

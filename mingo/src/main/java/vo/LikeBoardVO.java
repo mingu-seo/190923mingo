@@ -4,7 +4,7 @@ public class LikeBoardVO {
 	
 	private int board_id;
 	private int user_id;
-	private int type;
+	private int like_type;
 	
 	public int getBoard_id() {
 		return board_id;
@@ -18,11 +18,11 @@ public class LikeBoardVO {
 	public void setUser_id(int user_id) {
 		this.user_id = user_id;
 	}
-	public int getType() {
-		return type;
+	public int getLike_type() {
+		return like_type;
 	}
-	public void setType(int type) {
-		this.type = type;
+	public void setLike_type(int like_type) {
+		this.like_type = like_type;
 	}
 	
 	
