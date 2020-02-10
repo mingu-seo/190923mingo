@@ -23,6 +23,25 @@ public class UserController {
 	public String loginForm() {
 		return "login/loginForm";
 	}
+	
+   // 네이버 로그인 폼
+  
+   @RequestMapping("/naverLoginProcess.do")
+   public String naverLoginProcess(Model model, UserVO vo, HttpServletRequest request) { 
+	   UserVO uv = userService.naverLoginProcess(vo);
+		if (uv == null) {
+			String msg = "잘못된 회원정보 입니다.";
+			String url = "/loginForm.do";
+			model.addAttribute("msg", msg);
+			model.addAttribute("url", url);
+			return "include/alert";
+		} else {
+			HttpSession session = request.getSession();
+			session.setAttribute("userVO", uv);
+			return "redirect:/goMain.do";
+		} 
+	}
+ 
 
 	// 로그인 처리
 	@RequestMapping("/loginProcess.do")
@@ -52,11 +71,39 @@ public class UserController {
 	public String joinForm_host() {
 		return "join/joinForm_host";
 	}
-
+	
+	//네이버 회원가입 폼
+	@RequestMapping("/naverJoinForm.do")
+	public String naverJoinForm() {
+		return "join/naverJoinForm";
+	}
+	
+	//카카오 회원가입 폼
+	@RequestMapping("/kakaoJoinForm.do")
+	public String kakaoJoinForm() {
+		return "join/kakaoJoinForm";
+	}
 	// 회원가입 처리
 	@RequestMapping("/joinProcess.do")
 	public String joinProcess(Model model, UserVO vo) {
 		int r = userService.joinProcess(vo);
+		String msg = "";
+		String url = "";
+		if (r > 0) {
+			msg = "가입되셨습니다.";
+			url = "/loginForm.do";
+		} else {
+			msg = "회원가입 실패";
+			url = "/join_step1.do";
+		}
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		return "include/alert";
+	}
+	// 네이버 처리
+	@RequestMapping("/naverJoinProcess.do")
+	public String naverJoinProcess(Model model, UserVO vo) {
+		int r = userService.naverJoinProcess(vo);
 		String msg = "";
 		String url = "";
 		if (r > 0) {

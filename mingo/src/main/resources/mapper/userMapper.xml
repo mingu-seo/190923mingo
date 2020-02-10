@@ -6,12 +6,22 @@
 	<select id="loginProcess" parameterType="vo.UserVO" resultType="vo.UserVO">
 		SELECT * FROM mingo.user WHERE email=#{email} and password=#{password}
 	</select>
+	<select id="naverLoginProcess" parameterType="vo.UserVO" resultType="vo.UserVO">
+		SELECT * FROM mingo.user WHERE email=#{email} 
+	</select>
 	
 	<insert id="joinProcess" parameterType="vo.UserVO">
 		INSERT INTO mingo.user
 		(email, password, name,nickname, birthday, gender, type)
 		values
 		(#{email}, #{password},#{name}, #{nickname}, #{birthday}, #{gender}, #{type})
+	</insert>
+	<!-- 네이버 회원가입 -->
+	<insert id="naverJoinProcess" parameterType="vo.UserVO">
+		INSERT INTO mingo.user
+		(email, name, gender, type)
+		values
+		(#{email},#{name}, #{gender}, #{type})
 	</insert>
 	
 	<!--아이디 중복체크  -->

@@ -18,9 +18,17 @@ public class UserDAO {
 	public UserVO loginProcess(UserVO vo) {
 		return sqlSession.selectOne("userMapper.loginProcess", vo);
 	}
+	public UserVO naverLoginProcess(UserVO vo) {
+		return sqlSession.selectOne("userMapper.naverLoginProcess", vo);
+	}
 
 	public int joinProcess(UserVO vo) {
 		return sqlSession.insert("userMapper.joinProcess", vo);
+	}
+
+	/* 네이버 회원가입 */
+	public int naverJoinProcess(UserVO vo) {
+		return sqlSession.insert("userMapper.naverJoinProcess", vo);
 	}
 
 	/* 아이디 중복체크 */

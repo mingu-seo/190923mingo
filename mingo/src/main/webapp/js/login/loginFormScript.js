@@ -57,10 +57,10 @@
 			          Kakao.API.request({
 			              url: '/v2/user/me',
 			              success: function(res) {
-			                alert(JSON.stringify(res));
-			            	  //console.log(JSON.stringify(res));
+			                //alert(JSON.stringify(res));
+			            	  console.log(JSON.stringify(res));
 			            	  var j = res['properties'];
-			            	  /*console.log(j['nickname']);*/
+			            	  
 			            	  // 로그인 ajax처리
 			              },
 			              fail: function(error) {

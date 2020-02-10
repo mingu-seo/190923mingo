@@ -20,8 +20,16 @@ public class UserService {
 	public UserVO loginProcess(UserVO vo) {
 		return userDao.loginProcess(vo);
 	}
+	public UserVO naverLoginProcess(UserVO vo) {
+		return userDao.naverLoginProcess(vo);
+	}
+	//회원가입
 	public int joinProcess(UserVO vo) {
 		return userDao.joinProcess(vo);
+	}
+	//네이버 회원가입
+	public int naverJoinProcess(UserVO vo) {
+		return userDao.naverJoinProcess(vo);
 	}
 	
 	//아이디 중복체크

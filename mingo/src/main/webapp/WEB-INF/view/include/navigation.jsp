@@ -16,22 +16,30 @@
                         <li class="nav-item">
                             <a class="nav-link" href="listBoard.do?type=1">게시판</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="myMain.do">MY</a>
-                        </li>
+                        
                         <li class="nav-item">
                             <a class="nav-link" href="rankCafe.do">랭킹/통계</a>  
                         </li>
 
 
                     </ul>
-                    <ul class="navbar-nav ml-auto">    
+                    <ul class="navbar-nav ml-auto">
+                    <c:if test="로그인 상태이면">
+                    	<li class="nav-item">
+                            <a class="nav-link" href="myMain.do">MY</a>
+                        </li> 
+                    	<li class="nav-item">
+                            <a class="nav-link" href="loginForm.do">로그아웃</a>
+                        </li>
+                    </c:if>
+                  	<c:if test="로그아웃상태이면">
                         <li class="nav-item">
                             <a class="nav-link" href="join_step1.do">회원가입</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="loginForm.do">로그인</a>
                         </li>
+                     </c:if>
                     </ul>
                 </div>
             </nav>
