@@ -13,7 +13,13 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-
+	
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	
+	<!--  -->
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  	<link rel="stylesheet" href="/resources/demos/style.css">
 
 	<!-- 헤더파일들 include -->
 	<%@ include file="/WEB-INF/view/include/headHTML.jsp"%>
@@ -34,22 +40,36 @@
     <script src="js/swiper.min.js"></script>
 	-->
 	<style>
+		/* div 중앙정렬 관련
+			background-position:center center;
+        	background-repeat:no-repeat;
+        	background-size:cover;
+        	text-align: center; 
+		 */
+	
+	
+	
+	
 		/* header 부분 스타일 기본값 */
 		.memubar_space{
 			height:600px;
-			width:100%;   
-			left:0px;
+			width:100%;
+			position:relative;  
+			overflow: hidden;
+			/* left:0px;
 			top:0px;    
 			position: absolute;
-			overflow: hidden;     
+			*/ 
 		}
 		
 		.memubar_space img{
-			z-index:-1;
+			/* height:600px; */
 			width:100%;
-			left:0px;
+			
+			/* z-index:-1; */
+			/* left:0px;
 			top:0px;
-			position: absolute;
+			position: absolute; */
 			
 		}
 		
@@ -58,18 +78,22 @@
 		}
 		
 		.header{
-			height:360px;
-			margin-top:200px;
-			margin-bottom:30px;   
+			height:auto;
+			overflow:hidden;
+			margin-bottom:100px;  
+			background-color: #FAFAFA;
+			   
 		}   
 		
 		.logo{
-			width:100%;
+			width:10%;
 			margin:20px 0;
+			float:left;
+			margin-right:20px;
 		}
 		.logo > img{
 			border-radius:50%;
-			width:15%;
+			width:100%;
 			filter: drop-shadow(0px 0px 20px #FFFFFF);
 		}
 		
@@ -121,9 +145,16 @@
 		
 		
 		.title{
-			width:100%;
+			width:80%;
 			height:100px;
+			float:left;
+			line-height: 100px;
 		}  
+		.info{
+			width:80%;
+			float:left;  
+		
+		}
 
 		#cafe_name{
 			float:left;
@@ -167,9 +198,12 @@
 		.content_button{
 			padding-top:10px;
 			width:100%;
+			float: left;
+			height:auto;
+			overflow:hidden;  
 		}
 		.info_button{
-			width:50%;
+			width:20%;
 			height:50px;
 			text-align: center;
 			font-size: 1.2em;
@@ -178,22 +212,30 @@
 			
 		}
 		.review_button{
-			width:50%;
+			width:20%;
 			height:50px;
 			text-align: center;
 			font-size: 1.2em;
 			float:left;
-			border-bottom:2px solid #21610B;
+			border-bottom:2px solid #2E2E2E;
 			line-height: 50px;  		
 		}
+		
+		.regist_button{  
+			width:20%;
+			height:50px;
+			text-align: center;
+			font-size: 1.2em;
+			float:left;
+			line-height: 50px; 
+		}
+		
 		.cafe_infomation{
 			
 			display:none;
 			 
 		}  
-		.content_button{
-		 	height:100px;
-		}
+		
 		
 		.detail_info_button{
 			height:50px;  
@@ -210,7 +252,7 @@
 		.info_title{
 			height:40px;
 			border-bottom:1px solid #D8D8D8;
-			  
+			width:80%;  
 			font-size: 1.5em;
 			color:#585858;
 			
@@ -219,34 +261,49 @@
 		.basic_info{
 			height:200px;
 		}
+		.basic_info_each{
+			width:80%;
+		}
 		#basic_info_title{
 			margin-bottom: 20px;  
 		}
 		.detail_info{
-			height:350px;  
+			height:500px;  
+		}
+		.detail_info_button{
+			width:80%;
 		}
 		
 		.menu{
-			height:300px;
+			height:450px;
+			width:80%;
 		}
 		.facility{
-			height:300px;
+			height:450px;
 			display: none;
+			width:80%;
 		}
 		.service{
-			height:300px;
+			height:450px;
 			display: none;
+			width:80%;
 		}
 		.product{  
-			height:300px;
+			height:450px;
 			display: none;
+			width:80%;
 		}
 		
 		.cafe_photo{  
 			height:600px;
+			
+		}
+		.swiper-slide{
+			width:80%;  
 		}
 		.cafe_location{
 			height:600px;
+			
 		}  
 		
 		
@@ -273,9 +330,9 @@
 		}
 		
 		.visual{
-			width:90%;
+			width:80%;
 			height:500px;
-			margin:0 auto;
+			/* margin:0 auto; */
 			  
 			
 		}
@@ -292,13 +349,12 @@
         
         .visual .swiper-slide{
         	height:500px;
-        	background-position:center center;
-        	background-repeat:no-repeat;
-        	background-size:cover;
-        	text-align: center; 
         	float:left;
-        }    
-		
+        }   
+
+		#cafe_location_title{
+			margin-bottom:40px;
+		}  
 		/* #cafe_location_title{
 			margin-bottom:20px;  
 		}
@@ -352,11 +408,11 @@
 		
 		.graph_area{
             height:120px;  
-            width:400px;
+            width:450px;  
         }
         .graph_stack{
         	float:left;
-            width:300px;
+            width:332px;
             height:40px;
             background-color: #D8D8D8;
             box-sizing: border-box;
@@ -367,20 +423,16 @@
         }   
 
         .graph_rate{
-            text-align: right;
+            text-align: center;
             height:100%;
             background-color: #6d512f;
             box-sizing: border-box;
             border-radius: 35px;
             line-height: 40px;
-            width:250px;
+            float: left;
         }  
-
-        .graph_text{
-            float: right;
-            position: relative;
-            z-index: 110;
-        }
+        
+          
         .graph_logo{
             height: 80px;
             float: left;
@@ -393,19 +445,25 @@
             float: right;
             padding-left: 0px;
             position: relative;
-            left:25px;
-            bottom:10px;
-            z-index: 90;
+               
+            /* left:25px;
+            bottom:10px; */  
+            z-index: 200;
+            line-height: 40px;
+            margin:5px;
         }
         .graph_text{
-            float: right;
+            width:80px;  
+            text-align:center;
             font-size: 1.2em;
             font-weight: bold;
             color: #FFFFFF;
+            float: right;
         }
         
         .rate_visual_total{
-        	height:800px;
+        	height:auto;
+        	overflow:hidden;
         	width:100%;
         }     
 
@@ -413,14 +471,15 @@
 			height:120px;
 			padding:30px 0px;
 		}  
+		.rate_each{
+			float: left;
+			width:470px;
+			height:120px;  
+		}
 		
 		info2{  
 			height:100px;
 		} 
-		.rate_each{
-			float: left;
-			width:500px;
-		}
 		
 		
 		.cafe_reviews{
@@ -428,11 +487,15 @@
 		}
 		
 		.cafe_reviews {
+			height:auto;
+			overflow:hidden;
 			width:100%;   
 			/* height:2000px; */     
 		} 
 		.cafe_review_each{
-			width:90%;     
+			width:80%;     
+			height:auto;
+			overflow:hidden;
 			margin-bottom:40px;  
 			border-bottom:1px solid #D8D8D8;
 			
@@ -472,6 +535,9 @@
 			/* height:300px; */       
 		
 		}   
+		.my_rate{
+			font-weight: bold;
+		}
 		/* #rate_each2{   
 			width:100%;
 			
@@ -556,6 +622,103 @@
 			
 		}
 		
+		
+		/* 내 평가 보기 및 등록 */
+		.my_review{
+			display: none;
+		}
+		
+		.graph_name2{
+			width:100px;
+			float:left;
+		}
+		
+		
+		
+		.graph_area2{
+            height:120px;  
+            width:450px;  
+        }
+        .graph_stack2{
+        	float:left;
+            width:332px;
+            height:40px;
+            background-color: #D8D8D8;
+            box-sizing: border-box;
+            border-radius: 35px;
+            line-height: 40px;
+            /* position: relative;
+            left:60px;   */
+        }   
+
+        .graph_rate2{
+            text-align: center;
+            height:100%;
+            background-color: #6d512f;
+            box-sizing: border-box;
+            border-radius: 35px;
+            line-height: 40px;
+            float: left;
+        }  
+        
+          
+        .graph_logo2{
+            height: 80px;
+            float: left;
+            position: relative;
+            z-index: 100;
+            bottom: 25px;
+        }
+        .bean_img2{
+            height:30px;
+            float: right;
+            padding-left: 0px;
+            position: relative;
+               
+            /* left:25px;
+            bottom:10px; */  
+            z-index: 200;
+            line-height: 40px;
+            margin:5px;
+        }
+        .graph_text2{
+            width:80px;  
+            text-align:center;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #FFFFFF;
+            float: right;
+        }
+        
+        .rate_visual_total2{
+        	height:auto;
+        	overflow:hidden;
+        	width:100%;
+        }   
+        info22{  
+			height:100px;
+		}   
+
+		.rate_info22{
+			height:120px;
+			padding:30px 0px;
+		}  
+		.rate_each22{
+			float: left;
+			width: 470px;
+			height:120px;  
+		}
+		.cafe_rates22{
+			height:500px;
+			width:100%;
+		}
+		
+		.rate_info22 .rate_num2{
+			float:left;
+			margin-right:20px;
+			font-size: 1.5em;
+		}
+		
 	</style>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=197a1366c7c3fbd3d1f4e49445d212b0"></script>
 	
@@ -638,9 +801,12 @@
 			$('.info_button').click(function(){
 				console.log("click");
 				$('.info_button').css({
-					'border-bottom':'2px solid #d4b270' 
+					'border-bottom':'2px solid #2E2E2E' 
 				});
 				$('.review_button').css({
+					'border-style':'none' 
+				});
+				$('.regist_button').css({
 					'border-style':'none' 
 				});
 				$('.cafe_infomation').css({
@@ -648,6 +814,9 @@
 					
 				});
 				$('.cafe_review').css({
+					'display':'none'  
+				});
+				$('.my_review').css({
 					'display':'none'  
 				});
 				var swiper = new Swiper('.swiper', {
@@ -681,9 +850,12 @@
 			$('.review_button').click(function(){
 				console.log("click");
 				$('.review_button').css({
-					'border-bottom':'2px solid #d4b270' 
+					'border-bottom':'2px solid #2E2E2E' 
 				});
 				$('.info_button').css({
+					'border-style':'none' 
+				});
+				$('.regist_button').css({
 					'border-style':'none' 
 				});
 				$('.cafe_review').css({
@@ -692,32 +864,33 @@
 				$('.cafe_infomation').css({
 					'display':'none'
 				});
+				$('.my_review').css({
+					'display':'none'  
+				});
 				
-				var swiper = new Swiper('.swiper', {
-	                cssMode: true,
-	                loop : true,
-	                navigation: {
-	                nextEl: '.visual .swiper-button-next',
-	                prevEl: '.visual .swiper-button-prev',
-	                },
-	                pagination: {
-	                el: '.visual .swiper-pagination'
-	                },
-	                mousewheel: true,
-	                keyboard: true,
-	            });  
 				
-				var latitude = ${cafe.latitude};
-				var longitude = ${cafe.longitude};
-				console.log(latitude);
-				console.log(longitude);
+			});
+			$('.regist_button').click(function(){
+				console.log("click");
+				$('.regist_button').css({
+					'border-bottom':'2px solid #2E2E2E' 
+				});
+				$('.info_button').css({
+					'border-style':'none' 
+				});
+				$('.review_button').css({
+					'border-style':'none' 
+				});
+				$('.cafe_review').css({
+					'display':'none'  
+				});
+				$('.cafe_infomation').css({
+					'display':'none'
+				});
+				$('.my_review').css({
+					'display':'block'  
+				});
 				
-				var container = document.getElementById('cafe-map');
-				var options = {
-					center: new kakao.maps.LatLng(latitude, longitude),
-					level: 3
-				};
-				var map = new kakao.maps.Map(container, options);
 				
 			});	
 			
@@ -862,16 +1035,85 @@
 				success:function(data){
 					$('.review-view').html(data);
 					console.log(currentPage);
-				}
+				} 
 			});   
 			
 			// 종합평점 그래프 점수 동적화
-			var wifi_width = (${cafeRate.wifi_avg }/5)*300;
+			var wifi_width = (${cafeRate.wifi_avg }/5)*300+32;
 			$('#wifi-width').css({
 				'width':wifi_width
 			}); 
+			if (${cafeRate.wifi_avg }<1.5){
+				$('.graph_text').remove('#wifi-text');  
+				$('#wifi-width').parent().append('<div class="graph_text" id="wifi-text">${cafeRate.wifi_avg }점</div>');
+				$('#wifi-text').css({
+					'color':'#1C1C1C',
+					'float':'left'
+				});
+			}
+			var mood_width = (${cafeRate.mood_avg }/5)*300+32;
+			$('#mood-width').css({
+				'width':mood_width
+			});
+			if (${cafeRate.mood_avg }<2){
+				$('.graph_text').remove('#mood-text');  
+				$('#mood-width').parent().append('<div class="graph_text" id="mood-text">${cafeRate.mood_avg }점</div>');
+				$('#mood-text').css({
+					'color':'#1C1C1C',
+					'float':'left'
+				});
+			}
+			var service_width = (${cafeRate.service_avg }/5)*300+32;
+			$('#service-width').css({
+				'width':service_width
+			});
+			if (${cafeRate.service_avg }<2){
+				$('.graph_text').remove('#service-text');  
+				$('#service-width').parent().append('<div class="graph_text" id="service-text">${cafeRate.service_avg }점</div>');
+				$('#service-text').css({
+					'color':'#1C1C1C',
+					'float':'left'
+				});
+			}
+			var taste_width = (${cafeRate.taste_avg }/5)*300+32;
+			$('#taste-width').css({
+				'width':taste_width
+			});
+			if (${cafeRate.taste_avg }<2){
+				$('.graph_text').remove('#taste-text');  
+				$('#taste-width').parent().append('<div class="graph_text" id="taste-text">${cafeRate.taste_avg }점</div>');
+				$('#taste-text').css({
+					'color':'#1C1C1C',
+					'float':'left'
+				});
+			}
+			var price_width = (${cafeRate.price_avg }/5)*300+32;
+			$('#price-width').css({
+				'width':price_width
+			});
+			if (${cafeRate.price_avg }<2){
+				$('.graph_text').remove('#price-text');  
+				$('#price-width').parent().append('<div class="graph_text" id="price-text">${cafeRate.price_avg }점</div>');
+				$('#price-text').css({
+					'color':'#1C1C1C',
+					'float':'left'
+				});
+			}
+			var clean_width = (${cafeRate.clean_avg }/5)*300+32;
+			$('#clean-width').css({
+				'width':clean_width
+			});
+			if (${cafeRate.clean_avg }<2){
+				$('.graph_text').remove('#clean-text');  
+				$('#clean-width').parent().append('<div class="graph_text" id="clean-text">${cafeRate.clean_avg }점</div>');
+				$('#clean-text').css({
+					'color':'#1C1C1C',
+					'float':'left'
+				});
+			}
 			
-			
+			/* 내 평점 보기 및 등록 */
+			$('bean_img2').draggable();
 			
 		});        
 	 
@@ -932,24 +1174,28 @@
 					<div id="rate_num">${cafe.rate_avg }점&nbsp;|&nbsp;</div>
 				</div>
 				<div class="address"> ${cafe.cafe_address }</div>
-			</div>	
+			</div>
+			
+			<div class="content_button">
+				<div class="review_button">후기</div>
+				<div class="info_button">소개</div>
+				<div class="regist_button">내 평가</div>
+			</div>			
+			
+				
 		</div>
 	</div>
 	  
 	<!-- 상세정보 및 후기 콘텐츠 표기란 -->
 	<div class="content">
-		<div class="container">
-			<div class="content_button">
-				<div class="review_button">후기</div>
-				<div class="info_button">소개</div>
-			</div>			
-		</div>
+		
 		<div class="container">
 			<div class="cafe_infomation">
 				<div class="basic_info">
 					<div class="info_title" id="basic_info_title">운영정보</div>
 					
 					<div class="basic_info_content">
+						<div class="basic_info_each" id="info_intro">&nbsp;ㆍ${cafe.cafe_intro }</div>
 						<div class="basic_info_each" id="info_address">&nbsp;ㆍ${cafe.cafe_address }</div>
 						<div class="basic_info_each" id="info_tel">&nbsp;ㆍ${cafe.tel }</div>
 						<div class="basic_info_each" id="info_mg_time">&nbsp;ㆍ매주 08:00~23:00</div>
@@ -963,7 +1209,7 @@
 						<div class="button_each" id="service_btn">서비스</div>
 						<div class="button_each" id="product_btn">상품</div>
 					</div>
-					<div class="menu">
+					<div class="menu" style="overflow:scroll;" >
 						<c:forEach var="menu" items="${menuList }">
 							<div class="info_each">
 								<img src='/upload/menu/${menu.image }'/>
@@ -974,7 +1220,7 @@
 							</div>						
 						</c:forEach>
 					</div>
-					<div class="product">
+					<div class="product" style="overflow:scroll;" >
 						<c:forEach var="product" items="${productList }">
 							<div class="info_each">
 								<img src='/upload/product/${product.image }'/>
@@ -985,7 +1231,7 @@
 							</div>						
 						</c:forEach>
 					</div>
-					<div class="facility">
+					<div class="facility" style="overflow:scroll;" >
 						<div class="info_each">
 							<img src="img/coffee.png"/>
 							<div>
@@ -1057,7 +1303,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="service">
+					<div class="service" style="overflow:scroll;" >
 						<div class="info_each">
 							<img src="img/coffee.png"/>
 							<div>
@@ -1114,11 +1360,13 @@
 				<div class="cafe_location">
 					<div class="info_title" id="cafe_location_title">위치</div>
 					<div class="cafe_location_map">
-						<div id="cafe-map" style="width:500px;height:400px;"></div>	
+						<div id="cafe-map" style="width:80%;height:400px;"></div>	
 					</div> 
 				</div>
 			</div>		
 		</div>
+		
+		<!-- 내 리뷰 및 리뷰 등록 -->
 		<div class="container">
 			<div class="cafe_review">
 				<div class="info_title" id="basic_info_title">종합평점</div>
@@ -1141,9 +1389,9 @@
 						                <img src="img/taste.png" class="graph_logo">
 						            </div>
 						            <div class="graph_stack">
-						                <div class="graph_rate">
+						                <div class="graph_rate" id="taste-width">
 						                    <img src="img/bean.PNG" class="bean_img">
-						                    <div class="graph_text">${cafeRate.taste_avg }점</div>
+						                    <div class="graph_text" id="taste-text">${cafeRate.taste_avg }점</div>
 						                </div>
 						            </div>
 						        </div>
@@ -1157,9 +1405,9 @@
 						                <img src="img/mood.png" class="graph_logo">
 						            </div>
 						            <div class="graph_stack">
-						                <div class="graph_rate">
+						                <div class="graph_rate" id="mood-width">
 						                    <img src="img/bean.PNG" class="bean_img">
-						                    <div class="graph_text">${cafeRate.mood_avg }점</div>
+						                    <div class="graph_text" id="mood-text">${cafeRate.mood_avg }점</div>
 						                </div>
 						            </div>
 						        </div>
@@ -1173,9 +1421,9 @@
 						                <img src="img/service.png" class="graph_logo">
 						            </div>
 						            <div class="graph_stack">
-						                <div class="graph_rate">
+						                <div class="graph_rate" id="service-width">
 						                    <img src="img/bean.PNG" class="bean_img">
-						                    <div class="graph_text">${cafeRate.service_avg }점</div>
+						                    <div class="graph_text" id="service-text">${cafeRate.service_avg }점</div>
 						                </div>
 						            </div>
 						        </div>
@@ -1191,7 +1439,7 @@
 						            <div class="graph_stack">
 						                <div class="graph_rate" id="wifi-width">
 						                    <img src="img/bean.PNG" class="bean_img">
-						                    <div class="graph_text">${cafeRate.wifi_avg }점</div>
+						                    <div class="graph_text" id="wifi-text">${cafeRate.wifi_avg }점</div>
 						                </div>
 						            </div>
 						        </div>
@@ -1205,9 +1453,9 @@
 						                <img src="img/clean.png" class="graph_logo">
 						            </div>
 						            <div class="graph_stack">
-						                <div class="graph_rate">
+						                <div class="graph_rate" id="clean-width">
 						                    <img src="img/bean.PNG" class="bean_img">
-						                    <div class="graph_text">${cafeRate.clean_avg }점</div>
+						                    <div class="graph_text" id="clean-text">${cafeRate.clean_avg }점</div>
 						                </div>
 						            </div>
 						        </div>
@@ -1221,9 +1469,9 @@
 						                <img src="img/price.png" class="graph_logo">
 						            </div>
 						            <div class="graph_stack">
-						                <div class="graph_rate">
+						                <div class="graph_rate" id="price-width">
 						                    <img src="img/bean.PNG" class="bean_img">
-						                    <div class="graph_text">${cafeRate.price_avg }점</div>
+						                    <div class="graph_text" id="price-text">${cafeRate.price_avg }점</div>
 						                </div>
 						            </div>
 						        </div>  
@@ -1238,7 +1486,124 @@
 				</div>
 			</div>
 		</div>
-	</div>   
+		<div class="container">
+			<div class="my_review">
+				<div class="info_title" id="basic_info_title2">내 평가</div>
+				<div class="cafe_rates2">
+					<div class="rate_info22">
+						<div class="info22">
+							<div class="rate_avg">
+								<img src="img/star_colored.png" id="star_shape2">
+								<div class="rate_num2">평균 ${cafeRate.cafe_total_avg }점</div>
+								
+							</div>
+						</div>	
+					</div>
+					<div class="rate_visual_total2">
+						<div class="rate_each22">
+							<div class="rate_visual2" id="taste_visual_tatal2">
+								<div class="graph_area2">
+						            <div>
+						                <img src="img/taste.png" class="graph_logo2">
+						            </div>
+						            <div class="graph_stack2">
+						                <div class="graph_rate2" id="taste-width2">
+						                    <img src="img/bean.PNG" class="bean_img2">
+						                    <div class="graph_text" id="taste-text2">${cafeRate.taste_avg }점</div>
+						                </div>
+						            </div>
+						        </div>
+							</div>
+							<div class="rate_name2" id="taste_name_tatal2"></div>
+						</div>
+						<div class="rate_each22">
+							<div class="rate_visual2" id="price_visual_tatal2">
+								<div class="graph_area2">
+						            <div>
+						                <img src="img/mood.png" class="graph_logo2">
+						            </div>
+						            <div class="graph_stack2">
+						                <div class="graph_rate2" id="mood-width2">
+						                    <img src="img/bean.PNG" class="bean_img2">
+						                    <div class="graph_text2" id="mood-text2">${cafeRate.mood_avg }점</div>
+						                </div>
+						            </div>
+						        </div>
+							</div>
+							<div class="rate_name2" id="price_name_tatal2"></div>
+						</div>
+						<div class="rate_each22">
+							<div class="rate_visual2" id="service_visual_tatal2">
+								<div class="graph_area2">
+						            <div>
+						                <img src="img/service.png" class="graph_logo2">
+						            </div>
+						            <div class="graph_stack2">
+						                <div class="graph_rate2" id="service-width2">
+						                    <img src="img/bean.PNG" class="bean_img2">
+						                    <div class="graph_text2" id="service-text2">${cafeRate.service_avg }점</div>
+						                </div>
+						            </div>
+						        </div>
+							</div>
+							<div class="rate_name2" id="service_name_tatal2"></div>
+						</div>
+						<div class="rate_each22">
+							<div class="rate_visual2" id="facimood_visual_tatal2">
+								<div class="graph_area2">
+						            <div>
+						                <img src="img/wifi2.png" class="graph_logo2">
+						            </div>
+						            <div class="graph_stack2">
+						                <div class="graph_rate2" id="wifi-width2">
+						                    <img src="img/bean.PNG" class="bean_img2">
+						                    <div class="graph_text2" id="wifi-text2">${cafeRate.wifi_avg }점</div>
+						                </div>
+						            </div>
+						        </div>
+							</div>
+							<div class="rate_name2" id="facimood_name_tatal2"></div>
+						</div>
+						<div class="rate_each22">
+							<div class="rate_visual2" id="wifiplug_visual_tatal2">
+								<div class="graph_area2">
+						            <div>
+						                <img src="img/clean.png" class="graph_logo2">
+						            </div>
+						            <div class="graph_stack2">
+						                <div class="graph_rate2" id="clean-width2">
+						                    <img src="img/bean.PNG" class="bean_img2">
+						                    <div class="graph_text2" id="clean-text2">${cafeRate.clean_avg }점</div>
+						                </div>
+						            </div>
+						        </div>
+							</div>
+							<div class="rate_name2" id="wifiplug_name_tatal2"></div>
+						</div>
+						<div class="rate_each22">
+							<div class="rate_visual2" id="clean_visual_tatal2">
+								<div class="graph_area2">
+						            <div>
+						                <img src="img/price.png" class="graph_logo2">
+						            </div>
+						            <div class="graph_stack2">
+						                <div class="graph_rate2" id="price-width2">
+						                    <img src="img/bean.PNG" class="bean_img2">
+						                    <div class="graph_text2" id="price-text2">${cafeRate.price_avg }점</div>
+						                </div>
+						            </div>
+						        </div>  
+							</div>  
+							<div class="rate_name2" id="clean_name_tatal2"></div>
+						</div>
+					</div>
+				</div>
+				
+				
+				</div>
+			</div>
+		</div>
+	   
 	
 	<!-- 푸터 include -->
 	<%@ include file="/WEB-INF/view/include/footer.jsp"%>

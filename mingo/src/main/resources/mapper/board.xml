@@ -2,26 +2,107 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="board">
-	<select id="list" resultType="vo.BoardVO" parameterType="Integer">
-		SELECT *, (SELECT nickname FROM mingo.user WHERE user_id=mingo.board.user_id)
-		 AS nickname FROM mingo.board WHERE type = #{type}
+	<select id="list" resultType="vo.BoardVO" parameterType="vo.BoardVO">
+		SELECT b.*, u.nickname
+		FROM mingo.board as b join user as u
+		on b.user_id = u.user_id 
+		<where>
+			 	<if test="type != null and type > 0">
+					and b.type = #{type}
+				</if>
+				<if test="s1 != null">
+					<choose>
+						<when test="s1 == 0">
+						
+						</when>
+						<when test="s1 == 1">
+						and b.regdate > DATE_ADD(NOW(),INTERVAL -7 DAY)
+						</when>
+						<when test="s1 == 2">
+						and b.regdate > DATE_ADD(NOW(),INTERVAL -30 DAY)
+						</when>
+						<when test="s1 == 3">
+						and b.regdate > DATE_ADD(NOW(),INTERVAL -365 DAY)
+						</when>
+					</choose>
+				</if>
+				<if test=" k != null and k !='' and s2 !=null">
+					
+					<choose>
+						<when test="s2 == 0">
+							and b.title like '%${k}%'
+						</when>
+						<when test="s2 == 1">
+							and b.contents like '%${k}%'
+						</when>
+						<when test="s2 == 2">
+							and u.nickname like '%${k}%'
+						</when>
+						<when test="s2 == 3">
+							and b.title like '%${k}%' or b.contents like '%${k}%'
+						</when>
+					</choose>
+					
+				</if>
+		</where>
 		
 		ORDER BY board_id DESC
 		LIMIT #{startIndex},#{limit}
 	
 	</select>
-	
-	
-   <select id="count" resultType="Integer" parameterType="Integer">
-	SELECT COUNT(*) FROM mingo.board where type =#{type}
+  <select id="count" resultType="Integer" parameterType="vo.BoardVO">
+		SELECT count(*)
+		FROM mingo.board as b join user as u
+		on b.user_id = u.user_id
+		<where>
+			 	<if test="type != null and type > 0">
+					and b.type = #{type}
+				</if>
+				<if test="s1 != null">
+					<choose>
+						<when test="s1 == 0">
+						
+						</when>
+						<when test="s1 == 1">
+						and b.regdate > DATE_ADD(NOW(),INTERVAL -7 DAY)
+						</when>
+						<when test="s1 == 2">
+						and b.regdate > DATE_ADD(NOW(),INTERVAL -30 DAY)
+						</when>
+						<when test="s1 == 3">
+						and b.regdate > DATE_ADD(NOW(),INTERVAL -365 DAY)
+						</when>
+					</choose>
+				</if>
+				<if test=" k != null and k !='' and s2 !=null">
+					
+					<choose>
+						<when test="s2 == 0">
+							and b.title like '%${k}%'
+						</when>
+						<when test="s2 == 1">
+							and b.contents like '%${k}%'
+						</when>
+						<when test="s2 == 2">
+							and u.nickname like '%${k}%'
+						</when>
+						<when test="s2 == 3">
+							and b.title like '%${k}%' or b.contents like '%${k}%'
+						</when>
+					</choose>
+					
+				</if>
+		</where>
 	
 	</select>
+	
+	
 	
 	<insert id="insert" parameterType="vo.BoardVO" useGeneratedKeys="true">
 		INSERT INTO mingo.board
 		(board_id, user_id, type, title, contents, regdate, readcount)
 		values
-		(#{board_id}, 15, #{type}, #{title}, #{contents}, NOW(),#{readcount})
+		(#{board_id}, 1, #{type}, #{title}, #{contents}, NOW(),#{readcount})
 		<selectKey keyProperty="board_id" resultType="Integer" order="AFTER">
 			SELECT last_insert_id()
 		</selectKey>
@@ -51,9 +132,53 @@
 		
 	</select>
 	
+	<select id="getReply" parameterType="Integer" resultType="vo.BoardCommentVO">
+		select * 
+		from mingo.board_comment
+		where board_comment_id = #{board_comment_id}
+	</select>
 	<update id="replySeq" parameterType="vo.BoardCommentVO">
 		UPDATE mingo.board_comment SET seq=seq+1 WHERE
 		 ref=#{ref} AND seq > #{seq}
+	</update>
+	<update id="replySeqDown" parameterType="vo.BoardCommentVO">
+		UPDATE mingo.board_comment SET seq=seq-1 WHERE
+		 ref=#{ref} AND seq > #{seq}
+	</update>
+	<delete id="replyDelete" parameterType="vo.BoardCommentVO">
+		DELETE FROM mingo.board_comment 
+		WHERE board_comment_id=#{board_comment_id}
+	</delete>
+	
+	<!-- 대댓글이 존재하는지 검사하는 sql -->
+	<select id="isRereExist" parameterType="vo.BoardCommentVO" resultType="Integer">
+		select count(*) from board_comment
+		where 
+					ref = #{ref}
+					and lev = (select lev from board_comment  where board_comment_id=#{board_comment_id}) +1
+					and seq = (select lev from board_comment  where board_comment_id=#{board_comment_id})+1
+	</select>
+	
+	<update id="updateRemoved" parameterType="Integer" >
+		
+		update board_comment
+		set contents='삭제된 게시물입니다', is_deleted = 1
+		where board_comment_id=#{board_comment_id};
+	</update>
+	<select id="getBoardCommentList" parameterType="Integer" resultType="vo.BoardCommentVO">
+		select c.*
+		from board as b join board_comment as c
+		on b.board_id = c.board_id
+		where b.board_id = #{board_id} and is_deleted = 1
+		order by seq desc;
+	
+	</select>
+	
+	
+	<update id="replyLevDown" parameterType="vo.BoardCommentVO">
+		UPDATE mingo.board_comment 
+		SET lev=lev-1 
+		WHERE ref=#{ref} AND seq > #{seq}
 	</update>
 	
 	<insert id="writeComment" parameterType="vo.BoardCommentVO" useGeneratedKeys="true">
@@ -61,40 +186,66 @@
 		(board_comment_id,user_id, board_id, regdate,
 		ref, lev, seq, contents)
 		values
-		(#{board_comment_id}, 15, #{board_id},NOW(), 
+		(#{board_comment_id}, 1, #{board_id},NOW(), 
 		#{board_id}, #{lev} , #{seq} ,#{contents})
 		<selectKey keyProperty="board_comment_id" resultType="Integer" order="AFTER">
 			SELECT last_insert_id()
 		</selectKey>
 	</insert>
+	<update id="increaseReplyNum" parameterType="vo.BoardCommentVO">
+		update mingo.board
+		set reply_num = reply_num + 1
+		where board_id = #{board_id}
+	</update>
+	<update id="decreaseReplyNum" parameterType="vo.BoardCommentVO">
+		update mingo.board
+		set reply_num = reply_num - 1
+		where board_id = #{board_id}
+	</update>
 	
 	<insert id="replyInsert" parameterType="vo.BoardCommentVO">
 		INSERT INTO mingo.board_comment
 		(user_id, board_id, regdate,
 		ref, lev, seq, contents)
 		values
-		(15, #{board_id},NOW(), 
+		(1, #{board_id},NOW(), 
 		#{ref}, #{lev} , #{seq} ,#{contents})
 	</insert>
 	
-	<delete id="replyDelete" parameterType="Integer">
-		DELETE FROM mingo.board_comment WHERE board_comment_id=#{board_comment_id}
-	</delete>
+	<insert id="insertLike" parameterType="vo.BoardLikeVO">
+		insert into board_like
+		(user_id, board_id, type)
+		values
+		(#{user_id},#{board_id},#{type})
+	</insert>
+	<insert id="insertDislike" parameterType="vo.BoardLikeVO">
+		insert into board_like
+		(user_id, board_id, type)
+		values
+		(#{user_id},#{board_id},#{type})
+	</insert>
+	<select id="getLikeNum" parameterType="Integer" resultType="Integer">
+		select count(*)
+		from board_like
+		where board_id = #{board_id} and type=1;
+	</select>
+	<select id="getDislikeNum" parameterType="Integer" resultType="Integer">
+		select count(*)
+		from board_like
+		where board_id = #{board_id} and type=2;
+	</select>
+	<update id="updateLikeNum" parameterType="Integer">
+		update mingo.board
+		set like_num = (select count(*) from board_like where board_id = #{board_id} and type=1)
+		where board_id = #{board_id};
+	</update>
+	
 	
 	<select id="countCommentList" parameterType="Integer" resultType="Integer">
-		select count(*) from board_comment where board_id = #{board_id}
+		select count(*) from board_comment where board_id = #{board_id} and is_deleted=0;
 	</select>
 	
-	<insert id="likeBoard" parameterType="vo.LikeBoardVO">  
-		UPDATE mingo.like_board 
-		SET like_type=like_type+1
-		WHERE user_id=#{user_id} AND board_id=#{board_id}
-	</insert> 
-	<delete id="likeBoardCancel" parameterType="vo.LikeBoardVO">  
-		UPDATE mingo.like_board
-		SET like_type=0
-		WHERE user_id=#{user_id} AND board_id=#{board_id}
-	</delete>
+	
 	<update id="refUpdate" parameterType="Integer">
 		UPDATE mingo.board_comment SET ref=#{board_comment_id} WHERE board_comment_id=#{board_comment_id}
 	</update>

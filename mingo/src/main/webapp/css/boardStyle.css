@@ -132,11 +132,13 @@ a{
 }
 .reply{
     position: relative;
-    border-bottom:1px solid #a1a1a1;
     box-sizing: border-box;
-    padding:16px;
+    padding:16px 0px 16px 0px;
 }
 
+.reply-wrapper{
+	border-bottom:1px solid #a1a1a1;
+}
 .reply-form{
     border:1px solid #a1a1a1;
     

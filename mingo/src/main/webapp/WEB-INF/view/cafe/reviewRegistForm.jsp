@@ -2,198 +2,187 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
 
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>HTML5 Basic</title>
-        <meta name="viewport" content="user-scalable=no, initial-scale=1">
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>jQuery UI Draggable - Constrain movement</title>
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<link rel="stylesheet" href="/resources/demos/style.css">
+	<style>
+	/* .draggable { width: 90px; height: 90px; padding: 0.5em; float: left; margin: 0 10px 10px 0; }
+	#draggable, #draggable2 { margin-bottom:20px; }
+	#draggable { cursor: n-resize; }
+	#draggable2 { cursor: e-resize; }
+	#containment-wrapper { width: 95%; height:150px; border:2px solid #ccc; padding: 10px; }
+	h3 { clear: left; } */
+	</style>
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	
+	<script>
+		$(function(){
+			$("#drag-taste").draggable({containment: "#containment-wrapper", scroll: false});
+			
+		
+		
+			$('#drag-taste').on('drag', function(){
+				var taste_width = $('#drag-taste').position().left+25;
+				$('#stack-taste').css({
+					'width':taste_width,
+					'background-color':'#6d512f'
+				});
+				
+			});
+			
+			$('#drag-taste').bind("dragstop", function(event, ui){
+				var taste_width = $('#drag-taste').position().left+25;
+				var taste_final = 0;
+				if (taste_width<=75){
+					taste_final = 0;
+				} else if (taste_width>65 && taste_width<=135){
+					taste_final = 70;
+				} else if (taste_width>135 && taste_width<=205){
+					taste_final = 140;
+				} else if (taste_width>205 && taste_width<=275){
+					taste_final = 210;
+				} else if (taste_width>275 && taste_width<=345){
+					taste_final = 280;
+				} else{
+					taste_final = 350;
+				}				
+				$(this).css({
+					'left':taste_final
+				})
+				var taste_width = $('#drag-taste').position().left+40;
+				$('#stack-taste').css({
+					'width':taste_width,
+					'background-color':'#6d512f'  
+				});  
+		    });
+			
+			$('#containment-wrapper').click(function(e){
+				var mouse_x = e.pageX;
+				var stack_x = $(this).offset().left;
+				var taste_x = mouse_x-stack_x;
+				var taste_final = 0;
+				if (taste_x<=75){
+					taste_final = 0;
+				} else if (taste_x>65 && taste_x<=135){
+					taste_final = 70;
+				} else if (taste_x>135 && taste_x<=205){
+					taste_final = 140;
+				} else if (taste_x>205 && taste_x<=275){
+					taste_final = 210;
+				} else if (taste_x>275 && taste_x<=345){
+					taste_final = 280;
+				} else{
+					taste_final = 350;
+				}
+				$('#drag-taste').css({
+					'left':taste_final
+				})
+				$('#stack-taste').css({
+					'width':taste_final+50,
+					'background-color':'#6d512f'  
+				}); 
+				
+				
+			});
+			
+		
+		});
+		
+	</script>
+	<style>
+		/* .graph_area{
+            height:150px;
+            width:600px;
+        }
+        .graph_area > div{
+            float:left;
+        }
         
-        
-        <script src="js/swiper.min.js"></script>
-        <script src="http://code.jquery.com/jquery-3.4.1.js"></script>
-        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <style>
-            .graph_area{
-                height:150px;
-                width:600px;
-            }
-            .graph_area > div{
-                float:left;
-            }
+        .graph_stack{
+            width:400px;
+            height:50px;
+            background-color: #D8D8D8;
+            box-sizing: border-box;
+            border-radius: 40px;
+            line-height: 50px;
             
-            .graph_stack{
-                width:400px;
-                height:50px;
-                background-color: #D8D8D8;
-                box-sizing: border-box;
-                border-radius: 40px;
-                line-height: 50px;
-                
-            }
+        }
 
-            .graph_rate{
-                text-align: right;
-                height:100%;
-                box-sizing: border-box;
-                
-                line-height: 50px;
-                width:20%;
-                float: left;
-            }
+        .graph_rate{
+            text-align: right;
+            height:100%;
+            box-sizing: border-box;
+            
+            line-height: 50px;
+            width:20%;
+            float: left;
+        }
 
-            .graph_text{
-                
-            }
-            .graph_logo{
-                height: 40px;
-                float: left;
-                position: relative;
-                z-index: 100;
-                left:40px;
-                top:5px;   
+        .graph_text{
+            
+        }
+        .graph_logo{
+            height: 40px;
+            float: left;
+            position: relative;
+            z-index: 100;
+            left:40px;
+            top:5px;   
 
-            }
-            .bean_img{
-                height:70px;
-                float: right;
-                padding-left: 0px;
-                position: relative;
-                left:30px;
-                bottom:10px;
-                z-index: 90;
-            }
-            .graph_text{
-                float: right;
-                font-size: 1.5em;
-                font-weight: bold;
-                color: #2E2E2E;
-            }
-            .graph_rate:nth-child(1){
-   				border-radius: 50px 0 0 50px;
-            }
-	    		
-
-
-        </style>
-    	<script type="text/javascript">
-    	  	
-    		$(function(){
-    			$('.graph_rate').click(function(){
-    				var location = $(this).children('label').attr('value')*80;
-    				console.log(location);
-    				$('.graph_logo').css({
-    					'left':location
-    				});
-    				
-    			});
-    			
-    			
-    			
-    			
-    			/* $('.graph_stack').hover(function(){
-		    		$('.graph_rate').mouseover(function(){
-		    			$(this).prevAll().css({
-			                'background-color': '#FACC2E'
-		    			});
-		    			$(this).find(':nth-child(1)').css({
-		    				'border-radius': '50px 0 0 50px'
-		    			});  
-		    			$(this).css({
-		    				'border-top-right-radius': '50px',  
-		    				'border-bottom-right-radius': '50px',  
-			                'background-color': '#FACC2E'
-		    			});
-		    		}).mouseleave(function(){
-		    			$('.graph_rate').css({
-		    				'border-top-right-radius': '0',  
-		    				'border-bottom-right-radius': '0', 
-		    				'background-color': 'transparent'	
-		    			});	
-		    		}).click(function(){
-		    			$('.graph_rate').off(); 
-		    		});  
-    			}, function(){
-    				$('.graph_rate').off();
-    			}); */
-    			    
-    			
-    		});  
-    		
-	    	
-    	
-    	
-    	
-    	</script>
-    </head>
-    <body>  
-        <h1>리뷰 등록 폼</h1><br>
-        <div class="graph_area">
-            <div>
-                <img src="img/wifi.png" class="graph_logo">
-            </div>
-            <div class="graph_stack">
-                <div class="graph_rate"><label value="1"></label></div>   
-                <div class="graph_rate"><label value="2"></label></div>   
-                <div class="graph_rate"><label value="3"></label></div>   
-                <div class="graph_rate"><label value="4"></label></div>   
-                <div class="graph_rate"><label value="5"></label></div>   
-         
-            </div>
-            <div class="graph_text">10점</div>
+        }
+        .bean_img{
+            height:70px;
+            float: right;
+            padding-left: 0px;
+            position: relative;
+            left:30px;
+            bottom:10px;
+            z-index: 90;
+        }
+        .graph_text{
+            float: right;
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #2E2E2E;
+        }
+        .graph_rate:nth-child(1){
+			border-radius: 50px 0 0 50px;
+        } */
+            
+    	/* draggable 스타일 */
+        
+        .graph_area{width:400px; height:50px; border-radius:50px; background-color:#E6E6E6; }
+        .drag-button{width:50px; height:50px; border-radius:50px;}
+        .ui-widget-content{width:100%; height:100%; border-radius:50px;position:relative; }
+        #stack-taste{height:50px; border-radius:50px;}
+	</style>  
+	
+</head>
+<body>
+<h1>리뷰 등록 폼</h1><br>
+    <div class="graph_area" id="containment-wrapper">
+        <div class="graph_stack" id="stack-taste">
+	        <div class="drag-button">
+	            <img src="img/taste.png" class="draggable ui-widget-content" id="drag-taste" >
+	        </div>     
         </div>
-        
-        
-        
-        
-        <form action="registReview.do" method="post" enctype="multipart/form-data">
-        	<div>
-				<label for = "contents">내용: </label>   
-				<input type="text" name="contents" />	
-			</div>
-        	<div>
-				<label for = "taste_score">맛: </label>
-				<input type="text" name="taste_score" />	
-			</div>  
-        	<div>
-				<label for = "price_score">가격: </label>
-				<input type="text" name="price_score" />	
-			</div>
-        	<div>
-				<label for = "service_score">서비스: </label>
-				<input type="text" name="service_score"/>	
-			</div>
-        	<div>
-				<label for = "wifi_score">와이파이 및 플러그: </label>
-				<input type="text" name="wifi_score" />	
-			</div>
-        	<div>
-				<label for = "mood_score">시설 및 분위기: </label>
-				<input type="text" name="mood_score"/>	
-			</div>
-        	<div>
-				<label for = "clean_score">청결도: </label>
-				<input type="text" name="clean_score" />	
-			</div>
-        	<div>
-				<label for = "image_file">리뷰 사진: </label>
-				<input type="file" name="image_file" />	
-			</div>
-        	<div>
-				<input type="submit" value="제출"/>	
-			</div>
-        	<div>
-				<input type="text" name="user_id" value="${userVO.user_id }"/>	
-				<input type="text" name="cafe_id" value="${cafe_id}"/>	
-			</div>  
-        	
-        </form><br><br><br><br><br>
-        
-        
-        
-        
-        
+        <div class="graph_text">10점</div>
+    </div>
 
 
-    </body>
+
+<!-- <div id="containment-wrapper">
+	<div id="draggable3" class="draggable ui-widget-content">
+		<p>I'm contained within the box</p>
+	</div>
+</div> -->
+ 
+ 
+</body>
 </html>

@@ -1,14 +1,15 @@
 package service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import dao.BoardDAO;
 import vo.BoardCommentVO;
+import vo.BoardLikeVO;
 import vo.BoardVO;
-import vo.LikeBoardVO;
 
 
 
@@ -24,8 +25,8 @@ public class BoardService {
 		return list;
 	}
 
-	public int[] boardCount(int type) {
-		int listcount = boardDAO.count(type); // 전체 갯수
+	public int[] boardCount(BoardVO vo) {
+		int listcount = boardDAO.count(vo); // 전체 갯수
 		int totalpage = listcount / 10; // 총페이지수
 		if (listcount % 10 > 0)
 			totalpage++;
@@ -78,17 +79,82 @@ public class BoardService {
 		
 		return boardDAO.replyInsert(cvo);
 	}
-	public int replyDelete(int board_comment_id) {
-		return boardDAO.replyDelete(board_comment_id); 
+	
+	public int replyDeleteProcess(BoardCommentVO cvo) {
+		//id에 해당하는 comment 객체를 얻어온다.
+		int result=0;
+		BoardCommentVO comment = null;
+		int isRereExist = 0;
+		comment = boardDAO.getReply(cvo.getBoard_comment_id());
+		int level = comment.getLev();
+		isRereExist = boardDAO.isRereExist(comment);
+		
+		//대댓글들이 달려있는데 삭제시키는 경우
+		//자기자신을 삭제할때 화면에는 댓글이 표시되도록 하되, 삭제된 게시물이라고 알려준다.
+		if( isRereExist > 0) {
+			//board의 리플 갯수를 하나 내린다.
+			//is_deleted 컬럼에 1 설정한다.
+			boardDAO.downReplyNum(comment.getBoard_id());
+			result = boardDAO.updateRemoved(comment.getBoard_comment_id());
+		}else { //그냥 지운다.
+			
+			
+			//board의 리플 갯수를 하나 내린다.
+			boardDAO.downReplyNum(comment.getBoard_id());
+			
+			//해당 id의 reply 로우를 삭제한다.
+			result = boardDAO.replyDelete(comment); 
+			
+			//원글이랑 ref가 같고 seq가 큰 모든 글을 seq-1 해준다.
+			boardDAO.replySeqDown(comment);
+		}
+		
+		return result;
 	}
+	
 	public int listCount(int board_id) {
 		return boardDAO.listCount(board_id);
 	}
-	public int likeBoard(LikeBoardVO lvo) {
-		return boardDAO.likeBoard(lvo);
+
+	
+
+	public void refreshDB(int board_id) {
+		//해당 board_id에 가져오는 리플들 리스트중에서
+		// is_deleted가 1인것을 가져오고
+		List<BoardCommentVO> board_comment_list = boardDAO.getBoardCommentList(board_id);
+		// 대댓글이 달려있는지 검사하고(ref가 같으면서 seq+1, lev+1이 없는경우)
+		for( BoardCommentVO i : board_comment_list) {
+			//대댓글이 존재하면
+			System.out.println(i.getBoard_comment_id());
+			if(boardDAO.isRereExist(i) > 0) {
+				continue;
+			}else { //존재하지 않으면 seq넘버 정리하고, 해당 댓글을 삭제한다.
+				boardDAO.replyDelete(i);
+				
+				//원글이랑 ref가 같고 seq가 큰 모든 글을 seq-1 해준다.
+				boardDAO.replySeqDown(i);
+			}
+		}
+		
 	}
-	public int likeBoardCancel(LikeBoardVO lvo) {
-		int r = boardDAO.likeBoardCancel(lvo);
-		return r;
+
+
+	public int upLikeNum(BoardLikeVO vo) {
+		boardDAO.insertLike(vo);
+		boardDAO.updateLikeNum(vo.getBoard_id());
+		int num = boardDAO.getLikeNum(vo.getBoard_id());
+		
+		return num;
 	}
+
+	public int upBadNum(BoardLikeVO vo) {
+		boardDAO.insertBad(vo);
+		int num = boardDAO.getDislikeNum(vo.getBoard_id());
+		return num;
+	}
+
+	
+
+	
+
 }

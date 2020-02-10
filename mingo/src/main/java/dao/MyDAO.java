@@ -13,7 +13,7 @@ import vo.BoardVO;
 import vo.CafeRateVO;
 import vo.CafeVO;
 import vo.CollectCafeVO;
-import vo.LikeBoardVO;
+import vo.BoardLikeVO;
 import vo.ReviewVO;
 import vo.UserVO;
 
