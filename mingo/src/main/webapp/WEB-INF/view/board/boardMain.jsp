@@ -14,6 +14,7 @@ List<BoardVO> list = (List<BoardVO>)request.getAttribute("list"); // 목록 (mod
 BoardVO vo = (BoardVO)request.getAttribute("vo");	// vo객체 (model 저장한 "vo")
 int totalpage = (Integer)request.getAttribute("totalpage"); // 전체페이지수 (model에 저장한 "totalpage")
 
+
 %>
 <head>
     <meta charset="UTF-8">
@@ -28,7 +29,15 @@ int totalpage = (Integer)request.getAttribute("totalpage"); // 전체페이지�
     <!-- 내가 만든 파일-->
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/boardStyle.css">
     <script type="text/javascript" src="<%=request.getContextPath() %>/js/boardScript.js"></script>
-    
+    <script>
+    	
+    	
+    	
+    	var s1 = ${s1};
+    	var s2 = ${s2};
+    	var k = '${k}';
+    	
+    </script>
 </head>
 
 <body>
@@ -64,7 +73,8 @@ int totalpage = (Integer)request.getAttribute("totalpage"); // 전체페이지�
                 <c:forEach  items="${list}" var="BoardVO">
                 <li class="list-group-item">
                     <div id="b-num" style="float:left;width:60px;height:24px;">${BoardVO.board_id}</div>
-                    <a href="viewBoard.do?board_id=${BoardVO.board_id}&page=<%=vo.getPage()%>&type=<%=vo.getType()%>" id="b-title" style="float:left;width:346px;height:24px;display:block">${BoardVO.title}
+                    <a href="viewBoard.do?board_id=${BoardVO.board_id}&page=<%=vo.getPage()%>&type=<%=vo.getType()%>&s1=${s1}&s2=${s2}&k=${k}" 
+                    id="b-title" style="float:left;width:346px;height:24px;display:block">${BoardVO.title}
                     		<!--  리플 없으면 아무것도 안띄우고 1개라도 있으면 빨간색으로 [3]이런식으로 표시 -->
                     		<c:if test="${BoardVO.reply_num > 0 }">
                     			<span style="color:red;text-align:center;" >&nbsp;[${BoardVO.reply_num }]</span>
@@ -94,7 +104,7 @@ int totalpage = (Integer)request.getAttribute("totalpage"); // 전체페이지�
                     	
                     </div>
                     <div id="b-readcount" style="float:left;width:60px;height:24px;">${BoardVO.readcount}</div>
-                    <div id="b-goodcount" style="float:left;width:60px;height:24px;">0</div> 
+                    <div id="b-goodcount" style="float:left;width:60px;height:24px;">${BoardVO.like_num }</div> 
                 </li>
                 </c:forEach>
             </div>
@@ -115,7 +125,7 @@ int totalpage = (Integer)request.getAttribute("totalpage"); // 전체페이지�
                 <li class="page-item"><a class="page-link" href="#">9</a></li>
                 <li class="page-item"><a class="page-link" href="#">10</a></li>
                 <li class="page-item"><a class="page-link" href="#">Next</a></li> -->
-                <button type="button" class="btn btn-secondary btn-write" onclick="location.href='writeBoard.do?type=<%=vo.getType()%>&page=<%=vo.getPage()%>' ">글쓰기</button>
+                <button type="button" class="btn btn-secondary btn-write" onclick="location.href='writeBoard.do?type=<%=vo.getType()%>&page=<%=vo.getPage()%>&s1=${s1}&s2=${s2}&k=${k}' ">글쓰기</button>
             </ul>
             <form action="listBoard.do?" id="filter-form">
             	<input type="hidden" name="page"  value="<%=vo.getPage()%>"/>
@@ -124,20 +134,20 @@ int totalpage = (Integer)request.getAttribute("totalpage"); // 전체페이지�
             	
 	            <div class="input-group justify-content-center">
 	                <div class="input-group-prepend">
-	                    <select class="form-control filter" name="search_option1" id="search_option1">
-	                        <option value="1">전체기간</option>
-	                        <option value="2">1주</option>
-	                        <option value="3">1개월</option>
-	                        <option value="4">1년</option>
+	                    <select class="form-control filter" name="s1" id="s1">
+	                        <option value="0">전체기간</option>
+	                        <option value="1">1주</option>
+	                        <option value="2">1개월</option>
+	                        <option value="3">1년</option>
 	                    </select>
-	                    <select class="form-control filter" name="search_option2" id="search_option2">
-	                        <option value="1">제목</option>   
-	                        <option value="2">내용</option>
-	                        <option value="3">글쓴이</option>
-	                        <option value="4">제목+내용</option>
+	                    <select class="form-control filter" name="s2" id="s2">
+	                        <option value="0">제목</option>   
+	                        <option value="1">내용</option>
+	                        <option value="2">글쓴이</option>
+	                        <option value="3">제목+내용</option>
 	                    </select>
 	                    
-	                    <input type="text" class="form-control mr-2" style="width:188px" name="keyword" id="keyword">
+	                    <input type="text" class="form-control mr-2" style="width:188px" name="k" id="k">
 	                    <button type="button" class="form-control" style="width:80px;" onclick="filterSearch();">검색</button>
 	                </div>
 	                

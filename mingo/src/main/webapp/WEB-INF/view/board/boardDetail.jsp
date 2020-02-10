@@ -16,6 +16,22 @@
 	int nowPage = (Integer) request.getAttribute("page");
 	int type = (Integer) request.getAttribute("type");
 	
+	int s1=0;
+	if((Integer) request.getAttribute("s1") != null){
+		s1 = (Integer) request.getAttribute("s1");
+	}else{
+		
+	}
+	int s2=0;
+	if((Integer) request.getAttribute("s2") != null){
+		s2 = (Integer) request.getAttribute("s2");
+	}
+	
+	String k="";
+	if((String)request.getAttribute("k") != null){
+		k = (String)request.getAttribute("k");
+	}
+	
 %>
 <html lang="en">
 <head>
@@ -35,7 +51,7 @@
 	function deleteboard(board_id) {
 		var chk =  confirm("삭제하시겠습니까?");
 		if (chk){
-					location.href="deleteBoard.do?board_id="+board_id+"&page=${page}&type=${type}";  
+					location.href="deleteBoard.do?board_id="+board_id+"&page=${page}&type=${type}&s1=${s1}&s2=${s2}&k=${k}";  
 		}else{event.preventDefault();}
 	}
 	function reply(formId) {
@@ -72,7 +88,7 @@
 	function replyDelete(board_comment_id) {
 		var chk =  confirm("삭제하시겠습니까?");
 		if (chk){
-			location.href='replyDeleteBoard.do?board_id=<%=vo.getBoard_id()%>&type=<%=type%>&page=<%=nowPage%>&board_comment_id='+board_comment_id;
+			location.href='replyDeleteBoard.do?board_id=<%=vo.getBoard_id()%>&type=<%=type%>&page=<%=nowPage%>&s1=${s1}&s2=${s2}&k=${k}&board_comment_id='+board_comment_id;
 		}else{event.preventDefault();}
 	}
 	function replyShow(id){
@@ -83,53 +99,38 @@
 	        $('#replyCmt_'+id).show(); // id값을 받아서 보이기 
 	    } 
 	}
-
+	function upLikeNum(){
+		
+		$.ajax({
+			url: 'upLikeNum.do',
+			data: { board_id : ${cvo.board_id},
+							user_id : ${data.user_id},
+							type : 1 },  
+			dataType : 'JSON',
+		}).done(function(data){
+			$('#likeGood > i').text(data.result);
+			$('#like-num').text(data.result);
+		});
+	}
+	function upBadNum(){
+		$.ajax({
+			url: 'upBadNum.do',
+			data: { board_id : ${cvo.board_id},
+							user_id : ${data.user_id},
+							type : 2 },
+			dataType : 'JSON',
+		}).done(function(data){
+			$('#likeBad > i').text(data.result);
+		});
+	}
+	
 	
 	
 $(document).ready(function(){
-	// 좋아요 버튼 처리
-	// 버튼 클릭 > ajax통신 (like url로 전달) > views의 like 메소드에서 리턴하는 값 전달받기 > 성공시 콜백 호출
-	$('.likeGood').click(function(){
-	  var pk = $(this).attr('likeGood') // 클릭한 요소의 attribute 중 name의 값을 가져온다.
-	  $.ajax({
-		  url:'registLike.do',
-			type:'POST',
-			data:{'board_id':board_id},
-			
-	      success: function(response){
-	        // 요청이 성공했을 경우 좋아요/싫어요 개수 레이블 업데이트
-	        $('#like_count'+ pk).html("count : "+ response.like_count);
-	        $('#dislike_count'+ pk).html("count : "+ response.dislike_count);
-	      },
-	      error:function(error){
-	        // 요청이 실패했을 경우
-	        alert(error)
-	      }
-	  });
-	})
 	
-		// 싫어요 버튼 처리
-	// 버튼 클릭 > ajax통신 (dislike url로 전달) > views의 dislike 메소드에서 리턴하는 값 전달받기 > 성공시 콜백 호출
-	$('.dislike').click(function(){
-	  var pk = $(this).attr('name') // 클릭한 요소의 attribute 중 name의 값을 가져온다.
-	  $.ajax({
-		  url:'deleteLike.do',
-			type:'POST',
-			data:{'board_id':board_id},
-	
-	      success: function(response){
-	        // 요청이 성공했을 경우 좋아요/싫어요 개수 레이블 업데이트
-	        $('#like_count'+ pk).html("count : "+ response.like_count);
-	        $('#dislike_count'+ pk).html("count : "+ response.dislike_count);
-	      },
-	      error:function(error){
-	        // 요청이 실패했을 경우
-	        alert(error)
-	      }
-	  });
-	})
 });
 	
+
 
 </script>
 <body>
@@ -164,10 +165,10 @@ $(document).ready(function(){
 					<div class="float-right">
 						조회 수
 						<%=vo.getReadcount()%>
-						| 추천 수 ${data.like_num } |
+						| 추천 수 <span id="like-num">${data.like_num }</span> |
 						<fmt:formatDate value="${data.regdate}" pattern="yyyy.MM.dd HH:mm" />
 						| <a
-							href="editBoard.do?board_id=<%=vo.getBoard_id()%>&page=${page}&type=${type}">수정</a>
+							href="editBoard.do?board_id=<%=vo.getBoard_id()%>&page=${page}&type=${type}&s1=<%=s1%>&s2=<%=s2%>&k=<%=k%>">수정</a>
 						| <a href="javascript:void(0);"
 							onclick="javascript: deleteboard(<%=vo.getBoard_id()%>)">삭제</a>
 					</div>
@@ -177,15 +178,15 @@ $(document).ready(function(){
 
 				<div class="mybtn-group">
 					<button type="button" class="btn btn-secondary float-left"
-						onclick="location.href='listBoard.do?type=<%=type %>&page=<%=nowPage%>' ">목록보기</button>
+						onclick="location.href='listBoard.do?type=<%=type %>&page=<%=nowPage%>&s1=<%=s1%>&s2=<%=s2%>&k=<%=k%>' ">목록보기</button>
+					
 					<button type="button" class="btn float-right mybtn-good"
-						name="likeGood" id="likeGood">
-						<i class="fa fa-thumbs-o-down" style="font-size: 1.5em;">2</i>
+						name="likeBad" id="likeBad" onclick="upBadNum();">
+						<i class="fa fa-thumbs-o-down" style="font-size: 1.5em;">${dislikeNum }</i>
 					</button>
-					<input type="hidden" id="likeBoard" value="0">
 					<button type="button" class="btn float-right mybtn-bad"
-						name="likeBad" id="likeBad">
-						<i class="fa fa-thumbs-o-up" style="font-size: 1.5em;">0</i>
+						name="likeGood" id="likeGood" onclick="upLikeNum();">
+						<i class="fa fa-thumbs-o-up" style="font-size: 1.5em;">${likeNum  }</i> 
 					</button>
 
 				</div>
@@ -222,12 +223,14 @@ $(document).ready(function(){
 						<input type="hidden" name="lev" value="${BoardCommentVO.lev}"> 
 						<input type="hidden" name="seq" value="${BoardCommentVO.seq}">
 						<input type="hidden" name="type" value="${data.type }">
+						<input type="hidden" name="s1" value="${s1 }">
+						<input type="hidden" name="s2" value="${s2 }">
+						<input type="hidden" name="k" value="${k }">
 							
 							<!-- 삭제 된 게시물이면 -->
 							<c:if test="${BoardCommentVO.is_deleted == 1 }">
 								<div class="reply-name">(삭제된 게시물)</div>
 								<div class="reply-content">삭제된 게시물 입니다.</div>
-		
 								
 							</c:if>
 							<!-- 삭제 된 게시물이 아니면 -->
@@ -285,9 +288,12 @@ $(document).ready(function(){
 			<!-- 댓글쓰기 -->
 			<form action="writeComment.do" method="post" name="writeComment">
 				<div class="reply-form p-3">
-					<input type="hidden" name="page" value="<%=vo.getPage() %>" /> <input
-						type="hidden" name="type" value="<%=vo.getType() %>" /> <input
-						type="hidden" name="board_id" value="<%=vo.getBoard_id() %>">
+					<input type="hidden" name="page" value="<%=vo.getPage() %>" /> 
+					<input type="hidden" name="type" value="<%=vo.getType() %>" /> 
+					<input type="hidden" name="s1" value="${s1 }" /> 
+					<input type="hidden" name="s2" value="${s2 }" /> 
+					<input type="hidden" name="k" value="${k }" /> 
+					<input type="hidden" name="board_id" value="<%=vo.getBoard_id() %>">
 					<input type="hidden" name="ref" value="<%=cvo.getRef() %>">
 					<input type="hidden" name="lev" value="<%=cvo.getLev() %>">
 					<input type="hidden" name="seq" value="<%=cvo.getSeq() %>">

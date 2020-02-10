@@ -45,9 +45,9 @@ public class BoardVO {
 	private int startIndex;	// limit 시작 인덱스
 	private int maxPage;	// 총페이지수
 	
-	private int search_option1;
-	private int search_option2;
-	private String keyword;
+	private int s1; //검색옵션 1
+	private int s2;//검색옵션 2
+	private String k; //검색키워드
 	
 	// 초기화(생성자)
 	public BoardVO() {
@@ -57,28 +57,30 @@ public class BoardVO {
 		
 	
 	
-	public int getSearch_option1() {
-		return search_option1;
+	
+
+	public int getS1() {
+		return s1;
 	}
 
-	public void setSearch_option1(int search_option1) {
-		this.search_option1 = search_option1;
+	public void setS1(int s1) {
+		this.s1 = s1;
 	}
 
-	public int getSearch_option2() {
-		return search_option2;
+	public int getS2() {
+		return s2;
 	}
 
-	public void setSearch_option2(int search_option2) {
-		this.search_option2 = search_option2;
+	public void setS2(int s2) {
+		this.s2 = s2;
 	}
 
-	public String getKeyword() {
-		return keyword;
+	public String getK() {
+		return k;
 	}
 
-	public void setKeyword(String keyword) {
-		this.keyword = keyword;
+	public void setK(String k) {
+		this.k = k;
 	}
 
 	public int getBoard_id() {
@@ -158,12 +160,10 @@ public class BoardVO {
 		return "BoardVO [board_id=" + board_id + ", user_id=" + user_id + ", type=" + type + ", title=" + title
 				+ ", contents=" + contents + ", regdate=" + regdate + ", readcount=" + readcount + ", like_num="
 				+ like_num + ", nickname=" + nickname + ", reply_num=" + reply_num + ", page=" + page + ", limit="
-				+ limit + ", startIndex=" + startIndex + ", maxPage=" + maxPage + ", search_option1=" + search_option1
-				+ ", search_option2=" + search_option2 + ", keyword=" + keyword + "]";
+				+ limit + ", startIndex=" + startIndex + ", maxPage=" + maxPage + ", s1=" + s1 + ", s2=" + s2 + ", k="
+				+ k + "]";
 	}
 
-	
-	
 	
 	
 }

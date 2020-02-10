@@ -1,14 +1,15 @@
 package service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import dao.BoardDAO;
 import vo.BoardCommentVO;
+import vo.BoardLikeVO;
 import vo.BoardVO;
-import vo.LikeBoardVO;
 
 
 
@@ -114,13 +115,8 @@ public class BoardService {
 	public int listCount(int board_id) {
 		return boardDAO.listCount(board_id);
 	}
-	public int registLike(LikeBoardVO vo) {
-		return boardDAO.registLike(vo);
-	}
-	public int deleteLike(LikeBoardVO vo) {
-		int r = boardDAO.deleteLike(vo);
-		return r;
-	}
+
+	
 
 	public void refreshDB(int board_id) {
 		//해당 board_id에 가져오는 리플들 리스트중에서
@@ -140,6 +136,21 @@ public class BoardService {
 			}
 		}
 		
+	}
+
+
+	public int upLikeNum(BoardLikeVO vo) {
+		boardDAO.insertLike(vo);
+		boardDAO.updateLikeNum(vo.getBoard_id());
+		int num = boardDAO.getLikeNum(vo.getBoard_id());
+		
+		return num;
+	}
+
+	public int upBadNum(BoardLikeVO vo) {
+		boardDAO.insertBad(vo);
+		int num = boardDAO.getDislikeNum(vo.getBoard_id());
+		return num;
 	}
 
 	
