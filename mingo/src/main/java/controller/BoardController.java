@@ -1,21 +1,24 @@
 package controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
+import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import dao.BoardDAO;
 import service.BoardService;
 import vo.BoardCommentVO;
+import vo.BoardLikeVO;
 import vo.BoardVO;
-import vo.LikeBoardVO;
-import vo.UserVO;
 
 @Controller
 public class BoardController {
@@ -23,10 +26,12 @@ public class BoardController {
 	@Autowired
 	BoardService boardService;
 	
+	@Autowired
+	BoardDAO boardDAO;
+	
 	//게시판 조회
 	@RequestMapping("/listBoard.do")
 	public String listBoard(Model model, BoardVO vo,@RequestParam("type")int type) {
-		
 		int[] listcount = boardService.boardCount(vo);	// 전체 갯수와 총페이지수  
 		List<BoardVO> list = boardService.list(vo);
 		
@@ -37,6 +42,9 @@ public class BoardController {
 		model.addAttribute("vo", vo);
 		model.addAttribute("type",type);
 		
+		model.addAttribute("s1", vo.getS1());
+		model.addAttribute("s2", vo.getS2());
+		model.addAttribute("k", vo.getK());
 		//model.addAttribute("commentCount", commentCount);
 		
 		return "board/boardMain";
@@ -65,10 +73,13 @@ public class BoardController {
 	//게시판 상세보기 
 	@RequestMapping("/viewBoard.do")
 	public String viewBoard(Model model, @RequestParam("board_id") int board_id, @RequestParam("page")int page
-			,@RequestParam("type")int type,BoardCommentVO cvo) {
+			,@RequestParam("type")int type,BoardCommentVO cvo,
+			@RequestParam("s1")int s1,@RequestParam("s2")int s2,@RequestParam("k")String k) {
 		BoardVO data = boardService.detail(board_id);
 		List<BoardCommentVO> clist = boardService.clist(cvo);
 		int listCount = boardService.listCount(board_id);
+		int likeNum = boardDAO.getLikeNum(board_id);
+		int dislikeNum = boardDAO.getDislikeNum(board_id);
 		
 		model.addAttribute("type",type);
 		model.addAttribute("data",data);
@@ -77,7 +88,49 @@ public class BoardController {
 		model.addAttribute("cvo",cvo);
 		model.addAttribute("listCount", listCount);
 		
+		/* 필터링 옵션 s1:기간 s2:글쓴이 제목 등 k : 키워드 */
+		model.addAttribute("s1", s1);
+		model.addAttribute("s2", s2);
+		model.addAttribute("k", k);
+		
+		/* 좋아요 싫어요 갯수 */
+		model.addAttribute("likeNum", likeNum);
+		model.addAttribute("dislikeNum",dislikeNum);
+		
 		return "board/boardDetail";
+	}
+	
+	@RequestMapping("/upLikeNum.do")
+	public void upLikeNum(BoardLikeVO vo, HttpServletResponse response) {
+		int result = boardService.upLikeNum(vo);
+		try {
+			
+			JSONObject obj = new JSONObject();
+			obj.put("result", result);
+			
+			PrintWriter out = response.getWriter();
+			out.print(obj);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		
+	}
+	@RequestMapping("/upBadNum.do")
+	public void upBadNum(BoardLikeVO vo, HttpServletResponse response) {
+		int result = boardService.upBadNum(vo);
+		try {
+			
+			JSONObject obj = new JSONObject();
+			obj.put("result", result);
+			
+			PrintWriter out = response.getWriter();
+			out.print(obj);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		
 	}
 	//댓글 등록
 	@RequestMapping("/writeComment.do")
@@ -85,14 +138,20 @@ public class BoardController {
 		 boardService.writeComment(cvo);
 		 model.addAttribute("vo", vo);
 		 model.addAttribute("cvo",cvo);
-		 return "redirect:viewBoard.do?board_id="+vo.getBoard_id()+"&page="+vo.getPage()+"&type="+vo.getType();
+		 int s1 = vo.getS1();
+		 int s2 = vo.getS1();
+		 String k = vo.getK();
+		 return "redirect:viewBoard.do?board_id="+vo.getBoard_id()+"&page="+vo.getPage()+"&type="+vo.getType()+"&s1="+s1+"&s2="+s2+"&k="+k;
 	}
 	//댓글 조회
 	@RequestMapping("/replyProcess.do")
 	public String replyProcess(Model model, BoardCommentVO cvo, BoardVO vo) {
 		boardService.replyProcess(cvo);
 		model.addAttribute("cvo",cvo);
-		return "redirect:viewBoard.do?board_id="+vo.getBoard_id()+"&page="+vo.getPage()+"&type="+vo.getType();
+		int s1 = vo.getS1();
+		int s2 = vo.getS1();
+		String k = vo.getK();
+		return "redirect:viewBoard.do?board_id="+vo.getBoard_id()+"&page="+vo.getPage()+"&type="+vo.getType()+"&s1="+s1+"&s2="+s2+"&k="+k;
 		
 	}
 	
@@ -104,8 +163,11 @@ public class BoardController {
 		boardService.replyDeleteProcess(cvo);
 		//삭제됐다고 표시된 댓글들 지우고 db정리하는 함수
 		boardService.refreshDB(vo.getBoard_id());
+		int s1 = vo.getS1();
+		int s2 = vo.getS1();
+		String k = vo.getK();
 		
-		return "redirect:viewBoard.do?board_id="+vo.getBoard_id()+"&page="+vo.getPage()+"&type="+vo.getType();
+		return "redirect:viewBoard.do?board_id="+vo.getBoard_id()+"&page="+vo.getPage()+"&type="+vo.getType()+"&s1="+s1+"&s2="+s2+"&k="+k;
 	}
 	//게시판 수정폼 이동
 	@RequestMapping("/editBoard.do")
@@ -121,35 +183,10 @@ public class BoardController {
 	public String updateBoard(Model model, BoardVO vo) {
 		boardService.update(vo);
 		int type = vo.getType();
+		
 		//model.addAttribute("vo",vo);
 		return "redirect:listBoard.do?type="+type;
 	}
 	
 	
-	//좋아요 
-	@RequestMapping("registLikeBoard.do")
-		public String registLikeBoard(LikeBoardVO vo, HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		UserVO vo1 = (UserVO) session.getAttribute("userVO");
-		vo.setUser_id(vo1.getUser_id());
-		int board_id = Integer.parseInt(request.getParameter("board_id"));
-		vo.setBoard_id(board_id);
-		boardService.registLike(vo);
-		return "redirect:ViewBoard.do?board_id="+board_id;
-	} 
-	//카페 좋아요 삭제
-		@RequestMapping("/deleteLikeBoard.do")   
-		public String deleteLikeBoard(LikeBoardVO vo, HttpServletRequest request) {
-			
-			HttpSession session = request.getSession();
-			UserVO vo1 = (UserVO) session.getAttribute("userVO");
-			vo.setUser_id(vo1.getUser_id());
-			
-			int board_id = Integer.parseInt(request.getParameter("board_id"));
-			vo.setBoard_id(board_id);
-			
-			boardService.deleteLike(vo);
-			
-			return "redirect:ViewBoard.do?board_id="+board_id;
-		} 
 }

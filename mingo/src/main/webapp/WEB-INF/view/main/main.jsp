@@ -95,7 +95,7 @@
 						</div>
 						<div class="form-row">
 							<div class="col-12 pb-1 pt-1">
-								<input type="text" name="name" class="form-control rounded-edge">
+								<input type="text" name="name" placeholder="ex) 스타벅스, 이디야" class="form-control rounded-edge">
 							</div>
 						</div>
 					</div>
@@ -221,25 +221,25 @@
 				<div class="col-lg-7 mb-5 board-area">
 					<div class="container bg-light board p-2 shadow-sm">
 						<div class="container">
-							<span style="font-size: 1.8em;">자유게시판</span> <a href="listBoard.do"
+							<span style="font-size: 1.8em;">자유게시판</span> <a href="listBoard.do?type=1"
 								class="fa fa-plus-square-o detail-icon" data-toggle="tooltip" title="더보기" data-placement="left"
 								style="font-size: 3em; float: right;"></a>
 						</div>
 						<ul class="list-group list-group-flush board-ul w-100">
 							<c:forEach var="board" items="${boardList }">
-								<li class="list-group-item p-0"><a href="viewBoard.do?board_id=${board.board_id }">${board.title }</a></li>
+								<li class="list-group-item p-0"><a href="viewBoard.do?board_id=${board.board_id }&page=1&type=1&s1=0&s2=0&k=">${board.title }</a></li>
 							</c:forEach>
 						</ul>
 					</div>
 					<div class="container bg-light board p-2 shadow-sm">
 						<div class="container">
-							<span style="font-size: 1.8em;">정보게시판</span> <a href="listBoard.do"
+							<span style="font-size: 1.8em;">정보게시판</span> <a href="listBoard.do?type=2"
 								class="fa fa-plus-square-o detail-icon" data-toggle="tooltip" title="더보기" data-placement="left"
 								style="font-size: 3em; float: right;"></a>
 						</div>
 						<ul class="list-group list-group-flush board-ul w-100">
 							<c:forEach var="board" items="${boardList2 }">
-								<li class="list-group-item p-0"><a href="viewBoard.do?board_id=${board.board_id }">${board.title }</a></li>
+								<li class="list-group-item p-0"><a href="viewBoard.do?board_id=${board.board_id }&page=1&type=1&s1=0&s2=0&k=">${board.title }</a></li>
 							</c:forEach>
 						</ul>
 					</div>

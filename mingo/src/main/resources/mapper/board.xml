@@ -2,22 +2,47 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="board">
-	<select id="list" resultType="vo.BoardVO" parameterType="Integer">
-		SELECT *, (SELECT nickname FROM mingo.user WHERE user_id=mingo.board.user_id)
-		 AS nickname 
-		FROM mingo.board 
+	<select id="list" resultType="vo.BoardVO" parameterType="vo.BoardVO">
+		SELECT b.*, u.nickname
+		FROM mingo.board as b join user as u
+		on b.user_id = u.user_id 
 		<where>
 			 	<if test="type != null and type > 0">
-					and type = #{type}
+					and b.type = #{type}
 				</if>
-				<if test="search_option1 != null and search_option1 > 0">
-				
+				<if test="s1 != null">
+					<choose>
+						<when test="s1 == 0">
+						
+						</when>
+						<when test="s1 == 1">
+						and b.regdate > DATE_ADD(NOW(),INTERVAL -7 DAY)
+						</when>
+						<when test="s1 == 2">
+						and b.regdate > DATE_ADD(NOW(),INTERVAL -30 DAY)
+						</when>
+						<when test="s1 == 3">
+						and b.regdate > DATE_ADD(NOW(),INTERVAL -365 DAY)
+						</when>
+					</choose>
 				</if>
-				<if test="search_option2 != null and search_option2 > 0">
-				
-				</if>
-				<if test=" keyword != null and keyword !='' ">
-					and title like '%${keyword}%'
+				<if test=" k != null and k !='' and s2 !=null">
+					
+					<choose>
+						<when test="s2 == 0">
+							and b.title like '%${k}%'
+						</when>
+						<when test="s2 == 1">
+							and b.contents like '%${k}%'
+						</when>
+						<when test="s2 == 2">
+							and u.nickname like '%${k}%'
+						</when>
+						<when test="s2 == 3">
+							and b.title like '%${k}%' or b.contents like '%${k}%'
+						</when>
+					</choose>
+					
 				</if>
 		</where>
 		
@@ -26,21 +51,48 @@
 	
 	</select>
   <select id="count" resultType="Integer" parameterType="vo.BoardVO">
-		SELECT COUNT(*) FROM mingo.board
-		 <where>
+		SELECT count(*)
+		FROM mingo.board as b join user as u
+		on b.user_id = u.user_id
+		<where>
 			 	<if test="type != null and type > 0">
-					and type = #{type}
+					and b.type = #{type}
 				</if>
-				<if test="search_option1 != null and search_option1 > 0">
-				
+				<if test="s1 != null">
+					<choose>
+						<when test="s1 == 0">
+						
+						</when>
+						<when test="s1 == 1">
+						and b.regdate > DATE_ADD(NOW(),INTERVAL -7 DAY)
+						</when>
+						<when test="s1 == 2">
+						and b.regdate > DATE_ADD(NOW(),INTERVAL -30 DAY)
+						</when>
+						<when test="s1 == 3">
+						and b.regdate > DATE_ADD(NOW(),INTERVAL -365 DAY)
+						</when>
+					</choose>
 				</if>
-				<if test="search_option2 != null and search_option2 > 0">
-				
+				<if test=" k != null and k !='' and s2 !=null">
+					
+					<choose>
+						<when test="s2 == 0">
+							and b.title like '%${k}%'
+						</when>
+						<when test="s2 == 1">
+							and b.contents like '%${k}%'
+						</when>
+						<when test="s2 == 2">
+							and u.nickname like '%${k}%'
+						</when>
+						<when test="s2 == 3">
+							and b.title like '%${k}%' or b.contents like '%${k}%'
+						</when>
+					</choose>
+					
 				</if>
-				<if test=" keyword != null and keyword !='' ">
-					and title like '%${keyword}%'
-				</if>
-		 </where>
+		</where>
 	
 	</select>
 	
@@ -160,22 +212,40 @@
 		#{ref}, #{lev} , #{seq} ,#{contents})
 	</insert>
 	
-	
+	<insert id="insertLike" parameterType="vo.BoardLikeVO">
+		insert into board_like
+		(user_id, board_id, type)
+		values
+		(#{user_id},#{board_id},#{type})
+	</insert>
+	<insert id="insertDislike" parameterType="vo.BoardLikeVO">
+		insert into board_like
+		(user_id, board_id, type)
+		values
+		(#{user_id},#{board_id},#{type})
+	</insert>
+	<select id="getLikeNum" parameterType="Integer" resultType="Integer">
+		select count(*)
+		from board_like
+		where board_id = #{board_id} and type=1;
+	</select>
+	<select id="getDislikeNum" parameterType="Integer" resultType="Integer">
+		select count(*)
+		from board_like
+		where board_id = #{board_id} and type=2;
+	</select>
+	<update id="updateLikeNum" parameterType="Integer">
+		update mingo.board
+		set like_num = (select count(*) from board_like where board_id = #{board_id} and type=1)
+		where board_id = #{board_id};
+	</update>
 	
 	
 	<select id="countCommentList" parameterType="Integer" resultType="Integer">
 		select count(*) from board_comment where board_id = #{board_id} and is_deleted=0;
 	</select>
 	
-	<insert id="registLike" parameterType="vo.LikeBoardVO">  
-		insert into mingo.like_board
-		(user_id, board_id)
-		values
-		(#{user_id}, #{board_id})
-	</insert> 
-	<delete id="deleteLike" parameterType="vo.LikeBoardVO">  
-		DELETE FROM mingo.like_board WHERE board_id=#{board_id} and user_id=#{user_id}
-	</delete>
+	
 	<update id="refUpdate" parameterType="Integer">
 		UPDATE mingo.board_comment SET ref=#{board_comment_id} WHERE board_comment_id=#{board_comment_id}
 	</update>

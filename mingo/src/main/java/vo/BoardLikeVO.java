@@ -1,6 +1,6 @@
 package vo;
 
-public class LikeBoardVO {
+public class BoardLikeVO {
 	
 	private int board_id;
 	private int user_id;

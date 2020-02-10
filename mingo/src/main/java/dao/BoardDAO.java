@@ -2,15 +2,15 @@ package dao;
 
 
 import java.util.List;
-
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import vo.BoardCommentVO;
+import vo.BoardLikeVO;
 import vo.BoardVO;
-import vo.LikeBoardVO;
 @Repository
 public class BoardDAO {
 	
@@ -69,14 +69,7 @@ public class BoardDAO {
 		public int listCount(int board_id) {
 			return sqlSession.selectOne("board.countCommentList",board_id);
 		}
-		public int registLike(LikeBoardVO vo) {
-			int r = sqlSession.insert("board.registLike", vo);
-			return r;
-		}
-		public int deleteLike(LikeBoardVO vo) {
-			sqlSession.delete("board.deleteLike", vo);
-			return 1;
-		}
+		
 
 		public BoardCommentVO getReply(int board_comment_id) {
 			return sqlSession.selectOne("board.getReply",board_comment_id);
@@ -103,6 +96,25 @@ public class BoardDAO {
 		public List<BoardCommentVO> getBoardCommentList(int board_id) {
 			return sqlSession.selectList("board.getBoardCommentList", board_id);
 		}
+
+		public void insertLike(BoardLikeVO vo) {
+			sqlSession.insert("board.insertLike", vo);
+		}
+		public void insertBad(BoardLikeVO vo) {
+			sqlSession.insert("board.insertDislike", vo);
+		}
+
+		public int getLikeNum(int board_id) {
+			return sqlSession.selectOne("board.getLikeNum",board_id);  
+		}
+		public int getDislikeNum(int board_id) {
+			return sqlSession.selectOne("board.getDislikeNum",board_id);  
+		}
+
+		public void updateLikeNum(int board_id) {
+			sqlSession.update("board.updateLikeNum", board_id);
+		}
+		
 
 		
 
