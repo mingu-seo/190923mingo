@@ -128,12 +128,7 @@
     	
     	
     	</script>
-    	<script>
-			$( function() {
-			    $( "#draggable2" ).draggable({ axis: "x" });
-			 
-			});
-		</script>
+    	
 		<style>
 		  .draggable { width: 90px; height: 90px; padding: 0.5em; float: left; margin: 0 10px 10px 0; }
 		  #draggable, #draggable2 { margin-bottom:20px; }
@@ -205,12 +200,7 @@
 			</div>  
         	
         </form><br><br><br><br><br>
-        
-        
-        <div id="draggable2" class="draggable ui-widget-content">
-			<p>I can be dragged only horizontally</p>
-		</div>
-        
+       
         
         
         
