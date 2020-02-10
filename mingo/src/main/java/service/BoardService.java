@@ -115,6 +115,7 @@ public class BoardService {
 	public int listCount(int board_id) {
 		return boardDAO.listCount(board_id);
 	}
+
 	
 
 	public void refreshDB(int board_id) {
@@ -136,6 +137,7 @@ public class BoardService {
 		}
 		
 	}
+
 
 	public int upLikeNum(BoardLikeVO vo) {
 		boardDAO.insertLike(vo);

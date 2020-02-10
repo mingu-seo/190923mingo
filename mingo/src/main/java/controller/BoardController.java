@@ -187,6 +187,5 @@ public class BoardController {
 		//model.addAttribute("vo",vo);
 		return "redirect:listBoard.do?type="+type;
 	}
-	
-	
+
 }

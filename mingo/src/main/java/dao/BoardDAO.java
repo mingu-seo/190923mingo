@@ -69,11 +69,13 @@ public class BoardDAO {
 		public int listCount(int board_id) {
 			return sqlSession.selectOne("board.countCommentList",board_id);
 		}
+
 		
 
 		public BoardCommentVO getReply(int board_comment_id) {
 			return sqlSession.selectOne("board.getReply",board_comment_id);
 		}
+
 
 		public void downReplyNum(int board_id) {
 			sqlSession.update("board.decreaseReplyNum",board_id);

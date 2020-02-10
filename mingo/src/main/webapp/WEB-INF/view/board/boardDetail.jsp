@@ -105,7 +105,7 @@
 			url: 'upLikeNum.do',
 			data: { board_id : ${cvo.board_id},
 							user_id : ${data.user_id},
-							type : 1 },
+							type : 1 },  
 			dataType : 'JSON',
 		}).done(function(data){
 			$('#likeGood > i').text(data.result);
@@ -130,6 +130,7 @@ $(document).ready(function(){
 	
 });
 	
+
 
 </script>
 <body>
@@ -230,7 +231,6 @@ $(document).ready(function(){
 							<c:if test="${BoardCommentVO.is_deleted == 1 }">
 								<div class="reply-name">(삭제된 게시물)</div>
 								<div class="reply-content">삭제된 게시물 입니다.</div>
-		
 								
 							</c:if>
 							<!-- 삭제 된 게시물이 아니면 -->
