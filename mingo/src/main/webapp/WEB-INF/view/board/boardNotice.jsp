@@ -69,16 +69,11 @@ function completeWriting(){
 		
     <div class="board-wrapper">
         <%@ include file="/WEB-INF/view/board/boardSideMenu.jsp" %>
-    <form action="writeFormBoard.do?" id="frm" >
+    <form action="writeFormNotice.do?" id="frm" >
     	<input type="hidden" name="type" value="${type }">
         <div class=" board-group shadow ml-4">
             <div class="mb-4 board-name">
-		            <c:set var="btype" value="${type }"/>
-            		<c:forEach items="${boardNames}" var="i" >
-	            		<c:if test="${i.type == btype }">
-	            			${i.name }
-	            		</c:if>
-           			</c:forEach>
+		                      공지사항
                <span style="font-size: 0.5em;">글쓰기</span>
             </div>
             
@@ -86,7 +81,7 @@ function completeWriting(){
             		<textarea  id="smarteditor" class="p-2" rows="20" name="contents" style="margin-top:50px;font-size:1em;width:100%;border:1px solid #e1e1e1;" placeholder="주제와 무관한 댓글, 악플은 삭제 될 수 있습니다."></textarea>
             
             <div style="text-align: center;">
-                <button type="button" class="btn btn-secondary"onclick="location.href='listBoard.do?type=${type}' ">취소</button>
+                <button type="button" class="btn btn-secondary"onclick="location.href='listBoard.do' ">취소</button>
                 <button type="button" id="savebutton" class="btn btn-secondary" onclick="completeWriting();">작성완료</button>
             </div>
         </div>

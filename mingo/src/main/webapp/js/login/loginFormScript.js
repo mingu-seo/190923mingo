@@ -18,21 +18,7 @@
       });
 
     });
-
-	/*$(document).ready(function() {
-	var naverLogin = new naver.LoginWithNaverId(
-		{
-			clientId: "{QI9nhKdLYdgGZ21jz2ay}",
-			callbackUrl: "{/goMain.do}",
-			isPopup: true,  팝업을 통한 연동처리 여부 
-			loginButton: {color: "green", type: 3, height: 60}  로그인 버튼의 타입을 지정 
-		}
-	);
-	
-    설정정보를 초기화하고 연동을 준비 
-	naverLogin.init();
-*/
-	
+	/*
 		var naver_id_login = new naver_id_login("QI9nhKdLYdgGZ21jz2ay", "http://localhost:8080/goMain.do");	// Client ID, CallBack URL 삽입
 										// 단 'localhost'가 포함된 CallBack URL
 		var state = naver_id_login.getUniqState();
@@ -42,7 +28,48 @@
 		naver_id_login.setState(state);
 		naver_id_login.setPopup();
 		naver_id_login.init_naver_id_login();
-
 	
+		function loginWithNaver(){
+			var url = "https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=QI9nhKdLYdgGZ21jz2ay&redirect_uri=http%3A%2F%2Flocalhost%3A8080%2FgoMain.do&state=272398599811248173130281399471286788127"; 
+			var name =	"naverLogin"; 
+			var option =	"width = 500, height = 500, top = 100, left = 200, location = no"
+				window.open(url, name, option);
+		}
 	
-	
+		 Kakao.init('5056c3b1e52c786b89a189f847dbcbc7');
+		    function loginWithKakao() {
+		      // 로그인 창을 띄웁니다.
+		      Kakao.Auth.login({
+		        success: function(authObj) {
+		          alert(JSON.stringify(authObj));
+		        },
+		        fail: function(err) {
+		          alert(JSON.stringify(err));
+		        }
+		      });
+		    };
+		    */
+		 Kakao.init('5056c3b1e52c786b89a189f847dbcbc7');
+		 function loginWithKakao() {
+			 Kakao.Auth.login({
+			        success: function(authObj) {
+			          //alert(JSON.stringify(authObj));
+			          Kakao.API.request({
+			              url: '/v2/user/me',
+			              success: function(res) {
+			                //alert(JSON.stringify(res));
+			            	  console.log(JSON.stringify(res));
+			            	  var j = res['properties'];
+			            	  
+			            	  // 로그인 ajax처리
+			              },
+			              fail: function(error) {
+			                alert(JSON.stringify(error));
+			              }
+			            });
+			        },
+			        fail: function(err) {
+			          alert(JSON.stringify(err));
+			        }
+			      });
+		 }

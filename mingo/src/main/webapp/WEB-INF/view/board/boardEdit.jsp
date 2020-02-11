@@ -82,15 +82,12 @@ function modifyboard() {
 				<input type="hidden" name="type" value="${type }" />       
         <div class=" board-group shadow ml-4">
             <div class="mb-4 board-name">
-	            <c:if test="${vo.type == 1 }">
-	            	자유게시판
-	            </c:if>
-	            <c:if test="${vo.type == 2 }">
-	            	정보게시판
-	            </c:if>
-	            <c:if test="${vo.type == 3 }">
-	            	취업게시판
-	            </c:if>
+	            <c:set var="btype" value="${type }"/>
+	            <c:forEach items="${boardNames}" var="i" >
+	            		<c:if test="${i.type == btype }">
+	            			${i.name }
+	            		</c:if>
+	            </c:forEach>
                <span style="font-size: 0.5em;">수정하기</span>
             </div>
             

@@ -110,7 +110,7 @@
 	</header>
 
 	<div class="container-fluid bg-light">
-		<div class="container bg-light">
+		<div class="container">
 		
 			<div class="row">
 				<div class="col-lg-7 mb-1 bg-light mt-4">

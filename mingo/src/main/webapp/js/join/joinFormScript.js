@@ -195,9 +195,9 @@
 	
 			
 	//닉네임 중복체크,유효성체크
-	var nicknameChk = RegExp(/^[가-힣a-zA-Z0-9]{2,10}$/);
 	
 	$(function(){
+		var nicknameChk = RegExp(/^[가-힣a-zA-Z0-9]{2,10}$/);
 		$('.nick-btn-check').click(function(){
 			if($('#nickname').val().trim() == ""){
 				alert('닉네임을 입력해 주세요.');
@@ -237,14 +237,16 @@
 	
 
 	
-	//다시 작성 리셋
+	//다시 작성 
 	$(function(){
 	    $( "#returnbutton").click(function () {
-	        $( "#joinForm" ).each(function () {
-	            this.reset();
+	        $("#joinForm").each(function() {
+	        	this.reset();
 	        });
+	        $("#email").removeAttr("readonly");
+            $("#nickname").removeAttr("readonly");
 	    });
 	});
-
+  
 
 

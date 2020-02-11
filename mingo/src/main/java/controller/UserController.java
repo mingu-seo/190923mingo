@@ -1,6 +1,7 @@
 package controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import service.UserService;
 import vo.UserVO;
@@ -23,6 +25,31 @@ public class UserController {
 	public String loginForm() {
 		return "login/loginForm";
 	}
+	
+   // 네이버 로그인 폼
+  
+   @RequestMapping("/naverLoginProcess.do")
+   public String naverLoginProcess(Model model, UserVO vo, HttpServletRequest request) { 
+	   UserVO uv = userService.naverLoginProcess(vo);
+		if (uv == null) {
+			String msg = "잘못된 회원정보 입니다.";
+			String url = "/loginForm.do";
+			model.addAttribute("msg", msg);
+			model.addAttribute("url", url);
+			return "include/alert";
+		} else {
+			HttpSession session = request.getSession();
+			session.setAttribute("userVO", uv);
+			//return "redirect:/goMain.do";
+			String msg = "로그인되었습니다..";
+			String url = "/goMain.do";
+			model.addAttribute("cmd", "parentMove");
+			model.addAttribute("msg", msg);
+			model.addAttribute("url", url);
+			return "include/alert";
+		} 
+	}
+ 
 
 	// 로그인 처리
 	@RequestMapping("/loginProcess.do")
@@ -52,7 +79,18 @@ public class UserController {
 	public String joinForm_host() {
 		return "join/joinForm_host";
 	}
-
+	
+	//네이버 회원가입 폼
+	@RequestMapping("/naverJoinForm.do")
+	public String naverJoinForm() {
+		return "join/naverJoinForm";
+	}
+	
+	//카카오 회원가입 폼
+	@RequestMapping("/kakaoJoinForm.do")
+	public String kakaoJoinForm() {
+		return "join/kakaoJoinForm";
+	}
 	// 회원가입 처리
 	@RequestMapping("/joinProcess.do")
 	public String joinProcess(Model model, UserVO vo) {
@@ -66,6 +104,25 @@ public class UserController {
 			msg = "회원가입 실패";
 			url = "/join_step1.do";
 		}
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		return "include/alert";
+	}
+	// 네이버 처리
+	@RequestMapping("/naverJoinProcess.do")
+	public String naverJoinProcess(Model model, UserVO vo) {
+		int r = userService.naverJoinProcess(vo);
+		String msg = "";
+		String url = "";
+		if (r > 0) {
+			msg = "가입되었습니다.";
+			url = "/loginForm.do";
+			
+		} else {
+			msg = "회원가입 실패";
+			url = "/join_step1.do";
+		}
+		model.addAttribute("cmd", "parentMove");
 		model.addAttribute("msg", msg);
 		model.addAttribute("url", url);
 		return "include/alert";
@@ -91,8 +148,9 @@ public class UserController {
 
 	// 로그아웃
 	@RequestMapping("/logout.do")
-	public String logout() {
-		return "redirect:/main/goMain.do";
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "login/logout";
 	}
 
 	// 아이디 찾기 step1
@@ -178,14 +236,18 @@ public class UserController {
 	
 	//네이버 로그인
 	@RequestMapping("/naverLogin.do")
-	public String loginGET() {
+	public String naverLogin() {
 		
 		return "login/naverLogin";
 	}
 	
 	@RequestMapping("/callback.do")
-	public String loginPOSTNaver(HttpSession session) {
+	public String callback(HttpSession session) {
 		
 		return "login/callback";
 	}
+	
+
+	
+	
 }
