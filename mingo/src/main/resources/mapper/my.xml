@@ -87,10 +87,10 @@
 	<select id="viewMyReview" resultType="vo.ReviewVO" parameterType="hashmap">
 		SELECT * FROM mingo.review 
 		<where>   
-			<if test="cafe_id != null">
+			<if test="user_id != null">
 				user_id = #{user_id}
 			</if>
-		</where>
+		</where>  
 		order by regdate desc limit #{beginIndex}, 5 
 	</select>   
 	<select id="countMyCollect" resultType="Integer" parameterType="Integer">
@@ -104,7 +104,7 @@
 	<select id="viewMyCollect" resultType="vo.CollectCafeVO" parameterType="hashmap">
 		SELECT * FROM mingo.collect_cafe 
 		<where>   
-			<if test="cafe_id != null">
+			<if test="user_id != null">
 				user_id = #{user_id}
 			</if>
 		</where>
@@ -117,7 +117,7 @@
 				user_id = #{user_id}
 			</if>
 		</where>
-	</select>
+	</select>   
 	<select id="viewMyPost" resultType="vo.BoardVO" parameterType="hashmap">
 		SELECT * FROM mingo.board 
 		<where>   
