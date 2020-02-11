@@ -21,7 +21,9 @@
 	<div class="wrap">
     <div class="header"></div>
     <div class="title">
-		<span class="t1">MINGO</span>  
+		<span class="t1">
+		<a href="/goMain.do" class="join-title">MINGO</a>
+		</span>  
 		<span class="t2">아이디 찾기</span>
 		<p class="t3">아이디 확인하기</p>   
 	</div>

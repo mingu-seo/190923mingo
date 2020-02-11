@@ -622,7 +622,7 @@
 			
 		}
 		
-		
+		  
 		/* 내 평가 보기 및 등록 */
 		.my_review{
 			display: none;
@@ -1113,9 +1113,21 @@
 			}
 			
 			/* 내 평점 보기 및 등록 */
-			$('bean_img2').draggable();
+			/* $('bean_img2').draggable(); */
 			
-		});        
+			$.ajax({
+				url:'registReviewForm.do',
+				type:'GET',
+				dataType:'text',
+				data:{'cafe_id':cafe_id},
+				success:function(data){
+					$('.my-review-regist').html(data);
+				} 
+			});   
+			
+			
+			
+		});
 	 
 	
 	
@@ -1434,7 +1446,7 @@
 							<div class="rate_visual" id="facimood_visual_tatal">
 								<div class="graph_area">
 						            <div>
-						                <img src="img/wifi2.png" class="graph_logo">
+						                <img src="img/wifi.png" class="graph_logo">
 						            </div>
 						            <div class="graph_stack">
 						                <div class="graph_rate" id="wifi-width">
@@ -1489,6 +1501,10 @@
 		<div class="container">
 			<div class="my_review">
 				<div class="info_title" id="basic_info_title2">내 평가</div>
+				<div class="my-review-regist">
+				
+				</div>
+				
 				<div class="cafe_rates2">
 					<div class="rate_info22">
 						<div class="info22">

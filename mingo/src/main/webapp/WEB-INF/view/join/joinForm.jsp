@@ -21,7 +21,7 @@
 	        <span class="t2">회원가입</span>
 	        <p class="t3">MINGO 에서 활동하실 아이디와 비밀번호, 닉네임 등의 기본정보를 생성합니다.</p>    
       	</div>
-	    <form id="joinForm" action="joinProcess.do" method="post">
+	    <form id="joinForm" name="joinForm" action="joinProcess.do" method="post">
 	    <div class="main">
 	        <label for="email">
 	            <span class="insert_email">이메일&nbsp;</span>

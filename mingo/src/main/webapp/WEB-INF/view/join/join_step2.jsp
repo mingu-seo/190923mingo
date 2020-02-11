@@ -1,5 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.security.SecureRandom"  %>
+<%@ page import="java.math.BigInteger"  %>
+<%@ page import="java.net.URLEncoder"  %>
+<%
+String client_id = "QI9nhKdLYdgGZ21jz2ay";
+String redirectURI = URLEncoder.encode("http://localhost:8080/naverJoinCallback.jsp");
+SecureRandom random = new SecureRandom();
+String state = new BigInteger(130, random).toString(32);
+session.setAttribute("state", state);
+
+String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id="+client_id+"&redirect_uri="+redirectURI+"&state="+state;
+%>
 <!DOCTYPE html>
 <html lang="utf-8">
 <head>
@@ -8,7 +20,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" href="css/join/join_step2.css">
-    
+    <script>
+     function joinWithNaver(){
+    	window.open('<%=apiURL%>', '_blank' , 'width=300', 'height=300','scrollbar=no','status=no');
+	}
+    </script>
     <title>Document</title>
 </head>
 
@@ -34,7 +50,7 @@
         </a>
         </li>
         <li class="person1">
-            <a class="click" href="#">
+            <a class="click" href="javascript:joinWithNaver()">
                 <div class="join-person">
                     <img src="<%=request.getContextPath() %>/img/joinImg/naver.png" width="90px" height="90px">
                     <div class="join-person-persontitle">
@@ -46,7 +62,7 @@
             </a>
             </li>
             <li class="person2">
-                <a class="click" href="#">
+                <a class="click" href="/kakaoJoinForm.do">
                     <div class="join-person">
                         <img src="<%=request.getContextPath() %>/img/joinImg/kakao.png" width="90px" height="90px">
                         <div class="join-person-persontitle">

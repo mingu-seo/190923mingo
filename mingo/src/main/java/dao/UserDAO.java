@@ -3,6 +3,8 @@ package dao;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -14,13 +16,22 @@ public class UserDAO {
 
 	@Autowired
 	SqlSessionTemplate sqlSession;
-
+	//로그인
 	public UserVO loginProcess(UserVO vo) {
 		return sqlSession.selectOne("userMapper.loginProcess", vo);
 	}
-
+	//네이버 로그인
+	public UserVO naverLoginProcess(UserVO vo) {
+		return sqlSession.selectOne("userMapper.naverLoginProcess", vo);
+	}
+	//회원가입 처리
 	public int joinProcess(UserVO vo) {
 		return sqlSession.insert("userMapper.joinProcess", vo);
+	}
+	
+	/* 네이버 회원가입 */
+	public int naverJoinProcess(UserVO vo) {
+		return sqlSession.insert("userMapper.naverJoinProcess", vo);
 	}
 
 	/* 아이디 중복체크 */

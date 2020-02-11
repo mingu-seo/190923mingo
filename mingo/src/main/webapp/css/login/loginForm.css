@@ -23,6 +23,7 @@
 	    font-weight: 700;
 	    color: #6d512f;
 	    margin-right: 8px;
+	    text-decoration: none;
 	}
 	.t2{
 	    font-family: 'Noto Sans KR', sans-serif;
@@ -118,7 +119,7 @@
 	    min-width: 140px;
 	    height: 52px;
 	    line-height: 50px;
-	    background-color: #ba915e;
+	    background-color: #6d512f;
 	    color: rgb(255, 255, 255);
 	    padding: 0px;
 	    border-radius: 26px;
