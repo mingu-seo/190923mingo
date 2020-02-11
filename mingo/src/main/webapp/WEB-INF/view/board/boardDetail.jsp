@@ -3,6 +3,7 @@
 <%@ page import="vo.BoardVO"%>
 <%@ page import="vo.UserVO"%>
 <%@ page import="vo.BoardCommentVO"%>
+<%@ page import="vo.BoardLikeVO"%>
 <%@page import="java.util.List"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -11,7 +12,7 @@
 	int listcount = (Integer)request.getAttribute("listcount");
 	List<BoardCommentVO> clist = (List<BoardCommentVO>)request.getAttribute("clist");
 	BoardCommentVO cvo = (BoardCommentVO) request.getAttribute("cvo");
-	
+	BoardLikeVO lvo = (BoardLikeVO) request.getAttribute("lvo");
 	BoardVO vo = (BoardVO) request.getAttribute("data");
 	int nowPage = (Integer) request.getAttribute("page");
 	int type = (Integer) request.getAttribute("type");
@@ -48,12 +49,14 @@
 	href="<%=request.getContextPath() %>/css/boardStyle.css">
 </head>
 <script type="text/javascript">
+	//게시글 삭제
 	function deleteboard(board_id) {
 		var chk =  confirm("삭제하시겠습니까?");
 		if (chk){
 					location.href="deleteBoard.do?board_id="+board_id+"&page=${page}&type=${type}&s1=${s1}&s2=${s2}&k=${k}";  
 		}else{event.preventDefault();}
 	}
+	//대댓글 등록
 	function reply(formId) {
 		var chk =  confirm("등록하시겠습니까?");
 		if (chk){
@@ -84,13 +87,14 @@
 		}else{event.preventDefault();}
 	}
 	
-	
+	//댓글 삭제
 	function replyDelete(board_comment_id) {
 		var chk =  confirm("삭제하시겠습니까?");
 		if (chk){
 			location.href='replyDeleteBoard.do?board_id=<%=vo.getBoard_id()%>&type=<%=type%>&page=<%=nowPage%>&s1=${s1}&s2=${s2}&k=${k}&board_comment_id='+board_comment_id;
 		}else{event.preventDefault();}
 	}
+	//댓글 텍스트창 show,hide
 	function replyShow(id){
 		if ($('#replyCmt_'+id).is(":visible")) { 
 	        $('#replyCmt_'+id).hide(); // id값을 받아서 숨기기 
@@ -99,32 +103,30 @@
 	        $('#replyCmt_'+id).show(); // id값을 받아서 보이기 
 	    } 
 	}
-	function upLikeNum(){
-		
-		$.ajax({
+	//좋아요 
+	
+	function upLikeNum(type){
+		//현재 누군가가 로그인해 있다
+		//좋아요 싫어요 누른적이 한번도 없고 둘 중에 하나만 클릭이 되게
+			$.ajax({
 			url: 'upLikeNum.do',
 			data: { board_id : ${cvo.board_id},
 							user_id : ${data.user_id},
-							type : 1 },  
+						 	type : type },  
 			dataType : 'JSON',
 		}).done(function(data){
-			$('#likeGood > i').text(data.result);
-			$('#like-num').text(data.result);
+			if (data.result == "-1") {
+				alert("이미 클릭하셨습니다.");
+			} else {
+				if (type == "1") {
+					$('#likeGood > i').text(data.result); //좋아요 숫자 결과값
+					$('#like-num').text(data.result); //추천수 결과값
+				} else {
+					$('#likeBad > i').text(data.result); //좋아요 숫자 결과값
+				}
+			}
 		});
 	}
-	function upBadNum(){
-		$.ajax({
-			url: 'upBadNum.do',
-			data: { board_id : ${cvo.board_id},
-							user_id : ${data.user_id},
-							type : 2 },
-			dataType : 'JSON',
-		}).done(function(data){
-			$('#likeBad > i').text(data.result);
-		});
-	}
-	
-	
 	
 $(document).ready(function(){
 	
@@ -181,11 +183,11 @@ $(document).ready(function(){
 						onclick="location.href='listBoard.do?type=<%=type %>&page=<%=nowPage%>&s1=<%=s1%>&s2=<%=s2%>&k=<%=k%>' ">목록보기</button>
 					
 					<button type="button" class="btn float-right mybtn-good"
-						name="likeBad" id="likeBad" onclick="upBadNum();">
+						name="likeBad" id="likeBad" onclick="upLikeNum(2);">
 						<i class="fa fa-thumbs-o-down" style="font-size: 1.5em;">${dislikeNum }</i>
 					</button>
 					<button type="button" class="btn float-right mybtn-bad"
-						name="likeGood" id="likeGood" onclick="upLikeNum();">
+						name="likeGood" id="likeGood" onclick="upLikeNum(1);">
 						<i class="fa fa-thumbs-o-up" style="font-size: 1.5em;">${likeNum  }</i> 
 					</button>
 
@@ -299,8 +301,8 @@ $(document).ready(function(){
 					<input type="hidden" name="seq" value="<%=cvo.getSeq() %>">
 					<input type="hidden" name="board_comment_id"
 						value="<%=cvo.getBoard_comment_id() %>">
-
-
+ 
+				
 					<div class="reply-name"><%=vo.getNickname() %></div>
 					<textarea class="mt-2" rows="4"
 						style="font-size: 0.9em; width: 100%; border: 1px solid #e1e1e1;"
@@ -309,6 +311,7 @@ $(document).ready(function(){
 						<button type="button" class="btn btn-secondary"
 							onclick="writeComment123()">등록</button>
 					</div>
+					
 				</div>
 			</form>
 		</div>

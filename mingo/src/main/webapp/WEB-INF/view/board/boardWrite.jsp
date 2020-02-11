@@ -89,7 +89,7 @@ function completeWriting(){
             		<textarea  id="smarteditor" class="p-2" rows="20" name="contents" style="margin-top:50px;font-size:1em;width:100%;border:1px solid #e1e1e1;" placeholder="주제와 무관한 댓글, 악플은 삭제 될 수 있습니다."></textarea>
             
             <div style="text-align: center;">
-                <button type="button" class="btn btn-secondary"onclick="location.href='listBoard.do' ">취소</button>
+                <button type="button" class="btn btn-secondary"onclick="location.href='listBoard.do?type=${type}' ">취소</button>
                 <button type="button" id="savebutton" class="btn btn-secondary" onclick="completeWriting();">작성완료</button>
             </div>
         </div>

@@ -1,7 +1,6 @@
 package service;
 
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -140,9 +139,29 @@ public class BoardService {
 
 
 	public int upLikeNum(BoardLikeVO vo) {
-		boardDAO.insertLike(vo);
+		
+		BoardLikeVO blvo = boardDAO.checkLike(vo);
+		int num = 0;
+		if (blvo == null) {
+			boardDAO.insertLike(vo);
+			if (vo.getType() == 1) {
+				num = boardDAO.getLikeNum(vo.getBoard_id());
+			} else {
+				num = boardDAO.getDislikeNum(vo.getBoard_id());
+			}
+		} else {
+			if (blvo.getType() == vo.getType()) {
+				boardDAO.deleteLike(vo);
+				if (vo.getType() == 1) {
+					num = boardDAO.getLikeNum(vo.getBoard_id());
+				} else {
+					num = boardDAO.getDislikeNum(vo.getBoard_id());
+				}
+			} else {
+				num = -1;
+			}
+		}
 		boardDAO.updateLikeNum(vo.getBoard_id());
-		int num = boardDAO.getLikeNum(vo.getBoard_id());
 		
 		return num;
 	}
@@ -152,9 +171,6 @@ public class BoardService {
 		int num = boardDAO.getDislikeNum(vo.getBoard_id());
 		return num;
 	}
-
-	
-
 	
 
 }

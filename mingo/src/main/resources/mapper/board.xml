@@ -212,18 +212,29 @@
 		#{ref}, #{lev} , #{seq} ,#{contents})
 	</insert>
 	
+	<select id="checkLike" parameterType="vo.BoardLikeVO" resultType="vo.BoardLikeVO">
+		select * from board_like where user_id=#{user_id} and board_id=#{board_id}
+	</select>
 	<insert id="insertLike" parameterType="vo.BoardLikeVO">
 		insert into board_like
 		(user_id, board_id, type)
 		values
 		(#{user_id},#{board_id},#{type})
 	</insert>
+	<delete id="deleteLike" parameterType="vo.BoardLikeVO">
+		DELETE FROM mingo.board_like 
+		WHERE board_id=#{board_id} and user_id=#{user_id}
+	</delete>
 	<insert id="insertDislike" parameterType="vo.BoardLikeVO">
 		insert into board_like
 		(user_id, board_id, type)
 		values
 		(#{user_id},#{board_id},#{type})
 	</insert>
+	<delete id="deleteDislike" parameterType="vo.BoardLikeVO">
+		DELETE FROM mingo.board_like 
+		WHERE board_id=#{board_id}
+	</delete>
 	<select id="getLikeNum" parameterType="Integer" resultType="Integer">
 		select count(*)
 		from board_like
@@ -235,8 +246,9 @@
 		where board_id = #{board_id} and type=2;
 	</select>
 	<update id="updateLikeNum" parameterType="Integer">
-		update mingo.board
-		set like_num = (select count(*) from board_like where board_id = #{board_id} and type=1)
+		update mingo.board set 
+		like_num = (select count(*) from board_like where board_id = #{board_id} and type=1),
+		dislike_num = (select count(*) from board_like where board_id = #{board_id} and type=2)
 		where board_id = #{board_id};
 	</update>
 	

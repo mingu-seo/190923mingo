@@ -116,6 +116,7 @@ public class BoardController {
 		
 		
 	}
+	
 	@RequestMapping("/upBadNum.do")
 	public void upBadNum(BoardLikeVO vo, HttpServletResponse response) {
 		int result = boardService.upBadNum(vo);
@@ -132,6 +133,7 @@ public class BoardController {
 		
 		
 	}
+	
 	//댓글 등록
 	@RequestMapping("/writeComment.do")
 	public String writeComment(Model model, BoardCommentVO cvo,BoardVO vo) {
