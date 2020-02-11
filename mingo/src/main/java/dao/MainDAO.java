@@ -30,7 +30,7 @@ public class MainDAO {
 	}
 
 	/* 4가지 옵션을 이용하여 찾는 함수 */
-	public List<CafeVO> getCafeList(CafeCommand cafeTmp) {
+	public List<Map> getCafeList(CafeCommand cafeTmp) {
 		
 		return sqlSession.selectList("main.getCafeList", cafeTmp);
 	}

@@ -113,7 +113,7 @@
     			location.href="mngUserMain.do?page=1";
     		});
     		$('#mngCafe').click(function(){
-    			//location.href="mngCafeMain.do?";
+    			location.href="mngCafeMain.do?";
     		});
     		$('#mngBoard').click(function(){
     			location.href="mngBoardMain.do?";
