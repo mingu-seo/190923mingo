@@ -24,7 +24,7 @@
 		(#{email},#{name}, #{gender}, #{type})
 	</insert>
 	
-	<!--아이디 중복체크  -->
+	<!--이메일 중복체크  -->
 	<select id="emailCheck" parameterType="String" resultType="integer">
 	 SELECT COUNT(*) FROM mingo.user
 	 WHERE email=#{email}

@@ -38,7 +38,13 @@ public class UserController {
 		} else {
 			HttpSession session = request.getSession();
 			session.setAttribute("userVO", uv);
-			return "redirect:/goMain.do";
+			//return "redirect:/goMain.do";
+			String msg = "로그인되었습니다..";
+			String url = "/goMain.do";
+			model.addAttribute("cmd", "parentMove");
+			model.addAttribute("msg", msg);
+			model.addAttribute("url", url);
+			return "include/alert";
 		} 
 	}
  
@@ -107,12 +113,14 @@ public class UserController {
 		String msg = "";
 		String url = "";
 		if (r > 0) {
-			msg = "가입되셨습니다.";
+			msg = "가입되었습니다.";
 			url = "/loginForm.do";
+			
 		} else {
 			msg = "회원가입 실패";
 			url = "/join_step1.do";
 		}
+		model.addAttribute("cmd", "parentMove");
 		model.addAttribute("msg", msg);
 		model.addAttribute("url", url);
 		return "include/alert";

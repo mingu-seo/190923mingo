@@ -32,7 +32,7 @@ public class UserService {
 		return userDao.naverJoinProcess(vo);
 	}
 	
-	//아이디 중복체크
+	//이메일 중복체크
 	public int emailCheck(String email) {
 		return userDao.emailCheck(email);
 	}
