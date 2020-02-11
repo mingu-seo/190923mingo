@@ -5,6 +5,8 @@ package service;
 
 
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,13 +18,15 @@ public class UserService {
 
 	@Autowired
 	private UserDAO userDao;
-
+	//로그인
 	public UserVO loginProcess(UserVO vo) {
 		return userDao.loginProcess(vo);
 	}
+	//네이버 로그인
 	public UserVO naverLoginProcess(UserVO vo) {
 		return userDao.naverLoginProcess(vo);
 	}
+	
 	//회원가입
 	public int joinProcess(UserVO vo) {
 		return userDao.joinProcess(vo);
