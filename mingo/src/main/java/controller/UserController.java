@@ -26,6 +26,7 @@ public class UserController {
 		return "login/loginForm";
 	}
 	
+	
    // 네이버 로그인 폼
   
    @RequestMapping("/naverLoginProcess.do")

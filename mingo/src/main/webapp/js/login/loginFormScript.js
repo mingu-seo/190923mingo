@@ -49,7 +49,7 @@
 		      });
 		    };
 		    */
-		 Kakao.init('5056c3b1e52c786b89a189f847dbcbc7');
+		 /*Kakao.init('5056c3b1e52c786b89a189f847dbcbc7');
 		 function loginWithKakao() {
 			 Kakao.Auth.login({
 			        success: function(authObj) {
@@ -72,4 +72,4 @@
 			          alert(JSON.stringify(err));
 			        }
 			      });
-		 }
+		 }*/
