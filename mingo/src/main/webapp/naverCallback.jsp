@@ -80,8 +80,8 @@ try {
 
 	JSONObject resJson = (JSONObject) obj.get("response");
 	%>
-	
-	<form action="/naverLoginProcess.do">
+<body onload="frm.submit();">
+	<form name="frm" action="/naverLoginProcess.do">
 	
 	<input type ="hidden" value = "<%=(String)resJson.get("name")%>"  name ="name" ><br/>
 	<input type ="hidden" value = "<%=(String)resJson.get("email")%>"  name ="email" ><br/>
@@ -97,7 +97,6 @@ try {
 	<input type ="hidden" value = "<%=gender %>"  name ="gender" ><br/>
 	<input type ="hidden" value = "<%=(String)resJson.get("birthday")%>"  name ="birthday" ><br/>
 	<input type ="hidden" value = "1" name="type">
-	<input type="submit" value="login">
 	
 	</form>
-	
+</body>

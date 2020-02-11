@@ -1,6 +1,7 @@
 package controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import service.UserService;
 import vo.UserVO;
@@ -38,7 +40,13 @@ public class UserController {
 		} else {
 			HttpSession session = request.getSession();
 			session.setAttribute("userVO", uv);
-			return "redirect:/goMain.do";
+			//return "redirect:/goMain.do";
+			String msg = "로그인되었습니다..";
+			String url = "/goMain.do";
+			model.addAttribute("cmd", "parentMove");
+			model.addAttribute("msg", msg);
+			model.addAttribute("url", url);
+			return "include/alert";
 		} 
 	}
  
@@ -107,12 +115,14 @@ public class UserController {
 		String msg = "";
 		String url = "";
 		if (r > 0) {
-			msg = "가입되셨습니다.";
+			msg = "가입되었습니다.";
 			url = "/loginForm.do";
+			
 		} else {
 			msg = "회원가입 실패";
 			url = "/join_step1.do";
 		}
+		model.addAttribute("cmd", "parentMove");
 		model.addAttribute("msg", msg);
 		model.addAttribute("url", url);
 		return "include/alert";
@@ -138,8 +148,9 @@ public class UserController {
 
 	// 로그아웃
 	@RequestMapping("/logout.do")
-	public String logout() {
-		return "redirect:/main/goMain.do";
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "login/logout";
 	}
 
 	// 아이디 찾기 step1

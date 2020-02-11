@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>관리자 메인 페이지</title>
 
     <!-- 헤더파일들 include -->
 		<%@ include file="/WEB-INF/view/include/headHTML.jsp"%>
@@ -29,6 +29,7 @@
             transition: 0.4s box-shadow;
             position:relative;
             cursor: pointer;
+           
             
 
         }
@@ -41,14 +42,23 @@
             
             border-radius: 50px;
             z-index: -1;
-            background: rgba(11, 83, 238, 0.952);
+            background-color: #999999;
             animation: 0.4s clockwise infinite;
         }
-        /*
+        .box > .main-t{
+        	 	font-size:40px;
+            font-weight:bold;
+            
+        }
+        .box > .main-i{
+        	font-size:4em;
+        	
+        }
+        
         .box:hover{
             
-            box-shadow: 0 5px 20px 0px rgb(238, 11, 11);
-        } */
+            box-shadow: 0 5px 20px 0px #999999;
+        }
 
         @keyframes clockwise {
             0% {
@@ -97,16 +107,39 @@
             }
         }
     </style>
+    <script>
+    	$(document).ready(function(){
+    		$('#mngUser').click(function(){
+    			location.href="mngUserMain.do?page=1";
+    		});
+    		$('#mngCafe').click(function(){
+    			location.href="mngCafeMain.do?";
+    		});
+    		$('#mngBoard').click(function(){
+    			location.href="mngBoardMain.do?";
+    		});
+    	});
+    </script>
 </head>
 
-<body>
+<body class="bg-light">
      <!-- 내비게이션 include -->
 		<%@ include file="/WEB-INF/view/include/navigation.jsp"%>
 		
     <div class="" style="width:1140px;margin:200px auto 200px;overflow:hidden;">
-    	<div class="box">회원 관리</div>
-    	<div class="box">카페 관리</div>
-    	<div class="box">게시판 관리</div>
+    	<div class="box" id="mngUser" style="margin-left:80px;">
+    		<div class="fa fa-users main-i" ></div>
+    		<div class="main-t">회원 관리</div>
+    		
+    	</div>
+    	<div class="box" id="mngCafe">
+    		<div class="fa fa-coffee main-i" ></div>
+    		<div class="main-t">카페 관리</div>
+    	</div>
+    	<div class="box" id="mngBoard">
+    		<div class="fa fa-file-text-o main-i" ></div>
+    		<div class="main-t">게시판 관리</div>
+    	</div>
     </div>
     
     

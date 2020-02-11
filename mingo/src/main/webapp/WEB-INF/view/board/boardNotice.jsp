@@ -69,16 +69,11 @@ function completeWriting(){
 		
     <div class="board-wrapper">
         <%@ include file="/WEB-INF/view/board/boardSideMenu.jsp" %>
-    <form action="writeFormBoard.do?" id="frm" >
+    <form action="writeFormNotice.do?" id="frm" >
     	<input type="hidden" name="type" value="${type }">
         <div class=" board-group shadow ml-4">
             <div class="mb-4 board-name">
-		            <c:set var="btype" value="${type }"/>
-            		<c:forEach items="${boardNames}" var="i" >
-	            		<c:if test="${i.type == btype }">
-	            			${i.name }
-	            		</c:if>
-           			</c:forEach>
+		                      공지사항
                <span style="font-size: 0.5em;">글쓰기</span>
             </div>
             

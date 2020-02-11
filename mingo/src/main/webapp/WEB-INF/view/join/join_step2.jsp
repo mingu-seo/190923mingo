@@ -22,7 +22,7 @@ String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code&cli
     <link rel="stylesheet" type="text/css" href="css/join/join_step2.css">
     <script>
      function joinWithNaver(){
-    	window.open('<%=apiURL%>', '_blank', 'width=400, height=400,scrollbar=no,status=no');
+    	window.open('<%=apiURL%>', '_blank' , 'width=300', 'height=300','scrollbar=no','status=no');
 	}
     </script>
     <title>Document</title>
