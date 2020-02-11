@@ -14,8 +14,17 @@ public class BoardVO {
 	private int like_num;
 	private String nickname;
 	private int reply_num;
+	private int is_notice;
 	
 	
+	public int getIs_notice() {
+		return is_notice;
+	}
+
+	public void setIs_notice(int is_notice) {
+		this.is_notice = is_notice;
+	}
+
 	public int getReply_num() {
 		return reply_num;
 	}

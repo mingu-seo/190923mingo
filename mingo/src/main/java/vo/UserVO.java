@@ -21,6 +21,9 @@ public class UserVO {
 	private String address;
 	private int business_num;
 	
+	
+	
+	
 	public int getUser_id() {
 		return user_id;
 	}

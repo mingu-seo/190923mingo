@@ -1,11 +1,14 @@
 @charset "UTF-8";
 
 .footer{
-	 overflow:auto; 
+	 overflow:hidden; 
 	 height:70px;"
 }
 
+.footer a{
+    color:black;
+}
+
 .footer a:hover{
-	color:crimson;
 	text-decoration: none;
 }

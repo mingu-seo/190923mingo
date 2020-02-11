@@ -49,15 +49,12 @@ int totalpage = (Integer)request.getAttribute("totalpage"); // 전체페이지�
         
         <div class=" board-group shadow ml-4">
             <div class="mb-4" style="font-size:2em;">
-            <c:if test="${vo.type == 1 }">
-            	자유게시판
-            </c:if>
-            <c:if test="${vo.type == 2 }">
-            	정보게시판
-            </c:if>
-            <c:if test="${vo.type == 3 }">
-            	취업게시판
-            </c:if>
+            <c:set var="btype" value="${vo.type }"/>
+            <c:forEach items="${boardNames}" var="i" >
+            		<c:if test="${i.type == btype }">
+            			${i.name }
+            		</c:if>
+            </c:forEach>
               		 
             </div>
             
@@ -71,10 +68,29 @@ int totalpage = (Integer)request.getAttribute("totalpage"); // 전체페이지�
                     <div style="float:left;padding:0 14px">추천</div>
                 </li>
                 <c:forEach  items="${list}" var="BoardVO">
-                <li class="list-group-item">
-                    <div id="b-num" style="float:left;width:60px;height:24px;">${BoardVO.board_id}</div>
+                <c:if test="${BoardVO.is_notice == 0}">
+                	<li class="list-group-item">
+                </c:if>
+                <c:if test="${BoardVO.is_notice == 1}">
+                	<li class="list-group-item" style="background-color:#f1f1f1;">
+                </c:if>
+                    <div id="b-num" style="float:left;width:60px;height:24px;">
+                    	<c:if test="${BoardVO.is_notice == 0}">
+                    		${BoardVO.board_id}
+                    	</c:if>
+                    	<c:if test="${BoardVO.is_notice == 1}">
+                    		<div style="color:red;background-color:#ffb3b3;border:1px solid red;
+                    		border-radius:8px;">공지</div>
+                    	</c:if>
+                    </div>
                     <a href="viewBoard.do?board_id=${BoardVO.board_id}&page=<%=vo.getPage()%>&type=<%=vo.getType()%>&s1=${s1}&s2=${s2}&k=${k}" 
-                    id="b-title" style="float:left;width:346px;height:24px;display:block">${BoardVO.title}
+                    id="b-title" style="float:left;width:346px;height:24px;display:block">
+		                    <c:if test="${BoardVO.is_notice == 0}">
+		                    	${BoardVO.title}
+		                    </c:if>
+		                    <c:if test="${BoardVO.is_notice == 1}">
+		                    	<span style="color:red;font-weight:bold;">${BoardVO.title}</span>
+		                    </c:if>
                     		<!--  리플 없으면 아무것도 안띄우고 1개라도 있으면 빨간색으로 [3]이런식으로 표시 -->
                     		<c:if test="${BoardVO.reply_num > 0 }">
                     			<span style="color:red;text-align:center;" >&nbsp;[${BoardVO.reply_num }]</span>
@@ -125,6 +141,7 @@ int totalpage = (Integer)request.getAttribute("totalpage"); // 전체페이지�
                 <li class="page-item"><a class="page-link" href="#">9</a></li>
                 <li class="page-item"><a class="page-link" href="#">10</a></li>
                 <li class="page-item"><a class="page-link" href="#">Next</a></li> -->
+                <button type="button" class="btn btn-danger btn-write2" onclick="location.href='writeNotice.do?type=<%=vo.getType()%>&page=<%=vo.getPage()%>&s1=${s1}&s2=${s2}&k=${k}' ">공지 쓰기</button>
                 <button type="button" class="btn btn-secondary btn-write" onclick="location.href='writeBoard.do?type=<%=vo.getType()%>&page=<%=vo.getPage()%>&s1=${s1}&s2=${s2}&k=${k}' ">글쓰기</button>
             </ul>
             <form action="listBoard.do?" id="filter-form">

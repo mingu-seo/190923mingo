@@ -16,11 +16,11 @@ public class RankDAO {
 	private SqlSessionTemplate sqlSession;
 
 	public List<Map> getCafeRankList(RankCommand tmp) {
-		return sqlSession.selectList("hong.getCafeRankList", tmp);
+		return sqlSession.selectList("main.getCafeRankList", tmp);
 	}
 
 	public int getCafeRankCount(RankCommand tmp) {
-		return sqlSession.selectOne("hong.getCafeRankCount",tmp);
+		return sqlSession.selectOne("main.getCafeRankCount",tmp);
 	}
 
 }

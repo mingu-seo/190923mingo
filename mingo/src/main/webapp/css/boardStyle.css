@@ -6,6 +6,7 @@ a{
 
 /* 게시판 영역 */
 .board-wrapper{
+		
     margin:100px auto;
     width : 1140px;
     overflow: hidden;
@@ -16,7 +17,6 @@ a{
     border-bottom:none;
 }
 .board-side{
-    
     padding: 32px 24px 8px;
     width: 22%;
     float:left;
@@ -28,8 +28,8 @@ a{
 }
 .board-side a:hover{
     text-decoration: none;
+    background-color: #f2f2f2;
     
-    background-color: crimson;
 }
 .board-group{
     border: 1px solid #e1e1e1;
@@ -96,6 +96,11 @@ a{
     position: absolute;
     top:0;
     right:0;
+}
+.btn-write2{
+	position:absolute;
+	top:0;
+	right: 80px;
 }
 
 /* 게시판 디테일 영역 */
@@ -387,7 +392,6 @@ a{
     color:black;
 }
 .footer a:hover{
-    color:crimson;
     text-decoration: none;
 }
 
