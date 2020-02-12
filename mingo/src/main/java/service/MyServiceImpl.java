@@ -102,7 +102,7 @@ public class MyServiceImpl implements MyService{
 		List<BoardVO> boardList = myDao.viewMyPost(boardMap);
 		return boardList;
 	}
-		
+	
 	
 	
 

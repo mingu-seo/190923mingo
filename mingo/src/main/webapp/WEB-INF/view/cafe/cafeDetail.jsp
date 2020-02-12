@@ -46,10 +46,7 @@
         	background-size:cover;
         	text-align: center; 
 		 */
-	
-	
-	
-	
+
 		/* header 부분 스타일 기본값 */
 		.memubar_space{
 			height:600px;
@@ -1113,21 +1110,54 @@
 			}
 			
 			/* 내 평점 보기 및 등록 */
-			/* $('bean_img2').draggable(); */
+			  
+			/* 리뷰 등록 시 */
+			var vrf = function(cafe_id){
+				$.ajax({
+					url:'viewMyReviewForm.do',
+					type:'GET',
+					dataType:'text',
+					data:{'cafe_id':cafe_id},
+					success:function(data){
+						$('.my-review-view').html(data);
+					} 
+				});  
+			};
 			
+			
+			/* 리뷰 미등록 시  */
+			 var rrf = function(cafe_id){
+				 $.ajax({
+					url:'registReviewForm.do',
+					type:'GET',
+					dataType:'text',
+					data:{'cafe_id':cafe_id},
+					success:function(data){
+						$('.my-review-regist').html(data);
+					} 
+				}); 
+			};
+			
+			/* 리뷰 등록 여부 확인 */
+			console.log("리뷰 등록 여부 체크0");
 			$.ajax({
-				url:'registReviewForm.do',
+				url:'checkReview.do',
 				type:'GET',
-				dataType:'text',
+				dataType:'json',
 				data:{'cafe_id':cafe_id},
 				success:function(data){
-					$('.my-review-regist').html(data);
-				} 
-			});   
+					console.log("리뷰 등록 여부 체크");
+					if(data.checkReview==0){
+						console.log("리뷰 미등록");
+						rrf(cafe_id);
+					} else{
+						console.log("리뷰 등록");
+						vrf(cafe_id);
+					}
+				}   
+			}); 
 			
-			
-			
-		});
+		});  
 	 
 	
 	
@@ -1493,133 +1523,19 @@
 					</div>
 				</div>
 				<div class="info_title" id="basic_info_title">리뷰</div>
-				<div class="review-view">
-				
-				</div>
+				<div class="review-view"></div>
 			</div>
 		</div>
 		<div class="container">
 			<div class="my_review">
 				<div class="info_title" id="basic_info_title2">내 평가</div>
-				<div class="my-review-regist">
-				
-				</div>
-				
-				<div class="cafe_rates2">
-					<div class="rate_info22">
-						<div class="info22">
-							<div class="rate_avg">
-								<img src="img/star_colored.png" id="star_shape2">
-								<div class="rate_num2">평균 ${cafeRate.cafe_total_avg }점</div>
-								
-							</div>
-						</div>	
-					</div>
-					<div class="rate_visual_total2">
-						<div class="rate_each22">
-							<div class="rate_visual2" id="taste_visual_tatal2">
-								<div class="graph_area2">
-						            <div>
-						                <img src="img/taste.png" class="graph_logo2">
-						            </div>
-						            <div class="graph_stack2">
-						                <div class="graph_rate2" id="taste-width2">
-						                    <img src="img/bean.PNG" class="bean_img2">
-						                    <div class="graph_text" id="taste-text2">${cafeRate.taste_avg }점</div>
-						                </div>
-						            </div>
-						        </div>
-							</div>
-							<div class="rate_name2" id="taste_name_tatal2"></div>
-						</div>
-						<div class="rate_each22">
-							<div class="rate_visual2" id="price_visual_tatal2">
-								<div class="graph_area2">
-						            <div>
-						                <img src="img/mood.png" class="graph_logo2">
-						            </div>
-						            <div class="graph_stack2">
-						                <div class="graph_rate2" id="mood-width2">
-						                    <img src="img/bean.PNG" class="bean_img2">
-						                    <div class="graph_text2" id="mood-text2">${cafeRate.mood_avg }점</div>
-						                </div>
-						            </div>
-						        </div>
-							</div>
-							<div class="rate_name2" id="price_name_tatal2"></div>
-						</div>
-						<div class="rate_each22">
-							<div class="rate_visual2" id="service_visual_tatal2">
-								<div class="graph_area2">
-						            <div>
-						                <img src="img/service.png" class="graph_logo2">
-						            </div>
-						            <div class="graph_stack2">
-						                <div class="graph_rate2" id="service-width2">
-						                    <img src="img/bean.PNG" class="bean_img2">
-						                    <div class="graph_text2" id="service-text2">${cafeRate.service_avg }점</div>
-						                </div>
-						            </div>
-						        </div>
-							</div>
-							<div class="rate_name2" id="service_name_tatal2"></div>
-						</div>
-						<div class="rate_each22">
-							<div class="rate_visual2" id="facimood_visual_tatal2">
-								<div class="graph_area2">
-						            <div>
-						                <img src="img/wifi2.png" class="graph_logo2">
-						            </div>
-						            <div class="graph_stack2">
-						                <div class="graph_rate2" id="wifi-width2">
-						                    <img src="img/bean.PNG" class="bean_img2">
-						                    <div class="graph_text2" id="wifi-text2">${cafeRate.wifi_avg }점</div>
-						                </div>
-						            </div>
-						        </div>
-							</div>
-							<div class="rate_name2" id="facimood_name_tatal2"></div>
-						</div>
-						<div class="rate_each22">
-							<div class="rate_visual2" id="wifiplug_visual_tatal2">
-								<div class="graph_area2">
-						            <div>
-						                <img src="img/clean.png" class="graph_logo2">
-						            </div>
-						            <div class="graph_stack2">
-						                <div class="graph_rate2" id="clean-width2">
-						                    <img src="img/bean.PNG" class="bean_img2">
-						                    <div class="graph_text2" id="clean-text2">${cafeRate.clean_avg }점</div>
-						                </div>
-						            </div>
-						        </div>
-							</div>
-							<div class="rate_name2" id="wifiplug_name_tatal2"></div>
-						</div>
-						<div class="rate_each22">
-							<div class="rate_visual2" id="clean_visual_tatal2">
-								<div class="graph_area2">
-						            <div>
-						                <img src="img/price.png" class="graph_logo2">
-						            </div>
-						            <div class="graph_stack2">
-						                <div class="graph_rate2" id="price-width2">
-						                    <img src="img/bean.PNG" class="bean_img2">
-						                    <div class="graph_text2" id="price-text2">${cafeRate.price_avg }점</div>
-						                </div>
-						            </div>
-						        </div>  
-							</div>  
-							<div class="rate_name2" id="clean_name_tatal2"></div>
-						</div>
-					</div>
-				</div>
-				
-				
+				<!-- 리뷰 미등록 시 -->
+				<div class="my-review-regist"></div>
+				<!-- 리뷰 등록 시 -->
+				<div class="my-review-view"></div>
 				</div>
 			</div>
 		</div>
-	   
 	
 	<!-- 푸터 include -->
 	<%@ include file="/WEB-INF/view/include/footer.jsp"%>

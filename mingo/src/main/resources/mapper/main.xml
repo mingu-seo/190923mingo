@@ -16,8 +16,10 @@
 		
 	</select>
 	
-	<select id="getCafeList" resultType="vo.CafeVO" parameterType="vo.CafeCommand">
-		select * from cafe
+	<select id="getCafeList" resultType="Map" parameterType="vo.CafeCommand">
+		select c.*, i.url
+		from cafe as c left outer join cafe_image as i
+		on c.cafe_id = i.cafe_id
 		<where>
 			<if test="sido_code != null and sido_code > 0">
 			and sido_code = #{sido_code}
@@ -47,7 +49,7 @@
 				</when>
 			</choose>
 		</if> 
-		limit #{startrow},8;
+		limit #{startrow},16;
 		
 	</select>
 	

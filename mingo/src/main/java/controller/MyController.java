@@ -82,22 +82,29 @@ public class MyController {
 	
 	@RequestMapping("/myCafe.do")
 	public String myCafe(Model model, UserVO vo, HttpServletRequest request) {
+		return "mypage/myMyCafe";
+	}
+	@RequestMapping("/myCafeAjax.do")
+	public String myCafeAjax(Model model, UserVO vo, HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		UserVO vo1 = (UserVO) session.getAttribute("userVO");
 		int user_id = vo1.getUser_id();
-		UserVO userVO = myService.viewUserInfo(user_id);
-		model.addAttribute("userVO", userVO);
+		String url;	
 		
-		// 기본정보 조회
-		CafeVO cafe = myService.viewCafe(user_id);   
-		model.addAttribute("cafe", cafe);
-		
-		//종합 평점 조회
-		int cafe_id = cafe.getCafe_id();
-		CafeRateVO cafeRate = myService.viewCafeRate(cafe_id);   
-		model.addAttribute("cafeRate", cafeRate);
-		
-		return "mypage/myMyCafe";
+		// 기본정보 조회  
+		CafeVO cafe = myService.viewCafe(user_id);
+		if(cafe != null) {
+			model.addAttribute("cafe", cafe);
+			//종합 평점 조회
+			int cafe_id = cafe.getCafe_id();
+			CafeRateVO cafeRate = myService.viewCafeRate(cafe_id);   
+			model.addAttribute("cafeRate", cafeRate);
+			url = "mypage/myCafeAjax";
+		} else {
+			url = "mypage/myCafeRegistAjax";
+		}
+
+		return url;
 	}
 	
 	@RequestMapping("/myReview.do")
@@ -110,9 +117,11 @@ public class MyController {
 		UserVO vo = (UserVO) session.getAttribute("userVO");
 		int user_id = vo.getUser_id();
 		System.out.println("전송된 현재 페이지 : " + request.getParameter("currentPage"));
+		System.out.println("유저아이디 : " + user_id);
 		int currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		
 		int myReview_num = myService.countMyReview(user_id);
+		System.out.println("내 리뷰 개수 : " + myReview_num);
 		model.addAttribute("myReview_num", myReview_num);
 		
 		int maxPage = (myReview_num-1)/5+1;

@@ -89,7 +89,14 @@ td{
 					<c:forEach var="user" items="${ownerList}">
 					<tr>
 						<td>${user.user_id }</td>
-						<td><img src="<%=request.getContextPath()%>/upload/user/profile.png" style="width:80px; height:80px;"/></td>
+						<td>
+							<c:if test="${user.profile_image == null }" >
+								<img class="rounded-circle" src="<%=request.getContextPath()%>/upload/user/profile.png" style="width:80px; height:80px;"/>
+							</c:if>
+							<c:if test="${user.profile_image != null }" >
+								<img class="rounded-circle" src="<%=request.getContextPath()%>/upload/user/${user.profile_image}" style="width:80px; height:80px;"/>
+							</c:if>
+						</td>
 						<td>${user.email }</td>
 						<td>${user.nickname }</td>
 						<td>${user.name }</td>

@@ -36,6 +36,14 @@
 		</where>
 		order by regdate desc limit #{beginIndex}, 5 
 	</select>
+	<select id="viewMyReview2" resultType="vo.ReviewVO" parameterType="vo.ReviewVO">
+		SELECT * FROM mingo.review 
+		<where>   
+			<if test="cafe_id != null and user_id != null">
+				cafe_id = #{cafe_id} and user_id = #{user_id} 
+			</if>
+		</where>
+	</select>
 	<select id="selectViewUserList" resultType="vo.UserVO" parameterType="Integer">
 		SELECT * FROM mingo.user
 		<where>
@@ -238,20 +246,20 @@
 	
 	<insert id="insertReview" parameterType="vo.ReviewVO">  
 		insert into mingo.review
-		(user_id, cafe_id, regdate, contents, taste_score, price_score, service_score, wifi_score, mood_score, clean_score, image)
+		(user_id, cafe_id, regdate, contents, taste_score, price_score, service_score, wifi_score, mood_score, clean_score, image, score_avg)
 		values
-		(#{user_id}, #{cafe_id}, now(), #{contents}, #{taste_score}, #{price_score}, #{service_score}, #{wifi_score}, #{mood_score}, #{clean_score}, #{image})
+		(#{user_id}, #{cafe_id}, now(), #{contents}, #{taste_score}, #{price_score}, #{service_score}, #{wifi_score}, #{mood_score}, #{clean_score}, #{image}, #{score_avg})
 	</insert>
 	<update id="updateReview" parameterType="vo.ReviewVO">  
 		update mingo.review set
 		regdate=now(), contents=#{contents}, 
 		taste_score=#{taste_score}, price_score=#{price_score}, service_score=#{service_score}, 
-		wifi_score=#{wifi_score}, mood_score=#{mood_score}, clean_score=#{clean_score}
+		wifi_score=#{wifi_score}, mood_score=#{mood_score}, clean_score=#{clean_score}, image=#{image}
 		<where>
 			<if test="review_id != null" >
 				review_id = #{review_id}
 			</if>
-		</where>
+		</where>   
 	</update>   
 	<update id="updateRate" parameterType="vo.CafeRateVO">
 		update mingo.cafe_rate set

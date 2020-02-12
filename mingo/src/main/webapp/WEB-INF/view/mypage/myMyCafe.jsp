@@ -24,154 +24,21 @@
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/choicss1.css">
 	
 	<style>
-		.collect_cafe_each{
-			width:100%;
-			height:200px;
-			box-sizing: border-box;
-			border:1px solid #D8D8D8;
-			padding:10px;  
-		}
-		.collect_cafe_logo{
-			width:25%;
-			height:100%;
-			  
-			float:left;
-		}
-		.collect_cafe_logo img{
-			height:100%;
-		}
 		
-		
-		.collect_cafe_info{
-			float:left;
-			height:100%;  
-			width:75%;
-			box-sizing: border-box;
-			padding-left:20px;   
-			
-		}
-		
-		.collect_cafe_info_header{
-			line-height:60px;
-			height:30%;  
-			width:95%;   
-			border-bottom:1px solid #D8D8D8;  
-		}
-		
-		.collect_cafe_info_header div{
-			float:left;
-			height:100%;
-		}
-		.collect_cafe_title{
-			font-size: 2.0em;
-			font-weight: bold;
-			color:#2E2E2E;
-		}
-		.collect_cafe_star img{
-			width:40px;
-		}
-		.collect_cafe_avgRate{
-			font-size: 2.0em;
-			font-weight: bold;
-			color:#2E2E2E;
-		
-		}
-		.collect_cafe_info_header{
-			padding-bottom:10px; 
-			height:60px;   
-		}
-		.collect_cafe_info_content{
-			height:70%;
-			padding-top:20px;
-		}
-		
-		.collect_cafe_address {
-			font-size:1.2em;   
-			height:20%;
-			margin-bottom:10px;  
-			
-		}
-		.collect_cafe_eachRate{
-			height:80%;
-			
-		}
-		.each_rate{
-			width:170px;
-			height:35px;
-			padding:5px;
-			float:left;
-			
-		}
-		.each_rate div{  
-			line-height: 25px;   	
-			float:left;
-		}
-		
-		
-		.collect_graphic{
-			position:relative;
-			width:110px;  
-			height:25px;
-			line-height: 25px;          	
-		}
-		.collect_graphic div{
-		}
-		
-		.bar_total{
-			position:absolute;
-			transform: translateY(-50%);
-			top:50%;
-			width:100px;
-			height:10px;
-			background-color: #D8D8D8;
-			border-radius: 7px;
-			margin:auto;
-		}
-		.bar_rate{
-			width:70%;  
-			height:10px;
-			background-color: #FFBF00;
-			border-radius: 7px;
-		}
-		
-		.collect_img img{
-			position:relative;
-			bottom:2px; 
-			right:2px;
-			width:15px;
-			z-index: 10;
-		}
-		.rate{
-			font-size: 0.8em;
-			font-weight: bold;
-		}
-		
-		.review_navi_nums{
-			width:100%;
-			height:100px;
-			padding-top:40px;
-		}
-		  
-		.review_navi_nums > div{
-			line-height:60px;
-			height:60px;
-			width:100%;
-			
-			/* margin:0 auto;
-			padding:0 auto; */  
-			/* line-height: 200px; */
-			text-align:center;  
-		}      
-		
-		.review_navi_nums a{
-			margin:0 20px;
-		
-		}
 	
 	</style>
 	
 	<script>
 		$(function(){
+			$.ajax({
+				url:'myCafeAjax.do',
+				type:'GET',
+				dataType:'text',
+				success:function(data){
+					$('.myCafe-area').html(data);
+					
+				} 
+			});  
 			
 		});
 	
@@ -216,113 +83,11 @@
         
         <div class=" board-group shadow ml-4">
             <div class="pb-2 mb-4 board-name" style="border-bottom: 1px solid #6E6E6E;">
-               	<a href="myCafe.do?user_id=${userVO.user_id }">내 카페</a>
+               	내 카페
             </div>
-            <div class="collect_cafes">
-            	<div class="collect_cafe_each" OnClick="location.href='detailView.do?cafe_id=${cafe.cafe_id}&user_id=${userVO.user_id}'">
-            		<div class="collect_cafe_logo">  
-            			<img src="upload/cafe/${cafe.logo }">
-            		</div>
-            		<div class="collect_cafe_info">
-            			<div class="collect_cafe_info_header">
-            				<div class="collect_cafe_title">${cafe.name }&nbsp${cafe.branch }&nbsp</div>
-            				<div class="collect_cafe_star">
-            					<img src="img/star_colored.png">
-            				</div>
-            				<div class="collect_cafe_avgRate">${cafe.rate_avg }</div>
-            			</div>
-            			<div class="collect_cafe_info_content">
-            				<div class="collect_cafe_address">${cafe.cafe_address }</div>
-            				<div class="collect_cafe_eachRate">
-            					<div class="each_rate" id="collect_menu">
-            						<div class="collect_img">
-            							<img src="img/wifi.png">
-            						</div>
-            						<div class="collect_graphic">
-            							<div class="bar_total">
-            								<div class="bar_rate"></div>
-            								<div class="bean_img">
-            									<img src="">
-            								</div>
-            							</div>
-            						</div>
-            						<div class="rate">${cafeRate.price_avg }</div>
-            					</div>
-            					<div class="each_rate" id="collect_price">
-            						<div class="collect_img">
-            							<img src="img/wifi.png">
-            						</div>
-            						<div class="collect_graphic">
-            							<div class="bar_total">
-            								<div class="bar_rate"></div>
-            								<div class="bean_img">
-            									<img src="">
-            								</div>
-            							</div>
-            						</div>
-            						<div class="rate">${cafeRate.taste_avg }</div>
-            					</div>
-            					<div class="each_rate" id="collect_wifiplug">
-            						<div class="collect_img">
-            							<img src="img/wifi.png">
-            						</div>
-            						<div class="collect_graphic">
-            							<div class="bar_total">
-            								<div class="bar_rate"></div>
-            								<div class="bean_img">
-            									<img src="">
-            								</div>
-            							</div>
-            						</div>
-            						<div class="rate">${cafeRate.mood_avg }</div>
-            					</div>
-            					<div class="each_rate" id="collect_service">
-            						<div class="collect_img">
-            							<img src="img/wifi.png">
-            						</div>
-            						<div class="collect_graphic">
-            							<div class="bar_total">
-            								<div class="bar_rate"></div>
-            								<div class="bean_img">
-            									<img src="">
-            								</div>
-            							</div>
-            						</div>
-            						<div class="rate">${cafeRate.service_avg }</div>
-            					</div>
-            					<div class="each_rate" id="collect_facility">
-            						<div class="collect_img">
-            							<img src="img/wifi.png">
-            						</div>
-            						<div class="collect_graphic">
-            							<div class="bar_total">
-            								<div class="bar_rate"></div>
-            								<div class="bean_img">
-            									<img src="">
-            								</div>
-            							</div>
-            						</div>
-            						<div class="rate">${cafeRate.wifi_avg }</div>
-            					</div>
-            					<div class="each_rate" id="collect_product">
-            						<div class="collect_img">
-            							<img src="img/wifi.png">
-            						</div>
-            						<div class="collect_graphic">
-            							<div class="bar_total">
-            								<div class="bar_rate"></div>
-            								<div class="bean_img">
-            									<img src="">
-            								</div>
-            							</div>
-            						</div>
-            						<div class="rate">${cafeRate.clean_avg }</div>
-            					</div>
-            				</div>
-            			</div>
-            		</div>
-            	</div>
-            </div>            
+            <div class="myCafe-area"></div>
+            
+                       
         </div>
     </div>
 	<%@ include file="/WEB-INF/view/include/footer.jsp"%>	
