@@ -1,5 +1,8 @@
 package controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -248,7 +251,27 @@ public class UserController {
 		return "login/callback";
 	}
 	
+	@RequestMapping("/adminLoginProcess.do")
+	public String adminLoginProcess(Model model, @RequestParam("email") String email,
+			@RequestParam("password") String password, HttpServletRequest request) {
+		Map uv = new HashMap<String, String>();
+		uv.put("id", "admin");
+		uv.put("password", "admin");
 
+		if ("admin".equals(email) || "admin".equals(password)) {
+			HttpSession session = request.getSession();
+			session.setAttribute("admin", uv);
+
+			return "redirect:/adminMain.do";
+		} else {
+			String msg = "권한이 없습니다.";
+			String url = "/adminLoginForm.do";
+			model.addAttribute("msg", msg);
+			model.addAttribute("url", url);
+			return "include/alert";
+		}
+
+	}
 	
 	
 }

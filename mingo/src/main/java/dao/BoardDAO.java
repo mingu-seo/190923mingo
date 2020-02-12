@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import vo.BoardCommentVO;
 import vo.BoardLikeVO;
+import vo.BoardMetaVO;
 import vo.BoardVO;
 @Repository
 public class BoardDAO {
@@ -115,6 +116,10 @@ public class BoardDAO {
 
 		public void updateLikeNum(int board_id) {
 			sqlSession.update("board.updateLikeNum", board_id);
+		}
+
+		public List<BoardMetaVO> getBoardNames() {
+			return sqlSession.selectList("board.getBoardNames");
 		}
 		
 

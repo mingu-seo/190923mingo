@@ -3,7 +3,7 @@
 <div class="jumbotron jumbotron-fluid mb-0">
 		<div class="container">
 			<div class="footer clearfix mb-2">
-				<a href="#" class="fa fa-coffee"
+				<a href="goMain.do" class="fa fa-coffee"
 					style="font-size: 3em; float: left; font-weight: bold;">&nbsp;Mingo</a>
 				<a href="#" class="fa fa-twitter"
 					style="font-size: 3em; float: right"></a> <a href="#"

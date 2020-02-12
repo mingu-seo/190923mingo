@@ -38,6 +38,11 @@ String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code&cli
     function loginWithNaver(){
     	window.open('<%=apiURL%>', '_blank', 'width=400, height=400,scrollbar=no,status=no');
 	}
+    $(function() {
+	    $("#password").keyup(function(e){
+	    	if(e.keyCode == 13)  $(".loginbutton").trigger("click");
+	    });
+   	});
     </script>
 </head>
 <body>

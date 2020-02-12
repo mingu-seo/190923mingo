@@ -3,7 +3,6 @@ package controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -18,6 +17,7 @@ import dao.BoardDAO;
 import service.BoardService;
 import vo.BoardCommentVO;
 import vo.BoardLikeVO;
+import vo.BoardMetaVO;
 import vo.BoardVO;
 
 @Controller
@@ -47,6 +47,9 @@ public class BoardController {
 		model.addAttribute("k", vo.getK());
 		//model.addAttribute("commentCount", commentCount);
 		
+		List<BoardMetaVO> boardNames = boardDAO.getBoardNames();
+		model.addAttribute("boardNames",boardNames);
+		
 		return "board/boardMain";
 	}
 	
@@ -63,12 +66,32 @@ public class BoardController {
 		boardService.insert(vo);
 		return "redirect:listBoard.do?type="+type;
 	}
+	//공지사항 등록
+	@RequestMapping("/writeFormNotice.do")
+	public String writeFormNotice(BoardVO vo,@RequestParam("type") int type) {
+		vo.setIs_notice(1);
+		boardService.insert(vo);
+		return "redirect:listBoard.do?type="+type;
+	}
 	//게시판 글쓰기 폼 이동
 	@RequestMapping("/writeBoard.do")
 	public String writeBoard(Model model,@RequestParam("type") int type) {
 		model.addAttribute("type",type);
+		
+		List<BoardMetaVO> boardNames = boardDAO.getBoardNames();
+		model.addAttribute("boardNames",boardNames);
 		return "board/boardWrite";
 	}
+	//공지사항 쓰기 폼 이동
+	@RequestMapping("/writeNotice.do")
+	public String writeNotice(Model model,@RequestParam("type") int type) {
+		model.addAttribute("type",type);
+		
+		List<BoardMetaVO> boardNames = boardDAO.getBoardNames();
+		model.addAttribute("boardNames",boardNames);
+		return "board/boardNotice";
+	}
+	
 	
 	//게시판 상세보기 
 	@RequestMapping("/viewBoard.do")
@@ -96,6 +119,8 @@ public class BoardController {
 		/* 좋아요 싫어요 갯수 */
 		model.addAttribute("likeNum", likeNum);
 		model.addAttribute("dislikeNum",dislikeNum);
+		List<BoardMetaVO> boardNames = boardDAO.getBoardNames();
+		model.addAttribute("boardNames",boardNames);
 		
 		return "board/boardDetail";
 	}
@@ -176,6 +201,8 @@ public class BoardController {
 		 model.addAttribute("type",type);
 		 model.addAttribute("vo",vo);
 		 
+		 List<BoardMetaVO> boardNames = boardDAO.getBoardNames();
+			model.addAttribute("boardNames",boardNames);
 		 return "board/boardEdit";
 	}
 	//게시판 수정

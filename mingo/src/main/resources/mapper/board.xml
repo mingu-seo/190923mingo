@@ -46,9 +46,14 @@
 				</if>
 		</where>
 		
-		ORDER BY board_id DESC
+		ORDER BY is_notice desc, board_id DESC
 		LIMIT #{startIndex},#{limit}
 	
+	</select>
+	<select id="getBoardNames" resultType="vo.BoardMetaVO">
+		select *
+		from board_meta
+		order by type;
 	</select>
   <select id="count" resultType="Integer" parameterType="vo.BoardVO">
 		SELECT count(*)
@@ -100,9 +105,9 @@
 	
 	<insert id="insert" parameterType="vo.BoardVO" useGeneratedKeys="true">
 		INSERT INTO mingo.board
-		(board_id, user_id, type, title, contents, regdate, readcount)
+		(board_id, user_id, type, title, contents, regdate, readcount,is_notice)
 		values
-		(#{board_id}, 1, #{type}, #{title}, #{contents}, NOW(),#{readcount})
+		(#{board_id}, 1, #{type}, #{title}, #{contents}, NOW(),#{readcount},#{is_notice})  
 		<selectKey keyProperty="board_id" resultType="Integer" order="AFTER">
 			SELECT last_insert_id()
 		</selectKey>
