@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import dao.AdminDAO;
+import dao.MainDAO;
+import service.AdminService;
 import vo.BoardMetaVO;
 import vo.PageInfo;
 import vo.UserCommand;
@@ -20,6 +22,12 @@ public class AdminController {
 
 	@Autowired
 	AdminDAO adminDAO;
+	
+	@Autowired
+	MainDAO mainDAO;
+	
+	@Autowired
+	AdminService adminService;
 
 	@RequestMapping("/adminLoginForm.do")
 	public String adminLoginForm() {
@@ -31,11 +39,22 @@ public class AdminController {
 		return "admin2/adminMain";
 	}
 
-
+	@RequestMapping("/mngCafeMain.do")
+	public String mngCafeMain(Model model) {
+		List<String> sidoList = mainDAO.getSidoList();
+		model.addAttribute("sidoList", sidoList);
+		
+		
+		return "admin2/mngCafeMain";
+	}
 	/* 유저 관리 메인으로 가는 메소드 (유저 리스트를 가져옴)*/
 	@RequestMapping("/mngUserMain.do")
-	public String mngUserMain(Model model, @RequestParam("page") int page, UserCommand tmp) {
+	public String mngUserMain(Model model, @RequestParam(required = false, value="page") Integer page, UserCommand tmp) {
 		// tmp 속성 : limit,startrow
+		
+		if(page == null) {
+			page =1;
+		}
 		
 		/* 객체 생성 */
 		List<UserVO> userList = new ArrayList<UserVO>();
@@ -132,6 +151,17 @@ public class AdminController {
 		return "redirect:/mngBoardMain.do?";
 	}
 	
+	
+	@RequestMapping("/deleteCafeAdmin.do")
+	public String deleteCafeAdmin(@RequestParam(required = false, value="cafe_id")Integer cafe_id) {
+		if( cafe_id == null)
+			return "redirect:/mngCafeMain.do";
+		else {
+			int result = adminService.deleteCafeAdmin(cafe_id);
+			return "redirect:/mngBoardMain.do";
+		}
+		
+	}
 	@RequestMapping("/mngBoardMain.do")
 	public String mngBoardMain(Model model, @RequestParam(required = false, value = "name")String name) {
 		//name이 널이 아니라면 추가 한다.

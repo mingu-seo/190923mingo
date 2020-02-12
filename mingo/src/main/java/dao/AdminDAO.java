@@ -57,5 +57,30 @@ public class AdminDAO {
 		return sqlSession.delete("admin.deleteBoardMeta",type);
 	}
 
+	public int resetCafe(int cafe_id) {
+		return sqlSession.update("admin.resetCafe",cafe_id);
+	}
+
+	public int deleteCafeFacilitiesFor(int cafe_id) {
+		return sqlSession.delete("admin.deleteCafeFacilitiesFor",cafe_id);
+	}
+
+	public int deleteCafeImageFor(int cafe_id) {
+		return sqlSession.delete("admin.deleteCafeImageFor",cafe_id);
+	}
+
+	public int deleteCafeMenuFor(int cafe_id) {
+		return sqlSession.delete("admin.deleteCafeMenuFor",cafe_id);
+	}
+
+	public int deleteCafeProductFor(int cafe_id) {
+		return sqlSession.delete("admin.deleteCafeProductFor",cafe_id);
+	}
+
+	public int deleteCafeServiceFor(int cafe_id) {
+		return sqlSession.delete("admin.deleteCafeServiceFor",cafe_id);
+	}
+
+
 
 }
