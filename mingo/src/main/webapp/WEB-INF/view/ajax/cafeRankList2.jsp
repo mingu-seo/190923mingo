@@ -43,7 +43,7 @@
 				<th>상호명</th>
 				<th>지점명</th>
 				<th>주소</th>
-				<th>설정</th>
+				<th style="width:120px;">설정</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -57,8 +57,8 @@
 						<td>${item.branch }</td>
 						<td>${ item.cafe_address}</td>
 						<td>
-							  <button type="button" class="btn btn-secondary mb-2" onclick="location.href='detailView.do?cafe_id=${item.cafe_id }'">상세보기</button>
-							  <button type="button" class="btn btn-secondary" onclick="deleteCafe(${item.cafe_id})">초기화</button>
+							  <button type="button" class="btn btn-secondary mb-2" onclick="location.href='detailView.do?cafe_id=${item.cafe_id }'" style="display:block;">상세보기</button>
+							  <button type="button" class="btn btn-secondary" onclick="deleteCafe(${item.cafe_id})" style="display:block;">초기화</button>
 						</td>
 				</tr>
 			</c:forEach>

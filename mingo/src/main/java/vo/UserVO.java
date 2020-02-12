@@ -1,10 +1,4 @@
 package vo;
-
-
-
-
-
-
 public class UserVO {
 
 
@@ -19,7 +13,6 @@ public class UserVO {
 	private String phone_num;
 	private String profile_image;
 	private String address;
-	private int business_num;
 	
 	
 	
@@ -89,12 +82,6 @@ public class UserVO {
 	}
 	public void setAddress(String address) {
 		this.address = address;
-	}
-	public int getBusiness_num() {
-		return business_num;
-	}
-	public void setBusiness_num(int business_num) {
-		this.business_num = business_num;
 	}
 	
 	

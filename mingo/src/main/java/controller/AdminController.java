@@ -54,7 +54,6 @@ public class AdminController {
 		return "admin2/mngCafeMain";
 	}
 	/* 유저 관리 메인으로 가는 메소드 (유저 리스트를 가져옴)*/
-
 	@RequestMapping("/mngUserMain.do")
 	public String mngUserMain(Model model, @RequestParam(required = false, value="page") Integer page, UserCommand tmp) {
 		// tmp 속성 : limit,startrow
@@ -103,7 +102,54 @@ public class AdminController {
 		return "admin2/adminUserList";
 
 	}
-	
+	@RequestMapping("/getOwnerList.do")
+	public String getOwnerList(Model model, @RequestParam(required = false, value="page") Integer page, UserCommand tmp) {
+		// tmp 속성 : limit,startrow
+
+		
+		if(page == null) {
+			page =1;
+		}
+		
+
+		/* 객체 생성 */
+		List<UserVO> ownerList = new ArrayList<UserVO>();
+
+		/* 리밋 설정 */
+		int limit = 10;
+
+		/* startrow 설정 */
+		int startrow = (page - 1) * limit;
+
+		/* 총 리스트 수를 받아옴 */
+		int listCount = adminDAO.countOwners(tmp);
+
+		/* 회원 목록 가져옴 */
+		tmp.setStartrow(startrow);
+		tmp.setLimit(limit);
+		ownerList = adminDAO.getOwnerList(tmp);
+
+		/* 페이지 정보 계산 */
+		int maxPage = listCount / limit;
+		if (listCount % limit > 0)
+			maxPage++;
+		int startPage = (page - 1) / 10 * 10 + 1;
+		int endPage = startPage + 10 - 1;
+		if (endPage > maxPage)
+			endPage = maxPage;
+
+		PageInfo pageInfo = new PageInfo();
+		pageInfo.setEndPage(endPage);
+		pageInfo.setListCount(listCount);
+		pageInfo.setMaxPage(maxPage);
+		pageInfo.setPage(page);
+		pageInfo.setStartPage(startPage);
+
+		model.addAttribute("pageInfo", pageInfo);
+		model.addAttribute("ownerList", ownerList);
+		return "admin2/adminOwnerList";
+
+	}
 	
 	 
 	@RequestMapping("/deleteUserAdmin.do")

@@ -18,31 +18,8 @@
 
     <!-- 내가 만든 파일-->
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/boardStyle.css">
-    <link rel="stylesheet" href="<%=request.getContextPath() %>/css/choicss1.css">
 	
 	<style>
-		
-		.user_info_area{
-			text-align: center;
-			width:100%;
-			height:450px;
-			padding:40px 0;  
-		}
-		.form-group{
-			width:100%;
-			height:300px;
-		}
-		.form-group > label{
-			line-height:300px;
-			font-size:1.3em;
-			float:left;   
-		}   
-		.form-group > input{
-			line-height:300px;
-			float:left;  
-			margin:auto 0;     
-		}   
-		
 		
 		.profile_area{
 			padding-top:30px;
@@ -141,7 +118,7 @@
 					}); 
 					
 				} else {
-					$('.message').text("비밀번호를 확인해주세요");
+					$('.message').text("비밀번호를 확인해주세요!");
 				}
 			});
 		});
@@ -158,53 +135,59 @@
         <div class="mypage-header-wrapper">
             <div class="mypage-name">
 	            <div class="mypage-img">
-	                <img class="rounded-circle" src="upload/user/${userVO.profile_image }">
+	                <c:if test="${userVO.profile_image != null }">
+	                	<img class="rounded-circle" src="<%=request.getContextPath() %>/upload/user/${userVO.profile_image }">
+	                </c:if>
+	                <c:if test="${userVO.profile_image == null }">
+	                	<img class="rounded-circle" src="<%=request.getContextPath() %>/img/default/profile.png">
+	                </c:if>
 	            </div>
-	            <div class="mypage-userid">${userVO.nickname }</div>
+	            <div class="mypage-userid">${userVO.nickname }<span style="font-size:0.8em;">님</span></div>
             </div>
         </div>
     </div>
 	<div class="container-fluid nav-wrapper">
-	    <ul class="nav mypage-nav" style="width:1140px;">
+	    <ul class="nav nav-pills mypage-nav" style="width:1140px;">
 	        <li class="nav-item">
-	          <a class="nav-link active" href="myMain.do?user_id=${userVO.user_id }">회원정보</a>
+	          <a class="nav-link active my-link" data-toggle="pill" href="javascript:void(0);" onclick="location.href='myMain.do?user_id=${userVO.user_id }'">회원정보</a>
 	        </li>
 	        <li class="nav-item">
-	          <a class="nav-link" href="myCafe.do?user_id=${userVO.user_id }">내 카페</a>
+	          <a class="nav-link my-link" data-toggle="pill" href="javascript:void(0);" onclick="location.href='myCafe.do?user_id=${userVO.user_id }'">내 카페</a>
 	        </li>
 	        <li class="nav-item">
-	          <a class="nav-link" href="myReview.do?user_id=${userVO.user_id }">내가 쓴 리뷰</a>
+	          <a class="nav-link my-link" data-toggle="pill" href="javascript:void(0);" onclick="location.href='myReview.do?user_id=${userVO.user_id }'">활동내역</a>
 	        </li>
 	    </ul>
-	</div>
+		</div>
     <div class="board-wrapper2">
         <div class="list-group list-group-flush board-side shadow">
             <div class="board-side-name">
                 <i class="fa fa-gear ml-2 " style="font-size:2em;">&nbsp;회원정보</i>
             </div>
             <a href="myMain.do" class="list-group-item mt-2" style="border-top:none;">내 정보 관리</a>
-            <a href="myUserModifyForm1.do" class="list-group-item">비밀번호 변경</a>
+            <a href="myUserModifyForm1.do" class="list-group-item" style="font-weight:bold;">비밀번호 변경</a>
             <a href="deleteUserForm.do" class="list-group-item">회원 탈퇴</a>
             
         </div>  
         
         <div class=" board-group shadow ml-4">
             <div class="pb-4 mb-1 board-name" style="border-bottom: 1px solid #6E6E6E;">
-               	회원탈퇴
+               	비밀번호 변경
             </div>  
             <div class="user_info_area">
             	<div>
-		            <div class="form-group">
-		                <label for="pwd1" style="width:25%;">비밀번호:</label>
-		                <input type="password" class="form-control" id="pwd1" style="width:25%;">
+		            <div class="form-group mt-4">
+		                <label for="pwd1" style="width:25%;">새 비밀번호:</label>
+		                <input type="password" class="form-control" id="pwd1" style="width:50%;">
 		            </div>
-		            <div class="form-group">
+		            <div class="form-group mb-3">
 		                <label for="pwd2" style="width:25%;">비밀번호 확인:</label>
-		                <input type="password" class="form-control" id="pwd2" style="width:25%;">
+		                <input type="password" class="form-control" id="pwd2" style="width:50%;">
+		                <div class="message text-danger"></div>
 		            </div>
+		            
 		            <div>
-		            	<div class="message"></div>
-		                <button type="button" id="withdrawBtn" class="btn btn-secondary" style="width:30%;">비밀번호 변경</button>
+		                <button type="button" id="withdrawBtn" class="btn btn-secondary" style="width:150px;">비밀번호 변경</button>
 		            </div>
             	</div>
             </div>
