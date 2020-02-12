@@ -28,7 +28,7 @@
                     <c:choose>
 						<c:when test="${sessionScope.userVO != null && sessionScope.admin == null}">
 	                    	<li class="nav-item" style="color:white">
-								<a class="nav-link">${sessionScope.userVO.nickname} 님 </a>
+								<a class="nav-link">${sessionScope.userVO.nickname} </a>
 							</li>
 	                        <li class="nav-item">
 	                            <a class="nav-link" href="myMain.do">MY</a>

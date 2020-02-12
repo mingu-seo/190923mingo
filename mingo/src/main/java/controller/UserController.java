@@ -36,7 +36,7 @@ public class UserController {
    public String naverLoginProcess(Model model, UserVO vo, HttpServletRequest request) { 
 	   UserVO uv = userService.naverLoginProcess(vo);
 		if (uv == null) {
-			String msg = "잘못된 회원정보 입니다.";
+			String msg = "회원가입을 해주세요.";
 			String url = "/loginForm.do";
 			model.addAttribute("msg", msg);
 			model.addAttribute("url", url);
@@ -60,7 +60,7 @@ public class UserController {
 	public String loginProcess(Model model, UserVO vo, HttpServletRequest request) {
 		UserVO uv = userService.loginProcess(vo);
 		if (uv == null) {
-			String msg = "잘못된 회원정보 입니다.";
+			String msg = "회원가입을 해주세요.";
 			String url = "/loginForm.do";
 			model.addAttribute("msg", msg);
 			model.addAttribute("url", url);
@@ -84,17 +84,7 @@ public class UserController {
 		return "join/joinForm_host";
 	}
 	
-	//네이버 회원가입 폼
-	@RequestMapping("/naverJoinForm.do")
-	public String naverJoinForm() {
-		return "join/naverJoinForm";
-	}
 	
-	//카카오 회원가입 폼
-	@RequestMapping("/kakaoJoinForm.do")
-	public String kakaoJoinForm() {
-		return "join/kakaoJoinForm";
-	}
 	// 회원가입 처리
 	@RequestMapping("/joinProcess.do")
 	public String joinProcess(Model model, UserVO vo) {
@@ -102,7 +92,7 @@ public class UserController {
 		String msg = "";
 		String url = "";
 		if (r > 0) {
-			msg = "가입되셨습니다.";
+			msg = "가입되었습니다.";
 			url = "/loginForm.do";
 		} else {
 			msg = "회원가입 실패";
@@ -127,6 +117,25 @@ public class UserController {
 			url = "/join_step1.do";
 		}
 		model.addAttribute("cmd", "parentMove");
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		return "include/alert";
+	}
+	// 카카오 처리
+	@RequestMapping("/kakaoJoinProcess.do")
+	public String kakaoJoinProcess(Model model, UserVO vo) {
+		int r = userService.kakaoJoinProcess(vo);
+		String msg = "";
+		String url = "";
+		if (r > 0) {
+			msg = "가입되었습니다.";
+			url = "/loginForm.do";
+			
+		} else {
+			msg = "회원가입 실패";
+			url = "/join_step1.do";
+		}
+		
 		model.addAttribute("msg", msg);
 		model.addAttribute("url", url);
 		return "include/alert";

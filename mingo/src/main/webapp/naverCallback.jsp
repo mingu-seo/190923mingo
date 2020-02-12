@@ -89,7 +89,6 @@ try {
 	int gender=0;
 	if((String)resJson.get("gender") == "F"){
 		gender = 1;
-
 	}else {
 		gender = 2;
 	}

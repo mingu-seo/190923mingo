@@ -29,7 +29,7 @@
 	$(document).ready(function() {
       $('.loginbutton').click(function() {
     	  if ($("#email").val().trim() == "") {
-    		  alert("이메일을 입력해 주세요");
+    		  alert("아이디를 입력해 주세요");
     		  $("#email").focus();
     		  return false;
     	  }
@@ -44,6 +44,11 @@
       });
 
     });
+	 $(function() {
+		    $("#password").keyup(function(e){
+		    	if(e.keyCode == 13)  $(".loginbutton").trigger("click");
+		    });
+	   	});
     </script>
 </head>
 <body>
