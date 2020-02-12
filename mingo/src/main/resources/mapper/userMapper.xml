@@ -19,9 +19,16 @@
 	<!-- 네이버 회원가입 -->
 	<insert id="naverJoinProcess" parameterType="vo.UserVO">
 		INSERT INTO mingo.user
-		(email, name, gender, type)
+		(email, nickname, gender, type)
 		values
-		(#{email},#{name}, #{gender}, #{type})
+		(#{email},#{nickname}, #{gender}, #{type})
+	</insert>
+	<!-- 카카오 회원가입 -->
+	<insert id="kakaoJoinProcess" parameterType="vo.UserVO">
+		INSERT INTO mingo.user
+		(email, nickname, gender, type)
+		values
+		(#{email},#{nickname},#{gender}, 1)
 	</insert>
 	
 	<!--이메일 중복체크  -->

@@ -33,6 +33,10 @@ public class UserDAO {
 	public int naverJoinProcess(UserVO vo) {
 		return sqlSession.insert("userMapper.naverJoinProcess", vo);
 	}
+	/* 카카오 회원가입 */
+	public int kakaoJoinProcess(UserVO vo) {
+		return sqlSession.insert("userMapper.kakaoJoinProcess", vo);
+	}
 
 	/* 아이디 중복체크 */
 	public int emailCheck(String email) {
