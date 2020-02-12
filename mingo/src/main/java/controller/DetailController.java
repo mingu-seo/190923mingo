@@ -214,7 +214,7 @@ public class DetailController {
 		cafeProductVO.add(vo3);
 		List<MultipartFile> productFileList = request.getFiles("product_image_file");
 		int result5 = detailService.modifyProduct(cafeProductVO, productFileList, request);
-	
+		
 		model.addAttribute("cafe_id", cafeVO.getCafe_id());
 		//request.setAttribute("cafe_id", cafeVO.getCafe_id());
 		System.out.println("카페 정보 수정 완료");
@@ -233,7 +233,9 @@ public class DetailController {
 	// 카페 정보 등록
 	@RequestMapping("/registCafe.do")
 	public String registCafe(Model model, CafeVO cafeVO, CafeFacilitiesVO cafeFacilitiesVO, CafeServiceVO cafeServiceVO, CafeImageVO cafeImageVO, MultipartHttpServletRequest request, HttpServletResponse response) {
-
+		
+		System.out.println("전달 받은 카페 아이디 : "+cafeVO.getCafe_id());
+		
 		//로고 사진 및 카페기본정보 등록
 		List<MultipartFile> logoFile = request.getFiles("logo_file");
 		int result1 = detailService.registCafe(cafeVO, logoFile, request);
@@ -250,8 +252,7 @@ public class DetailController {
 		
 		//메뉴 사진 및 정보 등록
 		List<CafeMenuVO> cafeMenuVO = new ArrayList<CafeMenuVO>();
-		CafeMenuVO vo2 = new CafeMenuVO();
-		cafeMenuVO.add(vo2);
+		CafeMenuVO vo2 = new CafeMenuVO(); cafeMenuVO.add(vo2);
 		List<MultipartFile> menuFileList = request.getFiles("menu_image_file");
 		int result4 = detailService.registMenu(cafeMenuVO, menuFileList, request);
 		
@@ -290,6 +291,7 @@ public class DetailController {
 		int cafe_id = Integer.parseInt(request.getParameter("cafe_id"));
 		model.addAttribute("cafe_id", cafe_id);
 		//return "cafe/index";
+		
 		return "cafe/reviewRegistForm";
 	}     
 	
