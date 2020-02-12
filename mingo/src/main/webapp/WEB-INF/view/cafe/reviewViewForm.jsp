@@ -75,7 +75,7 @@
 					var currentPage = ${beginPage}-5;
 				}
 				pasing(currentPage, cafe_id, rate_num);
-			});
+			});  
 			
 			/* 다음 5개 */  
 			$('.navi_next10_btn').click(function(){
