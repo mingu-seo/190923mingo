@@ -104,11 +104,11 @@
 <body onload="gogo();">
 	<form  id="frm" name="frm" action="/naverJoinProcess.do">
 	
-	<input type ="hidden" value = "<%=(String)resJson.get("name")%>"  name ="name" id="name"><br/>
+	<input type ="hidden" value = "<%=(String)resJson.get("name")%>"  name ="nickname" id="nickname"><br/> <!-- 네이버에서 받은 이름을 db에 닉네임으로 저장 -->
 	<input type ="hidden" value = "<%=(String)resJson.get("email")%>"  name ="email" id="email" ><br/>
 	<%
 	int gender=0;
-	if((String)resJson.get("gender") == "F"){
+	if(((String)resJson.get("gender")).equals("F")){
 		gender = 1;
 
 	}else {

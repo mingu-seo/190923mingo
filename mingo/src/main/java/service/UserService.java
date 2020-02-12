@@ -35,6 +35,10 @@ public class UserService {
 	public int naverJoinProcess(UserVO vo) {
 		return userDao.naverJoinProcess(vo);
 	}
+	//카카오 회원가입
+	public int kakaoJoinProcess(UserVO vo) {
+		return userDao.kakaoJoinProcess(vo);
+	}
 	
 	//이메일 중복체크
 	public int emailCheck(String email) {

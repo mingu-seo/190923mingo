@@ -83,18 +83,17 @@ try {
 <body onload="frm.submit();">
 	<form name="frm" action="/naverLoginProcess.do">
 	
-	<input type ="hidden" value = "<%=(String)resJson.get("name")%>"  name ="name" ><br/>
+	<input type ="hidden" value = "<%=(String)resJson.get("name")%>"  name ="nickname" ><br/>
 	<input type ="hidden" value = "<%=(String)resJson.get("email")%>"  name ="email" ><br/>
 	<%
-	int gender=0;
-	if((String)resJson.get("gender") == "F"){
+	int gender= 0;
+	if(((String)resJson.get("gender")).equals("F")){
 		gender = 1;
-
 	}else {
 		gender = 2;
 	}
 	%>
-	<input type ="hidden" value = "<%=gender %>"  name ="gender" ><br/>
+	<input type ="hidden" value = "<%=gender%>"  name ="gender" ><br/>
 	<input type ="hidden" value = "<%=(String)resJson.get("birthday")%>"  name ="birthday" ><br/>
 	<input type ="hidden" value = "1" name="type">
 	

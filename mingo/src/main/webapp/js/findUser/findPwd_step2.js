@@ -34,3 +34,8 @@
 		}
 		$("#findPwd_step2").submit();
 	}
+	 $(function() {
+		    $("#password_confirm").keyup(function(e){
+		    	if(e.keyCode == 13)  $(".finish_button").trigger("click");
+		    });
+	   	});

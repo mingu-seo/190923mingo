@@ -47,3 +47,9 @@
 		}
 		$("#findId_step1").submit();
 	}
+	
+	 $(function() {
+		    $("#phone_num").keyup(function(e){
+		    	if(e.keyCode == 13)  $(".nextbutton").trigger("click");
+		    });
+	   	});

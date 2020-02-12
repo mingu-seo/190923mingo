@@ -20,10 +20,77 @@ String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code&cli
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" href="css/join/join_step2.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
     <script>
      function joinWithNaver(){
     	window.open('<%=apiURL%>', '_blank' , 'width=300', 'height=300','scrollbar=no','status=no');
 	}
+    </script>
+    <script>
+    Kakao.init('5056c3b1e52c786b89a189f847dbcbc7');
+	 function joinWithKakao() {
+		 Kakao.Auth.login({
+		        success: function(authObj) {
+		          //alert(JSON.stringify(authObj));
+		          Kakao.API.request({
+		              url: '/v2/user/me',
+		              success: function(res) {
+		                //alert(JSON.stringify(res));
+		            	  console.log(JSON.stringify(res));
+		            	  var j = res['kakao_account'];
+		            	  console.log(j);
+		            	  var name = j['profile']['nickname'];
+		            	  var email = j['email'];
+		            	  var gender = j['gender'];
+		            	  var genderCode =0;
+		            	  if (gender == "female"){
+		            		  genderCode = 1;
+		            	  } else {
+		            		  genderCode = 2;
+		            	  }
+		            	  console.log(name);
+		            	  console.log(email);
+		            	  console.log(genderCode);
+		            	  
+		            	  $.ajax({
+		            		  url : '/emailCheck.do',
+		            		  data : {
+		            			  email : email
+		            		  },
+		            		  success : function(data) {
+		            			  console.log(data);
+		            			  if (Number(data.trim()) > 0) {
+		            				  alert('이미 가입된 회원입니다.')
+	 
+		            			  }else {
+			            			  $.ajax({
+					            		  url : '/kakaoJoinProcess.do',
+					            		  data : {
+					            			  nickname : name,
+					            			  email : email,
+					            			  gender : genderCode
+					            		  },
+					            		  success : function(data) {
+					            			  alert('가입되었습니다.')  
+					            			  location.href="/loginForm.do";
+					            		  }
+					            	  });
+		            			  }
+		            		  }
+		            	  });
+		              },
+		              fail: function(error) {
+		                alert(JSON.stringify(error));
+		              }
+		            });
+		        },
+		        fail: function(err) {
+		          alert(JSON.stringify(err));
+		        }
+		      });
+	 }
+    
     </script>
     <title>Document</title>
 </head>
@@ -40,7 +107,7 @@ String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code&cli
         <li class="person">
             <a class="click" href="/joinForm.do" >
             <div class="join-person">
-                <img src="<%=request.getContextPath() %>/img/joinImg/email.png" width="90px" height="90px" style="border-radius:45px;">
+                <img src="<%=request.getContextPath() %>/img/joinImg/email.png" width="90px" height="90px" >
                 <div class="join-person-persontitle">
                     <h3 class="join-person-persontitle1">이메일로 회원가입</h3>
                 </div>
@@ -62,7 +129,7 @@ String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code&cli
             </a>
             </li>
             <li class="person2">
-                <a class="click" href="/kakaoJoinForm.do">
+                <a class="click" href="javascript:joinWithKakao()">
                     <div class="join-person">
                         <img src="<%=request.getContextPath() %>/img/joinImg/kakao.png" width="90px" height="90px">
                         <div class="join-person-persontitle">
