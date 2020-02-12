@@ -90,6 +90,10 @@ public class DetailServiceImpl implements DetailService {
 		} 
 		return result;
 	}
+	public ReviewVO viewMyReview2(ReviewVO vo) {
+		ReviewVO reviewVO = detailDao.viewMyReview2(vo);
+		return reviewVO;
+	}	
 	
 	
 	//등록
@@ -154,7 +158,7 @@ public class DetailServiceImpl implements DetailService {
 	public int registReview(ReviewVO vo, MultipartFile file, HttpServletRequest request, CafeRateVO cafeRate) {
 		String path = request.getRealPath("/upload");
 		FileUtil fu = new FileUtil();
-		fu.fileUpload(file, path+"/cafe/");
+		fu.fileUpload(file, path+"/review/");
 		vo.setImage(fu.fileName);
 		
 		int rate_num = cafeRate.getRate_num()+1;
@@ -174,7 +178,8 @@ public class DetailServiceImpl implements DetailService {
 		cafeRate.setMood_avg(((cafeRate.getMood_sum()/(double)rate_num)*100)/100);
 		cafeRate.setClean_avg(((cafeRate.getClean_sum()/(double)rate_num)*100)/100);
 		
-		
+		double score_avg = ((int)(((vo.getMood_score()+vo.getPrice_score()+vo.getTaste_score()+vo.getWifi_score()+vo.getService_score()+vo.getClean_score())/6.0)*10))/10.0;
+		vo.setScore_avg(score_avg);
 		
 		int r = detailDao.registReview(vo, cafeRate);
 		return r;
@@ -188,11 +193,18 @@ public class DetailServiceImpl implements DetailService {
 	public int modifyReview(ReviewVO vo_old, ReviewVO vo_new, MultipartFile file, HttpServletRequest request, CafeRateVO cafeRate) {
 		String path = request.getRealPath("/upload");
 		FileUtil fu = new FileUtil();
-		fu.fileUpload(file, path+"/cafe/");
-		vo_new.setImage(fu.fileName);
+		fu.fileUpload(file, path+"/review/");
+		if (fu.fileName != null) {
+			vo_new.setImage(fu.fileName);
+			System.out.println("사진 있음"+vo_new.getImage());
+		} else {
+			vo_new.setImage(vo_old.getImage());
+			System.out.println("사진 없음"+vo_new.getImage());  
+		}     
+		System.out.println("사진 있음 최종"+vo_new.getImage());
+		vo_new.setReview_id(vo_old.getReview_id());
 		
 		int rate_num = cafeRate.getRate_num();
-		
 		cafeRate.setWifi_sum(cafeRate.getWifi_sum() - vo_old.getWifi_score() + vo_new.getWifi_score());
 		cafeRate.setPrice_sum(cafeRate.getPrice_sum() - vo_old.getPrice_score() + vo_new.getPrice_score());
 		cafeRate.setTaste_sum(cafeRate.getTaste_sum() - vo_old.getTaste_score() + vo_new.getTaste_score());
@@ -206,8 +218,6 @@ public class DetailServiceImpl implements DetailService {
 		cafeRate.setService_avg(((cafeRate.getService_sum()/(double)rate_num)*100)/100);
 		cafeRate.setMood_avg(((cafeRate.getMood_sum()/(double)rate_num)*100)/100);
 		cafeRate.setClean_avg(((cafeRate.getClean_sum()/(double)rate_num)*100)/100);
-		
-		
 		
 		int r = detailDao.modifyReview(vo_new, cafeRate);
 		return r;

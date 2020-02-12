@@ -73,6 +73,9 @@ public class DetailDAO {
 	public CollectCafeVO viewCollectCafe(Map<String, Integer> map) {
 		return sqlSession.selectOne("detail.viewCollectCafe", map);
 	}
+	public ReviewVO viewMyReview2(ReviewVO vo) {
+		return sqlSession.selectOne("detail.viewMyReview2", vo);
+	}
 	
 	
 	//등록
@@ -266,10 +269,11 @@ public class DetailDAO {
 	}
 	
 	public int modifyReview(ReviewVO reviewVO, CafeRateVO cafeRateVO) {
+		System.out.println("dao 사진 있음 최종"+reviewVO.getImage());
 		sqlSession.update("detail.updateReview", reviewVO);
 		sqlSession.update("detail.updateRate", cafeRateVO);
 		return 1;
-	}
+	}   
 	
 	public int deleteReview(CafeRateVO cafeRateVO, ReviewVO reviewVO) {
 		sqlSession.update("detail.updateRate", cafeRateVO);

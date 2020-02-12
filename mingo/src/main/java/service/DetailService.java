@@ -36,6 +36,8 @@ public interface DetailService {
 	public CafeRateVO viewCafeRate(int cafe_id);
 	public int viewLikeCafe(Map<String, Integer> map1);
 	public int viewCollectCafe(Map<String, Integer> map2);
+	public ReviewVO viewMyReview2(ReviewVO vo);
+	
 	
 	public int registCafe(CafeVO cafeVO, List<MultipartFile> logoFile, HttpServletRequest request);
 	public int registFacility(CafeFacilitiesVO cafeFacilitiesVO);

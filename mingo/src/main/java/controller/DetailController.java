@@ -91,6 +91,21 @@ public class DetailController {
 		return "cafe/cafeDetail";
 	}
 	
+	// 내 리뷰만 조회
+	@RequestMapping("/viewMyReviewForm.do")
+	public String viewMyReviewForm(Model model, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		UserVO vo1 = (UserVO) session.getAttribute("userVO");
+		int user_id = vo1.getUser_id();
+		int cafe_id = Integer.parseInt(request.getParameter("cafe_id"));
+		ReviewVO vo = new ReviewVO();
+		vo.setUser_id(user_id);
+		vo.setCafe_id(cafe_id);
+		ReviewVO reviewVO = detailService.viewMyReview2(vo);
+		model.addAttribute("reviewVO", reviewVO);
+		return "cafe/viewMyReviewForm";	
+	}
+	
 	// 리뷰 조회
 	@RequestMapping("/reviewViewForm.do")
 	public String reviewViewForm(Model model, HttpServletRequest request) {
@@ -287,6 +302,27 @@ public class DetailController {
 		return "redirect:detailView.do?cafe_id="+vo.getCafe_id();
 	} 
 	
+	//리뷰 등록 여부 확인
+	@RequestMapping("/checkReview.do")   
+	public String checkReview(Model model, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		UserVO vo1 = (UserVO) session.getAttribute("userVO");
+		int user_id = vo1.getUser_id();
+		int cafe_id = Integer.parseInt(request.getParameter("cafe_id"));
+		ReviewVO vo = new ReviewVO();
+		vo.setUser_id(user_id);
+		vo.setCafe_id(cafe_id);
+		ReviewVO reviewVO = detailService.viewMyReview2(vo);
+		
+		int checkReview = 0;
+		if(reviewVO != null) {
+			checkReview = 1;
+		}
+		model.addAttribute("checkReview", checkReview);
+		return "cafe/detailAjax";
+	} 
+	
+
 	//리뷰 수정     <---- String to file 추가 요망
 	@RequestMapping("/modifyReviewForm.do")   
 	public String modifyReviewForm(Model model, ReviewVO vo, HttpServletRequest request) {
@@ -330,7 +366,7 @@ public class DetailController {
 		detailService.deleteReview(cafeRateVO, reviewVO);
 		
 		return "redirect:detailView.do?cafe_id="+cafe_id;
-	}
+	}  
 	// 카페 좋아요 등록
 	@RequestMapping("/registLike.do")   
 	public String registLike(LikeCafeVO vo, HttpServletRequest request) {

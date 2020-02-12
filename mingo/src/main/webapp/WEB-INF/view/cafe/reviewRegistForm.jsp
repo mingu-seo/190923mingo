@@ -139,7 +139,8 @@
 	<style>
             
     	/* draggable 스타일 */
-    	form{width:80%;}
+    	form{width:80%;margin-bottom:100px;}
+    	form > div {width:100%;}
     	.review-graph-area{margin-top:50px; width:900px; overflow: hidden;}
         .my-graph{width:450px; height:150px;float:left;}
         .my-graph_area{width:400px; height:50px; border-radius:50px; background-color:#E6E6E6; }
@@ -153,9 +154,9 @@
         #image_section{width:100%;margin-left:80px;}
 		#review-contents{width:700px;height:150px;margin-left:80px;}
 		#my-review-image{margin-left:80px;}
-		#review-btn{width:100px;height:50px;background-color:#F3E2A9;border-style:none;font-weight:bold;background-position:center center;background-repeat:no-repeat;background-size:cover;text-align:center; }
-		
-	
+		#review-btn{width:100px;height:50px;background-color:#F3E2A9;border-style:none;font-weight:bold;margin:40px 0;}
+		.review-btn-div{width:100%;height:100px;background-position:center center;background-repeat:no-repeat;background-size:cover;text-align: center; }
+		#review-btn:hover{background-color: #3B170B; color:#FFFFFF;}
 	</style>  
 	
 </head>
@@ -201,13 +202,14 @@
 			 <img id="image_section" src="img/review_default.png" alt="리뷰 사진을 등록해주세요"/>
 		</div>
 		<div>
-			
 			<textarea rows="3" cols="30" name="contents" id="review-contents"></textarea>   
 		</div>
 		<div>
 			<input type="file" name="image_file" id="my-review-image"/>	
 		</div>
-		<input type="submit" id="review-btn" value="평가 등록">
+		<div class="review-btn-div">
+			<input type="submit" id="review-btn" value="평가 등록">
+		</div>
 		
 		
 	</form>

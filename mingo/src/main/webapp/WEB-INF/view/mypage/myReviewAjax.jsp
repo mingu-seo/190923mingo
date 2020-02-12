@@ -28,14 +28,15 @@
 		}
 		
 		.my_reviews {
-			width:100%;   
+			width:auto;   
 			/* height:2000px; */     
 		} 
 		.my_review_each{
 			width:100%;     
 			margin-bottom:40px;  
 			border-bottom:1px solid #D8D8D8;
-			
+			height:auto;
+			overflow: hidden;
 			
 		} 
 		
@@ -105,9 +106,11 @@
 			margin-bottom:10px;
 		}
 		
-		.my_review_top{
+		.my_review_top{     
+			height:auto;
 			width:27%;
 			float:left;
+			margin-left:30px;   
 			
 		}
 		
@@ -127,12 +130,12 @@
 		  
 		.my_review_bottom img{
 			width:100%;
-			height:100%;
+			height:auto;
 			  
 		}
 		.my_comment{
 			width:100%;
-			height:100%;
+			height:auto;
 			padding-bottom:20px;
 		}  
 		
@@ -159,8 +162,8 @@
 		
 		.my_review_btn{   
 			width:13%;
-			height:380px;
-			float: left;
+			height:100px;
+			/* float: left; */
 		}
 		.my_review_btn > div{
 		}
@@ -171,10 +174,10 @@
 			border-radius: 50px;
 			line-height: 50px;
 			text-align: center;
-			background-color: #848484;			
+			/* background-color: #848484;			
 			margin:0 auto;    
 			margin-bottom:10px;    
-			color:#FFFFFF;
+			color:#FFFFFF; */
 			font-weight: bold;    
 		}
 		
@@ -188,10 +191,14 @@
 		.review_navi_nums > div{
 			line-height:60px;
 			height:60px;
-			width:540px;
+			width:auto;
+			/* display:inline-block; */
 			margin:0 auto;
 			text-align:center;
 			
+		}      
+		.review_navi_nums > div{
+			vertical-align: middle;
 		}      
 		
 		
@@ -223,18 +230,20 @@
 			font-size:1.3em;
 			line-height: 40px;
 		}
-	
+		
+		#modify, #delete, #blank{float:left;margin-right:5px;}
+		.my_review_each:nth-child(1){margin-top:50px;}
 	</style>
 	
 	<script>
 		$(function(){
-			var review_each_height = $('.my_review_bottom img').height()+$('.my_comment').height()+20;
+			/* var review_each_height = $('.my_review_bottom img').height()+$('.my_comment').height()+20;
 			$('.my_review_each').css({
 				'height':review_each_height+'px'
 			});
 			$('.cafe_reviews').css({
 				'height':review_each_height*5+200+'px'
-			});
+			}); */
 			
 			var user_id = ${userVO.user_id};
 			console.log("아이디"+user_id);
@@ -310,6 +319,20 @@
 				</c:if>
 			</c:forEach>
 			<div class="my_review_each">
+				<div class="my_review_bottom">  
+					<div>
+						<img src="upload/review/${review.image }"/>
+					</div>
+					<div class="my_comment">
+						<p>${review.contents}</p>
+						<p>꒐ 작성일: ${review.regdate }&nbsp;
+							<a id="modify" href="modifyReviewForm.do?cafe_id=${cafe.cafe_id}">수정</a>&nbsp;
+							<a id="blank">꒐</a>&nbsp;
+							<a id="delete" href="deleteReview.do?cafe_id=${cafe.cafe_id}">삭제</a>&nbsp;
+						</p>
+						
+					</div>
+				</div>
 				<div class="my_review_top">
 					<div class="rated_cafe_info">   
 						<div>
@@ -367,26 +390,9 @@
 							<span class="my_my_rate">${review.clean_score }점</span>
 						</div>
 					</div>	
-					<div class="review_ragdate">
-						<p>작성일: ${review.regdate }</p>
-					</div>
+					
 				</div>
-				<div class="my_review_bottom">  
-					<div>
-						<img src="upload/cafe/${review.image }"/>
-					</div>
-					<div class="my_comment">
-						<p>${review.contents}</p>
-					</div>
-				</div>
-				<div class="my_review_btn">
-					<div class="my_review_modify_btn">
-						수정
-					</div>
-					<div class="my_review_delete_btn">
-						삭제
-					</div>
-				</div>
+				
 			</div>
 		</c:forEach>  
 	
