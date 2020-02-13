@@ -147,6 +147,7 @@ int totalpage = (Integer)request.getAttribute("totalpage"); // 전체페이지�
             			</c:when>
             			<c:when test="${sessionScope.userVO == null && sessionScope.admin != null}">	
             	<button type="button" class="btn btn-danger btn-write2" onclick="location.href='writeNotice.do?type=<%=vo.getType()%>&page=<%=vo.getPage()%>&s1=${s1}&s2=${s2}&k=${k}' ">공지 쓰기</button>
+            	<button type="button" class="btn btn-secondary btn-write" onclick="location.href='writeBoard.do?type=<%=vo.getType()%>&page=<%=vo.getPage()%>&s1=${s1}&s2=${s2}&k=${k}' ">글쓰기</button>
                	 		</c:when>
            <c:otherwise></c:otherwise>    	 	
            </c:choose>
