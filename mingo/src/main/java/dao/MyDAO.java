@@ -94,6 +94,9 @@ public class MyDAO {
 	public List<BoardVO> viewMyPost(Map<String, Integer> boardMap){
 		return sqlSession.selectList("my.viewMyPost", boardMap);
 	}
+	public UserVO findUser(Map idPwd) {
+		return sqlSession.selectOne("my.findUser", idPwd);
+	}
 	
 
 }
