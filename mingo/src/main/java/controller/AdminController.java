@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import dao.AdminDAO;
+import dao.MainDAO;
+import service.AdminService;
 import vo.BoardMetaVO;
 import vo.PageInfo;
 import vo.UserCommand;
@@ -25,6 +27,12 @@ public class AdminController {
 
 	@Autowired
 	AdminDAO adminDAO;
+	
+	@Autowired
+	MainDAO mainDAO;
+	
+	@Autowired
+	AdminService adminService;
 
 	@RequestMapping("/adminLoginForm.do")
 	public String adminLoginForm() {
@@ -36,12 +44,25 @@ public class AdminController {
 		return "admin2/adminMain";
 	}
 
-	
 
-	/* 유저 관리 메인으로 가는 메소드 (유저 리스트를 가져옴) */
+	@RequestMapping("/mngCafeMain.do")
+	public String mngCafeMain(Model model) {
+		List<String> sidoList = mainDAO.getSidoList();
+		model.addAttribute("sidoList", sidoList);
+		
+		
+		return "admin2/mngCafeMain";
+	}
+	/* 유저 관리 메인으로 가는 메소드 (유저 리스트를 가져옴)*/
 	@RequestMapping("/mngUserMain.do")
-	public String mngUserMain(Model model, @RequestParam("page") int page, UserCommand tmp) {
+	public String mngUserMain(Model model, @RequestParam(required = false, value="page") Integer page, UserCommand tmp) {
 		// tmp 속성 : limit,startrow
+
+		
+		if(page == null) {
+			page =1;
+		}
+		
 
 		/* 객체 생성 */
 		List<UserVO> userList = new ArrayList<UserVO>();
@@ -81,7 +102,54 @@ public class AdminController {
 		return "admin2/adminUserList";
 
 	}
-	
+	@RequestMapping("/getOwnerList.do")
+	public String getOwnerList(Model model, @RequestParam(required = false, value="page") Integer page, UserCommand tmp) {
+		// tmp 속성 : limit,startrow
+
+		
+		if(page == null) {
+			page =1;
+		}
+		
+
+		/* 객체 생성 */
+		List<UserVO> ownerList = new ArrayList<UserVO>();
+
+		/* 리밋 설정 */
+		int limit = 10;
+
+		/* startrow 설정 */
+		int startrow = (page - 1) * limit;
+
+		/* 총 리스트 수를 받아옴 */
+		int listCount = adminDAO.countOwners(tmp);
+
+		/* 회원 목록 가져옴 */
+		tmp.setStartrow(startrow);
+		tmp.setLimit(limit);
+		ownerList = adminDAO.getOwnerList(tmp);
+
+		/* 페이지 정보 계산 */
+		int maxPage = listCount / limit;
+		if (listCount % limit > 0)
+			maxPage++;
+		int startPage = (page - 1) / 10 * 10 + 1;
+		int endPage = startPage + 10 - 1;
+		if (endPage > maxPage)
+			endPage = maxPage;
+
+		PageInfo pageInfo = new PageInfo();
+		pageInfo.setEndPage(endPage);
+		pageInfo.setListCount(listCount);
+		pageInfo.setMaxPage(maxPage);
+		pageInfo.setPage(page);
+		pageInfo.setStartPage(startPage);
+
+		model.addAttribute("pageInfo", pageInfo);
+		model.addAttribute("ownerList", ownerList);
+		return "admin2/adminOwnerList";
+
+	}
 	
 	 
 	@RequestMapping("/deleteUserAdmin.do")
@@ -100,6 +168,17 @@ public class AdminController {
 	public String deleteBoardMeta(@RequestParam("type") int type) {
 		int result = adminDAO.deleteBoardMeta(type);
 		return "redirect:/mngBoardMain.do?";
+	}
+	
+	@RequestMapping("/deleteCafeAdmin.do")
+	public String deleteCafeAdmin(@RequestParam(required = false, value="cafe_id")Integer cafe_id) {
+		if( cafe_id == null)
+			return "redirect:/mngCafeMain.do";
+		else {
+			int result = adminService.deleteCafeAdmin(cafe_id);
+			return "redirect:/mngBoardMain.do";
+		}
+		
 	}
 
 	@RequestMapping("/mngBoardMain.do")

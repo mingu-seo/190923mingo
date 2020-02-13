@@ -115,5 +115,41 @@
 		(name) values ('${name}');
 	</insert>
 	
+	<!-- 카페 초기화 관련 -->
 	
+	<update id="resetCafe" parameterType="Integer" >
+	update cafe
+	set manager_id=null,tel=null,time_day=null,time_start=null, time_end=null,cafe_intro=null
+	where cafe_id = #{cafe_id}
+	</update>
+	<delete id="deleteCafeFacilitiesFor" parameterType="Integer">
+	delete 
+	from cafe_faciliteis
+	where cafe_id = #{cafe_id}
+	</delete>
+	
+	<delete id="deleteCafeImageFor" parameterType="Integer">
+	delete 
+	from cafe_image
+	where cafe_id = #{cafe_id}
+	</delete>
+	
+	<delete id="deleteCafeMenuFor" parameterType="Integer">
+	delete 
+	from cafe_menu
+	where cafe_id = #{cafe_id}
+	</delete>
+	
+	<delete id="deleteCafeProductFor" parameterType="Integer">
+	delete 
+	from cafe_product
+	where cafe_id = #{cafe_id}
+	</delete>
+	
+	<delete id="deleteCafeServiceFor" parameterType="Integer">
+	delete 
+	from cafe_service
+	where cafe_id = #{cafe_id}
+	</delete>
+	<!-- 카페 초기화 끝 -->
 </mapper>

@@ -107,6 +107,24 @@ public class MyController {
 		return url;
 	}
 	
+	@RequestMapping("/cafeMenuForm.do")
+	public String cafeMenuForm(HttpServletRequest request, Model model) {
+		model.addAttribute("menu_num", request.getParameter("menu_num"));
+		System.out.println("메뉴 추가 실행!!");
+		return "mypage/cafeMenuForm";   
+	}  
+	@RequestMapping("/cafeProductForm.do")
+	public String cafeProductForm(HttpServletRequest request, Model model) {
+		model.addAttribute("product_num", request.getParameter("product_num"));
+		System.out.println("상품 추가 실행!!");
+		return "mypage/cafeProductForm";   
+	}  
+	@RequestMapping("/cafeCafeImageForm.do")
+	public String cafeCafeImageForm(HttpServletRequest request, Model model) {
+		model.addAttribute("cafeImage_num", request.getParameter("cafeImage_num"));
+		System.out.println("사진 추가 실행!!");
+		return "mypage/cafeImageForm";   
+	}  
 	@RequestMapping("/myReview.do")
 	public String myReview(Model model, HttpServletRequest request) {
 		return "mypage/myMyReview";

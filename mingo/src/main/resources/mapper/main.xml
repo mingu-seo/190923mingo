@@ -49,7 +49,7 @@
 				</when>
 			</choose>
 		</if> 
-		limit #{startrow},16;
+		limit #{startrow},#{limit};
 		
 	</select>
 	
@@ -117,6 +117,9 @@
 			<if test="sigungu_code != null and sigungu_code > 0">
 			and sigungu_code = #{sigungu_code}
 			</if>
+			<if test="dong_code != null and dong_code > 0">
+			and dong_code = #{dong_code}
+			</if>
 			<if test="brand_code != null and brand_code > 0">
 				<if test="brand_code == 10">
 					and brand_code is null
@@ -124,6 +127,16 @@
 				<if test="brand_code != 10">
 					and brand_code = #{brand_code}
 				</if>
+			</if>
+			<if test=" ak != null and ak !='' and af !=null">
+					
+					<choose>
+						<when test="af == 0">
+							and name like '%${ak}%'
+						</when>
+						
+					</choose>
+					
 			</if>
 		</where>
 		<if test="sort_code == 1">
@@ -146,6 +159,9 @@
 			<if test="sigungu_code != null and sigungu_code > 0">
 			and sigungu_code = #{sigungu_code}
 			</if>
+			<if test="dong_code != null and dong_code > 0">
+			and dong_code = #{dong_code}
+			</if>
 			<if test="brand_code != null and brand_code > 0">
 				<if test="brand_code == 10">
 					and brand_code is null
@@ -153,6 +169,16 @@
 				<if test="brand_code != 10">
 					and brand_code = #{brand_code}
 				</if>
+			</if>
+			<if test=" ak != null and ak !='' and af !=null">
+					
+					<choose>
+						<when test="af == 0">
+							and name like '%${ak}%'
+						</when>
+						
+					</choose>
+					
 			</if>
 		</where>
 	</select>

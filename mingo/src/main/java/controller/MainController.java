@@ -79,7 +79,7 @@ public class MainController {
 	public String searchCafe(Model model, CafeCommand cafeCommand) {
 		List<Map> cafeList = new ArrayList<Map>();
 		int page=1;
-		int limit=8;
+		int limit=16;
 		int listCount = dao.getCafeListCount(cafeCommand);
 		cafeCommand.setPage(page);
 		cafeCommand.setLimit(limit);
@@ -107,7 +107,9 @@ public class MainController {
 		List<Map> cafeList = new ArrayList<Map>(); //카페 담기위한 리스트
 		
 		int page = cafeCommand.getPage();
-		int startrow = (page-1) * 16;
+		int limit = 16;
+		int startrow = (page-1) * limit;
+		cafeCommand.setLimit(limit);
 		cafeCommand.setStartrow(startrow);
 		cafeList = dao.getCafeList(cafeCommand);
 		model.addAttribute("cafeList", cafeList);  

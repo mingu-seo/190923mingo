@@ -380,7 +380,19 @@ a{
         height:280px;
     }
 }
+/* 내비게이션 버튼 */
+.nav-pills .my-link.active, .nav-pills .show>.my-link {
+	color: #fff;
+	background-color: #6c757d;
+	border-radius: 20px;  
+}  
 
+.my-link:focus, .my-link:hover {
+	text-decoration: none;
+	color: black;
+	background-color: #f1f1f1;
+	border-radius: 20px;
+}
 
   
 /* 푸터 영역 */

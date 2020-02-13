@@ -6,12 +6,43 @@ public class RankCommand {
 	
 	private int sido_code;
 	private int sigungu_code;
+	private long dong_code;
 	private int brand_code;
 	private int sort_code;
 	
+	private int page;
 	private int limit; //몇개 가져올것인지 디폴트 50
 	private int startrow;// 시작 로우
 	
+	/* 검색옵션 밑에 셀렉트박스값(af)와 키워드 값 */
+	private int af;
+	private String ak;
+	
+	
+	public long getDong_code() {
+		return dong_code;
+	}
+	public void setDong_code(long dong_code) {
+		this.dong_code = dong_code;
+	}
+	public int getAf() {
+		return af;
+	}
+	public void setAf(int af) {
+		this.af = af;
+	}
+	public String getAk() {
+		return ak;
+	}
+	public void setAk(String ak) {
+		this.ak = ak;
+	}
+	public int getPage() {
+		return page;
+	}
+	public void setPage(int page) {
+		this.page = page;
+	}
 	public int getLimit() {
 		return limit;
 	}

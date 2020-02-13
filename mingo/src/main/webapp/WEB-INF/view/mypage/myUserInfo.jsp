@@ -10,23 +10,20 @@
     <title>Document</title>
 
     <!--부트 스트랩 관련 파일-->
-    
-	<%@ include file="/WEB-INF/view/include/headHTML.jsp"%>
+		<%@ include file="/WEB-INF/view/include/headHTML.jsp"%>
 
     <!-- 아이콘 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- 내가 만든 파일-->
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/boardStyle.css">
-    <link rel="stylesheet" href="<%=request.getContextPath() %>/css/choicss1.css">
 	
 	<style>
 		
 		.user_info_area{
 			text-align: center;
 			width:100%;
-			height:450px;
-			padding:40px 0;  
+			padding:40px 0 0 0;  
 		}
 		.profile_area{
 			padding-top:30px;
@@ -113,31 +110,37 @@
         <div class="mypage-header-wrapper">
             <div class="mypage-name">
 	            <div class="mypage-img">
-	                <img class="rounded-circle" src="upload/user/${userVO.profile_image }">
+	            		<c:if test="${userVO.profile_image != null }">
+	                	<img class="rounded-circle" src="<%=request.getContextPath() %>/upload/user/${userVO.profile_image }">
+	                </c:if>
+	                <c:if test="${userVO.profile_image == null}">
+	                	<img class="rounded-circle" src="<%=request.getContextPath() %>/img/default/profile.png">
+	                </c:if>
 	            </div>
-	            <div class="mypage-userid">${userVO.nickname }</div>
+	            <div class="mypage-userid">${userVO.nickname }<span style="font-size:0.8em;">님</span></div>
             </div>
         </div>
     </div>
-	<div class="container-fluid nav-wrapper">
-	    <ul class="nav mypage-nav" style="width:1140px;">
+    <div class="container-fluid nav-wrapper">
+	    <ul class="nav nav-pills mypage-nav" style="width:1140px;">
 	        <li class="nav-item">
-	          <a class="nav-link active" href="myMain.do?user_id=${userVO.user_id }">회원정보</a>
+	          <a class="nav-link active my-link" data-toggle="pill" href="javascript:void(0);" onclick="location.href='myMain.do?user_id=${userVO.user_id }'">회원정보</a>
 	        </li>
 	        <li class="nav-item">
-	          <a class="nav-link" href="myCafe.do?user_id=${userVO.user_id }">내 카페</a>
+	          <a class="nav-link my-link" data-toggle="pill" href="javascript:void(0);" onclick="location.href='myCafe.do?user_id=${userVO.user_id }'">내 카페</a>
 	        </li>
 	        <li class="nav-item">
-	          <a class="nav-link" href="myReview.do?user_id=${userVO.user_id }">활동내역</a>
+	          <a class="nav-link my-link" data-toggle="pill" href="javascript:void(0);" onclick="location.href='myReview.do?user_id=${userVO.user_id }'">활동내역</a>
 	        </li>
 	    </ul>
-	</div>
+		</div>
+    
     <div class="board-wrapper2">
         <div class="list-group list-group-flush board-side shadow">
             <div class="board-side-name">
                 <i class="fa fa-gear ml-2 " style="font-size:2em;">&nbsp;회원정보</i>
             </div>
-            <a href="myMain.do" class="list-group-item mt-2" style="border-top:none;">내 정보 관리</a>
+            <a href="myMain.do" class="list-group-item mt-2" style="border-top:none;font-weight:bold;">내 정보 관리</a>
             <a href="myUserModifyForm1.do" class="list-group-item">비밀번호 변경</a>
             <a href="deleteUserForm.do" class="list-group-item">회원 탈퇴</a>
             
@@ -149,7 +152,12 @@
             </div>  
             <div class="user_info_area">
             	<div class="profile_area">
-            		<img src="upload/user/${userVO.profile_image }" id="profile_img">
+            		<c:if test="${userVO.profile_image != null }">
+            		<img src="<%=request.getContextPath() %>/upload/user/${userVO.profile_image }" id="profile_img">
+            		</c:if>
+            		<c:if test="${userVO.profile_image == null }">
+            		<img src="<%=request.getContextPath() %>/img/default/profile.png" id="profile_img">
+            		</c:if>
             		<h2>${userVO.nickname }</h2>
             	</div>
             	
@@ -157,7 +165,12 @@
             		<br>	
             		<div class="info_each">
 	            		<div class="info_title">이용자 유형</div>
-	            		<div class="info_content">${userVO.type }</div>            			
+	            		<c:if test="${userVO.type == 1 }">
+	            			<div class="info_content">일반 회원</div>
+	            		</c:if>
+	            		<c:if test="${userVO.type == 2 }">
+	            			<div class="info_content">사장님 회원</div>
+	            		</c:if>            			
             		</div>
             		<div class="info_each">
 	            		<div class="info_title">이메일</div>
@@ -173,18 +186,33 @@
             		</div>
             		<div class="info_each">
 	            		<div class="info_title">성별</div>
-	            		<div class="info_content">${userVO.gender }</div>            			
+	            		<c:if test="${userVO.gender == 1 }">
+	            		<div class="info_content">여자</div>
+	            		</c:if>
+	            		<c:if test="${userVO.gender == 2 }">
+	            		<div class="info_content">남자</div>
+	            		</c:if>            			
             		</div>
             		<div class="info_each">
 	            		<div class="info_title">휴대전화 번호</div>
-	            		<div class="info_content">${userVO.phone_num }</div>            			
+	            		<c:if test="${userVO.phone_num == null }">
+	            		<div class="info_content">미등록</div> 
+	            		</c:if>
+	            		<c:if test="${userVO.phone_num != null }">
+	            		<div class="info_content">${userVO.phone_num }</div> 
+	            		</c:if>         			
             		</div>
             		<div class="info_each" id="addr">
 	            		<div class="info_title">주소</div>
-	            		<div class="info_content">${userVO.address } <br></div>            			
+	            		<c:if test="${userVO.address == null }">
+	            		<div class="info_content">미등록</div>  
+	            		</c:if>
+	            		<c:if test="${userVO.address != null }">
+	            		<div class="info_content">${userVO.address }</div>  
+	            		</c:if>          			
             		</div>
             	</div>
-	            <button type="button" onclick="location.href='#'" id="withdraw_user">수정</button>
+	            <button type="button" onclick="location.href='modifyUserForm.do'" class="btn btn-secondary" style="width:150px;">수정</button>
             </div>
 			
         </div>

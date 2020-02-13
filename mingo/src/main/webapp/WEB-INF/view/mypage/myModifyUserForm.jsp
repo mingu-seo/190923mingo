@@ -1,491 +1,94 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,500,700,900&display=swap&subset=korean" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    
-    <link rel="stylesheet" type="text/css" href="css/join/joinForm.css">
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script type="text/javascript" src="js/join/joinFormScript.js"></script>
-	<style>
-		* {
-	    box-sizing: border-box;
-	    outline: none;
-	    font-family: 'Noto Sans KR', sans-serif;
-	    text-rendering: optimizeSpeed;
-	    -webkit-font-smoothing: antialiased;
-	}
-	.wrap{
-	    width: 1200px;
-	    margin: 0 auto;
-	}
-	.header{
-	    background-color:white; height: 180px; width: 100%; 
-	    color: black; text-align: center; line-height: 100px;
-	}
-	.title{
-	   width: 1200px;
-	   height: 150px;
-	    text-align: center;
-	}
-	.t1{
-	    font-family: 'Noto Sans KR', sans-serif;
-	    font-size: 40px;
-	    font-weight: 700;
-	    color:rgb(63, 96, 204);
-	    margin-right: 8px;
-	}
-	.t2{
-	    font-family: 'Noto Sans KR', sans-serif;
-	    font-size: 40px;
-	    font-weight: 700;
-	    color:black;
-	    margin-right: 8px;
-	}
-	.t3{
-	    font-family: 'Noto Sans KR', sans-serif;
-	    font-size: 18px;
-	    color: #666666;
-	    line-height: 54px
-	}
-	
-	#joinForm{
-	    width: 600px;
-	    background-color: rgb(255, 255, 255);
-	    margin: 40px auto 40px ;
-	    border-width: 1px;
-	    border-style: solid;
-	    border-color: rgb(236, 236, 236);
-	    border-image: initial;
-	    padding: 40px;
-	}
-	.main{
-	    margin: 40px;
-	}
-	.insert_email{
-		position: relative;
-	    float: left;
-	    font-size: 14px;
-	    font-weight: bold;
-	   
-	}
-	.email1 > .email2{
-	   font-size: 14px;
-	    width: 300px;
-	    height: 52px;
-	    color: rgb(33, 33, 33);
-	    background-color: transparent;
-	    border-top:0 solid black;
-	    border-left:0 solid black;
-	    border-right:0 solid black;
-	    text-align: left;
-	    outline:none;
-	
-	}
-	#email{
-	    font-size: 14px;
-	    width: 300px;
-	    height: 52px;
-	    color: rgb(33, 33, 33);
-	    background-color: transparent;
-	    border-top:0 solid black;
-	    border-left:0 solid black;
-	    border-right:0 solid black;
-	    text-align: left;
-	    outline:none;
-	}
-	.email-btn-check{
-	    position: relative;
-	    top:-50px;
-	    left: 320px;
-	    font-size: 16px;
-	    padding: 0;
-	    width: 137px;
-	    min-width: 137px;
-	    height: 52px;
-	    line-height: 50px;
-	    border-radius: 0;
-	    background-color: #ffffff;
-	    color: #212121;
-	    border: solid 1px #dfdfdf;
-	    -webkit-transition: background-color 0.3s;
-	    transition: background-color 0.3s;
-	    cursor: pointer;
-	}
-	.email-btn-check:hover{
-	   box-shadow: 0 1px 10px rgba(0,0,0,0.5);
-	}
-	
-	/* 鍮꾨�踰덊샇 */
-	.insert_password{
-		position: relative;
-	    float: left;
-	    font-size: 14px;
-	    font-weight: bold;
-	   
-	}
-	.pass1 > .pass2{
-	   font-size: 14px;
-	    width: 300px;
-	    height: 52px;
-	    color: rgb(33, 33, 33);
-	    background-color: transparent;
-	    border-top:0 solid black;
-	    border-left:0 solid black;
-	    border-right:0 solid black;
-	    text-align: left;
-	    outline:none;
-		
-	}
-	#password{
-	    font-size: 14px;
-	    width: 300px;
-	    height: 52px;
-	    color: rgb(33, 33, 33);
-	    background-color: transparent;
-	    border-top:0 solid black;
-	    border-left:0 solid black;
-	    border-right:0 solid black;
-	    text-align: left;
-	    outline:none;
-	    padding: 1px0px;
-	}
-	#password_confirm{
-	    font-size: 14px;
-	    width: 300px;
-	    height: 52px;
-	    color: rgb(33, 33, 33);
-	    background-color: transparent;
-	    border-top:0 solid black;
-	    border-left:0 solid black;
-	    border-right:0 solid black;
-	    text-align: left;
-	    outline:none;
-	    padding: 1px 0px;
-	}
-	/* �씠由� */
-	.insert_name{
-		position: relative;
-	    float: left;
-	    font-size: 14px;
-	    font-weight: bold;
-	   
-	}
-	.name1 > .name2{
-	   font-size: 14px;
-	    width: 300px;
-	    height: 52px;
-	    color: rgb(33, 33, 33);
-	    background-color: transparent;
-	    border-top:0 solid black;
-	    border-left:0 solid black;
-	    border-right:0 solid black;
-	    text-align: left;
-	    outline:none;
-	
-	}
-	#name{
-	    font-size: 14px;
-	    width: 300px;
-	    height: 52px;
-	    color: rgb(33, 33, 33);
-	    background-color: transparent;
-	    border-top:0 solid black;
-	    border-left:0 solid black;
-	    border-right:0 solid black;
-	    text-align: left;
-	    outline:none;
-	}
-	
-	/* �땳�꽕�엫 */
-	.insert_nickname{
-		position: relative;
-	    float: left;
-	    font-size: 14px;
-	    font-weight: bold;
-	   
-	}
-	.nickname1 > .nickname2{
-	   font-size: 14px;
-	    width: 300px;
-	    height: 52px;
-	    color: rgb(33, 33, 33);
-	    background-color: transparent;
-	    border-top:0 solid black;
-	    border-left:0 solid black;
-	    border-right:0 solid black;
-	    text-align: left;
-	    outline:none;
-	
-	}
-	#nickname{
-	    font-size: 14px;
-	    width: 300px;
-	    height: 52px;
-	    color: rgb(33, 33, 33);
-	    background-color: transparent;
-	    border-top:0 solid black;
-	    border-left:0 solid black;
-	    border-right:0 solid black;
-	    text-align: left;
-	    outline:none;
-	}
-	.nick-btn-check{
-	    position: relative;
-	    top:-50px;
-	    left: 320px;
-	    font-size: 16px;
-	    padding: 0;
-	    width: 137px;
-	    min-width: 137px;
-	    height: 52px;
-	    line-height: 50px;
-	    border-radius: 0;
-	    background-color: #ffffff;
-	    color: #212121;
-	    border: solid 1px #dfdfdf;
-	    -webkit-transition: background-color 0.3s;
-	    transition: background-color 0.3s;
-		cursor: pointer;
-	}
-	.nick-btn-check:hover{
-	   box-shadow: 0 1px 10px rgba(0,0,0,0.5);
-	}
-	
-	/* �깮�뀈�썡�씪 */
-	.insert_bday{
-		position: relative;
-	    float: left;
-	    font-size: 14px;
-	    font-weight: bold;
-	   
-	}
-	.bday1 > .bday2{
-	   font-size: 14px;
-	    width: 300px;
-	    height: 52px;
-	    color: rgb(33, 33, 33);
-	    background-color: transparent;
-	    border-top:0 solid black;
-	    border-left:0 solid black;
-	    border-right:0 solid black;
-	    text-align: left;
-	    outline:none;
-	
-	}
-	#birthday{
-	    font-size: 14px;
-	    width: 300px;
-	    height: 52px;
-	    color: rgb(33, 33, 33);
-	    background-color: transparent;
-	    border-top:0 solid black;
-	    border-left:0 solid black;
-	    border-right:0 solid black;
-	    text-align: left;
-	    outline:none;
-	}
-	
-	
-	
-	.gender_select > ul {
-	    padding: 0px;
-	}
-	ul.gender_button {
-	    display: flex;
-	    flex-wrap: wrap;
-	    
-	}
-	ol, ul {
-	    list-style: none;
-	}
-	.gender_select > ul li:first-child {
-	    margin-right: -1px;
-	}
-	
-	.gender_select > ul li {
-	    margin: 0;
-	    border-radius: 0;
-	    z-index: 8;
-	    width: 80px;
-	    height: 52px;
-	    line-height: 50px;
-	    text-align: center;
-	    font-size: 16px;
-	}
+    <title>Document</title>
 
-	li.gender_button {
-		border:1px solid #dfdfdf;
-		padding: 0 24px;
-	    cursor: pointer;
-	}
-	li {
-   	 	display: list-item;
-	}
-	.gender_select > ul li {
-	    z-index: 8;
-	    margin: 0px;
-	    border-radius: 0px;
-	}
-	.gender_select>ul li[aria-checked='true'] {
-	    background-color: #ffffff;
-	    border-color: #3f60cc;
-	    color: #3f60cc;
-	    font-weight: 700;
-	    z-index: 9;
-	}
-	li.on.gender_button{
-		border:1px solid #5d7ee9;
-	}
+    <!--부트 스트랩 관련 파일-->
+		<%@ include file="/WEB-INF/view/include/headHTML.jsp"%>
 
-	.successbutton{
-	    font-size: 16px;
-	    width: 140px;
-	    min-width: 140px;
-	    height: 52px;
-	    line-height: 50px;
-	    background-color: rgba(0, 0, 0, 0);
-    	color: rgb(33, 33, 33);
-	    padding: 0px;
-	    border-radius: 26px;
-	    border-width: 1px;
-	    border-style: solid;
-	    border-color: rgb(223, 223, 223);
-	    border-image: initial;
-	    transition: background-color 0.3s ease 0s;
-	    z-index: 1;
-	}
-	.returnbutton{
-	    font-size: 16px;
-	    width: 140px;
-	    min-width: 140px;
-	    height: 52px;
-	    line-height: 50px;
-	    background-color: rgb(63, 96, 204);
-	    color: rgb(255, 255, 255);
-	    padding: 0px;
-	    border-radius: 26px;
-	    border-width: initial;
-	    border-style: none;
-	    border-color: initial;
-	    border-image: initial;
-	    transition: background-color 0.3s ease 0s;
-	    z-index: 1;
-	}
-	.buttonarea {
-		text-align:center;
-	}
-	.successbutton:hover{
-	   box-shadow: 0 1px 10px rgba(0,0,0,0.5);
-	}
-	.returnbutton:hover{
-	    box-shadow: 0 1px 10px rgba(0,0,0,0.5);
-	}
-	.footer{
-	    font-size: 14px;
-	    text-align: center;
-	    color: #c1c1c1;
-	    font-style: normal;
-	    padding: 56px 0
-	}
-	
-	
-	</style>
-	
-	<script>
+    <!-- 아이콘 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-
-	
-	</script>
-
+    <!-- 내가 만든 파일-->
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/css/boardStyle.css">
 </head>
-
 <body>
-    <div class="wrap">
-        <div class="header"></div>
-        <div class="title">
-	        <span class="t1">MINGO</span>    
-	        <span class="t2">회원가입</span>
-	        <p class="t3">MINGO 에서 활동하실 아이디와 비밀번호, 닉네임 등의 기본정보를 생성합니다.</p>    
-      	</div>
-	    <form id="joinForm" action="modifyUser.do" method="post">
-	    <div class="main">
-	        <label for="email">
-	            <span class="insert_email">이메일&nbsp;</span>
-	            <div class="email1">
-	               <div class="email2">
-						<input  id="email" name ="email" value="${userVO.email }" placeholder="아이디로 사용될 이메일 주소를 입력하세요."> 
-	        			<button class="email-btn-check" type="button"  style="margin-left: 16px;">중복확인</button>
-	        		</div>
-	        	</div>
-	        </label>
-	    </div>
-	        <div class="main">
-                <label class="password">
-                    <span class="insert_password"> 비밀번호&nbsp;</span>
-                    <div class="pass1">
-                       <div class="pass2">
-	                       <input type="password" name ="password" value="${userVO.password }" id="password" minlength="10" maxlength="20" required placeholder="비밀번호를 입력해주세요 (10~20자리)" >
-	                    </div>
-                	</div>
-                </label>
-                <br>
-		        <div class="pass1">
-	                <div class="pass2">
-		                <input type="password" name="password_confirm" value="${userVO.password }" id="password_confirm" minlength="10" maxlength="20" required placeholder="비밀번호를 다시 한번 입력해주세요." >
-		            </div>
-		        </div>
-	        </div>
-	        <div class="main">
-		        <label for="name">
-		            <span class="insert_name">이름&nbsp;</span>
-		            <div class="name1">
-		               <div class="name2">
-							<input id="name" name="name"  value="${userVO.name }" required placeholder="이름을 입력해주세요."> 
-		        		</div>
-		        	</div>
-		        </label>
-	        </div>
-	        <div class="main">
-		        <label for="nickname">
-		            <span class="insert_nickname">닉네임&nbsp;</span>
-		            <div class="nickname1">
-		               <div class="nickname2">
-							<input id="nickname" name="nickname"  value="${userVO.nickname }" minlength="2" maxlength="10" required placeholder="사용하실 닉네임을 입력해주세요(2~10자,변경불가)" > 
-		        			<button class="nick-btn-check" type="button" style="margin-left: 16px;">중복확인</button>
-		        		</div>
-		        	</div>
-		        </label>
-	        </div>
-	        <div class="main">
-		        <label for="birtday">
-		            <span class="insert_bday">생년월일&nbsp;</span>
-		            <div class="bday1">
-		               <div class="bday2">
-							<input id="birthday" name ="birthday"  value="${userVO.birthday }" required placeholder="생년월일('-'없이 8자리로 입력해주세요)" minlength="8" maxlength="8"> 
-		        		</div>
-		        	</div>
-		        </label>
-	        </div>
-			<div class="main">
-	            <div class="gender_select">  
-	                <ul class="gender_button">
-	                	<li role="radio" aria-checked="false" value="1" id="female" class="gender_button gbtn">여성</li> <!-- 1 -->
-	                	<li role="radio" aria-checked="false" value="2" id="male" class="gender_button gbtn">남성</li> <!-- 2 -->
-	                </ul>
+    <%@ include file="/WEB-INF/view/include/navigation.jsp"%>
+    <div class="container-fluid mypage-header">
+        <div class="mypage-header-wrapper">
+            <div class="mypage-name">
+	            <div class="mypage-img">
+	            		<c:if test="${userVO.profile_image != null }">
+	                	<img class="rounded-circle" src="<%=request.getContextPath() %>/upload/user/${userVO.profile_image }">
+	                </c:if>
+	                <c:if test="${userVO.profile_image == null}">
+	                	<img class="rounded-circle" src="<%=request.getContextPath() %>/img/default/profile.png">
+	                </c:if>
 	            </div>
-	        </div>   
-       		<input type="hidden" id="gender" name="gender" value="${userVO.gender }"/>
-       		<input type="hidden" id="type_general"  name ="type" value="${userVO.type }"/>
-		    <div class="buttonarea">
-		        <input type="reset" id="returnbutton"class="returnbutton" ></input>
-		        <input type="submit" class="successbutton"></input>
-		    </div>
-		</form>
+	            <div class="mypage-userid">${userVO.nickname }<span style="font-size:0.8em;">님</span></div>
+            </div>
+        </div>
     </div>
+    <div class="container-fluid nav-wrapper">
+	    <ul class="nav nav-pills mypage-nav" style="width:1140px;">
+	        <li class="nav-item">
+	          <a class="nav-link active my-link" data-toggle="pill" href="javascript:void(0);" onclick="location.href='myMain.do?user_id=${userVO.user_id }'">회원정보</a>
+	        </li>
+	        <li class="nav-item">
+	          <a class="nav-link my-link" data-toggle="pill" href="javascript:void(0);" onclick="location.href='myCafe.do?user_id=${userVO.user_id }'">내 카페</a>
+	        </li>
+	        <li class="nav-item">
+	          <a class="nav-link my-link" data-toggle="pill" href="javascript:void(0);" onclick="location.href='myReview.do?user_id=${userVO.user_id }'">활동내역</a>
+	        </li>
+	    </ul>
+		</div>
+    
+    <div class="board-wrapper2">
+        <div class="list-group list-group-flush board-side shadow">
+            <div class="board-side-name">
+                <i class="fa fa-gear ml-2 " style="font-size:2em;">&nbsp;회원정보</i>
+            </div>
+            <a href="myMain.do" class="list-group-item mt-2" style="border-top:none;font-weight:bold;">내 정보 관리</a>
+            <a href="myUserModifyForm1.do" class="list-group-item">비밀번호 변경</a>
+            <a href="deleteUserForm.do" class="list-group-item">회원 탈퇴</a>
+            
+        </div>  
+        
+        <div class="board-group shadow ml-4">
+            <div class="pb-4 mb-1 board-name" style="border-bottom: 1px solid #6E6E6E;">
+               	내 정보 관리
+            </div>  
+            <div class="user_info_area">
+            	<form class="was-validated">
+            	<!-- email,nickname,name,birthday, gender, phone_num, profile_image,address -->
+            	<div class="form-group">
+						    <label for="email">이메일 주소:</label>
+						    <input type="email" class="form-control" placeholder="이메일을 입력해 주세요." id="email" name="email" required>
+    						<div class="invalid-feedback">내용을 입력해주세요!</div>
+						  </div>
+						  <div class="form-group">
+						    <label for="nickname">닉네임:</label>
+						    <input type="text" class="form-control" placeholder="닉네임을 입력해 주세요." id="nickname" name="nickname">
+						  </div>
+						  <div class="form-group">
+						    <label for="name">이름:</label>
+						    <input type="text" class="form-control" placeholder="이름을 입력해 주세요." id="name" name="name">
+						  </div>
+						  <div class="form-group">
+						    <label for="birthday">생일:</label>
+						    <input type="text" class="form-control" placeholder="생일을 입력해 주세요." id="birthday" name="birthday">
+						  </div>
+            	<button type="submit" class="btn btn-secondary" style="width:150px;">수정완료</button>
+            	</form>	
+            </div>
+        </div>
+    </div>
+    <%@ include file="/WEB-INF/view/include/footer.jsp"%>
 </body>
-</html>   
+
+</html>
