@@ -4,7 +4,7 @@
 <mapper namespace="userMapper">
 	
 	<select id="loginProcess" parameterType="vo.UserVO" resultType="vo.UserVO">
-		SELECT * FROM mingo.user WHERE email=#{email} and password=#{password}
+		SELECT * FROM mingo.user WHERE email=#{email} and password=md5(#{password})
 	</select>
 	<select id="naverLoginProcess" parameterType="vo.UserVO" resultType="vo.UserVO">
 		SELECT * FROM mingo.user WHERE email=#{email} 
@@ -14,7 +14,7 @@
 		INSERT INTO mingo.user
 		(email, password, name,nickname, birthday, gender, type)
 		values
-		(#{email}, #{password},#{name}, #{nickname}, #{birthday}, #{gender}, #{type})
+		(#{email}, md5(#{password}),#{name}, #{nickname}, #{birthday}, #{gender}, #{type})
 	</insert>
 	<!-- 네이버 회원가입 -->
 	<insert id="naverJoinProcess" parameterType="vo.UserVO">
@@ -64,7 +64,7 @@
 	<!-- 비밀번호 update -->
 	<update id="updatePwd" parameterType="Map" >
 		UPDATE mingo.user 
-		SET password=#{password}
+		SET password= md5(#{password})
 		WHERE user_id =#{user_id}
 	</update>
 	

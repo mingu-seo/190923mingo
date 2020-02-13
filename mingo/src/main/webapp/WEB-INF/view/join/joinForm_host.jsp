@@ -134,7 +134,7 @@
     
         <div class="buttonarea">
             <button type="button" id="returnbutton"class="returnbutton" >다시작성</button>
-            <button type="button" class="successbutton" onclick = "javascript:joinForm();">가입완료</button>
+            <button type="button" class="successbutton" onclick = "joinFormFn();">가입완료</button>
         </div>
 <!-- 
 인증번호란 새로 만들기  -->
