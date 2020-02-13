@@ -172,5 +172,9 @@ public class BoardService {
 		return num;
 	}
 	
+	public int getLikeType(BoardLikeVO vo) {
+		return boardDAO.getLikeType(vo);
+	}
+	
 
 }

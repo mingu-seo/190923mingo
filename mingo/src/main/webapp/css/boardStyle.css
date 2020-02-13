@@ -419,3 +419,8 @@ a{
   ::-webkit-scrollbar-thumb:hover {
     background: #a1a1a1; 
   }
+  
+  .likeBtnActive {
+  	background-color: rgb(51, 103, 214);
+  }
+  

@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="board">
+<!-- 게시글 조회 -->
 	<select id="list" resultType="vo.BoardVO" parameterType="vo.BoardVO">
 		SELECT b.*, u.nickname
 		FROM mingo.board as b join user as u
@@ -107,7 +108,7 @@
 		INSERT INTO mingo.board
 		(board_id, user_id, type, title, contents, regdate, readcount,is_notice)
 		values
-		(#{board_id}, 1, #{type}, #{title}, #{contents}, NOW(),#{readcount},#{is_notice})  
+		(#{board_id}, #{user_id}, #{type}, #{title}, #{contents}, NOW(),#{readcount},#{is_notice})  
 		<selectKey keyProperty="board_id" resultType="Integer" order="AFTER">
 			SELECT last_insert_id()
 		</selectKey>
@@ -117,6 +118,14 @@
 	<select id="view" parameterType="Integer" resultType="vo.BoardVO">
 		SELECT *, (SELECT nickname FROM mingo.user WHERE user_id=mingo.board.user_id)
 		 AS nickname FROM mingo.board WHERE board_id=#{board_id}
+	</select>
+	
+	<select id="getLikeType" parameterType="vo.BoardLikeVO" resultType="Integer">
+	select ifnull((
+		select type
+		from board_like
+		where board_id = #{board_id} and user_id=#{user_id})
+	,0)
 	</select>
 	
 	<update id="update" parameterType="vo.BoardVO" >
@@ -132,7 +141,7 @@
 	</update>
 	
 	<select id="clist" resultType="vo.BoardCommentVO" parameterType="Integer">
-		SELECT * FROM mingo.board_comment WHERE board_id=#{board_id}
+		SELECT *, (select nickname from mingo.user where user_id=board_comment.user_id) as nickname FROM mingo.board_comment WHERE board_id=#{board_id}
 		ORDER BY ref DESC, seq ASC
 		
 	</select>
@@ -191,7 +200,7 @@
 		(board_comment_id,user_id, board_id, regdate,
 		ref, lev, seq, contents)
 		values
-		(#{board_comment_id}, 1, #{board_id},NOW(), 
+		(#{board_comment_id}, #{user_id}, #{board_id},NOW(), 
 		#{board_id}, #{lev} , #{seq} ,#{contents})
 		<selectKey keyProperty="board_comment_id" resultType="Integer" order="AFTER">
 			SELECT last_insert_id()
@@ -213,7 +222,7 @@
 		(user_id, board_id, regdate,
 		ref, lev, seq, contents)
 		values
-		(1, #{board_id},NOW(), 
+		(#{user_id}, #{board_id},NOW(), 
 		#{ref}, #{lev} , #{seq} ,#{contents})
 	</insert>
 	

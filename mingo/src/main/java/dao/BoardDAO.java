@@ -130,6 +130,10 @@ public class BoardDAO {
 			return sqlSession.selectList("board.getBoardNames");
 		}
 		
+		public int getLikeType(BoardLikeVO vo) {
+			return sqlSession.selectOne("board.getLikeType", vo);
+		}
+		
 
 		
 

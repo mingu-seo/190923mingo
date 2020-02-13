@@ -12,11 +12,11 @@
 	int listcount = (Integer)request.getAttribute("listcount");
 	List<BoardCommentVO> clist = (List<BoardCommentVO>)request.getAttribute("clist");
 	BoardCommentVO cvo = (BoardCommentVO) request.getAttribute("cvo");
-	BoardLikeVO lvo = (BoardLikeVO) request.getAttribute("lvo");
 	BoardVO vo = (BoardVO) request.getAttribute("data");
 	int nowPage = (Integer) request.getAttribute("page");
 	int type = (Integer) request.getAttribute("type");
-	
+	int likeType = (Integer) request.getAttribute("likeType");
+	UserVO uvo = (UserVO) request.getAttribute("uvo");
 	int s1=0;
 	if((Integer) request.getAttribute("s1") != null){
 		s1 = (Integer) request.getAttribute("s1");
@@ -108,7 +108,8 @@
 	function upLikeNum(type){
 		//현재 누군가가 로그인해 있다
 		//좋아요 싫어요 누른적이 한번도 없고 둘 중에 하나만 클릭이 되게
-			$.ajax({
+		if(!${sessionScope.userVO == null}){
+		$.ajax({
 			url: 'upLikeNum.do',
 			data: { board_id : ${cvo.board_id},
 							user_id : ${data.user_id},
@@ -121,12 +122,25 @@
 				if (type == "1") {
 					$('#likeGood > i').text(data.result); //좋아요 숫자 결과값
 					$('#like-num').text(data.result); //추천수 결과값
+					if ($("#likeGood").hasClass("likeBtnActive")) {
+						$("#likeGood").removeClass("likeBtnActive");
+					} else {
+						$("#likeGood").addClass("likeBtnActive");
+					}
 				} else {
 					$('#likeBad > i').text(data.result); //좋아요 숫자 결과값
+					if ($("#likeBad").hasClass("likeBtnActive")) {
+						$("#likeBad").removeClass("likeBtnActive");
+					} else {
+						$("#likeBad").addClass("likeBtnActive");
+					}
 				}
 			}
 		});
-	}
+		}else{
+			alert("로그인 해주세요.");
+		}
+		}
 	
 $(document).ready(function(){
 	
@@ -166,24 +180,34 @@ $(document).ready(function(){
 						<%=vo.getReadcount()%>
 						| 추천 수 <span id="like-num">${data.like_num }</span> |
 						<fmt:formatDate value="${data.regdate}" pattern="yyyy.MM.dd HH:mm" />
-						| <a
-							href="editBoard.do?board_id=<%=vo.getBoard_id()%>&page=${page}&type=${type}&s1=<%=s1%>&s2=<%=s2%>&k=<%=k%>">수정</a>
+						<c:choose>
+					<c:when test="${sessionScope.userVO == null}"/>
+            			<c:otherwise>
+            				<c:if   test="${sessionScope.userVO.user_id == data.user_id}">
+						| 
+						  <a href="editBoard.do?board_id=<%=vo.getBoard_id()%>&page=${page}&type=${type}&s1=<%=s1%>&s2=<%=s2%>&k=<%=k%>">수정</a>
+						  
 						| <a href="javascript:void(0);"
 							onclick="javascript: deleteboard(<%=vo.getBoard_id()%>)">삭제</a>
+							</c:if>
+							
+					</c:otherwise>
+				</c:choose>
 					</div>
 				</div>
 				<div class="p-3">
 					<%=vo.getContents()%></div>
 
 				<div class="mybtn-group">
+				<input type="hidden" name="user_id" value="${sessionScope.userVO.user_id}">
 					<button type="button" class="btn btn-secondary float-left"
 						onclick="location.href='listBoard.do?type=<%=type %>&page=<%=nowPage%>&s1=<%=s1%>&s2=<%=s2%>&k=<%=k%>' ">목록보기</button>
 					
-					<button type="button" class="btn float-right mybtn-good"
+					<button type="button" class="btn float-right mybtn-good <%=likeType==2 ? "likeBtnActive" : "" %>"
 						name="likeBad" id="likeBad" onclick="upLikeNum(2);">
 						<i class="fa fa-thumbs-o-down" style="font-size: 1.5em;">${dislikeNum }</i>
 					</button>
-					<button type="button" class="btn float-right mybtn-bad"
+					<button type="button" class="btn float-right mybtn-bad <%=likeType==1 ? "likeBtnActive" : "" %>"
 						name="likeGood" id="likeGood" onclick="upLikeNum(1);">
 						<i class="fa fa-thumbs-o-up" style="font-size: 1.5em;">${likeNum  }</i> 
 					</button>
@@ -234,7 +258,7 @@ $(document).ready(function(){
 							</c:if>
 							<!-- 삭제 된 게시물이 아니면 -->
 							<c:if test="${BoardCommentVO.is_deleted == 0 }">
-								<div class="reply-name"><%=vo.getNickname() %></div>
+								<div class="reply-name">${BoardCommentVO.nickname}</div>
 								<div class="reply-content">${BoardCommentVO.contents}</div>
 		
 								<!-- 날짜 출력 -->
@@ -248,10 +272,17 @@ $(document).ready(function(){
 	
 							<!-- 대댓글쓰기(삭제된 게시물이 아닐 경우에만 댓글 삭제 버튼이 있음) -->
 							<c:if test="${BoardCommentVO.is_deleted == 0 }">
+								<c:choose>
+										<c:when test="${sessionScope.userVO == null}"/>
+            						<c:otherwise>
 								<button type="button" class="btn btn-secondary"
 									onclick="replyShow('${BoardCommentVO.board_comment_id }')">댓글</button>
+								<c:if test="${sessionScope.userVO.user_id == BoardCommentVO.user_id}">
 								<button type="button" class="btn btn-secondary"
 									onclick="replyDelete(${BoardCommentVO.board_comment_id})">삭제</button>
+								</c:if>  
+								</c:otherwise>
+								</c:choose>
 								<div id="replyCmt_${BoardCommentVO.board_comment_id }"
 									style="display: none">
 									<textarea class="mt-2" rows="4"
@@ -286,6 +317,15 @@ $(document).ready(function(){
 
 			<!-- 댓글쓰기 -->
 			<form action="writeComment.do" method="post" name="writeComment">
+				<c:choose>
+					<c:when test="${sessionScope.userVO == null}">
+						<div class="reply-form p-3">
+							<div style="text-align: center;margin-left: auto;">
+							로그인 시 댓글 등록이 가능합니다. 
+							<a href="loginForm.do" style=" text-decoration:underline; ">로그인하기</a></div>
+						</div>
+					</c:when>
+            			<c:otherwise>
 				<div class="reply-form p-3">
 					<input type="hidden" name="page" value="<%=vo.getPage() %>" /> 
 					<input type="hidden" name="type" value="<%=vo.getType() %>" /> 
@@ -296,11 +336,12 @@ $(document).ready(function(){
 					<input type="hidden" name="ref" value="<%=cvo.getRef() %>">
 					<input type="hidden" name="lev" value="<%=cvo.getLev() %>">
 					<input type="hidden" name="seq" value="<%=cvo.getSeq() %>">
+					<input type="hidden" name="user_id" value="${sessionScope.userVO.user_id}">
 					<input type="hidden" name="board_comment_id"
 						value="<%=cvo.getBoard_comment_id() %>">
  
 				
-					<div class="reply-name"><%=vo.getNickname() %></div>
+					<div class="reply-name">${sessionScope.userVO.nickname}</div>
 					<textarea class="mt-2" rows="4"
 						style="font-size: 0.9em; width: 100%; border: 1px solid #e1e1e1;"
 						name="contents" id="contents" placeholder="주제와 무관한 댓글, 악플은 삭제 될 수 있습니다."></textarea>
@@ -308,8 +349,9 @@ $(document).ready(function(){
 						<button type="button" class="btn btn-secondary"
 							onclick="writeComment123()">등록</button>
 					</div>
-					
 				</div>
+			</c:otherwise>
+				</c:choose>
 			</form>
 		</div>
 	</div>

@@ -11,8 +11,15 @@ public class BoardCommentVO {
 	private int lev;
 	private String contents;
 	private int is_deleted;
+	private String nickname;
 	
 	
+	public String getNickname() {
+		return nickname;
+	}
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
 	public int getIs_deleted() {
 		return is_deleted;
 	}
