@@ -100,13 +100,21 @@ public class BoardDAO {
 			return sqlSession.selectList("board.getBoardCommentList", board_id);
 		}
 
+		public BoardLikeVO checkLike(BoardLikeVO vo) {
+			return sqlSession.selectOne("board.checkLike", vo);
+		}
 		public void insertLike(BoardLikeVO vo) {
 			sqlSession.insert("board.insertLike", vo);
 		}
 		public void insertBad(BoardLikeVO vo) {
 			sqlSession.insert("board.insertDislike", vo);
 		}
-
+		public void deleteLike(BoardLikeVO vo) {
+			sqlSession.delete("board.deleteLike", vo);
+		}
+		public void deleteBad(BoardLikeVO vo) {
+			sqlSession.delete("board.deleteDislike", vo);
+		}
 		public int getLikeNum(int board_id) {
 			return sqlSession.selectOne("board.getLikeNum",board_id);  
 		}
@@ -120,6 +128,10 @@ public class BoardDAO {
 
 		public List<BoardMetaVO> getBoardNames() {
 			return sqlSession.selectList("board.getBoardNames");
+		}
+		
+		public int getLikeType(BoardLikeVO vo) {
+			return sqlSession.selectOne("board.getLikeType", vo);
 		}
 		
 

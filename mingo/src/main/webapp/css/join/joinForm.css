@@ -18,12 +18,13 @@
 	   height: 150px;
 	    text-align: center;
 	}
-	.t1{
+	.t1 > a{
 	    font-family: 'Noto Sans KR', sans-serif;
 	    font-size: 40px;
 	    font-weight: 700;
         color: #6d512f;
 	    margin-right: 8px;
+	    text-decoration: none;
 	}
 	.t2{
 	    font-family: 'Noto Sans KR', sans-serif;

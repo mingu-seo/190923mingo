@@ -141,8 +141,17 @@ int totalpage = (Integer)request.getAttribute("totalpage"); // 전체페이지�
                 <li class="page-item"><a class="page-link" href="#">9</a></li>
                 <li class="page-item"><a class="page-link" href="#">10</a></li>
                 <li class="page-item"><a class="page-link" href="#">Next</a></li> -->
-                <button type="button" class="btn btn-danger btn-write2" onclick="location.href='writeNotice.do?type=<%=vo.getType()%>&page=<%=vo.getPage()%>&s1=${s1}&s2=${s2}&k=${k}' ">공지 쓰기</button>
-                <button type="button" class="btn btn-secondary btn-write" onclick="location.href='writeBoard.do?type=<%=vo.getType()%>&page=<%=vo.getPage()%>&s1=${s1}&s2=${s2}&k=${k}' ">글쓰기</button>
+           <c:choose>
+						<c:when test="${sessionScope.userVO != null && sessionScope.admin == null}">
+            	<button type="button" class="btn btn-secondary btn-write" onclick="location.href='writeBoard.do?type=<%=vo.getType()%>&page=<%=vo.getPage()%>&s1=${s1}&s2=${s2}&k=${k}' ">글쓰기</button>
+            			</c:when>
+            			<c:when test="${sessionScope.userVO == null && sessionScope.admin != null}">	
+            	<button type="button" class="btn btn-danger btn-write2" onclick="location.href='writeNotice.do?type=<%=vo.getType()%>&page=<%=vo.getPage()%>&s1=${s1}&s2=${s2}&k=${k}' ">공지 쓰기</button>
+            	<button type="button" class="btn btn-secondary btn-write" onclick="location.href='writeBoard.do?type=<%=vo.getType()%>&page=<%=vo.getPage()%>&s1=${s1}&s2=${s2}&k=${k}' ">글쓰기</button>
+               	 		</c:when>
+           <c:otherwise></c:otherwise>    	 	
+           </c:choose>
+          	
             </ul>
             <form action="listBoard.do?" id="filter-form">
             	<input type="hidden" name="page"  value="<%=vo.getPage()%>"/>

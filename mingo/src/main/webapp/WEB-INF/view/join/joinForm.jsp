@@ -17,7 +17,9 @@
     <div class="wrap">
         <div class="header"></div>
         <div class="title">
-	        <span class="t1">MINGO</span>    
+	        <span class="t1">
+	        <a href="/goMain.do" class="join-title">MINGO</a>
+	        </span>    
 	        <span class="t2">회원가입</span>
 	        <p class="t3">MINGO 에서 활동하실 아이디와 비밀번호, 닉네임 등의 기본정보를 생성합니다.</p>    
       	</div>
@@ -110,8 +112,8 @@
         </div>
     
         <div class="buttonarea">
-            <button type="button" id="returnbutton"class="returnbutton" >다시작성</button>
-            <button type="button" class="successbutton" onclick = "javascript:joinForm();">가입완료</button>
+            <button type="button" id="returnbutton" class="returnbutton" >다시작성</button>
+            <button type="button" class="successbutton" onclick ="joinFormFn();">가입완료</button>
         </div>
 		<div class="footer">
 	        <p>Copyright © CAFE MINGO All Rights Reserved.</p>

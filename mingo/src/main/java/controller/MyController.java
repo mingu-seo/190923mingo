@@ -42,15 +42,24 @@ public class MyController {
 		HttpSession session = request.getSession();
 		UserVO vo1 = (UserVO) session.getAttribute("userVO");
 		int user_id = vo1.getUser_id();
-		UserVO userVO = myService.viewUserInfo(user_id);
-		String password = request.getParameter("password");
-		String dbPwd = userVO.getPassword();
-		int result;
-		if(password.equals(dbPwd)) {
+		UserVO userVO = myService.viewUserInfo(user_id); //userVO객체
+		String password = request.getParameter("password"); // raw 비밀번호(전달된 비번)
+		
+		Map idPwd = new HashMap<String, String>();
+		idPwd.put("id", user_id);
+		idPwd.put("pwd", password);
+		
+		int result=0;
+		if( myDao.findUser(idPwd) != null) {
 			result=1;
-		} else{
-			result=0; 
-		}
+		};
+//		String dbPwd = userVO.getPassword(); //encoding된 암호(원래 비번)
+//		
+//		if(password.equals(dbPwd)) {
+//			result=1;
+//		} else{
+//			result=0; 
+//		}
 		model.addAttribute("userVO", userVO);
 		model.addAttribute("pwdResult", result);
 		return "mypage/myAjax"; 

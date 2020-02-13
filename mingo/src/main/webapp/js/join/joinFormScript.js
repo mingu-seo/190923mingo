@@ -17,7 +17,7 @@
 
 	
 	//폼 전체 유효성, 공백 체크
-	function joinForm(){
+	function joinFormFn(){
 		
 		var emailChk = RegExp(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/);
 		var nameChk = RegExp(/^[가-힣]{2,6}$/);  //2~6글자의 한글만

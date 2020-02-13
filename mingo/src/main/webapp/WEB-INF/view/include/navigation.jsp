@@ -39,7 +39,7 @@
 						</c:when>
 						<c:when test="${sessionScope.userVO == null && sessionScope.admin != null}">
 	                    	<li class="nav-item" style="color:white">
-								<a class="nav-link"><i class="fa fa-cogs"></i>관리자 </a>
+								<a class="nav-link" href="/adminMain.do"><i class="fa fa-cogs"></i>관리자 </a>
 							</li>
 	                    	<li class="nav-item">
 	                            <a class="nav-link" href="/logout.do">로그아웃</a>

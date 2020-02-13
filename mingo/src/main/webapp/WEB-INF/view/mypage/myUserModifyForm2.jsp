@@ -122,6 +122,12 @@
 				}
 			});
 		});
+		 $(function() {
+			    $("#pwd2").keyup(function(e){
+			    	if(e.keyCode == 13)  $("#withdrawBtn").trigger("click");
+			    });
+		   	});	
+		
 		
 	</script>
 	

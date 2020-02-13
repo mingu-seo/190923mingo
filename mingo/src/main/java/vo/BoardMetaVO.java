@@ -5,6 +5,11 @@ public class BoardMetaVO {
 	private String name;
 	private int list_num;
 	private int notice_num;
+	
+	
+	
+	
+	
 	public int getType() {
 		return type;
 	}

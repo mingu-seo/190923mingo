@@ -17,7 +17,9 @@
     <div class="wrap">
         <div class="header"></div>
         <div class="title">
-	        <span class="t1">MINGO</span>    
+	        <span class="t1">
+	        <a href="/goMain.do" class="join-title">MINGO</a>
+	        </span>    
 	        <span class="t2">회원가입</span>
 	        <p class="t3">사장님 회원님의 회원가입 페이지입니다.</p>    
       	</div>
@@ -134,7 +136,7 @@
     
         <div class="buttonarea">
             <button type="button" id="returnbutton"class="returnbutton" >다시작성</button>
-            <button type="button" class="successbutton" onclick = "javascript:joinForm();">가입완료</button>
+            <button type="button" class="successbutton" onclick = "joinFormFn();">가입완료</button>
         </div>
 <!-- 
 인증번호란 새로 만들기  -->

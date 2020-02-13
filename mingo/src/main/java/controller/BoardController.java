@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ import vo.BoardCommentVO;
 import vo.BoardLikeVO;
 import vo.BoardMetaVO;
 import vo.BoardVO;
+import vo.UserVO;
 
 @Controller
 public class BoardController {
@@ -35,6 +37,10 @@ public class BoardController {
 		int[] listcount = boardService.boardCount(vo);	// 전체 갯수와 총페이지수  
 		List<BoardVO> list = boardService.list(vo);
 		
+		UserVO uvo = new UserVO();
+		int user_id = uvo.getUser_id();
+		
+		model.addAttribute("user_id", user_id);
 		//int commentCount = boardService.listCount(board_id);
 		model.addAttribute("listcount", listcount[0]);
 		model.addAttribute("totalpage", listcount[1]);
@@ -96,13 +102,22 @@ public class BoardController {
 	//게시판 상세보기 
 	@RequestMapping("/viewBoard.do")
 	public String viewBoard(Model model, @RequestParam("board_id") int board_id, @RequestParam("page")int page
-			,@RequestParam("type")int type,BoardCommentVO cvo,
-			@RequestParam("s1")int s1,@RequestParam("s2")int s2,@RequestParam("k")String k) {
+			,@RequestParam("type")int type,BoardCommentVO cvo, UserVO uvo,
+			@RequestParam("s1")int s1,@RequestParam("s2")int s2,@RequestParam("k")String k, HttpSession sess) {
 		BoardVO data = boardService.detail(board_id);
 		List<BoardCommentVO> clist = boardService.clist(cvo);
 		int listCount = boardService.listCount(board_id);
 		int likeNum = boardDAO.getLikeNum(board_id);
 		int dislikeNum = boardDAO.getDislikeNum(board_id);
+		
+		// 좋아요 싫어요 조회 후 색변경을 위한 값
+		
+		int user_id = uvo.getUser_id();
+		//int user_id = (Integer)sess.getAttribute("uvo");
+		BoardLikeVO blvo = new BoardLikeVO();
+		blvo.setBoard_id(board_id);
+		blvo.setUser_id(user_id);
+		int likeType = boardDAO.getLikeType(blvo);
 		
 		model.addAttribute("type",type);
 		model.addAttribute("data",data);
@@ -110,6 +125,8 @@ public class BoardController {
 		model.addAttribute("clist",clist);
 		model.addAttribute("cvo",cvo);
 		model.addAttribute("listCount", listCount);
+		model.addAttribute("likeType", likeType);
+		model.addAttribute("user_id", user_id);
 		
 		/* 필터링 옵션 s1:기간 s2:글쓴이 제목 등 k : 키워드 */
 		model.addAttribute("s1", s1);
@@ -141,6 +158,7 @@ public class BoardController {
 		
 		
 	}
+	
 	@RequestMapping("/upBadNum.do")
 	public void upBadNum(BoardLikeVO vo, HttpServletResponse response) {
 		int result = boardService.upBadNum(vo);
@@ -157,12 +175,19 @@ public class BoardController {
 		
 		
 	}
+	
 	//댓글 등록
 	@RequestMapping("/writeComment.do")
-	public String writeComment(Model model, BoardCommentVO cvo,BoardVO vo) {
-		 boardService.writeComment(cvo);
+	public String writeComment(Model model,UserVO uvo, BoardCommentVO cvo,BoardVO vo) {
+		
+		int user_id = uvo.getUser_id();
+		uvo.setUser_id(user_id);
+		
+		boardService.writeComment(cvo);
 		 model.addAttribute("vo", vo);
 		 model.addAttribute("cvo",cvo);
+		 model.addAttribute("uvo",uvo);
+
 		 int s1 = vo.getS1();
 		 int s2 = vo.getS1();
 		 String k = vo.getK();

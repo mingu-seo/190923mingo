@@ -1,7 +1,6 @@
 package service;
 
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -140,9 +139,29 @@ public class BoardService {
 
 
 	public int upLikeNum(BoardLikeVO vo) {
-		boardDAO.insertLike(vo);
-		boardDAO.updateLikeNum(vo.getBoard_id());
-		int num = boardDAO.getLikeNum(vo.getBoard_id());
+		
+		BoardLikeVO blvo = boardDAO.checkLike(vo); //board_id user_id체크값
+		int num = 0;
+		if (blvo == null) { //값이 없으면   좋아요 버튼
+			boardDAO.insertLike(vo); //추가
+			if (vo.getType() == 1) {// type이 1이면
+				num = boardDAO.getLikeNum(vo.getBoard_id());// type1 카운트
+			} else {
+				num = boardDAO.getDislikeNum(vo.getBoard_id()); //type2 카운트
+			}
+		} else { //싫어요 버튼
+			if (blvo.getType() == vo.getType()) { //dbtype과 사용자type이 같으면
+				boardDAO.deleteLike(vo); //삭제
+				if (vo.getType() == 1) {
+					num = boardDAO.getLikeNum(vo.getBoard_id());
+				} else {
+					num = boardDAO.getDislikeNum(vo.getBoard_id());
+				}
+			} else { //type이 -1일 떄
+				num = -1;
+			}
+		}
+		boardDAO.updateLikeNum(vo.getBoard_id()); //like_num업데이트
 		
 		return num;
 	}
@@ -152,9 +171,10 @@ public class BoardService {
 		int num = boardDAO.getDislikeNum(vo.getBoard_id());
 		return num;
 	}
-
 	
-
+	public int getLikeType(BoardLikeVO vo) {
+		return boardDAO.getLikeType(vo);
+	}
 	
 
 }
