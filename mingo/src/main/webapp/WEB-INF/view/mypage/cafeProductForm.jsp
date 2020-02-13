@@ -23,29 +23,6 @@
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/choicss1.css">
 	
 	<style>
-		/* 
-		form{width:100%;}  
-		form > div{width:100%;}  
-		#image_section{width:20%;border-radius:100%; margin-bottom:40px;}
-		.key-info{width:100%;height:auto;overflow: hidden;margin-bottom:40px;border-bottom:1px solid #D8D8D8;padding-bottom:25px;}
-		.logo-info{width:100%;height:auto;overflow: hidden;margin-bottom:40px;border-bottom:1px solid #D8D8D8;padding-bottom:25px;}
-		.time-info{width:100%;height:auto;overflow: hidden;margin-bottom:40px;border-bottom:1px solid #D8D8D8;padding-bottom:25px;}
-		.facilities-info{width:100%;height:auto;overflow: hidden;margin-bottom:40px;border-bottom:1px solid #D8D8D8;padding-bottom:25px;}
-		.service-info{width:100%;height:auto;overflow: hidden;margin-bottom:40px;border-bottom:1px solid #D8D8D8;padding-bottom:25px;}
-		.menu-info{width:100%;height:auto;overflow: hidden;margin-bottom:40px;border-bottom:1px solid #D8D8D8;padding-bottom:25px;}
-		.product-info{width:100%;height:auto;overflow: hidden;margin-bottom:40px;border-bottom:1px solid #D8D8D8;padding-bottom:25px;}
-		.image-info{width:100%;height:auto;overflow: hidden;margin-bottom:40px;border-bottom:1px solid #D8D8D8;padding-bottom:25px;}
-		select{width:20%;}
-		option{text-align:center;}
-		.add-info{width:67%;}    
-		.topic{width:20%;float:left;}
-		.topic-contents{width:80%;float:left;}
-		
-		.title{width:20%;}
-		.each{width:100%;height:auto;overflow:hidden; }
-		#cafe-intro{width:70%;height:80px;float:left;} 
-		#intro-title{height:80px;float:left;}  */
-		
 		
 		.product-each-section{width:124px;float:left;margin-right:10px;}
 		.my-image{overflow:hidden;height:124px;width:100%;margin-bottom:10px; }
@@ -58,9 +35,6 @@
 		  
 		.add-product{float:left;width:124px;height:253px;margin-right:10px;background-color:transparent;}        
 		
-	
-		
-		  
 	</style>
 	
 	<script>
@@ -86,46 +60,12 @@
 		$("#product_image_file<%=product_num%>").change(function(){
 			product_readURL(this);
 		});
-		<%-- $('.add-menu').click(function(){
-			<% menu_num++; %>
-			var default_form = $(this).prev().html();
-			$(this).parent().append(default_form);    	 
-		});  --%> 
 		
-		/* //상품 사진 미리보기
-		
-		function product_readURL(input) {
-			if (input.files && input.files[0]) {
-				var reader = new FileReader();
-				reader.onload = function (e) {
-					$('#image_section').attr('src', e.target.result);  
-				}
-				reader.readAsDataURL(input.files[0]);
-			}
-		}
-		$("#logo_file").change(function(){
-			product_readURL(this);
-		});
-		//카페 사진 미리보기
-		function cafe_readURL(input) {
-			if (input.files && input.files[0]) {
-				var reader = new FileReader();
-				reader.onload = function (e) {
-					$('#image_section').attr('src', e.target.result);  
-				}
-				reader.readAsDataURL(input.files[0]);
-			}
-		}
-		$("#logo_file").change(function(){
-			cafe_readURL(this);
-		}); */
-			
 	});
 	
 	</script>
 	
-	
-	
+
 </head>
 
 <body>
@@ -133,15 +73,13 @@
 	<!-- default 양식 -->
 	<div class="product-each-section">	  
 		<div class="my-image">  
-			
 			<img id="product_image_section<%=product_num%>" class="product_image_section" src="img/starbucks.png" alt="메뉴 사진을 등록해주세요"/>
 		</div>
+		<input type="hidden" name="cafe_product_id" value="0">
 		<select name="product_type" class="product-select">
-			<option value="1">이벤트</option>
-			<option value="2">담요</option>
-			<option value="3">쿠폰</option>
-			<option value="4">마일리지</option>
-			<option value="5">리필</option>
+			<option value="1">다이어리</option>
+			<option value="2">캐릭터상품</option>
+			<option value="3">텀블러</option>
 		</select>
 		<input type="text" name="product_name" class="product_name"/>	
 		<input type="text" name="product_price" class="product_price"/>	

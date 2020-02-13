@@ -324,11 +324,11 @@ List<CafeProductVO> productList = new ArrayList<CafeProductVO>();
             </div><br>
             <div class="regist-form">
 				<form action="registCafe.do?cafe_id=<%=request.getParameter("cafe_id") %>" method="post" enctype="multipart/form-data">
-					
+					<input type="hidden" name="cafe_id" value="<%=request.getParameter("cafe_id") %>">
 					<div class="key-info">
 						<div class="topic">사업자 번호</div>
 						<div class="topic-contents">
-							<input type="password" name="cafe_id" id="cafe_id"/>	
+							<input type="password" name="manager_id" id="manager_id"/>	
 							<!-- <div class="logo-button" onclick="onclick=document.all.file.click()">카페로고</div> -->
 						
 						</div>
@@ -625,11 +625,9 @@ List<CafeProductVO> productList = new ArrayList<CafeProductVO>();
 										 <img id="product_image_section1" class="product_image_section" src="img/starbucks.png" alt="메뉴 사진을 등록해주세요"/>
 									</div>
 									<select name="product_type" class="product-select">
-										<option value="1">이벤트</option>
-										<option value="2">담요</option>
-										<option value="3">쿠폰</option>
-										<option value="4">마일리지</option>
-										<option value="5">리필</option>
+										<option value="1">다이어리</option>
+										<option value="2">캐릭터상품</option>
+										<option value="3">텀블러</option>
 									</select>  
 									<input type="text" name="product_name" class="product_name"/>	
 									<input type="text" name="product_price" class="product_price"/>	
