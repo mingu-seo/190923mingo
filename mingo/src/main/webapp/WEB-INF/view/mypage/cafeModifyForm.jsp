@@ -90,8 +90,8 @@
 		.add-cafeImage{color:#A4A4A4; font-size:4.0em; border:1px dashed #D8D8D8; float:left;width:124px;height:163px;margin-right:10px;text-align:center;line-height:163px;}        
 		.deleteCafeImage{width:20px;height:20px;border-radius:100%;position: relative;left:110px;bottom:165px;}  
 		
-		
-	
+		#cafe-delete-btn{width:auto;float:right;}
+		#cafe-delete-btn:hover{color:#F5A9BC;}
 		  
 	</style>
 	
@@ -670,8 +670,8 @@
 					
 					
 					<input type="submit" value="수정" id="submit">
+	            	<div id="cafe-delete-btn" OnClick="location.href ='deleteCafeInfo.do?cafe_id=${cafe.cafe_id}'">카페 정보를 모두 삭제하려면 여기를 눌러주세요.</div>  
 				</form>
-            
             </div>          
         </div>
     </div>

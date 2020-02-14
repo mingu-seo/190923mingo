@@ -40,22 +40,48 @@ public class DetailController {
     // 카페 정보 조회
 	@RequestMapping("/detailView.do")
 	public String detailView(Model model, HttpServletRequest request) {
+		int cafe_id = Integer.parseInt(request.getParameter("cafe_id"));
 		
 		HttpSession session = request.getSession();
 		UserVO vo1 = (UserVO) session.getAttribute("userVO");
-		int user_id = vo1.getUser_id();
-		int cafe_id = Integer.parseInt(request.getParameter("cafe_id"));
+		
+		if(vo1!=null) {
+			int user_id = vo1.getUser_id();
+			//좋아요 상태 조회
+			Map<String, Integer> map1 = new HashMap<String, Integer>();  
+			map1.put("user_id", user_id);
+			map1.put("cafe_id", cafe_id);
+			int likeCafe = detailService.viewLikeCafe(map1);
+			model.addAttribute("likeCafe", likeCafe);
+			
+			//카페 찜 상태 조회
+			Map<String, Integer> map2 = new HashMap<String, Integer>();  
+			map2.put("user_id", user_id);
+			map2.put("cafe_id", cafe_id);
+			int collectCafe = detailService.viewCollectCafe(map2);
+			model.addAttribute("collectCafe", collectCafe);
+		}
+		
+		
 		
 		// 기본정보 조회
 		CafeVO cafe = detailService.viewCafe(cafe_id);   
 		model.addAttribute("cafe", cafe);
 		
 		//메뉴 조회
-		List<CafeMenuVO> menu = detailService.viewMenu(cafe_id);   
+		List<CafeMenuVO> menu = detailService.viewMenu(cafe_id);
+		if(menu.size()==0) {
+			int menu_result = 0;
+			model.addAttribute("menu_result", menu_result);
+		}
 		model.addAttribute("menuList", menu);
 		
 		//상품 조회
-		List<CafeProductVO> product = detailService.viewProduct(cafe_id);   
+		List<CafeProductVO> product = detailService.viewProduct(cafe_id);
+		if(product.size()==0) {
+			int product_result = 0;
+			model.addAttribute("product_result", product_result);
+		}
 		model.addAttribute("productList", product);
 		
 		//서비스 조회
@@ -63,31 +89,42 @@ public class DetailController {
 		model.addAttribute("service", service);
 		
 		//시설 및 분위기
-		CafeFacilitiesVO facilities = detailService.viewFacilities(cafe_id);
+		CafeFacilitiesVO facilities = null;
+		facilities = detailService.viewFacilities(cafe_id);
+		
+		
+		
+		
+		
+		
 		model.addAttribute("facilities", facilities);
 		
 		// 사진 조회
 		List<CafeImageVO> imgList = detailService.viewCafeImages(cafe_id);
+		if(imgList.size()==0) {
+			int image_result = 0;
+			model.addAttribute("image_result", image_result);
+		}
 		model.addAttribute("imgList", imgList);
 		
 		//종합 평점 조회
-		CafeRateVO cafeRate = detailService.viewCafeRate(cafe_id);   
-		model.addAttribute("cafeRate", cafeRate);
-		
-		//좋아요 상태 조회
-		Map<String, Integer> map1 = new HashMap<String, Integer>();  
-		map1.put("user_id", user_id);
-		map1.put("cafe_id", cafe_id);
-		int likeCafe = detailService.viewLikeCafe(map1);
-		model.addAttribute("likeCafe", likeCafe);
-		
-		//카페 찜 상태 조회
-		Map<String, Integer> map2 = new HashMap<String, Integer>();  
-		map2.put("user_id", user_id);
-		map2.put("cafe_id", cafe_id);
-		int collectCafe = detailService.viewCollectCafe(map2);
-		model.addAttribute("collectCafe", collectCafe);
-		
+		CafeRateVO cafeRate = detailService.viewCafeRate(cafe_id);  
+		System.out.println("확인확인"+cafeRate);
+		if(cafeRate==null) {
+			CafeRateVO cafeRate2 = new CafeRateVO();
+			cafeRate2.setCafe_id(cafe_id);
+			cafeRate2.setRate_num(0);
+			cafeRate2.setClean_avg(0);
+			cafeRate2.setMood_avg(0);
+			cafeRate2.setWifi_avg(0);
+			cafeRate2.setPrice_avg(0);
+			cafeRate2.setTaste_avg(0);
+			cafeRate2.setService_avg(0);
+			cafeRate2.setCafe_total_avg(0);
+			model.addAttribute("cafeRate", cafeRate2);
+		} else {
+			model.addAttribute("cafeRate", cafeRate);
+		}
 		return "cafe/cafeDetail";
 	}
 	
@@ -150,7 +187,7 @@ public class DetailController {
 		return "cafe/reviewViewForm";
 	}
 	
-	// 카페 수정 양식으로 이동  
+	// 카페 수정 양식으로 이동      
 	@RequestMapping("/cafeModifyForm.do")
 	public String cafeDetailModifyForm(Model model, HttpServletRequest request) {
 		int cafe_id = Integer.parseInt(request.getParameter("cafe_id"));
@@ -436,10 +473,6 @@ public class DetailController {
 		int result = detailService.insertCafeImages(vo, fileList, request);
 		return "redirect:/detailView.do?cafe_id="+vo.getCafe_id(); 
 	}*/ 
-	 
-	
-	
-	
 	  
 	/*
 	 * @RequestMapping("/memberList.do") public String memberList(Model model,

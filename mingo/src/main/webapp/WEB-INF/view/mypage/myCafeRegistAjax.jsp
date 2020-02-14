@@ -28,10 +28,7 @@
 	</style>
 	
 	<script>
-	$(function(){
-		
-		
-	});
+	
 	
 	</script>
 	

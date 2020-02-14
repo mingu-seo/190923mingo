@@ -110,7 +110,7 @@
         <div class="mypage-header-wrapper">
             <div class="mypage-name">
 	            <div class="mypage-img">
-	            		<c:if test="${userVO.profile_image != null }">
+	            	<c:if test="${userVO.profile_image != null }">
 	                	<img class="rounded-circle" src="<%=request.getContextPath() %>/upload/user/${userVO.profile_image }">
 	                </c:if>
 	                <c:if test="${userVO.profile_image == null}">

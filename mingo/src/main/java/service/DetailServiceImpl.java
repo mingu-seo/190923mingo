@@ -171,12 +171,12 @@ public class DetailServiceImpl implements DetailService {
 		cafeRate.setMood_sum(cafeRate.getMood_sum() + vo.getMood_score());
 		cafeRate.setClean_sum(cafeRate.getClean_sum() + vo.getClean_score());
 		
-		cafeRate.setWifi_avg(((cafeRate.getWifi_sum()/(double)rate_num)*100)/100);
-		cafeRate.setPrice_avg(((cafeRate.getPrice_sum()/(double)rate_num)*100)/100);
-		cafeRate.setTaste_avg(((cafeRate.getTaste_sum()/(double)rate_num)*100)/100);
-		cafeRate.setService_avg(((cafeRate.getService_sum()/(double)rate_num)*100)/100);
-		cafeRate.setMood_avg(((cafeRate.getMood_sum()/(double)rate_num)*100)/100);
-		cafeRate.setClean_avg(((cafeRate.getClean_sum()/(double)rate_num)*100)/100);
+		cafeRate.setWifi_avg((int)((cafeRate.getWifi_sum()/(double)rate_num)*10)/10.0);
+		cafeRate.setPrice_avg((int)((cafeRate.getPrice_sum()/(double)rate_num)*10)/10.0);
+		cafeRate.setTaste_avg((int)((cafeRate.getTaste_sum()/(double)rate_num)*10)/10.0);
+		cafeRate.setService_avg((int)((cafeRate.getService_sum()/(double)rate_num)*10)/10.0);
+		cafeRate.setMood_avg((int)((cafeRate.getMood_sum()/(double)rate_num)*10)/10.0);
+		cafeRate.setClean_avg((int)((cafeRate.getClean_sum()/(double)rate_num)*10)/10.0);
 		
 		double score_avg = ((int)(((vo.getMood_score()+vo.getPrice_score()+vo.getTaste_score()+vo.getWifi_score()+vo.getService_score()+vo.getClean_score())/6.0)*10))/10.0;
 		vo.setScore_avg(score_avg);
@@ -212,12 +212,12 @@ public class DetailServiceImpl implements DetailService {
 		cafeRate.setMood_sum(cafeRate.getMood_sum() - vo_old.getMood_score() + vo_new.getMood_score());
 		cafeRate.setClean_sum(cafeRate.getClean_sum() - vo_old.getClean_score() + vo_new.getClean_score());
 		
-		cafeRate.setWifi_avg(((cafeRate.getWifi_sum()/(double)rate_num)*100)/100);
-		cafeRate.setPrice_avg(((cafeRate.getPrice_sum()/(double)rate_num)*100)/100);
-		cafeRate.setTaste_avg(((cafeRate.getTaste_sum()/(double)rate_num)*100)/100);
-		cafeRate.setService_avg(((cafeRate.getService_sum()/(double)rate_num)*100)/100);
-		cafeRate.setMood_avg(((cafeRate.getMood_sum()/(double)rate_num)*100)/100);
-		cafeRate.setClean_avg(((cafeRate.getClean_sum()/(double)rate_num)*100)/100);
+		cafeRate.setWifi_avg((int)((cafeRate.getWifi_sum()/(double)rate_num)*10)/10.0);
+		cafeRate.setPrice_avg((int)((cafeRate.getPrice_sum()/(double)rate_num)*10)/10.0);
+		cafeRate.setTaste_avg((int)((cafeRate.getTaste_sum()/(double)rate_num)*10)/10.0);
+		cafeRate.setService_avg((int)((cafeRate.getService_sum()/(double)rate_num)*10)/10.0);
+		cafeRate.setMood_avg((int)((cafeRate.getMood_sum()/(double)rate_num)*10)/10.0);
+		cafeRate.setClean_avg((int)((cafeRate.getClean_sum()/(double)rate_num)*10)/10.0);
 		
 		int r = detailDao.modifyReview(vo_new, cafeRate);
 		return r;
@@ -234,16 +234,16 @@ public class DetailServiceImpl implements DetailService {
 		cafeRate.setMood_sum(cafeRate.getMood_sum() - reviewVO.getMood_score());
 		cafeRate.setClean_sum(cafeRate.getClean_sum() - reviewVO.getClean_score());
 		
-		cafeRate.setWifi_avg(((cafeRate.getWifi_sum()/(double)rate_num)*100)/100);
-		cafeRate.setPrice_avg(((cafeRate.getPrice_sum()/(double)rate_num)*100)/100);
-		cafeRate.setTaste_avg(((cafeRate.getTaste_sum()/(double)rate_num)*100)/100);
-		cafeRate.setService_avg(((cafeRate.getService_sum()/(double)rate_num)*100)/100);
-		cafeRate.setMood_avg(((cafeRate.getMood_sum()/(double)rate_num)*100)/100);
-		cafeRate.setClean_avg(((cafeRate.getClean_sum()/(double)rate_num)*100)/100);
+		cafeRate.setWifi_avg((int)((cafeRate.getWifi_sum()/(double)rate_num)*10)/10.0);
+		cafeRate.setPrice_avg((int)((cafeRate.getPrice_sum()/(double)rate_num)*10)/10.0);
+		cafeRate.setTaste_avg((int)((cafeRate.getTaste_sum()/(double)rate_num)*10)/10.0);
+		cafeRate.setService_avg((int)((cafeRate.getService_sum()/(double)rate_num)*10)/10.0);
+		cafeRate.setMood_avg((int)((cafeRate.getMood_sum()/(double)rate_num)*10)/10.0);
+		cafeRate.setClean_avg((int)((cafeRate.getClean_sum()/(double)rate_num)*10)/10.0);
 		
 		int r = detailDao.deleteReview(cafeRate, reviewVO);
 		return r;
-	}
+	}  
 	
 	public int registLike(LikeCafeVO vo) {
 		int r = detailDao.registLike(vo);

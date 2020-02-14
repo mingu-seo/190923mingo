@@ -53,9 +53,14 @@
         <div class="mypage-header-wrapper">
             <div class="mypage-name">
 	            <div class="mypage-img">
-	                <img class="rounded-circle" src="upload/user/${userVO.profile_image }">
+	            	<c:if test="${sessionScope.userVO.profile_image != null }">
+	                	<img class="rounded-circle" src="<%=request.getContextPath() %>/upload/user/${sessionScope.userVO.profile_image }">
+	                </c:if>
+	                <c:if test="${sessionScope.userVO.profile_image == null}">
+	                	<img class="rounded-circle" src="<%=request.getContextPath() %>/img/default/profile.png">
+	                </c:if>
 	            </div>
-	            <div class="mypage-userid">${userVO.nickname }</div>
+	            <div class="mypage-userid">${sessionScope.userVO.nickname }</div>
             </div>
         </div>
     </div>
@@ -71,7 +76,7 @@
 	          <a class="nav-link my-link" data-toggle="pill" href="javascript:void(0);" onclick="location.href='myReview.do?user_id=${userVO.user_id }'">활동내역</a>
 	        </li>
 	    </ul>
-		</div>
+	</div>
     <div class="board-wrapper2">
         <div class="list-group list-group-flush board-side shadow">
             <div class="board-side-name">

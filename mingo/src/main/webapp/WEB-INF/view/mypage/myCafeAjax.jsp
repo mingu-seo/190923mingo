@@ -171,10 +171,14 @@
 	</style>
 	
 	<script>
-	$(function(){
+		$(document).ready(function(){
+			
 		
-		
-	});
+			
+			
+		});
+	
+	
 	
 	</script>
 	
@@ -203,13 +207,13 @@
             				<div class="collect_cafe_eachRate">
             					<div class="each_rate" id="collect_menu">
             						<div class="collect_img">
-            							<img src="img/wifi.png">
+            							<img src="img/price.png">
             						</div>
             						<div class="collect_graphic">
             							<div class="bar_total">
-            								<div class="bar_rate"></div>
+            								<div class="bar_rate" style="width:${cafeRate.price_avg*20 }px;"></div>
             								<div class="bean_img">
-            									<img src="">
+            									<img src="">  
             								</div>
             							</div>
             						</div>
@@ -217,11 +221,11 @@
             					</div>
             					<div class="each_rate" id="collect_price">
             						<div class="collect_img">
-            							<img src="img/wifi.png">
+            							<img src="img/taste.png">
             						</div>
             						<div class="collect_graphic">
             							<div class="bar_total">
-            								<div class="bar_rate"></div>
+            								<div class="bar_rate" style="width:${cafeRate.taste_avg*20 }px;"></div>
             								<div class="bean_img">
             									<img src="">
             								</div>
@@ -231,11 +235,11 @@
             					</div>
             					<div class="each_rate" id="collect_wifiplug">
             						<div class="collect_img">
-            							<img src="img/wifi.png">
+            							<img src="img/mood.png">
             						</div>
             						<div class="collect_graphic">
             							<div class="bar_total">
-            								<div class="bar_rate"></div>
+            								<div class="bar_rate" style="width:${cafeRate.mood_avg*20 }px;"></div>
             								<div class="bean_img">
             									<img src="">
             								</div>
@@ -245,11 +249,11 @@
             					</div>
             					<div class="each_rate" id="collect_service">
             						<div class="collect_img">
-            							<img src="img/wifi.png">
+            							<img src="img/service.png">
             						</div>
             						<div class="collect_graphic">
             							<div class="bar_total">
-            								<div class="bar_rate"></div>
+            								<div class="bar_rate" style="width:${cafeRate.service_avg*20 }px;"></div>
             								<div class="bean_img">
             									<img src="">
             								</div>
@@ -263,7 +267,7 @@
             						</div>
             						<div class="collect_graphic">
             							<div class="bar_total">
-            								<div class="bar_rate"></div>
+            								<div class="bar_rate" style="width:${cafeRate.wifi_avg*20 }px;"></div>
             								<div class="bean_img">
             									<img src="">
             								</div>
@@ -273,11 +277,11 @@
             					</div>
             					<div class="each_rate" id="collect_product">
             						<div class="collect_img">
-            							<img src="img/wifi.png">
+            							<img src="img/clean.png">
             						</div>
             						<div class="collect_graphic">
             							<div class="bar_total">
-            								<div class="bar_rate"></div>
+            								<div class="bar_rate" style="width:${cafeRate.clean_avg*20 }px;"></div>
             								<div class="bean_img">
             									<img src="">
             								</div>

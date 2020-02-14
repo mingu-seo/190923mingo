@@ -1,3 +1,4 @@
+<%@page import="vo.CafeRateVO"%>
 <%@page import="util.Property"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -48,6 +49,7 @@
 		 */
 
 		/* header 부분 스타일 기본값 */
+		.header{height:auto;}
 		.memubar_space{
 			height:600px;
 			width:100%;
@@ -82,11 +84,13 @@
 			   
 		}   
 		
-		.logo{
+		.logo{   
 			width:10%;
 			margin:20px 0;
+			height:100px;  
 			float:left;
 			margin-right:20px;
+			
 		}
 		.logo > img{
 			border-radius:50%;
@@ -94,21 +98,24 @@
 			filter: drop-shadow(0px 0px 20px #FFFFFF);
 		}
 		
+		 
+		
 		#cafe_name, #branch_name{
 			font-color:#151515;
 			font-size: 2.5em;
 			font-weight:bold;
 			text-shadow: 0px 0px 15px #FFFFFF;
 			float:left;
-			margin-right:20px;         
-		}
+			margin-right:20px;
+			height:50px;         
+		}     
 		
 		#like-cafe-btn, #collect-cafe-btn{
-			float:left;
+			float:left;  
 			margin-right:20px;
 			width:40px;
-			height:80px;
-			line-height: 80px;
+			height:50px;
+			line-height: 50px;
 			position: relative;
 			z-index:100;   
 		}
@@ -135,21 +142,24 @@
 		}
 		
 		#like-cafe-btn >img, #collect-cafe-btn >img{
-			height:40%;
-			line-height:40%; 
+			height:70%;
+			line-height:100%; 
 		}
 		
 		
 		
-		.title{
+		.title{  
 			width:80%;
-			height:100px;
+			height:auto;
 			float:left;
-			line-height: 100px;
+			line-height: auto;
+			margin: 20px 0;
 		}  
 		.info{
 			width:80%;
-			float:left;  
+			float:left; 
+			height:30px;
+			line-height: 30px; 
 		
 		}
 
@@ -163,8 +173,10 @@
 		
 		#star_shape1{
 			float:left;  
-			width:3%;
+			width:4%;
 			filter: drop-shadow(0px 0px 20px #FFFFFF);
+			display: block;
+			margin:auto 0px;
 		}
 		#rate_num{
 			font-weight:bold;
@@ -173,7 +185,8 @@
 			float: left;
 			text-shadow: 0px 0px 15px #FFFFFF;   
 		}
-		.address{
+		.address{  
+			
 			font-weight:bold;
 			color:#151515;  
 			font-size: 1.2em;
@@ -226,6 +239,14 @@
 			float:left;
 			line-height: 50px; 
 		}
+		.modify_button{  
+			width:20%;
+			height:50px;
+			text-align: center;
+			font-size: 1.2em;
+			float:left;
+			line-height: 50px; 
+		}
 		
 		.cafe_infomation{
 			
@@ -265,28 +286,31 @@
 			margin-bottom: 20px;  
 		}
 		.detail_info{
-			height:500px;  
+			height:auto;
+			margin-bottom:50px;
 		}
 		.detail_info_button{
 			width:80%;
 		}
 		
+		#menu_btn{border-bottom:2px solid #21610B;}
+		
 		.menu{
-			height:450px;
+			height:500px;
 			width:80%;
 		}
 		.facility{
-			height:450px;
+			height:500px;
 			display: none;
 			width:80%;
 		}
 		.service{
-			height:450px;
+			height:500px;
 			display: none;
 			width:80%;
 		}
 		.product{  
-			height:450px;
+			height:500px;
 			display: none;
 			width:80%;
 		}
@@ -306,7 +330,10 @@
 		
 		.info_each{
 			float:left;
-		
+			/* border:1px solid #E6E6E6; */
+			margin:10px 15px;
+			box-sizing: content-box;
+			box-shadow: 3px 3px 10px 2px #E6E6E6;
 		}
 		.info_each{
 			width:20%;
@@ -326,26 +353,32 @@
 		 margin-bottom:30px;
 		}
 		
-		.visual{
-			width:80%;
-			height:500px;
-			/* margin:0 auto; */
-			  
+		.visual{  
+			width:70%; 
+			height:300px;
+			margin:20px 5%;
+			
+			text-align: center;  
 			
 		}
 		
 		.visual .swiper{
-        	height:500px
+			width:100%;
+        	height:300px;
         	z-index: 10;
+        	display: inline-block;
         	
         }   
         
         .'swiper swiper-container', ,swiper-wrapper{
-        	height:500px;
+        	width:100%;
+        	height:300px;
+        	
         }
         
         .visual .swiper-slide{
-        	height:500px;
+        	width:100%;
+        	height:auto;
         	float:left;
         }   
 
@@ -623,6 +656,7 @@
 		/* 내 평가 보기 및 등록 */
 		.my_review{
 			display: none;
+			
 		}
 		
 		.graph_name2{
@@ -1019,9 +1053,14 @@
 			});
 			
 			/* 페이징 처리 */
+			
+			
+			
 			 
 			var currentPage = 1;
-			var rate_num = ${cafeRate.rate_num};
+			
+			var rate_num = ${cafeRate.rate_num};				
+		
 			$.ajax({
 				url:'reviewViewForm.do',
 				type:'GET',
@@ -1036,11 +1075,14 @@
 			});   
 			
 			// 종합평점 그래프 점수 동적화
+			
+			
+			
 			var wifi_width = (${cafeRate.wifi_avg }/5)*300+32;
 			$('#wifi-width').css({
 				'width':wifi_width
 			}); 
-			if (${cafeRate.wifi_avg }<1.5){
+			if (${cafeRate.wifi_avg }<2){
 				$('.graph_text').remove('#wifi-text');  
 				$('#wifi-width').parent().append('<div class="graph_text" id="wifi-text">${cafeRate.wifi_avg }점</div>');
 				$('#wifi-text').css({
@@ -1059,7 +1101,7 @@
 					'color':'#1C1C1C',
 					'float':'left'
 				});
-			}
+			}  
 			var service_width = (${cafeRate.service_avg }/5)*300+32;
 			$('#service-width').css({
 				'width':service_width
@@ -1108,6 +1150,8 @@
 					'float':'left'
 				});
 			}
+				
+			
 			
 			/* 내 평점 보기 및 등록 */
 			  
@@ -1177,8 +1221,14 @@
 	<div class="header">  
 		<div class="container">
 			<div class="logo">
-				<img src="upload/cafe/${cafe.logo }">
-			</div>
+				<!--<c:if test="${cafe.logo != null }">
+					<img src="upload/cafe/${cafe.logo }">
+				</c:if>
+				<c:if test="${cafe.logo == null }">
+					<img src="img/taste.png" style="border:1px solid #A4A4A4;border-radius: 100%;">
+				</c:if> -->
+				<img  class="rounded-circle bg-white" src="./img/brandLogo/${cafe.logo }" style="width: 80px;height:80px">
+			</div>   
 			<div class="title">
 				<div id="cafe_name">
 					${cafe.name }  
@@ -1186,34 +1236,40 @@
 				<div id="branch_name">
 					${cafe.branch }
 				</div>     
-				<div id="like-cafe-btn">
-					<c:if test="${likeCafe == 0}">
-						<img src="img/likeNone.png" id="like-img">
-						<input type="hidden" id="likeCafe" value="0">					
-					</c:if>
-					<c:if test="${likeCafe == 1}">
-						<img src="img/like.png" id="like-img">
-						<input type="hidden" id="likeCafe" value="1">					
-					</c:if>
-				</div>     
-				<div id="collect-cafe-btn">
-					<c:if test="${collectCafe == 0}">
-						<img src="img/collectNone.png" id="collect-img">
-						<input type="hidden" id="collectCafe" value="0">
-					</c:if>
-					<c:if test="${collectCafe == 1}">
-						<img src="img/collect.png" id="collect-img">
-						<input type="hidden" id="collectCafe" value="1">
-					</c:if>
-				</div>     
-				<%-- <div id="regist-review">
-					<a href="reviewRegistForm.do?cafe_id=${cafe_id }&user_id=${user_id }">re</a>
-				</div>  --%>    
+				<c:if test="${sessionScope.userVO.user_id != null }">
+					<div id="like-cafe-btn">
+						<c:if test="${likeCafe == 0}">
+							<img src="img/likeNone.png" id="like-img">
+							<input type="hidden" id="likeCafe" value="0">					
+						</c:if>
+						<c:if test="${likeCafe == 1}">
+							<img src="img/like.png" id="like-img">
+							<input type="hidden" id="likeCafe" value="1">					
+						</c:if>
+					</div>     
+					<div id="collect-cafe-btn">
+						<c:if test="${collectCafe == 0}">
+							<img src="img/collectNone.png" id="collect-img">
+							<input type="hidden" id="collectCafe" value="0">
+						</c:if>
+						<c:if test="${collectCafe == 1}">
+							<img src="img/collect.png" id="collect-img">
+							<input type="hidden" id="collectCafe" value="1">
+						</c:if>
+					</div>     
+				
+				</c:if>
+				 
 			</div>
 			<div class="info">
-				<div class="rate_avg">
+				<div class="rate_avg">   
 					<img src="img/star_colored.png" id="star_shape1">
-					<div id="rate_num">${cafe.rate_avg }점&nbsp;|&nbsp;</div>
+					<c:if test="${cafe.rate_avg == ''}">
+						<div id="rate_num">0점&nbsp;|&nbsp;</div>
+					</c:if>
+					<c:if test="${cafe.rate_avg != ''}">
+						<div id="rate_num">${cafe.rate_avg }점&nbsp;|&nbsp;</div>
+					</c:if>
 				</div>
 				<div class="address"> ${cafe.cafe_address }</div>
 			</div>
@@ -1222,6 +1278,9 @@
 				<div class="review_button">후기</div>
 				<div class="info_button">소개</div>
 				<div class="regist_button">내 평가</div>
+				<c:if test="${userVO.type == 2}">   
+					<div class="modify_button" OnClick="location.href ='cafeModifyForm.do?cafe_id=${cafe.cafe_id}'" >정보수정</div>				
+				</c:if>
 			</div>			
 			
 				
@@ -1236,51 +1295,77 @@
 				<div class="basic_info">
 					<div class="info_title" id="basic_info_title">운영정보</div>
 					
-					<div class="basic_info_content">
-						<div class="basic_info_each" id="info_intro">&nbsp;ㆍ${cafe.cafe_intro }</div>
-						<div class="basic_info_each" id="info_address">&nbsp;ㆍ${cafe.cafe_address }</div>
-						<div class="basic_info_each" id="info_tel">&nbsp;ㆍ${cafe.tel }</div>
-						<div class="basic_info_each" id="info_mg_time">&nbsp;ㆍ매주 08:00~23:00</div>
+					<div class="basic_info_content" >
+						<c:if test="${cafe.cafe_intro!=null}">
+							<div class="basic_info_each" id="info_intro">&nbsp;ㆍ${cafe.cafe_intro }</div>
+						</c:if>
+						<c:if test="${cafe.cafe_address!=null}">
+							<div class="basic_info_each" id="info_address">&nbsp;ㆍ${cafe.cafe_address }</div>
+						</c:if>
+						<c:if test="${cafe.tel!=null}">
+							<div class="basic_info_each" id="info_tel">&nbsp;ㆍ${cafe.tel }</div>
+						</c:if>
+						<c:if test="${cafe.time_day!=null}">
+							<div class="basic_info_each" id="info_mg_time">&nbsp;ㆍ매주 08:00~23:00</div>
+						</c:if>
 					</div>
 				</div>
 				<div class="detail_info">
 					<div class="info_title" id="detail_info_title">상세정보</div>
 					<div class="detail_info_button">
-						<div class="button_each" id="menu_btn">메뉴</div>
 						<div class="button_each" id="facility_btn">시설</div>
 						<div class="button_each" id="service_btn">서비스</div>
 						<div class="button_each" id="product_btn">상품</div>
+						<div class="button_each" id="menu_btn">메뉴</div>
 					</div>
-					<div class="menu" style="overflow:scroll;" >
-						<c:forEach var="menu" items="${menuList }">
-							<div class="info_each">
-								<img src='/upload/menu/${menu.image }'/>
-								<div>
-									<h6>${menu.name }</h6>
-									<h6>${menu.price }원</h6>
+					<c:if test="${menu_result != 0}">
+						<div class="menu" style="overflow:scroll;overflow:auto; overflow-x:hidden" >
+							<c:forEach var="menu" items="${menuList }">
+								<div class="info_each">
+									<img src='/upload/menu/${menu.image }'/>
+									<div>
+										<h6>${menu.name }</h6>
+										<h6>${menu.price }원</h6>
+									</div>						
 								</div>						
-							</div>						
-						</c:forEach>
-					</div>
-					<div class="product" style="overflow:scroll;" >
-						<c:forEach var="product" items="${productList }">
-							<div class="info_each">
-								<img src='/upload/product/${product.image }'/>
-								<div>
-									<h6>${product.name }</h6>
-									<h6>${product.price }원</h6>
-								</div>						
-							</div>						
-						</c:forEach>
-					</div>
-					<div class="facility" style="overflow:scroll;" >
-						<div class="info_each">
-							<img src="img/coffee.png"/>
-							<div>
-								<h6>와이파이</h6>
-								<h6>${facilities.wifi}</h6>
-							</div>
+							</c:forEach>
 						</div>
+					</c:if>
+					<c:if test="${menu_result == 0}">
+						<div class="menu" style="width:80%;height:400px;font-size: 1.5em; font-weight: bold; color:#D8D8D8; text-align:center;line-height:300px;">
+							등록된 메뉴가 없습니다.
+						</div>
+					</c:if>
+					<c:if test="${product_result != 0}">
+						<div class="product" style="overflow:scroll;overflow:auto; overflow-x:hidden" >
+							<c:forEach var="product" items="${productList }">
+								<div class="info_each">
+									<img src='/upload/product/${product.image }'/>
+									<div>
+										<h6>${product.name }</h6>
+										<h6>${product.price }원</h6>
+									</div>						
+								</div>						
+							</c:forEach>
+						</div>
+					</c:if>
+					<c:if test="${product_result == 0}">
+						<div class="product" style="width:80%;height:400px;font-size: 1.5em; font-weight: bold; color:#D8D8D8; text-align:center;line-height:300px;">
+							등록된 상품이 없습니다.
+						</div>
+					</c:if>
+					<div class="facility" style="overflow:scroll; overflow:auto; overflow-x:hidden" >
+					<c:if test="${facilities !=null }">
+						<c:if test="${facilities.wifi != 0}">
+							<div class="info_each">
+								<img src="img/coffee.png"/>
+								<div>
+									<h6>와이파이</h6>
+									<h6>${facilities.wifi}</h6>
+								</div>
+							</div>
+						</c:if>
+						<c:if test="${facilities.tables != null}"></c:if>
 						<div class="info_each">
 							<img src="img/coffee.png"/>
 							<div>
@@ -1288,6 +1373,7 @@
 								<h6>${facilities.tables }</h6>
 							</div>
 						</div>
+						<c:if test="${facilities.interior != null}"></c:if>
 						<div class="info_each">
 							<img src="img/coffee.png"/>
 							<div>
@@ -1295,6 +1381,7 @@
 								<h6>${facilities.interior }</h6>
 							</div>
 						</div>  
+						<c:if test="${facilities.music != null}"></c:if>
 						<div class="info_each">
 							<img src="img/coffee.png"/>
 							<div>
@@ -1302,6 +1389,7 @@
 								<h6>${facilities.music}</h6>
 							</div>
 						</div>
+						<c:if test="${facilities.plug != null}"></c:if>
 						<div class="info_each">
 							<img src="img/coffee.png"/>
 							<div>
@@ -1309,6 +1397,7 @@
 								<h6>${facilities.plug}</h6>
 							</div>
 						</div>
+						<c:if test="${facilities.restroom != null}"></c:if>
 						<div class="info_each">
 							<img src="img/coffee.png"/>
 							<div>
@@ -1316,6 +1405,7 @@
 								<h6>${facilities.restroom}</h6>
 							</div>
 						</div>
+						<c:if test="${facilities.terrace != null}"></c:if>
 						<div class="info_each">
 							<img src="img/coffee.png"/>
 							<div>
@@ -1323,6 +1413,7 @@
 								<h6>${facilities.terrace}</h6>
 							</div>
 						</div>
+						<c:if test="${facilities.studyroom != null}"></c:if>
 						<div class="info_each">
 							<img src="img/coffee.png"/>
 							<div>
@@ -1330,6 +1421,7 @@
 								<h6>${facilities.studyroom}</h6>
 							</div>
 						</div>
+						<c:if test="${facilities.smoking != null}"></c:if>
 						<div class="info_each">
 							<img src="img/coffee.png"/>
 							<div>
@@ -1337,6 +1429,7 @@
 								<h6>${facilities.smoking}</h6>
 							</div>
 						</div>
+						<c:if test="${facilities.parking != null}"></c:if>
 						<div class="info_each">
 							<img src="img/coffee.png"/>
 							<div> 
@@ -1344,8 +1437,9 @@
 								<h6>${facilities.parking}</h6>
 							</div>
 						</div>
+						</c:if>
 					</div>
-					<div class="service" style="overflow:scroll;" >
+					<div class="service" style="overflow:scroll;overflow:auto; overflow-x:hidden" >
 						<div class="info_each">
 							<img src="img/coffee.png"/>
 							<div>
@@ -1385,157 +1479,189 @@
 				</div>
 				<div class="cafe_photo">
 					<div class="info_title" id="cafe_photo_title">사진</div>
-					<div class="visual">
-		            	<div class="swiper swiper-container">
-		            		<div class="swiper-wrapper">  
-		            			<c:forEach items="${imgList }" var="img">
-		            				<div class="swiper-slide" style="background-image:url('/upload/cafe/${img.url}')"></div>
-		            			</c:forEach>
-		            		</div>    
-		            		<div class="swiper-pagination"></div>
-		            		<div class="swiper-button-prev"></div>
-		            		<div class="swiper-button-next"></div>
-		            	</div>	
-            		</div>
+					<c:if test="${image_result != 0}">
+						<div class="visual">
+			            	<div class="swiper swiper-container">
+			            		<div class="swiper-wrapper">  
+			            			<c:forEach items="${imgList }" var="img">
+			            				<div class="swiper-slide" style="background-image:url('/upload/cafe/${img.url}')"></div>
+			            			</c:forEach>
+			            		</div>    
+			            		<div class="swiper-pagination"></div>
+			            		<div class="swiper-button-prev"></div>
+			            		<div class="swiper-button-next"></div>
+			            	</div>	
+	            		</div>
+					</c:if>
+					<c:if test="${image_result == 0}">
+						<div class="none-image" style="width:80%;height:400px;font-size: 1.5em; font-weight: bold; color:#D8D8D8; text-align:center;line-height:300px;">
+							등록된 사진이 없습니다.
+						</div>
+					</c:if>
 				</div>
 				
 				<div class="cafe_location">
 					<div class="info_title" id="cafe_location_title">위치</div>
 					<div class="cafe_location_map">
-						<div id="cafe-map" style="width:80%;height:400px;"></div>	
+						<div id="cafe-map" style="width:70%;height:300px;margin:auto 5%;"></div>	
 					</div> 
 				</div>
 			</div>		
 		</div>
 		
 		<!-- 내 리뷰 및 리뷰 등록 -->
-		<div class="container">
-			<div class="cafe_review">
-				<div class="info_title" id="basic_info_title">종합평점</div>
-				<div class="cafe_rates">
-					<div class="rate_info2">
-						<div class="info2">
-							<div class="rate_avg">
-								<img src="img/star_colored.png" id="star_shape2">
-								<div class="rate_num">${cafeRate.cafe_total_avg }점</div>
-								<div class="review_num">(리뷰 ${cafeRate.rate_num }개,</div>
-								<div class="ranking">자양4동 2위)</div>
+		<c:if test="${cafeRate.rate_num != 0}">
+			<div class="container">
+				<div class="cafe_review">
+				
+				
+					<div class="info_title" id="basic_info_title">종합평점</div>
+					<div class="cafe_rates">
+						<div class="rate_info2">
+							<div class="info2">
+								<div class="rate_avg">
+									<img src="img/star_colored.png" id="star_shape2">
+									<c:if test="${cafeRate == null}">
+										<div class="rate_num">0점</div>
+										<div class="review_num">(리뷰 0개)</div>
+									</c:if>
+									<c:if test="${cafeRate != null}">
+										<div class="rate_num">${cafeRate.cafe_total_avg }점</div>
+										<div class="review_num">(리뷰 ${cafeRate.rate_num }개)</div>
+									</c:if>  
+									<!-- <div class="ranking">자양4동 2위)</div> -->
+								</div>
+							</div>	
+						</div>
+						<div class="rate_visual_total">
+							<div class="rate_each">
+								<div class="rate_visual" id="taste_visual_tatal">
+									<div class="graph_area">
+							            <div>
+							                <img src="img/taste.png" class="graph_logo">
+							            </div>
+							            <div class="graph_stack">
+							                <div class="graph_rate" id="taste-width">
+							                    <img src="img/bean.PNG" class="bean_img">
+							                    
+							                    <div class="graph_text" id="taste-text">${cafeRate.taste_avg }점</div>
+							                </div>
+							            </div>
+							        </div>
+								</div>
+								<div class="rate_name" id="taste_name_tatal"></div>
 							</div>
-						</div>	
+							<div class="rate_each">
+								<div class="rate_visual" id="price_visual_tatal">
+									<div class="graph_area">
+							            <div>
+							                <img src="img/mood.png" class="graph_logo">
+							            </div>
+							            <div class="graph_stack">
+							                <div class="graph_rate" id="mood-width">
+							                    <img src="img/bean.PNG" class="bean_img">
+							                    <div class="graph_text" id="mood-text">${cafeRate.mood_avg }점</div>
+							                </div>
+							            </div>
+							        </div>
+								</div>
+								<div class="rate_name" id="price_name_tatal"></div>
+							</div>
+							<div class="rate_each">
+								<div class="rate_visual" id="service_visual_tatal">
+									<div class="graph_area">
+							            <div>
+							                <img src="img/service.png" class="graph_logo">
+							            </div>
+							            <div class="graph_stack">
+							                <div class="graph_rate" id="service-width">
+							                    <img src="img/bean.PNG" class="bean_img">
+							                    <div class="graph_text" id="service-text">${cafeRate.service_avg }점</div>
+							                </div>
+							            </div>
+							        </div>
+								</div>
+								<div class="rate_name" id="service_name_tatal"></div>
+							</div>
+							<div class="rate_each">
+								<div class="rate_visual" id="facimood_visual_tatal">
+									<div class="graph_area">
+							            <div>
+							                <img src="img/wifi.png" class="graph_logo">
+							            </div>
+							            <div class="graph_stack">
+							                <div class="graph_rate" id="wifi-width">
+							                    <img src="img/bean.PNG" class="bean_img">
+							                    <div class="graph_text" id="wifi-text">${cafeRate.wifi_avg }점</div>
+							                </div>
+							            </div>
+							        </div>
+								</div>
+								<div class="rate_name" id="facimood_name_tatal"></div>
+							</div>
+							<div class="rate_each">
+								<div class="rate_visual" id="wifiplug_visual_tatal">
+									<div class="graph_area">
+							            <div>
+							                <img src="img/clean.png" class="graph_logo">
+							            </div>
+							            <div class="graph_stack">
+							                <div class="graph_rate" id="clean-width">
+							                    <img src="img/bean.PNG" class="bean_img">
+							                    <div class="graph_text" id="clean-text">${cafeRate.clean_avg }점</div>
+							                </div>
+							            </div>
+							        </div>
+								</div>
+								<div class="rate_name" id="wifiplug_name_tatal"></div>
+							</div>
+							<div class="rate_each">
+								<div class="rate_visual" id="clean_visual_tatal">
+									<div class="graph_area">
+							            <div>
+							                <img src="img/price.png" class="graph_logo">
+							            </div>
+							            <div class="graph_stack">
+							                <div class="graph_rate" id="price-width">
+							                    <img src="img/bean.PNG" class="bean_img">
+							                    <div class="graph_text" id="price-text">${cafeRate.price_avg }점</div>
+							                </div>
+							            </div>
+							        </div>  
+								</div>  
+								<div class="rate_name" id="clean_name_tatal"></div>
+							</div>
+						</div>
 					</div>
-					<div class="rate_visual_total">
-						<div class="rate_each">
-							<div class="rate_visual" id="taste_visual_tatal">
-								<div class="graph_area">
-						            <div>
-						                <img src="img/taste.png" class="graph_logo">
-						            </div>
-						            <div class="graph_stack">
-						                <div class="graph_rate" id="taste-width">
-						                    <img src="img/bean.PNG" class="bean_img">
-						                    <div class="graph_text" id="taste-text">${cafeRate.taste_avg }점</div>
-						                </div>
-						            </div>
-						        </div>
-							</div>
-							<div class="rate_name" id="taste_name_tatal"></div>
-						</div>
-						<div class="rate_each">
-							<div class="rate_visual" id="price_visual_tatal">
-								<div class="graph_area">
-						            <div>
-						                <img src="img/mood.png" class="graph_logo">
-						            </div>
-						            <div class="graph_stack">
-						                <div class="graph_rate" id="mood-width">
-						                    <img src="img/bean.PNG" class="bean_img">
-						                    <div class="graph_text" id="mood-text">${cafeRate.mood_avg }점</div>
-						                </div>
-						            </div>
-						        </div>
-							</div>
-							<div class="rate_name" id="price_name_tatal"></div>
-						</div>
-						<div class="rate_each">
-							<div class="rate_visual" id="service_visual_tatal">
-								<div class="graph_area">
-						            <div>
-						                <img src="img/service.png" class="graph_logo">
-						            </div>
-						            <div class="graph_stack">
-						                <div class="graph_rate" id="service-width">
-						                    <img src="img/bean.PNG" class="bean_img">
-						                    <div class="graph_text" id="service-text">${cafeRate.service_avg }점</div>
-						                </div>
-						            </div>
-						        </div>
-							</div>
-							<div class="rate_name" id="service_name_tatal"></div>
-						</div>
-						<div class="rate_each">
-							<div class="rate_visual" id="facimood_visual_tatal">
-								<div class="graph_area">
-						            <div>
-						                <img src="img/wifi.png" class="graph_logo">
-						            </div>
-						            <div class="graph_stack">
-						                <div class="graph_rate" id="wifi-width">
-						                    <img src="img/bean.PNG" class="bean_img">
-						                    <div class="graph_text" id="wifi-text">${cafeRate.wifi_avg }점</div>
-						                </div>
-						            </div>
-						        </div>
-							</div>
-							<div class="rate_name" id="facimood_name_tatal"></div>
-						</div>
-						<div class="rate_each">
-							<div class="rate_visual" id="wifiplug_visual_tatal">
-								<div class="graph_area">
-						            <div>
-						                <img src="img/clean.png" class="graph_logo">
-						            </div>
-						            <div class="graph_stack">
-						                <div class="graph_rate" id="clean-width">
-						                    <img src="img/bean.PNG" class="bean_img">
-						                    <div class="graph_text" id="clean-text">${cafeRate.clean_avg }점</div>
-						                </div>
-						            </div>
-						        </div>
-							</div>
-							<div class="rate_name" id="wifiplug_name_tatal"></div>
-						</div>
-						<div class="rate_each">
-							<div class="rate_visual" id="clean_visual_tatal">
-								<div class="graph_area">
-						            <div>
-						                <img src="img/price.png" class="graph_logo">
-						            </div>
-						            <div class="graph_stack">
-						                <div class="graph_rate" id="price-width">
-						                    <img src="img/bean.PNG" class="bean_img">
-						                    <div class="graph_text" id="price-text">${cafeRate.price_avg }점</div>
-						                </div>
-						            </div>
-						        </div>  
-							</div>  
-							<div class="rate_name" id="clean_name_tatal"></div>
-						</div>
-					</div>
+					<div class="info_title" id="basic_info_title">리뷰</div>
+					<div class="review-view"></div>
 				</div>
-				<div class="info_title" id="basic_info_title">리뷰</div>
-				<div class="review-view"></div>
 			</div>
-		</div>
+		</c:if>
+		<c:if test="${cafeRate.rate_num == 0}">
+			<div class="container">
+				<div class="cafe_review" style="width:80%;height:400px;font-size: 1.5em; font-weight: bold; color:#D8D8D8; text-align:center;line-height:300px;">
+					등록된 후기가 없습니다.
+				</div>
+			</div>
+		</c:if>
 		<div class="container">
-			<div class="my_review">
+			<div class="my_review" style="margin-bottom:150px;">
 				<div class="info_title" id="basic_info_title2">내 평가</div>
+				
+				<!-- 미 로그인 시 -->
+				<c:if test="${sessionScope.userVO.user_id == null }">
+					<div class="my-review-not-login" style="width:70%;height:300px;font-size: 1.5em; font-weight: bold; color:#D8D8D8; text-align:center;line-height:300px;">
+						로그인 후 평가를 남겨주세요:)
+					</div>
+				</c:if>
 				<!-- 리뷰 미등록 시 -->
 				<div class="my-review-regist"></div>
 				<!-- 리뷰 등록 시 -->
 				<div class="my-review-view"></div>
-				</div>
 			</div>
 		</div>
+	</div>
 	
 	<!-- 푸터 include -->
 	<%@ include file="/WEB-INF/view/include/footer.jsp"%>
