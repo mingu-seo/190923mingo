@@ -102,7 +102,7 @@ public class BoardController {
 	//게시판 상세보기 
 	@RequestMapping("/viewBoard.do")
 	public String viewBoard(Model model, @RequestParam("board_id") int board_id, @RequestParam("page")int page
-			,@RequestParam("type")int type,BoardCommentVO cvo, UserVO uvo,
+			,@RequestParam("type")int type,BoardCommentVO cvo,
 			@RequestParam("s1")int s1,@RequestParam("s2")int s2,@RequestParam("k")String k, HttpSession sess) {
 		BoardVO data = boardService.detail(board_id);
 		List<BoardCommentVO> clist = boardService.clist(cvo);
@@ -111,13 +111,20 @@ public class BoardController {
 		int dislikeNum = boardDAO.getDislikeNum(board_id);
 		
 		// 좋아요 싫어요 조회 후 색변경을 위한 값
-		
-		int user_id = uvo.getUser_id();
-		//int user_id = (Integer)sess.getAttribute("uvo");
+		int user_id=0;
+		UserVO tmp=null;
+		if( sess.getAttribute("userVO") != null) {
+			tmp = (UserVO)sess.getAttribute("userVO");
+			user_id = tmp.getUser_id();
+		}else if( sess.getAttribute("admin") != null) {
+			tmp = (UserVO)sess.getAttribute("admin");
+			user_id = tmp.getUser_id();
+		}
 		BoardLikeVO blvo = new BoardLikeVO();
 		blvo.setBoard_id(board_id);
 		blvo.setUser_id(user_id);
 		int likeType = boardDAO.getLikeType(blvo);
+		
 		
 		model.addAttribute("type",type);
 		model.addAttribute("data",data);

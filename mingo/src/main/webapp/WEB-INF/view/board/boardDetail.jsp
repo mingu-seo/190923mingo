@@ -106,11 +106,11 @@
 	function upLikeNum(type){
 		//현재 누군가가 로그인해 있다
 		//좋아요 싫어요 누른적이 한번도 없고 둘 중에 하나만 클릭이 되게
-		if(!${sessionScope.userVO == null}){
+		if(!${sessionScope.userVO == null && sessionScope.admin == null} ){
 		$.ajax({
 			url: 'upLikeNum.do',
 			data: { board_id : ${cvo.board_id},
-							user_id : ${data.user_id},
+							user_id : ${user_id},
 						 	type : type },  
 			dataType : 'JSON',
 		}).done(function(data){
@@ -180,24 +180,18 @@ $(document).ready(function(){
 						<fmt:formatDate value="${data.regdate}" pattern="yyyy.MM.dd HH:mm" />
 						<!-- 게시글 수정,삭제 (아이디,관리자 로그인 시 권한설정) -->
 						<c:choose>
-								<c:when test="${sessionScope.userVO.user_id == data.user_id}">
-						| 
-						  <a
-										href="editBoard.do?board_id=<%=vo.getBoard_id()%>&page=${page}&type=${type}&s1=<%=s1%>&s2=<%=s2%>&k=<%=k%>">수정</a>
-						  
-						| <a href="javascript:void(0);"
-										onclick="javascript: deleteboard(<%=vo.getBoard_id()%>)">삭제</a>
-								</c:when>
+				
+							<c:when test="${sessionScope.userVO.user_id == data.user_id}">| 
+							  <a href="editBoard.do?board_id=<%=vo.getBoard_id()%>&page=${page}&type=${type}&s1=<%=s1%>&s2=<%=s2%>&k=<%=k%>">수정 </a>| 
+							  <a href="javascript:void(0);" onclick="javascript: deleteboard(<%=vo.getBoard_id()%>)">삭제</a>
+							</c:when>
 							
-							<c:when test="${sessionScope.admin != null}">
-						| 
-						  <a
-										href="editBoard.do?board_id=<%=vo.getBoard_id()%>&page=${page}&type=${type}&s1=<%=s1%>&s2=<%=s2%>&k=<%=k%>">수정</a>
-						  
-						| <a href="javascript:void(0);"
-										onclick="javascript: deleteboard(<%=vo.getBoard_id()%>)">삭제</a>
-								</c:when>
-								<c:otherwise></c:otherwise>
+							<c:when test="${sessionScope.admin != null }">| 
+						  	<a href="editBoard.do?board_id=<%=vo.getBoard_id()%>&page=${page}&type=${type}&s1=<%=s1%>&s2=<%=s2%>&k=<%=k%>">수정 </a>| 
+						  	<a href="javascript:void(0);" onclick="javascript: deleteboard(<%=vo.getBoard_id()%>)">삭제</a>
+							</c:when>
+							<c:otherwise>
+							</c:otherwise>
 						</c:choose>
 					</div>
 				</div>
@@ -205,8 +199,13 @@ $(document).ready(function(){
 					<%=vo.getContents()%></div>
 
 				<div class="mybtn-group">
-					<input type="hidden" name="user_id"
-						value="${sessionScope.userVO.user_id}">
+					<c:if test="${sessionScope.userVO != null && sessionScope.admin ==null}">
+						<input type="hidden" name="user_id" value="${sessionScope.userVO.user_id}">
+					</c:if>
+					<c:if test="${sessionScope.userVO == null && sessionScope.admin != null}">
+						<input type="hidden" name="user_id" value="${sessionScope.admin.user_id}">
+					</c:if>
+					
 					<button type="button" class="btn btn-secondary float-left"
 						onclick="location.href='listBoard.do?type=<%=type%>&page=<%=nowPage%>&s1=<%=s1%>&s2=<%=s2%>&k=<%=k%>' ">목록보기</button>
 
@@ -250,7 +249,14 @@ $(document).ready(function(){
 
 						<form id="form_${BoardCommentVO.board_comment_id }"
 							action="replyProcess.do" method="post" name="replyProcess">
-							<input type="hidden" name="user_id" value="${sessionScope.userVO.user_id}">
+							<c:if test="${sessionScope.userVO !=null}">
+								<input type="hidden" name="user_id" value="${sessionScope.userVO.user_id}">
+							</c:if>
+							<c:if test="${sessionScope.userVO ==null}">
+								<c:if test="${sessionScope.admin !=null}">
+									<input type="hidden" name="user_id" value="${sessionScope.admin.user_id}">
+								</c:if>
+							</c:if>
 							<input type="hidden" name="page" value="<%=vo.getPage()%>" /> <input
 								type="hidden" name="board_id" value="${BoardCommentVO.board_id}">
 								
@@ -287,7 +293,15 @@ $(document).ready(function(){
 							<!-- 대댓글쓰기(삭제된 게시물이 아닐 경우에만 댓글 삭제 버튼이 있음) -->
 							<c:if test="${BoardCommentVO.is_deleted == 0 }">
 								<c:choose>
-									<c:when test="${sessionScope.userVO == null}" />
+									<c:when test="${sessionScope.userVO == null}">
+										<c:if test="${sessionScope.admin !=null }">
+											<button type="button" class="btn btn-secondary"
+											onclick="replyShow('${BoardCommentVO.board_comment_id }')">댓글</button>
+											<button type="button" class="btn btn-secondary"
+												onclick="replyDelete(${BoardCommentVO.board_comment_id})">삭제</button>
+										</c:if>
+									
+									</c:when>
 									<c:otherwise>
 										<button type="button" class="btn btn-secondary"
 											onclick="replyShow('${BoardCommentVO.board_comment_id }')">댓글</button>
@@ -333,7 +347,7 @@ $(document).ready(function(){
 			<!-- 댓글쓰기 -->
 			<form action="writeComment.do" method="post" name="writeComment">
 				<c:choose>
-					<c:when test="${sessionScope.userVO == null}">
+					<c:when test="${sessionScope.userVO == null && sessionScope.admin ==null}">
 						<div class="reply-form p-3">
 							<div style="text-align: center; margin-left: auto;">
 								로그인 시 댓글 등록이 가능합니다. <a href="loginForm.do"
@@ -351,11 +365,16 @@ $(document).ready(function(){
 								value="<%=vo.getBoard_id()%>"> <input type="hidden"
 								name="ref" value="<%=cvo.getRef()%>"> <input
 								type="hidden" name="lev" value="<%=cvo.getLev()%>"> <input
-								type="hidden" name="seq" value="<%=cvo.getSeq()%>"> <input
-								type="hidden" name="user_id"
-								value="${sessionScope.userVO.user_id}"> <input
-								type="hidden" name="board_comment_id"
-								value="<%=cvo.getBoard_comment_id()%>">
+								type="hidden" name="seq" value="<%=cvo.getSeq()%>"> 
+								
+								<c:if test="${sessionScope.userVO != null && sessionScope.admin == null}">
+									<input type="hidden" name="user_id" value="${sessionScope.userVO.user_id}"> 
+								</c:if>
+								<c:if test="${sessionScope.userVO == null && sessionScope.admin != null}">
+									<input type="hidden" name="user_id" value="${sessionScope.admin.user_id}"> 
+								</c:if>
+								
+								<input type="hidden" name="board_comment_id" value="<%=cvo.getBoard_comment_id()%>">
 
 
 							<div class="reply-name">${sessionScope.userVO.nickname}</div>

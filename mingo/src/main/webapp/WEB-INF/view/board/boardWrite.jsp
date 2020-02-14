@@ -81,7 +81,15 @@ function completeWriting(){
            			</c:forEach>
                <span style="font-size: 0.5em;">글쓰기</span>
             </div>
-            <input type="hidden" name="user_id" value="${sessionScope.userVO.user_id}">
+            <c:if test="${sessionScope.userVO != null }">
+           		 <input type="hidden" name="user_id" value="${sessionScope.userVO.user_id}">
+            </c:if>
+            <c:if test="${sessionScope.userVO == null }">
+           		 <c:if test="${sessionScope.admin != null }">
+           		 		<input type="hidden" name="user_id" value="${sessionScope.admin.user_id }" />
+           		 </c:if>
+           		 
+            </c:if>
             	<input type="text" class="form-control mb-3" name="title" id="title" placeholder="제목을 입력해 주세요.">
             		<textarea  id="smarteditor" class="p-2" rows="20" name="contents" style="margin-top:50px;font-size:1em;width:100%;border:1px solid #e1e1e1;" placeholder="주제와 무관한 댓글, 악플은 삭제 될 수 있습니다."></textarea>
             

@@ -64,16 +64,19 @@
                	내 정보 관리
             </div>  
             <div class="user_info_area">
-            	<form class="was-validated">
+            	<form class="needs-validation" novalidate>
             	<!-- email,nickname,name,birthday, gender, phone_num, profile_image,address -->
-            	<div class="form-group">
+            	<div class="form-group mt-2">
 						    <label for="email">이메일 주소:</label>
-						    <input type="email" class="form-control" placeholder="이메일을 입력해 주세요." id="email" name="email" required>
+						    <input type="email" class="form-control" placeholder="이메일을 입력해 주세요." id="email" name="email" value="${userVO.email }" required>
+    						<div class="valid-feedback">valid</div>
     						<div class="invalid-feedback">내용을 입력해주세요!</div>
 						  </div>
 						  <div class="form-group">
 						    <label for="nickname">닉네임:</label>
-						    <input type="text" class="form-control" placeholder="닉네임을 입력해 주세요." id="nickname" name="nickname">
+						    <input type="text" class="form-control" placeholder="닉네임을 입력해 주세요." id="nickname" name="nickname" required>
+						  	<div class="valid-feedback">valid</div>
+    						<div class="invalid-feedback">내용을 입력해주세요!</div>
 						  </div>
 						  <div class="form-group">
 						    <label for="name">이름:</label>
@@ -83,11 +86,49 @@
 						    <label for="birthday">생일:</label>
 						    <input type="text" class="form-control" placeholder="생일을 입력해 주세요." id="birthday" name="birthday">
 						  </div>
+						  <div class="form-group clearfix">
+						  	<div class="mb-2">성별:</div>
+						  	<div class="custom-control custom-radio float-left">
+									<input type="radio" class="custom-control-input" id="gender1"
+										name="gender" value="1"> <label
+										class="custom-control-label" for="gender1">여자</label>
+								</div>
+						    <div class="custom-control custom-radio float-left ml-2" >
+									<input type="radio" class="custom-control-input" id="gender2"
+										name="gender" value="2"> <label
+										class="custom-control-label" for="gender2">남자</label>
+								</div>
+								
+						  </div>
+						  
             	<button type="submit" class="btn btn-secondary" style="width:150px;">수정완료</button>
             	</form>	
             </div>
         </div>
     </div>
+    <script>
+    (function() {
+    	  'use strict';
+    	  window.addEventListener('load', function() {
+    	    // Get the forms we want to add validation styles to
+    	    var forms = document.getElementsByClassName('needs-validation');
+    	    // Loop over them and prevent submission
+    	    var validation = Array.prototype.filter.call(forms, function(form) {
+    	      form.addEventListener('submit', function(event) {
+    	        if (form.checkValidity() === false) {
+    	          event.preventDefault();
+    	          event.stopPropagation();
+    	        }
+    	        form.classList.add('was-validated');
+    	      }, false);
+    	    });
+    	  }, false);
+    })();
+    
+    
+    
+    
+    </script>
     <%@ include file="/WEB-INF/view/include/footer.jsp"%>
 </body>
 
