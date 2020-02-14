@@ -60,7 +60,7 @@ public class UserController {
 	public String loginProcess(Model model, UserVO vo, HttpServletRequest request) {
 		UserVO uv = userService.loginProcess(vo);
 		if (uv == null) {
-			String msg = "회원가입을 해주세요.";
+			String msg = "잘못된 회원정보입니다.";
 			String url = "/loginForm.do";
 			model.addAttribute("msg", msg);
 			model.addAttribute("url", url);
