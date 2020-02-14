@@ -103,7 +103,6 @@
 	    } 
 	}
 	//좋아요 
-	
 	function upLikeNum(type){
 		//현재 누군가가 로그인해 있다
 		//좋아요 싫어요 누른적이 한번도 없고 둘 중에 하나만 클릭이 되게
@@ -127,7 +126,7 @@
 						$("#likeGood").addClass("likeBtnActive");
 					}
 				} else {
-					$('#likeBad > i').text(data.result); //좋아요 숫자 결과값
+					$('#likeBad > i').text(data.result); 
 					if ($("#likeBad").hasClass("likeBtnActive")) {
 						$("#likeBad").removeClass("likeBtnActive");
 					} else {
@@ -251,8 +250,10 @@ $(document).ready(function(){
 
 						<form id="form_${BoardCommentVO.board_comment_id }"
 							action="replyProcess.do" method="post" name="replyProcess">
+							<input type="hidden" name="user_id" value="${sessionScope.userVO.user_id}">
 							<input type="hidden" name="page" value="<%=vo.getPage()%>" /> <input
 								type="hidden" name="board_id" value="${BoardCommentVO.board_id}">
+								
 							<input type="hidden" name="board_comment_id"
 								value="${BoardCommentVO.board_comment_id}"> <input
 								type="hidden" name="ref" value="${BoardCommentVO.ref}">
