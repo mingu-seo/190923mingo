@@ -100,8 +100,6 @@
 			//var dbPwd = ${userVO.password};
 			$('#withdrawBtn').click(function(){
 				var password = $('#pwd').val();
-				console.log(password);
-				console.log("탈퇴 버튼 클릭");
 				$.ajax({
 					url:'checkPassword.do',
 					type:'POST',
@@ -124,7 +122,11 @@
 				}); 
 			});
 		});
-			
+		 $(function() {
+			    $("#pwd").keyup(function(e){
+			    	if(e.keyCode == 13)  $("#withdrawBtn").trigger("click");
+			    });
+		   	});	
 		
 	
 	</script>

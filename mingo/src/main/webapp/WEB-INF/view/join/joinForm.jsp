@@ -17,7 +17,9 @@
     <div class="wrap">
         <div class="header"></div>
         <div class="title">
-	        <span class="t1">MINGO</span>    
+	        <span class="t1">
+	        <a href="/goMain.do" class="join-title">MINGO</a>
+	        </span>    
 	        <span class="t2">회원가입</span>
 	        <p class="t3">MINGO 에서 활동하실 아이디와 비밀번호, 닉네임 등의 기본정보를 생성합니다.</p>    
       	</div>

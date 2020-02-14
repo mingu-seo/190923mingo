@@ -150,7 +150,7 @@ public class DetailController {
 		return "cafe/reviewViewForm";
 	}
 	
-	// 수정 양식으로 이동
+	// 카페 수정 양식으로 이동  
 	@RequestMapping("/cafeModifyForm.do")
 	public String cafeDetailModifyForm(Model model, HttpServletRequest request) {
 		int cafe_id = Integer.parseInt(request.getParameter("cafe_id"));

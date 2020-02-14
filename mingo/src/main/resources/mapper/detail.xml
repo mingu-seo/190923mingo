@@ -39,6 +39,7 @@
 	<select id="viewMyReview2" resultType="vo.ReviewVO" parameterType="vo.ReviewVO">
 		SELECT * FROM mingo.review 
 		<where>   
+		
 			<if test="cafe_id != null and user_id != null">
 				cafe_id = #{cafe_id} and user_id = #{user_id} 
 			</if>
@@ -152,8 +153,8 @@
 		update mingo.cafe_image set
 		url=#{url}
 		<where>
-			<if test="cafe_id != null">
-				cafe_id=#{cafe_id}			
+			<if test="cafe_image_id != null">
+				cafe_image_id=#{cafe_image_id}			
 			</if>
 		</where>
 	</update>
@@ -197,8 +198,8 @@
 		update mingo.cafe_menu set
 		name=#{name}, price=#{price}, image=#{image}, type=#{type}
 		<where>
-			<if test="cafe_id != null">
-				cafe_id=#{cafe_id}			
+			<if test="cafe_menu_id != null">
+				cafe_menu_id=#{cafe_menu_id}			
 			</if>
 		</where>
 	</update>
@@ -206,8 +207,8 @@
 		update mingo.cafe_product set
 		name=#{name}, price=#{price}, image=#{image}, type=#{type}
 		<where>
-			<if test="cafe_id != null">
-				cafe_id=#{cafe_id}			
+			<if test="cafe_product_id != null">
+				cafe_product_id=#{cafe_product_id}			
 			</if>
 		</where>
 	</update>
@@ -228,6 +229,10 @@
 		DELETE FROM mingo.cafe_image WHERE cafe_id=#{cafe_id}
 	</delete>
 	
+	<delete id="deleteCafeImageByKey" parameterType="Integer">
+		DELETE FROM mingo.cafe_image WHERE cafe_image_id=#{cafe_image_id}
+	</delete>
+	
 	<delete id="deleteFacility" parameterType="Integer"> 
 		DELETE FROM mingo.cafe_facilities WHERE cafe_id=#{cafe_id}
 	</delete>
@@ -240,9 +245,17 @@
 		DELETE FROM mingo.cafe_product WHERE cafe_id=#{cafe_id}
 	</delete>
 	
+	<delete id="deleteCafeProductByKey" parameterType="Integer">
+		DELETE FROM mingo.cafe_image WHERE cafe_image_id=#{cafe_product_id}
+	</delete>
+	
 	<delete id="deleteMenu" parameterType="Integer">
 		DELETE FROM mingo.cafe_menu WHERE cafe_id=#{cafe_id}
 	</delete>  
+	
+	<delete id="deleteCafeMenuByKey" parameterType="Integer">
+		DELETE FROM mingo.cafe_image WHERE cafe_image_id=#{cafe_menu_id}
+	</delete>
 	
 	<insert id="insertReview" parameterType="vo.ReviewVO">  
 		insert into mingo.review

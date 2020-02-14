@@ -1285,7 +1285,7 @@
 							<img src="img/coffee.png"/>
 							<div>
 								<h6>매장 규모</h6>
-								<h6>${facilities.table }</h6>
+								<h6>${facilities.tables }</h6>
 							</div>
 						</div>
 						<div class="info_each">
@@ -1391,7 +1391,7 @@
 		            			<c:forEach items="${imgList }" var="img">
 		            				<div class="swiper-slide" style="background-image:url('/upload/cafe/${img.url}')"></div>
 		            			</c:forEach>
-		            		</div>  
+		            		</div>    
 		            		<div class="swiper-pagination"></div>
 		            		<div class="swiper-button-prev"></div>
 		            		<div class="swiper-button-next"></div>

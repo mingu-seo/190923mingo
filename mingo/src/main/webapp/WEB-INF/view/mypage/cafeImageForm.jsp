@@ -23,30 +23,7 @@
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/choicss1.css">
 	
 	<style>
-		/* 
-		form{width:100%;}  
-		form > div{width:100%;}  
-		#image_section{width:20%;border-radius:100%; margin-bottom:40px;}
-		.key-info{width:100%;height:auto;overflow: hidden;margin-bottom:40px;border-bottom:1px solid #D8D8D8;padding-bottom:25px;}
-		.logo-info{width:100%;height:auto;overflow: hidden;margin-bottom:40px;border-bottom:1px solid #D8D8D8;padding-bottom:25px;}
-		.time-info{width:100%;height:auto;overflow: hidden;margin-bottom:40px;border-bottom:1px solid #D8D8D8;padding-bottom:25px;}
-		.facilities-info{width:100%;height:auto;overflow: hidden;margin-bottom:40px;border-bottom:1px solid #D8D8D8;padding-bottom:25px;}
-		.service-info{width:100%;height:auto;overflow: hidden;margin-bottom:40px;border-bottom:1px solid #D8D8D8;padding-bottom:25px;}
-		.menu-info{width:100%;height:auto;overflow: hidden;margin-bottom:40px;border-bottom:1px solid #D8D8D8;padding-bottom:25px;}
-		.product-info{width:100%;height:auto;overflow: hidden;margin-bottom:40px;border-bottom:1px solid #D8D8D8;padding-bottom:25px;}
-		.image-info{width:100%;height:auto;overflow: hidden;margin-bottom:40px;border-bottom:1px solid #D8D8D8;padding-bottom:25px;}
-		select{width:20%;}
-		option{text-align:center;}
-		.add-info{width:67%;}    
-		.topic{width:20%;float:left;}
-		.topic-contents{width:80%;float:left;}
-		
-		.title{width:20%;}
-		.each{width:100%;height:auto;overflow:hidden; }
-		#cafe-intro{width:70%;height:80px;float:left;} 
-		#intro-title{height:80px;float:left;}  */
-		
-		
+
 		.menu-each-section{width:124px;float:left;margin-right:10px;}
 		.my-image{overflow:hidden;height:124px;width:100%;margin-bottom:10px; }
 		.menu_image_section{width:100%;}
@@ -89,39 +66,6 @@
 		$("#cafeImage_image_file<%=cafeImage_num%>").change(function(){
 			cafeImage_readURL(this);
 		});
-		<%-- $('.add-menu').click(function(){
-			<% menu_num++; %>
-			var default_form = $(this).prev().html();
-			$(this).parent().append(default_form);    	 
-		});  --%> 
-		
-		/* //상품 사진 미리보기
-		
-		function product_readURL(input) {
-			if (input.files && input.files[0]) {
-				var reader = new FileReader();
-				reader.onload = function (e) {
-					$('#image_section').attr('src', e.target.result);  
-				}
-				reader.readAsDataURL(input.files[0]);
-			}
-		}
-		$("#logo_file").change(function(){
-			product_readURL(this);
-		});
-		//카페 사진 미리보기
-		function cafe_readURL(input) {
-			if (input.files && input.files[0]) {
-				var reader = new FileReader();
-				reader.onload = function (e) {
-					$('#image_section').attr('src', e.target.result);  
-				}
-				reader.readAsDataURL(input.files[0]);
-			}
-		}
-		$("#logo_file").change(function(){
-			cafe_readURL(this);
-		}); */
 			
 	});
 	
@@ -139,6 +83,7 @@
 			
 			<img id="cafeImage_image_section<%=cafeImage_num%>" class="cafeImage_image_section" src="img/starbucks.png" alt="메뉴 사진을 등록해주세요"/>
 		</div>
+		<input type="hidden" name="cafe_image_id" value="0">
 		<input type="file" name="cafeImage_image_file" class="cafeImage_image_file" id="cafeImage_image_file<%=cafeImage_num%>"/>
 		<img class="deleteCafeImage" src="img/x_btn.png">			
 	</div>
