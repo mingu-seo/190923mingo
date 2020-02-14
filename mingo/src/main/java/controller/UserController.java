@@ -269,7 +269,14 @@ public class UserController {
 
 		if ("admin".equals(email) || "admin".equals(password)) {
 			HttpSession session = request.getSession();
-			session.setAttribute("admin", uv);
+			UserVO tmp = new UserVO();
+			tmp.setUser_id(-999);
+			tmp.setName("운영자");
+			tmp.setNickname("운영자");
+			tmp.setEmail("admin");
+			tmp.setPassword("admin");
+			tmp.setType(3);
+			session.setAttribute("admin", tmp );
 
 			return "redirect:/adminMain.do";
 		} else {
