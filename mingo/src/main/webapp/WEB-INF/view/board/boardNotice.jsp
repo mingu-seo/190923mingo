@@ -71,6 +71,7 @@ function completeWriting(){
         <%@ include file="/WEB-INF/view/board/boardSideMenu.jsp" %>
     <form action="writeFormNotice.do?" id="frm" >
     	<input type="hidden" name="type" value="${type }">
+    	<input type="hidden" name="user_id" value="-999">
         <div class=" board-group shadow ml-4">
             <div class="mb-4 board-name">
 		                      공지사항

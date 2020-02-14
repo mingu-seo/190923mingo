@@ -16,10 +16,9 @@
 		
 	</select>
 	
-	<select id="getCafeList" resultType="Map" parameterType="vo.CafeCommand">
-		select c.*, i.url
-		from cafe as c left outer join cafe_image as i
-		on c.cafe_id = i.cafe_id
+	<select id="getCafeList" resultType="vo.CafeVO" parameterType="vo.CafeCommand">
+		select *
+		from cafe
 		<where>
 			<if test="sido_code != null and sido_code > 0">
 			and sido_code = #{sido_code}
@@ -81,8 +80,8 @@
 		  
 	</select>
 	<select id="getBoardList" resultType="vo.BoardVO" parameterType="Integer">
-		select board_id,title from board
-		where type=#{boardType}
+		select board_id,title, is_notice from board
+		where type=#{boardType} and is_notice = 0
 		order by board_id DESC
 		limit 0,10;
 		

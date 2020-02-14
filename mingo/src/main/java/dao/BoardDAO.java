@@ -30,6 +30,7 @@ public class BoardDAO {
 		public int insert(BoardVO vo) {
 			return sqlSession.insert("board.insert",vo);
 		}
+		
 		public void refUpdate(int board_comment_id) { 
 			sqlSession.update("board.refUpdate",board_comment_id);
 		}

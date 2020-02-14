@@ -42,6 +42,7 @@ public class BoardService {
 		
 		return r;
 	}
+	
 	public BoardVO detail(int board_id) {
 		// 조회수 증가
 		boardDAO.readcount(board_id);

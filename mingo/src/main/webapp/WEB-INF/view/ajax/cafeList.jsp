@@ -4,11 +4,10 @@
 <c:forEach var="cafe" items="${cafeList }">
 	<div class="grid-item">
 		<div class="cafe cafe-img">
-			<a href="detailView.do?cafe_id=${cafe.cafe_id }">
-			<c:if test="${cafe.url != null}">
-   			<a href="detailView.do?cafe_id=${cafe.cafe_id }"><img src='<%=request.getContextPath() %>/upload/cafe/${cafe.url}'></a>
+			<c:if test="${cafe.cafe_img != null}">
+   			<a href="detailView.do?cafe_id=${cafe.cafe_id }"><img src='<%=request.getContextPath() %>/upload/cafe/${cafe.cafe_img}'></a>
    		</c:if>
-      <c:if test="${cafe.url == null}">
+      <c:if test="${cafe.cafe_img == null}">
   			<a href="detailView.do?cafe_id=${cafe.cafe_id }"><img src='https://placehold.it/200x200'></a>
       </c:if>
 		</div>

@@ -176,7 +176,7 @@ public class AdminController {
 			return "redirect:/mngCafeMain.do";
 		else {
 			int result = adminService.deleteCafeAdmin(cafe_id);
-			return "redirect:/mngBoardMain.do";
+			return "redirect:/mngCafeMain.do";
 		}
 		
 	}

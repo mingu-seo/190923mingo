@@ -77,11 +77,13 @@ public class MainController {
 	//카페 검색했을때 메서드
 	@RequestMapping("/searchCafe.do")
 	public String searchCafe(Model model, CafeCommand cafeCommand) {
-		List<Map> cafeList = new ArrayList<Map>();
+		List<CafeVO> cafeList = new ArrayList<CafeVO>();
 		int page=1;
 		int limit=16;
+		int startrow = (page-1) * limit;
 		int listCount = dao.getCafeListCount(cafeCommand);
 		cafeCommand.setPage(page);
+		cafeCommand.setStartrow(startrow);
 		cafeCommand.setLimit(limit);
 		cafeList = dao.getCafeList(cafeCommand );
 		
@@ -104,7 +106,7 @@ public class MainController {
 	//카페 검색 by Ajax
 	@RequestMapping("/searchCafeAjax.do")
 	public String searchCafeAjax(Model model, CafeCommand cafeCommand) {
-		List<Map> cafeList = new ArrayList<Map>(); //카페 담기위한 리스트
+		List<CafeVO> cafeList = new ArrayList<CafeVO>(); //카페 담기위한 리스트
 		
 		int page = cafeCommand.getPage();
 		int limit = 16;

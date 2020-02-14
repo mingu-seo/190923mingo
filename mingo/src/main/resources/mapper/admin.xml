@@ -124,7 +124,7 @@
 	</update>
 	<delete id="deleteCafeFacilitiesFor" parameterType="Integer">
 	delete 
-	from cafe_faciliteis
+	from cafe_facilities
 	where cafe_id = #{cafe_id}
 	</delete>
 	

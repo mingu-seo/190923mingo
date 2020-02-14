@@ -22,13 +22,22 @@ public class CafeVO {
 	private long dong_code; //행정동 코드
 	private double longitude; //경도
 	private double latitude; //위도
-	private String logo;
+	private String logo; //로고 이미지
+	private String cafe_img;//카페 이미지
 	private int brand_code; //브랜드 코드  1.스타벅스 2.투썸플레이스 3.이디야 4.커피빈 5.할리스커피 6.탐앤탐스
 							//7.카페베네 8.빽다방 9. 엔제리너스
 	
 	
+	
+	
 	public String getLogo() {
 		return logo;
+	}
+	public String getCafe_img() {
+		return cafe_img;
+	}
+	public void setCafe_img(String cafe_img) {
+		this.cafe_img = cafe_img;
 	}
 	public int getBrand_code() {
 		return brand_code;
