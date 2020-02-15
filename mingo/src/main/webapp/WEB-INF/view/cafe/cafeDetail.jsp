@@ -102,7 +102,7 @@
 		
 		#cafe_name, #branch_name{
 			font-color:#151515;
-			font-size: 2.5em;
+			font-size: 2.0em;
 			font-weight:bold;
 			text-shadow: 0px 0px 15px #FFFFFF;
 			float:left;
@@ -1200,6 +1200,17 @@
 					}
 				}   
 			}); 
+			for (var i = 1; i <= 5; i++) {
+				if ($('#service-result'+i).val()==""){
+					$('#service-each'+i).remove();
+				}
+			}
+			for (var i = 1; i <= 10; i++) {
+				if ($('#facilities-result'+i).val()==""){
+					$('#facilities-each'+i).remove();
+				}
+			}
+			
 			
 		});  
 	 
@@ -1357,124 +1368,156 @@
 					<div class="facility" style="overflow:scroll; overflow:auto; overflow-x:hidden" >
 					<c:if test="${facilities !=null }">
 						<c:if test="${facilities.wifi != 0}">
-							<div class="info_each">
+							<div class="info_each" id="facilities-each1">
 								<img src="img/coffee.png"/>
 								<div>
 									<h6>와이파이</h6>
-									<h6>${facilities.wifi}</h6>
+									<h6 id="facilities-result1">${facilities.wifi}</h6>
 								</div>
 							</div>
 						</c:if>
-						<c:if test="${facilities.tables != null}"></c:if>
-						<div class="info_each">
-							<img src="img/coffee.png"/>
-							<div>
-								<h6>매장 규모</h6>
-								<h6>${facilities.tables }</h6>
+						<c:if test="${facilities.tables != 0}">
+							<div class="info_each" id="facilities-each2">
+								<img src="img/coffee.png"/>
+								<div>
+									<h6>매장 규모</h6>
+									<h6 id="facilities-result2">${facilities.tables }</h6>
+								</div>
 							</div>
-						</div>
-						<c:if test="${facilities.interior != null}"></c:if>
-						<div class="info_each">
-							<img src="img/coffee.png"/>
-							<div>
-								<h6>인테리어 분위기</h6>
-								<h6>${facilities.interior }</h6>
-							</div>
-						</div>  
-						<c:if test="${facilities.music != null}"></c:if>
-						<div class="info_each">
-							<img src="img/coffee.png"/>
-							<div>
-								<h6>음악</h6>
-								<h6>${facilities.music}</h6>
-							</div>
-						</div>
-						<c:if test="${facilities.plug != null}"></c:if>
-						<div class="info_each">
-							<img src="img/coffee.png"/>
-							<div>
-								<h6>플러그 수</h6>
-								<h6>${facilities.plug}</h6>
-							</div>
-						</div>
-						<c:if test="${facilities.restroom != null}"></c:if>
-						<div class="info_each">
-							<img src="img/coffee.png"/>
-							<div>
-								<h6>화장실</h6>
-								<h6>${facilities.restroom}</h6>
-							</div>
-						</div>
-						<c:if test="${facilities.terrace != null}"></c:if>
-						<div class="info_each">
-							<img src="img/coffee.png"/>
-							<div>
-								<h6>테라스</h6>
-								<h6>${facilities.terrace}</h6>
-							</div>
-						</div>
-						<c:if test="${facilities.studyroom != null}"></c:if>
-						<div class="info_each">
-							<img src="img/coffee.png"/>
-							<div>
-								<h6>스터디룸</h6>
-								<h6>${facilities.studyroom}</h6>
-							</div>
-						</div>
-						<c:if test="${facilities.smoking != null}"></c:if>
-						<div class="info_each">
-							<img src="img/coffee.png"/>
-							<div>
-								<h6>흡연석</h6>
-								<h6>${facilities.smoking}</h6>
-							</div>
-						</div>
-						<c:if test="${facilities.parking != null}"></c:if>
-						<div class="info_each">
-							<img src="img/coffee.png"/>
-							<div> 
-								<h6>주차공간</h6>
-								<h6>${facilities.parking}</h6>
-							</div>
-						</div>
 						</c:if>
+						<c:if test="${facilities.interior != 0}">
+							<div class="info_each" id="facilities-each3">
+								<img src="img/coffee.png"/>
+								<div>
+									<h6>인테리어 분위기</h6>
+									<h6 id="facilities-result3">${facilities.interior }</h6>
+								</div>
+							</div>  
+						</c:if>
+						<c:if test="${facilities.music != 0}">
+							<div class="info_each" id="facilities-each4">
+								<img src="img/coffee.png"/>
+								<div>
+									<h6>음악</h6>
+									<h6 id="facilities-result4">${facilities.music}</h6>
+								</div>
+							</div>
+						</c:if>
+						<c:if test="${facilities.plug != 0}">
+							<div class="info_each" id="facilities-each5">
+								<img src="img/coffee.png"/>
+								<div>
+									<h6>플러그 수</h6>
+									<h6 id="facilities-result5">${facilities.plug}</h6>
+								</div>
+							</div>
+						</c:if>
+						<c:if test="${facilities.restroom != 0}">
+							<div class="info_each" id="facilities-each6">
+								<img src="img/coffee.png"/>
+								<div>
+									<h6>화장실</h6>
+									<h6 id="facilities-result6">${facilities.restroom}</h6>
+								</div>
+							</div>
+						</c:if>
+						<c:if test="${facilities.terrace != 0}">
+							<div class="info_each" id="facilities-each7">
+								<img src="img/coffee.png"/>
+								<div>
+									<h6>테라스</h6>
+									<h6 id="facilities-result7">${facilities.terrace}</h6>
+								</div>
+							</div>
+						</c:if>
+						<c:if test="${facilities.studyroom != 0}">
+							<div class="info_each" id="facilities-each8">
+								<img src="img/coffee.png"/>
+								<div>
+									<h6>스터디룸</h6>
+									<h6 id="facilities-result8">${facilities.studyroom}</h6>
+								</div>
+							</div>
+						</c:if>
+						<c:if test="${facilities.smoking != 0}">
+							<div class="info_each" id="facilities-each9">
+								<img src="img/coffee.png"/>
+								<div>
+									<h6>흡연석</h6>
+									<h6 id="facilities-result9">${facilities.smoking}</h6>
+								</div>
+							</div>
+						</c:if>
+						<c:if test="${facilities.parking != 0}">
+							<div class="info_each" id="facilities-each10">
+								<img src="img/coffee.png"/>
+								<div> 
+									<h6>주차공간</h6>
+									<h6 id="facilities-result10">${facilities.parking}</h6>
+								</div>
+							</div>
+						</c:if>
+					</c:if>
+					<c:if test="${facilities ==null }">
+						<div class="facility" style="width:80%;height:400px;font-size: 1.5em; font-weight: bold; color:#D8D8D8; text-align:center;line-height:300px;">
+							등록된 정보가 없습니다.
+						</div>
+					</c:if>
+					
 					</div>
 					<div class="service" style="overflow:scroll;overflow:auto; overflow-x:hidden" >
-						<div class="info_each">
-							<img src="img/coffee.png"/>
-							<div>
-								<h6>이벤트</h6>
-								<h6>${service.event }</h6>
+						<c:if test="${service !=null }">
+							<c:if test="${service.event != 0}">
+								<div class="info_each" id="service-each1">
+									<img src="img/coffee.png"/>
+									<div>
+										<h6>이벤트</h6>
+										<h6 id="service-result1">${service.event }</h6>
+									</div>
+								</div>
+							</c:if>
+							<c:if test="${service.coupon != 0}">
+								<div class="info_each" id="service-each2">
+									<img src="img/coffee.png"/>
+									<div>
+										<h6>쿠폰</h6>
+										<h6 id="service-result2">${service.coupon }</h6>
+									</div>
+								</div>
+							</c:if>
+							<c:if test="${service.mileage != 0}">
+								<div class="info_each" id="service-each3">
+									<img src="img/coffee.png"/>
+									<div>
+										<h6>마일리지</h6>
+										<h6 id="service-result3">${service.mileage }</h6>
+									</div>
+								</div>
+							</c:if>
+							<c:if test="${service.blanket != 0}">
+								<div class="info_each" id="service-each4">
+									<img src="img/coffee.png"/>
+									<div>
+										<h6>담요</h6>
+										<h6 id="service-result4">${service.blanket }</h6>
+									</div>
+								</div>
+							</c:if>
+							<c:if test="${service.drinkrefill != 0}">
+								<div class="info_each" id="service-each5">
+									<img src="img/coffee.png"/>
+									<div>
+										<h6>음료 리필</h6>
+										<h6 id="service-result5">${service.drinkrefill }</h6>
+									</div>
+								</div>
+							</c:if>
+						</c:if>
+						<c:if test="${service ==null }">
+							<div class="service" style="width:80%;height:400px;font-size: 1.5em; font-weight: bold; color:#D8D8D8; text-align:center;line-height:300px;">
+								등록된 정보가 없습니다.
 							</div>
-						</div>
-						<div class="info_each">
-							<img src="img/coffee.png"/>
-							<div>
-								<h6>쿠폰</h6>
-								<h6>${service.coupon }</h6>
-							</div>
-						</div>
-						<div class="info_each">
-							<img src="img/coffee.png"/>
-							<div>
-								<h6>마일리지</h6>
-								<h6>${service.mileage }</h6>
-							</div>
-						</div>
-						<div class="info_each">
-							<img src="img/coffee.png"/>
-							<div>
-								<h6>담요</h6>
-								<h6>${service.blanket }</h6>
-							</div>
-						</div>
-						<div class="info_each">
-							<img src="img/coffee.png"/>
-							<div>
-								<h6>음료 리필</h6>
-								<h6>${service.drinkrefill }</h6>
-							</div>
-						</div>
+						</c:if>
 					</div>
 				</div>
 				<div class="cafe_photo">

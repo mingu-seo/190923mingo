@@ -297,7 +297,7 @@
           
 	           	<div class="collect_cafe_each">
 	           		<div class="collect_cafe_logo">
-	           			<img src="upload/cafe/${cafe.logo }">
+	           			<img src="./img/brandLogo/${cafe.logo }">    
 	           		</div>
 	           		<div class="collect_cafe_info">
 	           			<div class="collect_cafe_info_header">

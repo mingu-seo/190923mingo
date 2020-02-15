@@ -86,15 +86,17 @@ public class DetailController {
 		
 		//서비스 조회
 		CafeServiceVO service = detailService.viewService(cafe_id);
+		int service_result = 0;
+		if(service!=null) {
+			service_result = 1;
+			model.addAttribute("service_result", service_result);
+		}
+		
+		
 		model.addAttribute("service", service);
 		
 		//시설 및 분위기
-		CafeFacilitiesVO facilities = null;
-		facilities = detailService.viewFacilities(cafe_id);
-		
-		
-		
-		
+		CafeFacilitiesVO facilities = detailService.viewFacilities(cafe_id);
 		
 		
 		model.addAttribute("facilities", facilities);
@@ -262,8 +264,10 @@ public class DetailController {
 	//등록 양식으로 이동
 	@RequestMapping("/cafeRegistForm.do")
 	public String cafeDetailRegistForm(Model model, HttpServletRequest request) {
+	
 		int cafe_id = Integer.parseInt(request.getParameter("cafe_id"));
 		model.addAttribute("cafe_id", cafe_id);
+		
 		return "mypage/cafeRegistForm";
 	}
 	

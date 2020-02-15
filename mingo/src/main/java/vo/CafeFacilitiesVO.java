@@ -7,7 +7,7 @@ public class CafeFacilitiesVO {
 	private int wifi;
 	private String wifi_text;
 	private int tables;  
-	private String table_text;
+	private String tables_text;
 	private int interior;
 	private String interior_text;
 	private int music;
@@ -26,6 +26,32 @@ public class CafeFacilitiesVO {
 	private String parking_text;
 	private int smoking;
 	private String smoking_text;
+	
+	public CafeFacilitiesVO(){
+		this.cafe_facilities_id = 0;
+		this.interior = 0;
+		this.music= 0;
+		this.parking= 0;
+		this.plug= 0;
+		this.restroom= 0;
+		this.smoking= 0;
+		this.studyroom= 0;
+		this.tables= 0;
+		this.terrace= 0;
+		this.wifi= 0;
+		
+		this.interior_text = "";
+		this.music_text= "";
+		this.parking_text= "";
+		this.plug_text= "";
+		this.restroom_text= "";
+		this.smoking_text= "";
+		this.studyroom_text= "";
+		this.tables_text= "";
+		this.terrace_text= "";
+		this.wifi_text= "";
+	}
+	   
 	
 	public int getSmoking() {
 		return smoking;
@@ -69,11 +95,11 @@ public class CafeFacilitiesVO {
 	public void setTables(int tables) {
 		this.tables = tables;
 	}
-	public String getTable_text() {
-		return table_text;
+	public String getTables_text() {
+		return tables_text;
 	}
-	public void setTable_text(String table_text) {
-		this.table_text = table_text;
+	public void setTables_text(String tables_text) {
+		this.tables_text = tables_text;
 	}
 	public int getInterior() {
 		return interior;

@@ -25,7 +25,7 @@ import vo.CollectCafeVO;
 import vo.LikeCafeVO;
 import vo.ReviewVO;
 import vo.UserVO;  
-
+import org.springframework.util.StringUtils;
 @Service
 public class DetailServiceImpl implements DetailService {
 
@@ -64,11 +64,42 @@ public class DetailServiceImpl implements DetailService {
 	
 	public CafeServiceVO viewService(int cafe_id) {
 		CafeServiceVO service = detailDao.viewService(cafe_id);
-		return service;
+		CafeServiceVO vo = new CafeServiceVO();
+		System.out.println("담요제공여부 : "+vo.getBlanket());
+		/* System.out.println("쿠폰 있나? : "+service.getCoupon()); */
+		  
+		
+		/*
+		if (service==null) { service.setCafe_service_id(0); }
+		 */ 
+		
+		/*
+		try {System.out.println(service.getEvent());} catch (NullPointerException e) {service.setEvent(0);System.out.println("예외발생~!!");}
+		try {System.out.println(service.getCoupon());} catch (Exception e) {service.setCoupon(0);}   
+		try {System.out.println(service.getMileage());} catch (Exception e) {service.setMileage(0);} 
+		try {System.out.println(service.getBlanket());} catch (Exception e) {service.setBlanket(0);}
+		try {System.out.println(service.getDrinkrefill());} catch (Exception e) {service.setDrinkrefill(0);}
+		 */
+		
+		return service;  
 	}
 	public CafeFacilitiesVO viewFacilities(int cafe_id) {
 		CafeFacilitiesVO facilities = detailDao.viewFacilities(cafe_id);
-		return facilities;
+		
+		/*
+		try {System.out.println(facilities.getInterior());} catch (NullPointerException e) {facilities.setInterior(0);}
+		try {System.out.println(facilities.getWifi());} catch (Exception e) {facilities.setWifi(0);}
+		try {System.out.println(facilities.getTables());} catch (Exception e) {facilities.setTables(0);}
+		try {System.out.println(facilities.getMusic());} catch (Exception e) {facilities.setMusic(0);}
+		try {System.out.println(facilities.getPlug());} catch (Exception e) {facilities.setPlug(0);}
+		try {System.out.println(facilities.getRestroom());} catch (Exception e) {facilities.setRestroom(0);}
+		try {System.out.println(facilities.getStudyroom());} catch (Exception e) {facilities.setStudyroom(0);}
+		try {System.out.println(facilities.getTerrace());} catch (Exception e) {facilities.setTerrace(0);}
+		try {System.out.println(facilities.getSmoking());} catch (Exception e) {facilities.setSmoking(0);}
+		try {System.out.println(facilities.getParking());} catch (Exception e) {facilities.setParking(0);}
+		*/
+		
+		return facilities;  
 	}
 	public CafeRateVO viewCafeRate(int cafe_id) {
 		CafeRateVO cafeRate = detailDao.viewCafeRate(cafe_id);
