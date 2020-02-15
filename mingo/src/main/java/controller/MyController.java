@@ -307,6 +307,19 @@ public class MyController {
 		model.addAttribute("cafeList", cafeList);
 		
 		List<CafeRateVO> cafeRateList = myService.viewCafeRate2(collectList);
+		for (int i = 0; i < cafeRateList.size(); i++) {
+			if (cafeRateList.get(i)==null) {
+				cafeRateList.get(i).setCafe_id(collectList.get(i).getCafe_id());
+				cafeRateList.get(i).setCafe_total_avg(0);
+				cafeRateList.get(i).setClean_avg(0);
+				cafeRateList.get(i).setMood_avg(0);
+				cafeRateList.get(i).setPrice_avg(0);
+				cafeRateList.get(i).setService_avg(0);
+				cafeRateList.get(i).setTaste_avg(0);
+				cafeRateList.get(i).setWifi_avg(0);
+				cafeRateList.get(i).setRate_num(0);
+			}
+		}
 		model.addAttribute("cafeRateList", cafeRateList);
 		return "mypage/myCollectAjax";
 	}

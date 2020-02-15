@@ -328,7 +328,7 @@ List<CafeProductVO> productList = new ArrayList<CafeProductVO>();
 					<div class="key-info">
 						<div class="topic">사업자 번호</div>
 						<div class="topic-contents">
-							<input type="password" name="manager_id" id="manager_id"/>	
+							<input type="password" name="cafe_id" id="manager_id"/>	
 							<!-- <div class="logo-button" onclick="onclick=document.all.file.click()">카페로고</div> -->
 						
 						</div>

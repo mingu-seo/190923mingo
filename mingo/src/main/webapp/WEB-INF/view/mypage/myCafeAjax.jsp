@@ -192,7 +192,7 @@
             <div class="collect_cafes">
             	<div class="collect_cafe_each" OnClick="location.href='detailView.do?cafe_id=${cafe.cafe_id}&user_id=${userVO.user_id}'">
             		<div class="collect_cafe_logo">  
-            			<img src="upload/cafe/${cafe.logo }">
+            			<img src="./img/brandLogo/${cafe.logo }" style="border:1px solid #E6E6E6;border-radius: 100%;">
             		</div>
             		<div class="collect_cafe_info">
             			<div class="collect_cafe_info_header">

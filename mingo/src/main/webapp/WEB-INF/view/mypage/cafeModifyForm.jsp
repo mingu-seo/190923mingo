@@ -421,7 +421,7 @@
 										<option  class="tables" value="3">31~50인 석</option>
 										<option  class="tables" value="4">50이상인 석</option>
 									</select>
-									<input class= "add-info" type="text" name="table_text" id="table_text"  value="${facilities.table_text}"/>		
+									<input class= "add-info" type="text" name="tables_text" id="tables_text"  value="${facilities.tables_text}"/>		
 								</div>		
 							</div>
 							<div class="each">

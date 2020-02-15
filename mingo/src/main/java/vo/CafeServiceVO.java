@@ -13,6 +13,24 @@ public class CafeServiceVO {
 	private String mileage_text;
 	private String blanket_text;
 	private String drinkrefill_text;
+	
+	public CafeServiceVO(){
+		this.cafe_service_id = 0;
+		
+		this.blanket = 0;
+		this.coupon = 0;
+		this.drinkrefill= 0;
+		this.event = 0;
+		this.mileage = 0;
+		
+		this.blanket_text = "";
+		this.coupon_text= "";
+		this.drinkrefill_text = "";
+		this.event_text = "";
+		this.mileage_text = "";
+		
+	}
+	
 
 	public int getCafe_service_id() {
 		return cafe_service_id;
