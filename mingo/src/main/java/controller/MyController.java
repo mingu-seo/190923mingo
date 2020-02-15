@@ -307,21 +307,39 @@ public class MyController {
 		model.addAttribute("cafeList", cafeList);
 		
 		List<CafeRateVO> cafeRateList = myService.viewCafeRate2(collectList);
-		for (int i = 0; i < cafeRateList.size(); i++) {
-			if (cafeRateList.get(i)==null) {
-				cafeRateList.get(i).setCafe_id(collectList.get(i).getCafe_id());
-				cafeRateList.get(i).setCafe_total_avg(0);
-				cafeRateList.get(i).setClean_avg(0);
-				cafeRateList.get(i).setMood_avg(0);
-				cafeRateList.get(i).setPrice_avg(0);
-				cafeRateList.get(i).setService_avg(0);
-				cafeRateList.get(i).setTaste_avg(0);
-				cafeRateList.get(i).setWifi_avg(0);
-				cafeRateList.get(i).setRate_num(0);
+				
+		if (cafeRateList.size()>0) {
+			for (int i = 0; i < cafeRateList.size(); i++) {
+				if (cafeRateList.get(i)==null) {
+					cafeRateList.get(i).setCafe_id(collectList.get(i).getCafe_id());
+					cafeRateList.get(i).setCafe_total_avg(0);
+					cafeRateList.get(i).setClean_avg(0);
+					cafeRateList.get(i).setMood_avg(0);
+					cafeRateList.get(i).setPrice_avg(0);
+					cafeRateList.get(i).setService_avg(0);
+					cafeRateList.get(i).setTaste_avg(0);
+					cafeRateList.get(i).setWifi_avg(0);
+					cafeRateList.get(i).setRate_num(0);
+				}
 			}
+			
+		} else {
+			//카페는 있지만 후기가 없는 경우
+			CafeRateVO rateVO = new CafeRateVO();
+			rateVO.setCafe_id(0);
+			rateVO.setCafe_total_avg(0);
+			rateVO.setClean_avg(0);
+			rateVO.setMood_avg(0);
+			rateVO.setPrice_avg(0);
+			rateVO.setService_avg(0);
+			rateVO.setTaste_avg(0);
+			rateVO.setWifi_avg(0);
+			rateVO.setRate_num(0);
+			cafeRateList.add(rateVO);
 		}
+		
 		model.addAttribute("cafeRateList", cafeRateList);
-		return "mypage/myCollectAjax";
+		return "mypage/myCollectAjax";    
 	}
 	
 	
