@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -110,10 +112,10 @@
         <div class="mypage-header-wrapper">
             <div class="mypage-name">
 	            <div class="mypage-img">
-	            	<c:if test="${userVO.profile_image != null }">
+	            	<c:if test="${userVO.profile_image != null && userVO.profile_image !=''}">
 	                	<img class="rounded-circle" src="<%=request.getContextPath() %>/upload/user/${userVO.profile_image }">
 	                </c:if>
-	                <c:if test="${userVO.profile_image == null}">
+	                <c:if test="${!(userVO.profile_image != null && userVO.profile_image !='')}">
 	                	<img class="rounded-circle" src="<%=request.getContextPath() %>/img/default/profile.png">
 	                </c:if>
 	            </div>
@@ -121,19 +123,9 @@
             </div>
         </div>
     </div>
-    <div class="container-fluid nav-wrapper">
-	    <ul class="nav nav-pills mypage-nav" style="width:1140px;">
-	        <li class="nav-item">
-	          <a class="nav-link active my-link" data-toggle="pill" href="javascript:void(0);" onclick="location.href='myMain.do?user_id=${userVO.user_id }'">회원정보</a>
-	        </li>
-	        <li class="nav-item">
-	          <a class="nav-link my-link" data-toggle="pill" href="javascript:void(0);" onclick="location.href='myCafe.do?user_id=${userVO.user_id }'">내 카페</a>
-	        </li>
-	        <li class="nav-item">
-	          <a class="nav-link my-link" data-toggle="pill" href="javascript:void(0);" onclick="location.href='myReview.do?user_id=${userVO.user_id }'">활동내역</a>
-	        </li>
-	    </ul>
-		</div>
+    <!-- mypage 내비게이션 -->
+    <%@ include file="/WEB-INF/view/mypage/myNav.jsp"%>
+    
     
     <div class="board-wrapper2">
         <div class="list-group list-group-flush board-side shadow">
@@ -152,10 +144,10 @@
             </div>  
             <div class="user_info_area">
             	<div class="profile_area">
-            		<c:if test="${userVO.profile_image != null }">
+            		<c:if test="${userVO.profile_image != null && userVO.profile_image !=''}">
             		<img src="<%=request.getContextPath() %>/upload/user/${userVO.profile_image }" id="profile_img">
             		</c:if>
-            		<c:if test="${userVO.profile_image == null }">
+            		<c:if test="${!(userVO.profile_image != null && userVO.profile_image !='')}">
             		<img src="<%=request.getContextPath() %>/img/default/profile.png" id="profile_img">
             		</c:if>
             		<h2>${userVO.nickname }</h2>
@@ -195,20 +187,21 @@
             		</div>
             		<div class="info_each">
 	            		<div class="info_title">휴대전화 번호</div>
-	            		<c:if test="${userVO.phone_num == null }">
+	            		<c:set value="${userVO.phone_num }" var="pn"/>
+	            		<c:if test="${!(userVO.phone_num != null && userVO.phone_num !='')}">
 	            		<div class="info_content">미등록</div> 
 	            		</c:if>
-	            		<c:if test="${userVO.phone_num != null }">
-	            		<div class="info_content">${userVO.phone_num }</div> 
+	            		<c:if test="${(userVO.phone_num != null && userVO.phone_num !='')}">
+	            		<div class="info_content">${fn:substring(pn,0,3)}-${fn:substring(pn,3,7)}-${fn:substring(pn,7,11)}  </div> 
 	            		</c:if>         			
             		</div>
             		<div class="info_each" id="addr">
 	            		<div class="info_title">주소</div>
-	            		<c:if test="${userVO.address == null }">
+	            		<c:if test="${!(userVO.jibun_address != null && userVO.jibun_address !='')}">
 	            		<div class="info_content">미등록</div>  
 	            		</c:if>
-	            		<c:if test="${userVO.address != null }">
-	            		<div class="info_content">${userVO.address }</div>  
+	            		<c:if test="${userVO.jibun_address != null && userVO.jibun_address !=''}">
+	            		<div class="info_content">${userVO.jibun_address }</div>  
 	            		</c:if>          			
             		</div>
             	</div>

@@ -119,7 +119,7 @@ td{
 				</tbody>
 			</table>
 			<c:if test="${empty ownerList }" >
-				<ul class="pagination justify-content-center">
+				<ul class="pagination mypagi justify-content-center">
 				  <li class="page-item disabled"><a class="page-link" href="#">&#10094;</a></li>
 				  <li class="page-item active"><a class="page-link" href="#">1</a></li>
 				  <li class="page-item disabled"><a class="page-link" href="#">&#10095;</a></li> 

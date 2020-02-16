@@ -35,6 +35,14 @@
 td{
 	font-size:0.9em;
 }
+/* 패기네이션 색깔 */  
+.page-link{
+	color:black;
+}
+.page-item.active .page-link{
+    border-color:gray;
+    background-color: gray;
+}
 </style>
 </head>
 <body>

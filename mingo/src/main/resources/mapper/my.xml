@@ -72,6 +72,23 @@
 			</if>
 		</where>
 	</update>
+	<update id="modifyMember" parameterType="vo.UserVO">
+		update mingo.user 
+		set
+			<if test="!#{profile_image}.equals('') and #{profile_image} != null">
+			profile_image = #{profile_image},
+			</if>
+			email='${email}', 
+			nickname='${nickname}', 
+			name='${name}', 
+			birthday='${birthday}', 
+			gender=#{gender}, 
+			post_code = '${post_code}',
+			jibun_address = '${jibun_address}',
+			detail_address = '${detail_address}',
+			phone_num = '${phone_num}'
+		where user_id = #{user_id}
+	</update>
 	<delete id="deleteUser" parameterType="Integer">
 		delete from mingo.user
 		<where>
@@ -130,6 +147,15 @@
 			</if>
 		</where>
 		order by regdate desc limit #{beginIndex}, 5 
+	</select>
+	
+	<select id="getMyBoardList" resultType="vo.BoardVO" parameterType="Map">
+	SELECT b.*, u.nickname
+	FROM mingo.board as b join user as u
+	on b.user_id = u.user_id 
+	where b.user_id = #{user_id}
+	order by board_id desc
+	limit #{startrow},#{limit};   
 	</select>      
 	
 </mapper>

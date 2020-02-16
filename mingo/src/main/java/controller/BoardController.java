@@ -33,9 +33,13 @@ public class BoardController {
 	
 	//게시판 조회
 	@RequestMapping("/listBoard.do")
-	public String listBoard(Model model, BoardVO vo,@RequestParam("type")int type) {
+	public String listBoard(Model model, BoardVO vo,@RequestParam(required = false, value= "type")Integer type) {
 		int[] listcount = boardService.boardCount(vo);	// 전체 갯수와 총페이지수  
 		List<BoardVO> list = boardService.list(vo);
+		
+		if(type == null) {
+			type =1;
+		}
 		
 		UserVO uvo = new UserVO();
 		int user_id = uvo.getUser_id();

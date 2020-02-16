@@ -31,6 +31,7 @@
 	background-color: #f1f1f1;
 	border-radius: 20px;
 }
+
 td{
 	font-size:0.9em;
 }
@@ -79,12 +80,12 @@ td{
 					</tr>
 				</thead>
 				<tbody>
-				<c:if test="${empty userList == null }" >
+				<c:if test="${empty userList}" >
 					<tr>
 						<td colspan="8">데이터가 없습니다.</td>
 					</tr>
 				</c:if>
-				<c:if test="${not empty userList != null }" >
+				<c:if test="${not empty userList}" >
 					<c:forEach var="user" items="${userList}">
 					<tr>
 						<td>${user.user_id }</td>
@@ -119,7 +120,7 @@ td{
 			</table>
 			
 			<c:if test="${empty userList }" >
-				<ul class="pagination justify-content-center">
+				<ul class="pagination mypagi justify-content-center">
 				  <li class="page-item disabled"><a class="page-link" href="#">&#10094;</a></li>
 				  <li class="page-item active"><a class="page-link" href="#">1</a></li>
 				  <li class="page-item disabled"><a class="page-link" href="#">&#10095;</a></li> 

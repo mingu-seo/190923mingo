@@ -24,7 +24,7 @@
 	        <p class="t3">사장님 회원님의 회원가입 페이지입니다.</p>    
       	</div>
     
-    <form id="joinForm_host" action="joinProcess.do" method="post">
+    <form id="joinForm_host" action="joinProcess2.do" method="post">
        
         
          <div class="main">
@@ -109,12 +109,12 @@
          <div class="main">
 	        <label for="business_num">
 	            <span class="insert_business_num">
-	              	  사업자 등록번호 
+	              	  카페 식별 번호 
 	              	 &nbsp;
 	            </span>
 	            <div class="business_num1">
 	               <div class="business_num2">
-						<input id="business_num" name="business_num"  required placeholder="사업자 등록번호를 입력해주세요"> 
+						<input id="business_num" name="business_num"  required placeholder="카페 식별 번호를 입력해주세요."> 
 	        		</div>
 	        	</div>
 	        </label>

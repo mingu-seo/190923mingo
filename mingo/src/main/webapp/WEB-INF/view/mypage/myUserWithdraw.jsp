@@ -156,19 +156,8 @@
             </div>
         </div>
     </div>
-	<div class="container-fluid nav-wrapper">
-	    <ul class="nav nav-pills mypage-nav" style="width:1140px;">
-	        <li class="nav-item">
-	          <a class="nav-link active my-link" data-toggle="pill" href="javascript:void(0);" onclick="location.href='myMain.do?user_id=${userVO.user_id }'">회원정보</a>
-	        </li>
-	        <li class="nav-item">
-	          <a class="nav-link my-link" data-toggle="pill" href="javascript:void(0);" onclick="location.href='myCafe.do?user_id=${userVO.user_id }'">내 카페</a>
-	        </li>
-	        <li class="nav-item">
-	          <a class="nav-link my-link" data-toggle="pill" href="javascript:void(0);" onclick="location.href='myReview.do?user_id=${userVO.user_id }'">활동내역</a>
-	        </li>
-	    </ul>
-		</div>
+	<!-- mypage 내비게이션 -->
+    <%@ include file="/WEB-INF/view/mypage/myNav.jsp"%>
     <div class="board-wrapper2">
         <div class="list-group list-group-flush board-side shadow">
             <div class="board-side-name">

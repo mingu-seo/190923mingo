@@ -102,6 +102,27 @@ public class UserController {
 		model.addAttribute("url", url);
 		return "include/alert";
 	}
+	// 회원가입 처리
+		@RequestMapping("/joinProcess2.do")
+		public String joinProcess2(Model model, UserVO vo) {
+			
+			int r = userService.joinProcess(vo);
+			//가입을 시킨뒤 해당 business_num이 cafe_id에 종속되는지 확인해야함
+			
+			//또한 해당 cafe테이블에 manager_id를 등록해야함
+			String msg = "";
+			String url = "";
+			if (r > 0) {
+				msg = "가입되었습니다.";
+				url = "/loginForm.do";
+			} else {
+				msg = "회원가입 실패";
+				url = "/join_step1.do";
+			}
+			model.addAttribute("msg", msg);
+			model.addAttribute("url", url);
+			return "include/alert";
+		}
 	// 네이버 처리
 	@RequestMapping("/naverJoinProcess.do")
 	public String naverJoinProcess(Model model, UserVO vo) {
@@ -152,10 +173,27 @@ public class UserController {
 
 	// 닉네임 중복체크
 	@RequestMapping("/nicknameCheck.do")
-	public String nicknameCheck(Model model, @RequestParam("nickname") String nickname) {
-		int result = userService.nicknameCheck(nickname);
-		model.addAttribute("value", result);
-		return "include/return";
+	public String nicknameCheck(Model model, @RequestParam("nickname") String nickname, HttpSession session) {
+		if(session.getAttribute("userVO") !=null) {
+			UserVO nowUser = (UserVO)session.getAttribute("userVO");
+			if( nowUser.getNickname().equals(nickname)) {
+				model.addAttribute("value", 0);
+				return "include/return"; 
+			}else {
+				int result = userService.nicknameCheck(nickname);
+				model.addAttribute("value", result);
+				return "include/return";
+			}
+		
+		}else {
+			int result = userService.nicknameCheck(nickname);
+			model.addAttribute("value", result);
+			return "include/return";
+			
+		}
+		
+		
+		
 
 	}
 

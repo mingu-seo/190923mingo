@@ -24,7 +24,7 @@
 		var birthdayChk = RegExp(/^(19|20)[0-9]{2}(0[1-9]|1[1-2])(0[1-9]|[1-2][0-9]|3[0-1])$/);
 		var pwdChk = /^.*(?=.{6,20})(?=.*[0-9])(?=.*[a-zA-Z]).*$/; //영문,숫자 혼합하여 6~20자리 이내
 		var nicknameChk = RegExp(/^[가-힣a-zA-Z0-9]{2,10}$/); // 한글과 영어, 숫자만 사용 2~10자
-		var bnumChk = RegExp(/^[0-9]{7,7}$/); //숫자만 7자리
+		var bnumChk = RegExp(/^[0-9]{7,8}$/); //숫자 7~8자리
 		//이메일 공백 
 		if($('#email').val().trim() == ""){
 			alert('이메일을 입력해주세요.');
@@ -39,7 +39,7 @@
 			return false;
 		}
 		var con = true;
-		var data = $("#joinForm").serialize();
+		var data = $("#joinForm_host").serialize();
 			console.log(data);
 		$.ajax({
 			url : "/emailCheck.do",
@@ -119,11 +119,11 @@
 		}
 		
 		var con = true;
-		var data = $("#joinForm").serialize();
+		var data = $("#joinForm_host").serialize();
 			console.log(data);
 		$.ajax({
 			url : "/nicknameCheck.do",
-			data : {email:$("#nickname").val()},
+			data : {nickname:$("#nickname").val()},
 			type : "POST",
 			async : false,
 			success : function(data) {
@@ -156,18 +156,18 @@
 		}
 		//사업자 등록 번호 공백 
 		if($("#business_num").val().trim() == ""){
-			alert("사업자 등록 번호를 입력해 주세요.");
+			alert("카페 식별 번호를 입력해 주세요.");
 			$("#business_num").focus();
 			return false;
 		}
 		//사업자 등록 번호 유효성
 		if(!bnumChk.test($("#business_num").val())){ 
-			alert("사업자 등록 번호를 형식에 맞게 입력해주세요.") 
+			alert("카페식별 번호를 형식에 맞게 입력해주세요.") 
 			$("#business_num").val(""); 
 			$("#business_num").focus(); 
 			return false;
 		}
-		$("#joinForm").submit();
+		$("#joinForm_host").submit();
 	}
 	
 	
@@ -253,7 +253,7 @@
 	//다시 작성 리셋
 	$(function(){
 	    $( "#returnbutton").click(function () {
-	        $( "#joinForm" ).each(function () {
+	        $( "#joinForm_host" ).each(function () {
 	            this.reset();
 	        });
 	    });

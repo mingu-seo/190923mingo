@@ -11,10 +11,19 @@
 	</select>
 	
 	<insert id="joinProcess" parameterType="vo.UserVO">
-		INSERT INTO mingo.user
-		(email, password, name,nickname, birthday, gender, type)
-		values
-		(#{email}, md5(#{password}),#{name}, #{nickname}, #{birthday}, #{gender}, #{type})
+		<if test="#{type} == 1">
+			INSERT INTO mingo.user
+			(email, password, name,nickname, birthday, gender, type)
+			values
+			(#{email}, md5(#{password}),#{name}, #{nickname}, #{birthday}, #{gender}, #{type})
+		</if>
+		<!--  사장일 경우 business_num 까지 넣는다 -->
+		<if test="#{type} == 2">
+			INSERT INTO mingo.user
+			(email, password, name,nickname, birthday, gender, type, business_num)
+			values
+			(#{email}, md5(#{password}),#{name}, #{nickname}, #{birthday}, #{gender}, #{business_num})
+		</if>
 	</insert>
 	<!-- 네이버 회원가입 -->
 	<insert id="naverJoinProcess" parameterType="vo.UserVO">

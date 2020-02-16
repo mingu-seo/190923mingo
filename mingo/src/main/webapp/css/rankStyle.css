@@ -5,8 +5,14 @@ a{
     text-decoration: none;
 }
 
-
-
+/* 패기네이션 색깔 */  
+.page-link{
+	color:black;
+}
+.page-item.active .page-link{
+    border-color:gray;
+    background-color: gray;
+}
 /* 랭크 보드 */
 .r-wrapper1{
     border:1px solid #dee2e6;

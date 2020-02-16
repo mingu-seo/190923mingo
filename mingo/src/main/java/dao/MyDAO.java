@@ -15,6 +15,7 @@ import vo.CafeVO;
 import vo.CollectCafeVO;
 import vo.BoardLikeVO;
 import vo.ReviewVO;
+import vo.UserCommand;
 import vo.UserVO;
 
 @Repository
@@ -96,6 +97,12 @@ public class MyDAO {
 	}
 	public UserVO findUser(Map idPwd) {
 		return sqlSession.selectOne("my.findUser", idPwd);
+	}
+	public int modifyMember(UserVO vo) {
+		return sqlSession.update("my.modifyMember", vo);
+	}
+	public List<BoardVO> getMyBoardList(Map tmp) {
+		return sqlSession.selectList("my.getMyBoardList",tmp);
 	}
 	
 
