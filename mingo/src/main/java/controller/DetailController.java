@@ -192,7 +192,13 @@ public class DetailController {
 	// 카페 수정 양식으로 이동      
 	@RequestMapping("/cafeModifyForm.do")
 	public String cafeDetailModifyForm(Model model, HttpServletRequest request) {
-		int cafe_id = Integer.parseInt(request.getParameter("cafe_id"));
+		HttpSession session = request.getSession();
+		UserVO vo1 = (UserVO) session.getAttribute("userVO");
+		int user_id = vo1.getUser_id();
+		int cafe_id = detailService.checkManager(user_id); 
+		model.addAttribute("cafe_id", cafe_id);
+		System.out.println("수정할 내 카페 : " + cafe_id);
+		//int cafe_id = Integer.parseInt(request.getParameter("cafe_id"));
 		
 		// 기본정보 조회
 		CafeVO cafe = detailService.viewCafe(cafe_id);   
@@ -218,14 +224,13 @@ public class DetailController {
 		List<CafeImageVO> imgList = detailService.viewCafeImages(cafe_id);
 		model.addAttribute("imgList", imgList);
 		
-		model.addAttribute("cafe_id", cafe_id);
 		return "mypage/cafeModifyForm";
 	}
-	
+	   
 	//카페 정보 수정
 	@RequestMapping("/modifyCafe.do")
 	public String modifyCafe(Model model, CafeVO cafeVO, CafeFacilitiesVO cafeFacilitiesVO, CafeServiceVO cafeServiceVO, CafeImageVO cafeImageVO, MultipartHttpServletRequest request, HttpServletResponse response) {
-
+		
 		//로고 사진 및 카페기본정보 수정
 		List<MultipartFile> logoFile = request.getFiles("logo_file");
 		int result1 = detailService.modifyCafe(cafeVO, logoFile, request);
@@ -319,7 +324,10 @@ public class DetailController {
 	//카페 정보 삭제
 	@RequestMapping("/deleteCafeInfo.do")
 	public String deleteCafeInfo(Model model, HttpServletRequest request) {
-		int cafe_id = Integer.parseInt(request.getParameter("cafe_id"));
+		HttpSession session = request.getSession();
+		UserVO vo1 = (UserVO) session.getAttribute("userVO");
+		int user_id = vo1.getUser_id();
+		int cafe_id = detailService.checkManager(user_id); 
 		int r = detailService.deleteCafeInfo(cafe_id);
 		model.addAttribute("cafe_id", cafe_id);
 		return "redirect:detailView.do";

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
+<%@ taglib prefix="fmt"  uri="http://java.sun.com/jsp/jstl/fmt"%> 
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,74 +22,12 @@
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/choicss1.css">
 	
 	<style>
-		.review_navi_nums{
-			width:100%;
-			height:100px;
-			padding-top:40px;
-		}
-		  
-		.review_navi_nums > div{
-			line-height:60px;
-			height:60px;
-			width:100%;
-			
-			/* margin:0 auto;
-			padding:0 auto; */  
-			/* line-height: 200px; */
-			text-align:center;  
-		}      
-		
-		.review_navi_nums a{
-			margin:0 20px;
-		
-		}
-		
-		
-		.review_navi_nums{
-			width:100%;
-			height:150px;
-			 
-		}
-		  
-		.review_navi_nums > div{
-			line-height:60px;
-			height:60px;
-			width:540px;
-			margin:0 auto;
-			text-align:center;
-			
-		}      
-		
-		
-		.num{
-			
-			margin:0 10px;
-			width:40px;
-			height:40px;
-			float:left;
-		}
-		
-		.present{
-			width:40px;
-			height:40px;
-			border-radius: 40px;
-			float:left;
-			background-color: #86B404;
-			text-align: center;
-			line-height: 40px;
-			margin:10px;	
-		}
-		.review_navi_nums a{
-			color:#2E2E2E;
-			font-size:1.3em;
-			line-height: 40px;
-		}
-		.present a{     
-			color:#ffffff;
-			font-size:1.3em;
-			line-height: 40px;
-		}
-	
+		.review_navi_nums{width:100%;height:200px;padding-top:40px;text-align:center;}
+		.review_navi_nums > div{line-height:60px;height:60px;width:auto;display: inline-block;}      
+		.num-area{width:auto;height:40px;float:left;}
+		.num{margin:0 10px;width:40px;height:40px;float:left;}
+		.present{width:40px;height:40px;border-radius: 40px;float:left;background-color: #86B404;text-align: center;line-height: 40px;margin:10px;}
+		.num-btn{width:100%;height:auto;}
 	</style>
 	
 	<script>
@@ -165,21 +104,24 @@
             
     <div class="list-group list-group-flush board-main">
         <a href="#" class="list-group-item">
-            <div style="float:left;padding:0 14px;">번호</div>
-            <div style="float:left;padding:0 157px;">제목</div>
-            <div style="float:left;padding:0 30px">게시판</div>
-            <div style="float:left;padding:0 30px">등록일</div>
-            <div style="float:left;padding:0 14px">조회</div>
-            <div style="float:left;padding:0 14px">추천</div>
+            <div style="box-sizing: border-box;float:left;width:100px;text-align:center;">번호</div>
+            <div style="box-sizing: border-box;float:left;width:350px;text-align:center;">제목</div>
+            <div style="box-sizing: border-box;float:left;width:110px;text-align:center;">게시판</div>
+            <div style="box-sizing: border-box;float:left;width:150px;text-align:center;">등록일</div>
+            <!-- <div style="float:left;padding:0 14px">조회</div>
+            <div style="float:left;padding:0 14px">추천</div> -->
         </a>
         <c:forEach items="${boardList}" var="post" varStatus="status">
          <a href="#" class="list-group-item">
-             <div id="b-num" style="float:left;">${post.board_id }</div>
-             <div id="b-title" style="float:left;">${post.title }</div>
-             <div id="b-username" style="float:left;">${userVO.type }</div>
-             <div id="b-regdate" style="float:left;">${post.regdate }</div>
-             <div id="b-readcount" style="float:left;">${post.readcount }</div>
-             <div id="b-goodcount" style="float:left;">${post.like_num }</div>
+             <div id="b-num" style="box-sizing: border-box;float:left;text-align:center;width:100px;">${post.board_id }</div>
+             <div id="b-title" style="box-sizing: border-box;float:left;width:350px;">${post.title }</div>
+             <div id="b-username" style="box-sizing: border-box;float:left;text-align:center;width:110px;">${userVO.type }</div>
+             <div id="b-regdate" style="box-sizing: border-box;float:left;text-align:center;width:150px;">
+             	<fmt:parseDate var="sDate" value="${post.regdate}" pattern="yyyy-MM-dd HH:mm:ss" />
+             	<fmt:formatDate value="${sDate}" pattern="yyyy-MM-dd" />
+             </div>
+             <%-- <div id="b-readcount" style="float:left;padding:0 14px">${post.readcount }</div>
+             <div id="b-goodcount" style="float:left;padding:0 14px">${post.like_num }</div> --%>
          </a>
         </c:forEach>
     </div>

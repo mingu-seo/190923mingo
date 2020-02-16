@@ -125,6 +125,12 @@ public class DetailServiceImpl implements DetailService {
 		ReviewVO reviewVO = detailDao.viewMyReview2(vo);
 		return reviewVO;
 	}	
+	public int checkManager(int user_id) {
+		int cafe_id = detailDao.checkManager(user_id);
+		return cafe_id;
+	}	
+	
+	
 	
 	
 	//등록
@@ -192,6 +198,11 @@ public class DetailServiceImpl implements DetailService {
 		fu.fileUpload(file, path+"/review/");
 		vo.setImage(fu.fileName);
 		
+		if(cafeRate==null) {
+			cafeRate = new CafeRateVO();
+			cafeRate.setCafe_id(vo.getCafe_id());
+		}
+		
 		int rate_num = cafeRate.getRate_num()+1;
 		cafeRate.setRate_num(rate_num);
 		
@@ -209,10 +220,18 @@ public class DetailServiceImpl implements DetailService {
 		cafeRate.setMood_avg((int)((cafeRate.getMood_sum()/(double)rate_num)*10)/10.0);
 		cafeRate.setClean_avg((int)((cafeRate.getClean_sum()/(double)rate_num)*10)/10.0);
 		
+		double total_score_avg = ((int)(((cafeRate.getClean_avg()+cafeRate.getMood_avg()+cafeRate.getPrice_avg()+cafeRate.getService_avg()+cafeRate.getTaste_avg()+cafeRate.getWifi_avg())/6.0)*10))/10.0;
+		cafeRate.setCafe_total_avg(total_score_avg);
+		
 		double score_avg = ((int)(((vo.getMood_score()+vo.getPrice_score()+vo.getTaste_score()+vo.getWifi_score()+vo.getService_score()+vo.getClean_score())/6.0)*10))/10.0;
 		vo.setScore_avg(score_avg);
 		
 		int r = detailDao.registReview(vo, cafeRate);
+		
+		
+		
+		
+		
 		return r;
 	}
 	
@@ -250,6 +269,9 @@ public class DetailServiceImpl implements DetailService {
 		cafeRate.setMood_avg((int)((cafeRate.getMood_sum()/(double)rate_num)*10)/10.0);
 		cafeRate.setClean_avg((int)((cafeRate.getClean_sum()/(double)rate_num)*10)/10.0);
 		
+		double total_score_avg = ((int)(((cafeRate.getClean_avg()+cafeRate.getMood_avg()+cafeRate.getPrice_avg()+cafeRate.getService_avg()+cafeRate.getTaste_avg()+cafeRate.getWifi_avg())/6.0)*10))/10.0;
+		cafeRate.setCafe_total_avg(total_score_avg);
+		
 		int r = detailDao.modifyReview(vo_new, cafeRate);
 		return r;
 	}
@@ -271,6 +293,9 @@ public class DetailServiceImpl implements DetailService {
 		cafeRate.setService_avg((int)((cafeRate.getService_sum()/(double)rate_num)*10)/10.0);
 		cafeRate.setMood_avg((int)((cafeRate.getMood_sum()/(double)rate_num)*10)/10.0);
 		cafeRate.setClean_avg((int)((cafeRate.getClean_sum()/(double)rate_num)*10)/10.0);
+		
+		double total_score_avg = ((int)(((cafeRate.getClean_avg()+cafeRate.getMood_avg()+cafeRate.getPrice_avg()+cafeRate.getService_avg()+cafeRate.getTaste_avg()+cafeRate.getWifi_avg())/6.0)*10))/10.0;
+		cafeRate.setCafe_total_avg(total_score_avg);
 		
 		int r = detailDao.deleteReview(cafeRate, reviewVO);
 		return r;

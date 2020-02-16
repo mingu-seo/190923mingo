@@ -37,9 +37,9 @@
 </head>
 
 <body>
-    <form action="cafeRegistForm.do" style="height:200px;">
+    <form action="cafeModifyForm.do" style="height:200px;">
     	<div>등록된 카페가 없습니다.</div>
-    	<input type="submit" value="카페 등록" id="regist-cafe-btn" style="margin-top:20px;">
+    	<input type="submit" value="카페 정보 수정" id="regist-cafe-btn" style="margin-top:20px;">
     </form>
 </body>
 

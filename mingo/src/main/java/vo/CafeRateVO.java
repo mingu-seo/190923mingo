@@ -17,6 +17,27 @@ public class CafeRateVO {
 	private double price_avg;
 	private double cafe_total_avg;
 	
+	public CafeRateVO(){
+		this.cafe_id = 0;
+		this.cafe_total_avg = 0;
+		this.clean_avg = 0;
+		this.clean_avg = 0;
+		this.clean_sum = 0;
+		this.mood_avg = 0;
+		this.mood_sum = 0;
+		this.price_avg = 0;
+		this.price_sum = 0;
+		this.service_avg = 0;
+		this.service_sum = 0;
+		this.taste_avg = 0;
+		this.taste_sum = 0;
+		this.wifi_avg = 0;
+		this.wifi_sum = 0;
+		this.rate_num = 0;
+		
+	}
+	
+	
 	public int getCafe_id() {
 		return cafe_id;
 	}

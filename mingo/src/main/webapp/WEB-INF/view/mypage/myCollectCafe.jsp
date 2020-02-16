@@ -31,6 +31,7 @@
 		    background-color: gray;
 		}  
 	</style>	
+
 </head>
 
 <body>

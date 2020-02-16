@@ -299,8 +299,8 @@
                	카페 정보 등록
             </div><br>
             <div class="regist-form">
-				<form action="modifyCafe.do?cafe_id=<%=request.getParameter("cafe_id") %>" method="post" enctype="multipart/form-data">
-					<input type="hidden" name="cafe_id" value="<%=request.getParameter("cafe_id") %>">
+				<form action="modifyCafe.do" method="post" enctype="multipart/form-data">
+					<input type="hidden" name="cafe_id" value="${cafe_id}">
 					<!-- <div class="key-info">
 						<div class="topic">사업자 번호</div>
 						<div class="topic-contents">
@@ -309,7 +309,7 @@
 						 
 						</div>
 					</div> -->
-					<div class="logo-info">
+					<%-- <div class="logo-info">
 						<div class="topic">로고</div>
 						<div class="topic-contents">
 							<div class="my-image">  
@@ -321,7 +321,7 @@
 							<!-- <div class="logo-button" onclick="onclick=document.all.file.click()">카페로고</div> -->
 						
 						</div>
-					</div>
+					</div> --%>
 					<div class="time-info">
 						<div class="topic">소개</div>
 						<div class="topic-contents">
@@ -670,7 +670,7 @@
 					
 					
 					<input type="submit" value="수정" id="submit">
-	            	<div id="cafe-delete-btn" OnClick="location.href ='deleteCafeInfo.do?cafe_id=${cafe.cafe_id}'">카페 정보를 모두 삭제하려면 여기를 눌러주세요.</div>  
+	            	<div id="cafe-delete-btn" OnClick="location.href ='deleteCafeInfo.do'">카페 정보를 모두 삭제하려면 여기를 눌러주세요.</div>  
 				</form>
             </div>          
         </div>

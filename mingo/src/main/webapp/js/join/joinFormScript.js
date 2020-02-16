@@ -14,15 +14,19 @@
 			$("#gender").val($(this).index('.gbtn')+1);
 		});
 	});
-
+    
 	
 	//폼 전체 유효성, 공백 체크
 	function joinFormFn(){
 		
 		var emailChk = RegExp(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/);
 		var nameChk = RegExp(/^[가-힣]{2,6}$/);  //2~6글자의 한글만
+/*<<<<<<< HEAD
+		var birthdayChk = RegExp(/^(19|20)[0-9]{2}(0[1-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$/);
+=======*/
 		var birthdayChk = RegExp(/^(19|20)[0-9]{2}(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$/);
-		var pwdChk = /^.*(?=.{6,20})(?=.*[0-9])(?=.*[a-zA-Z]).*$/; //영문,숫자 혼합하여 6~20자리 이내
+/*>>>>>>> branch 'master' of https://github.com/mingu-seo/190923mingo.git
+*/		var pwdChk = /^.*(?=.{6,20})(?=.*[0-9])(?=.*[a-zA-Z]).*$/; //영문,숫자 혼합하여 6~20자리 이내
 		var nicknameChk = RegExp(/^[가-힣a-zA-Z0-9]{2,10}$/); // 한글과 영어, 숫자만 사용 2~10자
 
 		//이메일 공백 

@@ -63,7 +63,7 @@
 			height:100%;
 		}
 		.collect_cafe_title{
-			font-size: 2.0em;
+			font-size: 1.8em;
 			font-weight: bold;
 			color:#2E2E2E;
 		}
@@ -71,7 +71,7 @@
 			width:40px;
 		}
 		.collect_cafe_avgRate{
-			font-size: 2.0em;
+			font-size: 1.5em;
 			font-weight: bold;
 			color:#2E2E2E;
 		

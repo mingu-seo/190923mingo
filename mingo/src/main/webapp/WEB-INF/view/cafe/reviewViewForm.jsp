@@ -2,6 +2,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt"  uri="http://java.sun.com/jsp/jstl/fmt"%> 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,6 +35,16 @@
     <link rel="stylesheet" href="css/swiper.css"/>
     <script src="js/swiper.min.js"></script>
 	-->
+	
+	<style>
+		.review_navi_nums{width:80%;height:200px;padding-top:40px;text-align:center;}
+		.review_navi_nums > div{line-height:60px;height:60px;width:auto;display: inline-block;}      
+		.num-area{width:auto;height:40px;float:left;}
+		.num{margin:0 10px;width:40px;height:40px;float:left;}
+		.present{width:40px;height:40px;border-radius: 40px;float:left;background-color: #86B404;text-align: center;line-height: 40px;margin:10px;}
+		.num-btn{width:100%;height:auto;}
+	</style>
+	
 	<script>
 		$(function(){	
 			
@@ -116,7 +128,8 @@
 							<img src="upload/user/${user.profile_image}"/>
 						</div>
 						<h2>${user.nickname }</h2>
-						<h2>${review.regdate }</h2>    
+						<fmt:parseDate var="sDate" value="${review.regdate }" pattern="yyyy-MM-dd HH:mm:ss" />
+						<h2><fmt:formatDate value="${sDate}" pattern="yyyy-MM-dd" /></h2>
 					</div>
 					<div class="rating">
 						<div class="rate_each2" id="rate_each2">

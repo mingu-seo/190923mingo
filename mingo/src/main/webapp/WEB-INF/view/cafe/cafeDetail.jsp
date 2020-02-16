@@ -3,11 +3,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt"  uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>detail information page about each cafe</title>
+<title>카페밍고</title>
 
 <!--부트 스트랩 관련 파일-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
@@ -51,7 +52,7 @@
 		/* header 부분 스타일 기본값 */
 		.header{height:auto;}
 		.memubar_space{
-			height:600px;
+			height:800px;
 			width:100%;
 			position:relative;  
 			overflow: hidden;
@@ -61,19 +62,46 @@
 			*/ 
 		}
 		
-		.memubar_space img{
+		#head_image{
 			/* height:600px; */
-			width:100%;
+			height:800px;
+			position:relative;
+			right:1300px;      
 			
-			/* z-index:-1; */
+			z-index:10;
 			/* left:0px;
 			top:0px;
 			position: absolute; */
 			
 		}
+		#head_text{
+			position:relative;
+			bottom:700px; 
+			left:200px; 
+			z-index:20;
+			width:700px;
+		}
+		
+		#head_location{
+			position:relative;  
+			z-index:20;
+			bottom:550px;
+			right:190px;
+			width:60px;    
+		}
+		#cafe-search-area{
+			position:relative;  
+			z-index:30;
+			width:700px;
+			height:200px;
+			bottom:700px;
+			left:200px;     
+		}
+		
+		#sido_code{}
 		
 		.container{
-			width:900px;
+			width:1000px;
 		}
 		
 		.header{
@@ -268,11 +296,12 @@
 		}
 		
 		.info_title{
-			height:40px;
+			height:60px;
 			border-bottom:1px solid #D8D8D8;
 			width:80%;  
 			font-size: 1.5em;
 			color:#585858;
+			padding:10px 0;
 			
 		}
 		
@@ -602,7 +631,7 @@
 			padding-bottom:20px;
 		}  
 		
-		.review_navi_nums{
+		/* .review_navi_nums{
 			width:100%;
 			height:150px;
 			 
@@ -645,10 +674,10 @@
 			color:#ffffff;
 			font-size:1.3em;
 			line-height: 40px;
-		}
+		} */
 		
 		::selection {
-			background-color: #ECF8E0;
+			background-color: #F7D358;
 			
 		}
 		
@@ -1225,7 +1254,72 @@
 	
 	<!-- 빈공간. 코딩 편의를 위해 레이어 앞면에 고정된 메뉴바가 차지하는 만큼 빈공간 부여 -->
 	<div class="memubar_space">
-		<img src="img/cafe_4.png">
+		<div class="container">
+			<img id="head_image" src="img/header_img.jpg">  
+			<img id="head_text" src="img/head_text2.png">
+			<img id="head_location" src="img/location.png">
+			
+			<form id="cafe-search-area" class="form pl-4 pr-4" action="searchCafe.do" method="post" onsubmit="return pushLast();">
+				<div class="form-row">
+					<div class="col-sm-10">
+						<div class="form-row">
+							<div class="col-4 pb-1 pt-1" style="height:65px;">
+								<select class="form-control rounded-edge" name="sido_code"
+									id="sido_code" style="font-weight:bold; border-radius:45px; border:none; background:#F8ECE0;">
+									<option value="-1">시/도</option>
+									<option value="11">서울</option>
+									<option value="26">부산</option>
+									<option value="27">대구</option>
+									<option value="28">인천</option>
+									<option value="29">광주</option>
+									<option value="30">대전</option>
+									<option value="31">울산</option>
+									<option value="36">세종</option>
+									<option value="41">경기</option>
+									<option value="42">강원</option>
+									<option value="43">충북</option>
+									<option value="44">충남</option>
+									<option value="45">전북</option>
+									<option value="46">전남</option>
+									<option value="47">경북</option>
+									<option value="48">경남</option>
+									<option value="50">제주</option>
+								</select>
+								<div style="z-index:-10; position:relative;left:5px;bottom:40px; border:3px solid #2E2E2E;width:170px;height:47px;border-radius: 45px;"></div>
+							</div>
+							<div class="col-4 pb-1 pt-1" id=""style="height:65px;">
+								<select class="form-control rounded-edge" name="sigungu_code"
+									id="sigungu_code" style="font-weight:bold;border-radius: 45px;border:none; background:#F8ECE0;">
+									<option value="-1" class="start1">시/군/구</option>  
+								</select>
+								<div style="z-index:-10; position:relative;left:5px;bottom:40px; border:3px solid #2E2E2E;width:170px;height:47px;border-radius: 45px;"></div>
+							</div>
+							<div class="col-4 pb-1 pt-1"style="height:65px;">
+								<select class="form-control rounded-edge" name="dong_code"
+									id="dong_code" style="font-weight:bold;border-radius: 45px;border:none; background:#F8ECE0; ">
+									<option value="-1" class="start2">행정동</option>
+								</select>
+								<div style="z-index:-10; position:relative;left:5px;bottom:40px; border:3px solid #2E2E2E;width:170px;height:47px;border-radius: 45px;"></div>
+							</div>
+
+
+						</div>
+						<div class="form-row">
+							<div class="col-12 pb-1 pt-1">
+								<input type="text" name="name" style="font-weight:bold;border-radius: 30px;" placeholder="ex) 스타벅스, 이디야" class="form-control rounded-edge">  
+							</div>
+							<div style="z-index:-11; position:relative;left:5px;bottom:42px; border:3px solid #2E2E2E;width:537px;height:47px;border-radius: 45px;"></div>  
+						</div>
+					</div>
+					<div class="col-sm-2 pb-1 pt-1">  
+						<input type="submit" value="검색" class="form-control rounded-edge"
+							style="font-weight:bold;z-index:1; height: 110px;border:none; border-radius: 45px;background:#688A08;color:#FFFFFF; ">
+						<div style="z-index:-12; position:relative;left:5px;bottom:105px; border:3px solid #2E2E2E;width:98px;height:110px;border-radius: 45px;"></div>
+					</div>
+				</div>
+			</form>
+			
+		</div>
 	</div>
 	
 	<!-- 카페 로고 및 기본 정보 표시란 -->
@@ -1290,7 +1384,7 @@
 				<div class="info_button">소개</div>
 				<div class="regist_button">내 평가</div>
 				<c:if test="${userVO.type == 2}">   
-					<div class="modify_button" OnClick="location.href ='cafeModifyForm.do?cafe_id=${cafe.cafe_id}'" >정보수정</div>				
+					<div class="modify_button" OnClick="location.href ='cafeModifyForm.do'" >정보수정</div>				
 				</c:if>
 			</div>			
 			
@@ -1590,6 +1684,7 @@
 							                    <div class="graph_text" id="taste-text">${cafeRate.taste_avg }점</div>
 							                </div>
 							            </div>
+							            <div class="back-graph" style="left:84px;top:3px; width:332px;height:40px;box-sizing:content-box;border-radius:40px;border:2px solid #A4A4A4;position:relative;z-index:-10; "></div>
 							        </div>
 								</div>
 								<div class="rate_name" id="taste_name_tatal"></div>
@@ -1606,6 +1701,7 @@
 							                    <div class="graph_text" id="mood-text">${cafeRate.mood_avg }점</div>
 							                </div>
 							            </div>
+							            <div class="back-graph" style="left:84px;top:3px; width:332px;height:40px;box-sizing:content-box;border-radius:40px;border:2px solid #A4A4A4;position:relative;z-index:-10; "></div>
 							        </div>
 								</div>
 								<div class="rate_name" id="price_name_tatal"></div>
@@ -1622,6 +1718,7 @@
 							                    <div class="graph_text" id="service-text">${cafeRate.service_avg }점</div>
 							                </div>
 							            </div>
+							            <div class="back-graph" style="left:84px;top:3px; width:332px;height:40px;box-sizing:content-box;border-radius:40px;border:2px solid #A4A4A4;position:relative;z-index:-10; "></div>
 							        </div>
 								</div>
 								<div class="rate_name" id="service_name_tatal"></div>
@@ -1638,6 +1735,7 @@
 							                    <div class="graph_text" id="wifi-text">${cafeRate.wifi_avg }점</div>
 							                </div>
 							            </div>
+							        	<div class="back-graph" style="left:84px;top:3px; width:332px;height:40px;box-sizing:content-box;border-radius:40px;border:2px solid #A4A4A4;position:relative;z-index:-10; "></div>
 							        </div>
 								</div>
 								<div class="rate_name" id="facimood_name_tatal"></div>
@@ -1654,6 +1752,7 @@
 							                    <div class="graph_text" id="clean-text">${cafeRate.clean_avg }점</div>
 							                </div>
 							            </div>
+							            <div class="back-graph" style="left:84px;top:3px; width:332px;height:40px;box-sizing:content-box;border-radius:40px;border:2px solid #A4A4A4;position:relative;z-index:-10; "></div>
 							        </div>
 								</div>
 								<div class="rate_name" id="wifiplug_name_tatal"></div>
@@ -1670,6 +1769,7 @@
 							                    <div class="graph_text" id="price-text">${cafeRate.price_avg }점</div>
 							                </div>
 							            </div>
+							            <div class="back-graph" style="left:84px;top:3px; width:332px;height:40px;box-sizing:content-box;border-radius:40px;border:2px solid #A4A4A4;position:relative;z-index:-10; "></div>
 							        </div>  
 								</div>  
 								<div class="rate_name" id="clean_name_tatal"></div>

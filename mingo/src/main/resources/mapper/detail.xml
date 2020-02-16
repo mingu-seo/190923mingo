@@ -101,13 +101,21 @@
 			</if>
 		</where>
 	</select>   
+	<select id="checkManager" resultType="Integer" parameterType="Integer">
+		SELECT cafe_id FROM mingo.cafe
+		<where>
+			<if test="user_id != null">
+				manager_id = #{user_id}
+			</if>
+		</where>
+	</select>     
 	
 	
 	<!-- 등록 -->
 	
 	<update id="insertCafe" parameterType="vo.CafeVO">  
 		update mingo.cafe set
-		logo =#{logo}, time_day=#{time_day}, time_start=#{time_start} , time_end=#{time_end}
+		time_day=#{time_day}, time_start=#{time_start} , time_end=#{time_end}
 		<where>
 			<if test="cafe_id != null">
 				cafe_id=#{cafe_id}			
@@ -160,25 +168,25 @@
 	</update>
 	<update id="updateCafe" parameterType="vo.CafeVO">  
 		update mingo.cafe set
-		logo=#{logo}, time_day=#{time_day}, time_start=#{time_start}, time_end=#{time_end} 
+		time_day=#{time_day}, time_start=#{time_start}, time_end=#{time_end} 
 		<where>
 			<if test="cafe_id != null">
 				cafe_id=#{cafe_id}			
 			</if>
 		</where>
-	</update>
+	</update>   
 	<update id="updateFacility" parameterType="vo.CafeFacilitiesVO">  
 		update mingo.cafe_facilities set
 		wifi=#{wifi}, tables=#{tables}, interior=#{interior}, 
 		music=#{music}, plug=#{plug}, restroom=#{restroom}, 
 		studyroom=#{studyroom}, terrace=#{terrace}, 
 		smoking=#{smoking}, parking=#{parking}, 
-		wifi_text=#{wifi_text}, table_text=#{table_text}, 
+		wifi_text=#{wifi_text}, tables_text=#{tables_text}, 
 		interior_text=#{interior_text}, music_text=#{music_text}, 
 		plug_text=#{plug_text}, restroom_text=#{restroom_text}, 
 		studyroom_text=#{studyroom_text}, terrace_text=#{terrace_text}, 
 		smoking_text=#{smoking_text}, parking_text=#{parking_text} 
-		<where>  
+		<where>     
 			<if test="cafe_id != null">
 				cafe_id=#{cafe_id}			
 			</if>
@@ -217,7 +225,7 @@
 	<!-- 삭제(정보 초기화)  -->  
 	<update id="deleteCafe" parameterType="vo.CafeVO">  
 		update mingo.cafe set
-		logo=NULL, time_day=NULL, time_start=NULL, time_end=NULL 
+		time_day=NULL, time_start=NULL, time_end=NULL 
 		<where>
 			<if test="cafe_id != null">
 				cafe_id=#{cafe_id}			
@@ -276,7 +284,7 @@
 	</update>   
 	<update id="updateRate" parameterType="vo.CafeRateVO">
 		update mingo.cafe_rate set
-		rate_num=#{rate_num},   
+		rate_num=#{rate_num}, cafe_total_avg=#{cafe_total_avg},  
 		taste_sum=#{taste_sum}, price_sum=#{price_sum}, service_sum=#{service_sum}, wifi_sum=#{wifi_sum}, mood_sum=#{mood_sum}, clean_sum=#{clean_sum}, 
 		taste_avg=#{taste_avg}, price_avg=#{price_avg}, service_avg=#{service_avg}, wifi_avg=#{wifi_avg}, mood_avg=#{mood_avg}, clean_avg=#{clean_avg}
 		<where>
@@ -284,7 +292,27 @@
 				cafe_id = #{cafe_id}
 			</if>
 		</where>
-	</update>
+	</update>   
+	<update id="updateRateToCafe" parameterType="vo.CafeRateVO">
+		update mingo.cafe set
+		review_num=#{rate_num}, rate_avg = #{cafe_total_avg}  
+		<where>
+			<if test="cafe_id != null" >
+				cafe_id = #{cafe_id}
+			</if>
+		</where>
+	</update>      
+	<insert id="insertRate" parameterType="vo.CafeRateVO">   
+		insert into mingo.cafe_rate
+		(rate_num, cafe_id, cafe_total_avg, 
+		taste_sum, price_sum, service_sum, wifi_sum, mood_sum, clean_sum, 
+		taste_avg, price_avg, service_avg, wifi_avg, mood_avg, clean_avg)
+		values
+		(#{rate_num}, #{cafe_id}, #{cafe_total_avg},
+		#{taste_sum}, #{price_sum}, #{service_sum}, #{wifi_sum}, #{mood_sum}, #{clean_sum}, 
+		#{taste_avg}, #{price_avg}, #{service_avg}, #{wifi_avg}, #{mood_avg}, #{clean_avg})
+		
+	</insert>   
 	<delete id="deleteReview" parameterType="vo.ReviewVO">
 		DELETE FROM mingo.review WHERE cafe_id=#{cafe_id} and user_id=#{user_id}
 	</delete>  
