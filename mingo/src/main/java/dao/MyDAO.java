@@ -1,5 +1,6 @@
 package dao;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -103,6 +104,9 @@ public class MyDAO {
 	}
 	public List<BoardVO> getMyBoardList(Map tmp) {
 		return sqlSession.selectList("my.getMyBoardList",tmp);
+	}
+	public List<Map> getMyCafeList(Map tmp) {
+		return sqlSession.selectList("my.getMyCafeList", tmp);
 	}
 	
 

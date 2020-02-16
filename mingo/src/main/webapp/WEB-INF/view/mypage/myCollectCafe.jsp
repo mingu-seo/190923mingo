@@ -97,14 +97,14 @@
 			<!--  리스트가 비어있지 않을 경우 -->
 			<c:if test="${ not empty cafeList }">
 				<h5> 검색결과 ${ pageInfo.listCount }&nbsp;건</h5>
-				<table class="table table-bordered table-hover table-strip" style="width:1140px;">
+				<table class="table table-bordered table-hover table-strip" style="width:100%;">
 					<thead  class="thead-light">
 						<tr>
 							<th style="width:105px;text-align:center;">로고</th>
 							<th style="width:150px;text-align:center;">이름</th>
 							<th style="width:200px;text-align:center;">주소</th>
+							<th>평가</th>
 							<th style="width:100px;text-align:center;">평점</th>
-							<th>비고</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -115,6 +115,55 @@
 									<div><a href="detailView.do?cafe_id=${item.cafe_id }" style="color:black;">${item.name } ${item.branch }</a></div>
 								</td>
 								<td>${ item.cafe_address}</td>
+								<td>
+									<div class="d-flex">
+										<div class="flex-fill m-1">
+											<span>맛</span>
+											<div class="progress" data-toggle="tooltip" title="${item.taste_avg}">
+											  <div class="progress-bar progress-bar-striped progress-bar-animated" style="width:${ item.taste_avg * 20}%"></div>
+											</div>
+										</div>
+										<div class="flex-fill m-1">
+											<span>가격</span>
+											<div class="progress" data-toggle="tooltip" title="${item.price_avg}">
+											  <div class="progress-bar progress-bar-striped progress-bar-animated" style="width:${item.price_avg * 20}%"></div>
+											</div>
+										</div>
+										
+									</div>
+									<div class="d-flex">
+										<div class="flex-fill m-1">
+											<span>서비스</span>
+											<div class="progress" data-toggle="tooltip" title="${item.service_avg}">
+											  <div class="progress-bar progress-bar-striped progress-bar-animated" style="width:${item.service_avg * 20}%"></div>
+											</div>
+										</div>
+										<div class="flex-fill m-1">
+											<span>분위기</span>
+											<div class="progress" data-toggle="tooltip" title="${item.mood_avg}">
+											  <div class="progress-bar progress-bar-striped progress-bar-animated" style="width:${item.mood_avg* 20}%"></div>
+											</div>
+										</div>
+										
+									</div>
+									<div class="d-flex">
+										<div class="flex-fill m-1">
+											<span>와이파이</span>
+											<div class="progress" data-toggle="tooltip" title="${item.wifi_avg}">
+											  <div class="progress-bar progress-bar-striped progress-bar-animated" style="width:${item.wifi_avg* 20}%"></div>
+											</div>
+										</div>
+										<div class="flex-fill m-1">
+											<span>청결도</span>
+											<div class="progress" data-toggle="tooltip" title="${item.clean_avg}">
+											  <div class="progress-bar progress-bar-striped progress-bar-animated" style="width:${item.clean_avg* 20}%"></div>
+											</div>
+										</div>
+										
+									</div>
+									
+									
+								</td>
 								<td>
 									<div>${(item.rate_avg eq null ? 0.0:item.rate_avg) }</div>  
 									<div class="progress">

@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@page import="java.util.Random"%>
+<% 
+long seed = System.currentTimeMillis();
+Random rand = new Random(seed);
+%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -80,7 +85,7 @@
             			<a href="detailView.do?cafe_id=${cafe.cafe_id }"><img src='<%=request.getContextPath() %>/upload/cafe/${cafe.cafe_img}'></a>
             		</c:if>
                 <c:if test="${cafe.cafe_img == null}">
-            			<a href="detailView.do?cafe_id=${cafe.cafe_id }"><img src='https://placehold.it/200x200'></a>
+            			<a href="detailView.do?cafe_id=${cafe.cafe_id }"><img src='<%=request.getContextPath() %>/img/default/cafe_d<%=rand.nextInt(3) %>.jpg'></a> 
             		</c:if>
             </div>
             <div class="cafe cafe-name ml-1 mt-2 mb-2" style="font-size:0.9em;"><a href="detailView.do?cafe_id=${cafe.cafe_id }">${cafe.name } ${cafe.branch }</a></div>

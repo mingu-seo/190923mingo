@@ -211,6 +211,8 @@ public class MyController {
 				FileUtil fu = new FileUtil();
 				fu.fileUpload(file, path+"/user/");
 				vo.setProfile_image(fu.fileName);
+			}else {
+				vo.setProfile_image(uservo.getProfile_image());
 			}
 			vo.setUser_id(uservo.getUser_id());
 			
@@ -350,7 +352,57 @@ public class MyController {
 	}
 	
 	@RequestMapping("/myCollect.do")
-	public String myCollect(Model model, HttpServletRequest request) {
+	public String myCollect(Model model, @RequestParam(required = false, value="page") Integer page, HttpSession session) {
+		
+		/* 유저 아이디 지정 없을경우 -1 */
+		UserVO user = null;
+		int user_id = -1;
+		if( session.getAttribute("userVO") !=null) {
+			user = (UserVO)session.getAttribute("userVO");
+			user_id = user.getUser_id();
+		}
+
+		if(page == null) {
+			page =1;
+		}
+
+		/* 객체 생성 */
+		List<Map> cafeList = new ArrayList<Map>();
+
+		/* 리밋 설정 */
+		int limit = 10;
+
+		/* startrow 설정 */
+		int startrow = (page - 1) * limit;
+
+		/* 총 리스트 수를 받아옴 */
+		int listCount = myDao.countMyCollect(user_id);
+
+		/* 회원 목록 가져옴 */
+		HashMap tmp = new HashMap();
+		tmp.put("startrow", startrow);
+		tmp.put("limit", limit);
+		tmp.put("user_id", user_id);
+		cafeList = myDao.getMyCafeList(tmp);
+
+		/* 페이지 정보 계산 */
+		int maxPage = listCount / limit;
+		if (listCount % limit > 0)
+			maxPage++;
+		int startPage = (page - 1) / 10 * 10 + 1;
+		int endPage = startPage + 10 - 1;
+		if (endPage > maxPage)
+			endPage = maxPage;
+
+		PageInfo pageInfo = new PageInfo();
+		pageInfo.setEndPage(endPage);
+		pageInfo.setListCount(listCount);
+		pageInfo.setMaxPage(maxPage);
+		pageInfo.setPage(page);
+		pageInfo.setStartPage(startPage);
+
+		model.addAttribute("pageInfo", pageInfo);
+		model.addAttribute("cafeList", cafeList);
 		return "mypage/myCollectCafe";
 	}
 	@RequestMapping("/myCollectAjax.do")

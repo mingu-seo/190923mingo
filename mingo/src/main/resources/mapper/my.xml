@@ -75,9 +75,7 @@
 	<update id="modifyMember" parameterType="vo.UserVO">
 		update mingo.user 
 		set
-			<if test="!#{profile_image}.equals('') and #{profile_image} != null">
-			profile_image = #{profile_image},
-			</if>
+			profile_image = #{profile_image},  
 			email='${email}', 
 			nickname='${nickname}', 
 			name='${name}', 
@@ -157,5 +155,11 @@
 	order by board_id desc
 	limit #{startrow},#{limit};   
 	</select>      
-	
+	<select id="getMyCafeList" resultType="Map" parameterType="Map">
+	select * 
+	from collect_cafe as cc join cafe as c join cafe_rate as r
+	on cc.cafe_id = c.cafe_id and c.cafe_id = r.cafe_id
+	where user_id = #{user_id}
+	limit #{startrow},#{limit};
+	</select>
 </mapper>

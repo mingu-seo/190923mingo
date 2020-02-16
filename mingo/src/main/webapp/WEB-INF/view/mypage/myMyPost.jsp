@@ -79,44 +79,44 @@
                     <div style="float:left;padding:0 14px">조회</div>
                     <div style="float:left;padding:0 14px">추천</div>
                 </li>
-                <c:if test="${empty cafeList}" >
+                <c:if test="${empty boardList}" >
 					<li class="list-group-item">데이터가 없습니다.</li>
 				</c:if>
-				<c:if test="${not empty cafeList}" >
-					<c:forEach  items="${cafeList}" var="CafeVO">
-	                <c:if test="${CafeVO.is_notice == 0}">
+				<c:if test="${not empty boardList}" >
+					<c:forEach  items="${boardList}" var="BoardVO">
+	                <c:if test="${BoardVO.is_notice == 0}">
 	                	<li class="list-group-item">
 	                </c:if>
-	                <c:if test="${CafeVO.is_notice == 1}">
+	                <c:if test="${BoardVO.is_notice == 1}">
 	                	<li class="list-group-item" style="background-color:#f1f1f1;">
 	                </c:if>
 	                    <div id="b-num" style="float:left;width:60px;height:24px;">
-	                    	<c:if test="${CafeVO.is_notice == 0}">
-	                    		${CafeVO.board_id}
+	                    	<c:if test="${BoardVO.is_notice == 0}">
+	                    		${BoardVO.board_id}
 	                    	</c:if>
-	                    	<c:if test="${CafeVO.is_notice == 1}">
+	                    	<c:if test="${BoardVO.is_notice == 1}">
 	                    		<div style="color:red;background-color:#ffb3b3;border:1px solid red;
 	                    		border-radius:8px;">공지</div>
 	                    	</c:if>
 	                    </div>
-	                    <a href="viewBoard.do?board_id=${CafeVO.board_id }&page=1&type=${CafeVO.type }&s1=0&s2=0&k=" 
+	                    <a href="viewBoard.do?board_id=${BoardVO.board_id }&page=1&type=${BoardVO.type }&s1=0&s2=0&k=" 
 	                    id="b-title" style="float:left;width:346px;height:24px;display:block">
-			                    <c:if test="${CafeVO.is_notice == 0}">
-			                    	${CafeVO.title}
+			                    <c:if test="${BoardVO.is_notice == 0}">
+			                    	${BoardVO.title}
 			                    </c:if>
-			                    <c:if test="${CafeVO.is_notice == 1}">
-			                    	<span style="color:red;font-weight:bold;">${CafeVO.title}</span>
+			                    <c:if test="${BoardVO.is_notice == 1}">
+			                    	<span style="color:red;font-weight:bold;">${BoardVO.title}</span>
 			                    </c:if>
 	                    		<!--  리플 없으면 아무것도 안띄우고 1개라도 있으면 빨간색으로 [3]이런식으로 표시 -->
-	                    		<c:if test="${CafeVO.reply_num > 0 }">
-	                    			<span style="color:red;text-align:center;" >&nbsp;[${CafeVO.reply_num }]</span>
+	                    		<c:if test="${BoardVO.reply_num > 0 }">
+	                    			<span style="color:red;text-align:center;" >&nbsp;[${BoardVO.reply_num }]</span>
 	                    		</c:if>
 	                    		
 	                    </a>
-	                    <div id="b-username" style="float:left;width:108px;height:24px;">${CafeVO.nickname}</div>
+	                    <div id="b-username" style="float:left;width:108px;height:24px;">${BoardVO.nickname}</div>
 	                    <div id="b-regdate" style="float:left;width:108px;height:24px;">
 	                    	<!-- 날짜 계산 시작-->
-							<c:set value="${CafeVO.regdate }" var="dateString"/>
+							<c:set value="${BoardVO.regdate }" var="dateString"/>
 							<fmt:parseDate value="${dateString }" var="dateObject" pattern="yyyy-MM-dd HH:mm:ss" />
 							<fmt:parseNumber value="${dateObject.time / (1000*60*60*24) }" integerOnly="true" var="past_D"/>
 							
@@ -126,17 +126,17 @@
 							<fmt:parseNumber value="${now_D - past_D }" var="sub_D" integerOnly="true"/>  
 							<!--  게시한지 1일 이상이면 년월일 표시 -->
 							<c:if test="${ sub_D >= 1  }">
-								<fmt:formatDate value="${CafeVO.regdate}" pattern="yyyy.MM.dd"/>
+								<fmt:formatDate value="${BoardVO.regdate}" pattern="yyyy.MM.dd"/>
 							</c:if>
 							<!-- 게시한지 1일 이하면 시간:분 으로 표시 -->
 							<c:if test="${ sub_D < 1  }">
-									<fmt:formatDate value="${CafeVO.regdate}" pattern="HH:mm"/>
+									<fmt:formatDate value="${BoardVO.regdate}" pattern="HH:mm"/>
 							</c:if>
 							<!--  날짜 계산 끝 -->
 	                    	
 	                    </div>
-	                    <div id="b-readcount" style="float:left;width:60px;height:24px;">${CafeVO.readcount}</div>
-	                    <div id="b-goodcount" style="float:left;width:60px;height:24px;">${CafeVO.like_num }</div> 
+	                    <div id="b-readcount" style="float:left;width:60px;height:24px;">${BoardVO.readcount}</div>
+	                    <div id="b-goodcount" style="float:left;width:60px;height:24px;">${BoardVO.like_num }</div> 
 	                </li>
 	                </c:forEach>
 				</c:if>
@@ -146,14 +146,14 @@
 			
 			
 			<!-- pagination start -->
-			<c:if test="${empty cafeList }" >
+			<c:if test="${empty boardList }" >
 				<ul class="pagination mypagi justify-content-center">
 				  <li class="page-item disabled"><a class="page-link" href="#">&#10094;</a></li>
 				  <li class="page-item active"><a class="page-link" href="#">1</a></li>
 				  <li class="page-item disabled"><a class="page-link" href="#">&#10095;</a></li> 
 				</ul>		 
 			</c:if>
-			<c:if test="${not empty cafeList }" >
+			<c:if test="${not empty boardList }" >    
 				<ul class="pagination mypagi justify-content-center">
 					<c:if test="${ pageInfo.page > 1 }">
 						<li class="page-item"><a class="page-link" href="myPost.do?page=${pageInfo.page-1}">&#10094;</a></li>
