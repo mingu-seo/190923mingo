@@ -1,6 +1,7 @@
 package controller;
 
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -307,38 +308,32 @@ public class MyController {
 		model.addAttribute("cafeList", cafeList);
 		
 		List<CafeRateVO> cafeRateList = myService.viewCafeRate2(collectList);
-				
-		if (cafeRateList.size()>0) {
-			for (int i = 0; i < cafeRateList.size(); i++) {
-				if (cafeRateList.get(i)==null) {
-					cafeRateList.get(i).setCafe_id(collectList.get(i).getCafe_id());
-					cafeRateList.get(i).setCafe_total_avg(0);
-					cafeRateList.get(i).setClean_avg(0);
-					cafeRateList.get(i).setMood_avg(0);
-					cafeRateList.get(i).setPrice_avg(0);
-					cafeRateList.get(i).setService_avg(0);
-					cafeRateList.get(i).setTaste_avg(0);
-					cafeRateList.get(i).setWifi_avg(0);
-					cafeRateList.get(i).setRate_num(0);
+		
+		System.out.println("리뷰가 존재하는 카페 개수 : "+cafeRateList.size());
+		System.out.println("카페1  : "+cafeRateList.get(0));
+		// 찜한 카페가 1개 이상일 때만   
+		List<CafeRateVO> list = new ArrayList<CafeRateVO>();
+		if (cafeList.size()>0) {  
+			for (int j = 0; j < cafeRateList.size(); j++) {
+				System.out.println("카페 : "+cafeRateList.get(j));
+				if (cafeRateList.get(j)==null) {
+					CafeRateVO rateVO = new CafeRateVO();
+					rateVO.setCafe_id(cafeList.get(j).getCafe_id());
+					rateVO.setCafe_total_avg(0);
+					rateVO.setClean_avg(0);
+					rateVO.setMood_avg(0);
+					rateVO.setPrice_avg(0);
+					rateVO.setService_avg(0);
+					rateVO.setTaste_avg(0);
+					rateVO.setWifi_avg(0);
+					rateVO.setRate_num(0);
+					list.add(rateVO);
+				} else {
+					list.add(cafeRateList.get(j));
 				}
 			}
-			
-		} else {
-			//카페는 있지만 후기가 없는 경우
-			CafeRateVO rateVO = new CafeRateVO();
-			rateVO.setCafe_id(0);
-			rateVO.setCafe_total_avg(0);
-			rateVO.setClean_avg(0);
-			rateVO.setMood_avg(0);
-			rateVO.setPrice_avg(0);
-			rateVO.setService_avg(0);
-			rateVO.setTaste_avg(0);
-			rateVO.setWifi_avg(0);
-			rateVO.setRate_num(0);
-			cafeRateList.add(rateVO);
 		}
-		
-		model.addAttribute("cafeRateList", cafeRateList);
+		model.addAttribute("cafeRateList", list);
 		return "mypage/myCollectAjax";    
 	}
 	

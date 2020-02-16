@@ -132,6 +132,7 @@
 				});
 			}  
 			
+			
 		});
 	</script>
 
@@ -160,7 +161,8 @@
 			                    <div class="graph_text" id="taste-text2">${reviewVO.taste_score }점</div>
 			                </div>
 			            </div>
-			        </div>
+			            <div class="back-graph" style="left:84px;top:2px; width:332px;height:40px;box-sizing:content-box;border-radius:40px;border:2px solid #A4A4A4;position:relative;z-index:-10; "></div>			        
+		            </div>
 				</div>
 				<div class="rate_name2" id="taste_name_tatal2"></div>
 			</div>
@@ -176,6 +178,7 @@
 			                    <div class="graph_text2" id="mood-text2">${reviewVO.mood_score }점</div>
 			                </div>
 			            </div>
+			            <div class="back-graph" style="left:84px;top:2px; width:332px;height:40px;box-sizing:content-box;border-radius:40px;border:2px solid #A4A4A4;position:relative;z-index:-10; "></div>
 			        </div>
 				</div>
 				<div class="rate_name2" id="price_name_tatal2"></div>
@@ -192,6 +195,7 @@
 			                    <div class="graph_text2" id="service-text2">${reviewVO.service_score }점</div>
 			                </div>
 			            </div>
+			            <div class="back-graph" style="left:84px;top:2px; width:332px;height:40px;box-sizing:content-box;border-radius:40px;border:2px solid #A4A4A4;position:relative;z-index:-10; "></div>
 			        </div>
 				</div>
 				<div class="rate_name2" id="service_name_tatal2"></div>
@@ -208,6 +212,7 @@
 			                    <div class="graph_text2" id="wifi-text2">${reviewVO.wifi_score }점</div>
 			                </div>
 			            </div>
+			            <div class="back-graph" style="left:84px;top:2px; width:332px;height:40px;box-sizing:content-box;border-radius:40px;border:2px solid #A4A4A4;position:relative;z-index:-10; "></div>
 			        </div>
 				</div>
 				<div class="rate_name2" id="facimood_name_tatal2"></div>
@@ -224,6 +229,7 @@
 			                    <div class="graph_text2" id="clean-text2">${reviewVO.clean_score }점</div>
 			                </div>
 			            </div>
+			            <div class="back-graph" style="left:84px;top:2px; width:332px;height:40px;box-sizing:content-box;border-radius:40px;border:2px solid #A4A4A4;position:relative;z-index:-10; "></div>
 			        </div>
 				</div>
 				<div class="rate_name2" id="wifiplug_name_tatal2"></div>
@@ -240,6 +246,7 @@
 			                    <div class="graph_text2" id="price-text2">${reviewVO.price_score }점</div>
 			                </div>
 			            </div>
+			            <div class="back-graph" style="left:84px;top:2px; width:332px;height:40px;box-sizing:content-box;border-radius:40px;border:2px solid #A4A4A4;position:relative;z-index:-10; "></div>
 			        </div>  
 				</div>  
 				<div class="rate_name2" id="clean_name_tatal2"></div>

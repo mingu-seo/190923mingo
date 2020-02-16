@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/choicss1.css">
 	
 	<style>
-		.review_navi_nums{
+		/* .review_navi_nums{
 			width:100%;
 			height:100px;
 			padding-top:40px;
@@ -32,9 +32,7 @@
 			height:60px;
 			width:100%;
 			
-			/* margin:0 auto;
-			padding:0 auto; */  
-			/* line-height: 200px; */
+	
 			text-align:center;  
 		}      
 		
@@ -87,7 +85,7 @@
 			color:#ffffff;
 			font-size:1.3em;
 			line-height: 40px;
-		}
+		} */
 	
 	</style>
 	

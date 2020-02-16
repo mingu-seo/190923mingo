@@ -77,6 +77,10 @@ public class DetailDAO {
 	public ReviewVO viewMyReview2(ReviewVO vo) {
 		return sqlSession.selectOne("detail.viewMyReview2", vo);
 	}
+	public int checkManager(int user_id) {
+		return sqlSession.selectOne("detail.checkManager", user_id);
+		
+	}
 	
 	
 	//등록
@@ -189,7 +193,9 @@ public class DetailDAO {
 		//제거 아이디 후보 목록
 		List<Integer> delete_id = new ArrayList<Integer>();
 		for (int i = 0; i < old_vo.size(); i++) {
-			delete_id.add(old_vo.get(i).getCafe_image_id());
+			if(old_vo.get(i) != null) {
+				delete_id.add(old_vo.get(i).getCafe_image_id());				
+			}
 		}
 		
 		for(int i=0; i<fileList.size(); i++) {  
@@ -203,8 +209,10 @@ public class DetailDAO {
 			// 기존 개별 이미지 섹션에 새로 사진을 등록했는지 확인 
 			if(fu.fileName==null) {
 				for (int j = 0; j < old_vo.size(); j++) {
-					if(old_vo.get(j).getCafe_image_id()==Integer.parseInt(new_vo[i])) {
-						vo1.setUrl(old_vo.get(j).getUrl());
+					if (old_vo.get(j) != null) {
+						if(old_vo.get(j).getCafe_image_id()==Integer.parseInt(new_vo[i])) {
+							vo1.setUrl(old_vo.get(j).getUrl());
+						}						
 					}
 				}
 			} else {
@@ -238,7 +246,7 @@ public class DetailDAO {
 		}
 		
 		return 1;	
-	}
+	}    
 	
 	
 	public int modifyCafe(CafeVO cafeVO, List<MultipartFile> logoFile, HttpServletRequest request) {
@@ -275,13 +283,15 @@ public class DetailDAO {
 		List<CafeMenuVO> old_vo= sqlSession.selectList("detail.selectViewMenu", cafe_id);	
 		String[] new_vo = request.getParameterValues("cafe_menu_id"); 
 		
+		System.out.println("원래 메뉴 수 : "+old_vo.size());   
 		//제거 아이디 후보 목록
 		List<Integer> delete_id = new ArrayList<Integer>();
 		for (int i = 0; i < old_vo.size(); i++) {
-			delete_id.add(old_vo.get(i).getCafe_menu_id());
+			if(old_vo.get(i)!=null) {
+				delete_id.add(old_vo.get(i).getCafe_menu_id());				
+			}
 		}
 		
-		System.out.println("메뉴리스트 크기"+menuNameList.length);
 		
 		for(int i=0; i<menuFileList.size(); i++) {  
 			FileUtil fu = new FileUtil(); 
@@ -289,16 +299,24 @@ public class DetailDAO {
 			
 			CafeMenuVO vo1 = new CafeMenuVO();
 			vo1.setCafe_id(cafe_id);
-			vo1.setName(menuNameList[i]);
-			System.out.println("멀티파트 리퀘스트에... " + menuNameList[i]);
-			vo1.setPrice(Integer.parseInt(menuPriceList[i]));
-			vo1.setType(Integer.parseInt(menuTypeList[i]));  
+			if(menuNameList != null) {
+				vo1.setName(menuNameList[i]);				
+				System.out.println("멀티파트 리퀘스트에... " + menuNameList[i]);
+			}
+			if(menuPriceList != null) {
+				vo1.setPrice(Integer.parseInt(menuPriceList[i]));				
+			}
+			if(menuTypeList != null) {
+				vo1.setType(Integer.parseInt(menuTypeList[i]));  				
+			}
 			
 			// 기존 개별 이미지 섹션에 새로 사진을 등록했는지 확인 
 			if(fu.fileName==null) {
 				for (int j = 0; j < old_vo.size(); j++) {
-					if(old_vo.get(j).getCafe_menu_id()==Integer.parseInt(new_vo[i])) {
-						vo1.setImage(old_vo.get(j).getImage());
+					if(old_vo.get(j) != null) {
+						if(old_vo.get(j).getCafe_menu_id()==Integer.parseInt(new_vo[i])) {
+							vo1.setImage(old_vo.get(j).getImage());
+						}						
 					}
 				}
 			} else {
@@ -328,7 +346,7 @@ public class DetailDAO {
 			}			
 		}
 		
-		return 1;
+		return 1;  
 	}
 	public int modifyProduct(List<CafeProductVO> cafeProductVO, List<MultipartFile> productFileList,MultipartHttpServletRequest request) {
 		String path1 = util.Property.cafe_img_path;
@@ -345,7 +363,9 @@ public class DetailDAO {
 		//제거 아이디 후보 목록
 		List<Integer> delete_id = new ArrayList<Integer>();
 		for (int i = 0; i < old_vo.size(); i++) {
-			delete_id.add(old_vo.get(i).getCafe_product_id());
+			if (old_vo.get(i) != null) {
+				delete_id.add(old_vo.get(i).getCafe_product_id());				
+			}
 		}
 		
 		for(int i=0; i<productFileList.size(); i++) {  
@@ -353,17 +373,24 @@ public class DetailDAO {
 			fu.fileUpload(productFileList.get(i), path2+"/product/");
 			
 			CafeProductVO vo1 = new CafeProductVO();
-			
 			vo1.setCafe_id(cafe_id);
-			vo1.setName(productNameList[i]);
-			vo1.setPrice(Integer.parseInt(productPriceList[i]));
-			vo1.setType(Integer.parseInt(productTypeList[i]));
+			if(productNameList != null) {
+				vo1.setName(productNameList[i]);				
+			}
+			if(productPriceList != null) {
+				vo1.setPrice(Integer.parseInt(productPriceList[i]));				
+			}
+			if(productTypeList != null) {
+				vo1.setType(Integer.parseInt(productTypeList[i]));				
+			}
 			 
 			// 기존 개별 이미지 섹션에 새로 사진을 등록했는지 확인 
 			if(fu.fileName==null) {
 				for (int j = 0; j < old_vo.size(); j++) {
-					if(old_vo.get(j).getCafe_product_id()==Integer.parseInt(new_vo[i])) {
-						vo1.setImage(old_vo.get(j).getImage());
+					if(old_vo.get(j) != null) {
+						if(old_vo.get(j).getCafe_product_id()==Integer.parseInt(new_vo[i])) {
+							vo1.setImage(old_vo.get(j).getImage());
+						}						
 					}
 				}
 			} else {
@@ -411,7 +438,13 @@ public class DetailDAO {
 	
 	public int registReview(ReviewVO reviewVO, CafeRateVO cafeRateVO) {
 		sqlSession.insert("detail.insertReview", reviewVO);
-		sqlSession.update("detail.updateRate", cafeRateVO);
+		CafeRateVO check = sqlSession.selectOne("detail.selectCafeRate", reviewVO.getCafe_id());
+		if(check==null) {
+			sqlSession.insert("detail.insertRate", cafeRateVO);			
+		} else {
+			sqlSession.update("detail.updateRate", cafeRateVO);
+		}
+		sqlSession.update("detail.updateRateToCafe", cafeRateVO);
 		return 1;
 	}
 	
@@ -423,13 +456,14 @@ public class DetailDAO {
 		System.out.println("dao 사진 있음 최종"+reviewVO.getImage());
 		sqlSession.update("detail.updateReview", reviewVO);
 		sqlSession.update("detail.updateRate", cafeRateVO);
+		sqlSession.update("detail.updateRateToCafe", cafeRateVO);
 		return 1;
 	}   
 	
 	public int deleteReview(CafeRateVO cafeRateVO, ReviewVO reviewVO) {
 		sqlSession.update("detail.updateRate", cafeRateVO);
 		sqlSession.delete("detail.deleteReview", reviewVO);
-		
+		sqlSession.update("detail.updateRateToCafe", cafeRateVO);
 		return 1;
 	}
 	public int registLike(LikeCafeVO vo) {

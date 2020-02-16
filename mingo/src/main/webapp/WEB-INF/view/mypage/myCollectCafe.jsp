@@ -140,73 +140,7 @@
 			font-weight: bold;
 		}
 		
-		.review_navi_nums{
-			width:100%;
-			height:100px;
-			padding-top:40px;
-		}
 		  
-		.review_navi_nums > div{
-			line-height:60px;
-			height:60px;
-			width:100%;
-			
-			/* margin:0 auto;
-			padding:0 auto; */  
-			/* line-height: 200px; */
-			text-align:center;  
-		}      
-		
-		.review_navi_nums a{
-			margin:0 20px;
-		
-		}
-		
-		
-		.review_navi_nums{
-			width:100%;
-			height:150px;
-			 
-		}
-		  
-		.review_navi_nums > div{
-			line-height:60px;
-			height:60px;
-			width:540px;
-			margin:0 auto;
-			text-align:center;
-			
-		}      
-		
-		
-		.num{
-			
-			margin:0 10px;
-			width:40px;
-			height:40px;
-			float:left;
-		}
-		
-		.present{
-			width:40px;
-			height:40px;
-			border-radius: 40px;
-			float:left;
-			background-color: #86B404;
-			text-align: center;
-			line-height: 40px;
-			margin:10px;	
-		}
-		.review_navi_nums a{
-			color:#2E2E2E;
-			font-size:1.3em;
-			line-height: 40px;
-		}
-		.present a{     
-			color:#ffffff;
-			font-size:1.3em;
-			line-height: 40px;
-		}
 	
 	</style>
 	

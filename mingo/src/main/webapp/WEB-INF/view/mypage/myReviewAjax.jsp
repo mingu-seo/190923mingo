@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ taglib prefix="fmt"  uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -107,7 +107,7 @@
 		
 		.my_review_top{     
 			height:auto;
-			width:27%;
+			width:35%;
 			float:left;
 			margin-left:30px;   
 			
@@ -147,10 +147,6 @@
 			line-height:60px;
 			height:60px;
 			width:90%;
-			
-			/* margin:0 auto;
-			padding:0 auto; */  
-			/* line-height: 200px; */
 			text-align:center;  
 		}      
 		
@@ -180,55 +176,12 @@
 			font-weight: bold;    
 		}
 		
-		
-		.review_navi_nums{
-			width:100%;
-			height:150px;
-			 
-		}
-		  
-		.review_navi_nums > div{
-			line-height:60px;
-			height:60px;
-			width:auto;
-			/* display:inline-block; */
-			margin:0 auto;
-			text-align:center;
-			
-		}      
-		.review_navi_nums > div{
-			vertical-align: middle;
-		}      
-		
-		
-		.num{
-			
-			margin:0 10px;
-			width:40px;
-			height:40px;
-			float:left;
-		}
-		
-		.present{
-			width:40px;
-			height:40px;
-			border-radius: 40px;
-			float:left;
-			background-color: #86B404;
-			text-align: center;
-			line-height: 40px;
-			margin:10px;	
-		}
-		.review_navi_nums a{
-			color:#2E2E2E;
-			font-size:1.3em;
-			line-height: 40px;
-		}
-		.present a{     
-			color:#ffffff;
-			font-size:1.3em;
-			line-height: 40px;
-		}
+		.review_navi_nums{width:100%;height:200px;padding-top:40px;text-align:center;}
+		.review_navi_nums > div{line-height:60px;height:60px;width:auto;display: inline-block;}      
+		.num-area{width:auto;height:40px;float:left;}
+		.num{margin:0 10px;width:40px;height:40px;float:left;}
+		.present{width:40px;height:40px;border-radius: 40px;float:left;background-color: #86B404;text-align: center;line-height: 40px;margin:10px;}
+		.num-btn{width:100%;height:auto;}
 		
 		#modify, #delete, #blank{float:left;margin-right:5px;}
 		.my_review_each:nth-child(1){margin-top:50px;}
@@ -324,7 +277,9 @@
 					</div>
 					<div class="my_comment">
 						<p>${review.contents}</p>
-						<p>꒐ 작성일: ${review.regdate }&nbsp;
+						<fmt:parseDate var="sDate" value="${review.regdate}" pattern="yyyy-MM-dd HH:mm:ss" />
+    	
+						<p>꒐ 작성일: <fmt:formatDate value="${sDate}" pattern="yyyy-MM-dd" />&nbsp;
 							<a id="modify" href="modifyReviewForm.do?cafe_id=${cafe.cafe_id}">수정</a>&nbsp;
 							<a id="blank">꒐</a>&nbsp;
 							<a id="delete" href="deleteReview.do?cafe_id=${cafe.cafe_id}">삭제</a>&nbsp;
@@ -335,7 +290,7 @@
 				<div class="my_review_top">
 					<div class="rated_cafe_info">   
 						<div>
-							<img src="upload/cafe/${cafe.logo }"/>
+							<img src="./img/brandLogo/${cafe.logo }" />
 						</div>
 						<h2>${cafe.name }</h2>
 						<h2>${cafe.branch }</h2>
@@ -396,35 +351,43 @@
 		</c:forEach>  
 	
 	</div>
-	<div class="review_navi_nums">
-		<div>
-			<div class="num">
-				<div class="navi_first_btn"><div><img src="img/arrow_first.png"></div></div>
-				<input type="hidden" value="1" class="min-btn">			
-			</div>  
-			<div class="num">
-				<div class="navi_prev10_btn"><div><img src="img/arrow_prev.png"></div></div>
-			</div>
-			<div class="num-area">
-				<c:forEach var="num" begin="${beginPage}" end="${endPage}" step="1">
-					<c:if test="${currentPage == num}">
-						<div class="present" ><div class="num-btn">${num}</div></div> 					
-					</c:if>
-					<c:if test="${currentPage != num}">
-						<div class="num" ><div class="num-btn">${num}</div></div> 					
-					</c:if>
-				</c:forEach>					
-			</div>
-			
-			<div class="num">
-				<div class="navi_next10_btn"><div><img src="img/arrow_next.png"></div></div>					
-			</div>
-			<div class="num">					
-				<div class="navi_last_btn"><div><img src="img/arrow_last.png"></div></div>					
-				<input type="hidden" value="${maxPage}" class="max-btn">
+	<c:if test="${myReview_num!=0}">
+		<div class="review_navi_nums">
+			<div>
+				<div class="num">
+					<div class="navi_first_btn"><div><img src="img/arrow_first.png"></div></div>
+					<input type="hidden" value="1" class="min-btn">			
+				</div>  
+				<div class="num">
+					<div class="navi_prev10_btn"><div><img src="img/arrow_prev.png"></div></div>
+				</div>
+				<div class="num-area">
+					<c:forEach var="num" begin="${beginPage}" end="${endPage}" step="1">
+						<c:if test="${currentPage == num}">
+							<div class="present" ><div class="num-btn">${num}</div></div> 					
+						</c:if>
+						<c:if test="${currentPage != num}">
+							<div class="num" ><div class="num-btn">${num}</div></div> 					
+						</c:if>
+					</c:forEach>					
+				</div>
+				
+				<div class="num">
+					<div class="navi_next10_btn"><div><img src="img/arrow_next.png"></div></div>					
+				</div>
+				<div class="num">					
+					<div class="navi_last_btn"><div><img src="img/arrow_last.png"></div></div>					
+					<input type="hidden" value="${maxPage}" class="max-btn">
+				</div>
 			</div>
 		</div>
-	</div>
+	</c:if>
+	<c:if test="${myReview_num==0}">
+		<div style="height:300px;font-size: 1.5em; font-weight: bold; color:#D8D8D8; text-align:center;line-height:300px;">
+			내가 작성한 후기가 없습니다.
+		</div>
+	</c:if>
+	
 </body>
 
 </html>

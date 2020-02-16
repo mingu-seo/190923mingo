@@ -60,7 +60,7 @@
 			height:100%;
 		}
 		.collect_cafe_title{
-			font-size: 2.0em;
+			font-size: 1.5em;
 			font-weight: bold;
 			color:#2E2E2E;
 		}
@@ -68,7 +68,7 @@
 			width:40px;
 		}
 		.collect_cafe_avgRate{
-			font-size: 2.0em;
+			font-size: 1.5em;
 			font-weight: bold;
 			color:#2E2E2E;
 		
@@ -80,7 +80,7 @@
 		}
 		
 		.collect_cafe_address {
-			font-size:1.2em;   
+			font-size:1.0em;   
 			height:20%;
 			margin-bottom:10px;  
 			
@@ -140,73 +140,14 @@
 			font-weight: bold;
 		}
 		
-		.review_navi_nums{
-			width:100%;
-			height:100px;
-			padding-top:40px;
-		}
-		  
-		.review_navi_nums > div{
-			line-height:60px;
-			height:60px;
-			width:100%;
-			
-			/* margin:0 auto;
-			padding:0 auto; */  
-			/* line-height: 200px; */
-			text-align:center;  
-		}      
-		
-		.review_navi_nums a{
-			margin:0 20px;
-		
-		}
+		.review_navi_nums{width:100%;height:200px;padding-top:40px;text-align:center;}
+		.review_navi_nums > div{line-height:60px;height:60px;width:auto;display: inline-block;}      
+		.num-area{width:auto;height:40px;float:left;}
+		.num{margin:0 10px;width:40px;height:40px;float:left;}
+		.present{width:40px;height:40px;border-radius: 40px;float:left;background-color: #86B404;text-align: center;line-height: 40px;margin:10px;}
+		.num-btn{width:100%;height:auto;}
 		
 		
-		.review_navi_nums{
-			width:100%;
-			height:150px;
-			 
-		}
-		  
-		.review_navi_nums > div{
-			line-height:60px;
-			height:60px;
-			width:540px;
-			margin:0 auto;
-			text-align:center;
-			
-		}      
-		
-		
-		.num{
-			
-			margin:0 10px;
-			width:40px;
-			height:40px;
-			float:left;
-		}
-		
-		.present{
-			width:40px;
-			height:40px;
-			border-radius: 40px;
-			float:left;
-			background-color: #86B404;
-			text-align: center;
-			line-height: 40px;
-			margin:10px;	
-		}
-		.review_navi_nums a{
-			color:#2E2E2E;
-			font-size:1.3em;
-			line-height: 40px;
-		}
-		.present a{     
-			color:#ffffff;
-			font-size:1.3em;
-			line-height: 40px;
-		}
 	
 	</style>
 	
@@ -297,7 +238,7 @@
           
 	           	<div class="collect_cafe_each">
 	           		<div class="collect_cafe_logo">
-	           			<img src="./img/brandLogo/${cafe.logo }">    
+	           			<img src="./img/brandLogo/${cafe.logo }"  style="border:1px solid #E6E6E6;border-radius: 100%;">    
 	           		</div>
 	           		<div class="collect_cafe_info">
 	           			<div class="collect_cafe_info_header">
@@ -315,8 +256,8 @@
 	           							<img src="img/wifi.png">
 	           						</div>
 	           						<div class="collect_graphic">
-	           							<div class="bar_total">
-	           								<div class="bar_rate"></div>
+	           							<div class="bar_total" >
+	           								<div class="bar_rate" style="width:${cafeRate.wifi_avg*20 }px;"></div>
 	           								<div class="bean_img">
 	           									<img src="">
 	           								</div>
@@ -330,7 +271,7 @@
 	           						</div>
 	           						<div class="collect_graphic">
 	           							<div class="bar_total">
-	           								<div class="bar_rate"></div>
+	           								<div class="bar_rate"style="width:${cafeRate.clean_avg*20 }px;"></div>
 	           								<div class="bean_img">
 	           									<img src="">
 	           								</div>
@@ -344,7 +285,7 @@
 	           						</div>
 	           						<div class="collect_graphic">
 	           							<div class="bar_total">
-	           								<div class="bar_rate"></div>
+	           								<div class="bar_rate"style="width:${cafeRate.price_avg*20 }px;"></div>
 	           								<div class="bean_img">
 	           									<img src="">
 	           								</div>
@@ -358,7 +299,7 @@
 	           						</div>
 	           						<div class="collect_graphic">
 	           							<div class="bar_total">
-	           								<div class="bar_rate"></div>
+	           								<div class="bar_rate"style="width:${cafeRate.taste_avg*20 }px;"></div>
 	           								<div class="bean_img">
 	           									<img src="">
 	           								</div>
@@ -372,7 +313,7 @@
 	           						</div>
 	           						<div class="collect_graphic">
 	           							<div class="bar_total">
-	           								<div class="bar_rate"></div>
+	           								<div class="bar_rate"style="width:${cafeRate.mood_avg*20 }px;"></div>
 	           								<div class="bean_img">
 	           									<img src="">
 	           								</div>
@@ -386,7 +327,7 @@
 	           						</div>
 	           						<div class="collect_graphic">
 	           							<div class="bar_total">
-	           								<div class="bar_rate"></div>
+	           								<div class="bar_rate"style="width:${cafeRate.service_avg*20 }px;"></div>
 	           								<div class="bean_img">
 	           									<img src="">
 	           								</div>

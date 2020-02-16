@@ -15,8 +15,17 @@ public class BoardVO {
 	private String nickname;
 	private int reply_num;
 	private int is_notice;
+	private String new_regdate;
 	
 	
+	public String getNew_regdate() {
+		return new_regdate;
+	}
+
+	public void setNew_regdate(String new_regdate) {
+		this.new_regdate = new_regdate;
+	}
+
 	public int getIs_notice() {
 		return is_notice;
 	}
