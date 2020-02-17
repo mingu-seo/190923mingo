@@ -36,69 +36,24 @@
 	<!-- jquery ui -->
 
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="<%=request.getContextPath()%>/js/scriptForMain.js"></script>
     <!--  
     <link rel="stylesheet" href="css/reset.css"/>
     <link rel="stylesheet" href="css/swiper.css"/>
     <script src="js/swiper.min.js"></script>
 	-->
 	<style>
-		/* div 중앙정렬 관련
-			background-position:center center;
-        	background-repeat:no-repeat;
-        	background-size:cover;
-        	text-align: center; 
-		 */
+		 
 
 		/* header 부분 스타일 기본값 */
 		.header{height:auto;}
-		.memubar_space{
-			height:800px;
-			width:100%;
-			position:relative;  
-			overflow: hidden;
-			/* left:0px;
-			top:0px;    
-			position: absolute;
-			*/ 
-		}
-		
-		#head_image{
-			/* height:600px; */
-			height:800px;
-			position:relative;
-			right:1300px;      
-			
-			z-index:10;
-			/* left:0px;
-			top:0px;
-			position: absolute; */
-			
-		}
-		#head_text{
-			position:relative;
-			bottom:700px; 
-			left:200px; 
-			z-index:20;
-			width:700px;
-		}
-		
-		#head_location{
-			position:relative;  
-			z-index:20;
-			bottom:550px;
-			right:190px;
-			width:60px;    
-		}
-		#cafe-search-area{
-			position:relative;  
-			z-index:30;
-			width:700px;
-			height:200px;
-			bottom:700px;
-			left:200px;     
-		}
-		
+		.memubar_space{height:800px;width:100%;position:relative;overflow: hidden;}   
+		#head_image{/* height:600px; */height:800px;position:relative;right:1400px;z-index:10;}     
+		#head_text{position:relative;bottom:700px; left:3%;z-index:20;width:75%;margin:auto 0;}  
+		#head_location{position:relative;z-index:20;bottom:550px;right:15%;width:5%;}
+		#cafe-search-area{position:relative;z-index:30;width:80%;height:200px;bottom:700px;/* left:200px; */}
 		#sido_code{}
+		#head-container{}   
 		
 		.container{
 			width:1000px;
@@ -785,6 +740,48 @@
 	
 	<script>
 		$(function(){
+			var width_size = $(window).width();
+			if (width_size <= 560) {
+				$('#search-btn1').css({   
+				 'height':'38px'
+				});	
+				$('#search-btn2').css({
+				 'height':'38px',
+				 'bottom':'33px'
+				});	
+			} else {
+				$('#search-btn1').css({
+				 'height':'110px'
+				});	
+				$('#search-btn2').css({
+				 'height':'110px',
+				 'bottom':'105px'
+				});	
+			} 	
+			
+			$(window).resize(function (){
+				// width값을 가져오기
+				var width_size = $(window).width();
+				console.log("창 크기 : "+width_size);
+				if (width_size <= 560) {
+					$('#search-btn1').css({   
+					 'height':'38px'
+					});	
+					$('#search-btn2').css({
+					 'height':'38px',
+					 'bottom':'33px'
+					});	
+				} else {
+					$('#search-btn1').css({
+					 'height':'110px'
+					});	
+					$('#search-btn2').css({
+					 'height':'110px',
+					 'bottom':'105px'
+					});	
+				} 
+			});
+			
 			var review_each_height = $('.cafe_review_bottom img').height()+$('.comment').height()+20;
 			$('.cafe_review_each').css({
 				'height':review_each_height+'px'
@@ -1204,18 +1201,18 @@
 	
 	<!-- 빈공간. 코딩 편의를 위해 레이어 앞면에 고정된 메뉴바가 차지하는 만큼 빈공간 부여 -->
 	<div class="memubar_space">
-		<div class="container">
-			<img id="head_image" src="img/header_img.jpg">  
-			<img id="head_text" src="img/head_text2.png">
-			<img id="head_location" src="img/location.png">
+		<div class="container" id="head-container">
+			<img id="head_image" src="img/head_img.jpg">  
+			<img id="head_text" src="img/head_text2.png" >
+			<!-- <img id="head_location" src="img/location.png"> -->
 			
-			<form id="cafe-search-area" class="form pl-4 pr-4" action="searchCafe.do" method="post" onsubmit="return pushLast();" style="width:700px;">
+			<form id="cafe-search-area" class="form pl-4 pr-4" action="searchCafe.do" method="post" onsubmit="return pushLast();" >
 				<div class="form-row">
 					<div class="col-sm-10">
 						<div class="form-row">
 							<div class="col-4 pb-1 pt-1" style="height:65px;">
 								<select class="form-control rounded-edge" name="sido_code"
-									id="sido_code" style="font-weight:bold; border-radius:45px; border:none; background:#F8ECE0;">
+									id="sido_code" style="font-weight:bold;width:100%; border-radius:45px; border:none; background:#F8ECE0;">
 									<option value="-1">시/도</option>
 									<option value="11">서울</option>
 									<option value="26">부산</option>
@@ -1235,36 +1232,36 @@
 									<option value="48">경남</option>
 									<option value="50">제주</option>
 								</select>
-								<div style="z-index:-10; position:relative;left:5px;bottom:38px; border:3px solid #FFFFFF;width:173px;height:47px;border-radius: 45px;"></div>
+								<div  style="z-index:-10; position:relative;left:5px;bottom:38px; border:3px solid #FFFFFF;/* width:173px; */height:47px;border-radius: 45px;"></div>
 							</div>
-							<div class="col-4 pb-1 pt-1" id=""style="height:65px;">
+							<div class="col-4 pb-1 pt-1" id=""style="height:65px;">  
 								<select class="form-control rounded-edge" name="sigungu_code"
 									id="sigungu_code" style="font-weight:bold;border-radius: 45px;border:none; background:#F8ECE0;">
 									<option value="-1" class="start1">시/군/구</option>  
 								</select>
-								<div style="z-index:-10; position:relative;left:5px;bottom:38px; border:3px solid #FFFFFF;width:173px;height:47px;border-radius: 45px;"></div>
+								<div style="z-index:-10;width:100%; position:relative;left:5px;bottom:38px; border:3px solid #FFFFFF;/* width:173px; */height:47px;border-radius: 45px;"></div>
 							</div>
-							<div class="col-4 pb-1 pt-1"style="height:65px;">
+							<div class="col-4 pb-1 pt-1" style="height:65px;">
 								<select class="form-control rounded-edge" name="dong_code"
 									id="dong_code" style="font-weight:bold;border-radius: 45px;border:none; background:#F8ECE0; ">
 									<option value="-1" class="start2">행정동</option>
 								</select>
-								<div style="z-index:-10; position:relative;left:5px;bottom:38px; border:3px solid #FFFFFF;width:173px;height:47px;border-radius: 45px;"></div>
+								<div  style="z-index:-10;width:100%; position:relative;left:5px;bottom:38px; border:3px solid #FFFFFF;/* width:173px; */height:47px;border-radius: 45px;"></div>
 							</div>
 
 
-						</div>
+						</div>   
 						<div class="form-row">
 							<div class="col-12 pb-1 pt-1">
 								<input type="text" name="name" style="font-weight:bold;border-radius: 30px;" placeholder="ex) 스타벅스, 이디야" class="form-control rounded-edge">  
 							</div>
-							<div style="z-index:-11; position:relative;left:9px;bottom:40px; border:3px solid #FFFFFF;width:545px;height:45px;border-radius: 45px;"></div>  
+							<div style="z-index:-11;width:99%; position:relative;left:7px;bottom:40px; border:3px solid #FFFFFF;/* width:545px; */height:45px;border-radius: 45px;"></div>  
 						</div>
 					</div>
 					<div class="col-sm-2 pb-1 pt-1">  
-						<input type="submit" value="검색" class="form-control rounded-edge"
+						<input id="search-btn1" type="submit" value="검색" class="form-control rounded-edge"
 							style="font-weight:bold;z-index:1; height: 110px;border:none; border-radius: 45px;background:#688A08;color:#FFFFFF; ">
-						<div style="z-index:-12; position:relative;left:8px;bottom:105px; border:3px solid #FFFFFF;width:100px;height:110px;border-radius: 45px;"></div>
+						<div id="search-btn2" style="z-index:-12;width:100%; position:relative;left:8px;bottom:105px; border:3px solid #FFFFFF;/* width:100px; */height:110px;border-radius: 45px;"></div>
 					</div>
 				</div>
 			</form>
@@ -1330,11 +1327,11 @@
 			</div>
 			
 			<div class="content_button">
-				<div class="review_button">후기</div>
-				<div class="info_button">소개</div>
-				<div class="regist_button">내 평가</div>
-				<c:if test="${userVO.type == 2}">   
-					<div class="modify_button" OnClick="location.href ='cafeModifyForm.do'" >정보수정</div>				
+				<div class="review_button" style="cursor:pointer;">후기</div>
+				<div class="info_button" style="cursor:pointer;">소개</div>
+				<div class="regist_button" style="cursor:pointer;">내 평가</div>
+				<c:if test="${userVO.user_id == cafe.manager_id}">   
+					<div class="modify_button" OnClick="location.href ='cafeModifyForm.do'"  style="cursor:pointer;">정보수정</div>				
 				</c:if>
 			</div>			
 			
@@ -1429,10 +1426,10 @@
 				<div class="detail_info">
 					<div class="info_title" id="detail_info_title">상세정보</div>
 					<div class="detail_info_button">
-						<div class="button_each" id="facility_btn">시설</div>
-						<div class="button_each" id="service_btn">서비스</div>
-						<div class="button_each" id="product_btn">상품</div>
-						<div class="button_each" id="menu_btn">메뉴</div>
+						<div class="button_each" id="facility_btn" style="cursor:pointer;">시설</div>
+						<div class="button_each" id="service_btn" style="cursor:pointer;">서비스</div>
+						<div class="button_each" id="product_btn" style="cursor:pointer;">상품</div>
+						<div class="button_each" id="menu_btn" style="cursor:pointer;">메뉴</div>
 					</div>
 					<c:if test="${menu_result != 0}">
 						<div class="menu" style="overflow:scroll;overflow:auto; overflow-x:hidden" >

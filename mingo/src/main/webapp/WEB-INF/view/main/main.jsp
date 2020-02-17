@@ -28,7 +28,64 @@
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/css/mainStyle.css">
 <script src="<%=request.getContextPath()%>/js/scriptForMain.js"></script>
+<script>
+$(function(){
+	var width_size = $(window).width();
+	if (width_size <= 560) {
+		$('#search-btn1').css({   
+		 'height':'38px'
+		});	
+		$('#search-btn2').css({
+		 'height':'38px',
+		 'bottom':'33px'
+		});	
+	} else {
+		$('#search-btn1').css({
+		 'height':'110px'
+		});	
+		$('#search-btn2').css({
+		 'height':'110px',
+		 'bottom':'105px'
+		});	
+	} 	
+	
+	$(window).resize(function (){
+		// width값을 가져오기
+		var width_size = $(window).width();
+		console.log("창 크기 : "+width_size);
+		if (width_size <= 560) {
+			$('#search-btn1').css({   
+			 'height':'38px'
+			});	
+			$('#search-btn2').css({
+			 'height':'38px',
+			 'bottom':'33px'
+			});	
+		} else {
+			$('#search-btn1').css({
+			 'height':'110px'
+			});	
+			$('#search-btn2').css({
+			 'height':'110px',
+			 'bottom':'105px'
+			});	
+		} 
+	});
+	
+});	
+
+</script>
 <style>
+.header{height:auto;}
+.memubar_space{height:800px;width:100%;position:relative;overflow: hidden;}   
+#head_image{/* height:600px; */height:800px;position:relative;right:1300px;z-index:10;}     
+#head_text{position:relative;bottom:700px; left:15%;z-index:20;width:75%;margin:auto 0;}  
+#head_location{position:relative;z-index:20;bottom:550px;right:15%;width:5%;}
+#cafe-search-area{position:relative;z-index:30;width:100%;height:200px;bottom:700px;/* left:200px; */}
+#sido_code{}
+/* .container{width:1000px;} */
+.header{height:auto;overflow:hidden;margin-bottom:100px; background-color: #FAFAFA;}   
+
 .nav-pills .my-link.active, .nav-pills .show>.my-link {
 	color: #fff;
 	background-color: #6c757d;
@@ -41,14 +98,86 @@
 	background-color: #f1f1f1;
 	border-radius: 20px;
 }
+
+
+
+
 </style>
 </head>
 
 <body>
 	<!-- 내비게이션 include -->
 	<%@ include file="/WEB-INF/view/include/navigation.jsp"%>
+	
+	<div class="memubar_space">
+		<div class="container">
+			<img id="head_image" src="img/head_img.jpg">  
+			<img id="head_text" src="img/head_text2.png" >
+			<!-- <img id="head_location" src="img/location.png"> -->
+			
+			<form id="cafe-search-area" class="form pl-4 pr-4" action="searchCafe.do" method="post" onsubmit="return pushLast();" >
+				<div class="form-row">
+					<div class="col-sm-10">
+						<div class="form-row">
+							<div class="col-4 pb-1 pt-1" style="height:65px;">
+								<select class="form-control rounded-edge" name="sido_code"
+									id="sido_code" style="font-weight:bold;width:100%; border-radius:45px; border:none; background:#F8ECE0;">
+									<option value="-1">시/도</option>
+									<option value="11">서울</option>
+									<option value="26">부산</option>
+									<option value="27">대구</option>
+									<option value="28">인천</option>
+									<option value="29">광주</option>
+									<option value="30">대전</option>
+									<option value="31">울산</option>
+									<option value="36">세종</option>
+									<option value="41">경기</option>
+									<option value="42">강원</option>
+									<option value="43">충북</option>
+									<option value="44">충남</option>
+									<option value="45">전북</option>
+									<option value="46">전남</option>
+									<option value="47">경북</option>
+									<option value="48">경남</option>
+									<option value="50">제주</option>
+								</select>
+								<div  style="z-index:-10; position:relative;left:5px;bottom:38px; border:3px solid #FFFFFF;/* width:173px; */height:47px;border-radius: 45px;"></div>
+							</div>
+							<div class="col-4 pb-1 pt-1" id=""style="height:65px;">  
+								<select class="form-control rounded-edge" name="sigungu_code"
+									id="sigungu_code" style="font-weight:bold;border-radius: 45px;border:none; background:#F8ECE0;">
+									<option value="-1" class="start1">시/군/구</option>  
+								</select>
+								<div style="z-index:-10;width:100%; position:relative;left:5px;bottom:38px; border:3px solid #FFFFFF;/* width:173px; */height:47px;border-radius: 45px;"></div>
+							</div>
+							<div class="col-4 pb-1 pt-1" style="height:65px;">
+								<select class="form-control rounded-edge" name="dong_code"
+									id="dong_code" style="font-weight:bold;border-radius: 45px;border:none; background:#F8ECE0; ">
+									<option value="-1" class="start2">행정동</option>
+								</select>
+								<div  style="z-index:-10;width:100%; position:relative;left:5px;bottom:38px; border:3px solid #FFFFFF;/* width:173px; */height:47px;border-radius: 45px;"></div>
+							</div>
 
-	<header class="jumbotron jumbotron-fluid text-center bg-cover m-0">
+
+						</div>   
+						<div class="form-row">
+							<div class="col-12 pb-1 pt-1">
+								<input type="text" name="name" style="font-weight:bold;border-radius: 30px;" placeholder="ex) 스타벅스, 이디야" class="form-control rounded-edge">  
+							</div>
+							<div style="z-index:-11;width:99%; position:relative;left:7px;bottom:40px; border:3px solid #FFFFFF;/* width:545px; */height:45px;border-radius: 45px;"></div>  
+						</div>
+					</div>
+					<div class="col-sm-2 pb-1 pt-1">  
+						<input id="search-btn1" type="submit" value="검색" class="form-control rounded-edge"
+							style="font-weight:bold;z-index:1; height: 110px;border:none; border-radius: 45px;background:#688A08;color:#FFFFFF; ">
+						<div id="search-btn2" style="z-index:-12;width:100%; position:relative;left:8px;bottom:105px; border:3px solid #FFFFFF;/* width:100px; */height:110px;border-radius: 45px;"></div>
+					</div>
+				</div>
+			</form>
+			
+		</div>
+	</div>
+	<!-- <header class="jumbotron jumbotron-fluid text-center bg-cover m-0">
 		<div class="container search-area">
 			<form class="form pl-4 pr-4" action="searchCafe.do" method="post"
 				onsubmit="return pushLast();">
@@ -107,7 +236,7 @@
 			</form>
 		</div>
 
-	</header>
+	</header> -->
 
 	<div class="container-fluid bg-light">
 		<div class="container">

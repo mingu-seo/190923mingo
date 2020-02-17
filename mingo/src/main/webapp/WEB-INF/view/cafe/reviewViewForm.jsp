@@ -40,8 +40,8 @@
 		.review_navi_nums{width:80%;height:200px;padding-top:40px;text-align:center;}
 		.review_navi_nums > div{line-height:60px;height:60px;width:auto;display: inline-block;}      
 		.num-area{width:auto;height:40px;float:left;}
-		.num{margin:0 10px;width:40px;height:40px;float:left;}
-		.present{width:40px;height:40px;border-radius: 40px;float:left;background-color: #86B404;text-align: center;line-height: 40px;margin:10px;}
+		.num{margin:0 10px;width:40px;height:40px;float:left;cursor:pointer;}
+		.present{cursor:pointer;width:40px;height:40px;border-radius: 40px;float:left;background-color: #86B404;text-align: center;line-height: 40px;margin:10px;}
 		.num-btn{width:100%;height:auto;}
 	</style>
 	
