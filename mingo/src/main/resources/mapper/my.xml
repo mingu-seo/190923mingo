@@ -157,9 +157,10 @@
 	</select>      
 	<select id="getMyCafeList" resultType="Map" parameterType="Map">
 	select * 
-	from collect_cafe as cc join cafe as c join cafe_rate as r
-	on cc.cafe_id = c.cafe_id and c.cafe_id = r.cafe_id
+	from (select * 
+				from collect_cafe natural join cafe) as c left outer join cafe_rate as r 
+	on c.cafe_id = r.cafe_id
 	where user_id = #{user_id}
-	limit #{startrow},#{limit};
+	limit #{startrow},#{limit};  
 	</select>
 </mapper>

@@ -101,7 +101,7 @@
 			$('#withdrawBtn').click(function(){
 				var password = $('#pwd').val();
 				$.ajax({
-					url:'checkPassword.do',
+					url:'checkPassword.do', 
 					type:'POST',
 					dataType : "json",
 					data:{ password : password},

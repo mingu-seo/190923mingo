@@ -29,7 +29,23 @@
 		.page-item.active .page-link{
 		    border-color:gray;
 		    background-color: gray;
-		}  
+		} 
+		/* td 평가 영역 */
+		.d-flex > .flex-fill > span{
+			float:left;
+			font-size:10px;
+			display:inline-block;
+			width:40px;
+		}
+		.d-flex > .flex-fill > div{
+			margin-top:2px;
+			float:left;
+			width:100px;
+			height:10px;
+		}
+		.d-flex > .flex-fill > div > div{
+			height:10px;
+		} 
 	</style>	
 
 </head>

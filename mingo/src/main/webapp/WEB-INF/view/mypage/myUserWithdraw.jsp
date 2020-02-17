@@ -100,7 +100,7 @@
 				var chk =  confirm("정말 탈퇴하시겠습니까?");
 				if(chk){
 					$.ajax({
-						url:'checkPassword.do',
+						url:'my/checkPassword.do',
 						type:'POST',
 						dataType : "json",
 						data:{ password : password},
