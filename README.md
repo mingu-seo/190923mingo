@@ -29,9 +29,9 @@
     * Tomcat 8.0
 
 ## 2. 실행 환경
-  * Window11
-  * Jdk 1.8
-  * Tomcat 8.0
+  * OS : Window11
+  * JAVA : JDK 1.8
+  * Server : Tomcat 8.0
 
 ## 3. 개요 
   * 카페를 평가, 검색하고 리뷰를 남기며, 평점을 기준으로 랭킹을 열람할 수 있는 플랫폼
