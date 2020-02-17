@@ -45,7 +45,7 @@
 	    .graph_logo2{height: 80px;float: left;position: relative;z-index: 100;bottom: 25px;}
 	    .bean_img2{height:30px;float: right;padding-left: 0px;position: relative;/* left:25px;bottom:10px; */ z-index: 200;line-height: 40px;margin:5px;}
 	    .graph_text2{width:80px;text-align:center;font-size: 1.2em;font-weight: bold;color: #FFFFFF;float: right;}
-	    .rate_visual_total2{height:auto;overflow:hidden;width:100%;}   
+	    .rate_visual_total2{height:400px;width:100%;}       
 	    info22{height:100px;}   
 		.rate_info22{height:120px;padding:30px 0px;}  
 		.rate_each22{float: left;width: 470px;height:120px;}
@@ -157,7 +157,7 @@
 			            </div>
 			            <div class="graph_stack2">
 			                <div class="graph_rate2" id="taste-width2">
-			                    <img src="img/bean.PNG" class="bean_img2">
+			                    <img src="img/bean.png" class="bean_img2">
 			                    <div class="graph_text" id="taste-text2">${reviewVO.taste_score }점</div>
 			                </div>
 			            </div>
@@ -174,7 +174,7 @@
 			            </div>
 			            <div class="graph_stack2">
 			                <div class="graph_rate2" id="mood-width2">
-			                    <img src="img/bean.PNG" class="bean_img2">
+			                    <img src="img/bean.png" class="bean_img2">
 			                    <div class="graph_text2" id="mood-text2">${reviewVO.mood_score }점</div>
 			                </div>
 			            </div>
@@ -191,7 +191,7 @@
 			            </div>
 			            <div class="graph_stack2">
 			                <div class="graph_rate2" id="service-width2">
-			                    <img src="img/bean.PNG" class="bean_img2">
+			                    <img src="img/bean.png" class="bean_img2">
 			                    <div class="graph_text2" id="service-text2">${reviewVO.service_score }점</div>
 			                </div>
 			            </div>
@@ -208,7 +208,7 @@
 			            </div>
 			            <div class="graph_stack2">
 			                <div class="graph_rate2" id="wifi-width2">
-			                    <img src="img/bean.PNG" class="bean_img2">
+			                    <img src="img/bean.png" class="bean_img2">
 			                    <div class="graph_text2" id="wifi-text2">${reviewVO.wifi_score }점</div>
 			                </div>
 			            </div>
@@ -225,7 +225,7 @@
 			            </div>
 			            <div class="graph_stack2">
 			                <div class="graph_rate2" id="clean-width2">
-			                    <img src="img/bean.PNG" class="bean_img2">
+			                    <img src="img/bean.png" class="bean_img2">
 			                    <div class="graph_text2" id="clean-text2">${reviewVO.clean_score }점</div>
 			                </div>
 			            </div>
@@ -242,7 +242,7 @@
 			            </div>
 			            <div class="graph_stack2">
 			                <div class="graph_rate2" id="price-width2">
-			                    <img src="img/bean.PNG" class="bean_img2">
+			                    <img src="img/bean.png" class="bean_img2">
 			                    <div class="graph_text2" id="price-text2">${reviewVO.price_score }점</div>
 			                </div>
 			            </div>

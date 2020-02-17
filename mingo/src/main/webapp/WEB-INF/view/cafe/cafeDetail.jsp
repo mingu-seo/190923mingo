@@ -329,17 +329,17 @@
 			width:80%;
 		}
 		.facility{
-			height:500px;
+			height:400px;
 			display: none;
 			width:80%;
 		}
 		.service{
-			height:500px;
+			height:400px;
 			display: none;
 			width:80%;
 		}
 		.product{  
-			height:500px;
+			height:400px;  
 			display: none;
 			width:80%;
 		}
@@ -522,8 +522,8 @@
         
         .rate_visual_total{
         	height:auto;
-        	overflow:hidden;
         	width:100%;
+        	
         }     
 
 		.rate_info2{
@@ -752,7 +752,7 @@
         
         .rate_visual_total2{
         	height:auto;
-        	overflow:hidden;
+        	
         	width:100%;
         }   
         info22{  
@@ -1285,21 +1285,21 @@
 									<option value="48">경남</option>
 									<option value="50">제주</option>
 								</select>
-								<div style="z-index:-10; position:relative;left:5px;bottom:40px; border:3px solid #2E2E2E;width:170px;height:47px;border-radius: 45px;"></div>
+								<div style="z-index:-10; position:relative;left:5px;bottom:38px; border:3px solid #FFFFFF;width:173px;height:47px;border-radius: 45px;"></div>
 							</div>
 							<div class="col-4 pb-1 pt-1" id=""style="height:65px;">
 								<select class="form-control rounded-edge" name="sigungu_code"
 									id="sigungu_code" style="font-weight:bold;border-radius: 45px;border:none; background:#F8ECE0;">
 									<option value="-1" class="start1">시/군/구</option>  
 								</select>
-								<div style="z-index:-10; position:relative;left:5px;bottom:40px; border:3px solid #2E2E2E;width:170px;height:47px;border-radius: 45px;"></div>
+								<div style="z-index:-10; position:relative;left:5px;bottom:38px; border:3px solid #FFFFFF;width:173px;height:47px;border-radius: 45px;"></div>
 							</div>
 							<div class="col-4 pb-1 pt-1"style="height:65px;">
 								<select class="form-control rounded-edge" name="dong_code"
 									id="dong_code" style="font-weight:bold;border-radius: 45px;border:none; background:#F8ECE0; ">
 									<option value="-1" class="start2">행정동</option>
 								</select>
-								<div style="z-index:-10; position:relative;left:5px;bottom:40px; border:3px solid #2E2E2E;width:170px;height:47px;border-radius: 45px;"></div>
+								<div style="z-index:-10; position:relative;left:5px;bottom:38px; border:3px solid #FFFFFF;width:173px;height:47px;border-radius: 45px;"></div>
 							</div>
 
 
@@ -1308,13 +1308,13 @@
 							<div class="col-12 pb-1 pt-1">
 								<input type="text" name="name" style="font-weight:bold;border-radius: 30px;" placeholder="ex) 스타벅스, 이디야" class="form-control rounded-edge">  
 							</div>
-							<div style="z-index:-11; position:relative;left:5px;bottom:42px; border:3px solid #2E2E2E;width:537px;height:47px;border-radius: 45px;"></div>  
+							<div style="z-index:-11; position:relative;left:9px;bottom:40px; border:3px solid #FFFFFF;width:545px;height:45px;border-radius: 45px;"></div>  
 						</div>
 					</div>
 					<div class="col-sm-2 pb-1 pt-1">  
 						<input type="submit" value="검색" class="form-control rounded-edge"
 							style="font-weight:bold;z-index:1; height: 110px;border:none; border-radius: 45px;background:#688A08;color:#FFFFFF; ">
-						<div style="z-index:-12; position:relative;left:5px;bottom:105px; border:3px solid #2E2E2E;width:98px;height:110px;border-radius: 45px;"></div>
+						<div style="z-index:-12; position:relative;left:8px;bottom:105px; border:3px solid #FFFFFF;width:100px;height:110px;border-radius: 45px;"></div>
 					</div>
 				</div>
 			</form>
@@ -1410,8 +1410,69 @@
 						<c:if test="${cafe.tel!=null}">
 							<div class="basic_info_each" id="info_tel">&nbsp;ㆍ${cafe.tel }</div>
 						</c:if>
-						<c:if test="${cafe.time_day!=null}">
-							<div class="basic_info_each" id="info_mg_time">&nbsp;ㆍ매주 08:00~23:00</div>
+						<c:if test="${cafe.time_day!=null && cafe.time_start!=null && cafe.time_end!=null}">
+							<div class="basic_info_each" id="info_mg_time">
+								<c:if test="${cafe.time_day!=null && cafe.time_start!=null && cafe.time_end!=null}">ㆍ</c:if>
+								
+								<c:if test="${cafe.time_day==1}">매주</c:if>
+								<c:if test="${cafe.time_day==2}">월~금</c:if>
+								<c:if test="${cafe.time_day==3}">월~토</c:if>
+								<c:if test="${cafe.time_day==4}">주말</c:if>
+								
+								<c:if test="${cafe.time_day!=null && cafe.time_start!=null && cafe.time_end!=null}">)&nbsp;</c:if>
+								
+								<c:if test="${cafe.time_start==1}">00:00</c:if>
+								<c:if test="${cafe.time_start==2}">01:00</c:if>
+								<c:if test="${cafe.time_start==3}">02:00</c:if>
+								<c:if test="${cafe.time_start==4}">03:00</c:if>
+								<c:if test="${cafe.time_start==5}">04:00</c:if>
+								<c:if test="${cafe.time_start==6}">05:00</c:if>
+								<c:if test="${cafe.time_start==7}">06:00</c:if>
+								<c:if test="${cafe.time_start==8}">07:00</c:if>
+								<c:if test="${cafe.time_start==9}">08:00</c:if>
+								<c:if test="${cafe.time_start==10}">09:00</c:if>
+								<c:if test="${cafe.time_start==11}">10:00</c:if>
+								<c:if test="${cafe.time_start==12}">11:00</c:if>
+								<c:if test="${cafe.time_start==13}">12:00</c:if>
+								<c:if test="${cafe.time_start==14}">13:00</c:if>
+								<c:if test="${cafe.time_start==15}">14:00</c:if>
+								<c:if test="${cafe.time_start==16}">15:00</c:if>
+								<c:if test="${cafe.time_start==17}">16:00</c:if>
+								<c:if test="${cafe.time_start==18}">17:00</c:if>
+								<c:if test="${cafe.time_start==19}">18:00</c:if>
+								<c:if test="${cafe.time_start==20}">19:00</c:if>
+								<c:if test="${cafe.time_start==21}">20:00</c:if>
+								<c:if test="${cafe.time_start==22}">21:00</c:if>
+								<c:if test="${cafe.time_start==23}">22:00</c:if>
+								<c:if test="${cafe.time_start==24}">23:00</c:if>
+								
+								<c:if test="${cafe.time_day!=null && cafe.time_start!=null && cafe.time_end!=null}">~</c:if>
+								
+								<c:if test="${cafe.time_end==1}">01:00</c:if>
+								<c:if test="${cafe.time_end==2}">02:00</c:if>
+								<c:if test="${cafe.time_end==3}">03:00</c:if>
+								<c:if test="${cafe.time_end==4}">04:00</c:if>
+								<c:if test="${cafe.time_end==5}">05:00</c:if>
+								<c:if test="${cafe.time_end==6}">06:00</c:if>
+								<c:if test="${cafe.time_end==7}">07:00</c:if>
+								<c:if test="${cafe.time_end==8}">08:00</c:if>
+								<c:if test="${cafe.time_end==9}">09:00</c:if>
+								<c:if test="${cafe.time_end==10}">10:00</c:if>
+								<c:if test="${cafe.time_end==11}">11:00</c:if>
+								<c:if test="${cafe.time_end==12}">12:00</c:if>
+								<c:if test="${cafe.time_end==13}">13:00</c:if>
+								<c:if test="${cafe.time_end==14}">14:00</c:if>
+								<c:if test="${cafe.time_end==15}">15:00</c:if>
+								<c:if test="${cafe.time_end==16}">16:00</c:if>
+								<c:if test="${cafe.time_end==17}">17:00</c:if>
+								<c:if test="${cafe.time_end==18}">18:00</c:if>
+								<c:if test="${cafe.time_end==19}">19:00</c:if>
+								<c:if test="${cafe.time_end==20}">20:00</c:if>
+								<c:if test="${cafe.time_end==21}">21:00</c:if>
+								<c:if test="${cafe.time_end==22}">22:00</c:if>
+								<c:if test="${cafe.time_end==23}">23:00</c:if>
+								<c:if test="${cafe.time_end==24}">24:00</c:if>
+							</div>
 						</c:if>
 					</div>
 				</div>
@@ -1466,7 +1527,12 @@
 								<img src="img/coffee.png"/>
 								<div>
 									<h6>와이파이</h6>
-									<h6 id="facilities-result1">${facilities.wifi}</h6>
+									<h6 id="facilities-result1">
+										<c:if test="${facilities.wifi==1}">쾌적</c:if>									
+										<c:if test="${facilities.wifi==2}">양호</c:if>									
+										<c:if test="${facilities.wifi==3}">나쁨</c:if>									
+										<c:if test="${facilities.wifi==4}">없음</c:if>									
+									</h6>
 								</div>
 							</div>
 						</c:if>
@@ -1475,7 +1541,12 @@
 								<img src="img/coffee.png"/>
 								<div>
 									<h6>매장 규모</h6>
-									<h6 id="facilities-result2">${facilities.tables }</h6>
+									<h6 id="facilities-result2">
+										<c:if test="${facilities.tables==1}">1~10인 석</c:if>
+										<c:if test="${facilities.tables==2}">11~30인 석</c:if>
+										<c:if test="${facilities.tables==3}">31~50인 석</c:if>
+										<c:if test="${facilities.tables==4}">50인 석 이상</c:if>
+									</h6>
 								</div>
 							</div>
 						</c:if>
@@ -1484,7 +1555,13 @@
 								<img src="img/coffee.png"/>
 								<div>
 									<h6>인테리어 분위기</h6>
-									<h6 id="facilities-result3">${facilities.interior }</h6>
+									<h6 id="facilities-result3">
+										<c:if test="${facilities.interior==1}">모던</c:if>
+										<c:if test="${facilities.interior==2}">빈티지</c:if>
+										<c:if test="${facilities.interior==3}">네추럴</c:if>
+										<c:if test="${facilities.interior==4}">북유럽</c:if>
+										<c:if test="${facilities.interior==5}">기타</c:if>
+									</h6>
 								</div>
 							</div>  
 						</c:if>
@@ -1493,7 +1570,14 @@
 								<img src="img/coffee.png"/>
 								<div>
 									<h6>음악</h6>
-									<h6 id="facilities-result4">${facilities.music}</h6>
+									<h6 id="facilities-result4">
+										<c:if test="${facilities.music==1}">클래식</c:if>
+										<c:if test="${facilities.music==2}">재즈</c:if>
+										<c:if test="${facilities.music==3}">영화ost</c:if>
+										<c:if test="${facilities.music==4}">대중가요</c:if>
+										<c:if test="${facilities.music==5}">팝</c:if>
+										<c:if test="${facilities.music==6}">기타</c:if>
+									</h6>
 								</div>
 							</div>
 						</c:if>
@@ -1502,7 +1586,12 @@
 								<img src="img/coffee.png"/>
 								<div>
 									<h6>플러그 수</h6>
-									<h6 id="facilities-result5">${facilities.plug}</h6>
+									<h6 id="facilities-result5">
+										<c:if test="${facilities.plug==1}">자리마다</c:if>
+										<c:if test="${facilities.plug==2}">띄엄띄엄</c:if>
+										<c:if test="${facilities.plug==3}">거의없음</c:if>
+										<c:if test="${facilities.plug==4}">없음</c:if>
+									</h6>
 								</div>
 							</div>
 						</c:if>
@@ -1511,7 +1600,10 @@
 								<img src="img/coffee.png"/>
 								<div>
 									<h6>화장실</h6>
-									<h6 id="facilities-result6">${facilities.restroom}</h6>
+									<h6 id="facilities-result6">
+										<c:if test="${facilities.restroom==1}">있음</c:if>
+										<c:if test="${facilities.restroom==2}">없음</c:if>
+									</h6>
 								</div>
 							</div>
 						</c:if>
@@ -1520,7 +1612,10 @@
 								<img src="img/coffee.png"/>
 								<div>
 									<h6>테라스</h6>
-									<h6 id="facilities-result7">${facilities.terrace}</h6>
+									<h6 id="facilities-result7">
+										<c:if test="${facilities.terrace==1}">있음</c:if>
+										<c:if test="${facilities.terrace==2}">없음</c:if>
+									</h6>
 								</div>
 							</div>
 						</c:if>
@@ -1529,7 +1624,10 @@
 								<img src="img/coffee.png"/>
 								<div>
 									<h6>스터디룸</h6>
-									<h6 id="facilities-result8">${facilities.studyroom}</h6>
+									<h6 id="facilities-result8">
+										<c:if test="${facilities.studyroom==1}">있음</c:if>
+										<c:if test="${facilities.studyroom==2}">없음</c:if>
+									</h6>
 								</div>
 							</div>
 						</c:if>
@@ -1538,7 +1636,10 @@
 								<img src="img/coffee.png"/>
 								<div>
 									<h6>흡연석</h6>
-									<h6 id="facilities-result9">${facilities.smoking}</h6>
+									<h6 id="facilities-result9">
+										<c:if test="${facilities.smoking==1}">있음</c:if>
+										<c:if test="${facilities.smoking==2}">없음</c:if>
+									</h6>
 								</div>
 							</div>
 						</c:if>
@@ -1547,13 +1648,16 @@
 								<img src="img/coffee.png"/>
 								<div> 
 									<h6>주차공간</h6>
-									<h6 id="facilities-result10">${facilities.parking}</h6>
+									<h6 id="facilities-result10">
+										<c:if test="${facilities.parking==1}">있음</c:if>
+										<c:if test="${facilities.parking==2}">없음</c:if>
+									</h6>
 								</div>
 							</div>
 						</c:if>
 					</c:if>
 					<c:if test="${facilities ==null }">
-						<div class="facility" style="width:80%;height:400px;font-size: 1.5em; font-weight: bold; color:#D8D8D8; text-align:center;line-height:300px;">
+						<div class="facility" style="width:100%;height:300px;font-size: 1.5em; font-weight: bold; color:#D8D8D8; text-align:center;line-height:300px;">
 							등록된 정보가 없습니다.
 						</div>
 					</c:if>
@@ -1566,7 +1670,10 @@
 									<img src="img/coffee.png"/>
 									<div>
 										<h6>이벤트</h6>
-										<h6 id="service-result1">${service.event }</h6>
+										<h6 id="service-result1">
+											<c:if test="${service.event==1}">있음</c:if>
+											<c:if test="${service.event==2}">없음</c:if>
+										</h6>
 									</div>
 								</div>
 							</c:if>
@@ -1575,7 +1682,10 @@
 									<img src="img/coffee.png"/>
 									<div>
 										<h6>쿠폰</h6>
-										<h6 id="service-result2">${service.coupon }</h6>
+										<h6 id="service-result2">
+											<c:if test="${service.coupon==1}">있음</c:if>
+											<c:if test="${service.coupon==2}">없음</c:if>
+										</h6>
 									</div>
 								</div>
 							</c:if>
@@ -1584,7 +1694,10 @@
 									<img src="img/coffee.png"/>
 									<div>
 										<h6>마일리지</h6>
-										<h6 id="service-result3">${service.mileage }</h6>
+										<h6 id="service-result3">
+											<c:if test="${service.mileage==1}">있음</c:if>
+											<c:if test="${service.mileage==2}">없음</c:if>
+										</h6>
 									</div>
 								</div>
 							</c:if>
@@ -1593,7 +1706,10 @@
 									<img src="img/coffee.png"/>
 									<div>
 										<h6>담요</h6>
-										<h6 id="service-result4">${service.blanket }</h6>
+										<h6 id="service-result4">
+											<c:if test="${service.blanket==1}">있음</c:if>
+											<c:if test="${service.blanket==2}">없음</c:if>
+										</h6>
 									</div>
 								</div>
 							</c:if>
@@ -1602,13 +1718,16 @@
 									<img src="img/coffee.png"/>
 									<div>
 										<h6>음료 리필</h6>
-										<h6 id="service-result5">${service.drinkrefill }</h6>
+										<h6 id="service-result5">
+											<c:if test="${service.drinkrefill==1}">있음</c:if>
+											<c:if test="${service.drinkrefill==2}">없음</c:if>
+										</h6>
 									</div>
 								</div>
 							</c:if>
 						</c:if>
 						<c:if test="${service ==null }">
-							<div class="service" style="width:80%;height:400px;font-size: 1.5em; font-weight: bold; color:#D8D8D8; text-align:center;line-height:300px;">
+							<div class="service" style="width:100%;height:300px;font-size: 1.5em; font-weight: bold; color:#D8D8D8; text-align:center;line-height:300px;">
 								등록된 정보가 없습니다.
 							</div>
 						</c:if>

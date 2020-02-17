@@ -303,44 +303,44 @@
 						</div>
 						<div class="my_rate_each2" id="my_rate_each2">
 							<span class="my_rate_visual" id="my_taste_visual">
-								<img src="img/wifi.png">
+								<img src="img/taste.png">
 							</span>
-							<span class="my_rate_name" id="my_taste_name">맛</span>
+							<span class="my_rate_name" id="my_taste_name">taste - </span>
 							<span class="my_my_rate">${review.taste_score }점</span>
 						</div>
 						<div class="my_rate_each2" id="my_rate_each2">
 							<span class="my_rate_visual" id="my_price_visual">
-								<img src="img/wifi.png">
+								<img src="img/price.png">
 							</span>
-							<span class="my_rate_name" id="my_price_name">가격</span>
+							<span class="my_rate_name" id="my_price_name">price - </span>
 							<span class="my_my_rate">${review.price_score }점</span>
 						</div>
 						<div class="my_rate_each2" id="my_rate_each2">
 							<span class="my_rate_visual" id="my_service_visual">
-								<img src="img/wifi.png">
+								<img src="img/service.png">
 							</span>
-							<span class="my_rate_name" id="my_service_name">서비스</span>
+							<span class="my_rate_name" id="my_service_name">service - </span>
 							<span class="my_my_rate">${review.service_score }점</span>
 						</div>
 						<div class="my_rate_each2" id="my_rate_each2">
 							<span class="my_rate_visual" id="my_facimood_visual">
-								<img src="img/wifi.png">
+								<img src="img/mood.png">
 							</span>
-							<span class="my_rate_name" id="my_facimood_name">시설 및 분위기</span>
+							<span class="my_rate_name" id="my_facimood_name">mood - </span>
 							<span class="my_my_rate">${review.mood_score }점</span>
 						</div>
 						<div class="my_rate_each2" id="my_rate_each2">
 							<span class="my_rate_visual" id="my_wifiplug_visual">
 								<img src="img/wifi.png">
 							</span>
-							<span class="my_rate_name" id="my_wifiplug_name">와이파이&콘센트</span>
+							<span class="my_rate_name" id="my_wifiplug_name">wifi - </span>
 							<span class="my_my_rate">${review.wifi_score }점</span>
 						</div>  
 						<div class="my_rate_each2" id="my_rate_each2">
 							<span class="my_rate_visual" id="my_clean_visual">
-								<img src="img/wifi.png">
+								<img src="img/clean.png">
 							</span>
-							<span class="my_rate_name" id="my_clean_name">청결</span>
+							<span class="my_rate_name" id="my_clean_name">clean - </span>
 							<span class="my_my_rate">${review.clean_score }점</span>
 						</div>
 					</div>	

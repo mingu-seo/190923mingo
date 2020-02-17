@@ -136,42 +136,42 @@
 							<span class="rate_visual" id="taste_visual">
 								<img src="img/taste.png">
 							</span>
-							<span class="rate_name" id="taste_name">맛</span>
+							<span class="rate_name" id="taste_name">taste - </span>
 							<span class="my_rate">${review.taste_score }점</span>  
 						</div>  
 						<div class="rate_each2" id="rate_each2">
 							<span class="rate_visual" id="price_visual">
 								<img src="img/price.png">
 							</span>
-							<span class="rate_name" id="price_name">가격</span>
+							<span class="rate_name" id="price_name">price - </span>
 							<span class="my_rate">${review.price_score }점</span>
 						</div>
 						<div class="rate_each2" id="rate_each2">
 							<span class="rate_visual" id="service_visual">
 								<img src="img/service.png">
 							</span>
-							<span class="rate_name" id="service_name">서비스</span>
+							<span class="rate_name" id="service_name">service - </span>
 							<span class="my_rate">${review.service_score }점</span>
 						</div>
 						<div class="rate_each2" id="rate_each2">
 							<span class="rate_visual" id="facimood_visual">
 								<img src="img/mood.png">
 							</span>
-							<span class="rate_name" id="facimood_name">시설 및 분위기</span>
+							<span class="rate_name" id="facimood_name">mood - </span>
 							<span class="my_rate">${review.mood_score }점</span>
 						</div>
 						<div class="rate_each2" id="rate_each2">
 							<span class="rate_visual" id="wifiplug_visual">
-								<img src="img/wifi2.png">
+								<img src="img/wifi.png">
 							</span>
-							<span class="rate_name" id="wifiplug_name">와이파이&콘센트</span>
+							<span class="rate_name" id="wifiplug_name">wifi - </span>
 							<span class="my_rate">${review.wifi_score }점</span>
 						</div>  
 						<div class="rate_each2" id="rate_each2">
 							<span class="rate_visual" id="clean_visual">
 								<img src="img/clean.png">
 							</span>
-							<span class="rate_name" id="clean_name">청결</span>
+							<span class="rate_name" id="clean_name">clean - </span>
 							<span class="my_rate">${review.clean_score }점</span>
 						</div>
 					</div>
