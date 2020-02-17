@@ -1259,7 +1259,7 @@
 			<img id="head_text" src="img/head_text2.png">
 			<img id="head_location" src="img/location.png">
 			
-			<form id="cafe-search-area" class="form pl-4 pr-4" action="searchCafe.do" method="post" onsubmit="return pushLast();">
+			<form id="cafe-search-area" class="form pl-4 pr-4" action="searchCafe.do" method="post" onsubmit="return pushLast();" style="width:700px;">
 				<div class="form-row">
 					<div class="col-sm-10">
 						<div class="form-row">
@@ -1679,7 +1679,7 @@
 							            </div>
 							            <div class="graph_stack">
 							                <div class="graph_rate" id="taste-width">
-							                    <img src="img/bean.PNG" class="bean_img">
+							                    <img src="img/bean.png" class="bean_img">
 							                    
 							                    <div class="graph_text" id="taste-text">${cafeRate.taste_avg }점</div>
 							                </div>
@@ -1697,7 +1697,7 @@
 							            </div>
 							            <div class="graph_stack">
 							                <div class="graph_rate" id="mood-width">
-							                    <img src="img/bean.PNG" class="bean_img">
+							                    <img src="img/bean.png" class="bean_img">
 							                    <div class="graph_text" id="mood-text">${cafeRate.mood_avg }점</div>
 							                </div>
 							            </div>
@@ -1714,7 +1714,7 @@
 							            </div>
 							            <div class="graph_stack">
 							                <div class="graph_rate" id="service-width">
-							                    <img src="img/bean.PNG" class="bean_img">
+							                    <img src="img/bean.png" class="bean_img">
 							                    <div class="graph_text" id="service-text">${cafeRate.service_avg }점</div>
 							                </div>
 							            </div>
@@ -1731,7 +1731,7 @@
 							            </div>
 							            <div class="graph_stack">
 							                <div class="graph_rate" id="wifi-width">
-							                    <img src="img/bean.PNG" class="bean_img">
+							                    <img src="img/bean.png" class="bean_img">
 							                    <div class="graph_text" id="wifi-text">${cafeRate.wifi_avg }점</div>
 							                </div>
 							            </div>
@@ -1748,7 +1748,7 @@
 							            </div>
 							            <div class="graph_stack">
 							                <div class="graph_rate" id="clean-width">
-							                    <img src="img/bean.PNG" class="bean_img">
+							                    <img src="img/bean.png" class="bean_img">
 							                    <div class="graph_text" id="clean-text">${cafeRate.clean_avg }점</div>
 							                </div>
 							            </div>
@@ -1765,7 +1765,7 @@
 							            </div>
 							            <div class="graph_stack">
 							                <div class="graph_rate" id="price-width">
-							                    <img src="img/bean.PNG" class="bean_img">
+							                    <img src="img/bean.png" class="bean_img">
 							                    <div class="graph_text" id="price-text">${cafeRate.price_avg }점</div>
 							                </div>
 							            </div>
