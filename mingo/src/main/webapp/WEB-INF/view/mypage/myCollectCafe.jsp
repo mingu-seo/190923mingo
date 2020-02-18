@@ -47,7 +47,14 @@
 			height:10px;
 		} 
 	</style>	
-
+	<script>
+	function deleteMyCafe(cafe_id,user_id){
+		var chk =  confirm("삭제하시겠습니까?");
+		if (chk){
+					location.href="deleteMyCafe.do?user_id="+user_id+"&cafe_id="+cafe_id;  
+		}else{event.preventDefault();}
+	}
+	</script>
 </head>
 
 <body>
@@ -105,7 +112,7 @@
 						</thead>
 						<tbody>
 							<tr>
-								<td colspan="8">검색 결과가 없습니다.</td>
+								<td colspan="5">검색 결과가 없습니다.</td>
 							</tr>
 						</tbody>
 					</table>
@@ -121,6 +128,7 @@
 							<th style="width:200px;text-align:center;">주소</th>
 							<th>평가</th>
 							<th style="width:100px;text-align:center;">평점</th>
+							<th>비고</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -186,6 +194,9 @@
 									  <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning" style="width:${item.rate_avg * 20}%"></div>
 									</div>
 								</td>
+								<th>
+									<button type="button" class="btn btn-secondary" onclick="deleteMyCafe(${item.cafe_id},${item.user_id });">삭제</button>
+								</th>
 							</tr>
 						</c:forEach>
 						</tbody>
@@ -204,7 +215,7 @@
 			<c:if test="${not empty cafeList }" >
 				<ul class="pagination mypagi justify-content-center">
 					<c:if test="${ pageInfo.page > 1 }">
-						<li class="page-item"><a class="page-link" href="myPost.do?page=${pageInfo.page-1}">&#10094;</a></li>
+						<li class="page-item"><a class="page-link" href="myCollect.do?page=${pageInfo.page-1}">&#10094;</a></li>
 					</c:if>
 					<c:if test="${ pageInfo.page <= 1 }">
 						<li class="page-item disabled"><a class="page-link">&#10094;</a></li>
@@ -215,7 +226,7 @@
 						<li class="page-item active"><a class="page-link" href="#">${i }</a></li>
 					</c:if>
 				  <c:if test="${pageInfo.page != i  }">
-						<li class="page-item"><a class="page-link" href="myPost.do?page=${i }">${i }</a></li>
+						<li class="page-item"><a class="page-link" href="myCollect.do?page=${i }">${i }</a></li>
 					</c:if>
 				</c:forEach>
 				
@@ -223,7 +234,7 @@
 						<li class="page-item disabled"><a class="page-link">&#10095;</a></li>
 					</c:if>
 				  <c:if test="${pageInfo.page < pageInfo.maxPage }">
-						<li class="page-item"><a class="page-link" href="myPost.do?page=${pageInfo.page+1}">&#10095;</a></li>
+						<li class="page-item"><a class="page-link" href="myCollect.do?page=${pageInfo.page+1}">&#10095;</a></li>
 					</c:if> 
 				</ul>
 			</c:if>

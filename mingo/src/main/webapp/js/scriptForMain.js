@@ -5,9 +5,12 @@
  * 
  */
 
-var $grid;
+var $grid;  
 $(document).ready(function(){
-	
+	//디버깅용 변수
+	//var sido_code=-1;
+	//var sigungu_code=-1;
+	//var dong_code=-1;
 	listByFilter2(1,null);
 	showSlides(slideIndex);
 	/* 툴팁을 위한 초기화 */
@@ -24,6 +27,7 @@ $(document).ready(function(){
 	$('#sido_code').change(function(){
 		var value = $('#sido_code option:selected').val();
 		$('.start1').nextAll().remove();
+		$('.start2').nextAll().remove();
 		$.ajax({
 			url: 'getSigungu.do',
 			async: false,
@@ -33,6 +37,7 @@ $(document).ready(function(){
 			data = data.trim();
 			$('#sigungu_code').append(data);
 		});
+		
 		
 	});
 	
@@ -50,10 +55,12 @@ $(document).ready(function(){
 			data = data.trim();
 			$('#dong_code').append(data);
 		});
+		
 	});
 	
 	$('#dong_code').change(function(){
 		var value = $('#dong_code option:selected').val();
+		
 	});
 	
     var mySwiper = new Swiper('.swiper-container', {
@@ -71,7 +78,11 @@ $(document).ready(function(){
             prevEl: '.swiper-button-prev',
         }
     });
-   
+    
+    /* 디버깅용 출력 함수 */
+    function print(){
+    	console.log("시도:"+sido_code+", 시군구:"+sigungu_code+", 동:"+dong_code);
+    }
     
     
 });

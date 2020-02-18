@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import dao.MyDAO;
+import service.DetailService;
 import service.MyService;
 import util.FileUtil;
 import vo.BoardVO;
@@ -33,6 +34,7 @@ public class MyController {
 	
 	@Autowired private MyDAO myDao;  
 	@Autowired private MyService myService;
+	@Autowired private DetailService detailService;
 
 	@RequestMapping("/checkPassword.do")
 	public String myUserInfo(Model model, UserVO vo, HttpServletRequest request) {
@@ -126,10 +128,7 @@ public class MyController {
 		System.out.println("사진 추가 실행!!");
 		return "mypage/cafeImageForm";   
 	}  
-	@RequestMapping("/myReview.do")
-	public String myReview(Model model, HttpServletRequest request) {
-		return "mypage/myMyReview";
-	}  
+	
 	@RequestMapping("/myReviewAjax.do")
 	public String myReviewAjax(Model model, HttpServletRequest request) {
 		HttpSession session = request.getSession();
@@ -240,7 +239,24 @@ public class MyController {
 			return "redirect:/goMain.do";
 		}
 	}
-	
+	// 리뷰 삭제2: 마이페이지에서 리뷰 삭제하는 경우. 삭제한뒤에 마이페이지로 redirect한다.
+	@RequestMapping("/deleteReview.do")   
+	public String deleteReview(CafeRateVO cafeRateVO, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		UserVO vo1 = (UserVO) session.getAttribute("userVO");
+		int user_id = vo1.getUser_id();
+		int cafe_id = Integer.parseInt(request.getParameter("cafe_id"));
+		
+		CafeRateVO cafeRate = detailService.viewCafeRate(cafe_id);  
+		ReviewVO vo_empty = new ReviewVO();
+		vo_empty.setCafe_id(cafe_id);
+		vo_empty.setUser_id(user_id);
+		ReviewVO reviewVO = detailService.viewReview(vo_empty);  
+		
+		detailService.deleteReview(cafeRateVO, reviewVO);
+		
+		return "redirect:/myReview.do?page=1";
+	}  
 	
 	@RequestMapping("/deleteUserForm.do")
 	public String deleteUserForm() {
@@ -313,6 +329,61 @@ public class MyController {
 		model.addAttribute("boardList", boardList);
 		return "mypage/myMyPost";
 	}
+	@RequestMapping("/myReview.do")
+	public String myReview(Model model, @RequestParam(required = false, value="page") Integer page, HttpSession session) {
+		
+		UserVO user = null;
+		int user_id = -1;
+		if( session.getAttribute("userVO") !=null) {
+			user = (UserVO)session.getAttribute("userVO");
+			user_id = user.getUser_id();
+		}
+
+		if(page == null) {
+			page =1;
+		}
+
+		/* 객체 생성 */
+		List<Map> reviewList = new ArrayList<Map>();
+
+		/* 리밋 설정 */
+		int limit = 5;
+
+		/* startrow 설정 */
+		int startrow = (page - 1) * limit;
+
+		/* 총 리스트 수를 받아옴 */
+		int listCount = myDao.countMyReview(user_id);
+
+		/* 리뷰 목록 가져옴 */
+		HashMap tmp = new HashMap();
+		tmp.put("startrow", startrow);
+		tmp.put("limit", limit);
+		tmp.put("user_id", user_id);
+		reviewList = myDao.getMyReviewList(tmp);
+
+		/* 페이지 정보 계산 */
+		int maxPage = listCount / limit;
+		if (listCount % limit > 0)
+			maxPage++;
+		int startPage = (page - 1) / limit * limit + 1;
+		int endPage = startPage + limit - 1;
+		if (endPage > maxPage)
+			endPage = maxPage;
+
+		PageInfo pageInfo = new PageInfo();
+		pageInfo.setEndPage(endPage);
+		pageInfo.setListCount(listCount);
+		pageInfo.setMaxPage(maxPage);
+		pageInfo.setPage(page);
+		pageInfo.setStartPage(startPage);
+
+		model.addAttribute("pageInfo", pageInfo);
+		model.addAttribute("reviewList", reviewList);
+		
+		return "mypage/myMyReview";
+	}  
+	
 	@RequestMapping("/myPostAjax.do")
 	public String myPostAjax(Model model, HttpServletRequest request) {
 		HttpSession session = request.getSession();
@@ -349,6 +420,13 @@ public class MyController {
 		
 		
 		return "mypage/myMyPostAjax";
+	}
+	@RequestMapping("deleteMyCafe.do")
+	public String deleteMyCafe(CollectCafeVO tmp){
+		
+		int result = myDao.deleteMyCafe(tmp);
+		
+		return "redirect:/myCollect.do?page=1";
 	}
 	
 	@RequestMapping("/myCollect.do")

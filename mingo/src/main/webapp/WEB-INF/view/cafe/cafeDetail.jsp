@@ -21,7 +21,6 @@
 	
 	<!--  -->
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  	<link rel="stylesheet" href="/resources/demos/style.css">
 
 	<!-- 헤더파일들 include -->
 	<%@ include file="/WEB-INF/view/include/headHTML.jsp"%>
@@ -29,19 +28,9 @@
 	<!-- 폰트 -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-	
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	<script src="http://code.jquery.com/jquery-3.4.1.js"></script>
-
 	<!-- jquery ui -->
-
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script src="<%=request.getContextPath()%>/js/scriptForMain.js"></script>
-    <!--  
-    <link rel="stylesheet" href="css/reset.css"/>
-    <link rel="stylesheet" href="css/swiper.css"/>
-    <script src="js/swiper.min.js"></script>
-	-->
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    
 	<style>
 		 
 
@@ -1127,7 +1116,7 @@
 				$('#clean-text').css({
 					'color':'#1C1C1C',
 					'float':'left'
-				});
+				});  
 			}
 				
 			/* 내 평점 보기 및 등록 */
@@ -1198,76 +1187,17 @@
 <body>
 	<!-- 내비게이션 include -->
 	<%@ include file="/WEB-INF/view/include/navigation.jsp" %>  
+	<c:if test="${cafe.cafe_img == null }">
+		<div id="cafe-img"  style="opacity:0.8; margin-top:58px;height:400px;background-image:url(/img/default/noimage.png);
+	background-position:center center; "></div>
+	</c:if>
+	<c:if test="${cafe.cafe_img != null }">
+		<div id="cafe-img" style="opacity:0.8; margin-top:58px;height:400px;  background-image:url(/upload/cafe/${cafe.cafe_img});background-repeat: repeat-x;
+	background-position:center center;background-size:contain; "></div>
+	</c:if>
 	
-	<!-- 빈공간. 코딩 편의를 위해 레이어 앞면에 고정된 메뉴바가 차지하는 만큼 빈공간 부여 -->
-	<div class="memubar_space">
-		<div class="container" id="head-container">
-			<img id="head_image" src="img/head_img.jpg">  
-			<img id="head_text" src="img/head_text2.png" >
-			<!-- <img id="head_location" src="img/location.png"> -->
-			
-			<form id="cafe-search-area" class="form pl-4 pr-4" action="searchCafe.do" method="post" onsubmit="return pushLast();" >
-				<div class="form-row">
-					<div class="col-sm-10">
-						<div class="form-row">
-							<div class="col-4 pb-1 pt-1" style="height:65px;">
-								<select class="form-control rounded-edge" name="sido_code"
-									id="sido_code" style="font-weight:bold;width:100%; border-radius:45px; border:none; background:#F8ECE0;">
-									<option value="-1">시/도</option>
-									<option value="11">서울</option>
-									<option value="26">부산</option>
-									<option value="27">대구</option>
-									<option value="28">인천</option>
-									<option value="29">광주</option>
-									<option value="30">대전</option>
-									<option value="31">울산</option>
-									<option value="36">세종</option>
-									<option value="41">경기</option>
-									<option value="42">강원</option>
-									<option value="43">충북</option>
-									<option value="44">충남</option>
-									<option value="45">전북</option>
-									<option value="46">전남</option>
-									<option value="47">경북</option>
-									<option value="48">경남</option>
-									<option value="50">제주</option>
-								</select>
-								<div  style="z-index:-10; position:relative;left:5px;bottom:38px; border:3px solid #FFFFFF;/* width:173px; */height:47px;border-radius: 45px;"></div>
-							</div>
-							<div class="col-4 pb-1 pt-1" id=""style="height:65px;">  
-								<select class="form-control rounded-edge" name="sigungu_code"
-									id="sigungu_code" style="font-weight:bold;border-radius: 45px;border:none; background:#F8ECE0;">
-									<option value="-1" class="start1">시/군/구</option>  
-								</select>
-								<div style="z-index:-10;width:100%; position:relative;left:5px;bottom:38px; border:3px solid #FFFFFF;/* width:173px; */height:47px;border-radius: 45px;"></div>
-							</div>
-							<div class="col-4 pb-1 pt-1" style="height:65px;">
-								<select class="form-control rounded-edge" name="dong_code"
-									id="dong_code" style="font-weight:bold;border-radius: 45px;border:none; background:#F8ECE0; ">
-									<option value="-1" class="start2">행정동</option>
-								</select>
-								<div  style="z-index:-10;width:100%; position:relative;left:5px;bottom:38px; border:3px solid #FFFFFF;/* width:173px; */height:47px;border-radius: 45px;"></div>
-							</div>
+		<!-- 카페 이미지 넣는 부분 -->
 
-
-						</div>   
-						<div class="form-row">
-							<div class="col-12 pb-1 pt-1">
-								<input type="text" name="name" style="font-weight:bold;border-radius: 30px;" placeholder="ex) 스타벅스, 이디야" class="form-control rounded-edge">  
-							</div>
-							<div style="z-index:-11;width:99%; position:relative;left:7px;bottom:40px; border:3px solid #FFFFFF;/* width:545px; */height:45px;border-radius: 45px;"></div>  
-						</div>
-					</div>
-					<div class="col-sm-2 pb-1 pt-1">  
-						<input id="search-btn1" type="submit" value="검색" class="form-control rounded-edge"
-							style="font-weight:bold;z-index:1; height: 110px;border:none; border-radius: 45px;background:#688A08;color:#FFFFFF; ">
-						<div id="search-btn2" style="z-index:-12;width:100%; position:relative;left:8px;bottom:105px; border:3px solid #FFFFFF;/* width:100px; */height:110px;border-radius: 45px;"></div>
-					</div>
-				</div>
-			</form>
-			
-		</div>
-	</div>
 	
 	<!-- 카페 로고 및 기본 정보 표시란 -->
 	<div class="header">  

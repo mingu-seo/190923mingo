@@ -108,6 +108,12 @@ public class MyDAO {
 	public List<Map> getMyCafeList(Map tmp) {
 		return sqlSession.selectList("my.getMyCafeList", tmp);
 	}
+	public List<Map> getMyReviewList(Map tmp) {
+		return sqlSession.selectList("my.getMyReviewList", tmp);
+	}
+	public int deleteMyCafe(CollectCafeVO tmp) {
+		return sqlSession.delete("my.deleteMyCafe",tmp);
+	}
 	
 
 }

@@ -70,7 +70,7 @@
 			<div class="pb-2 mb-4 board-name">내가 쓴 게시글</div>
 			
 			<!-- contents start --> 
-			<div class="list-group list-group-flush board-main">
+			<ul class="list-group list-group-flush board-main">
                 <li class="list-group-item">
                     <div style="float:left;padding:0 14px;">번호</div>
                     <div style="float:left;padding:0 157px;">제목</div>
@@ -137,11 +137,10 @@
 	                    </div>
 	                    <div id="b-readcount" style="float:left;width:60px;height:24px;">${BoardVO.readcount}</div>
 	                    <div id="b-goodcount" style="float:left;width:60px;height:24px;">${BoardVO.like_num }</div> 
-	                </li>
 	                </c:forEach>
 				</c:if>
                 
-            </div>
+            </ul>
 			<!-- contents end --> 
 			
 			

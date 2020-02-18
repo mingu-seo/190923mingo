@@ -400,24 +400,7 @@ public class DetailController {
 		return "redirect:detailView.do?cafe_id="+vo_new.getCafe_id();
 	} 
 	
-	// 리뷰 삭제
-	@RequestMapping("/deleteReview.do")   
-	public String deleteReview(CafeRateVO cafeRateVO, HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		UserVO vo1 = (UserVO) session.getAttribute("userVO");
-		int user_id = vo1.getUser_id();
-		int cafe_id = Integer.parseInt(request.getParameter("cafe_id"));
-		
-		CafeRateVO cafeRate = detailService.viewCafeRate(cafe_id);  
-		ReviewVO vo_empty = new ReviewVO();
-		vo_empty.setCafe_id(cafe_id);
-		vo_empty.setUser_id(user_id);
-		ReviewVO reviewVO = detailService.viewReview(vo_empty);  
-		
-		detailService.deleteReview(cafeRateVO, reviewVO);
-		
-		return "redirect:detailView.do?cafe_id="+cafe_id;
-	}  
+	
 	// 카페 좋아요 등록
 	@RequestMapping("/registLike.do")   
 	public String registLike(LikeCafeVO vo, HttpServletRequest request) {

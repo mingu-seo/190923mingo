@@ -7,50 +7,23 @@ public class ReviewVO {
 	private int review_id;
 	private int user_id;
 	private int cafe_id;
+	
 	private Timestamp regdate;
 	private String contents;
+	private String image;
+	
 	private int taste_score;
 	private int price_score;
 	private int wifi_score;
 	private int mood_score;
 	private int clean_score;
 	private int service_score;
+	
 	private double score_avg; //각각의 리뷰에서의 평점계산
-	private String image;
-	
-	
-	private int currentPage;
-	private int beginPage;
-	private int endPage;
-	private int beginIndex;
 	
 	
 	
 	
-	public int getCurrentPage() {
-		return currentPage;
-	}
-	public void setCurrentPage(int currentPage) {
-		this.currentPage = currentPage;
-	}
-	public int getBeginPage() {
-		return beginPage;
-	}
-	public void setBeginPage(int beginPage) {
-		this.beginPage = beginPage;
-	}
-	public int getEndPage() {
-		return endPage;
-	}
-	public void setEndPage(int endPage) {
-		this.endPage = endPage;
-	}
-	public int getBeginIndex() {
-		return beginIndex;
-	}
-	public void setBeginIndex(int beginIndex) {
-		this.beginIndex = beginIndex;
-	}
 	public double getScore_avg() {
 		return score_avg;
 	}

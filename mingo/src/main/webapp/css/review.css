@@ -1,0 +1,166 @@
+@charset "UTF-8";
+
+		.my_reviews{
+			padding:20px 0;
+		}
+		
+		.my_reviews {
+			width:auto;   
+			/* height:2000px; */     
+		} 
+		.my_review_each{
+			width:100%;     
+			height:auto;
+			overflow: hidden;
+			margin-top:20px;
+			margin-bottom:20px;
+			
+		} 
+		
+		.rated_cafe_info{
+			height:55px;
+			line-height: 55px;
+			margin-bottom:30px;
+		}
+		.rated_cafe_info img{  
+			width:50px;
+			height:50px;
+			border-radius: 50px;
+			float: left;
+			margin-right:10px;
+		}
+		.rated_cafe_info h2{
+			font-size: 20px;
+			font-weight:bold;
+			line-height:20px;
+			margin:5px;
+			padding-left:10px;   
+		}
+		
+		.my_rate_visual > img{
+			width:20px;
+			height:20px;   
+		}
+		  
+		.my_rating{
+			height:250px;
+			width:100%;
+		}
+		
+		.my_rate_each2{
+			width:100%;
+			/* height:300px; */       
+		
+		}   
+		/* #rate_each2{   
+			width:100%;
+			
+		} */ 
+		
+		#my_rate_header{
+			height:40px;
+			width:50%;
+			line-height:40px;   
+			/* border-bottom:1px solid #D8D8D8; */
+		}
+		#my_rate_header img{
+			width:30px;
+			float: left;
+			
+		}
+		#my_rate_header span{
+			font-weight: bold;
+			
+		}
+		    
+		.my_rating > div{
+			width:100%;   
+			line-height: 30px;
+
+		}
+		
+		.my_review_bottom div{
+			margin-bottom:10px;
+			
+		}
+		
+		.my_review_top{     
+			height:auto;
+			width:35%;
+			float:left;
+			margin-left:30px;   
+			
+		}
+		
+		.review_ragdate{
+			text-align: right;  
+		}
+		
+		
+		
+		.my_review_bottom{
+			background-color:#f0f0f0;
+			width:60%;  
+			float:left;
+			min-height:350px;
+			padding-left:20px;
+			box-sizing: border-box;
+			   
+		}
+		  
+		.my_review_bottom img{
+			width:100%;
+			height:auto;
+			  
+		}
+		.my_comment{
+			width:100%;
+			height:auto;
+		}  
+		
+		.review_navi_nums{
+			width:100%;
+			height:60px;
+		}
+		  
+		.review_navi_nums > div{
+			line-height:60px;
+			height:60px;
+			width:90%;
+			text-align:center;  
+		}      
+		
+		.review_navi_nums a{
+			margin:0 20px;
+		
+		}
+		
+		.my_review_btn{   
+			width:13%;
+			height:100px;
+			/* float: left; */
+		}
+		.my_review_btn > div{
+		}
+		
+		.my_review_modify_btn, .my_review_delete_btn{
+			width:50px;
+			height:50px;
+			border-radius: 50px;
+			line-height: 50px;
+			text-align: center;
+			/* background-color: #848484;			
+			margin:0 auto;    
+			margin-bottom:10px;    
+			color:#FFFFFF; */
+			font-weight: bold;    
+		}
+		
+		.review_navi_nums{width:100%;height:200px;padding-top:40px;text-align:center;}
+		.review_navi_nums > div{line-height:60px;height:60px;width:auto;display: inline-block;}      
+		.num-area{width:auto;height:40px;float:left;}
+		.num{margin:0 10px;width:40px;height:40px;float:left;}
+		.present{width:40px;height:40px;border-radius: 40px;float:left;background-color: #86B404;text-align: center;line-height: 40px;margin:10px;}
+		.num-btn{width:100%;height:auto;}
+		
+		#modify, #delete, #blank{float:left;margin-right:5px;}

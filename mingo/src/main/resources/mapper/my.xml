@@ -163,4 +163,15 @@
 	where user_id = #{user_id}
 	limit #{startrow},#{limit};  
 	</select>
+	<select id="getMyReviewList" resultType="Map" parameterType="Map">
+		select * 
+		from review natural join cafe
+		where user_id = #{user_id}
+		order by review_id desc
+		limit #{startrow},#{limit};  
+	</select>
+	<delete id="deleteMyCafe" parameterType="vo.CollectCafeVO">
+	delete from collect_cafe
+	where user_id=#{user_id} and cafe_id=#{cafe_id};
+	</delete>
 </mapper>
