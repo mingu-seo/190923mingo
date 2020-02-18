@@ -123,8 +123,9 @@
 			function readURL(input) {
 				if (input.files && input.files[0]) {
 					var reader = new FileReader();
-					reader.onload = function (e) {
-						$('#image_section').attr('src', e.target.result);  
+					reader.onload = function (e) { //e.target.result
+						
+						$('#image_section').attr('src', e.target.result);
 					}
 					reader.readAsDataURL(input.files[0]);
 				}
@@ -153,7 +154,7 @@
         .my-image{width:700px; text-align: center;}
         #image_section{width:100%;margin-left:80px;}
 		#review-contents{width:700px;height:150px;margin-left:80px;}
-		#my-review-image{margin-left:80px;}
+		#my-review-image{}
 		#review-btn{width:100px;height:50px;background-color:#F3E2A9;border-style:none;font-weight:bold;margin:40px 0;}
 		.review-btn-div{width:100%;height:100px;background-position:center center;background-repeat:no-repeat;background-size:cover;text-align: center; }
 		#review-btn:hover{background-color: #3B170B; color:#FFFFFF;}
@@ -164,6 +165,7 @@
 
 	<div class="review-graph-area">
 		<c:set var = "name_arr" value='<%= new String[]{"taste", "wifi", "service", "price", "clean", "mood"} %>' />
+		<p style="font-size:1.4em;font-weight:bold;text-align:center;">Drag buttons!</p>
 		<c:forEach var = "score_name" items="${name_arr }">
 			<div class="my-graph">
 			    <div class="my-graph_area" id="containment-wrapper-${score_name }">
@@ -199,16 +201,16 @@
 		<input type="hidden" name="cafe_id" value="${cafe_id}"/>	
 		
 		<div class="my-image">
-			 <img id="image_section" src="img/review_default.png" alt="리뷰 사진을 등록해주세요"/>
+			 <img id="image_section"/>
 		</div>
 		<div>
-			<textarea rows="3" cols="30" name="contents" id="review-contents"></textarea>   
+			<textarea rows="3" cols="30" name="contents" id="review-contents" placeholder=" 리뷰를 등록해 주세요."></textarea>   
 		</div>
 		<div>
-			<input type="file" name="image_file" id="my-review-image"/>	
+			<span style="margin-left:80px;">사진 : </span><input type="file"  class="ml-2" name="image_file" id="my-review-image"/>	
 		</div>
 		<div class="review-btn-div">
-			<input type="submit" id="review-btn" value="평가 등록">
+			<input type="submit" id="review-btn" value="평가 등록">	
 		</div>
 		
 		

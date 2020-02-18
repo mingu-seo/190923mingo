@@ -1,4 +1,17 @@
 /*작성자:최수진 */
+
+
+	//파일 업로드시 동적으로 썸네일 변경
+	function fileUpload(fis){
+	  var reader = new FileReader();
+	  reader.onload = function(e){
+		  $('#dyimg').attr('src',e.target.result);
+	  }
+	  
+	  reader.readAsDataURL(fis.files[0]);
+	  
+	  
+	}
 	//폼 전체 유효성, 공백 체크
 	function modifyFormFn(){
 		var nameChk = RegExp(/^[가-힣]{2,6}$/);  //2~6글자의 한글만
@@ -80,6 +93,9 @@
 			
 	//닉네임 중복체크,유효성체크
 	$(function(){
+		
+		
+		
 		var nicknameChk = RegExp(/^[가-힣a-zA-Z0-9]{2,10}$/);
 		$('.nick-btn-check').click(function(){
 			if($('#nickname').val().trim() == ""){

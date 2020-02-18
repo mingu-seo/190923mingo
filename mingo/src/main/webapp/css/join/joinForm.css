@@ -329,7 +329,7 @@
 		border:1px solid #5d7ee9;
 	}
 
-	.successbutton{
+	.returnbutton{
 	    font-size: 16px;
 	    width: 140px;
 	    min-width: 140px;
@@ -346,7 +346,7 @@
 	    transition: background-color 0.3s ease 0s;
 	    z-index: 1;
 	}
-	.returnbutton{
+	.successbutton{
 	    font-size: 16px;
 	    width: 140px;
 	    min-width: 140px;
@@ -362,7 +362,7 @@
 	    border-image: initial;
 	    transition: background-color 0.3s ease 0s;
 	    z-index: 1;
-	}
+	}   
 	.buttonarea {
 		text-align:center;
 	}

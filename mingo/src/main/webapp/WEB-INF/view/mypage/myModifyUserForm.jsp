@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/boardStyle.css">
     <script type="text/javascript" src="js/join/modifyFormScript.js"></script>
    	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+   	
 </head>
 <body>
     <%@ include file="/WEB-INF/view/include/navigation.jsp"%>
@@ -64,12 +65,12 @@
             		<div class="form-group mt-2">
 					    <label for="profile_image">사진:</label>
 					    <c:if test="${userVO.profile_image !=null && userVO.profile_image !='' }">
-					    	<img src="<%=request.getContextPath() %>/upload/user/${userVO.profile_image}">
+					    	<img src="<%=request.getContextPath() %>/upload/user/${userVO.profile_image}" id="dyimg" style="width:120px;height:120px;">
 					    </c:if>
 					    <c:if test="${!(userVO.profile_image !=null && userVO.profile_image !='') }">
-					    	<img class="rounded-circle" src="<%=request.getContextPath() %>/upload/user/profile.png" style="width:90px;height:90px;">
+					    	<img class="rounded-circle" src="<%=request.getContextPath() %>/upload/user/profile.png"  id="dyimg" style="width:120px;height:120px;">
 					    </c:if>
-						<input type="file" class="form-control" id="profile_img" name="profile_img" value="${userVO.email }">
+						<input type="file" class="form-control mt-3" id="profile_img" name="profile_img" onchange="fileUpload(this);">
 	  					<div class="valid-feedback">valid</div>
 	  					<div class="invalid-feedback">invalid</div>
 					 </div>

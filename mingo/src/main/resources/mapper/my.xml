@@ -4,7 +4,7 @@
 <mapper namespace="my">
 	<select id="findUser" resultType="vo.UserVO" parameterType="Map">
 		select * from hdw9413.user
-		where user_id=#{id} and password=md5(#{pwd})
+		where user_id=#{id} and password=md5(#{pwd})  
 	</select>
 	<select id="selectUserInfo" resultType="vo.UserVO" parameterType="Integer">
 		SELECT * FROM hdw9413.user

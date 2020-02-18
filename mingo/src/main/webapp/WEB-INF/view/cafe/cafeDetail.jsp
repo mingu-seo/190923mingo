@@ -1643,7 +1643,7 @@
 		</div>
 		
 		<!-- 내 리뷰 및 리뷰 등록 -->
-		<c:if test="${cafeRate.rate_num != 0}">
+		
 			<div class="container">
 				<div class="cafe_review">
 				
@@ -1675,7 +1675,7 @@
 							            </div>
 							            <div class="graph_stack">
 							                <div class="graph_rate" id="taste-width">
-							                    <img src="img/bean.png" class="bean_img">
+							                    <img src="/img/bean.png" class="bean_img">
 							                    
 							                    <div class="graph_text" id="taste-text">${cafeRate.taste_avg }점</div>
 							                </div>
@@ -1693,7 +1693,7 @@
 							            </div>
 							            <div class="graph_stack">
 							                <div class="graph_rate" id="mood-width">
-							                    <img src="img/bean.png" class="bean_img">
+							                    <img src="/img/bean.png" class="bean_img">
 							                    <div class="graph_text" id="mood-text">${cafeRate.mood_avg }점</div>
 							                </div>
 							            </div>
@@ -1772,18 +1772,21 @@
 							</div>
 						</div>
 					</div>
-					<div class="info_title" id="basic_info_title">리뷰</div>
-					<div class="review-view"></div>
+					<c:if test="${cafeRate.rate_num > 0 }">
+					
+						<div class="info_title" id="basic_info_title">리뷰</div>
+						<div class="review-view"></div>
+					</c:if>
+					<c:if test="${cafeRate.rate_num <= 0 }">
+					
+						<div class="info_title" id="basic_info_title">리뷰</div>
+						<div style="width:80%;height:400px;font-size: 1.5em; font-weight: bold; color:#D8D8D8; text-align:center;line-height:300px;">
+							등록된 후기가 없습니다.
+						</div>
+					</c:if>
 				</div>
 			</div>
-		</c:if>
-		<c:if test="${cafeRate.rate_num == 0}">
-			<div class="container">
-				<div class="cafe_review" style="width:80%;height:400px;font-size: 1.5em; font-weight: bold; color:#D8D8D8; text-align:center;line-height:300px;">
-					등록된 후기가 없습니다.
-				</div>
-			</div>
-		</c:if>
+		
 		<div class="container">
 			<div class="my_review" style="margin-bottom:150px;">
 				<div class="info_title" id="basic_info_title2">내 평가</div>
