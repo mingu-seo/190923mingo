@@ -3,11 +3,11 @@
 
 <mapper namespace="my">
 	<select id="findUser" resultType="vo.UserVO" parameterType="Map">
-		select * from mingo.user
+		select * from hdw9413.user
 		where user_id=#{id} and password=md5(#{pwd})
 	</select>
 	<select id="selectUserInfo" resultType="vo.UserVO" parameterType="Integer">
-		SELECT * FROM mingo.user
+		SELECT * FROM hdw9413.user
 		<where>
 			<if test="user_id != null">
 				user_id = #{user_id}
@@ -15,7 +15,7 @@
 		</where>
 	</select>
 	<select id="selectCafe" resultType="vo.CafeVO" parameterType="Integer">
-		SELECT * FROM mingo.cafe
+		SELECT * FROM hdw9413.cafe
 		<where>
 			<if test="user_id != null">
 				manager_id = #{user_id}
@@ -23,7 +23,7 @@
 		</where>
 	</select>
 	<select id="selectCafeInfo" resultType="vo.CafeVO" parameterType="Integer">
-		SELECT * FROM mingo.cafe
+		SELECT * FROM hdw9413.cafe
 		<where>
 			<if test="user_id != null">
 				cafe_id = #{cafe_id}
@@ -31,7 +31,7 @@
 		</where>
 	</select>
 	<select id="selectCafeRate" resultType="vo.CafeRateVO" parameterType="Integer">
-		SELECT * FROM mingo.cafe_rate
+		SELECT * FROM hdw9413.cafe_rate
 		<where>
 			<if test="cafe_id != null">
 				cafe_id = #{cafe_id}
@@ -39,7 +39,7 @@
 		</where>
 	</select>
 	<select id="selectReviewList" resultType="vo.ReviewVO" parameterType="Integer">
-		SELECT * FROM mingo.review
+		SELECT * FROM hdw9413.review
 		<where>
 			<if test="user_id != null">
 				user_id = #{user_id}
@@ -47,7 +47,7 @@
 		</where>
 	</select>
 	<select id="selectBoardList" resultType="vo.BoardVO" parameterType="Integer">
-		SELECT * FROM mingo.board
+		SELECT * FROM hdw9413.board
 		<where>
 			<if test="user_id != null">
 				user_id = #{user_id}
@@ -55,7 +55,7 @@
 		</where>
 	</select>    
 	<select id="selectCollect" resultType="vo.CollectCafeVO" parameterType="Integer">
-		SELECT * FROM mingo.collect_cafe
+		SELECT * FROM hdw9413.collect_cafe
 		<where>
 			<if test="user_id != null">
 				user_id = #{user_id}
@@ -64,7 +64,7 @@
 	</select>
 	
 	<update id="updateUser" parameterType="vo.UserVO">
-		update mingo.user set
+		update hdw9413.user set
 		email=#{email}, password=md5(#{password}), nickname=#{nickname}, name=#{name}, birthday=#{birthday}, gender=#{gender}, type=#{type}  
 		<where>
 			<if test="user_id != null">
@@ -73,7 +73,7 @@
 		</where>
 	</update>
 	<update id="modifyMember" parameterType="vo.UserVO">
-		update mingo.user 
+		update hdw9413.user 
 		set
 			profile_image = #{profile_image},  
 			email='${email}', 
@@ -88,7 +88,7 @@
 		where user_id = #{user_id}
 	</update>
 	<delete id="deleteUser" parameterType="Integer">
-		delete from mingo.user
+		delete from hdw9413.user
 		<where>
 			<if test="user_id != null">
 				user_id=#{user_id}			
@@ -96,7 +96,7 @@
 		</where>
 	</delete>
 	<select id="countMyReview" resultType="Integer" parameterType="Integer">
-		SELECT count(*) FROM mingo.review
+		SELECT count(*) FROM hdw9413.review
 		<where>
 			<if test="user_id != null">
 				user_id = #{user_id}
@@ -104,7 +104,7 @@
 		</where>
 	</select>
 	<select id="viewMyReview" resultType="vo.ReviewVO" parameterType="hashmap">
-		SELECT * FROM mingo.review 
+		SELECT * FROM hdw9413.review 
 		<where>   
 			<if test="user_id != null">
 				user_id = #{user_id}
@@ -113,7 +113,7 @@
 		order by regdate desc limit #{beginIndex}, 5 
 	</select>   
 	<select id="countMyCollect" resultType="Integer" parameterType="Integer">
-		SELECT count(*) FROM mingo.collect_cafe
+		SELECT count(*) FROM hdw9413.collect_cafe
 		<where>
 			<if test="user_id != null">
 				user_id = #{user_id}
@@ -121,7 +121,7 @@
 		</where>
 	</select>
 	<select id="viewMyCollect" resultType="vo.CollectCafeVO" parameterType="hashmap">
-		SELECT * FROM mingo.collect_cafe 
+		SELECT * FROM hdw9413.collect_cafe 
 		<where>   
 			<if test="user_id != null">
 				user_id = #{user_id}
@@ -130,7 +130,7 @@
 		limit #{beginIndex}, 5 
 	</select>  
 	<select id="countMyPost" resultType="Integer" parameterType="Integer">
-		SELECT count(*) FROM mingo.board
+		SELECT count(*) FROM hdw9413.board
 		<where>
 			<if test="user_id != null">
 				user_id = #{user_id}
@@ -138,7 +138,7 @@
 		</where>
 	</select>   
 	<select id="viewMyPost" resultType="vo.BoardVO" parameterType="hashmap">
-		SELECT * FROM mingo.board 
+		SELECT * FROM hdw9413.board 
 		<where>   
 			<if test="user_id != null">
 				user_id = #{user_id}
@@ -149,7 +149,7 @@
 	
 	<select id="getMyBoardList" resultType="vo.BoardVO" parameterType="Map">
 	SELECT b.*, u.nickname
-	FROM mingo.board as b join user as u
+	FROM hdw9413.board as b join user as u
 	on b.user_id = u.user_id 
 	where b.user_id = #{user_id}
 	order by board_id desc

@@ -4,7 +4,7 @@
 <mapper namespace="detail">
 
 	<select id="selectCafe_BasicInfo" resultType="vo.CafeVO" parameterType="Integer">
-		SELECT * FROM mingo.cafe
+		SELECT * FROM hdw9413.cafe
 		<where>
 			<if test="cafe_id != null">
 				cafe_id = #{cafe_id}
@@ -12,7 +12,7 @@
 		</where>
 	</select>
 	<select id="selectCafeRate" resultType="vo.CafeRateVO" parameterType="Integer">
-		SELECT * FROM mingo.cafe_rate
+		SELECT * FROM hdw9413.cafe_rate
 		<where>
 			<if test="cafe_id != null">
 				cafe_id = #{cafe_id}
@@ -20,7 +20,7 @@
 		</where>
 	</select>
 	<select id="selectViewCafeImage" resultType="vo.CafeImageVO" parameterType="Integer">
-		SELECT * FROM mingo.cafe_image
+		SELECT * FROM hdw9413.cafe_image
 		<where>
 			<if test="cafe_id != null">
 				cafe_id = #{cafe_id}
@@ -28,7 +28,7 @@
 		</where>
 	</select>
 	<select id="selectViewCafeReview" resultType="vo.ReviewVO" parameterType="hashmap">
-		SELECT * FROM mingo.review 
+		SELECT * FROM hdw9413.review 
 		<where>   
 			<if test="cafe_id != null">
 				cafe_id = #{cafe_id}
@@ -37,7 +37,7 @@
 		order by regdate desc limit #{beginIndex}, 5 
 	</select>
 	<select id="viewMyReview2" resultType="vo.ReviewVO" parameterType="vo.ReviewVO">
-		SELECT * FROM mingo.review 
+		SELECT * FROM hdw9413.review 
 		<where>   
 		
 			<if test="cafe_id != null and user_id != null">
@@ -46,7 +46,7 @@
 		</where>
 	</select>
 	<select id="selectViewUserList" resultType="vo.UserVO" parameterType="Integer">
-		SELECT * FROM mingo.user
+		SELECT * FROM hdw9413.user
 		<where>
 			<if test="cafe_id != null">
 				user_id = #{user_id}
@@ -54,7 +54,7 @@
 		</where>
 	</select>
 	<select id="selectViewMenu" resultType="vo.CafeMenuVO" parameterType="Integer">
-		SELECT * FROM mingo.cafe_menu
+		SELECT * FROM hdw9413.cafe_menu
 		<where>
 			<if test="cafe_id != null">
 				cafe_id = #{cafe_id}
@@ -62,7 +62,7 @@
 		</where>
 	</select>
 	<select id="selectViewProduct" resultType="vo.CafeProductVO" parameterType="Integer">
-		SELECT * FROM mingo.cafe_Product
+		SELECT * FROM hdw9413.cafe_product
 		<where>
 			<if test="cafe_id != null">
 				cafe_id = #{cafe_id}
@@ -70,7 +70,7 @@
 		</where>
 	</select>
 	<select id="selectViewService" resultType="vo.CafeServiceVO" parameterType="Integer">
-		SELECT * FROM mingo.cafe_service
+		SELECT * FROM hdw9413.cafe_service
 		<where>
 			<if test="cafe_id != null">
 				cafe_id = #{cafe_id}
@@ -78,7 +78,7 @@
 		</where>
 	</select>
 	<select id="selectViewFacilities" resultType="vo.CafeFacilitiesVO" parameterType="Integer">
-		SELECT * FROM mingo.cafe_facilities
+		SELECT * FROM hdw9413.cafe_facilities
 		<where>
 			<if test="cafe_id != null">
 				cafe_id = #{cafe_id}
@@ -86,7 +86,7 @@
 		</where>
 	</select>
 	<select id="viewLikeCafe" resultType="vo.LikeCafeVO" parameterType="Map">
-		SELECT * FROM mingo.like_cafe
+		SELECT * FROM hdw9413.like_cafe
 		<where>
 			<if test="cafe_id != null and user_id != null">
 				cafe_id = #{cafe_id} and user_id = #{user_id} 
@@ -94,7 +94,7 @@
 		</where>
 	</select>
 	<select id="viewCollectCafe" resultType="vo.CollectCafeVO" parameterType="Map">
-		SELECT * FROM mingo.collect_cafe
+		SELECT * FROM hdw9413.collect_cafe
 		<where>
 			<if test="cafe_id != null and user_id != null">
 				cafe_id = #{cafe_id} and user_id = #{user_id} 
@@ -102,7 +102,7 @@
 		</where>
 	</select>   
 	<select id="checkManager" resultType="Integer" parameterType="Integer">
-		SELECT cafe_id FROM mingo.cafe
+		SELECT cafe_id FROM hdw9413.cafe
 		<where>
 			<if test="user_id != null">
 				manager_id = #{user_id}
@@ -114,7 +114,7 @@
 	<!-- 등록 -->
 	
 	<update id="insertCafe" parameterType="vo.CafeVO">  
-		update mingo.cafe set
+		update hdw9413.cafe set
 		time_day=#{time_day}, time_start=#{time_start} , time_end=#{time_end}
 		<where>
 			<if test="cafe_id != null">
@@ -123,31 +123,31 @@
 		</where>
 	</update>
 	<insert id="insertCafeImage" parameterType="vo.CafeImageVO">  
-		insert into mingo.cafe_image
+		insert into hdw9413.cafe_image
 		(cafe_id, url)
 		values
 		(#{cafe_id}, #{url})
 	</insert>
 	<insert id="insertFacility" parameterType="vo.CafeFacilitiesVO">  
-		insert into mingo.cafe_facilities
+		insert into hdw9413.cafe_facilities
 		(cafe_id, wifi, tables, interior, music, plug, restroom, studyroom, terrace, smoking, parking, wifi_text, tables_text, interior_text, music_text, plug_text, restroom_text, studyroom_text, terrace_text, smoking_text, parking_text)
 		values
 		(#{cafe_id}, #{wifi}, #{tables}, #{interior}, #{music}, #{plug}, #{restroom}, #{studyroom}, #{terrace}, #{smoking}, #{parking}, #{wifi_text}, #{tables_text}, #{interior_text}, #{music_text}, #{plug_text}, #{restroom_text}, #{studyroom_text}, #{terrace_text}, #{smoking_text}, #{parking_text})
 	</insert>
 	<insert id="insertService" parameterType="vo.CafeServiceVO">  
-		insert into mingo.cafe_service
+		insert into hdw9413.cafe_service
 		(cafe_id, event, coupon, mileage, blanket, drinkrefill)
 		values
 		(#{cafe_id}, #{event}, #{coupon}, #{mileage}, #{blanket}, #{drinkrefill})
 	</insert>
 	<insert id="insertMenu" parameterType="vo.CafeMenuVO">  
-		insert into mingo.cafe_menu
+		insert into hdw9413.cafe_menu
 		(cafe_id, name, price, image, type)
 		values
 		(#{cafe_id}, #{name}, #{price},	#{image}, #{type})
 	</insert>
 	<insert id="insertProduct" parameterType="vo.CafeProductVO">  
-		insert into mingo.cafe_product
+		insert into hdw9413.cafe_product
 		(cafe_id, name, price, image, type)
 		values
 		(#{cafe_id}, #{name}, #{price}, #{image}, #{type})
@@ -158,7 +158,7 @@
 	<!-- 수정 -->
 	
 	<update id="updateCafeImage" parameterType="vo.CafeImageVO">  
-		update mingo.cafe_image set
+		update hdw9413.cafe_image set
 		url=#{url}
 		<where>
 			<if test="cafe_image_id != null">
@@ -167,7 +167,7 @@
 		</where>
 	</update>
 	<update id="updateCafe" parameterType="vo.CafeVO">  
-		update mingo.cafe set
+		update hdw9413.cafe set
 		time_day=#{time_day}, time_start=#{time_start}, time_end=#{time_end} 
 		<where>
 			<if test="cafe_id != null">
@@ -176,7 +176,7 @@
 		</where>
 	</update>   
 	<update id="updateFacility" parameterType="vo.CafeFacilitiesVO">  
-		update mingo.cafe_facilities set
+		update hdw9413.cafe_facilities set
 		wifi=#{wifi}, tables=#{tables}, interior=#{interior}, 
 		music=#{music}, plug=#{plug}, restroom=#{restroom}, 
 		studyroom=#{studyroom}, terrace=#{terrace}, 
@@ -193,7 +193,7 @@
 		</where>
 	</update>
 	<update id="updateService" parameterType="vo.CafeServiceVO">  
-		update mingo.cafe_service set
+		update hdw9413.cafe_service set
 		event=#{event}, coupon=#{coupon}, mileage=#{mileage}, 
 		blanket=#{blanket}, drinkrefill=#{drinkrefill}
 		<where>
@@ -203,7 +203,7 @@
 		</where>
 	</update>
 	<update id="updateMenu" parameterType="vo.CafeMenuVO">  
-		update mingo.cafe_menu set
+		update hdw9413.cafe_menu set
 		name=#{name}, price=#{price}, image=#{image}, type=#{type}
 		<where>
 			<if test="cafe_menu_id != null">
@@ -212,7 +212,7 @@
 		</where>
 	</update>
 	<update id="updateProduct" parameterType="vo.CafeProductVO">  
-		update mingo.cafe_product set
+		update hdw9413.cafe_product set
 		name=#{name}, price=#{price}, image=#{image}, type=#{type}
 		<where>
 			<if test="cafe_product_id != null">
@@ -224,7 +224,7 @@
 	
 	<!-- 삭제(정보 초기화)  -->  
 	<update id="deleteCafe" parameterType="vo.CafeVO">  
-		update mingo.cafe set
+		update hdw9413.cafe set
 		time_day=NULL, time_start=NULL, time_end=NULL 
 		<where>
 			<if test="cafe_id != null">
@@ -234,45 +234,45 @@
 	</update>
 	
 	<delete id="deleteCafeImage" parameterType="Integer">
-		DELETE FROM mingo.cafe_image WHERE cafe_id=#{cafe_id}
+		DELETE FROM hdw9413.cafe_image WHERE cafe_id=#{cafe_id}
 	</delete>
 	
 	<delete id="deleteCafeImageByKey" parameterType="Integer">
-		DELETE FROM mingo.cafe_image WHERE cafe_image_id=#{cafe_image_id}
+		DELETE FROM hdw9413.cafe_image WHERE cafe_image_id=#{cafe_image_id}
 	</delete>
 	
 	<delete id="deleteFacility" parameterType="Integer"> 
-		DELETE FROM mingo.cafe_facilities WHERE cafe_id=#{cafe_id}
+		DELETE FROM hdw9413.cafe_facilities WHERE cafe_id=#{cafe_id}
 	</delete>
 	
 	<delete id="deleteService" parameterType="Integer">
-		DELETE FROM mingo.cafe_service WHERE cafe_id=#{cafe_id}
+		DELETE FROM hdw9413.cafe_service WHERE cafe_id=#{cafe_id}
 	</delete>
 	
 	<delete id="deleteProduct" parameterType="Integer">
-		DELETE FROM mingo.cafe_product WHERE cafe_id=#{cafe_id}
+		DELETE FROM hdw9413.cafe_product WHERE cafe_id=#{cafe_id}
 	</delete>
 	
 	<delete id="deleteCafeProductByKey" parameterType="Integer">
-		DELETE FROM mingo.cafe_image WHERE cafe_image_id=#{cafe_product_id}
+		DELETE FROM hdw9413.cafe_image WHERE cafe_image_id=#{cafe_product_id}
 	</delete>
 	
 	<delete id="deleteMenu" parameterType="Integer">
-		DELETE FROM mingo.cafe_menu WHERE cafe_id=#{cafe_id}
+		DELETE FROM hdw9413.cafe_menu WHERE cafe_id=#{cafe_id}
 	</delete>  
 	
 	<delete id="deleteCafeMenuByKey" parameterType="Integer">
-		DELETE FROM mingo.cafe_image WHERE cafe_image_id=#{cafe_menu_id}
+		DELETE FROM hdw9413.cafe_image WHERE cafe_image_id=#{cafe_menu_id}
 	</delete>
 	
 	<insert id="insertReview" parameterType="vo.ReviewVO">  
-		insert into mingo.review
+		insert into hdw9413.review
 		(user_id, cafe_id, regdate, contents, taste_score, price_score, service_score, wifi_score, mood_score, clean_score, image, score_avg)
 		values
 		(#{user_id}, #{cafe_id}, now(), #{contents}, #{taste_score}, #{price_score}, #{service_score}, #{wifi_score}, #{mood_score}, #{clean_score}, #{image}, #{score_avg})
 	</insert>
 	<update id="updateReview" parameterType="vo.ReviewVO">  
-		update mingo.review set
+		update hdw9413.review set
 		regdate=now(), contents=#{contents}, 
 		taste_score=#{taste_score}, price_score=#{price_score}, service_score=#{service_score}, 
 		wifi_score=#{wifi_score}, mood_score=#{mood_score}, clean_score=#{clean_score}, image=#{image}
@@ -283,7 +283,7 @@
 		</where>   
 	</update>   
 	<update id="updateRate" parameterType="vo.CafeRateVO">
-		update mingo.cafe_rate set
+		update hdw9413.cafe_rate set
 		rate_num=#{rate_num}, cafe_total_avg=#{cafe_total_avg},  
 		taste_sum=#{taste_sum}, price_sum=#{price_sum}, service_sum=#{service_sum}, wifi_sum=#{wifi_sum}, mood_sum=#{mood_sum}, clean_sum=#{clean_sum}, 
 		taste_avg=#{taste_avg}, price_avg=#{price_avg}, service_avg=#{service_avg}, wifi_avg=#{wifi_avg}, mood_avg=#{mood_avg}, clean_avg=#{clean_avg}
@@ -294,7 +294,7 @@
 		</where>
 	</update>   
 	<update id="updateRateToCafe" parameterType="vo.CafeRateVO">
-		update mingo.cafe set
+		update hdw9413.cafe set
 		review_num=#{rate_num}, rate_avg = #{cafe_total_avg}  
 		<where>
 			<if test="cafe_id != null" >
@@ -303,7 +303,7 @@
 		</where>
 	</update>      
 	<insert id="insertRate" parameterType="vo.CafeRateVO">   
-		insert into mingo.cafe_rate
+		insert into hdw9413.cafe_rate
 		(rate_num, cafe_id, cafe_total_avg, 
 		taste_sum, price_sum, service_sum, wifi_sum, mood_sum, clean_sum, 
 		taste_avg, price_avg, service_avg, wifi_avg, mood_avg, clean_avg)
@@ -314,10 +314,10 @@
 		
 	</insert>   
 	<delete id="deleteReview" parameterType="vo.ReviewVO">
-		DELETE FROM mingo.review WHERE cafe_id=#{cafe_id} and user_id=#{user_id}
+		DELETE FROM hdw9413.review WHERE cafe_id=#{cafe_id} and user_id=#{user_id}
 	</delete>  
 	<select id="viewReview" resultType="vo.ReviewVO" parameterType="vo.ReviewVO">
-		SELECT * FROM mingo.review
+		SELECT * FROM hdw9413.review
 		<where>
 			<if test="user_id != null and cafe_id != null" >
 				cafe_id = #{cafe_id} and user_id = #{user_id}
@@ -327,7 +327,7 @@
 	
 	<!-- 좋아요 등록 -->
 	<insert id="registLike" parameterType="vo.LikeCafeVO">  
-		insert into mingo.like_cafe
+		insert into hdw9413.like_cafe
 		(user_id, cafe_id)
 		values
 		(#{user_id}, #{cafe_id})
@@ -335,12 +335,12 @@
 	
 	<!-- 좋아요 삭제 -->
 	<delete id="deleteLike" parameterType="vo.LikeCafeVO">  
-		DELETE FROM mingo.like_cafe WHERE cafe_id=#{cafe_id} and user_id=#{user_id}
+		DELETE FROM hdw9413.like_cafe WHERE cafe_id=#{cafe_id} and user_id=#{user_id}
 	</delete>
 	
 	<!-- 찜 등록 -->
 	<insert id="registCollect" parameterType="vo.CollectCafeVO">  
-		insert into mingo.collect_cafe
+		insert into hdw9413.collect_cafe
 		(user_id, cafe_id)
 		values
 		(#{user_id}, #{cafe_id})
@@ -348,7 +348,7 @@
 	
 	<!-- 찜 삭제 -->
 	<delete id="deleteCollect" parameterType="vo.CollectCafeVO">  
-		DELETE FROM mingo.collect_cafe WHERE cafe_id=#{cafe_id} and user_id=#{user_id}
+		DELETE FROM hdw9413.collect_cafe WHERE cafe_id=#{cafe_id} and user_id=#{user_id}
 	</delete>
 	
 	

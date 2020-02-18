@@ -18,7 +18,7 @@
 		ORDER BY regdate DESC
 	</select>
 	<select id="selectUser" resultType="vo.UserVO" parameterType="Integer">
-		SELECT * FROM mingo.user
+		SELECT * FROM hdw9413.user
 		<where>
 			<if test="user_id != null">
 				user_id = #{user_id}

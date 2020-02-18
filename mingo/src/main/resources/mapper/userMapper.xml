@@ -4,22 +4,22 @@
 <mapper namespace="userMapper">
 	
 	<select id="loginProcess" parameterType="vo.UserVO" resultType="vo.UserVO">
-		SELECT * FROM mingo.user WHERE email=#{email} and password=md5(#{password})
+		SELECT * FROM hdw9413.user WHERE email=#{email} and password=md5(#{password})
 	</select>
 	<select id="naverLoginProcess" parameterType="vo.UserVO" resultType="vo.UserVO">
-		SELECT * FROM mingo.user WHERE email=#{email} 
+		SELECT * FROM hdw9413.user WHERE email=#{email} 
 	</select>
 	
 	<insert id="joinProcess" parameterType="vo.UserVO">
 		<if test=" type == 1">  
-			INSERT INTO mingo.user
+			INSERT INTO hdw9413.user
 			(email, password, name,nickname, birthday, gender, type)
 			values
 			(#{email}, md5(#{password}),#{name}, #{nickname}, #{birthday}, #{gender}, #{type})
 		</if>
 		<!--  사장일 경우 business_num 까지 넣는다 -->
 		<if test=" type == 2">    
-			INSERT INTO mingo.user
+			INSERT INTO hdw9413.user
 			(email, password, name,nickname, birthday, gender, type, business_num)
 			values
 			(#{email}, md5(#{password}),#{name}, #{nickname}, #{birthday}, #{gender}, #{type}, #{business_num})  
@@ -27,14 +27,14 @@
 	</insert>
 	<!-- 네이버 회원가입 -->
 	<insert id="naverJoinProcess" parameterType="vo.UserVO">
-		INSERT INTO mingo.user
+		INSERT INTO hdw9413.user
 		(email, nickname, gender, type)
 		values
 		(#{email},#{nickname}, #{gender}, #{type})
 	</insert>
 	<!-- 카카오 회원가입 -->
 	<insert id="kakaoJoinProcess" parameterType="vo.UserVO">
-		INSERT INTO mingo.user
+		INSERT INTO hdw9413.user
 		(email, nickname, gender, type)
 		values
 		(#{email},#{nickname},#{gender}, 1)
@@ -42,37 +42,37 @@
 	
 	<!--이메일 중복체크  -->
 	<select id="emailCheck" parameterType="String" resultType="integer">
-	 SELECT COUNT(*) FROM mingo.user
+	 SELECT COUNT(*) FROM hdw9413.user
 	 WHERE email=#{email}
 	</select>
 	
 	<!--닉네임 중복체크  -->
 	<select id="nicknameCheck" parameterType="String" resultType="integer">
-	 SELECT COUNT(*) FROM mingo.user
+	 SELECT COUNT(*) FROM hdw9413.user
 	 WHERE nickname=#{nickname}
 	</select>
 	
 	<!-- 아이디찾기 step2  -->
 	<select id="findId_step2" parameterType="vo.UserVO" resultType="String">
-		SELECT email FROM mingo.user 
+		SELECT email FROM hdw9413.user 
 		WHERE name=#{name} and birthday=#{birthday} and phone_num=#{phone_num}
 	</select>
 	
 	<!-- 비밀번호 찾기 step1 -->
 	<select id="step1_process" parameterType="String" resultType="Integer">
-		SELECT user_id FROM mingo.user 
+		SELECT user_id FROM hdw9413.user 
 		WHERE email like '${email}'
 	</select>
 	
 	
 	 <!-- 비밀번호 updateForm--> 
 	<select id="findPwd_step2" parameterType="Integer" resultType="vo.UserVO">
-		SELECT * FROM mingo.user WHERE user_id=#{user_id}
+		SELECT * FROM hdw9413.user WHERE user_id=#{user_id}
 	</select>
 	 
 	<!-- 비밀번호 update -->
 	<update id="updatePwd" parameterType="Map" >
-		UPDATE mingo.user 
+		UPDATE hdw9413.user 
 		SET password= md5(#{password})
 		WHERE user_id =#{user_id}
 	</update>

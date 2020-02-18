@@ -1188,7 +1188,7 @@
 	<!-- 내비게이션 include -->
 	<%@ include file="/WEB-INF/view/include/navigation.jsp" %>  
 	<c:if test="${cafe.cafe_img == null }">
-		<div id="cafe-img"  style="opacity:0.8; margin-top:58px;height:400px;background-image:url(/img/default/noimage.png);
+		<div id="cafe-img"  style="opacity:0.8; margin-top:58px;height:400px;background-image:url(/img/cafe.jpg);
 	background-position:center center; "></div>
 	</c:if>
 	<c:if test="${cafe.cafe_img != null }">

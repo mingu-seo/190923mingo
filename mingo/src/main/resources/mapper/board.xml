@@ -5,7 +5,7 @@
 <!-- 게시글 조회 -->
 	<select id="list" resultType="vo.BoardVO" parameterType="vo.BoardVO">
 		SELECT b.*, u.nickname
-		FROM mingo.board as b join user as u
+		FROM hdw9413.board as b join user as u
 		on b.user_id = u.user_id 
 		<where>
 			 	<if test="type != null and type > 0">
@@ -58,7 +58,7 @@
 	</select>
   <select id="count" resultType="Integer" parameterType="vo.BoardVO">
 		SELECT count(*)
-		FROM mingo.board as b join user as u
+		FROM hdw9413.board as b join user as u
 		on b.user_id = u.user_id
 		<where>
 			 	<if test="type != null and type > 0">
@@ -105,7 +105,7 @@
 	
 	
 	<insert id="insert" parameterType="vo.BoardVO" useGeneratedKeys="true">
-		INSERT INTO mingo.board
+		INSERT INTO hdw9413.board
 		(board_id, user_id, type, title, contents, regdate, readcount,is_notice)
 		values
 		(#{board_id}, #{user_id}, #{type}, #{title}, #{contents}, NOW(),#{readcount},#{is_notice})  
@@ -116,8 +116,8 @@
 	
 	
 	<select id="view" parameterType="Integer" resultType="vo.BoardVO">
-		SELECT *, (SELECT nickname FROM mingo.user WHERE user_id=mingo.board.user_id)
-		 AS nickname FROM mingo.board WHERE board_id=#{board_id}
+		SELECT *, (SELECT nickname FROM hdw9413.user WHERE user_id=hdw9413.board.user_id)
+		 AS nickname FROM hdw9413.board WHERE board_id=#{board_id}
 	</select>
 	
 	<select id="getLikeType" parameterType="vo.BoardLikeVO" resultType="Integer">
@@ -129,38 +129,38 @@
 	</select>
 	
 	<update id="update" parameterType="vo.BoardVO" >
-		UPDATE mingo.board SET title=#{title}, contents=#{contents} WHERE board_id=#{board_id}
+		UPDATE hdw9413.board SET title=#{title}, contents=#{contents} WHERE board_id=#{board_id}
 	</update>
 	
 	<delete id="delete" parameterType="Integer">
-		DELETE FROM mingo.board WHERE board_id=#{board_id}
+		DELETE FROM hdw9413.board WHERE board_id=#{board_id}
 	</delete>
 	
 	<update id="readcount" parameterType="Integer">
-		UPDATE mingo.board SET readcount=readcount+1 WHERE board_id=#{board_id}
+		UPDATE hdw9413.board SET readcount=readcount+1 WHERE board_id=#{board_id}
 	</update>
 	
 	<select id="clist" resultType="vo.BoardCommentVO" parameterType="Integer">
-		SELECT *, (select nickname from mingo.user where user_id=board_comment.user_id) as nickname FROM mingo.board_comment WHERE board_id=#{board_id}
+		SELECT *, (select nickname from hdw9413.user where user_id=board_comment.user_id) as nickname FROM hdw9413.board_comment WHERE board_id=#{board_id}
 		ORDER BY ref DESC, seq ASC
 		
 	</select>
 	
 	<select id="getReply" parameterType="Integer" resultType="vo.BoardCommentVO">
 		select * 
-		from mingo.board_comment
+		from hdw9413.board_comment
 		where board_comment_id = #{board_comment_id}
 	</select>
 	<update id="replySeq" parameterType="vo.BoardCommentVO">
-		UPDATE mingo.board_comment SET seq=seq+1 WHERE
+		UPDATE hdw9413.board_comment SET seq=seq+1 WHERE
 		 ref=#{ref} AND seq > #{seq}
 	</update>
 	<update id="replySeqDown" parameterType="vo.BoardCommentVO">
-		UPDATE mingo.board_comment SET seq=seq-1 WHERE
+		UPDATE hdw9413.board_comment SET seq=seq-1 WHERE
 		 ref=#{ref} AND seq > #{seq}
 	</update>
 	<delete id="replyDelete" parameterType="vo.BoardCommentVO">
-		DELETE FROM mingo.board_comment 
+		DELETE FROM hdw9413.board_comment 
 		WHERE board_comment_id=#{board_comment_id}
 	</delete>
 	
@@ -190,13 +190,13 @@
 	
 	
 	<update id="replyLevDown" parameterType="vo.BoardCommentVO">
-		UPDATE mingo.board_comment 
+		UPDATE hdw9413.board_comment 
 		SET lev=lev-1 
 		WHERE ref=#{ref} AND seq > #{seq}
 	</update>
 	
 	<insert id="writeComment" parameterType="vo.BoardCommentVO" useGeneratedKeys="true">
-		INSERT INTO mingo.board_comment
+		INSERT INTO hdw9413.board_comment
 		(board_comment_id,user_id, board_id, regdate,
 		ref, lev, seq, contents)
 		values
@@ -207,18 +207,18 @@
 		</selectKey>
 	</insert>
 	<update id="increaseReplyNum" parameterType="vo.BoardCommentVO">
-		update mingo.board
+		update hdw9413.board
 		set reply_num = reply_num + 1
 		where board_id = #{board_id}
 	</update>
 	<update id="decreaseReplyNum" parameterType="vo.BoardCommentVO">
-		update mingo.board
+		update hdw9413.board
 		set reply_num = reply_num - 1
 		where board_id = #{board_id}
 	</update>
 	
 	<insert id="replyInsert" parameterType="vo.BoardCommentVO">
-		INSERT INTO mingo.board_comment
+		INSERT INTO hdw9413.board_comment
 		(user_id, board_id, regdate,
 		ref, lev, seq, contents)
 		values
@@ -236,7 +236,7 @@
 		(#{user_id},#{board_id},#{type})
 	</insert>
 	<delete id="deleteLike" parameterType="vo.BoardLikeVO">
-		DELETE FROM mingo.board_like 
+		DELETE FROM hdw9413.board_like 
 		WHERE board_id=#{board_id} and user_id=#{user_id}
 	</delete>
 	<insert id="insertDislike" parameterType="vo.BoardLikeVO">
@@ -246,7 +246,7 @@
 		(#{user_id},#{board_id},#{type})
 	</insert>
 	<delete id="deleteDislike" parameterType="vo.BoardLikeVO">
-		DELETE FROM mingo.board_like 
+		DELETE FROM hdw9413.board_like 
 		WHERE board_id=#{board_id}
 	</delete>
 	<select id="getLikeNum" parameterType="Integer" resultType="Integer">
@@ -260,7 +260,7 @@
 		where board_id = #{board_id} and type=2;
 	</select>
 	<update id="updateLikeNum" parameterType="Integer">
-		update mingo.board set 
+		update hdw9413.board set 
 		like_num = (select count(*) from board_like where board_id = #{board_id} and type=1),
 		dislike_num = (select count(*) from board_like where board_id = #{board_id} and type=2)
 		where board_id = #{board_id};
@@ -273,6 +273,6 @@
 	
 	
 	<update id="refUpdate" parameterType="Integer">
-		UPDATE mingo.board_comment SET ref=#{board_comment_id} WHERE board_comment_id=#{board_comment_id}
+		UPDATE hdw9413.board_comment SET ref=#{board_comment_id} WHERE board_comment_id=#{board_comment_id}
 	</update>
 </mapper>
