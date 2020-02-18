@@ -1,7 +1,7 @@
 # Project Mingo - Java Portpolio
 ### Spring MVC Web Project
 #### 조원 : 홍동우, 최수진, 최재명, 정태기
-
+## 링크 : http://hdw9413.cafe24.com/
 ## 1. 개발 환경
   * Tool
     * Eclipse, 
