@@ -350,6 +350,7 @@ public class DetailController {
 		CafeRateVO cafeRate = detailService.viewCafeRate(vo.getCafe_id());  
 		
 		detailService.registReview(vo, file, request, cafeRate);
+		
 		return "redirect:detailView.do?cafe_id="+vo.getCafe_id();
 	} 
 	
@@ -410,6 +411,11 @@ public class DetailController {
 		int cafe_id = Integer.parseInt(request.getParameter("cafe_id"));
 		vo.setCafe_id(cafe_id);
 		detailService.registLike(vo);
+		
+		
+		/* 카페 테이블 좋아요 갯수 업데이트 */
+		detailDao.updateCafeLikeNum(cafe_id);
+		
 		return "redirect:detailView.do?cafe_id="+cafe_id;
 	} 
 	
@@ -425,6 +431,9 @@ public class DetailController {
 		vo.setCafe_id(cafe_id);
 		
 		detailService.deleteLike(vo);
+		
+		/* 카페 테이블 좋아요 갯수 업데이트 */
+		detailDao.updateCafeLikeNum(cafe_id);
 		
 		return "redirect:detailView.do?cafe_id="+cafe_id;
 	} 
