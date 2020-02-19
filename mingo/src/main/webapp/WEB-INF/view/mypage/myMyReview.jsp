@@ -34,7 +34,15 @@
 		    background-color: gray;
 		} 
 	</style>
-
+	<script>
+	//deleteReview.do?cafe_id=${review.cafe_id}
+	function deleteMyReview(cafe_id){
+		var chk =  confirm("삭제하시겠습니까?");
+		if (chk){
+					location.href="deleteReview.do?cafe_id="+cafe_id;
+		}else{event.preventDefault();}
+	}
+	</script>
 </head>
 
 <body>   
@@ -172,7 +180,7 @@
 									꒐ 작성일: <fmt:formatDate value="${sDate}" pattern="yyyy-MM-dd" />&nbsp;
 										<a id="modify" href="modifyReviewForm.do?cafe_id=${review.cafe_id}">수정</a>&nbsp;
 										<a id="blank">꒐</a>&nbsp;
-										<a id="delete" href="deleteReview.do?cafe_id=${review.cafe_id}">삭제</a>&nbsp;
+										<a id="delete" href="javascript:void(0);" onclick="deleteMyReview(${review.cafe_id});">삭제</a>&nbsp;
 								</div>
 								
 										

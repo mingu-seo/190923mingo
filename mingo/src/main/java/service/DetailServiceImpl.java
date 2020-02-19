@@ -278,26 +278,47 @@ public class DetailServiceImpl implements DetailService {
 	
 	public int deleteReview(CafeRateVO cafeRate, ReviewVO reviewVO) {
 		
+		int r = 0;
 		int rate_num = cafeRate.getRate_num()-1;
-		
-		cafeRate.setWifi_sum(cafeRate.getWifi_sum() - reviewVO.getWifi_score());
-		cafeRate.setPrice_sum(cafeRate.getPrice_sum() - reviewVO.getPrice_score());
-		cafeRate.setTaste_sum(cafeRate.getTaste_sum() - reviewVO.getTaste_score());
-		cafeRate.setService_sum(cafeRate.getService_sum() - reviewVO.getService_score());
-		cafeRate.setMood_sum(cafeRate.getMood_sum() - reviewVO.getMood_score());
-		cafeRate.setClean_sum(cafeRate.getClean_sum() - reviewVO.getClean_score());
-		
-		cafeRate.setWifi_avg((int)((cafeRate.getWifi_sum()/(double)rate_num)*10)/10.0);
-		cafeRate.setPrice_avg((int)((cafeRate.getPrice_sum()/(double)rate_num)*10)/10.0);
-		cafeRate.setTaste_avg((int)((cafeRate.getTaste_sum()/(double)rate_num)*10)/10.0);
-		cafeRate.setService_avg((int)((cafeRate.getService_sum()/(double)rate_num)*10)/10.0);
-		cafeRate.setMood_avg((int)((cafeRate.getMood_sum()/(double)rate_num)*10)/10.0);
-		cafeRate.setClean_avg((int)((cafeRate.getClean_sum()/(double)rate_num)*10)/10.0);
-		
-		double total_score_avg = ((int)(((cafeRate.getClean_avg()+cafeRate.getMood_avg()+cafeRate.getPrice_avg()+cafeRate.getService_avg()+cafeRate.getTaste_avg()+cafeRate.getWifi_avg())/6.0)*10))/10.0;
-		cafeRate.setCafe_total_avg(total_score_avg);
-		
-		int r = detailDao.deleteReview(cafeRate, reviewVO);
+		if( rate_num > 0) {
+			cafeRate.setWifi_sum(cafeRate.getWifi_sum() - reviewVO.getWifi_score());
+			cafeRate.setPrice_sum(cafeRate.getPrice_sum() - reviewVO.getPrice_score());
+			cafeRate.setTaste_sum(cafeRate.getTaste_sum() - reviewVO.getTaste_score());
+			cafeRate.setService_sum(cafeRate.getService_sum() - reviewVO.getService_score());
+			cafeRate.setMood_sum(cafeRate.getMood_sum() - reviewVO.getMood_score());
+			cafeRate.setClean_sum(cafeRate.getClean_sum() - reviewVO.getClean_score());
+			
+			cafeRate.setWifi_avg((int)((cafeRate.getWifi_sum()/(double)rate_num)*10)/10.0);
+			cafeRate.setPrice_avg((int)((cafeRate.getPrice_sum()/(double)rate_num)*10)/10.0);
+			cafeRate.setTaste_avg((int)((cafeRate.getTaste_sum()/(double)rate_num)*10)/10.0);
+			cafeRate.setService_avg((int)((cafeRate.getService_sum()/(double)rate_num)*10)/10.0);
+			cafeRate.setMood_avg((int)((cafeRate.getMood_sum()/(double)rate_num)*10)/10.0);
+			cafeRate.setClean_avg((int)((cafeRate.getClean_sum()/(double)rate_num)*10)/10.0);
+			
+			double total_score_avg = ((int)(((cafeRate.getClean_avg()+cafeRate.getMood_avg()+cafeRate.getPrice_avg()+cafeRate.getService_avg()+cafeRate.getTaste_avg()+cafeRate.getWifi_avg())/6.0)*10))/10.0;
+			cafeRate.setCafe_total_avg(total_score_avg);
+			
+			r = detailDao.deleteReview(cafeRate, reviewVO);
+		}else {
+			cafeRate.setWifi_sum(0);
+			cafeRate.setPrice_sum(0);
+			cafeRate.setTaste_sum(0);
+			cafeRate.setService_sum(0);
+			cafeRate.setMood_sum(0);
+			cafeRate.setClean_sum(0);
+			
+			cafeRate.setWifi_avg(0.0);
+			cafeRate.setPrice_avg(0.0);
+			cafeRate.setTaste_avg(0.0);
+			cafeRate.setService_avg(0.0);
+			cafeRate.setMood_avg(0.0);
+			cafeRate.setClean_avg(0.0);
+			
+			double total_score_avg = 0.0;
+			cafeRate.setCafe_total_avg(total_score_avg);
+			
+			r = detailDao.deleteReview(cafeRate, reviewVO);
+		}
 		return r;
 	}  
 	
