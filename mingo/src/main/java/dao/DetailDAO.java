@@ -482,6 +482,10 @@ public class DetailDAO {
 		sqlSession.delete("detail.deleteCollect", vo);
 		return 1;
 	}
+	public void updateCafeLikeNum(int cafe_id) {
+		sqlSession.update("detail.updateCafeLikeNum", cafe_id);
+	}
+	
 	
 	
 }

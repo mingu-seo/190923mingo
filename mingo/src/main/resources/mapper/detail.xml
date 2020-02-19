@@ -380,5 +380,14 @@
 	<select id="loginCheck" parameterType="java.util.HashMap" resultType="test.TestVO">
 		SELECT * FROM spring5fs.member WHERE email=#{mail} AND password=#{pwd}
 	</select>  -->
+
+	
+	<!--  cafe_like 업데이트 -->
+	<update id="updateCafeLikeNum" parameterType="Integer">
+		update hdw9413.cafe
+		set cafe_like = ( select count(*) from like_cafe where cafe_id = #{cafe_id})
+		where cafe_id = #{cafe_id};
+	</update>
+	
 	
 </mapper>
