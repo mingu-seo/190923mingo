@@ -125,7 +125,12 @@
 				<div class="cafe_review_top">
 					<div class="user_info">   
 						<div>
-							<img src="upload/user/${user.profile_image}"/>
+							<c:if test="${user.profile_image==null}">
+								<img src="img/user_default.png"/>
+							</c:if>
+							<c:if test="${user.profile_image!=null}">
+								<img src="upload/user/${user.profile_image}"/>
+							</c:if>
 						</div>
 						<h2>${user.nickname }</h2>
 						<fmt:parseDate var="sDate" value="${review.regdate }" pattern="yyyy-MM-dd HH:mm:ss" />
@@ -178,7 +183,12 @@
 				</div>
 				<div class="cafe_review_bottom">  
 					<div>
-						<img src="upload/review/${review.image }"/>
+						<c:if test="${review.image==null }">
+							<img src="img/default_review.png"/>
+						</c:if>
+						<c:if test="${review.image!=null }">
+							<img src="upload/review/${review.image }"/>
+						</c:if>
 					</div>
 					<div class="comment"> 
 						<p>${review.contents }</p>

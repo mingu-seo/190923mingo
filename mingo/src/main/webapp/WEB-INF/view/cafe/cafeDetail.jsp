@@ -363,12 +363,14 @@
 		} */
 		
 		.cafe_rates{
-			height:500px;
+			height:auto;
 			width:100%;
+			overflow: hidden;
 		}  
 		.cafe_reviews{
 			height:1000px;
 			width:100%;
+			
 		} 
 		
 		 
@@ -1184,7 +1186,7 @@
 	<!-- 내비게이션 include -->
 	<%@ include file="/WEB-INF/view/include/navigation.jsp" %>  
 	<c:if test="${cafe.cafe_img == null }">
-		<div id="cafe-img"  style="opacity:0.8; margin-top:58px;height:400px;background-image:url(/img/cafe.jpg);
+		<div id="cafe-img"  style="margin-top:58px;height:600px;background-image:url(/img/detail_image.jpg);
 	background-position:center center; "></div>
 	</c:if>
 	<c:if test="${cafe.cafe_img != null }">
@@ -1205,7 +1207,10 @@
 				<c:if test="${cafe.logo == null }">
 					<img src="img/taste.png" style="border:1px solid #A4A4A4;border-radius: 100%;">
 				</c:if> -->
+				
+				
 				<img  class="rounded-circle bg-white" src="./img/brandLogo/${cafe.logo }" style="width: 80px;height:80px">
+				
 			</div>   
 			<div class="title">
 				<div id="cafe_name">
@@ -1254,7 +1259,12 @@
 			<div class="content_button">
 				<div class="review_button" style="cursor:pointer;">후기</div>
 				<div class="info_button" style="cursor:pointer;">소개</div>
-				<div class="regist_button" style="cursor:pointer;">내 평가</div>
+				<c:if test="${userVO.user_id == null}">
+					<div class="regist_button" style="cursor:pointer;">평가하기</div>
+				</c:if>
+				<c:if test="${userVO.user_id != null}">
+					<div class="regist_button" style="cursor:pointer;">내 평가</div>
+				</c:if>
 				<c:if test="${userVO.user_id == cafe.manager_id}">   
 					<div class="modify_button" OnClick="location.href ='cafeModifyForm.do'"  style="cursor:pointer;">정보수정</div>				
 				</c:if>
@@ -1284,41 +1294,35 @@
 						</c:if>
 						<c:if test="${cafe.time_day!=null && cafe.time_start!=null && cafe.time_end!=null}">
 							<div class="basic_info_each" id="info_mg_time">
-								<c:if test="${cafe.time_day!=null && cafe.time_start!=null && cafe.time_end!=null}">ㆍ</c:if>
+								<c:if test="${cafe.time_day==1}">ㆍ매주)&nbsp;</c:if>
+								<c:if test="${cafe.time_day==2}">ㆍ월~금)&nbsp;</c:if>
+								<c:if test="${cafe.time_day==3}">ㆍ월~토)&nbsp;</c:if>
+								<c:if test="${cafe.time_day==4}">ㆍ주말)&nbsp;</c:if>
 								
-								<c:if test="${cafe.time_day==1}">매주</c:if>
-								<c:if test="${cafe.time_day==2}">월~금</c:if>
-								<c:if test="${cafe.time_day==3}">월~토</c:if>
-								<c:if test="${cafe.time_day==4}">주말</c:if>
-								
-								<c:if test="${cafe.time_day!=null && cafe.time_start!=null && cafe.time_end!=null}">)&nbsp;</c:if>
-								
-								<c:if test="${cafe.time_start==1}">00:00</c:if>
-								<c:if test="${cafe.time_start==2}">01:00</c:if>
-								<c:if test="${cafe.time_start==3}">02:00</c:if>
-								<c:if test="${cafe.time_start==4}">03:00</c:if>
-								<c:if test="${cafe.time_start==5}">04:00</c:if>
-								<c:if test="${cafe.time_start==6}">05:00</c:if>
-								<c:if test="${cafe.time_start==7}">06:00</c:if>
-								<c:if test="${cafe.time_start==8}">07:00</c:if>
-								<c:if test="${cafe.time_start==9}">08:00</c:if>
-								<c:if test="${cafe.time_start==10}">09:00</c:if>
-								<c:if test="${cafe.time_start==11}">10:00</c:if>
-								<c:if test="${cafe.time_start==12}">11:00</c:if>
-								<c:if test="${cafe.time_start==13}">12:00</c:if>
-								<c:if test="${cafe.time_start==14}">13:00</c:if>
-								<c:if test="${cafe.time_start==15}">14:00</c:if>
-								<c:if test="${cafe.time_start==16}">15:00</c:if>
-								<c:if test="${cafe.time_start==17}">16:00</c:if>
-								<c:if test="${cafe.time_start==18}">17:00</c:if>
-								<c:if test="${cafe.time_start==19}">18:00</c:if>
-								<c:if test="${cafe.time_start==20}">19:00</c:if>
-								<c:if test="${cafe.time_start==21}">20:00</c:if>
-								<c:if test="${cafe.time_start==22}">21:00</c:if>
-								<c:if test="${cafe.time_start==23}">22:00</c:if>
-								<c:if test="${cafe.time_start==24}">23:00</c:if>
-								
-								<c:if test="${cafe.time_day!=null && cafe.time_start!=null && cafe.time_end!=null}">~</c:if>
+								<c:if test="${cafe.time_start==1}">00:00~</c:if>
+								<c:if test="${cafe.time_start==2}">01:00~</c:if>
+								<c:if test="${cafe.time_start==3}">02:00~</c:if>
+								<c:if test="${cafe.time_start==4}">03:00~</c:if>
+								<c:if test="${cafe.time_start==5}">04:00~</c:if>
+								<c:if test="${cafe.time_start==6}">05:00~</c:if>
+								<c:if test="${cafe.time_start==7}">06:00~</c:if>
+								<c:if test="${cafe.time_start==8}">07:00~</c:if>
+								<c:if test="${cafe.time_start==9}">08:00~</c:if>
+								<c:if test="${cafe.time_start==10}">09:00~</c:if>
+								<c:if test="${cafe.time_start==11}">10:00~</c:if>
+								<c:if test="${cafe.time_start==12}">11:00~</c:if>
+								<c:if test="${cafe.time_start==13}">12:00~</c:if>
+								<c:if test="${cafe.time_start==14}">13:00~</c:if>
+								<c:if test="${cafe.time_start==15}">14:00~</c:if>
+								<c:if test="${cafe.time_start==16}">15:00~</c:if>
+								<c:if test="${cafe.time_start==17}">16:00~</c:if>
+								<c:if test="${cafe.time_start==18}">17:00~</c:if>
+								<c:if test="${cafe.time_start==19}">18:00~</c:if>
+								<c:if test="${cafe.time_start==20}">19:00~</c:if>
+								<c:if test="${cafe.time_start==21}">20:00~</c:if>
+								<c:if test="${cafe.time_start==22}">21:00~</c:if>
+								<c:if test="${cafe.time_start==23}">22:00~</c:if>
+								<c:if test="${cafe.time_start==24}">23:00~</c:if>
 								
 								<c:if test="${cafe.time_end==1}">01:00</c:if>
 								<c:if test="${cafe.time_end==2}">02:00</c:if>
