@@ -21,7 +21,7 @@
 
     <!-- 내가 만든 파일-->
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/boardStyle.css">
-		<link rel="stylesheet" href="<%=request.getContextPath() %>/css/review.css">
+	<link rel="stylesheet" href="<%=request.getContextPath() %>/css/review.css">
 	<style>
 		#my-review-title{margin-bottom:100px;}  
 		
@@ -80,10 +80,10 @@
 						<!--  리스트가 비어있을 경우 -->
 						<c:if test="${empty reviewList }">
 								<ul class="list-group list-group-flush board-main">
-	                <li class="list-group-item">
-	                    <div  style="line-height:200px;height:200px;font-size:1.5em;color:#e1e1e1;" >남긴 리뷰가 없습니다.</div>
-	                </li>
-                </ul>
+				                <li class="list-group-item">
+				                    <div  style="line-height:200px;height:200px;font-size:1.5em;color:#e1e1e1;" >남긴 리뷰가 없습니다.</div>
+				                </li>
+			                </ul>
 						</c:if>
 						
 						
@@ -93,20 +93,7 @@
 						<c:forEach var="review" items="${reviewList}" varStatus="status">
 						<li class="list-group-item">
 							<div class="my_review_each">
-								<div class="my_review_bottom">  
-									<div>
-										<!--  널이 아닐때만 이미지 출력 -->
-										<c:if test="${review.image !=null }">
-											<img src="<%=request.getContextPath() %>/upload/review/${review.image }"/>
-										</c:if>
-										
-									</div>
-									<div class="my_comment">
-										<p>${review.contents}</p>
-										
-									</div>
-									
-								</div>
+								
 								<div class="my_review_top">
 									<div class="rated_cafe_info">   
 										<div>
@@ -114,6 +101,7 @@
 										</div>
 										<h2>${review.name }</h2>
 										<h2>${review.branch }</h2>
+										
 									</div>
 									<div class="my_rating">
 										<div id="my_rate_header">
@@ -121,42 +109,42 @@
 											<span>내 점수</span>  
 											<span>${review.score_avg }</span>
 										</div>
-										<div class="my_rate_each2" id="my_rate_each2">
+										<div class="my_rate_each2" >
 											<span class="my_rate_visual" id="my_taste_visual">
 												<img src="img/taste.png">
 											</span>
 											<span class="my_rate_name" id="my_taste_name">taste - </span>
 											<span class="my_my_rate">${review.taste_score }점</span>
 										</div>
-										<div class="my_rate_each2" id="my_rate_each2">
+										<div class="my_rate_each2" >
 											<span class="my_rate_visual" id="my_price_visual">
 												<img src="img/price.png">
 											</span>
 											<span class="my_rate_name" id="my_price_name">price - </span>
 											<span class="my_my_rate">${review.price_score }점</span>
 										</div>
-										<div class="my_rate_each2" id="my_rate_each2">
+										<div class="my_rate_each2" >
 											<span class="my_rate_visual" id="my_service_visual">
 												<img src="img/service.png">
 											</span>
 											<span class="my_rate_name" id="my_service_name">service - </span>
 											<span class="my_my_rate">${review.service_score }점</span>
 										</div>
-										<div class="my_rate_each2" id="my_rate_each2">
+										<div class="my_rate_each2" >
 											<span class="my_rate_visual" id="my_facimood_visual">
 												<img src="img/mood.png">
 											</span>
 											<span class="my_rate_name" id="my_facimood_name">mood - </span>
 											<span class="my_my_rate">${review.mood_score }점</span>
 										</div>
-										<div class="my_rate_each2" id="my_rate_each2">
+										<div class="my_rate_each2" >
 											<span class="my_rate_visual" id="my_wifiplug_visual">
 												<img src="img/wifi.png">
 											</span>
 											<span class="my_rate_name" id="my_wifiplug_name">wifi - </span>
 											<span class="my_my_rate">${review.wifi_score }점</span>
 										</div>  
-										<div class="my_rate_each2" id="my_rate_each2">
+										<div class="my_rate_each2" >
 											<span class="my_rate_visual" id="my_clean_visual">
 												<img src="img/clean.png">
 											</span>
@@ -164,17 +152,29 @@
 											<span class="my_my_rate">${review.clean_score }점</span>
 										</div>
 									</div>	
-									
-								</div>
-								<div style="clear:both;">
-									<fmt:parseDate var="sDate" value="${review.regdate}" pattern="yyyy-MM-dd HH:mm:ss" />
-					    	
-									꒐ 작성일: <fmt:formatDate value="${sDate}" pattern="yyyy-MM-dd" />&nbsp;
-										<a id="modify" href="modifyReviewForm.do?cafe_id=${review.cafe_id}">수정</a>&nbsp;
-										<a id="blank">꒐</a>&nbsp;
-										<a id="delete" href="deleteReview.do?cafe_id=${review.cafe_id}">삭제</a>&nbsp;
 								</div>
 								
+								<div class="my_review_bottom">  
+									<div>
+										<!--  널이 아닐때만 이미지 출력 -->  
+										<c:if test="${review.image !=null }">
+											<img src="<%=request.getContextPath() %>/upload/review/${review.image }"/>
+										</c:if>
+										<c:if test="${review.image ==null }">
+											<img src="img/default_review.png"/>
+										</c:if>
+									</div> 
+									<div class="my_comment">
+										${review.contents}
+									</div>
+									<p id="regdate">
+										<fmt:parseDate var="sDate" value="${review.regdate}" pattern="yyyy-MM-dd HH:mm:ss" />
+										꒐ <fmt:formatDate value="${sDate}" pattern="yyyy-MM-dd" />&nbsp;
+									</p>
+									<a id="delete" href="deleteReview.do?cafe_id=${review.cafe_id}">삭제</a>&nbsp;
+									<a id="blank">꒐</a>&nbsp;
+									<a id="modify" href="modifyReviewForm.do?cafe_id=${review.cafe_id}">수정</a>&nbsp;
+								</div>
 										
 							</div>
 							</li>

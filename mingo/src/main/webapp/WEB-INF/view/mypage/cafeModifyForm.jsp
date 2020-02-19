@@ -332,40 +332,42 @@
 							<div class="each">
 								<label for = "time" class="title">운영시간 </label>
 								<select name="time_day" id="time_day">
+									<option  class="time_day" >운영 요일</option>
 									<option  class="time_day" value="1">매일</option>
 									<option  class="time_day" value="2">월~금</option>
 									<option  class="time_day" value="3">월~토</option>
 									<option  class="time_day" value="4">주말</option>
-									
 								</select>
 								<select name="time_start"  id="time_start">
-									<option  class="time_start" value="0">0시</option>
-									<option  class="time_start" value="1">1시</option>
-									<option  class="time_start" value="2">2시</option>
-									<option  class="time_start" value="3">3시</option>
-									<option  class="time_start" value="4">4시</option>
-									<option  class="time_start" value="5">5시</option>
-									<option  class="time_start" value="6">6시</option>
-									<option  class="time_start" value="7">7시</option>
-									<option  class="time_start" value="8">8시</option>
-									<option  class="time_start" value="9">9시</option>
-									<option  class="time_start" value="10">10시</option>
-									<option  class="time_start" value="11">11시</option>
-									<option  class="time_start" value="12">12시</option>
-									<option  class="time_start" value="13">13시</option>
-									<option  class="time_start" value="14">14시</option>
-									<option  class="time_start" value="15">15시</option>
-									<option  class="time_start" value="16">16시</option>
-									<option  class="time_start" value="17">17시</option>
-									<option  class="time_start" value="18">18시</option>
-									<option  class="time_start" value="19">19시</option>
-									<option  class="time_start" value="20">20시</option>
-									<option  class="time_start" value="21">21시</option>
-									<option  class="time_start" value="22">22시</option>
-									<option  class="time_start" value="23">23시</option>
+									<option  class="time_start" >오픈 시간</option>
+									<option  class="time_start" value="1">0시</option>
+									<option  class="time_start" value="2">1시</option>
+									<option  class="time_start" value="3">2시</option>
+									<option  class="time_start" value="4">3시</option>
+									<option  class="time_start" value="5">4시</option>
+									<option  class="time_start" value="6">5시</option>
+									<option  class="time_start" value="7">6시</option>
+									<option  class="time_start" value="8">7시</option>
+									<option  class="time_start" value="9">8시</option>
+									<option  class="time_start" value="10">9시</option>
+									<option  class="time_start" value="11">10시</option>
+									<option  class="time_start" value="12">11시</option>
+									<option  class="time_start" value="13">12시</option>
+									<option  class="time_start" value="14">13시</option>
+									<option  class="time_start" value="15">14시</option>
+									<option  class="time_start" value="16">15시</option>
+									<option  class="time_start" value="17">16시</option>
+									<option  class="time_start" value="18">17시</option>
+									<option  class="time_start" value="19">18시</option>
+									<option  class="time_start" value="20">19시</option>
+									<option  class="time_start" value="21">20시</option>
+									<option  class="time_start" value="22">21시</option>
+									<option  class="time_start" value="23">22시</option>
+									<option  class="time_start" value="24">23시</option>
 								</select>
 								~
 								<select name="time_end"  id="time_end">
+									<option  class="time_start" >마감 시간</option>
 									<option  class="time_end" value="1">1시</option>
 									<option  class="time_end" value="2">2시</option>
 									<option  class="time_end" value="3">3시</option>
@@ -404,6 +406,7 @@
 								<label for = "wifi" class="title">와이파이 </label>
 								<div class="each-area">
 									<select name="wifi" id="wifi">
+										<option  class="wifi" >선택해주세요</option>
 										<option  class="wifi" value="1">쾌적</option>
 										<option  class="wifi" value="2">양호</option>
 										<option  class="wifi" value="3">나쁨</option>
@@ -416,6 +419,7 @@
 								<label for = "tables" class="title">테이블 수 </label>
 								<div class="each-area">
 									<select name="tables"  id="tables">
+										<option  class="tables" >선택해주세요</option>
 										<option  class="tables" value="1">1~10인 석</option>
 										<option  class="tables" value="2">11~30인 석</option>
 										<option  class="tables" value="3">31~50인 석</option>
@@ -428,6 +432,7 @@
 								<label for = "interior" class="title">분위기 </label>
 								<div class="each-area">
 									<select name="interior"  id="interior">
+										<option  class="interior">선택해주세요</option>
 										<option  class="interior" value="1">모던</option>
 										<option class="interior" value="2">빈티지</option>
 										<option class="interior"  value="3">네추럴</option>
@@ -441,6 +446,7 @@
 								<label for = "music" class="title">음악 </label>
 								<div class="each-area">
 									<select name="music"  id="music">
+										<option  class="music">선택해주세요</option>
 										<option  class="music" value="1">클래식</option>
 										<option  class="music" value="2">재즈</option>
 										<option  class="music" value="3">영화ost</option>
@@ -455,6 +461,7 @@
 								<label for = "plug" class="title">콘센트 수</label>
 								<div class="each-area">
 									<select name="plug"  id="plug">
+										<option  class="plug">선택해주세요</option>
 										<option  class="plug" value="1">자리마다</option>
 										<option  class="plug" value="2">띄엄띄엄</option>
 										<option  class="plug" value="3">거의 없음</option>
@@ -467,6 +474,7 @@
 								<label for = "restroom" class="title">화장실 </label>
 								<div class="each-area">
 									<select name="restroom"  id="restroom">
+										<option  class="restroom" >선택해주세요</option>
 										<option  class="restroom" value="1">유</option>
 										<option  class="restroom" value="2">무</option>
 									</select>
@@ -477,6 +485,7 @@
 								<label for = "studyroom" class="title">스터디룸</label>
 								<div class="each-area">
 									<select name="studyroom"  id="studyroom">
+										<option  class="studyroom" >선택해주세요</option>
 										<option  class="studyroom" value="1">유</option>
 										<option  class="studyroom" value="2">무</option>
 									</select>
@@ -487,6 +496,7 @@
 								<label for = "parking" class="title">주차공간 </label>
 								<div class="each-area">
 									<select name="parking"  id="parking">
+										<option  class="parking">선택해주세요</option>
 										<option  class="parking" value="1">유</option>
 										<option  class="parking" value="2">무</option>
 									</select>
@@ -497,6 +507,7 @@
 								<label for = "smoking" class="title">흡연석</label>
 								<div class="each-area">
 									<select name="smoking"  id="smoking">
+										<option  class="smoking" >선택해주세요</option>
 										<option  class="smoking" value="1">유</option>
 										<option  class="smoking" value="2">무</option>
 									</select>
@@ -507,6 +518,7 @@
 								<label for = "terrace" class="title" >테라스</label>
 								<div class="each-area">
 									<select name="terrace"  id="terrace">
+										<option  class="terrace">선택해주세요</option>
 										<option  class="terrace" value="1">유</option>
 										<option  class="terrace" value="2">무</option>
 									</select>
@@ -523,6 +535,7 @@
 								<label for = "event" class="title">이벤트</label>
 								<div class="each-area">
 									<select name="event" id="event">
+										<option  class="event">선택해주세요</option>
 										<option  class="event" value="1">유</option>
 										<option  class="event" value="2">무</option>
 									</select>
@@ -533,6 +546,7 @@
 								<label for = "coupon" class="title">쿠폰</label>
 								<div class="each-area">
 									<select name="coupon"  id="coupon">
+										<option  class="coupon">선택해주세요</option>
 										<option  class="coupon" value="1">유</option>
 										<option  class="coupon" value="2">무</option>
 									</select>
@@ -543,6 +557,7 @@
 								<label for = "mileage" class="title">마일리지</label>
 								<div class="each-area">
 									<select name="mileage"  id="mileage">
+										<option  class="mileage">선택해주세요</option>
 										<option  class="mileage" value="1">유</option>
 										<option  class="mileage" value="2">무</option>
 									</select>	
@@ -553,6 +568,7 @@
 								<label for = "blanket" class="title" >담요</label>
 								<div class="each-area">
 									<select name="blanket"  id="blanket">
+										<option  class="blanket">선택해주세요</option>
 										<option  class="blanket" value="1">유</option>
 										<option  class="blanket" value="2">무</option>
 									</select>	
@@ -563,6 +579,7 @@
 								<label for = "drinkrefill" class="title">리필</label>
 								<div class="each-area">
 									<select name="drinkrefill"  id="drinkrefill">
+										<option  class="drinkrefill">선택해주세요</option>
 										<option  class="drinkrefill" value="1">유</option>
 										<option  class="drinkrefill" value="2">무</option>
 									</select>	
@@ -586,6 +603,7 @@
 										<input type="hidden" name="cafe_menu_id" value="${menuVO.cafe_menu_id }">
 										<c:if test="${menuVO.type == 1}">
 											<select name="menu_type" class="menu-select">
+												<option class = "menu" >선택해주세요</option>
 												<option class = "menu" value="1" selected="selected">음료</option>
 												<option class = "menu" value="2">디저트</option>
 											</select>  
@@ -593,6 +611,7 @@
 										</c:if>
 										<c:if test="${menuVO.type == 2}">
 											<select name="menu_type" class="menu-select">
+												<option class = "menu" >선택해주세요</option>
 												<option class = "menu" value="1">음료</option>
 												<option class = "menu" value="2" selected="selected">디저트</option>
 											</select>  
@@ -619,6 +638,7 @@
 										<input type="hidden" name="cafe_product_id" value="${productVO.cafe_product_id }">
 										<c:if test="${productVO.type == 1}">
 											<select name="product_type" class="product-select">
+												<option class = "product" >선택해주세요</option>
 												<option class = "product" value="1" selected="selected">다이어리</option>
 												<option class = "product" value="2">캐릭터상품</option>
 												<option class = "product" value="3">텀블러</option>
@@ -626,6 +646,7 @@
 										</c:if>
 										<c:if test="${productVO.type == 2}">
 											<select name="product_type" class="product-select">
+												<option class = "product" >선택해주세요</option>
 												<option class = "product" value="1">다이어리</option>
 												<option class = "product" value="2" selected="selected">캐릭터상품</option>
 												<option class = "product" value="3">텀블러</option>
@@ -633,6 +654,7 @@
 										</c:if>
 										<c:if test="${productVO.type == 3}">
 											<select name="product_type" class="product-select">
+												<option class = "product" >선택해주세요</option>
 												<option class = "product" value="1">다이어리</option>
 												<option class = "product" value="2">캐릭터상품</option>
 												<option class = "product" value="3" selected="selected">텀블러</option>

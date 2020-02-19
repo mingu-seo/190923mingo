@@ -105,29 +105,15 @@
 				</c:if>
 			</c:forEach>
 			<div class="my_review_each">
-				<div class="my_review_bottom">  
-					<div>
-						<img src="upload/review/${review.image }"/>
-					</div>
-					<div class="my_comment">
-						<p>${review.contents}</p>
-						<fmt:parseDate var="sDate" value="${review.regdate}" pattern="yyyy-MM-dd HH:mm:ss" />
-    	
-						<p>꒐ 작성일: <fmt:formatDate value="${sDate}" pattern="yyyy-MM-dd" />&nbsp;
-							<a id="modify" href="modifyReviewForm.do?cafe_id=${cafe.cafe_id}">수정</a>&nbsp;
-							<a id="blank">꒐</a>&nbsp;
-							<a id="delete" href="deleteReview.do?cafe_id=${cafe.cafe_id}">삭제</a>&nbsp;
-						</p>
-						
-					</div>
-				</div>
+				
 				<div class="my_review_top">
 					<div class="rated_cafe_info">   
 						<div>
 							<img src="./img/brandLogo/${cafe.logo }" />
 						</div>
-						<h2>${cafe.name }</h2>
-						<h2>${cafe.branch }</h2>
+						<h2>${cafe.name }&nbsp;${cafe.branch }</h2>  
+						<fmt:parseDate var="sDate" value="${review.regdate}" pattern="yyyy-MM-dd HH:mm:ss" />
+						<p>꒐ 작성일: <fmt:formatDate value="${sDate}" pattern="yyyy-MM-dd" />&nbsp;
 					</div>
 					<div class="my_rating">
 						<div id="my_rate_header">
@@ -135,51 +121,67 @@
 							<span>내 점수</span>  
 							  
 						</div>
-						<div class="my_rate_each2" id="my_rate_each2">
+						<div class="my_rate_each2" >
 							<span class="my_rate_visual" id="my_taste_visual">
 								<img src="img/taste.png">
 							</span>
 							<span class="my_rate_name" id="my_taste_name">taste - </span>
 							<span class="my_my_rate">${review.taste_score }점</span>
 						</div>
-						<div class="my_rate_each2" id="my_rate_each2">
+						<div class="my_rate_each2" >
 							<span class="my_rate_visual" id="my_price_visual">
 								<img src="img/price.png">
 							</span>
 							<span class="my_rate_name" id="my_price_name">price - </span>
 							<span class="my_my_rate">${review.price_score }점</span>
 						</div>
-						<div class="my_rate_each2" id="my_rate_each2">
+						<div class="my_rate_each2" >
 							<span class="my_rate_visual" id="my_service_visual">
 								<img src="img/service.png">
 							</span>
 							<span class="my_rate_name" id="my_service_name">service - </span>
 							<span class="my_my_rate">${review.service_score }점</span>
 						</div>
-						<div class="my_rate_each2" id="my_rate_each2">
+						<div class="my_rate_each2" >
 							<span class="my_rate_visual" id="my_facimood_visual">
 								<img src="img/mood.png">
 							</span>
 							<span class="my_rate_name" id="my_facimood_name">mood - </span>
 							<span class="my_my_rate">${review.mood_score }점</span>
 						</div>
-						<div class="my_rate_each2" id="my_rate_each2">
+						<div class="my_rate_each2" >
 							<span class="my_rate_visual" id="my_wifiplug_visual">
 								<img src="img/wifi.png">
 							</span>
 							<span class="my_rate_name" id="my_wifiplug_name">wifi - </span>
 							<span class="my_my_rate">${review.wifi_score }점</span>
 						</div>  
-						<div class="my_rate_each2" id="my_rate_each2">
+						<div class="my_rate_each2" >
 							<span class="my_rate_visual" id="my_clean_visual">
 								<img src="img/clean.png">
 							</span>
 							<span class="my_rate_name" id="my_clean_name">clean - </span>
 							<span class="my_my_rate">${review.clean_score }점</span>
 						</div>
-					</div>	
-					
+					</div>
+				</div>       
+				<div class="my_review_bottom">  
+					<div>
+						<img src="upload/review/${review.image }"/>
+					</div>
+					<div class="my_comment">
+						<p>${review.contents}</p>
+						
+							<a id="modify" href="modifyReviewForm.do?cafe_id=${cafe.cafe_id}">수정</a>&nbsp;
+							<a id="blank">꒐</a>&nbsp;
+							<a id="delete" href="deleteReview.do?cafe_id=${cafe.cafe_id}">삭제</a>&nbsp;
+						</p>
+					</div>
 				</div>
+				
+				
+				
+				
 				
 			</div>
 		</c:forEach>  

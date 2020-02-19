@@ -83,8 +83,9 @@
 		</div>
 		<input type="hidden" name="cafe_menu_id" value="0">
 		<select name="menu_type" class="menu-select">
-			<option value="1">음료</option>
-			<option value="2">디저트</option>
+			<option class = "menu" >선택해주세요</option>
+			<option class = "menu" value="1">음료</option>
+			<option class = "menu" value="2">디저트</option>
 		</select>
 		<input type="text" name="menu_name" class="menu_name"/>	
 		<input type="text" name="menu_price" class="menu_price"/>	

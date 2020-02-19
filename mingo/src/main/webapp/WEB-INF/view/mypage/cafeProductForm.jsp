@@ -77,9 +77,10 @@
 		</div>
 		<input type="hidden" name="cafe_product_id" value="0">
 		<select name="product_type" class="product-select">
-			<option value="1">다이어리</option>
-			<option value="2">캐릭터상품</option>
-			<option value="3">텀블러</option>
+			<option class = "product" >선택해주세요</option>
+			<option class = "product" value="1">다이어리</option>
+			<option class = "product" value="2">캐릭터상품</option>
+			<option class = "product" value="3">텀블러</option>
 		</select>
 		<input type="text" name="product_name" class="product_name"/>	
 		<input type="text" name="product_price" class="product_price"/>	
