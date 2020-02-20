@@ -226,7 +226,7 @@ public class DetailController {
 		
 		return "mypage/cafeModifyForm";
 	}
-	   
+	
 	//카페 정보 수정
 	@RequestMapping("/modifyCafe.do")
 	public String modifyCafe(Model model, CafeVO cafeVO, CafeFacilitiesVO cafeFacilitiesVO, CafeServiceVO cafeServiceVO, CafeImageVO cafeImageVO, MultipartHttpServletRequest request, HttpServletResponse response) {

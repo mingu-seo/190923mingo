@@ -176,10 +176,7 @@ public class DetailDAO {
 	}
 	
 	
-	
-	
 	//수정 
-	
 	public int modifyCafeImages(CafeImageVO vo, List<MultipartFile> fileList,MultipartHttpServletRequest request) {
 		String path1 = util.Property.cafe_img_path;
 		String path2 = request.getRealPath("/upload");
@@ -188,7 +185,6 @@ public class DetailDAO {
 		List<CafeImageVO> old_vo = sqlSession.selectList("detail.selectViewCafeImage", cafe_id);
 		String[] new_vo = request.getParameterValues("cafe_image_id"); 
 		System.out.println("수정 과정에 있는 카페 사진 수 : " + fileList.size());
-		
 		
 		//제거 아이디 후보 목록
 		List<Integer> delete_id = new ArrayList<Integer>();
@@ -242,7 +238,6 @@ public class DetailDAO {
 			for (int j = 0; j < delete_id.size(); j++) {
 				sqlSession.delete("detail.deleteCafeImageByKey", delete_id.get(j));
 			}
-			
 		}
 		
 		return 1;	
@@ -262,14 +257,27 @@ public class DetailDAO {
 			}			
 		} 
 		int result = sqlSession.update("detail.updateCafe", cafeVO);
-		
 		return 1;   
 	}
 	public int modifyFacility(CafeFacilitiesVO cafeFacilitiesVO) {
-		return sqlSession.update("detail.updateFacility", cafeFacilitiesVO);
+		int r = sqlSession.update("detail.selectViewFacility", cafeFacilitiesVO.getCafe_id());
+		int result;
+		if (r > 0) {
+			result = sqlSession.insert("detail.insertFacility", cafeFacilitiesVO);
+		} else {
+			result = sqlSession.update("detail.updateFacility", cafeFacilitiesVO);
+		}
+		return result;
 	}
 	public int modifyService(CafeServiceVO cafeServiceVO) {
-		return sqlSession.update("detail.updateService", cafeServiceVO);
+		int r = sqlSession.update("detail.selectViewService", cafeServiceVO.getCafe_id());
+		int result;
+		if (r > 0) {
+			result = sqlSession.insert("detail.insertService", cafeServiceVO);
+		} else {
+			result = sqlSession.update("detail.updateService", cafeServiceVO);
+		}
+		return result;
 	}
 	public int modifyMenu(List<CafeMenuVO> cafeMenuVO, List<MultipartFile> menuFileList, MultipartHttpServletRequest request) {
 		String path1 = util.Property.cafe_img_path;
@@ -278,7 +286,6 @@ public class DetailDAO {
 		String[] menuNameList = request.getParameterValues("menu_name");
 		String[] menuPriceList = request.getParameterValues("menu_price");
 		String[] menuTypeList = request.getParameterValues("menu_type");
-		
 		
 		List<CafeMenuVO> old_vo= sqlSession.selectList("detail.selectViewMenu", cafe_id);	
 		String[] new_vo = request.getParameterValues("cafe_menu_id"); 
@@ -291,7 +298,6 @@ public class DetailDAO {
 				delete_id.add(old_vo.get(i).getCafe_menu_id());				
 			}
 		}
-		
 		
 		for(int i=0; i<menuFileList.size(); i++) {  
 			FileUtil fu = new FileUtil(); 
