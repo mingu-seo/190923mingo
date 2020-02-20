@@ -160,18 +160,6 @@
 											<span class="my_my_rate">${review.clean_score }점</span>
 										</div>
 									</div>	
-<%-- <<<<<<< HEAD
-=======
-									
-								</div>
-								<div style="clear:both;">
-									<fmt:parseDate var="sDate" value="${review.regdate}" pattern="yyyy-MM-dd HH:mm:ss" />
-					    	
-									꒐ 작성일: <fmt:formatDate value="${sDate}" pattern="yyyy-MM-dd" />&nbsp;
-										<a id="modify" href="modifyReviewForm.do?cafe_id=${review.cafe_id}">수정</a>&nbsp;
-										<a id="blank">꒐</a>&nbsp;
-										<a id="delete" href="javascript:void(0);" onclick="deleteMyReview(${review.cafe_id});">삭제</a>&nbsp;
->>>>>>> branch 'master' of https://github.com/mingu-seo/190923mingo.git --%>
 								</div>
 								
 								<div class="my_review_bottom">  

@@ -1581,7 +1581,7 @@
 										</h6>
 									</div>
 								</div>
-							</c:if>
+							</c:if>   
 							<c:if test="${service.blanket != 0}">
 								<div class="info_each" id="service-each4">
 									<img src="img/coffee.png"/>
