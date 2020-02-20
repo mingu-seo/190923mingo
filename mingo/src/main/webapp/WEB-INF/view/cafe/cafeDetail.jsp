@@ -10,18 +10,6 @@
 <meta charset="UTF-8">
 <title>카페밍고</title>
 
-<!--부트 스트랩 관련 파일-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-	
-	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-	
-	<!--  -->
-	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-
 	<!-- 헤더파일들 include -->
 	<%@ include file="/WEB-INF/view/include/headHTML.jsp"%>
 	
@@ -29,6 +17,7 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 	<!-- jquery ui -->
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     
 	<style>
@@ -90,6 +79,7 @@
 			line-height: 50px;
 			position: relative;
 			z-index:100;   
+			cursor:pointer;
 		}
 		
 		@font-face {
@@ -731,6 +721,12 @@
 	
 	<script>
 		$(function(){
+			
+			
+			/* 툴팁을 위한 초기화 */
+		 $('[data-toggle="tooltip"]').tooltip();
+		
+			
 			var width_size = $(window).width();
 			if (width_size <= 560) {
 				$('#search-btn1').css({   
@@ -1224,17 +1220,17 @@
 					${cafe.branch }
 				</div>     
 				<c:if test="${sessionScope.userVO.user_id != null }">
-					<div id="like-cafe-btn">
+					<a id="like-cafe-btn"  data-placement="right" data-toggle="tooltip" title="좋아요!"> 
 						<c:if test="${likeCafe == 0}">
-							<img src="img/likeNone.png" id="like-img">
+							<img src="img/likeNone.png" id="like-img">  
 							<input type="hidden" id="likeCafe" value="0">					
 						</c:if>
 						<c:if test="${likeCafe == 1}">
 							<img src="img/like.png" id="like-img">
 							<input type="hidden" id="likeCafe" value="1">					
 						</c:if>
-					</div>     
-					<div id="collect-cafe-btn">
+					</a>     
+					<a id="collect-cafe-btn" data-placement="right" data-toggle="tooltip" title="이 카페 찜하기!"> 
 						<c:if test="${collectCafe == 0}">
 							<img src="img/collectNone.png" id="collect-img">
 							<input type="hidden" id="collectCafe" value="0">
@@ -1243,8 +1239,7 @@
 							<img src="img/collect.png" id="collect-img">
 							<input type="hidden" id="collectCafe" value="1">
 						</c:if>
-					</div>     
-				
+					</a>     
 				</c:if>
 				 
 			</div>
@@ -1278,7 +1273,7 @@
 				
 		</div>
 	</div>
-	  
+	
 	<!-- 상세정보 및 후기 콘텐츠 표기란 -->
 	<div class="content">
 		

@@ -159,7 +159,9 @@
 											<span class="my_rate_name" id="my_clean_name">clean - </span>
 											<span class="my_my_rate">${review.clean_score }점</span>
 										</div>
+
 									</div>	
+
 								</div>
 								
 								<div class="my_review_bottom">  
@@ -179,7 +181,7 @@
 										<fmt:parseDate var="sDate" value="${review.regdate}" pattern="yyyy-MM-dd HH:mm:ss" />
 										꒐ <fmt:formatDate value="${sDate}" pattern="yyyy-MM-dd" />&nbsp;
 									</p>
-									<a id="delete" href="deleteReview.do?cafe_id=${review.cafe_id}">삭제</a>&nbsp;
+									<a id="delete" href="javascript:void(0);" onclick="deleteMyReview(${review.cafe_id});">삭제</a>&nbsp;
 									<a id="blank">꒐</a>&nbsp;
 									<a id="modify" href="modifyReviewForm.do?cafe_id=${review.cafe_id}">수정</a>&nbsp;
 								</div>
