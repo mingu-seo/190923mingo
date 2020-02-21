@@ -84,7 +84,7 @@
 			<img id="cafeImage_image_section<%=cafeImage_num%>" class="cafeImage_image_section" src="img/starbucks.png" alt="메뉴 사진을 등록해주세요"/>
 		</div>
 		<input type="hidden" name="cafe_image_id" value="0">
-		<input type="file" name="cafeImage_image_file" class="cafeImage_image_file" id="cafeImage_image_file<%=cafeImage_num%>"/>
+		<input type="file" name="cafeImage_file" class="cafeImage_image_file" id="cafeImage_image_file<%=cafeImage_num%>"/>
 		<img class="deleteCafeImage" src="img/x_btn.png">			
 	</div>
 	<!--  -->

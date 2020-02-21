@@ -159,7 +159,7 @@ public class DetailDAO {
 		System.out.println("상품 사진 리스트 크기는? : " + productFileList.size());
 		System.out.println("상품 사진 리스트 두 번째는? : " + productFileList.get(1));
 		
-		  
+		
 		for(int i=0; i<productFileList.size(); i++) {  
 			CafeProductVO vo = new CafeProductVO();
 			FileUtil fu = new FileUtil(); 
@@ -216,6 +216,7 @@ public class DetailDAO {
 			}
 			
 			if(Integer.parseInt(new_vo[i]) != 0) {
+				System.out.println("추가할 이미지 아이디: " + new_vo[i]);
 				//수정
 				vo1.setCafe_image_id(Integer.parseInt(new_vo[i]));
 				int result = sqlSession.update("detail.updateCafeImage", vo1);
@@ -260,25 +261,27 @@ public class DetailDAO {
 		return 1;   
 	}
 	public int modifyFacility(CafeFacilitiesVO cafeFacilitiesVO) {
-		int r = sqlSession.update("detail.selectViewFacility", cafeFacilitiesVO.getCafe_id());
-		int result;
-		if (r > 0) {
+		int cafe_id = cafeFacilitiesVO.getCafe_id();
+		CafeFacilitiesVO r = sqlSession.selectOne("detail.selectViewFacilities", cafe_id);
+		int result;  
+		if (r == null) {
 			result = sqlSession.insert("detail.insertFacility", cafeFacilitiesVO);
 		} else {
 			result = sqlSession.update("detail.updateFacility", cafeFacilitiesVO);
 		}
 		return result;
-	}
+	}      
 	public int modifyService(CafeServiceVO cafeServiceVO) {
-		int r = sqlSession.update("detail.selectViewService", cafeServiceVO.getCafe_id());
+		int cafe_id = cafeServiceVO.getCafe_id();
+		CafeServiceVO r = sqlSession.selectOne("detail.selectViewService", cafe_id);
 		int result;
-		if (r > 0) {
+		if (r == null) {
 			result = sqlSession.insert("detail.insertService", cafeServiceVO);
 		} else {
 			result = sqlSession.update("detail.updateService", cafeServiceVO);
 		}
 		return result;
-	}
+	}   
 	public int modifyMenu(List<CafeMenuVO> cafeMenuVO, List<MultipartFile> menuFileList, MultipartHttpServletRequest request) {
 		String path1 = util.Property.cafe_img_path;
 		String path2 = request.getRealPath("/upload");

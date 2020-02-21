@@ -58,37 +58,37 @@
 		#cafe-intro{width:70%;height:80px;float:left;} 
 		#intro-title{height:80px;float:left;} 
 		
-		.deleteImage{width:20px;height:20px;border-radius:100%;position: relative;left:110px;bottom:255px;}  
+		.deleteImage{width:20px;height:20px;border-radius:100%;position: relative;left:112px;bottom:265px;}  
 		/* 메뉴 */
-		.menu-each-section{width:124px;float:left;margin-right:10px;}
+		.menu-each-section{margin-top:10px;width:124px;float:left;margin-right:10px;}
 		.my-image{overflow:hidden;height:124px;width:100%;margin-bottom:10px; }
 		.menu_image_section{width:100%;}
 		.menu-select{width:100%;height:30px;}
 		.menu_name{width:100%;height:30px;}     
 		.menu_price{width:100%;height:30px;}
 		.menu_image_file{width:100%;height:30px;}
-		.add-menu{color:#A4A4A4; font-size:4.0em; border:1px dashed #D8D8D8; float:left;width:124px;height:253px;margin-right:10px;text-align:center;line-height:253px;}        
+		.add-menu{margin-top:10px;color:#A4A4A4; font-size:4.0em; border:1px dashed #D8D8D8; float:left;width:124px;height:253px;margin-right:10px;text-align:center;line-height:253px;}        
 		
 		/* 상품 */
-		.product-each-section{width:124px;float:left;margin-right:10px;}
+		.product-each-section{margin-top:10px;width:124px;float:left;margin-right:10px;}
 		.my-image{overflow:hidden;height:124px;width:100%;margin-bottom:10px; }
 		.product_image_section{width:100%;}
 		.product-select{width:100%;height:30px;}
 		.product_name{width:100%;height:30px;}     
 		.product_price{width:100%;height:30px;}
 		.product_image_file{width:100%;height:30px;}
-		.add-product{color:#A4A4A4; font-size:4.0em; border:1px dashed #D8D8D8; float:left;width:124px;height:253px;margin-right:10px;text-align:center;line-height:253px;}        
+		.add-product{margin-top:10px;color:#A4A4A4; font-size:4.0em; border:1px dashed #D8D8D8; float:left;width:124px;height:253px;margin-right:10px;text-align:center;line-height:253px;}        
 		
 		/* 카페사진 */
-		.cafeImage-each-section{width:124px;float:left;margin-right:10px;}
+		.cafeImage-each-section{margin-top:10px;width:124px;float:left;margin-right:10px;}
 		.my-image{overflow:hidden;height:124px;width:100%;margin-bottom:10px; }
 		.cafeImage_image_section{width:100%;}
 		.cafeImage-select{width:100%;height:30px;}
 		.cafeImage_name{width:100%;height:30px;}     
 		.cafeImage_price{width:100%;height:30px;}
 		.cafeImage_image_file{width:100%;height:30px;}
-		.add-cafeImage{color:#A4A4A4; font-size:4.0em; border:1px dashed #D8D8D8; float:left;width:124px;height:163px;margin-right:10px;text-align:center;line-height:163px;}        
-		.deleteCafeImage{width:20px;height:20px;border-radius:100%;position: relative;left:110px;bottom:165px;}  
+		.add-cafeImage{margin-top:10px;color:#A4A4A4; font-size:4.0em; border:1px dashed #D8D8D8; float:left;width:124px;height:163px;margin-right:10px;text-align:center;line-height:163px;}        
+		.deleteCafeImage{width:20px;height:20px;border-radius:100%;position: relative;left:113px;bottom:173px;}  
 		
 		#cafe-delete-btn{width:auto;float:right;}
 		#cafe-delete-btn:hover{color:#F5A9BC;}
@@ -332,14 +332,14 @@
 							<div class="each">
 								<label for = "time" class="title">운영시간 </label>
 								<select name="time_day" id="time_day">
-									<option  class="time_day" >운영 요일</option>
+									<option  class="time_day" value="0">운영 요일</option>
 									<option  class="time_day" value="1">매일</option>
 									<option  class="time_day" value="2">월~금</option>
 									<option  class="time_day" value="3">월~토</option>
 									<option  class="time_day" value="4">주말</option>
 								</select>
 								<select name="time_start"  id="time_start">
-									<option  class="time_start" >오픈 시간</option>
+									<option  class="time_start" value="0">오픈 시간</option>
 									<option  class="time_start" value="1">0시</option>
 									<option  class="time_start" value="2">1시</option>
 									<option  class="time_start" value="3">2시</option>
@@ -367,7 +367,7 @@
 								</select>
 								~
 								<select name="time_end"  id="time_end">
-									<option  class="time_start" >마감 시간</option>
+									<option  class="time_start" value="0">마감 시간</option>
 									<option  class="time_end" value="1">1시</option>
 									<option  class="time_end" value="2">2시</option>
 									<option  class="time_end" value="3">3시</option>
@@ -406,11 +406,11 @@
 								<label for = "wifi" class="title">와이파이 </label>
 								<div class="each-area">
 									<select name="wifi" id="wifi">
-										<option  class="wifi" >선택해주세요</option>
-										<option  class="wifi" value="1">쾌적</option>
-										<option  class="wifi" value="2">양호</option>
-										<option  class="wifi" value="3">나쁨</option>
-										<option  class="wifi" value="4">없음</option>
+										<option class="wifi" value="0">선택해주세요</option>
+										<option class="wifi" value="1">쾌적</option>
+										<option class="wifi" value="2">양호</option>
+										<option class="wifi" value="3">나쁨</option>
+										<option class="wifi" value="4">없음</option>
 									</select>
 									<input class= "add-info" type="text" name="wifi_text" id="wifi_text" value="${facilities.wifi_text}"/>		
 								</div>		
@@ -419,7 +419,7 @@
 								<label for = "tables" class="title">테이블 수 </label>
 								<div class="each-area">
 									<select name="tables"  id="tables">
-										<option  class="tables" >선택해주세요</option>
+										<option  class="tables" value="0">선택해주세요</option>
 										<option  class="tables" value="1">1~10인 석</option>
 										<option  class="tables" value="2">11~30인 석</option>
 										<option  class="tables" value="3">31~50인 석</option>
@@ -432,7 +432,7 @@
 								<label for = "interior" class="title">분위기 </label>
 								<div class="each-area">
 									<select name="interior"  id="interior">
-										<option  class="interior">선택해주세요</option>
+										<option  class="interior" value="0">선택해주세요</option>
 										<option  class="interior" value="1">모던</option>
 										<option class="interior" value="2">빈티지</option>
 										<option class="interior"  value="3">네추럴</option>
@@ -443,10 +443,10 @@
 								</div>		
 							</div>
 							<div class="each">
-								<label for = "music" class="title">음악 </label>
+								<label for = "music" class="title" >음악 </label>
 								<div class="each-area">
 									<select name="music"  id="music">
-										<option  class="music">선택해주세요</option>
+										<option  class="music" value="0">선택해주세요</option>
 										<option  class="music" value="1">클래식</option>
 										<option  class="music" value="2">재즈</option>
 										<option  class="music" value="3">영화ost</option>
@@ -461,7 +461,7 @@
 								<label for = "plug" class="title">콘센트 수</label>
 								<div class="each-area">
 									<select name="plug"  id="plug">
-										<option  class="plug">선택해주세요</option>
+										<option  class="plug" value="0">선택해주세요</option>
 										<option  class="plug" value="1">자리마다</option>
 										<option  class="plug" value="2">띄엄띄엄</option>
 										<option  class="plug" value="3">거의 없음</option>
@@ -474,7 +474,7 @@
 								<label for = "restroom" class="title">화장실 </label>
 								<div class="each-area">
 									<select name="restroom"  id="restroom">
-										<option  class="restroom" >선택해주세요</option>
+										<option  class="restroom" value="0">선택해주세요</option>
 										<option  class="restroom" value="1">유</option>
 										<option  class="restroom" value="2">무</option>
 									</select>
@@ -485,7 +485,7 @@
 								<label for = "studyroom" class="title">스터디룸</label>
 								<div class="each-area">
 									<select name="studyroom"  id="studyroom">
-										<option  class="studyroom" >선택해주세요</option>
+										<option  class="studyroom" value="0">선택해주세요</option>
 										<option  class="studyroom" value="1">유</option>
 										<option  class="studyroom" value="2">무</option>
 									</select>
@@ -496,7 +496,7 @@
 								<label for = "parking" class="title">주차공간 </label>
 								<div class="each-area">
 									<select name="parking"  id="parking">
-										<option  class="parking">선택해주세요</option>
+										<option  class="parking" value="0">선택해주세요</option>
 										<option  class="parking" value="1">유</option>
 										<option  class="parking" value="2">무</option>
 									</select>
@@ -507,7 +507,7 @@
 								<label for = "smoking" class="title">흡연석</label>
 								<div class="each-area">
 									<select name="smoking"  id="smoking">
-										<option  class="smoking" >선택해주세요</option>
+										<option  class="smoking" value="0">선택해주세요</option>
 										<option  class="smoking" value="1">유</option>
 										<option  class="smoking" value="2">무</option>
 									</select>
@@ -518,7 +518,7 @@
 								<label for = "terrace" class="title" >테라스</label>
 								<div class="each-area">
 									<select name="terrace"  id="terrace">
-										<option  class="terrace">선택해주세요</option>
+										<option  class="terrace" value="0">선택해주세요</option>
 										<option  class="terrace" value="1">유</option>
 										<option  class="terrace" value="2">무</option>
 									</select>
@@ -535,7 +535,7 @@
 								<label for = "event" class="title">이벤트</label>
 								<div class="each-area">
 									<select name="event" id="event">
-										<option  class="event">선택해주세요</option>
+										<option  class="event" value="0">선택해주세요</option>
 										<option  class="event" value="1">유</option>
 										<option  class="event" value="2">무</option>
 									</select>
@@ -546,7 +546,7 @@
 								<label for = "coupon" class="title">쿠폰</label>
 								<div class="each-area">
 									<select name="coupon"  id="coupon">
-										<option  class="coupon">선택해주세요</option>
+										<option  class="coupon" value="0">선택해주세요</option>
 										<option  class="coupon" value="1">유</option>
 										<option  class="coupon" value="2">무</option>
 									</select>
@@ -557,7 +557,7 @@
 								<label for = "mileage" class="title">마일리지</label>
 								<div class="each-area">
 									<select name="mileage"  id="mileage">
-										<option  class="mileage">선택해주세요</option>
+										<option  class="mileage" value="0">선택해주세요</option>
 										<option  class="mileage" value="1">유</option>
 										<option  class="mileage" value="2">무</option>
 									</select>	
@@ -568,7 +568,7 @@
 								<label for = "blanket" class="title" >담요</label>
 								<div class="each-area">
 									<select name="blanket"  id="blanket">
-										<option  class="blanket">선택해주세요</option>
+										<option  class="blanket" value="0">선택해주세요</option>
 										<option  class="blanket" value="1">유</option>
 										<option  class="blanket" value="2">무</option>
 									</select>	
@@ -579,7 +579,7 @@
 								<label for = "drinkrefill" class="title">리필</label>
 								<div class="each-area">
 									<select name="drinkrefill"  id="drinkrefill">
-										<option  class="drinkrefill">선택해주세요</option>
+										<option  class="drinkrefill" value="0">선택해주세요</option>
 										<option  class="drinkrefill" value="1">유</option>
 										<option  class="drinkrefill" value="2">무</option>
 									</select>	
@@ -598,12 +598,12 @@
 								<c:forEach var="menuVO" items="${menuList}" varStatus="status">
 									<div class="menu-each-section">
 										<div class="my-image">  
-											 <img id="menu_image_section${status.count }" class="menu_image_section" src="img/starbucks.png" alt="메뉴 사진을 등록해주세요"/>
+											 <img id="menu_image_section${status.count }" class="menu_image_section" src="upload/menu/${menuVO.image }" alt="메뉴 사진을 등록해주세요"/>
 										</div>
 										<input type="hidden" name="cafe_menu_id" value="${menuVO.cafe_menu_id }">
 										<c:if test="${menuVO.type == 1}">
 											<select name="menu_type" class="menu-select">
-												<option class = "menu" >선택해주세요</option>
+												<option class = "menu" value="0">선택해주세요</option>
 												<option class = "menu" value="1" selected="selected">음료</option>
 												<option class = "menu" value="2">디저트</option>
 											</select>  
@@ -611,7 +611,7 @@
 										</c:if>
 										<c:if test="${menuVO.type == 2}">
 											<select name="menu_type" class="menu-select">
-												<option class = "menu" >선택해주세요</option>
+												<option class = "menu" value="0">선택해주세요</option>
 												<option class = "menu" value="1">음료</option>
 												<option class = "menu" value="2" selected="selected">디저트</option>
 											</select>  
@@ -633,12 +633,12 @@
 								<c:forEach var="productVO" items="${productList}" varStatus="status">
 									<div class="product-each-section">
 										<div class="my-image">  
-											 <img id="product_image_section${status.count }" class="product_image_section" src="img/starbucks.png" alt="메뉴 사진을 등록해주세요"/>
+											 <img id="product_image_section${status.count }" class="product_image_section" src="upload/product/${productVO.image }" alt="메뉴 사진을 등록해주세요"/>
 										</div>
 										<input type="hidden" name="cafe_product_id" value="${productVO.cafe_product_id }">
 										<c:if test="${productVO.type == 1}">
 											<select name="product_type" class="product-select">
-												<option class = "product" >선택해주세요</option>
+												<option class = "product" value="0">선택해주세요</option>
 												<option class = "product" value="1" selected="selected">다이어리</option>
 												<option class = "product" value="2">캐릭터상품</option>
 												<option class = "product" value="3">텀블러</option>
@@ -646,7 +646,7 @@
 										</c:if>
 										<c:if test="${productVO.type == 2}">
 											<select name="product_type" class="product-select">
-												<option class = "product" >선택해주세요</option>
+												<option class = "product" value="0">선택해주세요</option>
 												<option class = "product" value="1">다이어리</option>
 												<option class = "product" value="2" selected="selected">캐릭터상품</option>
 												<option class = "product" value="3">텀블러</option>
@@ -654,7 +654,7 @@
 										</c:if>
 										<c:if test="${productVO.type == 3}">
 											<select name="product_type" class="product-select">
-												<option class = "product" >선택해주세요</option>
+												<option class = "product" value="0">선택해주세요</option>
 												<option class = "product" value="1">다이어리</option>
 												<option class = "product" value="2">캐릭터상품</option>
 												<option class = "product" value="3" selected="selected">텀블러</option>
@@ -679,7 +679,7 @@
 								<c:forEach var="imageVO" items="${imgList}" varStatus="status">
 									<div class="cafeImage-each-section">
 										<div class="my-image">  
-											 <img id="cafeImage_image_section${status.count }" class="cafeImage_image_section" src="img/starbucks.png" alt="메뉴 사진을 등록해주세요"/>
+											 <img id="cafeImage_image_section${status.count }" class="cafeImage_image_section" src="upload/cafe/${imageVO.url}" alt="메뉴 사진을 등록해주세요"/>
 										</div>
 										<input type="hidden" name="cafe_image_id" value="${imageVO.cafe_image_id }">
 										<input type="file" name="cafeImage_file" class="cafeImage_image_file" id="cafeImage_image_file${status.count }" value="${imageVO.url}"/>

@@ -259,7 +259,7 @@
 		#menu_btn{border-bottom:2px solid #21610B;}
 		
 		.menu{
-			height:500px;
+			height:400px;
 			width:80%;
 		}
 		.facility{
@@ -279,7 +279,7 @@
 		}
 		
 		.cafe_photo{  
-			height:600px;
+			height:700px;
 			
 		}
 		.swiper-slide{
@@ -318,7 +318,7 @@
 		
 		.visual{  
 			width:70%; 
-			height:300px;
+			height:550px;
 			margin:20px 5%;
 			
 			text-align: center;  
@@ -327,21 +327,21 @@
 		
 		.visual .swiper{
 			width:100%;
-        	height:300px;
+        	height:100%;
         	z-index: 10;
         	display: inline-block;
         	
         }   
         
-        .'swiper swiper-container', ,swiper-wrapper{
+        .'swiper swiper-container'{
         	width:100%;
-        	height:300px;
+        	height:100%;
         	
         }
         
         .visual .swiper-slide{
         	width:100%;
-        	height:auto;
+        	height:100%;
         	float:left;
         }   
 
@@ -1532,7 +1532,7 @@
 							</div>
 						</c:if>
 					</c:if>
-					<c:if test="${facilities ==null }">
+					<c:if test="${facilities ==null || facilities.parking == 0 && facilities.smoking == 0 && facilities.studyroom == 0 && facilities.terrace == 0 && facilities.restroom == 0 && facilities.plug == 0 && facilities.music == 0 && facilities.interior == 0 && facilities.tables == 0 && facilities.wifi == 0 }">
 						<div class="facility" style="width:100%;height:300px;font-size: 1.5em; font-weight: bold; color:#D8D8D8; text-align:center;line-height:300px;">
 							등록된 정보가 없습니다.
 						</div>
@@ -1602,7 +1602,7 @@
 								</div>
 							</c:if>
 						</c:if>
-						<c:if test="${service ==null }">
+						<c:if test="${service ==null || service.drinkrefill==0  && service.blanket==0  && service.mileage==0  && service.coupon==0  && service.event==0 }">
 							<div class="service" style="width:100%;height:300px;font-size: 1.5em; font-weight: bold; color:#D8D8D8; text-align:center;line-height:300px;">
 								등록된 정보가 없습니다.
 							</div>
@@ -1616,7 +1616,9 @@
 			            	<div class="swiper swiper-container">
 			            		<div class="swiper-wrapper">  
 			            			<c:forEach items="${imgList }" var="img">
-			            				<div class="swiper-slide" style="background-image:url('/upload/cafe/${img.url}')"></div>
+			            				<div class="swiper-slide" <%-- style="background-image:url('/upload/cafe/${img.url}')" --%>>
+			            					<img id="cafe_img" style="height:100%;" src="/upload/cafe/${img.url}"/>
+			            				</div>
 			            			</c:forEach>
 			            		</div>    
 			            		<div class="swiper-pagination"></div>
