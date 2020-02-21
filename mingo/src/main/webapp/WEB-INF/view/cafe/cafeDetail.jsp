@@ -4,6 +4,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt"  uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -259,23 +260,31 @@
 		#menu_btn{border-bottom:2px solid #21610B;}
 		
 		.menu{
-			height:400px;
+			height:550px;
 			width:80%;
+			padding-left:50px;
+			padding-top:40px;
 		}
 		.facility{
-			height:400px;
+			height:550px;
 			display: none;
 			width:80%;
+			padding-left:50px;
+			padding-top:40px;
 		}
 		.service{
-			height:400px;
+			height:550px;
 			display: none;
 			width:80%;
+			padding-left:50px;
+			padding-top:40px;
 		}
 		.product{  
-			height:400px;  
+			height:550px;  
 			display: none;
 			width:80%;
+			padding-left:50px;
+			padding-top:40px;
 		}
 		
 		.cafe_photo{  
@@ -1163,7 +1172,7 @@
 					}
 				}   
 			}); 
-			for (var i = 1; i <= 5; i++) {
+			/* for (var i = 1; i <= 5; i++) {
 				if ($('#service-result'+i).val()==""){
 					$('#service-each'+i).remove();
 				}
@@ -1172,7 +1181,7 @@
 				if ($('#facilities-result'+i).val()==""){
 					$('#facilities-each'+i).remove();
 				}
-			}
+			} */
 			
 			
 		});  
@@ -1397,10 +1406,10 @@
 						</div>
 					</c:if>
 					<div class="facility" style="overflow:scroll; overflow:auto; overflow-x:hidden" >
-					<c:if test="${facilities !=null }">
-						<c:if test="${facilities.wifi != 0}">
+					<%-- <c:if test="${null ne facilities}"> --%>
+						<%-- <c:if test="${0 ne facilities.wifi}"> --%>
 							<div class="info_each" id="facilities-each1">
-								<img src="img/coffee.png"/>
+								<img src="img/wifi2.png"/>
 								<div>
 									<h6>와이파이</h6>
 									<h6 id="facilities-result1">
@@ -1411,10 +1420,10 @@
 									</h6>
 								</div>
 							</div>
-						</c:if>
+						<%-- </c:if> --%>
 						<c:if test="${facilities.tables != 0}">
 							<div class="info_each" id="facilities-each2">
-								<img src="img/coffee.png"/>
+								<img src="img/tables.png"/>
 								<div>
 									<h6>매장 규모</h6>
 									<h6 id="facilities-result2">
@@ -1428,7 +1437,7 @@
 						</c:if>
 						<c:if test="${facilities.interior != 0}">
 							<div class="info_each" id="facilities-each3">
-								<img src="img/coffee.png"/>
+								<img src="img/interior.png"/>
 								<div>
 									<h6>인테리어 분위기</h6>
 									<h6 id="facilities-result3">
@@ -1443,7 +1452,7 @@
 						</c:if>
 						<c:if test="${facilities.music != 0}">
 							<div class="info_each" id="facilities-each4">
-								<img src="img/coffee.png"/>
+								<img src="img/music.png"/>
 								<div>
 									<h6>음악</h6>
 									<h6 id="facilities-result4">
@@ -1459,7 +1468,7 @@
 						</c:if>
 						<c:if test="${facilities.plug != 0}">
 							<div class="info_each" id="facilities-each5">
-								<img src="img/coffee.png"/>
+								<img src="img/plug.png"/>
 								<div>
 									<h6>플러그 수</h6>
 									<h6 id="facilities-result5">
@@ -1473,7 +1482,7 @@
 						</c:if>
 						<c:if test="${facilities.restroom != 0}">
 							<div class="info_each" id="facilities-each6">
-								<img src="img/coffee.png"/>
+								<img src="img/restroom.png"/>
 								<div>
 									<h6>화장실</h6>
 									<h6 id="facilities-result6">
@@ -1485,7 +1494,7 @@
 						</c:if>
 						<c:if test="${facilities.terrace != 0}">
 							<div class="info_each" id="facilities-each7">
-								<img src="img/coffee.png"/>
+								<img src="img/terrace.png"/>
 								<div>
 									<h6>테라스</h6>
 									<h6 id="facilities-result7">
@@ -1497,7 +1506,7 @@
 						</c:if>
 						<c:if test="${facilities.studyroom != 0}">
 							<div class="info_each" id="facilities-each8">
-								<img src="img/coffee.png"/>
+								<img src="img/studyroom.png"/>
 								<div>
 									<h6>스터디룸</h6>
 									<h6 id="facilities-result8">
@@ -1509,7 +1518,7 @@
 						</c:if>
 						<c:if test="${facilities.smoking != 0}">
 							<div class="info_each" id="facilities-each9">
-								<img src="img/coffee.png"/>
+								<img src="img/smoking.png"/>
 								<div>
 									<h6>흡연석</h6>
 									<h6 id="facilities-result9">
@@ -1521,7 +1530,7 @@
 						</c:if>
 						<c:if test="${facilities.parking != 0}">
 							<div class="info_each" id="facilities-each10">
-								<img src="img/coffee.png"/>
+								<img src="img/parking.png"/>
 								<div> 
 									<h6>주차공간</h6>
 									<h6 id="facilities-result10">
@@ -1531,7 +1540,7 @@
 								</div>
 							</div>
 						</c:if>
-					</c:if>
+					<%-- </c:if> --%>
 					<c:if test="${facilities ==null || facilities.parking == 0 && facilities.smoking == 0 && facilities.studyroom == 0 && facilities.terrace == 0 && facilities.restroom == 0 && facilities.plug == 0 && facilities.music == 0 && facilities.interior == 0 && facilities.tables == 0 && facilities.wifi == 0 }">
 						<div class="facility" style="width:100%;height:300px;font-size: 1.5em; font-weight: bold; color:#D8D8D8; text-align:center;line-height:300px;">
 							등록된 정보가 없습니다.
@@ -1543,7 +1552,7 @@
 						<c:if test="${service !=null }">
 							<c:if test="${service.event != 0}">
 								<div class="info_each" id="service-each1">
-									<img src="img/coffee.png"/>
+									<img src="img/event.png"/>
 									<div>
 										<h6>이벤트</h6>
 										<h6 id="service-result1">
@@ -1555,7 +1564,7 @@
 							</c:if>
 							<c:if test="${service.coupon != 0}">
 								<div class="info_each" id="service-each2">
-									<img src="img/coffee.png"/>
+									<img src="img/coupon.png"/>
 									<div>
 										<h6>쿠폰</h6>
 										<h6 id="service-result2">
@@ -1567,7 +1576,7 @@
 							</c:if>
 							<c:if test="${service.mileage != 0}">
 								<div class="info_each" id="service-each3">
-									<img src="img/coffee.png"/>
+									<img src="img/mileage.png"/>
 									<div>
 										<h6>마일리지</h6>
 										<h6 id="service-result3">
@@ -1579,7 +1588,7 @@
 							</c:if>   
 							<c:if test="${service.blanket != 0}">
 								<div class="info_each" id="service-each4">
-									<img src="img/coffee.png"/>
+									<img src="img/blanket.png"/>
 									<div>
 										<h6>담요</h6>
 										<h6 id="service-result4">
@@ -1591,7 +1600,7 @@
 							</c:if>
 							<c:if test="${service.drinkrefill != 0}">
 								<div class="info_each" id="service-each5">
-									<img src="img/coffee.png"/>
+									<img src="img/drinkrefill.png"/>
 									<div>
 										<h6>음료 리필</h6>
 										<h6 id="service-result5">
@@ -1637,7 +1646,7 @@
 				<div class="cafe_location">
 					<div class="info_title" id="cafe_location_title">위치</div>
 					<div class="cafe_location_map">
-						<div id="cafe-map" style="width:70%;height:300px;margin:auto 5%;"></div>	
+						<div id="cafe-map" style="width:70%;height:450px;margin:auto 5%;"></div>	
 					</div> 
 				</div>
 			</div>		

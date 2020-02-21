@@ -87,18 +87,18 @@ public class DetailController {
 		//서비스 조회
 		CafeServiceVO service = detailService.viewService(cafe_id);
 		int service_result = 0;
-		if(service!=null) {
-			service_result = 1;
-			model.addAttribute("service_result", service_result);
+		/*
+		if(service!=null) { 
+			service_result = 1; 
+			model.addAttribute("service_result", service_result); 
 		}
-		
-		
+		 */
+		System.out.println("서비스의 쿠폰은? : "+service.getCoupon());
 		model.addAttribute("service", service);
 		
 		//시설 및 분위기
 		CafeFacilitiesVO facilities = detailService.viewFacilities(cafe_id);
-		
-		
+		System.out.println("시설의 플러그는? : "+facilities.getPlug());
 		model.addAttribute("facilities", facilities);
 		
 		// 사진 조회
